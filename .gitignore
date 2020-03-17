@@ -1,0 +1,8 @@
+*.aux
+*.log
+*.synctex.gz
+*.out
+*.blg
+*.cut
+samplepaper.*
+*.bib

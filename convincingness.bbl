@@ -1,0 +1,43 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{cambre_juxtapeer:_2018}
+Cambre, J., Klemmer, S., Kulkarni, C.: Juxtapeer: {Comparative} {Peer} {Review}
+  {Yields} {Higher} {Quality} {Feedback} and {Promotes} {Deeper} {Reflection}.
+  In: Proceedings of the 2018 {CHI} {Conference} on {Human} {Factors} in
+  {Computing} {Systems} - {CHI} '18. pp. 1--13. ACM Press, Montreal QC, Canada
+  (2018). \doi{10.1145/3173574.3173868},
+  \url{http://dl.acm.org/citation.cfm?doid=3173574.3173868}
+
+\bibitem{khosravi_ripple_2019}
+Khosravi, H., Kitto, K., Williams, J.J.: Ripple: {A} crowdsourced adaptive
+  platform for recommendation of learning activities. arXiv preprint
+  arXiv:1910.05522  (2019)
+
+\bibitem{tan_winning_2016}
+Tan, C., Niculae, V., Danescu-Niculescu-Mizil, C., Lee, L.: Winning
+  {Arguments}: {Interaction} {Dynamics} and {Persuasion} {Strategies} in
+  {Good}-faith {Online} {Discussions}. arXiv:1602.01103 [physics] pp. 613--624
+  (2016). \doi{10.1145/2872427.2883081}, \url{http://arxiv.org/abs/1602.01103},
+  arXiv: 1602.01103
+
+\bibitem{toledo_automatic_2019}
+Toledo, A., Gretz, S., Cohen-Karlik, E., Friedman, R., Venezian, E., Lahav, D.,
+  Jacovi, M., Aharonov, R., Slonim, N.: Automatic {Argument} {Quality}
+  {Assessment}-{New} {Datasets} and {Methods}. In: Proceedings of the 2019
+  {Conference} on {Empirical} {Methods} in {Natural} {Language} {Processing}
+  and the 9th {International} {Joint} {Conference} on {Natural} {Language}
+  {Processing} ({EMNLP}-{IJCNLP}). pp. 5629--5639 (2019)
+
+\bibitem{williams_axis:_2016}
+Williams, J.J., Kim, J., Rafferty, A., Maldonado, S., Gajos, K.Z., Lasecki,
+  W.S., Heffernan, N.: {AXIS}: {Generating} {Explanations} at {Scale} with
+  {Learnersourcing} and {Machine} {Learning}. In: Proceedings of the {Third}
+  (2016) {ACM} {Conference} on {Learning} @ {Scale} - {L}@{S} '16. pp.
+  379--388. ACM Press, Edinburgh, Scotland, UK (2016).
+  \doi{10.1145/2876034.2876042},
+  \url{http://dl.acm.org/citation.cfm?doid=2876034.2876042}
+
+\end{thebibliography}
