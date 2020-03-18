@@ -29,12 +29,11 @@ Khosravi, H., Kitto, K., Williams, J.J.: Ripple: {A} crowdsourced adaptive
   platform for recommendation of learning activities. arXiv preprint
   arXiv:1910.05522  (2019)
 
-\bibitem{tan_winning_2016}
-Tan, C., Niculae, V., Danescu-Niculescu-Mizil, C., Lee, L.: Winning
-  {Arguments}: {Interaction} {Dynamics} and {Persuasion} {Strategies} in
-  {Good}-faith {Online} {Discussions}. arXiv:1602.01103 [physics] pp. 613--624
-  (2016). \doi{10.1145/2872427.2883081}, \url{http://arxiv.org/abs/1602.01103},
-  arXiv: 1602.01103
+\bibitem{simpson_finding_2018}
+Simpson, E., Gurevych, I.: Finding {Convincing} {Arguments} {Using} {Scalable}
+  {Bayesian} {Preference} {Learning}. Transactions of the Association for
+  Computational Linguistics  \textbf{6},  357--371 (2018),
+  \url{https://www.aclweb.org/anthology/Q18-1026}
 
 \bibitem{toledo_automatic_2019}
 Toledo, A., Gretz, S., Cohen-Karlik, E., Friedman, R., Venezian, E., Lahav, D.,
