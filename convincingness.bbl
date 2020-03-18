@@ -8,8 +8,12 @@ Cambre, J., Klemmer, S., Kulkarni, C.: Juxtapeer: {Comparative} {Peer} {Review}
   {Yields} {Higher} {Quality} {Feedback} and {Promotes} {Deeper} {Reflection}.
   In: Proceedings of the 2018 {CHI} {Conference} on {Human} {Factors} in
   {Computing} {Systems} - {CHI} '18. pp. 1--13. ACM Press, Montreal QC, Canada
-  (2018). \doi{10.1145/3173574.3173868},
-  \url{http://dl.acm.org/citation.cfm?doid=3173574.3173868}
+  (2018). \doi{10.1145/3173574.3173868}
+
+\bibitem{gleize_are_2019}
+Gleize, M., Shnarch, E., Choshen, L., Dankin, L., Moshkowich, G., Aharonov, R.,
+  Slonim, N.: Are you convinced? choosing the more convincing evidence with a
+  {Siamese} network. arXiv preprint arXiv:1907.08971  (2019)
 
 \bibitem{khosravi_ripple_2019}
 Khosravi, H., Kitto, K., Williams, J.J.: Ripple: {A} crowdsourced adaptive
@@ -37,7 +41,6 @@ Williams, J.J., Kim, J., Rafferty, A., Maldonado, S., Gajos, K.Z., Lasecki,
   {Learnersourcing} and {Machine} {Learning}. In: Proceedings of the {Third}
   (2016) {ACM} {Conference} on {Learning} @ {Scale} - {L}@{S} '16. pp.
   379--388. ACM Press, Edinburgh, Scotland, UK (2016).
-  \doi{10.1145/2876034.2876042},
-  \url{http://dl.acm.org/citation.cfm?doid=2876034.2876042}
+  \doi{10.1145/2876034.2876042}
 
 \end{thebibliography}

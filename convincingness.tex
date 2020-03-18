@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{url}
+\usepackage{booktabs}
 
 
 %\renewcommand\UrlFont{\color{blue}\rmfamily}
@@ -43,20 +44,61 @@ Dawson College
 \section{Introduction}
 
 \section{Related Work}
-\subsection{Comparitive Peer Assessment}
+
+\subsection{Comparative Peer Assessment}
 Juxtapeer\cite{cambre_juxtapeer:_2018}
 \subsection{Learnersourcing}
 Ripple\cite{khosravi_ripple_2019}, AXIS\cite{williams_axis:_2016}
 
-\subsection{Argument Quality}
+\subsection{Automated Essay Scoring and Short Answer Scoring}
+
+
+\subsection{Argument Quality \& Convincingness}
+
 Convincingness in online forums \cite{tan_winning_2016}
 Assessment of argument quality \cite{toledo_automatic_2019}
+Evidence quality \cite{gleize_are_2019}
 
 \section{Methods}
 
+\subsection{Data}
+The dataset is comprised of pairs of student explanations for a particular 
+answer choice to a given question. The first explanation is always the one 
+written by the learner-annotator, while the second is an alternative which 
+they either chose as more convincing, or not. The data is filtered so as 
+to only keep observations where the explanations are within half a standard 
+deviation in length of each other. To ensure internal reliability, we only keep 
+observations where we have at least \input{data/MIN_RECORDS_PER_STUDENT} 
+records per 
+student, and \input{data/MIN_VOTES_PER_CHOSEN_RATIONALE} records per chosen 
+explanation. This leaves us a dataset with \input{data/NUM_STUDENTS_FILTERED} 
+learner annotators and \input{data/N} observations across three disciplines.
+\begin{table}
+\input{data/data}
+\caption{Observations of students choosing a peer explanation as more 
+convincing than their own, or not, aggregated by discipline and whether they 
+started and finished with the correct answer}
+\end{table}
+
+\subsection{Models}
+The first baseline model we compare to is where students simply choose the 
+longer explanation of the pair, while the second is based solely on a Bag of 
+Words model trained on all of the words used by students for this item, and the 
+words in 
+
 
 \section{Results}
-
+\begin{table}
+	\begin{tabular}{l|l|l}
+		\toprule
+		model & accuracy & AUC \\
+		\toprule
+		WC &  &  \\
+		BoW &  &  \\
+		Syntax & & \\
+		Bert &  &  \\	
+	\end{tabular}
+\end{table}
 \section{Discussion}
 
 \section{Future Work}
