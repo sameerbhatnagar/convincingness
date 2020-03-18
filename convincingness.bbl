@@ -13,7 +13,16 @@ Cambre, J., Klemmer, S., Kulkarni, C.: Juxtapeer: {Comparative} {Peer} {Review}
 \bibitem{gleize_are_2019}
 Gleize, M., Shnarch, E., Choshen, L., Dankin, L., Moshkowich, G., Aharonov, R.,
   Slonim, N.: Are you convinced? choosing the more convincing evidence with a
-  {Siamese} network. arXiv preprint arXiv:1907.08971  (2019)
+  {Siamese} network. arXiv preprint arXiv:1907.08971  (2019),
+  \url{https://www.aclweb.org/anthology/P19-1093/}
+
+\bibitem{habernal_which_2016}
+Habernal, I., Gurevych, I.: Which argument is more convincing? {Analyzing} and
+  predicting convincingness of {Web} arguments using bidirectional {LSTM}. In:
+  Proceedings of the 54th {Annual} {Meeting} of the {Association} for
+  {Computational} {Linguistics} ({Volume} 1: {Long} {Papers}). pp. 1589--1599.
+  Association for Computational Linguistics, Berlin, Germany (Aug 2016).
+  \doi{10.18653/v1/P16-1150}, \url{https://www.aclweb.org/anthology/P16-1150}
 
 \bibitem{khosravi_ripple_2019}
 Khosravi, H., Kitto, K., Williams, J.J.: Ripple: {A} crowdsourced adaptive
@@ -33,7 +42,8 @@ Toledo, A., Gretz, S., Cohen-Karlik, E., Friedman, R., Venezian, E., Lahav, D.,
   {Assessment}-{New} {Datasets} and {Methods}. In: Proceedings of the 2019
   {Conference} on {Empirical} {Methods} in {Natural} {Language} {Processing}
   and the 9th {International} {Joint} {Conference} on {Natural} {Language}
-  {Processing} ({EMNLP}-{IJCNLP}). pp. 5629--5639 (2019)
+  {Processing} ({EMNLP}-{IJCNLP}). pp. 5629--5639 (2019),
+  \url{https://www.aclweb.org/anthology/D19-1564.pdf}
 
 \bibitem{williams_axis:_2016}
 Williams, J.J., Kim, J., Rafferty, A., Maldonado, S., Gajos, K.Z., Lasecki,
