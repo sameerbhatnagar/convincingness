@@ -76,17 +76,45 @@ written by the learner-annotator, while the second is an alternative which
 they either chose as more convincing, or not. The data is filtered so as 
 to only keep observations where the explanations are within half a standard 
 deviation in length of each other. To ensure internal reliability, we only keep 
-observations where we have at least \input{data/MIN_RECORDS_PER_STUDENT} 
-records per 
-student, and \input{data/MIN_VOTES_PER_CHOSEN_RATIONALE} records per chosen 
-explanation. This leaves us a dataset with \input{data/NUM_STUDENTS_FILTERED} 
-learner annotators and \input{data/N} observations across three disciplines.
+observations where we have at least \input{data/MIN_VOTES_PER_CHOSEN_RATIONALE} 
+records per chosen explanation. To ensure that the explanations in each pair 
+are of comparable length, we keep only those with word counts that are within 
+\input{data/STD_FRAC} standard deviations or \input{data/MAX_WORD_COUNT_DIFF} 
+words 
+of each other. This leaves us a dataset with 
+\input{data/N} observations, spanning \input{data/n_students} learner 
+annotators having worked on on average \input{data/avg_q_per_student} items 
+each, from a total of \input{data/n_questions} items across three disciplines.
 \begin{table}
-\input{data/data}
 \caption{Observations of students choosing a peer explanation as more 
-convincing than their own, or not, aggregated by discipline and whether they 
-started and finished with the correct answer}
+	convincing than their own, or not, aggregated by discipline and whether 
+	they 
+	started and finished with the correct answer}
+
+\input{data/transitions_by_discipline}
+
+\label{tab:transitions_by_discipline}
 \end{table}
+
+Table \ref{tab:transitions_by_discipline} highlights one key difference between 
+the modelling task of this study, and related work in argument mining, where 
+annotators are presented pairs of arguments that are always for the same 
+stance, in order to limit bias due to their opinion on the motion when 
+evaluating which argument is more convincing.
+In a \textit{Peer Instruction} learning environment, other pairings are 
+possible and pedagogically relevant. In this dataset, the majority of students 
+keep the same answer choice between the two steps of the prompt, and so they 
+are comparing two explanations that are either both correct (\textit{``rr''}) 
+or incorrect (\textit{``wr''}). However, there is 
+\input{data/frac_switch}\% 
+of the observations in this dataset are for students who not only choose an 
+explanation more convincing than their own, but also switch answer choice, 
+either from the incorrect to correct, or the reverse . These pairs add a 
+different level of complexity to the model, but are very pertinent in the 
+pedagogical context: what are the argumentative features which can help 
+students remediate an initial wrong answer choice (\textit{``wr''})? What are 
+the features that might be responsible for getting studnets to actually move 
+away from the correct answer choice (\textit{``rw''})?
 
 \subsection{Models}
 The first baseline model we compare to is where students simply choose the 
