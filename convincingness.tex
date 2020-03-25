@@ -8,6 +8,7 @@
 \usepackage{hyperref}
 \usepackage{url}
 \usepackage{booktabs}
+\usepackage{multirow}
 
 
 %\renewcommand\UrlFont{\color{blue}\rmfamily}
@@ -15,6 +16,7 @@
 \begin{document}
 %
 \title{Automatic Explanation Quality Assessment in Online Learning Environments}
+\titlerunning{Convincingness \& Peer Instruction}
 %
 \author{Sameer Bhatnagar\inst{1} \and
 Amal Zouaq\inst{1} \and
@@ -43,6 +45,7 @@ Dawson College
 
 \section{Introduction}
 
+
 \section{Related Work}
 
 \subsection{Learnersourcing \& Comparative Peer Assessment}
@@ -50,16 +53,57 @@ Ripple\cite{khosravi_ripple_2019}, AXIS\cite{williams_axis:_2016}
 Juxtapeer\cite{cambre_juxtapeer:_2018}
 
 \subsection{Argument Quality \& Convincingness}
+Conventional argument-mining pipelines include several successive components, 
+starting with the automatic detection of argumentative units, classification of 
+these units into types (e.g. major claim, minor claim, premise), and 
+identification of argumentative relations (which evidence units support which 
+claim). Such pipelines are essential in question-answering systems 
+\cite{lippi_argumentation_2016} and are at the heart if the IBM Project Debater 
+initiative. 
+
+Work in the area of automatic evaluation of argument quality finds its roots in 
+ detecting evidence in legal texts\cite{moens_automatic_2007}, but has 
+ accelerated in recent years as more datasets become 
+available in everyday contexts, and focus shifts to modelling more qualitative 
+measures, such as \textit{convincingness}. 
+
+Some of the earlier efforts included work on automatically 
+scoring of persuasive essays \cite{persing_end--end_2016} and modelling 
+persuasiveness in online debate forums \cite{tan_winning_2016}. However, 
+evaluating argument \textit{convincingness} with an absolute score can be 
+challenging, which has led to significant work in adopting a pairwise approach, 
+where data consists of pairwise observations of two arguments, labelled with 
+which of the two is most convincing.
+
+\begin{table}
+	
+	\input{data/sample_obs}
+	\caption{Example of instance in pairwise comparison task, where two 
+	students explanations are compared, and one is chosen as more convincing}
+	
+	\label{tab:sample_obs}
+\end{table}
+
+In \cite{habernal_which_2016}, the authors propose a feature-rich support 
+vector machine, as well as an end-to-end neural approach based on pre-trained 
+Glove vectors and a bidirectional Long-Short-Term Memory network for the 
+pairwise classification task. This is extended in \cite{gleize_are_2019}, where 
+the authors build a Siamese network architecture, where each leg is a BiLSTM, 
+taking as input the pair of explanations as Glove embeddings 
+\cite{pennington_glove:_2014}, in order to detect which of argument in a pair 
+has the most convincing evidence. Finally, based on the success of transformer 
+models such as BERT\cite{devlin_bert_2018}, the authors of 
+\cite{toledo_automatic_2019} 
+release a dataset of argument pairs and show that these models accurately 
+predict the most convincing argument in a pair.
+
+
+
 \begin{itemize}
-	\item \cite{habernal_which_2016} Predicting convincingness, reducing noise 
-	in annotations by building an acyclic 
-	argument graph
-	\item \cite{simpson_finding_2018} Gaussian Process Preference Learning 
+
 	\item \cite{toledo_automatic_2019} Assessment of argument quality, with a 
 	dataset that has both individual scores 
 	and pairwise-ranked data 
-	\item \cite{gleize_are_2019} Evidence quality, predicted using a Siamese 
-	network architecture 
 	
 \end{itemize}
   
@@ -69,6 +113,39 @@ Juxtapeer\cite{cambre_juxtapeer:_2018}
 
 \section{Methods}
 
+
+\begin{table}
+\begin{tabular}{ |l|l|l|}
+	\hline
+	Feature Type & Feature & $\tau$ \\
+	\hline
+	\multirow{6}{*}{Lexical} 
+	& Uni+BiGrams & \\
+	& Spelling Errors &  \\
+	& Equations & \\
+	& Type Token Ratio &  \\
+	& Punctuation &\\
+	& Readability scores&\\
+	\hline
+	\multirow{5}{*}{Syntactic} 
+	& PoS Uni+Bigrams &   \\
+	& Dependancy Tree Depth  & \\
+	& Conjunctions  & \\ 
+	& Modal Verbs & \\ 
+	& Tree Production Rules &\\
+	\hline
+	\multirow{3}{*}{Semantic} 
+	& LSA Similarity &  \\
+	& LSA Similarity Question & \\
+	& Likelihood (Textbook) & \\ 
+	\hline
+\end{tabular}
+
+\caption{Features used in experiments with Linear SVM, annotated with 
+	kendall $\tau$ correlation and sigificance with target label}
+\label{tab:features}
+\end{table}
+
 \subsection{Data}
 The dataset is comprised of pairs of student explanations for a particular 
 answer choice to a given question. The first explanation is always the one 
@@ -76,17 +153,18 @@ written by the learner-annotator, while the second is an alternative which
 they either chose as more convincing, or not. The data is filtered so as 
 to only keep observations where the explanations are within half a standard 
 deviation in length of each other. To ensure internal reliability, we only keep 
-observations where we have at least \input{data/MIN_VOTES_PER_CHOSEN_RATIONALE} 
-records per chosen explanation. To ensure that the explanations in each pair 
+explanations that were chosen at least \input{data/VOTES_MIN}times. To ensure 
+that the explanations in each pair 
 are of comparable length, we keep only those with word counts that are within 
-\input{data/STD_FRAC} standard deviations or \input{data/MAX_WORD_COUNT_DIFF} 
-words 
-of each other. This leaves us a dataset with 
-\input{data/N} observations, spanning \input{data/n_students} learner 
-annotators having worked on on average \input{data/avg_q_per_student} items 
-each, from a total of \input{data/n_questions} items across three disciplines.
+\input{data/STD_FRAC}standard deviations or 
+\input{data/MAX_WORD_COUNT_DIFF}words of each other. This leaves us a dataset 
+with \input{data/N}observations, spanning \input{data/n_students}learner 
+annotators having completed, on average, \input{data/avg_q_per_student}items 
+each, from a total of \input{data/n_questions}items across three disciplines, 
+with at least \input{data/MIN_RECORDS_PER_QUESTION}explanation-pairs per item.
 \begin{table}
-\caption{Observations of students choosing a peer explanation as more 
+\caption{Observations of students choosing a peer explanation as 
+more 
 	convincing than their own, or not, aggregated by discipline and whether 
 	they 
 	started and finished with the correct answer}
@@ -106,21 +184,40 @@ possible and pedagogically relevant. In this dataset, the majority of students
 keep the same answer choice between the two steps of the prompt, and so they 
 are comparing two explanations that are either both correct (\textit{``rr''}) 
 or incorrect (\textit{``wr''}). However, there is 
-\input{data/frac_switch}\% 
-of the observations in this dataset are for students who not only choose an 
-explanation more convincing than their own, but also switch answer choice, 
+\input{data/frac_switch}\% of the observations in this dataset are for students 
+who not only choose an explanation more convincing than their own, but also 
+switch answer choice, 
 either from the incorrect to correct, or the reverse . These pairs add a 
 different level of complexity to the model, but are very pertinent in the 
 pedagogical context: what are the argumentative features which can help 
 students remediate an initial wrong answer choice (\textit{``wr''})? What are 
-the features that might be responsible for getting studnets to actually move 
+the features that might be responsible for getting students to actually move 
 away from the correct answer choice (\textit{``rw''})?
 
 \subsection{Models}
-The first baseline model we compare to is where students simply choose the 
-longer explanation of the pair, while the second is based solely on a Bag of 
-Words model trained on all of the words used by students for this item, and the 
-words in 
+
+\begin{table}
+	\input{data/baselines}
+	\caption{Baseline models per discipline}
+	\label{tab:baselines}
+\end{table}
+
+
+In pairwise classification tasks so 50\% is the baseline performance.  In Table 
+\ref{tab:baselines} we begin by comparing a \textit{longest} model baseline, 
+where we predict that students simply choose the longer explanation of the 
+pair, and one based on a simple \textit{Bag of Words} model, where the words 
+are taken from a open source textbook from the corresponding discipline. 
+
+For our experiments, we begin by following the line of work proposed by 
+\cite{habernal_which_2016}, and experiment with a feature-rich linear SVM 
+classifier for the pairwise classification task. We use a similar feature set, 
+which we categorize as \textbf{lexical}, \textbf{syntactic}, and 
+\textbf{semantic}, as described in Table \ref{tab:features}. we begin by 
+computing the feature vector for each explanation, and compute the difference 
+for each pairwise ranking instance as per the well established SVM-Rank 
+algorithms \cite{joachims_optimizing_2002}, training the model to learn which 
+of the pair is the more convincing argument. 
 
 
 \section{Results}
@@ -129,17 +226,26 @@ words in
 		\toprule
 		model & accuracy & AUC \\
 		\toprule
-		Argument Length &  &  \\
-		SVM-R &  &  \\
-		GPPL & & \\
+		SVM &  &  \\
 		BiLSTM & & \\
-		Siamese &  &  \\
 		BERT & & \\	
 	\end{tabular}
 \end{table}
 \section{Discussion}
 
 \section{Future Work}
+In this study we do not ever infer which are, overall, the most convincing 
+student explanations for any given item. Inferring a gold standard of global 
+rankings, starting from these pairwise preference data can be accomplished 
+using research from the information retrieval 
+community\cite{chen_pairwise_2013}. Work on deriving point wise scores for 
+argument pairs is proposed as a Gaussian Process Preference Learning task by 
+\cite{simpson_finding_2018}. Seeing the lack of pointwise labels for overall 
+convincingness, \cite{toledo_automatic_2019} released a dataset where they 
+collect this data as well. A comparable source of data inside the myDALITE 
+platform are the feedback scores teachers can optionally provide to students on 
+thier explanations.
+
 
  \bibliographystyle{splncs04}
  \bibliography{MyLibrary}

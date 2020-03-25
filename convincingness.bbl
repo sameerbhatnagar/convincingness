@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
 \providecommand{\doi}[1]{https://doi.org/#1}
@@ -9,6 +9,16 @@ Cambre, J., Klemmer, S., Kulkarni, C.: Juxtapeer: {Comparative} {Peer} {Review}
   In: Proceedings of the 2018 {CHI} {Conference} on {Human} {Factors} in
   {Computing} {Systems} - {CHI} '18. pp. 1--13. ACM Press, Montreal QC, Canada
   (2018). \doi{10.1145/3173574.3173868}
+
+\bibitem{chen_pairwise_2013}
+Chen, X., Bennett, P.N., Collins-Thompson, K., Horvitz, E.: Pairwise ranking
+  aggregation in a crowdsourced setting. In: Proceedings of the sixth {ACM}
+  international conference on {Web} search and data mining. pp. 193--202 (2013)
+
+\bibitem{devlin_bert_2018}
+Devlin, J., Chang, M.W., Lee, K., Toutanova, K.: Bert: {Pre}-training of deep
+  bidirectional transformers for language understanding. arXiv preprint
+  arXiv:1810.04805  (2018)
 
 \bibitem{gleize_are_2019}
 Gleize, M., Shnarch, E., Choshen, L., Dankin, L., Moshkowich, G., Aharonov, R.,
@@ -24,16 +34,46 @@ Habernal, I., Gurevych, I.: Which argument is more convincing? {Analyzing} and
   Association for Computational Linguistics, Berlin, Germany (Aug 2016).
   \doi{10.18653/v1/P16-1150}, \url{https://www.aclweb.org/anthology/P16-1150}
 
+\bibitem{joachims_optimizing_2002}
+Joachims, T.: Optimizing search engines using clickthrough data. In:
+  Proceedings of the eighth {ACM} {SIGKDD} international conference on
+  {Knowledge} discovery and data mining. pp. 133--142 (2002)
+
 \bibitem{khosravi_ripple_2019}
 Khosravi, H., Kitto, K., Williams, J.J.: Ripple: {A} crowdsourced adaptive
   platform for recommendation of learning activities. arXiv preprint
   arXiv:1910.05522  (2019)
+
+\bibitem{lippi_argumentation_2016}
+Lippi, M., Torroni, P.: Argumentation mining: {State} of the art and emerging
+  trends. ACM Transactions on Internet Technology (TOIT)  \textbf{16}(2), ~10
+  (2016)
+
+\bibitem{moens_automatic_2007}
+Moens, M.F., Boiy, E., Palau, R.M., Reed, C.: Automatic detection of arguments
+  in legal texts. In: Proceedings of the 11th international conference on
+  {Artificial} intelligence and law. pp. 225--230 (2007)
+
+\bibitem{pennington_glove:_2014}
+Pennington, J., Socher, R., Manning, C.D.: Glove: {Global} {Vectors} for {Word}
+  {Representation}. In: {EMNLP}. vol.~14, pp. 1532--1543 (2014)
+
+\bibitem{persing_end--end_2016}
+Persing, I., Ng, V.: End-to-{End} {Argumentation} {Mining} in {Student}
+  {Essays}. In: {HLT}-{NAACL}. pp. 1384--1394 (2016)
 
 \bibitem{simpson_finding_2018}
 Simpson, E., Gurevych, I.: Finding {Convincing} {Arguments} {Using} {Scalable}
   {Bayesian} {Preference} {Learning}. Transactions of the Association for
   Computational Linguistics  \textbf{6},  357--371 (2018),
   \url{https://www.aclweb.org/anthology/Q18-1026}
+
+\bibitem{tan_winning_2016}
+Tan, C., Niculae, V., Danescu-Niculescu-Mizil, C., Lee, L.: Winning
+  {Arguments}: {Interaction} {Dynamics} and {Persuasion} {Strategies} in
+  {Good}-faith {Online} {Discussions}. arXiv:1602.01103 [physics] pp. 613--624
+  (2016). \doi{10.1145/2872427.2883081}, \url{http://arxiv.org/abs/1602.01103},
+  arXiv: 1602.01103
 
 \bibitem{toledo_automatic_2019}
 Toledo, A., Gretz, S., Cohen-Karlik, E., Friedman, R., Venezian, E., Lahav, D.,
