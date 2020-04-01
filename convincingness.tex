@@ -9,6 +9,7 @@
 \usepackage{url}
 \usepackage{booktabs}
 \usepackage{multirow}
+\usepackage{subfig}
 
 
 %\renewcommand\UrlFont{\color{blue}\rmfamily}
@@ -213,18 +214,35 @@ away from the correct answer choice (\textit{``rw''})?
 
 \subsection{Models}
 
-\begin{table}
-	\input{data/baselines}
-	\caption{Baseline models per discipline}
+
+\begin{figure}
+	\subfloat[Baseline models on myDalite]
+	{	
+	\input{data/results_overall_myDalite}
+    }\hfill
+	\subfloat[Baselines on IBM argument ranking dataset]
+	{	
+	\input{data/results_overall_IBMPairs}
+    }
 	\label{tab:baselines}
-\end{table}
+\end{figure}
 
 
-In pairwise classification tasks so 50\% is the baseline performance.  In Table 
-\ref{tab:baselines} we begin by comparing a \textit{longest} model baseline, 
-where we predict that students simply choose the longer explanation of the 
-pair, and one based on a simple \textit{Bag of Words} model, where the words 
-are taken from a open source textbook from the corresponding discipline. 
+In pairwise classification tasks so 50\% is the baseline performance.  
+In Table \ref{tab:baselines} we begin by comparing the \textit{ArgLongest} 
+model baseline, where we predict that students simply choose the longer 
+explanation of the pair.
+We also include two baseline models on \textit{Bag of Words} models: 
+\textit{ArgBoWGen} where the term-document-matrix is built from an open-source 
+textbook from the corresponding discipline\footnote{https://openstax.org/}, and 
+\textit{ArgBoWItemSpec}, where the term-document matrix is built from the words 
+students have used for the item (pertinent when no reference text is available 
+for a discipline).
+As this is a new context for these argument mining methods, we include the same 
+baselines on the carefully curated \textit{IBMArgPair} dataset, which is of the 
+same format.
+
+
 
 For our experiments, we begin by following the line of work proposed by 
 \cite{habernal_which_2016}, and experiment with a feature-rich linear SVM 
@@ -244,7 +262,6 @@ of the pair is the more convincing argument.
 		model & accuracy & AUC \\
 		\toprule
 		SVM &  &  \\
-		BiLSTM & & \\
 		BERT & & \\	
 	\end{tabular}
 \end{table}
