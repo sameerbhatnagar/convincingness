@@ -4,13 +4,15 @@
 %
 \documentclass[runningheads]{llncs}
 %
-\usepackage{graphicx}
+
 \usepackage{hyperref}
 \usepackage{url}
 \usepackage{booktabs}
 \usepackage{multirow}
-\usepackage{subfig}
 \usepackage{pgf}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 
 
 %\renewcommand\UrlFont{\color{blue}\rmfamily}
@@ -132,38 +134,38 @@ predict the most convincing argument in a pair.
 
 \section{Methods}
 
-
-\begin{table}
-\begin{tabular}{ |l|l|l|}
-	\hline
-	Feature Type & Feature & $\tau$ \\
-	\hline
-	\multirow{6}{*}{Lexical} 
-	& Uni+BiGrams & \\
-	& Spelling Errors &  \\
-	& Equations & \\
-	& Type Token Ratio &  \\
-	& Punctuation &\\
-	& Readability scores&\\
-	\hline
-	\multirow{5}{*}{Syntactic} 
-	& PoS Uni+Bigrams &   \\
-	& Dependancy Tree Depth  & \\
-	& Conjunctions  & \\ 
-	& Modal Verbs & \\ 
-	& Tree Production Rules &\\
-	\hline
-	\multirow{3}{*}{Semantic} 
-	& LSA Similarity &  \\
-	& LSA Similarity Question & \\
-	& Likelihood (Textbook) & \\ 
-	\hline
-\end{tabular}
-
-\caption{Features used in experiments with Linear SVM, annotated with 
-	kendall $\tau$ correlation and sigificance with target label}
-\label{tab:features}
-\end{table}
+%
+%\begin{table}
+%\begin{tabular}{ |l|l|l|}
+%	\hline
+%	Feature Type & Feature & $\tau$ \\
+%	\hline
+%	\multirow{6}{*}{Lexical} 
+%	& Uni+BiGrams & \\
+%	& Spelling Errors &  \\
+%	& Equations & \\
+%	& Type Token Ratio &  \\
+%	& Punctuation &\\
+%	& Readability scores&\\
+%	\hline
+%	\multirow{5}{*}{Syntactic} 
+%	& PoS Uni+Bigrams &   \\
+%	& Dependancy Tree Depth  & \\
+%	& Conjunctions  & \\ 
+%	& Modal Verbs & \\ 
+%	& Tree Production Rules &\\
+%	\hline
+%	\multirow{3}{*}{Semantic} 
+%	& LSA Similarity &  \\
+%	& LSA Similarity Question & \\
+%	& Likelihood (Textbook) & \\ 
+%	\hline
+%\end{tabular}
+%
+%\caption{Features used in experiments with Linear SVM, annotated with 
+%	kendall $\tau$ correlation and sigificance with target label}
+%\label{tab:features}
+%\end{table}
 
 \subsection{Data}
 The dataset is comprised of pairs of student explanations for a particular 
@@ -270,24 +272,23 @@ of the pair is the more convincing argument.
 %\end{figure}
 
 \begin{figure}
-	\subfloat[Accuracy]{
-		\input{img/acc.pgf}
-	}\hfill
-	\subfloat[AUC]{
-		\input{img/AUC.pgf}
-	}
+	\begin{subfigure}[t]{0.5\linewidth}
+		\centering
+		\scalebox{0.4}{\input{img/acc.pgf}}
+
+		\caption{Pairwise ranking accuracy for different models across datasets}
+	\end{subfigure}%
+	\hfill
+	\begin{subfigure}[t]{0.5\linewidth}
+		\centering
+		\scalebox{0.4}{\input{img/acc.pgf}}
+
+		\caption{Pairwise ranking classification ROC-AUC for different models 
+		across datasets}
+	\end{subfigure}
 \end{figure}
 
 
-\begin{table}
-	\begin{tabular}{l|l|l}
-		\toprule
-		model & accuracy & AUC \\
-		\toprule
-		SVM &  &  \\
-		BERT & & \\	
-	\end{tabular}
-\end{table}
 \section{Discussion}
 
 \section{Future Work}
@@ -301,7 +302,7 @@ argument pairs is proposed as a Gaussian Process Preference Learning task by
 convincingness, \cite{toledo_automatic_2019} released a dataset where they 
 collect this data as well. A comparable source of data inside the myDALITE 
 platform are the feedback scores teachers can optionally provide to students on 
-thier explanations.
+their explanations.
 
 
  \bibliographystyle{splncs04}
