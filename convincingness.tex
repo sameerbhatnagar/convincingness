@@ -10,6 +10,7 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{subfig}
+\usepackage{pgf}
 
 
 %\renewcommand\UrlFont{\color{blue}\rmfamily}
@@ -215,17 +216,17 @@ away from the correct answer choice (\textit{``rw''})?
 \subsection{Models}
 
 
-\begin{figure}
-	\subfloat[Baseline models on myDalite]
-	{	
-	\input{data/results_overall_myDalite}
-    }\hfill
-	\subfloat[Baselines on IBM argument ranking dataset]
-	{	
-	\input{data/results_overall_IBMPairs}
-    }
-	\label{tab:baselines}
-\end{figure}
+%\begin{figure}
+%	\subfloat[Baseline models on myDalite]
+%	{	
+%	\input{data/results_overall_myDalite}
+%    }\hfill
+%	\subfloat[Baselines on IBM argument ranking dataset]
+%	{	
+%	\input{data/results_overall_IBMPairs}
+%    }
+%	\label{tab:baselines}
+%\end{figure}
 
 
 In pairwise classification tasks so 50\% is the baseline performance.  
@@ -256,17 +257,27 @@ of the pair is the more convincing argument.
 
 
 \section{Results}
+%\begin{figure}
+%	\subfloat[BERT model, fine tuned on myDalite data, by discipline]
+%	{	
+%		\input{data/BERT_dalite}
+%	}\hfill
+%	\subfloat[BERT model performance on Biology data, by answer transition]
+%	{	
+%		\input{data/BERT_Bio_transition}
+%	}
+%	\label{tab:BERT_dalite}
+%\end{figure}
+
 \begin{figure}
-	\subfloat[BERT model, fine tuned on myDalite data, by discipline]
-	{	
-		\input{data/BERT_dalite}
+	\subfloat[Accuracy]{
+		\input{img/acc.pgf}
 	}\hfill
-	\subfloat[BERT model performance on Biology data, by answer transition]
-	{	
-		\input{data/BERT_Bio_transition}
+	\subfloat[AUC]{
+		\input{img/AUC.pgf}
 	}
-	\label{tab:BERT_dalite}
 \end{figure}
+
 
 \begin{table}
 	\begin{tabular}{l|l|l}
