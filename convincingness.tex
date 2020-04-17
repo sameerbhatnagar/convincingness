@@ -133,6 +133,22 @@ predict the most convincing argument in a pair.
 
 
 \section{Methods}
+Choosing which argument is more convincing from a pair is an 
+ordinal regression problem, where the 
+\subsection{SVM-Rank}
+It has been proven that a binary ordinal regression problem, can be cast into 
+an equivalent binary classification problem, wherein the model is trained on 
+the \textit{difference} of the feature vectors of each argument in the pair 
+\cite{herbrich_support_1999}. Referred to as \textit{SVM-rank}, this method of 
+learning pairwise preferences has been used extensively in the context of 
+information retrieval (e.g. ranking search results for a query based on past 
+clickthrough data) \cite{joachims_optimizing_2002}, but also more recently in 
+evaluating the journalistic quality of newspaper and magazine articles 
+\cite{louis_what_2013}. We build and evaluate one such model, \textit{ArgBoW}, 
+which takes as its input the words which were used in all of the arguments for 
+a particular topic, regardless of stance. 
+
+\subsection{BERT}
 
 %
 %\begin{table}
@@ -327,7 +343,13 @@ pairwise ranking accuracy of 0.84 using a combination of content and writing
 features, but also a 0.82 accuracy with the content words as features alone.
 
 
+
 \section{Future Work}
+\cite{nguyen_computational_2015} and \cite{louis_what_2013} use combination of 
+writing and content (BoW) features to achieve their best results, and thus is 
+avenue must be explored more thoroughly, especially as this mayb avry across 
+disciplines an teaching contexts.
+
 In this study we do not ever infer which are, overall, the most convincing 
 student explanations for any given item. Inferring a gold standard of global 
 rankings, starting from these pairwise preference data can be accomplished 

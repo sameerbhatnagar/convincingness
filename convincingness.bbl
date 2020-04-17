@@ -34,6 +34,10 @@ Habernal, I., Gurevych, I.: Which argument is more convincing? {Analyzing} and
   Association for Computational Linguistics, Berlin, Germany (Aug 2016).
   \doi{10.18653/v1/P16-1150}, \url{https://www.aclweb.org/anthology/P16-1150}
 
+\bibitem{herbrich_support_1999}
+Herbrich, R., Graepel, T., Obermayer, K.: Support vector learning for ordinal
+  regression  (1999), publisher: IET
+
 \bibitem{joachims_optimizing_2002}
 Joachims, T.: Optimizing search engines using clickthrough data. In:
   Proceedings of the eighth {ACM} {SIGKDD} international conference on
@@ -59,6 +63,10 @@ Louis, A., Nenkova, A.: What {Makes} {Writing} {Great}? {First} {Experiments}
 Moens, M.F., Boiy, E., Palau, R.M., Reed, C.: Automatic detection of arguments
   in legal texts. In: Proceedings of the 11th international conference on
   {Artificial} intelligence and law. pp. 225--230 (2007)
+
+\bibitem{nguyen_computational_2015}
+Nguyen, D., Doğruöz, A.S., Rosé, C.P., de~Jong, F.: Computational
+  {Sociolinguistics}: {A} {Survey}. arXiv preprint arXiv:1508.07544  (2015)
 
 \bibitem{pennington_glove:_2014}
 Pennington, J., Socher, R., Manning, C.D.: Glove: {Global} {Vectors} for {Word}
