@@ -15,7 +15,7 @@
 \usepackage{subcaption}
 
 
-%\renewcommand\UrlFont{\color{blue}\rmfamily}
+
 
 \begin{document}
 %
@@ -128,71 +128,15 @@ predict the most convincing argument in a pair.
 	
 \end{itemize}
   
+\section{Data}
 
-
-
-
-\section{Methods}
-Choosing which argument is more convincing from a pair is an 
-ordinal regression problem, where the 
-\subsection{SVM-Rank}
-It has been proven that a binary ordinal regression problem, can be cast into 
-an equivalent binary classification problem, wherein the model is trained on 
-the \textit{difference} of the feature vectors of each argument in the pair 
-\cite{herbrich_support_1999}. Referred to as \textit{SVM-rank}, this method of 
-learning pairwise preferences has been used extensively in the context of 
-information retrieval (e.g. ranking search results for a query based on past 
-clickthrough data) \cite{joachims_optimizing_2002}, but also more recently in 
-evaluating the journalistic quality of newspaper and magazine articles 
-\cite{louis_what_2013}. We build and evaluate one such model, \textit{ArgBoW}, 
-which takes as its input the words which were used in all of the arguments for 
-a particular topic, regardless of stance. 
-
-\subsection{BERT}
-
-%
-%\begin{table}
-%\begin{tabular}{ |l|l|l|}
-%	\hline
-%	Feature Type & Feature & $\tau$ \\
-%	\hline
-%	\multirow{6}{*}{Lexical} 
-%	& Uni+BiGrams & \\
-%	& Spelling Errors &  \\
-%	& Equations & \\
-%	& Type Token Ratio &  \\
-%	& Punctuation &\\
-%	& Readability scores&\\
-%	\hline
-%	\multirow{5}{*}{Syntactic} 
-%	& PoS Uni+Bigrams &   \\
-%	& Dependancy Tree Depth  & \\
-%	& Conjunctions  & \\ 
-%	& Modal Verbs & \\ 
-%	& Tree Production Rules &\\
-%	\hline
-%	\multirow{3}{*}{Semantic} 
-%	& LSA Similarity &  \\
-%	& LSA Similarity Question & \\
-%	& Likelihood (Textbook) & \\ 
-%	\hline
-%\end{tabular}
-%
-%\caption{Features used in experiments with Linear SVM, annotated with 
-%	kendall $\tau$ correlation and sigificance with target label}
-%\label{tab:features}
-%\end{table}
 
 \begin{table}
 	\caption{Descriptive statistic for each dataset of argument pairs, with 
-	last rows showing \textit{dalite} split by discipline}
+		last rows showing \textit{dalite} split by discipline}
 	\input{data/df_summary_final}
 \end{table}
 
-
-
-
-\subsection{Data}
 The dataset is comprised of pairs of student explanations for a particular 
 answer choice to a given question. The first explanation is always the one 
 written by the learner-annotator, while the second is an alternative which 
@@ -208,15 +152,15 @@ annotators having completed, on average, \input{data/avg_q_per_student}items
 each, from a total of \input{data/n_questions}items across three disciplines, 
 with at least \input{data/MIN_RECORDS_PER_QUESTION}explanation-pairs per item.
 \begin{table}
-\caption{Observations of students choosing a peer explanation as 
-more 
-	convincing than their own, or not, aggregated by discipline and whether 
-	they 
-	started and finished with the correct answer}
-
-\input{data/transitions_by_discipline}
-
-\label{tab:transitions_by_discipline}
+	\caption{Observations of students choosing a peer explanation as 
+		more 
+		convincing than their own, or not, aggregated by discipline and whether 
+		they 
+		started and finished with the correct answer}
+	
+	\input{data/transitions_by_discipline}
+	
+	\label{tab:transitions_by_discipline}
 \end{table}
 
 Table \ref{tab:transitions_by_discipline} highlights one key difference between 
@@ -239,20 +183,12 @@ students remediate an initial wrong answer choice (\textit{``wr''})? What are
 the features that might be responsible for getting students to actually move 
 away from the correct answer choice (\textit{``rw''})?
 
-\subsection{Models}
 
 
-%\begin{figure}
-%	\subfloat[Baseline models on myDalite]
-%	{	
-%	\input{data/results_overall_myDalite}
-%    }\hfill
-%	\subfloat[Baselines on IBM argument ranking dataset]
-%	{	
-%	\input{data/results_overall_IBMPairs}
-%    }
-%	\label{tab:baselines}
-%\end{figure}
+
+\section{Methods}
+Choosing which argument is more convincing from a pair is an 
+ordinal regression problem, where the 
 
 
 In pairwise classification tasks so 50\% is the baseline performance.  
@@ -282,18 +218,26 @@ algorithms \cite{joachims_optimizing_2002}, training the model to learn which
 of the pair is the more convincing argument. 
 
 
+
+\subsection{SVM-Rank}
+It has been proven that a binary ordinal regression problem, can be cast into 
+an equivalent binary classification problem, wherein the model is trained on 
+the \textit{difference} of the feature vectors of each argument in the pair 
+\cite{herbrich_support_1999}. Referred to as \textit{SVM-rank}, this method of 
+learning pairwise preferences has been used extensively in the context of 
+information retrieval (e.g. ranking search results for a query based on past 
+clickthrough data) \cite{joachims_optimizing_2002}, but also more recently in 
+evaluating the journalistic quality of newspaper and magazine articles 
+\cite{louis_what_2013}. We build and evaluate one such model, \textit{ArgBoW}, 
+which takes as its input the words which were used in all of the arguments for 
+a particular topic, regardless of stance. 
+
+\subsection{BERT}
+
+
+
 \section{Results}
-%\begin{figure}
-%	\subfloat[BERT model, fine tuned on myDalite data, by discipline]
-%	{	
-%		\input{data/BERT_dalite}
-%	}\hfill
-%	\subfloat[BERT model performance on Biology data, by answer transition]
-%	{	
-%		\input{data/BERT_Bio_transition}
-%	}
-%	\label{tab:BERT_dalite}
-%\end{figure}
+
 
 \begin{figure}
 	\begin{subfigure}[t]{0.5\linewidth}
@@ -366,3 +310,77 @@ their explanations.
  \bibliographystyle{splncs04}
  \bibliography{MyLibrary}
 \end{document}
+
+%%%%%%%%%%%%%%%%%%
+% ARCHIVE
+%
+%\begin{table}
+%\begin{tabular}{ |l|l|l|}
+%	\hline
+%	Feature Type & Feature & $\tau$ \\
+%	\hline
+%	\multirow{6}{*}{Lexical} 
+%	& Uni+BiGrams & \\
+%	& Spelling Errors &  \\
+%	& Equations & \\
+%	& Type Token Ratio &  \\
+%	& Punctuation &\\
+%	& Readability scores&\\
+%	\hline
+%	\multirow{5}{*}{Syntactic} 
+%	& PoS Uni+Bigrams &   \\
+%	& Dependancy Tree Depth  & \\
+%	& Conjunctions  & \\ 
+%	& Modal Verbs & \\ 
+%	& Tree Production Rules &\\
+%	\hline
+%	\multirow{3}{*}{Semantic} 
+%	& LSA Similarity &  \\
+%	& LSA Similarity Question & \\
+%	& Likelihood (Textbook) & \\ 
+%	\hline
+%\end{tabular}
+%
+%\caption{Features used in experiments with Linear SVM, annotated with 
+%	kendall $\tau$ correlation and sigificance with target label}
+%\label{tab:features}
+%\end{table}
+
+
+
+
+%\begin{figure}
+%	\subfloat[Baseline models on myDalite]
+%	{	
+%	\input{data/results_overall_myDalite}
+%    }\hfill
+%	\subfloat[Baselines on IBM argument ranking dataset]
+%	{	
+%	\input{data/results_overall_IBMPairs}
+%    }
+%	\label{tab:baselines}
+%\end{figure}
+
+%\begin{figure}
+%	\subfloat[BERT model, fine tuned on myDalite data, by discipline]
+%	{	
+%		\input{data/BERT_dalite}
+%	}\hfill
+%	\subfloat[BERT model performance on Biology data, by answer transition]
+%	{	
+%		\input{data/BERT_Bio_transition}
+%	}
+%	\label{tab:BERT_dalite}
+%\end{figure}
+
+%\begin{figure}
+%	\subfloat[BERT model, fine tuned on myDalite data, by discipline]
+%	{	
+%		\input{data/BERT_dalite}
+%	}\hfill
+%	\subfloat[BERT model performance on Biology data, by answer transition]
+%	{	
+%		\input{data/BERT_Bio_transition}
+%	}
+%	\label{tab:BERT_dalite}
+%\end{figure}
