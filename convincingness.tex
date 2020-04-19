@@ -63,10 +63,10 @@ order thinking.
 \keywords{Argument mining  \and Learnersourcing \and Peer Instruction}
 \end{abstract}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related Work}
 
 \subsection{Learnersourcing \& Comparative Peer Assessment}
@@ -96,14 +96,17 @@ challenging, which has led to significant work in adopting a pairwise approach,
 where data consists of pairwise observations of two arguments, labelled with 
 which of the two is most convincing.
 
-\begin{table}
+%\begin{table}
+
+	\input{data/sample_obs_UKP}
+	\input{data/sample_obs_IBM}
 	
-	\input{data/sample_obs}
-	\caption{Example of instance in pairwise comparison task, where two 
-	students explanations are compared, and one is chosen as more convincing}
+%	\caption{Example of instance in pairwise comparison task, where two 
+%		students explanations are compared, and one is chosen as more 
+%		convincing}
 	
-	\label{tab:sample_obs}
-\end{table}
+%	\label{tab:sample_obs}
+%\end{table}
 
 In \cite{habernal_which_2016}, the authors propose a feature-rich support 
 vector machine, as well as an end-to-end neural approach based on pre-trained 
@@ -128,15 +131,49 @@ predict the most convincing argument in a pair.
 	
 \end{itemize}
   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 \section{Data}
-
 
 \begin{table}
 	\caption{Descriptive statistic for each dataset of argument pairs, with 
 		last rows showing \textit{dalite} split by discipline}
 	\input{data/df_summary_final}
+	\label{tab:data_summary}
 \end{table}
 
+One of the objectives of this study is to compare and contrast how argument 
+mining methods for evaluating argument quality, specifically for argument 
+\textit{convincingness}, perform in an online learning environment with 
+learner-generated and annotated arguments. Along with myDALITE data, we include 
+in our study two publicly 
+available datasets, each specifically curated for the task of automatic 
+assessment of argument quality along the dimension \textit{convincingness}. 
+Table \ref{tab:data_summary} summarizes some of the descriptive statistics that 
+can be used to compare these sources, and potentially explain some of our 
+experimental results.
+
+\subsection{UKP \& IBM}
+\textbf{UKPConvArgStrict}\cite{habernal_which_2016}, hence forth referred to as 
+\textbf{UKP}, was the first to propos the task of pairwise preference learning 
+for argument convincingness. The dataset consists of just over 1k individual 
+arguments, that support a stance for one of 16 topics. These arguments were 
+distributed as 11.6k pairs to annotators on a crowd-sourcing platform, where 
+the task was to choose which of the two arguments, for the same stance 
+regarding the same topic, was more convincing. More recently, a second similar 
+dataset, \textbf{IBMArgQ-9.1kPairs}\cite{toledo_automatic_2019}, henceforth 
+referred to as \textbf{IBM}, which is made of 3.4k individual arguments for 11 
+topics, assembled into 9.1k pairs labelled for which is more convincing. One of 
+the key differences between these two is that \textbf{IBM} data is more 
+strongly curated with respect to the relative length of the arguments in each 
+pair: in order to control for the possibility that annotators may make their 
+choice of which argument in the pair is more \textit{convincing} based merely 
+on the length of the text, the mean difference in word count, $\overline{\Delta 
+wc}$, is just 3 words across the entire dataset, which is 10 times more 
+homogeneous than pairs in \textbf{UKP}.
+
+
+
+\subsection{myDALITE}
 The dataset is comprised of pairs of student explanations for a particular 
 answer choice to a given question. The first explanation is always the one 
 written by the learner-annotator, while the second is an alternative which 
@@ -185,7 +222,7 @@ away from the correct answer choice (\textit{``rw''})?
 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
 Choosing which argument is more convincing from a pair is an 
 ordinal regression problem, where the 
@@ -235,7 +272,7 @@ a particular topic, regardless of stance.
 \subsection{BERT}
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 
 
@@ -275,7 +312,7 @@ a particular topic, regardless of stance.
 	\end{subfigure}
 \end{figure}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 
 In \cite{louis_what_2013}, for task of pairwise ranking of newspaper articles 
@@ -287,7 +324,7 @@ pairwise ranking accuracy of 0.84 using a combination of content and writing
 features, but also a 0.82 accuracy with the content words as features alone.
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Future Work}
 \cite{nguyen_computational_2015} and \cite{louis_what_2013} use combination of 
 writing and content (BoW) features to achieve their best results, and thus is 
