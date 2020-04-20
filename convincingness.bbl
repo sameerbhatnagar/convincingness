@@ -3,6 +3,10 @@
 \providecommand{\urlprefix}{URL }
 \providecommand{\doi}[1]{https://doi.org/#1}
 
+\bibitem{univeristy_of_british_columbia_ubc/ubcpi_2019}
+Univeristy~of British~Columbia, T..L.T.: ubc/ubcpi (Aug 2019),
+  \url{https://github.com/ubc/ubcpi}, original-date: 2015-02-17T21:37:02Z
+
 \bibitem{cambre_juxtapeer:_2018}
 Cambre, J., Klemmer, S., Kulkarni, C.: Juxtapeer: {Comparative} {Peer} {Review}
   {Yields} {Higher} {Quality} {Feedback} and {Promotes} {Deeper} {Reflection}.
@@ -37,6 +41,11 @@ Habernal, I., Gurevych, I.: Which argument is more convincing? {Analyzing} and
 \bibitem{herbrich_support_1999}
 Herbrich, R., Graepel, T., Obermayer, K.: Support vector learning for ordinal
   regression  (1999), publisher: IET
+
+\bibitem{jhangiani_impact_2016}
+Jhangiani, R.S.: The impact of participating in a peer assessment activity on
+  subsequent academic performance. Teaching of Psychology  \textbf{43}(3),
+  180--186 (2016), publisher: SAGE Publications Sage CA: Los Angeles, CA
 
 \bibitem{joachims_optimizing_2002}
 Joachims, T.: Optimizing search engines using clickthrough data. In:
@@ -75,6 +84,24 @@ Pennington, J., Socher, R., Manning, C.D.: Glove: {Global} {Vectors} for {Word}
 \bibitem{persing_end--end_2016}
 Persing, I., Ng, V.: End-to-{End} {Argumentation} {Mining} in {Student}
   {Essays}. In: {HLT}-{NAACL}. pp. 1384--1394 (2016)
+
+\bibitem{pollitt_method_2012}
+Pollitt, A.: The method of {Adaptive} {Comparative} {Judgement}. Assessment in
+  Education: Principles, Policy \& Practice  \textbf{19}(3),  281--300 (2012).
+  \doi{10.1080/0969594X.2012.665354},
+  \url{https://doi.org/10.1080/0969594X.2012.665354}, publisher: Routledge
+  \_eprint: https://doi.org/10.1080/0969594X.2012.665354
+
+\bibitem{potter_compair:_2017}
+Potter, T., Englund, L., Charbonneau, J., MacLean, M.T., Newell, J., Roll, I.,
+  {others}: {ComPAIR}: {A} new online tool using adaptive comparative judgement
+  to support learning with peer feedback. Teaching \& Learning Inquiry
+  \textbf{5}(2),  89--113 (2017)
+
+\bibitem{saltise_saltises4/dalite-ng_2019}
+SALTISE: {SALTISES4}/dalite-ng (Jun 2019),
+  \url{https://github.com/SALTISES4/dalite-ng}, original-date:
+  2018-01-11T16:36:55Z
 
 \bibitem{simpson_finding_2018}
 Simpson, E., Gurevych, I.: Finding {Convincing} {Arguments} {Using} {Scalable}

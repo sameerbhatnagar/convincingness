@@ -19,7 +19,8 @@
 
 \begin{document}
 %
-\title{Automatic Explanation Quality Assessment in Online Learning Environments}
+\title{Automatic Explanation Quality Assessment in Online Learning 
+Environments: new datasets and methods}
 \titlerunning{Convincingness \& Peer Instruction}
 %
 \author{Sameer Bhatnagar\inst{1} \and
@@ -65,14 +66,46 @@ order thinking.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
+As online learning environments scale in the number of items, providing 
+immediate and tailored feedback to students becomes intractable for activities 
+that prompt for open ended responses. \textit{Peer assessment} and \textit{peer 
+feedback} can address this issue, and have the added benefit of being an 
+effective way to learn for the student who give the feedback as 
+well\cite{jhangiani_impact_2016}. 
+However the drawback of such approaches often lie in the varying ability of 
+novices to provide good feedback to their peers.
+Frameworks such as Adaptive Comparative Judgement\cite{pollitt_method_2012}, 
+where teachers assess student submissions by simply choosing which is better 
+from a pair,have been shown to be a reliable and valid alternative to absolute 
+grading.
+Thus it is not surprising that there are a growing number of online learning 
+environments that extend this paradigm to students with \textit{comparative 
+peer assessment}, wherein, after students submit their own work, they are asked 
+to compare and contrast a pair of two of their peers' submissions, and provide 
+feedback
+\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}
+\cite{cambre_juxtapeer:_2018}
+\cite{potter_compair:_2017}.
+
+A subset of these tools then use the comparative peer assessment data to then 
+inform the choice of how the pairs are constructed, and which students are 
+assigned to which pairs,
+\cite{khosravi_ripple_2019}
+\cite{williams_axis:_2016}
+\cite{saltise_saltises4/dalite-ng_2019},
+engaged in the classic trade-off from the field reinforcement learning: 
+exploiting the student submissions on which we have reliable data as to their 
+quality, while exploring student work that is newer to the database, and needs 
+to be shown and evaluated in order to get an estimate of its quality.
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related Work}
-
 \subsection{Learnersourcing \& Comparative Peer Assessment}
 Ripple\cite{khosravi_ripple_2019}, AXIS\cite{williams_axis:_2016}
-Juxtapeer\cite{cambre_juxtapeer:_2018}
-
+Juxtapeer\cite{cambre_juxtapeer:_2018}, 
+ComPAIR\cite{potter_compair:_2017},\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}
 \subsection{Argument Quality \& Convincingness}
 Conventional argument-mining pipelines include several successive components, 
 starting with the automatic detection of argumentative units, classification of 
