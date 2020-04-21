@@ -131,8 +131,8 @@ which of the two is most convincing.
 
 %\begin{table}
 
-	\input{data/sample_obs_UKP}
-	\input{data/sample_obs_IBM}
+	\input{publication_artefacts/data/sample_obs_UKP}
+	\input{publication_artefacts/data/sample_obs_IBM}
 	
 %	\caption{Example of instance in pairwise comparison task, where two 
 %		students explanations are compared, and one is chosen as more 
@@ -170,7 +170,7 @@ predict the most convincing argument in a pair.
 \begin{table}
 	\caption{Descriptive statistic for each dataset of argument pairs, with 
 		last rows showing \textit{dalite} split by discipline}
-	\input{data/df_summary_final}
+	\input{publication_artefacts/data/df_summary_final}
 	\label{tab:data_summary}
 \end{table}
 
@@ -208,19 +208,26 @@ homogeneous than pairs in \textbf{UKP}.
 
 \subsection{myDALITE}
 The dataset is comprised of pairs of student explanations for a particular 
-answer choice to a given question. The first explanation is always the one 
-written by the learner-annotator, while the second is an alternative which 
-they either chose as more convincing, or not. The data is filtered so as 
-to only keep observations where the explanations are within half a standard 
-deviation in length of each other. To ensure internal reliability, we only keep 
-explanations that were chosen at least \input{data/VOTES_MIN}times. To ensure 
-that the explanations in each pair 
-are of comparable length, we keep only those with word counts that are within  
-\input{data/MAX_WORD_COUNT_DIFF}words of each other. This leaves us a dataset 
-with \input{data/N}observations, spanning \input{data/n_students}learner 
-annotators having completed, on average, \input{data/avg_q_per_student}items 
-each, from a total of \input{data/n_questions}items across three disciplines, 
-with at least \input{data/MIN_RECORDS_PER_QUESTION}explanation-pairs per item.
+answer choice to a given question. 
+The first explanation is always the one written by the learner-annotator, while 
+the second is an alternative which they either chose as more convincing, or 
+not. 
+To ensure internal reliability, we only keep explanations that were chosen at 
+least \input{publication_artefacts/data/VOTES_MIN}times. 
+To ensure that the explanations in each pair are of comparable length, we keep 
+only those with word counts that are within 
+\input{publication_artefacts/data/MAX_WORD_COUNT_DIFF}words of each other. 
+
+This leaves us a dataset with \input{publication_artefacts/data/N}observations, 
+spanning \input{publication_artefacts/data/n_students}learner annotators having 
+completed, on average, 
+\input{publication_artefacts/data/avg_q_per_student}items each, from a total of 
+\input{publication_artefacts/data/n_questions}items across three disciplines, 
+with at least 
+\input{publication_artefacts/data/MIN_RECORDS_PER_QUESTION}explanation-pairs 
+per item.
+
+
 \begin{table}
 	\caption{Observations of students choosing a peer explanation as 
 		more 
@@ -228,7 +235,7 @@ with at least \input{data/MIN_RECORDS_PER_QUESTION}explanation-pairs per item.
 		they 
 		started and finished with the correct answer}
 	
-	\input{data/transitions_by_discipline}
+	\input{publication_artefacts/data/transitions_by_discipline}
 	
 	\label{tab:transitions_by_discipline}
 \end{table}
@@ -239,19 +246,19 @@ annotators are presented pairs of arguments that are always for the same
 stance, in order to limit bias due to their opinion on the motion when 
 evaluating which argument is more convincing.
 In a \textit{Peer Instruction} learning environment, other pairings are 
-possible and pedagogically relevant. In this dataset, the majority of students 
-keep the same answer choice between the two steps of the prompt, and so they 
-are comparing two explanations that are either both correct (\textit{``rr''}) 
-or incorrect (\textit{``wr''}). However, there is 
-\input{data/frac_switch}\% of the observations in this dataset are for students 
-who not only choose an explanation more convincing than their own, but also 
-switch answer choice, 
-either from the incorrect to correct, or the reverse . These pairs add a 
-different level of complexity to the model, but are very pertinent in the 
-pedagogical context: what are the argumentative features which can help 
-students remediate an initial wrong answer choice (\textit{``wr''})? What are 
-the features that might be responsible for getting students to actually move 
-away from the correct answer choice (\textit{``rw''})?
+possible and pedagogically relevant. 
+In this dataset, the majority of students keep the same answer choice between 
+the two steps of the prompt, and so they are comparing two explanations that 
+are either both correct (\textit{``rr''}) or incorrect (\textit{``wr''}). 
+However, there is \input{publication_artefacts/data/frac_switch}\% of the 
+observations in this dataset are for students who not only choose an 
+explanation more convincing than their own, but also switch answer choice, 
+either from the incorrect to correct, or the reverse. 
+These pairs add a different level of complexity to the model, but are very 
+pertinent in the pedagogical context: what are the argumentative features which 
+can help students remediate an initial wrong answer choice (\textit{``wr''})?
+What are the features that might be responsible for getting students to 
+actually move away from the correct answer choice (\textit{``rw''})?
 
 
 
@@ -312,14 +319,14 @@ a particular topic, regardless of stance.
 \begin{figure}
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
-		\scalebox{0.5}{\input{img/acc.pgf}}
+		\scalebox{0.5}{\input{publication_artefacts/img/acc.pgf}}
 
 		\caption{Pairwise ranking accuracy for different models across datasets}
 	\end{subfigure}%
 	\qquad
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
-		\scalebox{0.5}{\input{img/AUC.pgf}}
+		\scalebox{0.5}{\input{publication_artefacts/img/AUC.pgf}}
 
 		\caption{Pairwise ranking classification ROC-AUC for different models 
 		across datasets}
@@ -330,7 +337,7 @@ a particular topic, regardless of stance.
 \begin{figure}
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
-		\scalebox{0.5}{\input{img/acc_dalite.pgf}}
+		\scalebox{0.5}{\input{publication_artefacts/img/acc_dalite.pgf}}
 		
 		\caption{Pairwise ranking accuracy for different models in myDalite 
 		dataset, across disciplines}
@@ -338,7 +345,7 @@ a particular topic, regardless of stance.
 	\qquad
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
-		\scalebox{0.5}{\input{img/AUC_dalite.pgf}}
+		\scalebox{0.5}{\input{publication_artefacts/img/AUC_dalite.pgf}}
 		
 		\caption{Pairwise ranking classification ROC-AUC for different models 
 		in myDalite dataset, across disciplines}
