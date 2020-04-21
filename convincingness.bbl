@@ -14,10 +14,29 @@ Cambre, J., Klemmer, S., Kulkarni, C.: Juxtapeer: {Comparative} {Peer} {Review}
   {Computing} {Systems} - {CHI} '18. pp. 1--13. ACM Press, Montreal QC, Canada
   (2018). \doi{10.1145/3173574.3173868}
 
+\bibitem{charles-woods_designing_nodate}
+Charles-Woods, E., Whittaker, C., Dugdale, M., Lasry, N., Lenton, K.,
+  Bhatnagar, S.: Designing of {DALITE}: {Bringing} {Peer} {Instruction}
+  on-line. In: Rummel, N., Kapur, M., Nathan, M., Puntambekar, S. (eds.)
+  Computer {Supported} {Collaborative} {Learning}
+
 \bibitem{chen_pairwise_2013}
 Chen, X., Bennett, P.N., Collins-Thompson, K., Horvitz, E.: Pairwise ranking
   aggregation in a crowdsourced setting. In: Proceedings of the sixth {ACM}
   international conference on {Web} search and data mining. pp. 193--202 (2013)
+
+\bibitem{crouch_peer_2001}
+Crouch, C.H., Mazur, E.: Peer instruction: {Ten} years of experience and
+  results. American Journal of Physics  \textbf{69}(9),  970--977 (2001)
+
+\bibitem{denny_peerwise:_2008}
+Denny, P., Hamer, J., Luxton-Reilly, A., Purchase, H.: {PeerWise}: {Students}
+  {Sharing} {Their} {Multiple} {Choice} {Questions}. In: Proceedings of the
+  {Fourth} {International} {Workshop} on {Computing} {Education} {Research}.
+  pp. 51--58. {ICER} '08, ACM, New York, NY, USA (2008).
+  \doi{10.1145/1404520.1404526},
+  \url{http://doi.acm.org/10.1145/1404520.1404526}, event-place: Sydney,
+  Australia
 
 \bibitem{devlin_bert_2018}
 Devlin, J., Chang, M.W., Lee, K., Toutanova, K.: Bert: {Pre}-training of deep
