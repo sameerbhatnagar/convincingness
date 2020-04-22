@@ -104,6 +104,10 @@ Pennington, J., Socher, R., Manning, C.D.: Glove: {Global} {Vectors} for {Word}
 Persing, I., Ng, V.: End-to-{End} {Argumentation} {Mining} in {Student}
   {Essays}. In: {HLT}-{NAACL}. pp. 1384--1394 (2016)
 
+\bibitem{piech_tuned_2013}
+Piech, C., Huang, J., Chen, Z., Do, C., Ng, A., Koller, D.: Tuned models of
+  peer assessment in {MOOCs}. arXiv preprint arXiv:1307.2579  (2013)
+
 \bibitem{pollitt_method_2012}
 Pollitt, A.: The method of {Adaptive} {Comparative} {Judgement}. Assessment in
   Education: Principles, Policy \& Practice  \textbf{19}(3),  281--300 (2012).
@@ -121,6 +125,10 @@ Potter, T., Englund, L., Charbonneau, J., MacLean, M.T., Newell, J., Roll, I.,
 SALTISE: {SALTISES4}/dalite-ng (Jun 2019),
   \url{https://github.com/SALTISES4/dalite-ng}, original-date:
   2018-01-11T16:36:55Z
+
+\bibitem{shermis_automated_2003}
+Shermis, M.D., Burstein, J.C.: Automated essay scoring: {A} cross-disciplinary
+  perspective. Routledge (2003)
 
 \bibitem{simpson_finding_2018}
 Simpson, E., Gurevych, I.: Finding {Convincing} {Arguments} {Using} {Scalable}

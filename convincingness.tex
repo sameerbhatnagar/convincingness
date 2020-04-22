@@ -13,6 +13,8 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{fancyvrb}
+\VerbatimFootnotes
 
 
 
@@ -139,6 +141,12 @@ approaches match neural models for performance on this task across datasets.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related Work}
+
+\subsection{Automated Short Answer Grading}
+Scalable Peer Assessment of open response items\cite{piech_tuned_2013}
+Automated Essay Scoring\cite{shermis_automated_2003}
+
+
 \subsection{Learnersourcing \& Comparative Peer Assessment}
 Ripple\cite{khosravi_ripple_2019}, 
 AXIS\cite{williams_axis:_2016}
@@ -146,73 +154,51 @@ Juxtapeer\cite{cambre_juxtapeer:_2018},
 ComPAIR\cite{potter_compair:_2017}
 UBCPI\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}
 Peerwise\cite{denny_peerwise:_2008}
+
 \subsection{Argument Quality \& Convincingness}
 Conventional argument-mining pipelines include several successive components, 
 starting with the automatic detection of argumentative units, classification of 
 these units into types (e.g. major claim, minor claim, premise), and 
 identification of argumentative relations (which evidence units support which 
-claim). Such pipelines are essential in question-answering systems 
+claim). 
+Such pipelines are essential in question-answering systems 
 \cite{lippi_argumentation_2016} and are at the heart if the IBM Project Debater 
 initiative. 
 
 Work in the area of automatic evaluation of argument quality finds its roots in 
- detecting evidence in legal texts\cite{moens_automatic_2007}, but has 
- accelerated in recent years as more datasets become 
-available in everyday contexts, and focus shifts to modelling more qualitative 
-measures, such as \textit{convincingness}. 
+detecting evidence in legal texts\cite{moens_automatic_2007}, but has 
+accelerated in recent years as more datasets become available in everyday 
+contexts, and focus shifts to modelling more qualitative measures, such as 
+\textit{convincingness}. 
 
 Some of the earlier efforts included work on automatically 
 scoring of persuasive essays \cite{persing_end--end_2016} and modelling 
-persuasiveness in online debate forums \cite{tan_winning_2016}. However, 
-evaluating argument \textit{convincingness} with an absolute score can be 
-challenging, which has led to significant work in adopting a pairwise approach, 
-where data consists of pairwise observations of two arguments, labelled with 
-which of the two is most convincing.
-
-%\begin{table}
+persuasiveness in online debate forums \cite{tan_winning_2016}. 
+However, evaluating argument \textit{convincingness} with an absolute score can 
+be challenging, which has led to significant work in adopting a pairwise 
+approach, where data consists of pairwise observations of two arguments, 
+labelled with which of the two is most convincing.
 
 	\input{publication_artefacts/data/sample_obs_UKP}
-	\input{publication_artefacts/data/sample_obs_IBM}
-	
-%	\caption{Example of instance in pairwise comparison task, where two 
-%		students explanations are compared, and one is chosen as more 
-%		convincing}
-	
-%	\label{tab:sample_obs}
-%\end{table}
+	\input{publication_artefacts/data/sample_obs_IBM}	
 
 In \cite{habernal_which_2016}, the authors propose a feature-rich support 
 vector machine, as well as an end-to-end neural approach based on pre-trained 
 Glove vectors and a bidirectional Long-Short-Term Memory network for the 
-pairwise classification task. This is extended in \cite{gleize_are_2019}, where 
-the authors build a Siamese network architecture, where each leg is a BiLSTM, 
-taking as input the pair of explanations as Glove embeddings 
-\cite{pennington_glove:_2014}, in order to detect which of argument in a pair 
-has the most convincing evidence. Finally, based on the success of transformer 
-models such as BERT\cite{devlin_bert_2018}, the authors of 
-\cite{toledo_automatic_2019} 
+pairwise classification task. 
+This is extended in \cite{gleize_are_2019}, where the authors build a Siamese 
+network architecture, where each leg is a BiLSTM, taking as input the pair of 
+explanations as Glove embeddings \cite{pennington_glove:_2014}, in order to 
+detect which of argument in a pair 
+has the most convincing evidence.
+Finally, based on the success of transformer models such as 
+BERT\cite{devlin_bert_2018}, the authors of \cite{toledo_automatic_2019}  
 release a dataset of argument pairs and show that these models accurately 
 predict the most convincing argument in a pair.
 
 
-
-\begin{itemize}
-
-	\item \cite{toledo_automatic_2019} Assessment of argument quality, with a 
-	dataset that has both individual scores 
-	and pairwise-ranked data 
-	
-\end{itemize}
-  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 \section{Data}
-
-\begin{table}
-	\caption{Descriptive statistic for each dataset of argument pairs, with 
-		last rows showing \textit{dalite} split by discipline}
-	\input{publication_artefacts/data/df_summary_final}
-	\label{tab:data_summary}
-\end{table}
 
 One of the objectives of this study is to compare and contrast how argument 
 mining methods for evaluating argument quality, specifically for argument 
@@ -225,6 +211,14 @@ Table \ref{tab:data_summary} summarizes some of the descriptive statistics that
 can be used to compare these sources, and potentially explain some of our 
 experimental results.
 
+\begin{table}
+	\caption{Descriptive statistic for each dataset of argument pairs, with 
+		last rows showing \textit{dalite} split by discipline}
+	\input{publication_artefacts/data/df_summary_final}
+	\label{tab:data_summary}
+\end{table}
+
+
 \subsection{UKP \& IBM}
 \textbf{UKPConvArgStrict}\cite{habernal_which_2016}, hence forth referred to as 
 \textbf{UKP}, was the first to propose the task of pairwise preference learning 
@@ -234,18 +228,20 @@ particular stance for one of 16 topics.
 These arguments were distributed as 11.6k pairs to annotators on a 
 crowd-sourcing platform, where the task was to choose which of the two 
 arguments, for the same stance regarding the same topic, was more convincing. 
+
 More recently, a second similar dataset, 
 \textbf{IBMArgQ-9.1kPairs}\cite{toledo_automatic_2019}, henceforth 
 referred to as \textbf{IBM\_ArgQ}, which is made of 3.4k individual arguments 
 for 11 topics, assembled into 9.1k pairs labelled for which is more convincing. 
-One of the key differences between these two is that \textbf{IBM} data is more 
-strongly curated with respect to the relative length of the arguments in each 
-pair: in order to control for the possibility that annotators may make their 
-choice of which argument in the pair is more \textit{convincing} based merely 
-on the length of the text, the mean difference in word count, $\overline{\Delta 
-wc}$, is just 3 words across the entire dataset, which is 10 times more 
-homogeneous than pairs in \textbf{UKP}.
-Finally, we include a fourth dataset,\textbf{IBM\_Evi}, consisting of 1.5k 
+One of the key differences between these two is that \textbf{IBM\_ArgQ} data is 
+more strongly curated with respect to the relative length of the arguments in 
+each pair: in order to control for the possibility that annotators may make 
+their choice of which argument in the pair is more \textit{convincing} based 
+merely on the length of the text, the mean difference in word count, 
+$\overline{\Delta wc}$, is just 3 words across the entire dataset, which is 10 
+times more homogeneous than pairs in \textbf{UKP}.
+
+Finally, we include a fourth dataset, \textbf{IBM\_Evi}, consisting of 1.5k 
 individual arguments, organized into 5.2k pairs annotated for pairwise 
 preference for convincingness\cite{gleize_are_2019}. The important distinction 
 here is that the arguments are actually extracted as evidence for their 
@@ -311,52 +307,46 @@ actually move away from the correct answer choice (\textit{``rw''})?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
-Choosing which argument is more convincing from a pair is an 
-ordinal regression problem, where the 
+Choosing which argument is more convincing from a pair, is a binary 
+ordinal regression task, where the objective is to learn a function that, given 
+two feature vectors, can assign the better argument a rank of $+1$, and the 
+other a rank of $-1$.   
+It has been proven that such a binary ordinal regression problem, can be cast 
+into an equivalent binary classification problem, wherein the model is trained 
+on the \textit{difference} of the feature vectors of each argument in the pair 
+\cite{herbrich_support_1999}. 
+Referred to as \textit{SVM-rank}, this method of learning pairwise preferences 
+has been used extensively in the context of information retrieval (e.g. ranking 
+search results for a query based on past clickthrough data) 
+\cite{joachims_optimizing_2002}, but also more recently in evaluating the 
+journalistic quality of newspaper and magazine articles \cite{louis_what_2013}, 
+and for predicting which argument is more convincing\cite{habernal_which_2016}.
 
+We follow-up on this work, building simple vector space models to represent our 
+text, and train Support Vector Machine classifiers on the arithmetic difference 
+of these input vectors. Our first model, \textit{ArgBow}, is topic-specific, 
+and uses a TfIdf representation for the input text, trained on a 80\% of the 
+data in a five-fold cross-validation scheme (unseen token in the different 
+held-out test sets are mapped to the same value). 
 
-In pairwise classification tasks so 50\% is the baseline performance.  
-In Table \ref{tab:baselines} we begin by comparing the \textit{ArgLongest} 
-model baseline, where we predict that students simply choose the longer 
-explanation of the pair.
-We also include two baseline models on \textit{Bag of Words} models: 
-\textit{ArgBoWGen} where the term-document-matrix is built from an open-source 
-textbook from the corresponding discipline\footnote{https://openstax.org/}, and 
-\textit{ArgBoWItemSpec}, where the term-document matrix is built from the words 
-students have used for the item (pertinent when no reference text is available 
-for a discipline).
-As this is a new context for these argument mining methods, we include the same 
-baselines on the carefully curated \textit{IBMArgPair} dataset, which is of the 
-same format.
+As these models suffer from the \textit{cold-start problem}, in that we need 
+training examples to build the term-document matrices before being able to make 
+predictions on unseen data, we propose a model that leverages semantic 
+information learned from large bodies of text. In \textit{ArgGlove}, we encode 
+each token using 300-dimensional GloVe vectors\cite{pennington_glove:_2014}, 
+and each argument as the average of its token vectors. 
 
-
-
-For our experiments, we begin by following the line of work proposed by 
-\cite{habernal_which_2016}, and experiment with a feature-rich linear SVM 
-classifier for the pairwise classification task. We use a similar feature set, 
-which we categorize as \textbf{lexical}, \textbf{syntactic}, and 
-\textbf{semantic}, as described in Table \ref{tab:features}. we begin by 
-computing the feature vector for each explanation, and compute the difference 
-for each pairwise ranking instance as per the well established SVM-Rank 
-algorithms \cite{joachims_optimizing_2002}, training the model to learn which 
-of the pair is the more convincing argument. 
-
-
-
-\subsection{SVM-Rank}
-It has been proven that a binary ordinal regression problem, can be cast into 
-an equivalent binary classification problem, wherein the model is trained on 
-the \textit{difference} of the feature vectors of each argument in the pair 
-\cite{herbrich_support_1999}. Referred to as \textit{SVM-rank}, this method of 
-learning pairwise preferences has been used extensively in the context of 
-information retrieval (e.g. ranking search results for a query based on past 
-clickthrough data) \cite{joachims_optimizing_2002}, but also more recently in 
-evaluating the journalistic quality of newspaper and magazine articles 
-\cite{louis_what_2013}. We build and evaluate one such model, \textit{ArgBoW}, 
-which takes as its input the words which were used in all of the arguments for 
-a particular topic, regardless of stance. 
-
-\subsection{BERT}
+Finally, in order to leverage recent advances in transfer-learning for NLP, the 
+final model we explore is \textit{ArgBert}. We begin with a pre-trained 
+language model built using  Bi-directional Encoder Representation from 
+Transformers, known as \textit{BERT}\cite{devlin_bert_2018}, trained on large 
+bodies of text for the task of masked token prediction and sentence-pair 
+inference. As proposed in \cite{toledo_automatic_2019}, we take the final 
+768-dimensional hidden state of the base-uncased BERT model, feed it into 
+a binary classification layer, and fine-tune all of the pre-trained weights 
+using our argument-pair data\footnote{modified from the \verb|run_glue.py| 
+script provided by the \verb|tranformers| package, built by company hugging 
+face}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -367,17 +357,17 @@ a particular topic, regardless of stance.
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
 		\scalebox{0.5}{\input{publication_artefacts/img/acc.pgf}}
-
-		\caption{Pairwise ranking accuracy for different models across datasets}
+		\caption{Accuracy}
 	\end{subfigure}%
 	\qquad
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
 		\scalebox{0.5}{\input{publication_artefacts/img/AUC.pgf}}
-
-		\caption{Pairwise ranking classification ROC-AUC for different models 
-		across datasets}
+		\caption{RoC-AuC}
 	\end{subfigure}
+		\caption{Pairwise ranking classification accuracy and ROC-AUC for 
+		different models across datasets}
+	\label{fig:performance}
 \end{figure}
 
 
@@ -385,19 +375,20 @@ a particular topic, regardless of stance.
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
 		\scalebox{0.5}{\input{publication_artefacts/img/acc_dalite.pgf}}
-		
-		\caption{Pairwise ranking accuracy for different models in myDalite 
-		dataset, across disciplines}
+		\caption{Accuracy}
 	\end{subfigure}%
 	\qquad
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
 		\scalebox{0.5}{\input{publication_artefacts/img/AUC_dalite.pgf}}
-		
-		\caption{Pairwise ranking classification ROC-AUC for different models 
-		in myDalite dataset, across disciplines}
-	\end{subfigure}
+		\caption{RoC-AuC}
+	\end{subfigure}	
+		\caption{Pairwise ranking classification accuracy and ROC-AUC for 
+		different models in myDalite dataset, across disciplines}
+		\label{fig:performance_dalite}
 \end{figure}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
@@ -508,3 +499,31 @@ their explanations.
 %	}
 %	\label{tab:BERT_dalite}
 %\end{figure}
+%For our experiments, we begin by following the line of work proposed by 
+%\cite{habernal_which_2016}, and experiment with a feature-rich linear SVM 
+%classifier for the pairwise classification task. We use a similar feature set, 
+%which we categorize as \textbf{lexical}, \textbf{syntactic}, and 
+%\textbf{semantic}, as described in Table \ref{tab:features}. we begin by 
+%computing the feature vector for each explanation, and compute the difference 
+%for each pairwise ranking instance as per the well established SVM-Rank 
+%algorithms \cite{joachims_optimizing_2002}, training the model to learn which 
+%of the pair is the more convincing argument. 
+%
+
+%In pairwise classification tasks so 50\% is the baseline performance.  
+%In Table \ref{fig:baselines} we begin by comparing the \textit{ArgLongest} 
+%model baseline, where we predict that students simply choose the longer 
+%explanation of the pair.
+%We also include two baseline models on \textit{Bag of Words} models: 
+%\textit{ArgBoWGen} where the term-document-matrix is built from an open-source 
+%textbook from the corresponding discipline\footnote{https://openstax.org/}, 
+%and 
+%\textit{ArgBoWItemSpec}, where the term-document matrix is built from the 
+%words 
+%students have used for the item (pertinent when no reference text is available 
+%for a discipline).
+%As this is a new context for these argument mining methods, we include the 
+%same 
+%baselines on the carefully curated \textit{IBMArgPair} dataset, which is of 
+%the 
+%same format.
