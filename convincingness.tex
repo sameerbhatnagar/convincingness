@@ -337,14 +337,16 @@ each token using 300-dimensional GloVe vectors\cite{pennington_glove:_2014},
 and each argument as the average of its token vectors. 
 
 Finally, in order to leverage recent advances in transfer-learning for NLP, the 
-final model we explore is \textit{ArgBert}. We begin with a pre-trained 
-language model built using  Bi-directional Encoder Representation from 
-Transformers, known as \textit{BERT}\cite{devlin_bert_2018}, trained on large 
-bodies of text for the task of masked token prediction and sentence-pair 
-inference. As proposed in \cite{toledo_automatic_2019}, we take the final 
-768-dimensional hidden state of the base-uncased BERT model, feed it into 
-a binary classification layer, and fine-tune all of the pre-trained weights 
-using our argument-pair data\footnote{modified from the \verb|run_glue.py| 
+final model we explore is \textit{ArgBert}.
+We begin with a pre-trained language model built using  Bi-directional Encoder 
+Representation from Transformers, known as\textit{BERT}\cite{devlin_bert_2018}, 
+trained on large bodies of text for the task of masked token prediction and 
+sentence-pair inference. 
+As proposed in \cite{toledo_automatic_2019}, we take the final 768-dimensional 
+hidden state of the base-uncased BERT model, feed it into a binary 
+classification layer, and fine-tune all of the pre-trained weights 
+using our argument-pair data 
+\footnote{modified from the \verb|run_glue.py| 
 script provided by the \verb|tranformers| package, built by company hugging 
 face}.
 
@@ -352,6 +354,14 @@ face}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 
+\begin{itemize}
+	\item ArgLength sets baseline for each dataset. IBM datasets curate most 
+	aggressively for pairs with comparable lengths.
+	\item Vector space models performance comparable to BERT.
+	\item GloVe most stable across datasets. UKP and IBMEvi performance on 
+	ArgBoW due to wide-ranging vocabulary (lots of unknown tokens in test set), 
+	which reveals limitation of approach 
+\end{itemize}
 
 \begin{figure}
 	\begin{subfigure}[t]{0.5\linewidth}
@@ -388,7 +398,12 @@ face}.
 		\label{fig:performance_dalite}
 \end{figure}
 
-
+\begin{itemize}
+	\item performance of in chemistry worst, physics best, given their relative 
+	proportions in data
+	\item proportionately more errors for observations switch their answer 
+	(check if true in IBM Evi, where stances can be different)
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
@@ -405,8 +420,8 @@ features, but also a 0.82 accuracy with the content words as features alone.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Future Work}
 \cite{nguyen_computational_2015} and \cite{louis_what_2013} use combination of 
-writing and content (BoW) features to achieve their best results, and thus is 
-avenue must be explored more thoroughly, especially as this mayb avry across 
+writing and content (BoW) features to achieve their best results, and thus this 
+avenue must be explored more thoroughly, especially as this maybe vary across 
 disciplines an teaching contexts.
 
 In this study we do not ever infer which are, overall, the most convincing 
