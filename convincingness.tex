@@ -14,6 +14,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{fancyvrb}
+\usepackage{todonotes}
 \VerbatimFootnotes
 
 
@@ -42,8 +43,11 @@ Dawson College
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-\textit{Asynchronous Peer Instruction} is an increasingly popular item type in 
-online learning environments. Students first respond to a question item, but 
+\textit{Asynchronous Peer Instruction} is increasingly popular in 
+online learning environments. It relies on the principle of 
+leveraging content that is both \textit{generated} and \textit{evaluated} by 
+novices to foster learning and self-reflection. 
+Students first respond to a question item, but 
 they must also provide an explanation for their reasoning. 
 They are then presented alternative explanations as written by their peers, and 
 given the opportunity to change their initial answer choice, based on those 
@@ -56,8 +60,7 @@ This study reports on the application of argument mining methods in the
 context of asynchronous peer instruction, with the objective of automatically 
 identifying high quality student explanations. 
 Our results offer the potential to inform the design of ``learnersourcing'' 
-systems, where the content is both \textit{generated} and \textit{evaluated} by 
-novices. 
+systems, such as asynchronous peer instruction.
 These design choices are critical as these systems scale, especially with 
 respect to providing pedagogically insightful reports to teachers, and 
 presenting engaging alternative explanations to students to promote higher 
@@ -68,17 +71,17 @@ order thinking.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-As online learning environments scale in the number of items, providing 
+As online learning environments scale in the number of question items, providing 
 immediate and tailored feedback to students becomes intractable for activities 
 that prompt for open ended responses. \textit{Peer assessment} and \textit{peer 
 feedback} can address this issue, and have the added benefit of being an 
 effective way to learn for the student who give the feedback as 
-well\cite{jhangiani_impact_2016}. 
+well~\cite{jhangiani_impact_2016}. 
 However the drawback of such approaches often lie in the varying ability of 
 novices to provide good feedback to their peers.
-Frameworks such as Adaptive Comparative Judgement\cite{pollitt_method_2012}, 
+Frameworks such as Adaptive Comparative Judgement~\cite{pollitt_method_2012}, 
 where teachers assess student submissions by simply choosing which is better 
-from a pair,have been shown to be a reliable and valid alternative to absolute 
+from a pair, have been shown to be a reliable and valid alternative to absolute 
 grading.
 Thus it is not surprising that there are a growing number of online learning 
 environments that extend this paradigm to students with \textit{comparative 
@@ -89,7 +92,7 @@ feedback
 \cite{cambre_juxtapeer:_2018}
 \cite{potter_compair:_2017}.
 
-A subset of these tools then use the comparative peer assessment data to then 
+A subset of these tools then use the comparative peer assessment data to 
 inform the choice of how the pairs are constructed, and which students are 
 assigned to which pairs,
 \cite{khosravi_ripple_2019}
@@ -112,7 +115,7 @@ students are prompted to answer a multiple choice question, and provide a
 free-text explanation that justifies their answer; (ii) without revealing the 
 correct answer, students are prompted to reconsider their answer, by presenting 
 them a selection of explanations written by previous 
-students\cite{charles-woods_designing_nodate}.
+students~\cite{charles-woods_designing_nodate}.
 Students can either decide that their own explanation is best, or indicate 
 which of their peers' explanation was the most convincing.
 In this instance of 
@@ -143,17 +146,17 @@ approaches match neural models for performance on this task across datasets.
 \section{Related Work}
 
 \subsection{Automated Short Answer Grading}
-Scalable Peer Assessment of open response items\cite{piech_tuned_2013}
-Automated Essay Scoring\cite{shermis_automated_2003}
+Scalable Peer Assessment of open response items~\cite{piech_tuned_2013}
+Automated Essay Scoring~\cite{shermis_automated_2003}
 
 
 \subsection{Learnersourcing \& Comparative Peer Assessment}
-Ripple\cite{khosravi_ripple_2019}, 
-AXIS\cite{williams_axis:_2016}
-Juxtapeer\cite{cambre_juxtapeer:_2018}, 
-ComPAIR\cite{potter_compair:_2017}
-UBCPI\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}
-Peerwise\cite{denny_peerwise:_2008}
+Ripple~\cite{khosravi_ripple_2019}, 
+AXIS~\cite{williams_axis:_2016}
+Juxtapeer~\cite{cambre_juxtapeer:_2018}, 
+ComPAIR~\cite{potter_compair:_2017}
+UBCPI~\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}
+Peerwise~\cite{denny_peerwise:_2008}
 
 \subsection{Argument Quality \& Convincingness}
 Conventional argument-mining pipelines include several successive components, 
@@ -166,7 +169,7 @@ Such pipelines are essential in question-answering systems
 initiative. 
 
 Work in the area of automatic evaluation of argument quality finds its roots in 
-detecting evidence in legal texts\cite{moens_automatic_2007}, but has 
+detecting evidence in legal texts~\cite{moens_automatic_2007}, but has 
 accelerated in recent years as more datasets become available in everyday 
 contexts, and focus shifts to modelling more qualitative measures, such as 
 \textit{convincingness}. 
@@ -192,7 +195,7 @@ explanations as Glove embeddings \cite{pennington_glove:_2014}, in order to
 detect which of argument in a pair 
 has the most convincing evidence.
 Finally, based on the success of transformer models such as 
-BERT\cite{devlin_bert_2018}, the authors of \cite{toledo_automatic_2019}  
+BERT~\cite{devlin_bert_2018}, the authors of \cite{toledo_automatic_2019}  
 release a dataset of argument pairs and show that these models accurately 
 predict the most convincing argument in a pair.
 
@@ -203,7 +206,7 @@ predict the most convincing argument in a pair.
 One of the objectives of this study is to compare and contrast how argument 
 mining methods for evaluating argument quality, specifically for argument 
 \textit{convincingness}, perform in an online learning environment with 
-learner-generated and annotated arguments. Along with myDALITE data, we include 
+learner-generated and annotated arguments. Along with myDALITE\todo{Must be anonymized} data, we include 
 in our study two publicly 
 available datasets, each specifically curated for the task of automatic 
 assessment of argument quality along the dimension \textit{convincingness}. 
@@ -213,8 +216,8 @@ experimental results.
 
 \begin{table}
 	\caption{Descriptive statistic for each dataset of argument pairs, with 
-		last rows showing \textit{dalite} split by discipline}
-	\input{publication_artefacts/data/df_summary_final}
+		last rows showing \textit{dalite} split by discipline.}
+	\centerline{\input{publication_artefacts/data/df_summary_final}}
 	\label{tab:data_summary}
 \end{table}
 
@@ -243,7 +246,7 @@ times more homogeneous than pairs in \textbf{UKP}.
 
 Finally, we include a fourth dataset, \textbf{IBM\_Evi}, consisting of 1.5k 
 individual arguments, organized into 5.2k pairs annotated for pairwise 
-preference for convincingness\cite{gleize_are_2019}. The important distinction 
+preference for convincingness~\cite{gleize_are_2019}. The important distinction 
 here is that the arguments are actually extracted as evidence for their 
 respective topic from Wikipedia, and hence represent cleaner well-formed text 
 than our other reference datasets.
@@ -262,10 +265,10 @@ only those with word counts that are within
 \input{publication_artefacts/data/MAX_WORD_COUNT_DIFF}words of each other. 
 
 This leaves us a dataset with \input{publication_artefacts/data/N}observations, 
-spanning \input{publication_artefacts/data/n_students}learner annotators having 
+spanning \input{publication_artefacts/data/n_students} learner annotators having 
 completed, on average, 
-\input{publication_artefacts/data/avg_q_per_student}items each, from a total of 
-\input{publication_artefacts/data/n_questions}items across three disciplines, 
+\input{publication_artefacts/data/avg_q_per_student} items each, from a total of 
+\input{publication_artefacts/data/n_questions} items across three disciplines, 
 with at least 
 \input{publication_artefacts/data/MIN_RECORDS_PER_QUESTION}explanation-pairs 
 per item.
@@ -276,9 +279,9 @@ per item.
 		more 
 		convincing than their own, or not, aggregated by discipline and whether 
 		they 
-		started and finished with the correct answer}
+		started and finished with the correct answer.}
 	
-	\input{publication_artefacts/data/transitions_by_discipline}
+	\centerline{\input{publication_artefacts/data/transitions_by_discipline}}
 	
 	\label{tab:transitions_by_discipline}
 \end{table}
@@ -307,6 +310,9 @@ actually move away from the correct answer choice (\textit{``rw''})?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
+
+\todo[inline]{This section might be before the data sets and should clearly name and describe the methods.}
+
 Choosing which argument is more convincing from a pair, is a binary 
 ordinal regression task, where the objective is to learn a function that, given 
 two feature vectors, can assign the better argument a rank of $+1$, and the 
@@ -320,12 +326,12 @@ has been used extensively in the context of information retrieval (e.g. ranking
 search results for a query based on past clickthrough data) 
 \cite{joachims_optimizing_2002}, but also more recently in evaluating the 
 journalistic quality of newspaper and magazine articles \cite{louis_what_2013}, 
-and for predicting which argument is more convincing\cite{habernal_which_2016}.
+and for predicting which argument is more convincing~\cite{habernal_which_2016}.
 
 We follow-up on this work, building simple vector space models to represent our 
 text, and train Support Vector Machine classifiers on the arithmetic difference 
 of these input vectors. Our first model, \textit{ArgBow}, is topic-specific, 
-and uses a TfIdf representation for the input text, trained on a 80\% of the 
+and uses a Tf-Idf representation for the input text, trained on a 80\% of the 
 data in a five-fold cross-validation scheme (unseen token in the different 
 held-out test sets are mapped to the same value). 
 
@@ -333,7 +339,7 @@ As these models suffer from the \textit{cold-start problem}, in that we need
 training examples to build the term-document matrices before being able to make 
 predictions on unseen data, we propose a model that leverages semantic 
 information learned from large bodies of text. In \textit{ArgGlove}, we encode 
-each token using 300-dimensional GloVe vectors\cite{pennington_glove:_2014}, 
+each token using 300-dimensional GloVe vectors~\cite{pennington_glove:_2014}, 
 and each argument as the average of its token vectors. 
 
 Finally, in order to leverage recent advances in transfer-learning for NLP, the 
@@ -428,7 +434,7 @@ In this study we do not ever infer which are, overall, the most convincing
 student explanations for any given item. Inferring a gold standard of global 
 rankings, starting from these pairwise preference data can be accomplished 
 using research from the information retrieval 
-community\cite{chen_pairwise_2013}. Work on deriving point wise scores for 
+community~\cite{chen_pairwise_2013}. Work on deriving point wise scores for 
 argument pairs is proposed as a Gaussian Process Preference Learning task by 
 \cite{simpson_finding_2018}. Seeing the lack of pointwise labels for overall 
 convincingness, \cite{toledo_automatic_2019} released a dataset where they 
