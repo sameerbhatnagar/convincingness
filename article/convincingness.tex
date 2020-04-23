@@ -357,8 +357,10 @@ actually move away from the correct answer choice (\textit{``rw''})?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
 
-\todo[inline]{This section might be before the data sets and should clearly name and describe the methods.}
-
+%\todo[inline]{This section might be before the data sets and should clearly 
+%name and describe the methods.....@Michel: with the new table describing State 
+%of the Art performance of these methods on different datasets, i wonder if now 
+%it is better to have methods after data?}
 Choosing which argument is more convincing from a pair, is a binary 
 ordinal regression task, where the objective is to learn a function that, given 
 two feature vectors, can assign the better argument a rank of $+1$, and the 
@@ -374,35 +376,74 @@ search results for a query based on past clickthrough data)
 journalistic quality of newspaper and magazine articles \cite{louis_what_2013}, 
 and for predicting which argument is more convincing~\cite{habernal_which_2016}.
 
+\subsection{Vector Space Models}
+
 We follow-up on this work, building simple vector space models to represent our 
-text, and train Support Vector Machine classifiers on the arithmetic difference 
-of these input vectors. Our first model, \textit{ArgBow}, is topic-specific, 
-and uses a Tf-Idf representation for the input text, trained on a 80\% of the 
-data in a five-fold cross-validation scheme (unseen token in the different 
-held-out test sets are mapped to the same value). 
+text. 
+We take all of the individual arguments for a particular topic in our training 
+set (known as  ``explanations'' for a particular question item in the case of 
+the \textbf{dalite} data), lemmatize the tokens, and build term-document 
+matrices for each topic.
+We then take the arithmetic difference of these normalized term frequency 
+vector representations of each argument to train Support Vector Machine 
+classifiers on. We refer to this model as \textbf{ArgBow}.
 
-As these models suffer from the \textit{cold-start problem}, in that we need 
-training examples to build the term-document matrices before being able to make 
-predictions on unseen data, we propose a model that leverages semantic 
-information learned from large bodies of text. In \textit{ArgGlove}, we encode 
-each token using 300-dimensional GloVe vectors~\cite{pennington_glove:_2014}, 
-and each argument as the average of its token vectors. 
 
+\subsection{Pre-trained word embeddings}
+A limitation of vectors space models is the exclusion of words that are 
+``out-of-vocabulary'' between the test set and the training data.
+This has led to experiments for this 
+task\cite{habernal_which_2016}\cite{gleize_are_2019} with language models that 
+offer pre-trained word-embeddings that have already learned from massive 
+corpora of text.    
+In our \textit{ArgGlove} model, we encode each token of each argument using 
+300-dimensional GloVe vectors~\cite{pennington_glove:_2014}, 
+and represent each argument as the average of its token embedding vectors. 
+We then feed these into the same SVM-rank architecture described above. 
+
+\subsection{Transfer Learning}
 Finally, in order to leverage recent advances in transfer-learning for NLP, the 
 final model we explore is \textit{ArgBert}.
-We begin with a pre-trained language model built using  Bi-directional Encoder 
-Representation from Transformers, known as\textit{BERT}\cite{devlin_bert_2018}, 
-trained on large bodies of text for the task of masked token prediction and 
-sentence-pair inference. 
+We begin with a pre-trained language model for English built using  
+Bi-directional Encoder Representation from Transformers, known as 
+\textit{BERT}\cite{devlin_bert_2018}, trained on large bodies of text for the 
+task of masked token prediction and sentence-pair inference. 
 As proposed in \cite{toledo_automatic_2019}, we take the final 768-dimensional 
 hidden state of the base-uncased BERT model, feed it into a binary 
 classification layer, and fine-tune all of the pre-trained weights 
-using our argument-pair data 
+using our argument-pair data. 
+As in other applications involving sentence pairs for BERT, each argument pair 
+is encoded as \verb|[CLS] A [SEP] B]|, where the special \verb|[SEP]| token 
+instructs the model as which token belong to argument \verb|A| and which to 
+argument \verb|B|. 
 \footnote{modified from the \verb|run_glue.py| 
 script provided by the \verb|tranformers| package, built by company hugging 
-face}.
+face. All code for this study provided in associated github repository}.
 
-\begin{table}
+\subsection{Cross Validation and State of the Art}
+
+The objective of this study is to apply methodology from the argument mining 
+research community to inform the design of environment built upon 
+learnersourcing of student explanations, so as to be able to be present student 
+explanations that are \textit{convincing} to students as they engage with their 
+reasoning when they answer conceptual questions.
+So as to get a reliable estimate of performance, we employ stratified 5-fold 
+cross-validation for our experiments.
+This means that for each fold, we train our model on 80\% of the available 
+data, ensuring that each topic and output class is represented equally. 
+In the context of peer instruction learning environments, this is meant to give 
+a reasonable estimate of how our models would perform in predicting which 
+explanations will be chosen as most convincing, \textit{after} a certain number 
+of responses have been collected. 
+
+In Table \ref{tab:sota}, we denote, to the best of our knowledge, the 
+state-of-the-art performance for each dataset on the task of pairwise 
+classification for \textit{convincingness}. These values are meant provide a 
+reference as we present our results in the next section, but cannot be directly 
+compared, as we employ a stratified 5-fold cross-validation scheme, while the 
+reference studies measure cross-topic validation.
+
+\begin{table} 
 \centering\begin{tabular}{l|*{2}{c}r}
 	Dataset     & Acc & AUC & model  	   \\
 	\hline
@@ -416,12 +457,7 @@ validation scheme}
 \label{tab:sota}
 \end{table}
 
-In Table \ref{tab:sota}, we denote, to the best of our knowledge, the 
-state-of-the-art performance for each dataset on the task of pairwise 
-classification for \textit{convincingness}. These values are meant provide a 
-reference as we present our results in the next section, but cannot be directly 
-compared, as we employ a stratified 5-fold cross-validation scheme, while the 
-reference studies measure cross-topic validation.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 
