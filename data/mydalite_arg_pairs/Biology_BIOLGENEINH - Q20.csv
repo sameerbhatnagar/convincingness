@@ -1,0 +1,98 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,facts. ask mendel,genes are segregated and assorted independently as a result,a2,arg74602,arg69954,arg74602_arg69954,rr,3f8c6489c0aa8afc2efe365be73175,1
+1,genes are segregated and assorted independently as a result, ,a1,arg69954,arg74874,arg69954_arg74874,rr,b2dc02b7b0620f746fd7977a3e3e63,-1
+2,"     
+",genes are segregated and assorted independently as a result,a2,arg76581,arg69954,arg76581_arg69954,rr,91b81abeeb3dd5b4f163738528596a,1
+3,genes are segregated and assorted independently as a result,"Genes that are far apart on the same chromosome also assort independently thanks to the crossing over, or exchange of homologous chromosome bits, that occurs early in meiosis 1.  ",a1,arg69954,arg78278,arg69954_arg78278,wr,f9492d6919058d9e266fd90f87a2c3,-1
+4,"-which goes into which cell is random
+",genes are segregated and assorted independently as a result,a2,arg79034,arg69954,arg79034_arg69954,rr,841dca9eb28915b9a1d1de4bcdf39b,1
+5,genes are segregated and assorted independently as a result,a,a1,arg69954,arg81169,arg69954_arg81169,rr,c11828d46b53cbf827f3a1903a57ce,-1
+6,A,genes are segregated and assorted independently as a result,a2,arg81626,arg69954,arg81626_arg69954,rr,8049cb3934a4b0f869218b4bdd1d4b,1
+7,genes are segregated and assorted independently as a result,think so,a1,arg69954,arg82007,arg69954_arg82007,rr,5c8f45fd300963b510e5e583a85f7a,-1
+8, ,genes are segregated and assorted independently as a result,a2,arg86223,arg69954,arg86223_arg69954,rr,8c765545a150af4f9dc0ead75ea5a9,1
+9,genes are segregated and assorted independently as a result,segregation of chromosomes during meiosis causes independent assortment of genes,a1,arg69954,arg92932,arg69954_arg92932,rr,8802245ba48176f94d3f163c97d717,-1
+10,.,genes are segregated and assorted independently as a result,a2,arg96940,arg69954,arg96940_arg69954,rr,5cedf21fe930c659b63d770023ff7e,1
+11,genes are segregated and assorted independently as a result,b is crossing over,a1,arg69954,arg99819,arg69954_arg99819,wr,412a550222b21703c1ab6f70a7d63e,-1
+12,just like it,genes are segregated and assorted independently as a result,a2,arg100543,arg69954,arg100543_arg69954,rr,6bb07ec8918333ecde1b6697bf38f0,1
+13,genes are segregated and assorted independently as a result,cause,a1,arg69954,arg111232,arg69954_arg111232,rr,c529098d40ac1fccc2b019d768162c,-1
+14,Chromosomes separate randomly,facts. ask mendel,a2,arg75139,arg74602,arg75139_arg74602,rr,51c8aa81265b76c2eafafaddf7f0f1,1
+15,facts. ask mendel, ,a1,arg74602,arg78003,arg74602_arg78003,rr,ba2195b8613d1aa0855a6a7d789f3f,-1
+16,d,facts. ask mendel,a2,arg78076,arg74602,arg78076_arg74602,rr,f5e4fff3a4a9605b12629bf4cac95f,1
+17,facts. ask mendel,b,a1,arg74602,arg80895,arg74602_arg80895,rr,c1b78ab4dbd2ab5405cde4e9275677,-1
+18,and crossing over,facts. ask mendel,a2,arg86863,arg74602,arg86863_arg74602,rr,75151c3099ca1bb0987f709884fe02,1
+19,facts. ask mendel,z,a1,arg74602,arg97255,arg74602_arg97255,rr,299fca65b4a9087fdb025b7f11cf4c,-1
+20, ,Chromosomes separate randomly,a2,arg75635,arg75139,arg75635_arg75139,wr,c0b0fe9e84013a644bb70cd23c69a6,1
+21,Chromosomes separate randomly,m,a1,arg75139,arg77829,arg75139_arg77829,rr,3340368556c1c3339d531fe5657a11,-1
+22, ,Chromosomes separate randomly,a2,arg78127,arg75139,arg78127_arg75139,rr,dd1b4189a8ac774a3a58a6ffd278d1,1
+23,Chromosomes separate randomly, ,a1,arg75139,arg79943,arg75139_arg79943,rr,0afa302600bf72169f66c146a163ce,-1
+24, ,Chromosomes separate randomly,a2,arg80221,arg75139,arg80221_arg75139,rr,636a75297f7fb81eec8ea53f8010ba,1
+25,Chromosomes separate randomly,.,a1,arg75139,arg87923,arg75139_arg87923,rr,48b961f1db3dd4876b16e703f47af2,-1
+26,this is the answer,Chromosomes separate randomly,a2,arg89231,arg75139,arg89231_arg75139,rr,0103e5d111b63d8b3864c545edb013,1
+27,Chromosomes separate randomly,A is the answer,a1,arg75139,arg97980,arg75139_arg97980,rr,1ecf0b821c364abdbd7b417b940022,-1
+28,genes segregate independently from each other,Chromosomes separate randomly,a2,arg101360,arg75139,arg101360_arg75139,rr,47bcc3f28dd94412885583182b09a0,1
+29,Chromosomes separate randomly,Segregat ,a1,arg75139,arg107336,arg75139_arg107336,rr,c0ea6e7059333dd78629a86303cbeb,-1
+30,jhgfds,Chromosomes separate randomly,a2,arg133855,arg75139,arg133855_arg75139,rr,05da4f8e559772632f274bc9ec7be3,1
+31,Chromosomes separate randomly,sfbsrheehteh,a1,arg75139,arg138234,arg75139_arg138234,rr,417272a507f564ef3bfe9e7ea99568,-1
+32,mendel's 2nd law,"Genes that are far apart on the same chromosome also assort independently thanks to the crossing over, or exchange of homologous chromosome bits, that occurs early in meiosis 1.  ",a2,arg103571,arg78278,arg103571_arg78278,ww,be4ae640739623ecce5aa492a2e8e1,1
+33,"Genes that are far apart on the same chromosome also assort independently thanks to the crossing over, or exchange of homologous chromosome bits, that occurs early in meiosis 1.  ",independent assortment is caused by genes on different chromosomes being segregated to different daughter cells/gametes during anaphase,a1,arg78278,arg233095,arg78278_arg233095,rw,109f3a77e93e4859f50c02f7a8a122,-1
+34,it is the way that the chromosomes place at metaphase and how they segregate that creates independent assortment,"Genes that are far apart on the same chromosome also assort independently thanks to the crossing over, or exchange of homologous chromosome bits, that occurs early in meiosis 1.  ",a2,arg237666,arg78278,arg237666_arg78278,rw,4df42c6efa9393fbda0cd28c417258,1
+35,"Genes that are far apart on the same chromosome also assort independently thanks to the crossing over, or exchange of homologous chromosome bits, that occurs early in meiosis 1.  ",Recessive Disease (when q = 0.3) - ratio of carriers to diseased individuals = 5.44 :1,a1,arg78278,arg247151,arg78278_arg247151,ww,bd0b262eca690457b62142ff634b58,-1
+36,uik,"By segregating chromosomes, they are randomly assorted into different gametes.",a2,arg83202,arg81155,arg83202_arg81155,wr,49608560fb63a67dcb73693d0ceda4,1
+37,"By segregating chromosomes, they are randomly assorted into different gametes.",..,a1,arg81155,arg87112,arg81155_arg87112,rr,e969de6f57d3ccca6cfb4d0560708d,-1
+38,the way they split is different ,"By segregating chromosomes, they are randomly assorted into different gametes.",a2,arg104389,arg81155,arg104389_arg81155,rr,04212d5fb7cf609d17a01f9961ea78,1
+39,"By segregating chromosomes, they are randomly assorted into different gametes.",genes on a chromosome are independently assorted by the segregation of chromosomes during meiosis,a1,arg81155,arg186701,arg81155_arg186701,rr,754a94af492f5a2a02564805a0c5eb,-1
+40,"It is the alignment and reduction of the ploidy from 2n to n, by randomly assorting the homologs into gametes.","By segregating chromosomes, they are randomly assorted into different gametes.",a2,arg193058,arg81155,arg193058_arg81155,rr,77792e8bba538394722dd000a5191d,1
+41,"By segregating chromosomes, they are randomly assorted into different gametes.",Independent assortment occurs because sister chromatids go into different cells from the homologous chromosome (unless recombination occurred) and then split afterwards.,a1,arg81155,arg195390,arg81155_arg195390,rr,c75778f17bd5973781992a29ed129a,-1
+42,Well during metaphae I the chromosomes basically can line up in the way they want...,"By segregating chromosomes, they are randomly assorted into different gametes.",a2,arg208534,arg81155,arg208534_arg81155,rr,ed7e6b53f4994790ba59aca16b78d6,1
+43,"By segregating chromosomes, they are randomly assorted into different gametes.","this is the basis of independent assortment, the segregation of chromosomes",a1,arg81155,arg213947,arg81155_arg213947,rr,0abb559d0c05871b2dfc994341fc40,-1
+44,"Since they are segregated during meiosis, they are independently assorted.","By segregating chromosomes, they are randomly assorted into different gametes.",a2,arg225641,arg81155,arg225641_arg81155,rr,54552f752ac8455074bc3e80dda343,1
+45,"By segregating chromosomes, they are randomly assorted into different gametes.",Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth Depth,a1,arg81155,arg235888,arg81155_arg235888,rr,91d55b62d66ae26ce4305aa1cda609,-1
+46,I don't know really. I just want to see the answer please please please.,"By segregating chromosomes, they are randomly assorted into different gametes.",a2,arg236488,arg81155,arg236488_arg81155,rr,c5ad51016f5264f488dd1d5ee4ca52,1
+47,"By segregating chromosomes, they are randomly assorted into different gametes.","B. exchange of genetic information between sister chromatids
+
+C. rearrangement of genes on chromosomes
+
+D. deco",a1,arg81155,arg240251,arg81155_arg240251,rr,0dd25bf4271022a430f458130d935a,-1
+48,This is the right answer because I said so and because it is logical,"By segregating chromosomes, they are randomly assorted into different gametes.",a2,arg240906,arg81155,arg240906_arg81155,rr,284259f0c39bcaf69a972ef4573497,1
+49,"By segregating chromosomes, they are randomly assorted into different gametes.",The random segregation of both homologous chromosomes and sister chromatids in meiosis causes independent assortment.,a1,arg81155,arg241411,arg81155_arg241411,rr,179f7e6f5056ec5d7a097ef3896e81,-1
+50,occurs during metaphase when spindles attach to centromere this results in independent assortment,"By segregating chromosomes, they are randomly assorted into different gametes.",a2,arg242002,arg81155,arg242002_arg81155,rr,e8797b5abf079b9a414b30e1574987,1
+51,"By segregating chromosomes, they are randomly assorted into different gametes.","What causes independent assortment of genes?
+
+A. segregation of chromosomes during meiosis
+
+B. exchange of genetic information between sister chromatids
+
+C. rearrangement of genes on chromosomes
+
+D. decondensation of chromosomes at telophase",a1,arg81155,arg242608,arg81155_arg242608,rr,5f2356cd4afe4604d7732d091ae1ec,-1
+52,knkjhiuh,"chromosomes are randomly put into gametes at meiosis , leading to independent assortment",a2,arg99354,arg98019,arg99354_arg98019,rr,07da7145e361ebe0bf395454cf83a4,1
+53,"chromosomes are randomly put into gametes at meiosis , leading to independent assortment",segregation of chromosomes during meiosis causes independent assortment of genes,a1,arg98019,arg187571,arg98019_arg187571,rr,a4efbb59c3f3cc914065e25300dae6,-1
+54,"During anaphase, chromosomes are randomly distributed into daughter cells, which results in many possible combinations of chromosomes","chromosomes are randomly put into gametes at meiosis , leading to independent assortment",a2,arg188111,arg98019,arg188111_arg98019,rr,5f0df47c28d1b11d5e56f5af7732d9,1
+55,"chromosomes are randomly put into gametes at meiosis , leading to independent assortment",This causes the separation of the genes into the daughter cells,a1,arg98019,arg188259,arg98019_arg188259,rr,c71ddd833f95e4795132a55ea0c6cc,-1
+56,the segregation of chromosomes is independent in meiosis so ya,"chromosomes are randomly put into gametes at meiosis , leading to independent assortment",a2,arg188581,arg98019,arg188581_arg98019,rr,cbb8cd75da74f497c581834e34b5a8,1
+57,"chromosomes are randomly put into gametes at meiosis , leading to independent assortment",It's when the dyads separate during metaphase 1 that the genes get assorted into to their respective gametes.,a1,arg98019,arg189608,arg98019_arg189608,rr,ca13f590568c5963f3090275902099,-1
+58,Independent assortment of genes means that there are different ways of homologous chromosomes aline the equatorial plate of the metaphse.,"chromosomes are randomly put into gametes at meiosis , leading to independent assortment",a2,arg191354,arg98019,arg191354_arg98019,rr,9d9a2541f5086bf2dbb958d9100dd8,1
+59,"chromosomes are randomly put into gametes at meiosis , leading to independent assortment",it's random which chromosome is picked to be pulled to each end so that's where independent assortment comes in,a1,arg98019,arg225911,arg98019_arg225911,rr,4c5b69f81935e72eab927acc9968b8,-1
+60,It is when the homologues are separated in meiosis I.,"chromosomes are randomly put into gametes at meiosis , leading to independent assortment",a2,arg227131,arg98019,arg227131_arg98019,rr,a93ead596d3e93cc7c3baf70527825,1
+61,"chromosomes are randomly put into gametes at meiosis , leading to independent assortment","a state horse breeding program, some pure-breeding grey horses were bred with pure-breeding black horses and the resulting F1 progeny",a1,arg98019,arg235028,arg98019_arg235028,rr,f7301be228b9cd2ae8ced475e16cb8,-1
+62,chromosomes line up independently of one another,"Law of segregation states that each chromosomes segregate in a cell each so that each cell will have half the genotype, but the order of the separation is random",a2,arg104637,arg104014,arg104637_arg104014,rr,080a3f7efc38517b8b22a37ab0ee91,1
+63,"Law of segregation states that each chromosomes segregate in a cell each so that each cell will have half the genotype, but the order of the separation is random","Chromosomes are all apart from each other during meiosis, so they will not be affected by each other and therefore genes will independently assort.",a1,arg104014,arg185481,arg104014_arg185481,rr,5328bc327617aa763d78106b3de0c1,-1
+64,independent assortment is the random distribution of alleles of different unlinked genes to gametes.,"Law of segregation states that each chromosomes segregate in a cell each so that each cell will have half the genotype, but the order of the separation is random",a2,arg187790,arg104014,arg187790_arg104014,wr,2550db4eafb3efc9fdbbf17f53c876,1
+65,"Law of segregation states that each chromosomes segregate in a cell each so that each cell will have half the genotype, but the order of the separation is random","With crossover, recombinant chromosomes are created and it is an independent assortment of genes",a1,arg104014,arg187872,arg104014_arg187872,wr,d0c086d8b9728ba0f9968af69a535b,-1
+66,The independent assorment of genes are 2 independent genes that get sorted into gametes independently,"Law of segregation states that each chromosomes segregate in a cell each so that each cell will have half the genotype, but the order of the separation is random",a2,arg189711,arg104014,arg189711_arg104014,rr,8c97974493a339b154793e66c496ec,1
+67,"Law of segregation states that each chromosomes segregate in a cell each so that each cell will have half the genotype, but the order of the separation is random","after every segregation, the resulting cells can have A or a",a1,arg104014,arg191562,arg104014_arg191562,rr,6cb51fff1a6525f52bf84f7d450d02,-1
+68,Independent assortment of genes is caused by the segregation of chromosomes during meiosis.,"Law of segregation states that each chromosomes segregate in a cell each so that each cell will have half the genotype, but the order of the separation is random",a2,arg192051,arg104014,arg192051_arg104014,rr,b30634abcfd3a2d844029f291f1dc1,1
+69,"Law of segregation states that each chromosomes segregate in a cell each so that each cell will have half the genotype, but the order of the separation is random",independent assortment is how certain genes can be inherited with out any connection to other genes being inherited. segregation of chromosomes during meiosis is random in that the cell randomly decides which sister chromatid to pull to either end of the cell,a1,arg104014,arg213894,arg104014_arg213894,rr,563c20b2722e7a9409c4cba2937eeb,-1
+70,"What causes independent assortment of genes?
+
+A. segregation of chromosomes during meiosis","Law of segregation states that each chromosomes segregate in a cell each so that each cell will have half the genotype, but the order of the separation is random",a2,arg230071,arg104014,arg230071_arg104014,rr,dcc4147a5c461bb23c8f37dfd85e77,1
+71,"Law of segregation states that each chromosomes segregate in a cell each so that each cell will have half the genotype, but the order of the separation is random",independent assortment just states that alleles so not sort dependently on each other and assortment is completely random through segregation,a1,arg104014,arg238312,arg104014_arg238312,rr,70df4d183d31aed459d8e9b0c489cc,-1
+72,independent assortment states that the alleles of two (or more) different genes get sorted into gametes independently of one another.,"Law of segregation states that each chromosomes segregate in a cell each so that each cell will have half the genotype, but the order of the separation is random",a2,arg242809,arg104014,arg242809_arg104014,rr,fa903f4baabaadd2e0c8af7ccd2ff6,1
+73,"Law of segregation states that each chromosomes segregate in a cell each so that each cell will have half the genotype, but the order of the separation is random",What causes independent assortment of genes What causes independent assortment of genes What causes independent assortment of genes,a1,arg104014,arg245678,arg104014_arg245678,rr,e948580ed9173add8689035e17c658,-1
+74,i uh ihu iji,independent assortment= happens when 2 genes are on separate chromosomes or if they are very far apart on the same chromosome; independent assortment happens when sister chromatids exchange information,a2,arg105024,arg104861,arg105024_arg104861,ww,efd165cce4d262b1d2333d5543f755,1
+75,independent assortment= happens when 2 genes are on separate chromosomes or if they are very far apart on the same chromosome; independent assortment happens when sister chromatids exchange information,"Because we have crossing over, alleles can be exchanged between sister chromatids. Each sister chromatids thus have a different version of the gene to form a different gametes.",a1,arg104861,arg201724,arg104861_arg201724,ww,deb798562c393afa3f28bd8f30142f,-1
+76,the information change between sister chromatids is necessary for the gene diversity,independent assortment= happens when 2 genes are on separate chromosomes or if they are very far apart on the same chromosome; independent assortment happens when sister chromatids exchange information,a2,arg214827,arg104861,arg214827_arg104861,ww,f1278b5969017a6121fa6926e9c04b,1
+77,independent assortment= happens when 2 genes are on separate chromosomes or if they are very far apart on the same chromosome; independent assortment happens when sister chromatids exchange information,Which of the following genotypes would you not find in a SsYy test cross?,a1,arg104861,arg240958,arg104861_arg240958,ww,680c356440ff1f7be084cbf2d425b9,-1
+78,"rearrangement of genes on chromosomes
+
+D. decondensation of chromosomes at telophase",independent assortment= happens when 2 genes are on separate chromosomes or if they are very far apart on the same chromosome; independent assortment happens when sister chromatids exchange information,a2,arg246591,arg104861,arg246591_arg104861,ww,7676492bc93fe31074d6ddca1523c2,1

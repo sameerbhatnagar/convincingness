@@ -1,0 +1,100 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,phenotype is what one can observe,Phenotype is the physical manifestation of an individual's genotype,a2,arg68735,arg68497,arg68735_arg68497,rr,ee7b40f08ecc3e6ceca31a6f6b2a5d,1
+1,Phenotype is the physical manifestation of an individual's genotype, ,a1,arg68497,arg68806,arg68497_arg68806,rr,b2dc02b7b0620f746fd7977a3e3e63,-1
+2,Definition,Phenotype is the physical manifestation of an individual's genotype,a2,arg69557,arg68497,arg69557_arg68497,rr,710f05a894e40d30408e624d812a4b,1
+3,Phenotype is the physical manifestation of an individual's genotype, ,a1,arg68497,arg70835,arg68497_arg70835,rr,dd1b4189a8ac774a3a58a6ffd278d1,-1
+4,what you see ,Phenotype is the physical manifestation of an individual's genotype,a2,arg71803,arg68497,arg71803_arg68497,rr,e76157e16bb5609476c036748a4d5c,1
+5,Phenotype is the physical manifestation of an individual's genotype,.,a1,arg68497,arg71839,arg68497_arg71839,rr,99e13597aca888836f3437b617fdc8,-1
+6,phy,Phenotype is the physical manifestation of an individual's genotype,a2,arg72282,arg68497,arg72282_arg68497,rr,f5e4fff3a4a9605b12629bf4cac95f,1
+7,Phenotype is the physical manifestation of an individual's genotype,Ez.,a1,arg68497,arg72481,arg68497_arg72481,rr,5cedf21fe930c659b63d770023ff7e,-1
+8,n,Phenotype is the physical manifestation of an individual's genotype,a2,arg72615,arg68497,arg72615_arg68497,rr,c0b0fe9e84013a644bb70cd23c69a6,1
+9,Phenotype is the physical manifestation of an individual's genotype, ,a1,arg68497,arg72685,arg68497_arg72685,rr,ba2195b8613d1aa0855a6a7d789f3f,-1
+10,Genotypes are heritable from the fundamental genes of an organism.,Phenotype is the physical manifestation of an individual's genotype,a2,arg73963,arg68497,arg73963_arg68497,rr,7ea529b30604b488c4b5adf2e6fabc,1
+11,Phenotype is the physical manifestation of an individual's genotype,"Base on genotype, so it is the heritable property of the organism.",a1,arg68497,arg75377,arg68497_arg75377,wr,91b81abeeb3dd5b4f163738528596a,-1
+12,"The phenotype is the observable trait which represents the genotypes 
+the appearance of a particular trait",Phenotype is the physical manifestation of an individual's genotype,a2,arg75835,arg68497,arg75835_arg68497,rr,b27b4bb4927884566ec40cf4a4fb06,1
+13,Phenotype is the physical manifestation of an individual's genotype,h,a1,arg68497,arg76496,arg68497_arg76496,rr,8eb203e403c4e4f5ad0c22b0a6c240,-1
+14,phenotype is what you observe,Phenotype is the physical manifestation of an individual's genotype,a2,arg77718,arg68497,arg77718_arg68497,rr,3340368556c1c3339d531fe5657a11,1
+15,Phenotype is the physical manifestation of an individual's genotype, ,a1,arg68497,arg77727,arg68497_arg77727,rr,14899b064827f55df8c48614f4274f,-1
+16,Phenotype = physical ( what we see),Phenotype is the physical manifestation of an individual's genotype,a2,arg77804,arg68497,arg77804_arg68497,rr,6726b97cb4a2a241b4f7d720d97cb9,1
+17,Phenotype is the physical manifestation of an individual's genotype,l,a1,arg68497,arg78293,arg68497_arg78293,rr,065848127b9d0b9b206a17ee151b73,-1
+18,.,Phenotype is the physical manifestation of an individual's genotype,a2,arg78339,arg68497,arg78339_arg68497,rr,3c51f38cd05bf8261f066dceafb818,1
+19,Phenotype is the physical manifestation of an individual's genotype,def,a1,arg68497,arg78629,arg68497_arg78629,rr,3f723e391f6fc48fb0c52046239973,-1
+20,000,Phenotype is the physical manifestation of an individual's genotype,a2,arg78648,arg68497,arg78648_arg68497,rr,08e4bad90b7521b965ea164814285e,1
+21,Phenotype is the physical manifestation of an individual's genotype,a,a1,arg68497,arg78702,arg68497_arg78702,rr,8ea6d35ef00f2b5729baa089d59334,-1
+22,"what the organism looks like
+",Phenotype is the physical manifestation of an individual's genotype,a2,arg79671,arg68497,arg79671_arg68497,rr,3833d34efac4d96ebc009507f78f02,1
+23,Phenotype is the physical manifestation of an individual's genotype,b,a1,arg68497,arg80094,arg68497_arg80094,rr,c1b78ab4dbd2ab5405cde4e9275677,-1
+24,  ,Phenotype is the physical manifestation of an individual's genotype,a2,arg81026,arg68497,arg81026_arg68497,rr,c11828d46b53cbf827f3a1903a57ce,1
+25,Phenotype is the physical manifestation of an individual's genotype,.,a1,arg68497,arg81307,arg68497_arg81307,rr,54b602f8b6cbd39d1d6e2ec8f5b893,-1
+26,what you see,Phenotype is the physical manifestation of an individual's genotype,a2,arg81810,arg68497,arg81810_arg68497,rr,6be9daa2bf82af5976958bafa6bb13,1
+27,Phenotype is the physical manifestation of an individual's genotype,"Phenotype = what you see
+Genotype = genetic code",a1,arg68497,arg83733,arg68497_arg83733,rr,87d12d8bf0b77679a64968d62c01a7,-1
+28,.,Phenotype is the physical manifestation of an individual's genotype,a2,arg86955,arg68497,arg86955_arg68497,rr,48b961f1db3dd4876b16e703f47af2,1
+29,Phenotype is the physical manifestation of an individual's genotype, ,a1,arg68497,arg86986,arg68497_arg86986,rr,75151c3099ca1bb0987f709884fe02,-1
+30,-,Phenotype is the physical manifestation of an individual's genotype,a2,arg91964,arg68497,arg91964_arg68497,rr,d709f71cb4f0a254ee0d56af55a832,1
+31,Phenotype is the physical manifestation of an individual's genotype,phenotype are observable,a1,arg68497,arg93078,arg68497_arg93078,rr,8802245ba48176f94d3f163c97d717,-1
+32,m,Phenotype is the physical manifestation of an individual's genotype,a2,arg97332,arg68497,arg97332_arg68497,rr,299fca65b4a9087fdb025b7f11cf4c,1
+33,Phenotype is the physical manifestation of an individual's genotype,its what you see,a1,arg68497,arg98955,arg68497_arg98955,rr,b1fbc9050f3eb26b5c9a7100ea970a,-1
+34,yayaayayya,Phenotype is the physical manifestation of an individual's genotype,a2,arg99977,arg68497,arg99977_arg68497,rr,137ca1fd2b7a8fec23eef0a630e71a,1
+35,Phenotype is the physical manifestation of an individual's genotype,obvs,a1,arg68497,arg105540,arg68497_arg105540,rr,cb46ddd5247e6998bfafd9754c1f38,-1
+36,phenotype is what is observable,Phenotype is the physical manifestation of an individual's genotype,a2,arg149831,arg68497,arg149831_arg68497,rr,eb94a2f0be51bf3b459f87bc8e34c7,1
+37,Phenotype is the physical manifestation of an individual's genotype,phenotype is the expression of the genotype as seen,a1,arg68497,arg153827,arg68497_arg153827,rr,824b9f3213e446743a4f906e4c7219,-1
+38,"""Phen"" means physical properites which are obersavable","Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a2,arg75374,arg72333,arg75374_arg72333,rr,0103e5d111b63d8b3864c545edb013,1
+39,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",Phenotype must be the observable traits of organism. It may not be heritable because some traits are recessive.,a1,arg72333,arg184788,arg72333_arg184788,rr,5bac69d515e9e1c3039a361b577798,-1
+40,"That is called a phenotype, A genotype is the gene combination","Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a2,arg184809,arg72333,arg184809_arg72333,rr,ed7e6b53f4994790ba59aca16b78d6,1
+41,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",its what you see - the physical manifestation (expression) of the genotype,a1,arg72333,arg185464,arg72333_arg185464,rr,da3231695068ba111ce58a62e8022c,-1
+42,Phonotype is the expressed traits of the organism. Genotype is the breakdown of its heritable components.,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a2,arg185645,arg72333,arg185645_arg72333,rr,ca13f590568c5963f3090275902099,1
+43,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ","genotype is the genes, and phenotype is the traits, that's why I chose A",a1,arg72333,arg185908,arg72333_arg185908,rr,a4efbb59c3f3cc914065e25300dae6,-1
+44,the phentype and the genotype are what is numbers probability poo,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a2,arg186597,arg72333,arg186597_arg72333,rr,36180e824619c72eb4686ff82b2870,1
+45,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",Phenotype is the term that refers to the observable traits see on someone.,a1,arg72333,arg188011,arg72333_arg188011,rr,69226f0b06fd8222b03f9261e554f0,-1
+46,"Phenotype is what is actually observed, B is genotype. Genotype is what gives rise to the observable characteristic- the phenotype","Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a2,arg188041,arg72333,arg188041_arg72333,rr,5d5c9eeee8f714934b249eebfabd8b,1
+47,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ","phenotype have to be observable, which will eliminate choice C as it didnt mention observable.",a1,arg72333,arg189136,arg72333_arg189136,rr,4291dc655a2e0724f018f03fc58a9b,-1
+48,A is the definition of phenotype. It is the observed traits as opposed to the genotype that cannot be observed.,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a2,arg192391,arg72333,arg192391_arg72333,rr,691059afeec34764e0672543eb1805,1
+49,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",Phenotype is the physical representation of a genotype and differs depending on the inherited allele.,a1,arg72333,arg194517,arg72333_arg194517,rr,a93ead596d3e93cc7c3baf70527825,-1
+50,The phenotype of an organism is:The observable properties of the organism,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a2,arg194868,arg72333,arg194868_arg72333,rr,b7df7271f31c316697bac696957a39,1
+51,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",the phenotype of an organism is the observable genotypes due to the different alleles,a1,arg72333,arg201489,arg72333_arg201489,rr,0a598af9ba2a5ecdd82f039f8fc970,-1
+52,"Phenotype is what you see in the organism, not the genes","Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a2,arg206572,arg72333,arg206572_arg72333,rr,684de023663c65f38e391870a513d4,1
+53,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",because because because because because because because because because because because because because because because because,a1,arg72333,arg207261,arg72333_arg207261,rr,d06aa0c42a6cda530fd34d24ff1133,-1
+54,"OLGENEMENG - Q18
+The phenotype of an organism is:
+
+
+A. The observable properties of the organism","Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a2,arg214252,arg72333,arg214252_arg72333,rr,c182e01377768877871d4e31b0bf11,1
+55,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ","Phenotype is the observable characteristics of an organism, depends of genotype interaction with environment",a1,arg72333,arg222327,arg72333_arg222327,rr,2de9909ff87809046a3fe88fcd465e,-1
+56,"the phenotype of an organism is what we can observe directly from an organism, that cames from the genotype","Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a2,arg226085,arg72333,arg226085_arg72333,rr,339aac440cf950f896c78a66b62c4c,1
+57,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",the phenotype is what you can see!! This would make it the observable characteristics,a1,arg72333,arg230605,arg72333_arg230605,rr,dfc32d2e2f1479630f6295a8a437ec,-1
+58,this is hwat it is this it what it is this it what it is it just is there aint no other answer,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a2,arg236130,arg72333,arg236130_arg72333,rr,6eb2802b8d7d54a16614d693c96ac4,1
+59,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a phenotype is the observable properties of the organism do not known,a1,arg72333,arg237039,arg72333_arg237039,rr,bd3e347bd49c52472eddb6dc4e4fbe,-1
+60,In the parental generation there is a recessive parent and a dominant parent. The F1 generation is heterogeneous purple. These are the parents of F2 generation.,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a2,arg238204,arg72333,arg238204_arg72333,rr,30cf3bab881f2520b066ce70779c07,1
+61,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",Pheno is what we observe and see. No further explanation required.,a1,arg72333,arg238569,arg72333_arg238569,rr,c0bf50b4127516fec2f23a714be712,-1
+62,"genotype involves the actual genes of an individual, however the phenotype refers only to what we can see about an organism","Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a2,arg239169,arg72333,arg239169_arg72333,rr,37dc95a2810c253548122ab8e5daec,1
+63,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",phenotype is the trait that appears and genotype is based on the alleles,a1,arg72333,arg240453,arg72333_arg240453,rr,88ab03177a3205bd92843d6c8f64e3,-1
+64,i dont get why we need to write here its dumb,"Phenotype = what you see 
+Genotype= the alleles that determine the phenotype ",a2,arg246912,arg72333,arg246912_arg72333,rr,2b438028e3a53bc6edc53c41d99f47,1

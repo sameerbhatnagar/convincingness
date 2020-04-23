@@ -1,0 +1,64 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,dominant trait cannot be produced from two homozygous recessive parents,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg68764,arg68475,arg68764_arg68475,rr,ee7b40f08ecc3e6ceca31a6f6b2a5d,1
+1,Two Rh- parents can only have Rh- children since it is the recessive allele., ,a1,arg68475,arg68821,arg68475_arg68821,rr,b2dc02b7b0620f746fd7977a3e3e63,-1
+2,Only recessive alleles.,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg72492,arg68475,arg72492_arg68475,rr,5cedf21fe930c659b63d770023ff7e,1
+3,Two Rh- parents can only have Rh- children since it is the recessive allele.,yeet,a1,arg68475,arg72643,arg68475_arg72643,rr,9c879c20dda43dc90748042d0eb20f,-1
+4, ,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg72707,arg68475,arg72707_arg68475,rr,ba2195b8613d1aa0855a6a7d789f3f,1
+5,Two Rh- parents can only have Rh- children since it is the recessive allele.,Two homozygous recessive parents can't give rise to a dominant genotype,a1,arg68475,arg73057,arg68475_arg73057,rr,83298ffad1d5c1507c9d8cc4371e8a,-1
+6,Nah,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg76151,arg68475,arg76151_arg68475,rr,8b9a35ef268a7af3ffa6e39429cb44,1
+7,Two Rh- parents can only have Rh- children since it is the recessive allele.,"Since recessive, the crossing of Rh- and Rh- would only result in Rh- and no Rh+",a1,arg68475,arg77650,arg68475_arg77650,rr,0103e5d111b63d8b3864c545edb013,-1
+8, ,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg77741,arg68475,arg77741_arg68475,rr,14899b064827f55df8c48614f4274f,1
+9,Two Rh- parents can only have Rh- children since it is the recessive allele.,recessive cannot have a child with dominant allele,a1,arg68475,arg77870,arg68475_arg77870,rr,6726b97cb4a2a241b4f7d720d97cb9,-1
+10,kjh;jb,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg78331,arg68475,arg78331_arg68475,rr,065848127b9d0b9b206a17ee151b73,1
+11,Two Rh- parents can only have Rh- children since it is the recessive allele.,Rh+> Rh,a1,arg68475,arg78919,arg68475_arg78919,rr,0be0ff8557741e78e06fc316bfeeec,-1
+12, ,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg79489,arg68475,arg79489_arg68475,rr,177f9fe28a7f447052d4f0c3344b3b,1
+13,Two Rh- parents can only have Rh- children since it is the recessive allele.,n,a1,arg68475,arg80953,arg68475_arg80953,rr,c1b78ab4dbd2ab5405cde4e9275677,-1
+14,  ,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg81050,arg68475,arg81050_arg68475,rr,c11828d46b53cbf827f3a1903a57ce,1
+15,Two Rh- parents can only have Rh- children since it is the recessive allele.,.,a1,arg68475,arg81324,arg68475_arg81324,rr,54b602f8b6cbd39d1d6e2ec8f5b893,-1
+16,.,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg81846,arg68475,arg81846_arg68475,rr,6be9daa2bf82af5976958bafa6bb13,1
+17,Two Rh- parents can only have Rh- children since it is the recessive allele.,.,a1,arg68475,arg86969,arg68475_arg86969,rr,48b961f1db3dd4876b16e703f47af2,-1
+18,no dominant gene from parents to pass to child,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg87074,arg68475,arg87074_arg68475,rr,75151c3099ca1bb0987f709884fe02,1
+19,Two Rh- parents can only have Rh- children since it is the recessive allele.,.,a1,arg68475,arg87659,arg68475_arg87659,rr,49576fcc061976107dfa27c933b67d,-1
+20,.,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg87810,arg68475,arg87810_arg68475,rr,45f66841f41378db02d2dd8370df73,1
+21,Two Rh- parents can only have Rh- children since it is the recessive allele.,if the parents are recessive they cannot have a dominant child,a1,arg68475,arg93097,arg68475_arg93097,rr,8802245ba48176f94d3f163c97d717,-1
+22,caus,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg96631,arg68475,arg96631_arg68475,rr,ec0af916fb5a693fb11f8fe27aa0c6,1
+23,Two Rh- parents can only have Rh- children since it is the recessive allele.,Rh+ > Rh,a1,arg68475,arg99756,arg68475_arg99756,rr,49de27d597d056c2f2d9261a80f9a8,-1
+24,recessive ,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg100236,arg68475,arg100236_arg68475,rr,8c102c86fa48da8a78b3f2fdea1ce9,1
+25,Two Rh- parents can only have Rh- children since it is the recessive allele.,            ,a1,arg68475,arg100732,arg68475_arg100732,rr,412a550222b21703c1ab6f70a7d63e,-1
+26,"If the trait is recessive, then the two parents have to have two rhesus neg. alleles. Therefore they have no positive one to pass on to their child.",Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg100967,arg68475,arg100967_arg68475,rr,47bcc3f28dd94412885583182b09a0,1
+27,Two Rh- parents can only have Rh- children since it is the recessive allele.,Because,a1,arg68475,arg103929,arg68475_arg103929,rr,9e9f367dbcc4bb2bca45bde40b4c94,-1
+28,Rh- parents could not have an Rh+ child,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg105379,arg68475,arg105379_arg68475,rr,fc39c9052e53644a0f068063753f78,1
+29,Two Rh- parents can only have Rh- children since it is the recessive allele.,Rh-Rh- x Rh-Rh- cannot be Rh+,a1,arg68475,arg105555,arg68475_arg105555,rr,9008d1eb1761199bc25f860bd6042e,-1
+30,punett,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg105813,arg68475,arg105813_arg68475,rr,9ff916b24a214164ad7838787f7eb5,1
+31,Two Rh- parents can only have Rh- children since it is the recessive allele.,dominant > recessive,a1,arg68475,arg105885,arg68475_arg105885,rr,1eac226fa2a7a10fc647fecd01a00e,-1
+32,sdfghjk,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg106751,arg68475,arg106751_arg68475,rr,d22b2724721ba0da929fb42ad2e456,1
+33,Two Rh- parents can only have Rh- children since it is the recessive allele.,falsoooo,a1,arg68475,arg107455,arg68475_arg107455,rr,c0ea6e7059333dd78629a86303cbeb,-1
+34,yuppp,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg111656,arg68475,arg111656_arg68475,rr,54b5fd31243de08ea4b8f00b4966e9,1
+35,Two Rh- parents can only have Rh- children since it is the recessive allele.,since Rh- is recessive if an Rh+ child is born than one of the parents had to have the Rh+ gene to donate it and therefore would express that gene,a1,arg68475,arg153838,arg68475_arg153838,rr,824b9f3213e446743a4f906e4c7219,-1
+36,"Having Rh+ means you do not have the blood factor (Rh), which also indicates that you must be homozygous and thus it is impossible for two Rh+ parents to have an Rh- child",Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg185827,arg68475,arg185827_arg68475,wr,e3c0440e56e5e785a11c948e75f983,1
+37,Two Rh- parents can only have Rh- children since it is the recessive allele.,If both have a dominant form of the gene then they can’t have a recessive one.,a1,arg68475,arg186128,arg68475_arg186128,wr,ebbded91482f82f435149a14858a14,-1
+38,"An Rh- person would necessarily be homozygous, thus an Rh+ phenotype could not be expressed between a cross of these people.",Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg188482,arg68475,arg188482_arg68475,rr,77792e8bba538394722dd000a5191d,1
+39,Two Rh- parents can only have Rh- children since it is the recessive allele.,That does not seem like a clear explanation of your reasoning:That does not seem like a clear explanation of your reasoning:That does not seem like a clear explanation of your reasoning:,a1,arg68475,arg192155,arg68475_arg192155,rr,c6300318f3bd32c7eb37fdbc9e45b8,-1
+40,two homozygous recessive parents can't produce a dominant child so ya,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg193175,arg68475,arg193175_arg68475,rr,3962319de8a4da9a4d63bd889e1904,1
+41,Two Rh- parents can only have Rh- children since it is the recessive allele.,Because two recessive parents can only give a recessive offspring.,a1,arg68475,arg195115,arg68475_arg195115,rr,eb673e1b8e90d9fa6bbb7291120bab,-1
+42,"If those 2 parents are heterozygous, 1/4 of the progenies will be Rh-.",Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg197149,arg68475,arg197149_arg68475,wr,29b0f3eddd1f01f43eb3fbe62e02c1,1
+43,Two Rh- parents can only have Rh- children since it is the recessive allele.,Rh+Rh- * Rh+Rh- parents could have children that are Rh+ or Rh-,a1,arg68475,arg197266,arg68475_arg197266,wr,deb798562c393afa3f28bd8f30142f,-1
+44,Rh- is recessive so both Rh- parents can not give birth to an Rh+ child.,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg197303,arg68475,arg197303_arg68475,rr,d8fd10340bfb930d8a59e59e51359a,1
+45,Two Rh- parents can only have Rh- children since it is the recessive allele.,two Rh- parents cannot have a Rh+ as Rh+ is dominant and therefore if a parent carries it is will be present,a1,arg68475,arg201654,arg68475_arg201654,rr,0a598af9ba2a5ecdd82f039f8fc970,-1
+46,all of these seem wrong to me I really don't know,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg223859,arg68475,arg223859_arg68475,wr,dcc4147a5c461bb23c8f37dfd85e77,1
+47,Two Rh- parents can only have Rh- children since it is the recessive allele.,c is right because Mendel ignored all other traits. D is wrong because he looked at more than one matin.,a1,arg68475,arg230197,arg68475_arg230197,rr,f57af06167bbc10941e05a09d4fc50,-1
+48,I'm sorry I just wanted to see the answer since typing up my entire rationale for each question would take forever. We love genetics though!,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg236744,arg68475,arg236744_arg68475,rr,fdcba72eb0e114d5eb4eec087d5aa0,1
+49,Two Rh- parents can only have Rh- children since it is the recessive allele.,"If Rh- is recessive, then two Rh- parents would never give rise to a dominant phenotype because they do not have the allele for it.",a1,arg68475,arg238709,arg68475_arg238709,rr,71ec21c36971a39ec5670e0c5054d6,-1
+50,this is right please let me submit long long long long long,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg239218,arg68475,arg239218_arg68475,rr,37dc95a2810c253548122ab8e5daec,1
+51,Two Rh- parents can only have Rh- children since it is the recessive allele.,"Which of the following represents a test cross?
+
+
+A. Ww x WW
+
+B. ww x WW
+
+C. Ww x Ww
+
+D. WW x WW",a1,arg68475,arg239254,arg68475_arg239254,rr,3cb1bcf49a5156777764cd4cade4e0,-1
+52,since Rh- is recessive that means the parents are both homozygous recessive and can't give the Rh+,Two Rh- parents can only have Rh- children since it is the recessive allele.,a2,arg240506,arg68475,arg240506_arg68475,rr,88ab03177a3205bd92843d6c8f64e3,1
+53,Two Rh- parents can only have Rh- children since it is the recessive allele.,two positives does not make a negative LMAO and i need to write more,a1,arg68475,arg247066,arg68475_arg247066,wr,2b438028e3a53bc6edc53c41d99f47,-1

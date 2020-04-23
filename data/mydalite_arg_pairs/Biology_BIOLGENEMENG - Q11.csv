@@ -1,0 +1,75 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0, ,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg68796,arg68721,arg68796_arg68721,rr,b2dc02b7b0620f746fd7977a3e3e63,1
+1,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,guessing,a1,arg68721,arg69551,arg68721_arg69551,rr,0bb1b73bf390a7f789aa2b784a5f47,-1
+2, ,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg70810,arg68721,arg70810_arg68721,rr,dd1b4189a8ac774a3a58a6ffd278d1,1
+3,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,I think,a1,arg68721,arg71770,arg68721_arg71770,rr,bdec0e8e8e5c06c514969952e12dc0,-1
+4,otherwise u dont get the ratio,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg71922,arg68721,arg71922_arg68721,rr,6fd733ce744be25ce02e000dcdac24,1
+5,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,Dihybrid cross,a1,arg68721,arg72120,arg68721_arg72120,rr,f0f2a852594992556acd3f8df9f8c0,-1
+6,.,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg72345,arg68721,arg72345_arg68721,rr,cb46ddd5247e6998bfafd9754c1f38,1
+7,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,thats just the way it is,a1,arg68721,arg74090,arg68721_arg74090,rr,0afa302600bf72169f66c146a163ce,-1
+8,a big pungent square ,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg74231,arg68721,arg74231_arg68721,rr,ff8e434947ba49017eff3d2d477ba7,1
+9,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,Yas,a1,arg68721,arg74915,arg68721_arg74915,rr,8b9a35ef268a7af3ffa6e39429cb44,-1
+10,.,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg75672,arg68721,arg75672_arg68721,rr,d53afd173c3f5093853af6b1ad4d38,1
+11,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,Dihybrid cross ,a1,arg68721,arg76120,arg68721_arg76120,rr,5dc04a99eca53051842d9e165a8534,-1
+12,Heterozygote cross.,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg77552,arg68721,arg77552_arg68721,rr,1d08833265a8a6c01a1f6d9f71063a,1
+13,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,heterozygous dihybrid cross gives the 9:3:3:1 ratio,a1,arg68721,arg77564,arg68721_arg77564,rr,3340368556c1c3339d531fe5657a11,-1
+14,.,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg77859,arg68721,arg77859_arg68721,rr,3e179fba728baed8c01e997ac36184,1
+15,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,F1,a1,arg68721,arg78256,arg68721_arg78256,rr,065848127b9d0b9b206a17ee151b73,-1
+16,A classic dihybrid cross,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg78298,arg68721,arg78298_arg68721,wr,3c51f38cd05bf8261f066dceafb818,1
+17,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,d,a1,arg68721,arg78690,arg68721_arg78690,rr,8ea6d35ef00f2b5729baa089d59334,-1
+18,"to get a 9:3:3:1, you would need to have both parents to be heterozygous for all genes so D. *since we would get 2 ratios of 3:1*",SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg79091,arg68721,arg79091_arg68721,rr,fcf6db7ca0c22a5512281fbf85e807,1
+19,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,.,a1,arg68721,arg80115,arg68721_arg80115,rr,52a0801ec0b18861cc6df508f1b10b,-1
+20,Heterozygous dihybrid cross gives a 9:3:3:1 ratio,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg80920,arg68721,arg80920_arg68721,rr,0be5fbbd69280e7e6725be63847208,1
+21,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,  ,a1,arg68721,arg81001,arg68721_arg81001,rr,c11828d46b53cbf827f3a1903a57ce,-1
+22,heterozygous for both traits,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg82726,arg68721,arg82726_arg68721,rr,e24a676b9c1c6fb60ac2698aa4db99,1
+23,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,..,a1,arg68721,arg86119,arg68721_arg86119,rr,e969de6f57d3ccca6cfb4d0560708d,-1
+24, ,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg86688,arg68721,arg86688_arg68721,rr,89e8f909166ff575a315ba47797f9f,1
+25,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,punnett square,a1,arg68721,arg86918,arg68721_arg86918,rr,75151c3099ca1bb0987f709884fe02,-1
+26,heterozygous for both parents both traits,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg91937,arg68721,arg91937_arg68721,rr,d709f71cb4f0a254ee0d56af55a832,1
+27,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,n,a1,arg68721,arg97311,arg68721_arg97311,rr,299fca65b4a9087fdb025b7f11cf4c,-1
+28,......,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg100747,arg68721,arg100747_arg68721,rr,6bb07ec8918333ecde1b6697bf38f0,1
+29,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,two monohybrid cross,a1,arg68721,arg101856,arg68721_arg101856,rr,121f3890bbcce5731ae942ee96d242,-1
+30,2 F1 ,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg104403,arg68721,arg104403_arg68721,rr,6328c94d6385bd2045bfd557ecca43,1
+31,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,Because it is heterozygous,a1,arg68721,arg104466,arg68721_arg104466,rr,268002bfc7fcb28d6bdc37f9256674,-1
+32,do punnett square with gametes,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg105298,arg68721,arg105298_arg68721,rr,9ff916b24a214164ad7838787f7eb5,1
+33,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,sdfghjk,a1,arg68721,arg106658,arg68721_arg106658,rr,d22b2724721ba0da929fb42ad2e456,-1
+34,because,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg107381,arg68721,arg107381_arg68721,rr,60f664c85c5bcbe044c8282c286ff1,1
+35,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,Practice questions,a1,arg68721,arg111639,arg68721_arg111639,rr,54b5fd31243de08ea4b8f00b4966e9,-1
+36,a heterozygous dihybrid cross gives this ratio,SsYy * SsYy = 9/16 SY + 3/16 Sy + 3/16 sY + 1/16 sy,a2,arg153820,arg68721,arg153820_arg68721,rr,824b9f3213e446743a4f906e4c7219,1
+37,"This would give 9 offsprings of the S Y phenotypes, 3 offsprings of the S y phenotypes, 3 offsprings of the s Y phenotypes and one offspring of the s y phenotypes ","3/4 * 3/4 probability for S and Y dominant.
+1/4*1/4 for s and y recessive
+the rest..",a1,arg69410,arg72612,arg69410_arg72612,rr,9c879c20dda43dc90748042d0eb20f,-1
+38,9:3:3:1 is 2 genes that are heterozygote,"This would give 9 offsprings of the S Y phenotypes, 3 offsprings of the S y phenotypes, 3 offsprings of the s Y phenotypes and one offspring of the s y phenotypes ",a2,arg103666,arg69410,arg103666_arg69410,rr,be4ae640739623ecce5aa492a2e8e1,1
+39,"This would give 9 offsprings of the S Y phenotypes, 3 offsprings of the S y phenotypes, 3 offsprings of the s Y phenotypes and one offspring of the s y phenotypes ",the punnet square shows that only this combination can give that retio,a1,arg69410,arg184954,arg69410_arg184954,rr,5bac69d515e9e1c3039a361b577798,-1
+40,The combination gives the desired ratio of 9:3:3:1 of independent assortment.,"This would give 9 offsprings of the S Y phenotypes, 3 offsprings of the S y phenotypes, 3 offsprings of the s Y phenotypes and one offspring of the s y phenotypes ",a2,arg185420,arg69410,arg185420_arg69410,wr,ebbded91482f82f435149a14858a14,1
+41,"This would give 9 offsprings of the S Y phenotypes, 3 offsprings of the S y phenotypes, 3 offsprings of the s Y phenotypes and one offspring of the s y phenotypes ",Each gene needs to be heterozygous in each parent so that all four of the characteristics can be present in the progeny so lead to the ratio of 9:3:3:1,a1,arg69410,arg188022,arg69410_arg188022,rr,701f012d7a479a0e753bb465628997,-1
+42,"when there are dihybrate mate, there will be 9:3:3:1
+The consequence in a dihybrid cross given complete dominance of one allele to the other, in both loci, and otherwise complete independence of both loci such that there is no epistasis nor linkage.","A 9:3:3:1 arises from a dihybrid cross of two 3:1 ratios if looked at each individual phenotype.  This is only present in D.
+A. would result in a single genotype of SsYy
+B. would result in a ratio of 1:1:1:1 between SSYY, SSYy, SsYY, SsYy.
+C. would result in the same as in A., a single genotype of SsYy.",a2,arg226468,arg71894,arg226468_arg71894,rr,81321f84bd424d3514ec0ab2c0aca2,1
+43,"A 9:3:3:1 arises from a dihybrid cross of two 3:1 ratios if looked at each individual phenotype.  This is only present in D.
+A. would result in a single genotype of SsYy
+B. would result in a ratio of 1:1:1:1 between SSYY, SSYy, SsYY, SsYy.
+C. would result in the same as in A., a single genotype of SsYy.","It has been suggested that there is balancing selection for cystic fibrosis (CF), whereby there is an advantage for carriers who are faced with gastrointestinal diseases such as cholera. Assuming the relative fitness for homozygous normal individuals is 0.9, for carriers is 1.0 and for CF-affected individuals is 0.6, please calculate the equilibrium allele frequency of the wild type allele.",a1,arg71894,arg244492,arg71894_arg244492,rr,5f2356cd4afe4604d7732d091ae1ec,-1
+44,What is it? myDALITE is an online question inventory designed to help you better understand the topics and material covered in BIOL202. The practice questions will test your ability to answer correctly and will also get you to explain the reasoning behind your answer choices.,"A 9:3:3:1 arises from a dihybrid cross of two 3:1 ratios if looked at each individual phenotype.  This is only present in D.
+A. would result in a single genotype of SsYy
+B. would result in a ratio of 1:1:1:1 between SSYY, SSYy, SsYY, SsYy.
+C. would result in the same as in A., a single genotype of SsYy.",a2,arg253525,arg71894,arg253525_arg71894,wr,417c2648ffaec324901907fbfa0580,1
+45,9:3:3:1 is the ratio from a dihybrid cross between 2 heterozygotes. ,"During meiosis / gamete production, the law of independent assortment applies (for 2 traits), and all possible combinations are created in chosen answer (SY, sY, Sy, sy)",a1,arg101289,arg185534,arg101289_arg185534,rr,929d3cfe56acac8c2de5523f086dc4,-1
+46,must be heterozygous for both alleles to attain this phenotype,9:3:3:1 is the ratio from a dihybrid cross between 2 heterozygotes. ,a2,arg186427,arg101289,arg186427_arg101289,rr,36180e824619c72eb4686ff82b2870,1
+47,9:3:3:1 is the ratio from a dihybrid cross between 2 heterozygotes. ,"According to the punnet square constructed from all those four crosses, only the last one shows the result of 9:3:3:1 genotype ratio.",a1,arg101289,arg186957,arg101289_arg186957,rr,9822d3735de7268210f74d3c2fa554,-1
+48,"By doing the Punnett square, you obtained the ration 9:3:3:1",9:3:3:1 is the ratio from a dihybrid cross between 2 heterozygotes. ,a2,arg187720,arg101289,arg187720_arg101289,rr,69226f0b06fd8222b03f9261e554f0,1
+49,9:3:3:1 is the ratio from a dihybrid cross between 2 heterozygotes. ,Must be heterozygous for the progeny to have this kind of ratio relationship.,a1,arg101289,arg189023,arg101289_arg189023,rr,e36459c889ec8ce820903ab849be5b,-1
+50,the rest have crosses with too many dominant contributors that would cause much more than 9 offspring ratio,"The possible gametes are SY, Sy, sY and sy for both parents. A simple punnett square will show that the phenotypes of the offsprings respect the 9:3:3:1 ratio (9 SY, 3 Sy, 3 sY and 1 sy).",a2,arg188310,arg188194,arg188310_arg188194,rr,c71ddd833f95e4795132a55ea0c6cc,1
+51,"The possible gametes are SY, Sy, sY and sy for both parents. A simple punnett square will show that the phenotypes of the offsprings respect the 9:3:3:1 ratio (9 SY, 3 Sy, 3 sY and 1 sy).","The punnet square reveals this answer to be true. Althought gentotypic ration is different, the phenotypic is 9:3:3:1. It is like to embedded 3:1 ratios",a1,arg188194,arg190041,arg188194_arg190041,rr,634bc5e919b7b373e3c2762d59bf25,-1
+52,"hot chocolate for mental health
+hot chocolate for mental health
+hot chocolate for mental health
+hot chocolate for mental health
+hot chocolate for mental health","The possible gametes are SY, Sy, sY and sy for both parents. A simple punnett square will show that the phenotypes of the offsprings respect the 9:3:3:1 ratio (9 SY, 3 Sy, 3 sY and 1 sy).",a2,arg244491,arg188194,arg244491_arg188194,rr,e7559f2e1705bccfad6b27e2258abf,1
+53,The 9:3:3:1 ratio is a result of pure breeding of a dihybrid cross.,because we need two pure-breeding to get this ratio of 9:3:3:1,a1,arg202612,arg211840,arg202612_arg211840,ww,4df42c6efa9393fbda0cd28c417258,-1
+54,this is dihybrid cross where two parents of homozygous dominant and recessive alleles are crossed to give the 9:3:3:1 ratio,The 9:3:3:1 ratio is a result of pure breeding of a dihybrid cross.,a2,arg222194,arg202612,arg222194_arg202612,ww,bd3e347bd49c52472eddb6dc4e4fbe,1
+55,The 9:3:3:1 ratio is a result of pure breeding of a dihybrid cross.,"To get a 9 : 3 : 3 : 1 phenotypic ratio, you need to cross a homozygous dominant individual with a homozygous recessive individual.",a1,arg202612,arg232887,arg202612_arg232887,ww,890e093fa4ae8eb40240d67c2989f6,-1
+56,"for dihybrid crosses, this ratio results from crossing a homozygous dominant parent with a homozygous recessive parent",The 9:3:3:1 ratio is a result of pure breeding of a dihybrid cross.,a2,arg233627,arg202612,arg233627_arg202612,ww,2550f335403b6960ece49e5c45f5aa,1
+57,The 9:3:3:1 ratio is a result of pure breeding of a dihybrid cross.,A mutation of a keratin gene causes hairlessness in cats,a1,arg202612,arg239424,arg202612_arg239424,ww,6394ca300f8024eae9811867796205,-1

@@ -1,0 +1,98 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0, ,Goes from 2n to n,a2,arg76478,arg76096,arg76478_arg76096,wr,cc092e8e650d7143dbedb338647552,1
+1,Goes from 2n to n,Divided without duplication,a1,arg76096,arg78074,arg76096_arg78074,wr,f5e4fff3a4a9605b12629bf4cac95f,-1
+2, ,Goes from 2n to n,a2,arg78557,arg76096,arg78557_arg76096,wr,4a730a98476c4fc12a6844507b416c,1
+3,Goes from 2n to n,That's when cells go from diploid to haploid.,a1,arg76096,arg81153,arg76096_arg81153,rr,54b602f8b6cbd39d1d6e2ec8f5b893,-1
+4,I think so,Goes from 2n to n,a2,arg82006,arg76096,arg82006_arg76096,rr,5c8f45fd300963b510e5e583a85f7a,1
+5,Goes from 2n to n, ,a1,arg76096,arg84151,arg76096_arg84151,rr,8c765545a150af4f9dc0ead75ea5a9,-1
+6,reduced to half after meiosis I,Goes from 2n to n,a2,arg86858,arg76096,arg86858_arg76096,rr,75151c3099ca1bb0987f709884fe02,1
+7,Goes from 2n to n,..,a1,arg76096,arg87111,arg76096_arg87111,rr,e969de6f57d3ccca6cfb4d0560708d,-1
+8,.,Goes from 2n to n,a2,arg87922,arg76096,arg87922_arg76096,rr,48b961f1db3dd4876b16e703f47af2,1
+9,Goes from 2n to n,homologous chromosomes separate in first anaphase,a1,arg76096,arg91899,arg76096_arg91899,rr,d709f71cb4f0a254ee0d56af55a832,-1
+10,.,Goes from 2n to n,a2,arg96939,arg76096,arg96939_arg76096,rr,5cedf21fe930c659b63d770023ff7e,1
+11,Goes from 2n to n,z,a1,arg76096,arg97254,arg76096_arg97254,rr,299fca65b4a9087fdb025b7f11cf4c,-1
+12,because,Goes from 2n to n,a2,arg107307,arg76096,arg107307_arg76096,rr,60f664c85c5bcbe044c8282c286ff1,1
+13,Goes from 2n to n,das when you go from 2n to n :D,a1,arg76096,arg135440,arg76096_arg135440,wr,5215938d825754a49c1fbcc2d5ba04,-1
+14, ,Divided without duplication,a2,arg78125,arg78074,arg78125_arg78074,ww,dd1b4189a8ac774a3a58a6ffd278d1,1
+15,Divided without duplication,-pulled to opposite sides to become haploid cells,a1,arg78074,arg79033,arg78074_arg79033,ww,841dca9eb28915b9a1d1de4bcdf39b,-1
+16, ,Divided without duplication,a2,arg79323,arg78074,arg79323_arg78074,ww,bdec0e8e8e5c06c514969952e12dc0,1
+17,Divided without duplication,n,a1,arg78074,arg80892,arg78074_arg80892,ww,c1b78ab4dbd2ab5405cde4e9275677,-1
+18,Kei,Divided without duplication,a2,arg81625,arg78074,arg81625_arg78074,ww,8049cb3934a4b0f869218b4bdd1d4b,1
+19,Divided without duplication,there is no duplication of dna again,a1,arg78074,arg89226,arg78074_arg89226,ww,0103e5d111b63d8b3864c545edb013,-1
+20,i thinik,Divided without duplication,a2,arg104635,arg78074,arg104635_arg78074,ww,080a3f7efc38517b8b22a37ab0ee91,1
+21,Divided without duplication,Splitsies ,a1,arg78074,arg105923,arg78074_arg105923,ww,25aacd8fff0658e1a2dfe9953dfc6b,-1
+22,This is when they split,Divided without duplication,a2,arg106085,arg78074,arg106085_arg78074,ww,9008d1eb1761199bc25f860bd6042e,1
+23,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ","During anaphase 2, 2n becomes n",a1,arg78274,arg80712,arg78274_arg80712,wr,8802245ba48176f94d3f163c97d717,-1
+24,w,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ",a2,arg81164,arg78274,arg81164_arg78274,rr,c11828d46b53cbf827f3a1903a57ce,1
+25,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ",anaphase 2- they go from 2n to n ,a1,arg78274,arg104856,arg78274_arg104856,wr,eaa17cd6f494f1c77a6b18c8299935,-1
+26,yeet,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ",a2,arg105665,arg78274,arg105665_arg78274,rr,137ca1fd2b7a8fec23eef0a630e71a,1
+27,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ","In anaphase II, the 2n cell is split again, thus resulting in two separate n cells with half the number of original chromosomes.",a1,arg78274,arg186501,arg78274_arg186501,wr,f4b2c81c953e83ef891a28f0ffa6c7,-1
+28,"The tetrads are separated between the two cells at this point, defining which chromosome set each cell will have","Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ",a2,arg189393,arg78274,arg189393_arg78274,rr,ca13f590568c5963f3090275902099,1
+29,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ",Anaphase 1 is when the homologous pairs of chromosomes separate,a1,arg78274,arg191507,arg78274_arg191507,rr,c5147c1b67c49927d6b7ef44c8749e,-1
+30,anaphase I is when the homologs are pulled apart so the chromosome number is halved,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ",a2,arg195474,arg78274,arg195474_arg78274,rr,3962319de8a4da9a4d63bd889e1904,1
+31,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ",Genes align and alleles can be transferred from one chromosome to the next,a1,arg78274,arg196587,arg78274_arg196587,rr,36180e824619c72eb4686ff82b2870,-1
+32,Anaphase I is where you pull the homologous chromosome away from each others.,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ",a2,arg208533,arg78274,arg208533_arg78274,rr,ed7e6b53f4994790ba59aca16b78d6,1
+33,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ","Meiosis is called a reductional division. When is the number of chromosomes reduced?
+
+
+A. anaphase I
+
+B. anaphase II
+
+C. anaphase III
+
+D. both metaphase I and II",a1,arg78274,arg214990,arg78274_arg214990,rr,c182e01377768877871d4e31b0bf11,-1
+34,"Meiosis is called a reductional division. When is the number of chromosomes reduced?
+
+A. anaphase I","Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ",a2,arg223684,arg78274,arg223684_arg78274,rr,293989c95cfc2fe9cd72b018bfe558,1
+35,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ","Anaphase II separates the chromosomes into their respective daughter cells, therefore reducing the number of chromosomes",a1,arg78274,arg233913,arg78274_arg233913,wr,230acc8039bba8b70b977c31312c95,-1
+36,"The law of segregation lets us predict how a single feature associated with a single gene is inherited. In some cases, though, we might want to predict the inheritance of two characteristics associated with two different genes. How can we do this?","Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ",a2,arg239038,arg78274,arg239038_arg78274,rr,4937c56f883e58b135780d31a154b3,1
+37,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ",I hope I hope I hope I hope I hope I hope I hope I hope I hope I hope,a1,arg78274,arg239970,arg78274_arg239970,rr,57e34afe8c66ff520e6ca14a1c09d1,-1
+38,too lazy too explain but im pretty sure its anaphase 1,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ",a2,arg241550,arg78274,arg241550_arg78274,rr,0e0eb905e3ad75dbe188d0fe0e6fb2,1
+39,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ","The reduction division happens in anaphase I, the number of chromosomes is halved (2n to n, diploid to haploid).",a1,arg78274,arg242996,arg78274_arg242996,rr,592fc00b3b1b981451fd473fe8691a,-1
+40,"At anaphase I, the homologs are separated and form 2 cells with each with n chromosomes.","Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ",a2,arg244257,arg78274,arg244257_arg78274,rr,e9dd82fb49cbc6c1f61f6930dbc839,1
+41,"Anaphase 2 is when the chromosomes themselves are physically pulled apart. 
+Anaphase 1 is when the homologous chromosomes are pulled apart. ","S phase - 2n
+prophase - 2n 
+metaphase - 2n
+anaphase I - homologous chromosomes pulled to either side - n
+anphase II - n , sister chromatids pulled apart to give 4 haploid, n cells",a1,arg78274,arg247243,arg78274_arg247243,rr,2de9909ff87809046a3fe88fcd465e,-1
+42,becomes 4,In anaphase II the chromosome number is reduced from the initial 2n of the germ cell to n of the gametes,a2,arg100075,arg98014,arg100075_arg98014,ww,8c102c86fa48da8a78b3f2fdea1ce9,1
+43,In anaphase II the chromosome number is reduced from the initial 2n of the germ cell to n of the gametes,anaphase II creates 4 haploids,a1,arg98014,arg103568,arg98014_arg103568,ww,be4ae640739623ecce5aa492a2e8e1,-1
+44,"there is no anaphase III, so c couldn't be right, chromosomes reduced at anaphase II.",In anaphase II the chromosome number is reduced from the initial 2n of the germ cell to n of the gametes,a2,arg197433,arg98014,arg197433_arg98014,ww,d8fd10340bfb930d8a59e59e51359a,1
+45,In anaphase II the chromosome number is reduced from the initial 2n of the germ cell to n of the gametes,Anaphase 2 reduces the number of chromosomes because it pulls the chromosomes in 2 (2 chromatids) appart at the poles before production of gametes.,a1,arg98014,arg239616,arg98014_arg239616,ww,ca97ba7f611f7dd6186d9a713558a8,-1
+46,Boy is this so much easier than the exam Boy is this so much easier than the exam,In anaphase II the chromosome number is reduced from the initial 2n of the germ cell to n of the gametes,a2,arg243315,arg98014,arg243315_arg98014,ww,c6300318f3bd32c7eb37fdbc9e45b8,1
+47,"In anaphase I, homologous chromosomes line up and migrate to separate poles, forming two daughter cells. This division of homologous chromosomes changes the cell from diploid to haploid, reducing the number of chromosomes.",Cytokinesis (cell division) occurs during telophase 1. Result is 2 daughter haploid cells. With 1 set of chromosomes each.,a1,arg188770,arg188795,arg188770_arg188795,wr,ebbded91482f82f435149a14858a14,-1
+48,"In anaphase I the homologous chromosomes get separated. Since there is only one of each chromosome in each cell now, the number of chromosomes has been reduced.","In anaphase I, homologous chromosomes line up and migrate to separate poles, forming two daughter cells. This division of homologous chromosomes changes the cell from diploid to haploid, reducing the number of chromosomes.",a2,arg189998,arg188770,arg189998_arg188770,rr,5d5c9eeee8f714934b249eebfabd8b,1
+49,"In anaphase I, homologous chromosomes line up and migrate to separate poles, forming two daughter cells. This division of homologous chromosomes changes the cell from diploid to haploid, reducing the number of chromosomes.","In anaphase II, when the chromosomes separate for a second time without having been multiplied again.",a1,arg188770,arg191577,arg188770_arg191577,wr,ea50e8be727620db4558ff096a8d88,-1
+50,The number of chromosomes is reduced during anaphase ii of meiosis,"In anaphase I, homologous chromosomes line up and migrate to separate poles, forming two daughter cells. This division of homologous chromosomes changes the cell from diploid to haploid, reducing the number of chromosomes.",a2,arg219102,arg188770,arg219102_arg188770,wr,3ac67b187ca3ec12ebf3b9b5ebbabd,1
+51,"In anaphase I, homologous chromosomes line up and migrate to separate poles, forming two daughter cells. This division of homologous chromosomes changes the cell from diploid to haploid, reducing the number of chromosomes.",that is becausethat is becausethat is becausethat is becausethat is becausethat is becausethat is becausethat is becausethat is becausethat is becausethat is becausethat is becausethat is becausethat is becausethat is becausethat is because,a1,arg188770,arg248525,arg188770_arg248525,rr,2e0b0dfc4b4a1f651a3a9db387f7e4,-1
+52,I love you I love youI love youI love youI love youI love youI love youI love youI love youI love youI love you,"Anaphase 2 is like mitosis anaphase, where the sister chromatids are pulled apart, therefore that is when you get the reductional division",a2,arg189675,arg188654,arg189675_arg188654,ww,11f1a8875488de92d068d9568ca86d,1
+53,"Anaphase 2 is like mitosis anaphase, where the sister chromatids are pulled apart, therefore that is when you get the reductional division",anaphase 1 is when the homologus chromosoms divide and anaphase 2 is when the sister chromatids divide.,a1,arg188654,arg192223,arg188654_arg192223,ww,e36459c889ec8ce820903ab849be5b,-1
+54,Its the right answerIts the right answerIts the right answer,"Anaphase 2 is like mitosis anaphase, where the sister chromatids are pulled apart, therefore that is when you get the reductional division",a2,arg222720,arg188654,arg222720_arg188654,ww,7017b307af3a32ba313269c26d7413,1
+55,"Anaphase 2 is like mitosis anaphase, where the sister chromatids are pulled apart, therefore that is when you get the reductional division","That does not seem like a clear explanation of your reasoning:
+Readability
+Depth",a1,arg188654,arg239893,arg188654_arg239893,ww,e10d9c9f623af957d3f9cdbe4ffbd4,-1
+56,Because Because Because Because Because Because Because Because Because Because Because Because Because Because Because Because,"Anaphase 2 is like mitosis anaphase, where the sister chromatids are pulled apart, therefore that is when you get the reductional division",a2,arg247363,arg188654,arg247363_arg188654,ww,ed52993f96d865a578bb4e1953b2ad,1
+57,"During the first anaphase, both daughter cells are still diploid cells. During anaphase II, each daughter cell gets one of the copies of the chromosomes, so they are now haploid cells.","During Anaphase II, the centromeres split and the former chromatids (now chromosomes) are segregated into opposite sides of the cell",a1,arg190296,arg192182,arg190296_arg192182,ww,f0d5d7cc1bb3645de472a5aa1cb5d4,-1
+58,Sister chromatids are separated and pulled apart in anaphase II in order to form 4 haploid gametes with one chromatid each.,"During the first anaphase, both daughter cells are still diploid cells. During anaphase II, each daughter cell gets one of the copies of the chromosomes, so they are now haploid cells.",a2,arg199937,arg190296,arg199937_arg190296,ww,8b2792c7600643e583c76f2796f7e5,1
+59,"During the first anaphase, both daughter cells are still diploid cells. During anaphase II, each daughter cell gets one of the copies of the chromosomes, so they are now haploid cells.",anaphase I is when homologous chromosomes are pulled to either pole of the cell. anaphase II is when the sister chromatids are pulled apart to make haploid gametes,a1,arg190296,arg213890,arg190296_arg213890,ww,563c20b2722e7a9409c4cba2937eeb,-1
+60,anaphase II is when the cells go from 2n to n,"During the first anaphase, both daughter cells are still diploid cells. During anaphase II, each daughter cell gets one of the copies of the chromosomes, so they are now haploid cells.",a2,arg229449,arg190296,arg229449_arg190296,ww,109f3a77e93e4859f50c02f7a8a122,1

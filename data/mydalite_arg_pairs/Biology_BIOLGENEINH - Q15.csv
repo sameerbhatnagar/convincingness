@@ -1,0 +1,59 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,only possible correct answer,This is the definition of a telomeric chromosome,a2,arg74590,arg69937,arg74590_arg69937,rr,3f8c6489c0aa8afc2efe365be73175,1
+1,This is the definition of a telomeric chromosome,.,a1,arg69937,arg75259,arg69937_arg75259,wr,6726b97cb4a2a241b4f7d720d97cb9,-1
+2, ,This is the definition of a telomeric chromosome,a2,arg75625,arg69937,arg75625_arg69937,rr,c0b0fe9e84013a644bb70cd23c69a6,1
+3,This is the definition of a telomeric chromosome, ,a1,arg69937,arg76465,arg69937_arg76465,wr,cc092e8e650d7143dbedb338647552,-1
+4,telocentric centromere have their centromere at the end of the chromosome,This is the definition of a telomeric chromosome,a2,arg78106,arg69937,arg78106_arg69937,rr,ee7b40f08ecc3e6ceca31a6f6b2a5d,1
+5,This is the definition of a telomeric chromosome,Telomere,a1,arg69937,arg78548,arg69937_arg78548,rr,f83e757fc9e0755b64fe6e172527ae,-1
+6,.,This is the definition of a telomeric chromosome,a2,arg83192,arg69937,arg83192_arg69937,wr,49608560fb63a67dcb73693d0ceda4,1
+7,This is the definition of a telomeric chromosome,..,a1,arg69937,arg87107,arg69937_arg87107,wr,e969de6f57d3ccca6cfb4d0560708d,-1
+8,.,This is the definition of a telomeric chromosome,a2,arg87221,arg69937,arg87221_arg69937,wr,87d12d8bf0b77679a64968d62c01a7,1
+9,This is the definition of a telomeric chromosome,.,a1,arg69937,arg87918,arg69937_arg87918,rr,48b961f1db3dd4876b16e703f47af2,-1
+10,why?,This is the definition of a telomeric chromosome,a2,arg89182,arg69937,arg89182_arg69937,wr,0103e5d111b63d8b3864c545edb013,1
+11,This is the definition of a telomeric chromosome,"only one centromere per chromosome, and homologous chromosomes pair in meiosis not mitosis",a1,arg69937,arg91895,arg69937_arg91895,rr,d709f71cb4f0a254ee0d56af55a832,-1
+12,Rjejjansnrjffn,This is the definition of a telomeric chromosome,a2,arg99179,arg69937,arg99179_arg69937,wr,005762fb8b37afea2793f142f145ac,1
+13,This is the definition of a telomeric chromosome,they remain unchanged,a1,arg69937,arg103474,arg69937_arg103474,wr,0c8d3eb148df5456ef11b522e6e9ad,-1
+14,Because,This is the definition of a telomeric chromosome,a2,arg104316,arg69937,arg104316_arg69937,wr,9e9f367dbcc4bb2bca45bde40b4c94,1
+15,This is the definition of a telomeric chromosome,  that's what it is?,a1,arg69937,arg104441,arg69937_arg104441,rr,14899b064827f55df8c48614f4274f,-1
+16,I think,This is the definition of a telomeric chromosome,a2,arg106063,arg69937,arg106063_arg69937,wr,9008d1eb1761199bc25f860bd6042e,1
+17,This is the definition of a telomeric chromosome,none of the other options correct,a1,arg69937,arg106501,arg69937_arg106501,rr,0be5fbbd69280e7e6725be63847208,-1
+18,I think,This is the definition of a telomeric chromosome,a2,arg106976,arg69937,arg106976_arg69937,wr,a07501b2daa04c977630b501ef9a5b,1
+19,They help the cell divide, ,a1,arg69936,arg74774,arg69936_arg74774,ww,b2dc02b7b0620f746fd7977a3e3e63,-1
+20,   ,They help the cell divide,a2,arg76386,arg69936,arg76386_arg69936,ww,91b81abeeb3dd5b4f163738528596a,1
+21,They help the cell divide,",n",a1,arg69936,arg97245,arg69936_arg97245,ww,299fca65b4a9087fdb025b7f11cf4c,-1
+22,.........,They help the cell divide,a2,arg99434,arg69936,arg99434_arg69936,ww,3e179fba728baed8c01e997ac36184,1
+23,They help the cell divide,esdfd,a1,arg69936,arg104223,arg69936_arg104223,ww,04212d5fb7cf609d17a01f9961ea78,-1
+24,no homologous pairing in mitosis,They help the cell divide,a2,arg138516,arg69936,arg138516_arg69936,ww,1a91f81232778722fa77d9a510dfbe,1
+25,That's what keeps them together,m,a1,arg76077,arg77822,arg76077_arg77822,ww,3340368556c1c3339d531fe5657a11,-1
+26,n,That's what keeps them together,a2,arg78067,arg76077,arg78067_arg76077,ww,f5e4fff3a4a9605b12629bf4cac95f,1
+27,That's what keeps them together, ,a1,arg76077,arg78121,arg76077_arg78121,ww,dd1b4189a8ac774a3a58a6ffd278d1,-1
+28, ,That's what keeps them together,a2,arg78344,arg76077,arg78344_arg76077,ww,160bdea33fc0de01bc7240ac29693d,1
+29,That's what keeps them together,.,a1,arg76077,arg96749,arg76077_arg96749,ww,ec0af916fb5a693fb11f8fe27aa0c6,-1
+30,no idea,That's what keeps them together,a2,arg102369,arg76077,arg102369_arg76077,ww,2d622cf72648bca831a62b29d9a7ad,1
+31,telocentric centromere have their centromere at the end of the chromosome, ,a1,arg78106,arg78551,arg78106_arg78551,wr,4a730a98476c4fc12a6844507b416c,-1
+32, ,telocentric centromere have their centromere at the end of the chromosome,a2,arg78847,arg78106,arg78847_arg78106,wr,708754cef412a0e37feac91458b8fc,1
+33,telocentric centromere have their centromere at the end of the chromosome,Pair up? ,a1,arg78106,arg91635,arg78106_arg91635,wr,9c879c20dda43dc90748042d0eb20f,-1
+34,jhb,telocentric centromere have their centromere at the end of the chromosome,a2,arg94643,arg78106,arg94643_arg78106,wr,0bb1b73bf390a7f789aa2b784a5f47,1
+35,telocentric centromere have their centromere at the end of the chromosome,"This is the answer
+",a1,arg78106,arg97975,arg78106_arg97975,rr,1ecf0b821c364abdbd7b417b940022,-1
+36,I don't know,telocentric centromere have their centromere at the end of the chromosome,a2,arg103890,arg78106,arg103890_arg78106,wr,4b5b32eb437e629868314dd9ec0ce3,1
+37,"Centromere; the region of a chromosome to which the microtubules of the spindle attach, via the kinetochore, during cell division. ",true,a1,arg78238,arg79211,arg78238_arg79211,ww,cead6646672b7b1bc6a7a53b4a3d15,-1
+38,Cnetrimeres hold sister chromatids together,"Centromere; the region of a chromosome to which the microtubules of the spindle attach, via the kinetochore, during cell division. ",a2,arg79428,arg78238,arg79428_arg78238,ww,8802245ba48176f94d3f163c97d717,1
+39,"Centromere; the region of a chromosome to which the microtubules of the spindle attach, via the kinetochore, during cell division. ",When they align,a1,arg78238,arg81140,arg78238_arg81140,ww,54b602f8b6cbd39d1d6e2ec8f5b893,-1
+40,w,"Centromere; the region of a chromosome to which the microtubules of the spindle attach, via the kinetochore, during cell division. ",a2,arg81143,arg78238,arg81143_arg78238,ww,c11828d46b53cbf827f3a1903a57ce,1
+41,"Centromere; the region of a chromosome to which the microtubules of the spindle attach, via the kinetochore, during cell division. ", ,a1,arg78238,arg84130,arg78238_arg84130,ww,8c765545a150af4f9dc0ead75ea5a9,-1
+42,.,"Centromere; the region of a chromosome to which the microtubules of the spindle attach, via the kinetochore, during cell division. ",a2,arg87172,arg78238,arg87172_arg78238,ww,27f1d1fa9e405d34c4645bfa23e2ed,1
+43,"Centromere; the region of a chromosome to which the microtubules of the spindle attach, via the kinetochore, during cell division. ",Thats how spindle fibers attach and pull them apart. ,a1,arg78238,arg98308,arg78238_arg98308,ww,f42e3beb6d79465220551491ce334b,-1
+44,Help the chromosomes pairing up,"Centromere; the region of a chromosome to which the microtubules of the spindle attach, via the kinetochore, during cell division. ",a2,arg99342,arg78238,arg99342_arg78238,ww,07da7145e361ebe0bf395454cf83a4,1
+45,"Centromere; the region of a chromosome to which the microtubules of the spindle attach, via the kinetochore, during cell division. ",C is true,a1,arg78238,arg100069,arg78238_arg100069,ww,8c102c86fa48da8a78b3f2fdea1ce9,-1
+46,just like this,"Centromere; the region of a chromosome to which the microtubules of the spindle attach, via the kinetochore, during cell division. ",a2,arg100474,arg78238,arg100474_arg78238,ww,6bb07ec8918333ecde1b6697bf38f0,1
+47,"Centromere; the region of a chromosome to which the microtubules of the spindle attach, via the kinetochore, during cell division. ",At the plate,a1,arg78238,arg103562,arg78238_arg103562,ww,be4ae640739623ecce5aa492a2e8e1,-1
+48,i think,"Centromere; the region of a chromosome to which the microtubules of the spindle attach, via the kinetochore, during cell division. ",a2,arg107164,arg78238,arg107164_arg78238,ww,d5cb6aac310874f98e2fec71d14a59,1
+49,"Centromere; the region of a chromosome to which the microtubules of the spindle attach, via the kinetochore, during cell division. ",cause,a1,arg78238,arg111222,arg78238_arg111222,ww,c529098d40ac1fccc2b019d768162c,-1
+50,"centromeres are at the center of chromosomes, they pair up with their homologous chromosomes during metaphase at the metaphase plate.","Centromere; the region of a chromosome to which the microtubules of the spindle attach, via the kinetochore, during cell division. ",a2,arg135023,arg78238,arg135023_arg78238,ww,4a79fd803f80b607b31480868d553e,1
+51,"telocentric = Telo (""telomeres"" which refer to the ends) + centric (""centromere"") ",b,a1,arg79974,arg80881,arg79974_arg80881,wr,c1b78ab4dbd2ab5405cde4e9275677,-1
+52,.,"telocentric = Telo (""telomeres"" which refer to the ends) + centric (""centromere"") ",a2,arg96935,arg79974,arg96935_arg79974,rr,5cedf21fe930c659b63d770023ff7e,1
+53,"telocentric = Telo (""telomeres"" which refer to the ends) + centric (""centromere"") ",easy,a1,arg79974,arg104227,arg79974_arg104227,wr,0a82d2f36cda00b9f5e97c580752ac,-1
+54,sounds right,"telocentric = Telo (""telomeres"" which refer to the ends) + centric (""centromere"") ",a2,arg105070,arg79974,arg105070_arg79974,rr,c26349749ee6d3652a416f7928117e,1
+55,"telocentric = Telo (""telomeres"" which refer to the ends) + centric (""centromere"") ",only one not false,a1,arg79974,arg106194,arg79974_arg106194,rr,9ff916b24a214164ad7838787f7eb5,-1
+56,I think...,"telocentric = Telo (""telomeres"" which refer to the ends) + centric (""centromere"") ",a2,arg106424,arg79974,arg106424_arg79974,wr,49de27d597d056c2f2d9261a80f9a8,1

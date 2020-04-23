@@ -1,0 +1,89 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0, ,AA * aa = Aa only ,a2,arg68814,arg68748,arg68814_arg68748,rr,b2dc02b7b0620f746fd7977a3e3e63,1
+1,AA * aa = Aa only , ,a1,arg68748,arg69793,arg68748_arg69793,wr,4a730a98476c4fc12a6844507b416c,-1
+2, ,AA * aa = Aa only ,a2,arg70848,arg68748,arg70848_arg68748,rr,dd1b4189a8ac774a3a58a6ffd278d1,1
+3,AA * aa = Aa only ,AA x aa = Aa ,a1,arg68748,arg71809,arg68748_arg71809,rr,e76157e16bb5609476c036748a4d5c,-1
+4,simple,AA * aa = Aa only ,a2,arg72249,arg68748,arg72249_arg68748,rr,6fd733ce744be25ce02e000dcdac24,1
+5,AA * aa = Aa only ,Just like two questions ago,a1,arg68748,arg72627,arg68748_arg72627,rr,9c879c20dda43dc90748042d0eb20f,-1
+6,AA x aa ,AA * aa = Aa only ,a2,arg74465,arg68748,arg74465_arg68748,rr,144fb01384ca2140141afe7561a460,1
+7,AA * aa = Aa only ,AA x aa --> Aa only,a1,arg68748,arg76115,arg68748_arg76115,rr,8b9a35ef268a7af3ffa6e39429cb44,-1
+8,h,AA * aa = Aa only ,a2,arg76840,arg68748,arg76840_arg68748,rr,8eb203e403c4e4f5ad0c22b0a6c240,1
+9,AA * aa = Aa only ,notes,a1,arg68748,arg77755,arg68748_arg77755,rr,3340368556c1c3339d531fe5657a11,-1
+10,l,AA * aa = Aa only ,a2,arg77891,arg68748,arg77891_arg68748,rr,3e179fba728baed8c01e997ac36184,1
+11,AA * aa = Aa only ,.,a1,arg68748,arg78356,arg68748_arg78356,rr,3c51f38cd05bf8261f066dceafb818,-1
+12,00,AA * aa = Aa only ,a2,arg78656,arg68748,arg78656_arg68748,rr,08e4bad90b7521b965ea164814285e,1
+13,AA * aa = Aa only ,cool,a1,arg68748,arg78909,arg68748_arg78909,rr,0be0ff8557741e78e06fc316bfeeec,-1
+14,d,AA * aa = Aa only ,a2,arg78955,arg68748,arg78955_arg68748,rr,8ea6d35ef00f2b5729baa089d59334,1
+15,AA * aa = Aa only ,textbook answer,a1,arg68748,arg79145,arg68748_arg79145,rr,fcf6db7ca0c22a5512281fbf85e807,-1
+16,"true breeding cross
+",AA * aa = Aa only ,a2,arg79690,arg68748,arg79690_arg68748,rr,3833d34efac4d96ebc009507f78f02,1
+17,AA * aa = Aa only ,Same answer as 22,a1,arg68748,arg79917,arg68748_arg79917,rr,4f1854b22453f2bc5973c572636044,-1
+18,duhhh,AA * aa = Aa only ,a2,arg80430,arg68748,arg80430_arg68748,rr,450594fc663e4d694680ebfdda4895,1
+19,AA * aa = Aa only , ,a1,arg68748,arg81418,arg68748_arg81418,rr,0be5fbbd69280e7e6725be63847208,-1
+20,.,AA * aa = Aa only ,a2,arg81835,arg68748,arg81835_arg68748,rr,6be9daa2bf82af5976958bafa6bb13,1
+21,AA * aa = Aa only , ,a1,arg68748,arg82284,arg68748_arg82284,rr,3bd5550c3c04ab9f5d9d55cfba6d09,-1
+22,.,AA * aa = Aa only ,a2,arg82325,arg68748,arg82325_arg68748,rr,c1f78f0089c2c77e77a091b47cca2b,1
+23,AA * aa = Aa only ,",,",a1,arg68748,arg86159,arg68748_arg86159,rr,e969de6f57d3ccca6cfb4d0560708d,-1
+24,lol,AA * aa = Aa only ,a2,arg86507,arg68748,arg86507_arg68748,wr,49608560fb63a67dcb73693d0ceda4,1
+25,AA * aa = Aa only ,.,a1,arg68748,arg86963,arg68748_arg86963,rr,48b961f1db3dd4876b16e703f47af2,-1
+26,purebreed parents,AA * aa = Aa only ,a2,arg86992,arg68748,arg86992_arg68748,rr,75151c3099ca1bb0987f709884fe02,1
+27,AA * aa = Aa only , ,a1,arg68748,arg91861,arg68748_arg91861,rr,e0a1594af936886ef4c268f9ba053e,-1
+28,only hets from pure breeding parents,AA * aa = Aa only ,a2,arg91970,arg68748,arg91970_arg68748,rr,d709f71cb4f0a254ee0d56af55a832,1
+29,AA * aa = Aa only ,Cross AA x aa,a1,arg68748,arg92279,arg68748_arg92279,rr,048559c9100373cd2ce89faba8a70e,-1
+30,AA and aa,AA * aa = Aa only ,a2,arg99670,arg68748,arg99670_arg68748,rr,d5e869d27e6619d0c52c27cdb10cf3,1
+31,AA * aa = Aa only ,heteryzygous,a1,arg68748,arg99750,arg68748_arg99750,rr,49de27d597d056c2f2d9261a80f9a8,-1
+32,"     A   A
+a   Aa Aa
+a   Aa Aa",AA * aa = Aa only ,a2,arg99994,arg68748,arg99994_arg68748,rr,137ca1fd2b7a8fec23eef0a630e71a,1
+33,AA * aa = Aa only ,?.......,a1,arg68748,arg101233,arg68748_arg101233,rr,6bb07ec8918333ecde1b6697bf38f0,-1
+34,punnett,AA * aa = Aa only ,a2,arg104384,arg68748,arg104384_arg68748,rr,c26349749ee6d3652a416f7928117e,1
+35,AA * aa = Aa only ,Aa only,a1,arg68748,arg105155,arg68748_arg105155,rr,9bd4ca10705470328068efc939c871,-1
+36,yeet ,AA * aa = Aa only ,a2,arg106317,arg68748,arg106317_arg68748,rr,c3b72f1e3ddc610a90c7743f1e8ee6,1
+37,AA * aa = Aa only ,teet,a1,arg68748,arg107444,arg68748_arg107444,rr,c0ea6e7059333dd78629a86303cbeb,-1
+38,if the parents are from true-breeding lines,AA * aa = Aa only ,a2,arg153833,arg68748,arg153833_arg68748,rr,824b9f3213e446743a4f906e4c7219,1
+39,Parents both genotype Aa can pass an A or an a on to offspring. All 3 genotypes can be seen in offspring, ,a1,arg68487,arg72291,arg68487_arg72291,ww,f5e4fff3a4a9605b12629bf4cac95f,-1
+40,.,Parents both genotype Aa can pass an A or an a on to offspring. All 3 genotypes can be seen in offspring,a2,arg72487,arg68487,arg72487_arg68487,ww,5cedf21fe930c659b63d770023ff7e,1
+41,Parents both genotype Aa can pass an A or an a on to offspring. All 3 genotypes can be seen in offspring,.,a1,arg68487,arg81317,arg68487_arg81317,ww,54b602f8b6cbd39d1d6e2ec8f5b893,-1
+42,same,Parents both genotype Aa can pass an A or an a on to offspring. All 3 genotypes can be seen in offspring,a2,arg99057,arg68487,arg99057_arg68487,ww,b1fbc9050f3eb26b5c9a7100ea970a,1
+43,Parents both genotype Aa can pass an A or an a on to offspring. All 3 genotypes can be seen in offspring,Aa x Aa,a1,arg68487,arg103691,arg68487_arg103691,ww,be4ae640739623ecce5aa492a2e8e1,-1
+44,"F1 would be Aa x Aa and so their progeny will be Aa, AA, aa",Parents both genotype Aa can pass an A or an a on to offspring. All 3 genotypes can be seen in offspring,a2,arg191873,arg68487,arg191873_arg68487,ww,9d0546d0b7aa6c3969bf6f51e13b40,1
+45,Parents both genotype Aa can pass an A or an a on to offspring. All 3 genotypes can be seen in offspring,That does not seem like a clear explanation of your reasoning:That does not seem like a clear explanation of your reasoning:That does not seem like a clear explanation of your reasoning:That does not seem like a clear explanation of your reasoning:,a1,arg68487,arg192101,arg68487_arg192101,ww,c6300318f3bd32c7eb37fdbc9e45b8,-1
+46,"The F1 offspring is F2. monohybrid parental cross produces Aa (heterozygous) F1 which when interbred can produce all the possible combination of alleles- AA, Aa and aa",Parents both genotype Aa can pass an A or an a on to offspring. All 3 genotypes can be seen in offspring,a2,arg197220,arg68487,arg197220_arg68487,ww,1afd76d0f8d5f927adf2cd6eeed62e,1
+47,Parents both genotype Aa can pass an A or an a on to offspring. All 3 genotypes can be seen in offspring,yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes,a1,arg68487,arg242815,arg68487_arg242815,ww,f1054d64539a06d2119d8e421e5575,-1
+48,didnt we just do this question? and i need to write more,Parents both genotype Aa can pass an A or an a on to offspring. All 3 genotypes can be seen in offspring,a2,arg247001,arg68487,arg247001_arg68487,ww,2b438028e3a53bc6edc53c41d99f47,1
+49,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",because ,a1,arg74924,arg75866,arg74924_arg75866,rr,d53afd173c3f5093853af6b1ad4d38,-1
+50,because we are crossing 2 homozygous of both capitals &lower cased alleles ,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg75920,arg74924,arg75920_arg74924,rr,b27b4bb4927884566ec40cf4a4fb06,1
+51,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",if its crossed with AA,a1,arg74924,arg78637,arg74924_arg78637,wr,3f723e391f6fc48fb0c52046239973,-1
+52,yes,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg86396,arg74924,arg86396_arg74924,rr,710f05a894e40d30408e624d812a4b,1
+53,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",Technically it depends if both parents were AA and aa,a1,arg74924,arg105750,arg74924_arg105750,rr,25aacd8fff0658e1a2dfe9953dfc6b,-1
+54,"If one organism is completely dominant and the other is completely recessive, that all offspring will show Aa.","A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg185654,arg74924,arg185654_arg74924,rr,32cc4976517d556e4bd21531dbde83,1
+55,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa","parent is AA and aa, F1 is Aa, why do we have so many similar questions",a1,arg74924,arg185930,arg74924_arg185930,rr,a4efbb59c3f3cc914065e25300dae6,-1
+56,the phentype and the genotype are what is numbers probability poo,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg186605,arg74924,arg186605_arg74924,wr,36180e824619c72eb4686ff82b2870,1
+57,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",Pure breeds of opposite phenotypes would give offspring with the heterozygous genotype only.,a1,arg74924,arg188315,arg74924_arg188315,rr,e36459c889ec8ce820903ab849be5b,-1
+58,All F1 are heterozygous because they receive an allele from each parent.,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg188468,arg74924,arg188468_arg74924,rr,77792e8bba538394722dd000a5191d,1
+59,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",F1 cross will always be heterozygous giving the dominant phenotype regardless as long as the parents are pure bred,a1,arg74924,arg190728,arg74924_arg190728,rr,f54a8b841cb0779773ee3f141588c2,-1
+60,because if you are crossing two pure bred AA and aa then they would cross to make Aa,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg191249,arg74924,arg191249_arg74924,rr,2cde0759562626fda57887aefa6810,1
+61,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa","Im an idiot, and i dont know how to explain. Just let me do the questions.",a1,arg74924,arg193669,arg74924_arg193669,rr,a8d3b8a2dbf1ce796a7b357d6d7d5b,-1
+62,"Sorry, but there are currently no rationales in the database that have been marked as expert for the correct answer choice(s).","A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg194105,arg74924,arg194105_arg74924,wr,dccab1f02141795634c10bbdc7ba59,1
+63,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",I just want to know the goddamn answers. That use punnet squares and genotypes along with phenotypes and ratios.,a1,arg74924,arg194387,arg74924_arg194387,rr,66a042ade2b69f5648f66599e28e33,-1
+64,Because the parents are AA crossed with aa which each give only one gamete option resulting in Aa as the only genotype.,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg195087,arg74924,arg195087_arg74924,rr,eb673e1b8e90d9fa6bbb7291120bab,1
+65,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",The parents are both pure-breeding so AA and aa will give rise to Aa only.,a1,arg74924,arg195591,arg74924_arg195591,rr,d8fd10340bfb930d8a59e59e51359a,-1
+66,"All offspring of purebred monohybrid cross are heterozygous.
+AA X aa
+Aa for all","A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg196701,arg74924,arg196701_arg74924,rr,30a43eccff5107507e08aa92c37f89,1
+67,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",P generation cross of AA*aa produces Aa as F1 generation,a1,arg74924,arg197152,arg74924_arg197152,rr,deb798562c393afa3f28bd8f30142f,-1
+68,"The F1 generation is obtained by crossing AA and aa, therefore we will get 100% Aa.","A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg198410,arg74924,arg198410_arg74924,rr,853d76e4fed364ec714932ca6ad13d,1
+69,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa","Two different homozygous genes will make only heterozygous gene.
+I like my answer",a1,arg74924,arg206195,arg74924_arg206195,rr,099516baa7671387394e18f88f2f99,-1
+70,We know that F1 is always I mean always heterozygous we have always learned that,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg207080,arg74924,arg207080_arg74924,rr,fc13639375c6bbf3c6925b790383f9,1
+71,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",because because because because because because because because because because because because because because because because,a1,arg74924,arg207300,arg74924_arg207300,rr,d06aa0c42a6cda530fd34d24ff1133,-1
+72,This is because parent are homozygous for the given trait.,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg208171,arg74924,arg208171_arg74924,rr,7019901dea17d4befc5e8774fb6f5a,1
+73,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",The F2 offspring of a monohybrid cross would show the genotype(s),a1,arg74924,arg226291,arg74924_arg226291,rr,cf1fe21f7b3dc9be473665c9e08df9,-1
+74,Which of the following crosses would always result in offspring that only display the dominant phenotype?,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg232324,arg74924,arg232324_arg74924,rr,3a0f3438a565d68e8265d28cb5a20d,1
+75,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa","F1 gets one allele from each parent, and the parents are AA and aa, so the F1 is Aa",a1,arg74924,arg233745,arg74924_arg233745,rr,daddcaf8a1c1e55ef33bcab10bf2fa,-1
+76,"In a monohydric cross, AA x aa only gives Aa heterozygous genotype in F1.","A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg234341,arg74924,arg234341_arg74924,rr,fa903f4baabaadd2e0c8af7ccd2ff6,1
+77,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa","The F1 offspring of a monohybrid cross would show the genotype(s)
+
+D",a1,arg74924,arg238479,arg74924_arg238479,rr,fffa2c73508a730ac92fa9c1510bdd,-1
+78,A mutation of a keratin gene causes hairlessness in cats,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",a2,arg239125,arg74924,arg239125_arg74924,rr,6394ca300f8024eae9811867796205,1
+79,"A monohybrid cross is AA x aa, therefore all first generation offspring are Aa",each parent is homozygous so the F1 would be Aa,a1,arg74924,arg240470,arg74924_arg240470,rr,88ab03177a3205bd92843d6c8f64e3,-1

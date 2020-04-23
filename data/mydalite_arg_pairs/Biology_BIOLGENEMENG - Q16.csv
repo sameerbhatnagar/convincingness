@@ -1,0 +1,76 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,know,1/2 x 1/2 = 1/4,a2,arg69549,arg68507,arg69549_arg68507,rr,710f05a894e40d30408e624d812a4b,1
+1,1/2 x 1/2 = 1/4,huh,a1,arg68507,arg72601,arg68507_arg72601,rr,c0b0fe9e84013a644bb70cd23c69a6,-1
+2,"Total offsprings=16, different possible combinions: AABB, aabb, AAbb, aaBB , so 4/16=1/4",1/2 x 1/2 = 1/4,a2,arg73029,arg68507,arg73029_arg68507,rr,83298ffad1d5c1507c9d8cc4371e8a,1
+3,1/2 x 1/2 = 1/4,punnett square ,a1,arg68507,arg77711,arg68507_arg77711,rr,3340368556c1c3339d531fe5657a11,-1
+4,duhh,1/2 x 1/2 = 1/4,a2,arg78464,arg68507,arg78464_arg68507,rr,810d29470accf9b483fee786524a29,1
+5,1/2 x 1/2 = 1/4,math,a1,arg68507,arg96566,arg68507_arg96566,wr,ec0af916fb5a693fb11f8fe27aa0c6,-1
+6,1/2 homozygous for a and 1/2 homozygous for b,1/2 x 1/2 = 1/4,a2,arg101302,arg68507,arg101302_arg68507,rr,775afec11b93dd23f17e6225796045,1
+7,1/2 x 1/2 = 1/4,1/2x1/2,a1,arg68507,arg101663,arg68507_arg101663,rr,8782953790a3afb81aed6ed4801ed1,-1
+8,kjnlkjkm,1/2 x 1/2 = 1/4,a2,arg105742,arg68507,arg105742_arg68507,wr,0d4f219b69a784ccd808051eac7845,1
+9,"For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)",perfect thing only happens twice since these are heterozygous crosses,a1,arg71815,arg71935,arg71815_arg71935,wr,6fd733ce744be25ce02e000dcdac24,-1
+10,draw the punnett square and count em up oh my god i hate mydalite already,"For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)",a2,arg184951,arg71815,arg184951_arg71815,wr,0a34069bc4e02d1760af57260ba487,1
+11,"For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)",based on performing a punnet square and probabilities of the different alleles segregating ttogether,a1,arg71815,arg185039,arg71815_arg185039,rr,961c78ae187ff1031a265ee11bbc37,-1
+12,"homozygous for each trait is 1/2, 1/2*1/2 = 1/4, so choose C","For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)",a2,arg185991,arg71815,arg185991_arg71815,rr,a4efbb59c3f3cc914065e25300dae6,1
+13,"For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)",Deduced from the punnet square. The percentage of homozygous dominant plus homozygous recessive is a quarter.,a1,arg71815,arg186979,arg71815_arg186979,rr,9822d3735de7268210f74d3c2fa554,-1
+14,the fraction for offspring have both homozygous traits is a quarter,"For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)",a2,arg187368,arg71815,arg187368_arg71815,rr,7d74aafc6f4143740a99ce570485df,1
+15,"For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)","Mendel's Law of independent assortment, also 1/4 aa x 1/4 bb gives you 1/16",a1,arg71815,arg188439,arg71815_arg188439,wr,952ae695c640959f3a2334bdeaac86,-1
+16,do the punnet square and you will find the answer !!!,"For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)",a2,arg192040,arg71815,arg192040_arg71815,rr,3962319de8a4da9a4d63bd889e1904,1
+17,"For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)","Using a punnet square, calculate the individual probability to be 1/2. Use product rule to calculate the total probability.",a1,arg71815,arg193756,arg71815_arg193756,rr,a93ead596d3e93cc7c3baf70527825,-1
+18,"The homozygous possibilities are : AABB, AAbb, aaBB, and aabb, each with a probability of 1/16. 4 * 1/16 = 1/4","For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)",a2,arg196816,arg71815,arg196816_arg71815,rr,cbdf7e56687436116cd12da04d726e,1
+19,"For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)","There are four combinations where both traits are homozygous, either dominant or recessive",a1,arg71815,arg201487,arg71815_arg201487,rr,684de023663c65f38e391870a513d4,-1
+20,"1/2 x 1/2 bc homo recessive and homo dominant for each is 1/4, so added would be 1/2 for each","For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)",a2,arg237958,arg71815,arg237958_arg71815,rr,6cb51fff1a6525f52bf84f7d450d02,1
+21,"For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)",Which of the following genotypes would you not find in a SsYy test cross?,a1,arg71815,arg239585,arg71815_arg239585,wr,680c356440ff1f7be084cbf2d425b9,-1
+22,"I did the punnet square and obtained  the result AABB, AAbb, aaBB, and aabb out of 16 total possibilities","For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)",a2,arg241731,arg71815,arg241731_arg71815,rr,d1f0930d280b954c8be1683bc330ba,1
+23,"For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)","hot chocolate for mental health
+hot chocolate for mental health
+hot chocolate for mental healthhot chocolate for mental health
+hot chocolate for mental health
+hot chocolate for mental health
+hot chocolate for mental health",a1,arg71815,arg244580,arg71815_arg244580,rr,e7559f2e1705bccfad6b27e2258abf,-1
+24,"This is literally the same question as before is it not, why is it asking me again","For a monohybrid cross, 1/2 of the offsprings are homozygous. For a dihybrid cross, we need only multiply these odds (1/2×1/2=1/4)",a2,arg246128,arg71815,arg246128_arg71815,wr,e54fa26838eae51e7583fe03dc2a9b,1
+25,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",.,a1,arg72002,arg72479,arg72002_arg72479,ww,5cedf21fe930c659b63d770023ff7e,-1
+26,3/4*3/4+1/4*1/4=1/4,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",a2,arg72618,arg72002,arg72618_arg72002,rw,9c879c20dda43dc90748042d0eb20f,1
+27,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",2/16 = 1/8,a1,arg72002,arg75321,arg72002_arg75321,ww,91b81abeeb3dd5b4f163738528596a,-1
+28,1/16+1/16,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",a2,arg75721,arg72002,arg75721_arg72002,ww,d53afd173c3f5093853af6b1ad4d38,1
+29,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",1/16+1/16,a1,arg72002,arg76462,arg72002_arg76462,ww,8eb203e403c4e4f5ad0c22b0a6c240,-1
+30, ,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",a2,arg79469,arg72002,arg79469_arg72002,ww,177f9fe28a7f447052d4f0c3344b3b,1
+31,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",b,a1,arg72002,arg80086,arg72002_arg80086,ww,c1b78ab4dbd2ab5405cde4e9275677,-1
+32,.,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",a2,arg80121,arg72002,arg80121_arg72002,ww,52a0801ec0b18861cc6df508f1b10b,1
+33,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",2x(1/8),a1,arg72002,arg81267,arg72002_arg81267,ww,54b602f8b6cbd39d1d6e2ec8f5b893,-1
+34,.,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",a2,arg86953,arg72002,arg86953_arg72002,ww,48b961f1db3dd4876b16e703f47af2,1
+35,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",1/16 + 1/16,a1,arg72002,arg91960,arg72002_arg91960,ww,d709f71cb4f0a254ee0d56af55a832,-1
+36,P(ab) x P(ab) + P(AB) x P(AB) = 2/16 = 1/8,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",a2,arg93075,arg72002,arg93075_arg72002,ww,8802245ba48176f94d3f163c97d717,1
+37,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",1/4 x 1/4 + 1/4 x 1/4,a1,arg72002,arg100602,arg72002_arg100602,ww,d4db6473770e13b88e945e6d720b09,-1
+38,2/16,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",a2,arg105120,arg72002,arg105120_arg72002,ww,9bd4ca10705470328068efc939c871,1
+39,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",dihybrid cross punnet square,a1,arg72002,arg106962,arg72002_arg106962,ww,d5cb6aac310874f98e2fec71d14a59,-1
+40,"Gametes AB and ab, which by respectively combining with AB and ab produce one AABB and aabb.","1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",a2,arg185242,arg72002,arg185242_arg72002,ww,5f0df47c28d1b11d5e56f5af7732d9,1
+41,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",Just do a Punett squareJust do a Punett squareJust do a Punett squareJust do a Punett squareJust do a Punett square,a1,arg72002,arg187020,arg72002_arg187020,ww,cc33d8d001d9067cbcb7f355866a3f,-1
+42,There is 1 AABB and 1 aabb in the dihybrid cross showing homozygosity,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",a2,arg194161,arg72002,arg194161_arg72002,ww,66a042ade2b69f5648f66599e28e33,1
+43,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",there is one possibility for AABB and one for aabb so 1/16 x 1/16 produces 1/8,a1,arg72002,arg196045,arg72002_arg196045,ww,3ac67b187ca3ec12ebf3b9b5ebbabd,-1
+44,Because the punnet square of this F1 dihybrid cross is 4x4 gametes out of which only one is homozygous recessive for both traits and one is homozygous dominant for both.,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",a2,arg204808,arg72002,arg204808_arg72002,ww,eb673e1b8e90d9fa6bbb7291120bab,1
+45,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both","Which of the following genotypes would you not find in a SsYy test cross?
+
+
+A. SsYy",a1,arg72002,arg216094,arg72002_arg216094,ww,1d3e28e1b591473dee83bb9be112cf,-1
+46,1 homozygous recessive and 1 homozygous dominant because it is,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",a2,arg230932,arg72002,arg230932_arg72002,ww,3a0f3438a565d68e8265d28cb5a20d,1
+47,"1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",there are 1/4 chances of getting the a from each parent and the A from each parent,a1,arg72002,arg239740,arg72002_arg239740,ww,e9dd82fb49cbc6c1f61f6930dbc839,-1
+48,"In your progeny, you get one AABB offspring and one aabb offspring out of a total of 16 offsprings. This gives you 1/8","1/16 are homozygous recessive for both, 1/16 are homozygous dominant for both",a2,arg253209,arg72002,arg253209_arg72002,ww,f6151527677d3e021298dd0358a5ee,1
+49,1/16 will be homozygous (1/4 x 1/4),"P(AA)=1/4, P(BB)=1/4,
+P(AABB)=1/16",a1,arg68506,arg72843,arg68506_arg72843,ww,708754cef412a0e37feac91458b8fc,-1
+50,kj,1/16 will be homozygous (1/4 x 1/4),a2,arg73273,arg68506,arg73273_arg68506,ww,176a63efe79737594c0bbdf9767c5a,1
+51,1/16 will be homozygous (1/4 x 1/4),.?,a1,arg68506,arg74932,arg68506_arg74932,ww,8b9a35ef268a7af3ffa6e39429cb44,-1
+52,1/4 x 1/4,1/16 will be homozygous (1/4 x 1/4),a2,arg83387,arg68506,arg83387_arg68506,ww,0bb1b73bf390a7f789aa2b784a5f47,1
+53,1/16 will be homozygous (1/4 x 1/4), ,a1,arg68506,arg83480,arg68506_arg83480,ww,49608560fb63a67dcb73693d0ceda4,-1
+54,same as previous question,1/16 will be homozygous (1/4 x 1/4),a2,arg86947,arg68506,arg86947_arg68506,ww,75151c3099ca1bb0987f709884fe02,1
+55,1/16 will be homozygous (1/4 x 1/4),9;3;3;1,a1,arg68506,arg98940,arg68506_arg98940,ww,b1fbc9050f3eb26b5c9a7100ea970a,-1
+56,makes sense,1/16 will be homozygous (1/4 x 1/4),a2,arg99640,arg68506,arg99640_arg68506,ww,d5e869d27e6619d0c52c27cdb10cf3,1
+57,1/16 will be homozygous (1/4 x 1/4),P(aabb) = P(aa) x P(bb) = 1/4 x 1/4 = 1/16,a1,arg68506,arg99728,arg68506_arg99728,ww,49de27d597d056c2f2d9261a80f9a8,-1
+58,because of the 9:3:3:1 ratio,1/16 will be homozygous (1/4 x 1/4),a2,arg104530,arg68506,arg104530_arg68506,ww,268002bfc7fcb28d6bdc37f9256674,1
+59,"Same idea as the recessive case. For Aa x Aa --> 1/4 chance of AA. For Bb x Bb, 1/4 chance of BB. So, (1/4)(1/4)=1/16 chance of both occurring.",because when looking at the Punnett square this is the result when combing the gametes,a1,arg73652,arg196506,arg73652_arg196506,ww,2cde0759562626fda57887aefa6810,-1
+60,"Genotype of an offspring who is homozygous for both traits can be homozygous dominant or homozygous recessive. P(AABB), P(aabb)=1/16 each.","Same idea as the recessive case. For Aa x Aa --> 1/4 chance of AA. For Bb x Bb, 1/4 chance of BB. So, (1/4)(1/4)=1/16 chance of both occurring.",a2,arg198207,arg73652,arg198207_arg73652,ww,751857d75ddf3bfa4a76fb930a69ed,1
+61,"Same idea as the recessive case. For Aa x Aa --> 1/4 chance of AA. For Bb x Bb, 1/4 chance of BB. So, (1/4)(1/4)=1/16 chance of both occurring.",punnet square gies you the answer [plus notes so go look,a1,arg73652,arg210211,arg73652_arg210211,ww,899be054ab4c0abfc779b0f1bbdf78,-1
+62,9:3:3:1 in the dihybrid cross gives you only one that is homozygoues for both,"Same idea as the recessive case. For Aa x Aa --> 1/4 chance of AA. For Bb x Bb, 1/4 chance of BB. So, (1/4)(1/4)=1/16 chance of both occurring.",a2,arg228751,arg73652,arg228751_arg73652,ww,1a77d13663dc9cec4c5551b950d439,1
+63,"Same idea as the recessive case. For Aa x Aa --> 1/4 chance of AA. For Bb x Bb, 1/4 chance of BB. So, (1/4)(1/4)=1/16 chance of both occurring.","simple cross, use product rule or common sense. No further explanation required.",a1,arg73652,arg237663,arg73652_arg237663,ww,c0bf50b4127516fec2f23a714be712,-1
+64,i guess homozygous recessive is 1/16 but idk wouldnt it also be 9/16 homozygous dominant,"Same idea as the recessive case. For Aa x Aa --> 1/4 chance of AA. For Bb x Bb, 1/4 chance of BB. So, (1/4)(1/4)=1/16 chance of both occurring.",a2,arg237765,arg73652,arg237765_arg73652,ww,eafeff918a512a26cd78529c92de6f,1
+65,"Same idea as the recessive case. For Aa x Aa --> 1/4 chance of AA. For Bb x Bb, 1/4 chance of BB. So, (1/4)(1/4)=1/16 chance of both occurring.",That's what the math shows.That's what the math shows.That's what the math shows.,a1,arg73652,arg238493,arg73652_arg238493,ww,71ec21c36971a39ec5670e0c5054d6,-1

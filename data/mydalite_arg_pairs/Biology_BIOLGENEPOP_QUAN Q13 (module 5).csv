@@ -1,0 +1,224 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,"Self-fertilization is the most severe form of inbreeding. Assume you are starting with a population with an allele frequency of A = p = 0.6 and the allele frequency of a = q = 0.4, and that the population is in Hardy-Weinberg proportions for the diploid genotypes at this locus. What proportion of heterozygotes do you expect to see in the next generation?","s1 = 1-0.9, s2 = 1-0.6  
+equilibrium frequency equilibrium frequency is s1/(s1 + s2) so 0.1/(0.1+0.4) = 0.2
+
+Not possible as we are not given the initial allele frequencies.
+
+Without the allele frequencies for the first generation we cannot calculate it for the next generation.",a2,arg211768,arg209402,arg211768_arg209402,wr,b7df7271f31c316697bac696957a39,1
+1,"s1 = 1-0.9, s2 = 1-0.6  
+equilibrium frequency equilibrium frequency is s1/(s1 + s2) so 0.1/(0.1+0.4) = 0.2
+
+Not possible as we are not given the initial allele frequencies.
+
+Without the allele frequencies for the first generation we cannot calculate it for the next generation.","It has been suggested that there is balancing selection for cystic fibrosis (CF), whereby there is an advantage for carriers who are faced with gastrointestinal diseases such as cholera. Assuming the relative fitness for homozygous normal individuals is 0.9, for carriers is 1.0 and for CF-affected individuals is 0.6, please calculate the equilibrium allele frequency of the wild type allele.",a1,arg209402,arg212236,arg209402_arg212236,wr,41c79593ffb7857a7ac3a97563285b,-1
+2,"It has been suggested that there is balancing selection for cystic fibrosis (CF), whereby there is an advantage for carriers who are faced with gastrointestinal diseases such as cholera. Assuming the relative fitness for homozygous normal individuals is 0.9, for carriers is 1.0 and for CF-affected individuals is 0.6, please calculate the equilibrium allele frequency of the wild type allele.","s1 = 1-0.9, s2 = 1-0.6  
+equilibrium frequency equilibrium frequency is s1/(s1 + s2) so 0.1/(0.1+0.4) = 0.2
+
+Not possible as we are not given the initial allele frequencies.
+
+Without the allele frequencies for the first generation we cannot calculate it for the next generation.",a2,arg213714,arg209402,arg213714_arg209402,wr,4e7305ce0785ced96cbefd06ad8bf1,1
+3,"s1 = 1-0.9, s2 = 1-0.6  
+equilibrium frequency equilibrium frequency is s1/(s1 + s2) so 0.1/(0.1+0.4) = 0.2
+
+Not possible as we are not given the initial allele frequencies.
+
+Without the allele frequencies for the first generation we cannot calculate it for the next generation.","Population genetics is the study of genetic variation within populations, and involves the examination and modelling of changes in the frequencies of genes and alleles in populations over space and time",a1,arg209402,arg214639,arg209402_arg214639,wr,f0d5d7cc1bb3645de472a5aa1cb5d4,-1
+4,"s is 0.9, for carriers is 1.0 and for CF-affected individuals is 0.6, please calculate the equilibrium allele frequency of the wild type allele.","s1 = 1-0.9, s2 = 1-0.6  
+equilibrium frequency equilibrium frequency is s1/(s1 + s2) so 0.1/(0.1+0.4) = 0.2
+
+Not possible as we are not given the initial allele frequencies.
+
+Without the allele frequencies for the first generation we cannot calculate it for the next generation.",a2,arg221585,arg209402,arg221585_arg209402,wr,3b82a24353e5767c6ea89a77bc0ebc,1
+5,"s1 = 1-0.9, s2 = 1-0.6  
+equilibrium frequency equilibrium frequency is s1/(s1 + s2) so 0.1/(0.1+0.4) = 0.2
+
+Not possible as we are not given the initial allele frequencies.
+
+Without the allele frequencies for the first generation we cannot calculate it for the next generation.",achs allele (1/3500) is ten times that seen in the general population. Assume that the Tay Sachs locus genotypes are in Hardy-Weinberg proportions. Calculate the frequency of the Tay Sachs allele in the North American Ashkenazi Jewish population.,a1,arg209402,arg221842,arg209402_arg221842,wr,29b0f3eddd1f01f43eb3fbe62e02c1,-1
+6,Equilibrium of the wild type allele p is given by A=s1/(s1+s2) in which s1 is the selection coefficient for the homozygous dominant allele and s2 is the selection coefficient for the homozygous recessive allele.,"s1 = 1-0.9, s2 = 1-0.6  
+equilibrium frequency equilibrium frequency is s1/(s1 + s2) so 0.1/(0.1+0.4) = 0.2
+
+Not possible as we are not given the initial allele frequencies.
+
+Without the allele frequencies for the first generation we cannot calculate it for the next generation.",a2,arg221984,arg209402,arg221984_arg209402,rr,5d5c9eeee8f714934b249eebfabd8b,1
+7,"s1 = 1-0.9, s2 = 1-0.6  
+equilibrium frequency equilibrium frequency is s1/(s1 + s2) so 0.1/(0.1+0.4) = 0.2
+
+Not possible as we are not given the initial allele frequencies.
+
+Without the allele frequencies for the first generation we cannot calculate it for the next generation.","should give rather genotype or allele frequency? idkkkkkkkkkk.uukume that both populations have genotype frequencies that are in Hardy-Weinberg proportions. Before any mating occurs, what is the frequency of the white allele in the combined population of 10,000 birds? 
+
+A. 0.63",a1,arg209402,arg223412,arg209402_arg223412,wr,1182fd51f65265d9fa0f215476622e,-1
+8,"al individuals is 0.9, for carriers is 1.0 and for CF-affected individuals is 0.6, please calculate the equilibrium allele frequency of the wild type allele.","s1 = 1-0.9, s2 = 1-0.6  
+equilibrium frequency equilibrium frequency is s1/(s1 + s2) so 0.1/(0.1+0.4) = 0.2
+
+Not possible as we are not given the initial allele frequencies.
+
+Without the allele frequencies for the first generation we cannot calculate it for the next generation.",a2,arg227459,arg209402,arg227459_arg209402,wr,e10d9c9f623af957d3f9cdbe4ffbd4,1
+9,"s1 = 1-0.9, s2 = 1-0.6  
+equilibrium frequency equilibrium frequency is s1/(s1 + s2) so 0.1/(0.1+0.4) = 0.2
+
+Not possible as we are not given the initial allele frequencies.
+
+Without the allele frequencies for the first generation we cannot calculate it for the next generation.","Assuming that this is balancing selection; (the frequency of the heterozygote is greatly favoured over the other) we can use the formula p=s1/s1+s2, in which s is the selection coefficient. s1 is the selection coefficient of the homozygous normal individual, and s2 is the selection coefficient of the homozygous mutant individual.",a1,arg209402,arg234114,arg209402_arg234114,rr,0bab5680b4f2aabff251ab655a00c6,-1
+10,"ttached earlobes (EE or Ee) are described in the textbook as dominant over attached earlobes (ee). A couple both have unattached earlobes. Both notice that one of their parents on both sides has attached earlobes (ee). Therefore, they correctly assume that they are carriers for attached earlobes (Ee). The couple proceed to have four children.","s1 = 1-0.9, s2 = 1-0.6  
+equilibrium frequency equilibrium frequency is s1/(s1 + s2) so 0.1/(0.1+0.4) = 0.2
+
+Not possible as we are not given the initial allele frequencies.
+
+Without the allele frequencies for the first generation we cannot calculate it for the next generation.",a2,arg237259,arg209402,arg237259_arg209402,wr,808dbc4b3956ba9cd8ddef4ac718b1,1
+11,"s1 = 1-0.9, s2 = 1-0.6  
+equilibrium frequency equilibrium frequency is s1/(s1 + s2) so 0.1/(0.1+0.4) = 0.2
+
+Not possible as we are not given the initial allele frequencies.
+
+Without the allele frequencies for the first generation we cannot calculate it for the next generation.","Self-fertilization is the most severe form of inbreeding. Assume you are starting with a population with an allele frequency of A = p = 0.6 and the allele frequency of a = q = 0.4,",a1,arg209402,arg237673,arg209402_arg237673,wr,b30634abcfd3a2d844029f291f1dc1,-1
+12,"A cross is made between the following parents: Aa Bb Cc Dd Ee x Aa BB Cc Dd Ee. What is
+
+the probability that they will produce an offspring of the phenotype A B c D e?","s1 = 1-0.9, s2 = 1-0.6  
+equilibrium frequency equilibrium frequency is s1/(s1 + s2) so 0.1/(0.1+0.4) = 0.2
+
+Not possible as we are not given the initial allele frequencies.
+
+Without the allele frequencies for the first generation we cannot calculate it for the next generation.",a2,arg248133,arg209402,arg248133_arg209402,wr,181c3eb0fdedaa57cf51df58dc1441,1
+13,Without the allele frequencies for the first generation we cannot calculate it for the next generation.,this is in the next lecture so tbh i do not know the answer. that is my guess,a1,arg209403,arg212304,arg209403_arg212304,ww,1a77d13663dc9cec4c5551b950d439,-1
+14,We need to be given the initial frequencies to determine the equilibrium allele frequency,Without the allele frequencies for the first generation we cannot calculate it for the next generation.,a2,arg227113,arg209403,arg227113_arg209403,ww,230acc8039bba8b70b977c31312c95,1
+15,Without the allele frequencies for the first generation we cannot calculate it for the next generation.,Because Because Because Because Because Because Because Because Because Because Because Because Because Because Because Because Because Because Because Because Because Because Because Because Because Because,a1,arg209403,arg247094,arg209403_arg247094,ww,ed52993f96d865a578bb4e1953b2ad,-1
+16,"I don't know the exact reason but I just choose the answer that is closest to 0.9, which is the homozygous for wild type allele.","s1 = 1-0.6,  s2 = 1-0.4   
+equilibrium frequency of wild type = s1/( s1 + s2) = 0.4/(0.5+0.1) = 0.8",a2,arg212740,arg209405,arg212740_arg209405,ww,9d9a2541f5086bf2dbb958d9100dd8,1
+17,"s1 = 1-0.6,  s2 = 1-0.4   
+equilibrium frequency of wild type = s1/( s1 + s2) = 0.4/(0.5+0.1) = 0.8",i don't know the answer please give me the answer the answer is not possible,a1,arg209405,arg233291,arg209405_arg233291,ww,bd3e347bd49c52472eddb6dc4e4fbe,-1
+18,im totally guessing this one. adding more depth to see the answer,"s1 = 1-0.6,  s2 = 1-0.4   
+equilibrium frequency of wild type = s1/( s1 + s2) = 0.4/(0.5+0.1) = 0.8",a2,arg241178,arg209405,arg241178_arg209405,ww,68515708604a08b386031b1b1066e2,1
+19,We need the genotype frequencies to calculate such a value.,To calculate the average we need the genotype frequency just because,a1,arg214752,arg217123,arg214752_arg217123,ww,e6af635199f67611deee6e0ab05981,-1
+20,"We need the genotype frequency to calculate the average relative frequency, then calculate equilibrium allele frequency.",We need the genotype frequencies to calculate such a value.,a2,arg222922,arg214752,arg222922_arg214752,ww,8c97974493a339b154793e66c496ec,1
+21,We need the genotype frequencies to calculate such a value.,I'm sorry I just wanted to see the answer since typing up my entire rationale for each question would take forever. We love genetics though!,a1,arg214752,arg244111,arg214752_arg244111,ww,fdcba72eb0e114d5eb4eec087d5aa0,-1
+22,Boy is this so much easier than the exam Boy is this so much easier than the exam,We need the genotype frequencies to calculate such a value.,a2,arg245327,arg214752,arg245327_arg214752,ww,c6300318f3bd32c7eb37fdbc9e45b8,1
+23,We need the genotype frequencies to calculate such a value.,cant do any of these calculations becaus we are not given enough info,a1,arg214752,arg247023,arg214752_arg247023,ww,99ea45064ae40a87b6546cf3c6f042,-1
+24,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas volutpat eros eget tortor elementum, eget cursus odio efficitur.",We need the genotype frequencies to calculate such a value.,a2,arg247928,arg214752,arg247928_arg214752,ww,3680ceb3e2bdb228efd2b410c48392,1
+25,We need the genotype frequencies to calculate such a value.,we need the initial genotype frequency to calculate the new allele frequency,a1,arg214752,arg248141,arg214752_arg248141,ww,cd42e59e34e583b80329b2b9fec45b,-1
+26,genotype frequencies are needed for the calculation where they will be multiplied to the frequency of genotypes,s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,a2,arg218902,arg216057,arg218902_arg216057,wr,39cf2d64b119ff9a4488d61951bb29,1
+27,s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,I do not remember how to caluclate equilibrium allele frequency so im just going go with this im kinda of lost,a1,arg216057,arg220469,arg216057_arg220469,wr,fbc0e44f7a13d74f6016c9b1877f27,-1
+28,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,a2,arg220489,arg216057,arg220489_arg216057,rr,da3231695068ba111ce58a62e8022c,1
+29,s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,You need the initial allele frequency to find the equilibrium one.,a1,arg216057,arg221650,arg216057_arg221650,wr,5328bc327617aa763d78106b3de0c1,-1
+30,"equilibrium allele frequency calculation needs equilibrium genotype frequency, which needs initial genotype frequency",s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,a2,arg222850,arg216057,arg222850_arg216057,wr,cca18bdbf60e3930d472d5e3975feb,1
+31,s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,apply the equation equilibrium allele frequency of WT: p= s1/(s1+s2),a1,arg216057,arg230021,arg216057_arg230021,rr,dcc4147a5c461bb23c8f37dfd85e77,-1
+32,"Im not exactly sure how to do this, so im going to assume that its not possible",s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,a2,arg239054,arg216057,arg239054_arg216057,wr,4f317126c5644e93399653d41dce4a,1
+33,s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,equilibrium p is = s1/s1+s2 where s1 is the carrier fitness - homozygous normal fitness and s2 is the carrier fitness - homozygous affected fitness,a1,arg216057,arg239982,arg216057_arg239982,wr,754a94af492f5a2a02564805a0c5eb,-1
+34,I don't know. where did this question come from tbh,s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,a2,arg240045,arg216057,arg240045_arg216057,wr,c2846914e3ca3e2575937468b3790b,1
+35,s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,Which of the following genotypes would you not find in a SsYy test cross?,a1,arg216057,arg240834,arg216057_arg240834,rr,680c356440ff1f7be084cbf2d425b9,-1
+36,The equilibrium allele frequency of the wild type allele is = s.AA / s.Total = 0.1/0.5.,s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,a2,arg241034,arg216057,arg241034_arg216057,rr,179f7e6f5056ec5d7a097ef3896e81,1
+37,s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,I do not believe that it is possible to calculate this due to the fact that we have no information on allele frequency of the population in question.,a1,arg216057,arg241373,arg216057_arg241373,wr,0a3bbca81d8335355911e166be3d36,-1
+38,"We would need to be able to calculate W(avg) at some point, which requires the knowledge of genotype frequencies or allele frequencies (knowing one or the other gives one the same info).",s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,a2,arg242935,arg216057,arg242935_arg216057,wr,9da3d4421c043d2e7ca7a5060ed97b,1
+39,s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,I don’t understand this question so I am going to improvise and check a random answer,a1,arg216057,arg244755,arg216057_arg244755,wr,284259f0c39bcaf69a972ef4573497,-1
+40,that is becausethat is becausethat is becausethat is becausethat is becausethat is becausethat is becausethat is becausev,s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,a2,arg248399,arg216057,arg248399_arg216057,wr,2e0b0dfc4b4a1f651a3a9db387f7e4,1
+41,s1 = 0.1 and s2 = 0.4 so the equilibrium allele frequency for WT is 0.1/(0.1 + 0.4) = 0.2,I tried to calculate this but I do not think I did it correctly. Sorry.,a1,arg216057,arg253324,arg216057_arg253324,rr,84c5038c7535522b2f30f5d8abb10a,-1
+42,0.9^2 but I'm not too sure exactly what it is asking for,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",a2,arg221173,arg220489,arg221173_arg220489,wr,4bfab44e170c19d36be9f7e07d9074,1
+43,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2","The equation to find the allele frequency after natural selection is wf/Wavg where w=relative fitness, f=genotype frequency and Wavg=average fitness. Therefore, we are missing the genotype frequencies to calculate the new frequency.",a1,arg220489,arg223597,arg220489_arg223597,wr,5f0df47c28d1b11d5e56f5af7732d9,-1
+44,we need the initial frequencies to calculate the equilibrium allele frequency,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",a2,arg223712,arg220489,arg223712_arg220489,wr,f7c0eb70420f32fa400aa3b3a617fb,1
+45,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2","Equilibrium constant = s1/s1+s2, where is 1-fitness... I think i got this",a1,arg220489,arg224194,arg220489_arg224194,rr,ed7e6b53f4994790ba59aca16b78d6,-1
+46,There is not enough information to complete the calculations or I just don't know how.,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",a2,arg231346,arg220489,arg231346_arg220489,wr,09a22c1210ff184f6bf64e36f69c1c,1
+47,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",I’m writing this solely on the basis of my knowledge.,a1,arg220489,arg233872,arg220489_arg233872,wr,77d5c06f5dd4cc8271bfc6e7390c8f,-1
+48,I did maths using the balancing selection equation at the end of Lecture 11 notes,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",a2,arg239397,arg220489,arg239397_arg220489,rr,da0b33362904ae31c34d7d2c350c49,1
+49,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",depth depth depth depth depth depth depth depth depth depth depth depth depth depth depth depth depth depth depth,a1,arg220489,arg239434,arg220489_arg239434,wr,e2031016496963347efb15e709c18e,-1
+50,rs who are faced with gastrointestinal diseases such as cholera. Assuming the relative fitness for homozygous rs who are faced with gastrointestinal diseases such as cholera. Assuming the relative fitness for homozygous,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",a2,arg239694,arg220489,arg239694_arg220489,wr,efe22e5cde3a259024cb04dae6bcbd,1
+51,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2","with an allele frequency of A = p = 0.6 and the allele frequency of a = q = 0.4, and that the population is in Hardy-Weinberg proportions for the diploid genotypes at this locus. What proportion of heterozygotes do you expect to see in the next gener",a1,arg220489,arg240948,arg220489_arg240948,rr,e36459c889ec8ce820903ab849be5b,-1
+52,"Relative fitness W(AA) = 0.9, W(Aa) = 1.0 and W(aa) = 0.6. We can only find the selection coefficient... which tells us the relative fitness over the absolute fitness. Nothing about allele frequency.","Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",a2,arg241655,arg220489,arg241655_arg220489,wr,66859ead325204d14fd74412aeda09,1
+53,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",s who are faced with gastrointestinal diseases such as cholera. Assuming the relative fitness for homozygous normal in,a1,arg220489,arg241738,arg220489_arg241738,wr,0dd25bf4271022a430f458130d935a,-1
+54,"The eqiolibrium needs the allele frequencies aswell, Wavg= f(relative fitness)","Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",a2,arg242153,arg220489,arg242153_arg220489,wr,b68f021a380c337a78402f16be4ab6,1
+55,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2","Assuming Hardy-Weinberg proportions of genotypes at the locus, what would be the predicted number of individuals who are homozygous normal for CF, carriers for CF, and affected individuals in a population of 90,000 people?",a1,arg220489,arg243750,arg220489_arg243750,wr,0fb011b946688c030a68f0459b64ce,-1
+56,you need more information to calculate the w(average) and to calculate the genotype frequencies after,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",a2,arg245809,arg220489,arg245809_arg220489,wr,7069978eee92f961c62cdf3f449540,1
+57,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2","gested that there is balancing selection for cystic fibrosis (CF), whereby there is an advantage for carriers who are faced with gastrointestinal diseases such as cholera. Assuming the relative fitness for homozygous norma",a1,arg220489,arg247623,arg220489_arg247623,wr,941cc0caccb7eea6181ce8a819c75f,-1
+58,"In the general European population, the frequency of cystic fibrosis is 1/2500 births.
+
+Assuming Hardy-Weinberg proportions of genotypes at the locus, what would be the predicted number of individuals who are homozygous normal for CF, carriers for CF, and affected individuals in a population of 90,000 people?","Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",a2,arg248144,arg220489,arg248144_arg220489,wr,2d292e0559f5aac3fc7e9ce4031de1,1
+59,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",i just ant to be ablet tot see the answert= to theis ewuastion,a1,arg220489,arg248277,arg220489_arg248277,wr,8ffe7602a03984dcc263c41813b690,-1
+60,I have issues with fitness please help me I'm out of shape get it? thanks for reading,"Rleative fitness for CC = 0.9, Cc = 1.0, cc = 0.6.
+
+Balancing selection equiibrium = S1/(S1+S2). S1 = 1-0.9 = 0.1, S2 = 1-0.6=0.4
+
+0.1/0.5 = 0.2",a2,arg250247,arg220489,arg250247_arg220489,rr,39d429ce36ce47ae8c03534448be80,1
+61,"the equilibrium allele frequency is p = s1/(s1+s2). The s1 is 1-0.9 = 0.1, while s2 is 1-0.6, which is 0.4. the equation would be 0.1/0. = 0.2","is 0.9, for carriers is 1.0 and for CF-affected individuals is 0.6, please calculate the equilibrium allele frequency of the wild t",a1,arg223341,arg223638,arg223341_arg223638,rr,72c895b304c0a6e1c658df40cea1e5,-1
+62,"since the selection is balanced, p=q=0.5. Therefore, the frequency of WT and CF are both 0.25, frequency of carriers is 0.5. Timing with relative fitness 0.9, the result of WT is 0.257.","the equilibrium allele frequency is p = s1/(s1+s2). The s1 is 1-0.9 = 0.1, while s2 is 1-0.6, which is 0.4. the equation would be 0.1/0. = 0.2",a2,arg224885,arg223341,arg224885_arg223341,rr,f1278b5969017a6121fa6926e9c04b,1
+63,"the equilibrium allele frequency is p = s1/(s1+s2). The s1 is 1-0.9 = 0.1, while s2 is 1-0.6, which is 0.4. the equation would be 0.1/0. = 0.2",By the power of God and Anime I will find the truth,a1,arg223341,arg226889,arg223341_arg226889,rr,54552f752ac8455074bc3e80dda343,-1
+64,I got 0.46 as an answer and 0.6 is the closest,"the equilibrium allele frequency is p = s1/(s1+s2). The s1 is 1-0.9 = 0.1, while s2 is 1-0.6, which is 0.4. the equation would be 0.1/0. = 0.2",a2,arg235440,arg223341,arg235440_arg223341,wr,76d28048d8091ddc11652f29af3275,1
+65,"Calculate s1, the difference between the highest fitness and homozygous normal (1-0.9=0.1.) s2 is the difference between the highest fitness and homozygous recessive (1-0.6=0.4). By s1/s1+s2 = 0.1/0.1+0.4 = 0.2","It has been suggested that there is balancing selection for cystic fibrosis (CF), whereby there is an advantage for carriers who are faced with gastrointestinal diseases such as cholera. Assuming the relative fitness for homozygous normal individuals is 0.9, for carriers is 1.0 and for CF-affected individuals is 0.6, please calculate the equilibrium allele frequency of the wild type allele.",a1,arg220990,arg227920,arg220990_arg227920,wr,952224f428b3e5d9b939631a9defa7,-1
+66,"equilibrium p = s1/(s1+s2) = 0.6. That does not seem like a clear explanation of your reasoning:
+Depth","Calculate s1, the difference between the highest fitness and homozygous normal (1-0.9=0.1.) s2 is the difference between the highest fitness and homozygous recessive (1-0.6=0.4). By s1/s1+s2 = 0.1/0.1+0.4 = 0.2",a2,arg243708,arg220990,arg243708_arg220990,wr,a4efbb59c3f3cc914065e25300dae6,1
+67,"Calculate s1, the difference between the highest fitness and homozygous normal (1-0.9=0.1.) s2 is the difference between the highest fitness and homozygous recessive (1-0.6=0.4). By s1/s1+s2 = 0.1/0.1+0.4 = 0.2","r homozygous normal individuals is 0.9, for carriers is 1.0 and for CF-affected individuals is 0.6, please calculate the",a1,arg220990,arg246044,arg220990_arg246044,rr,0e0eb905e3ad75dbe188d0fe0e6fb2,-1

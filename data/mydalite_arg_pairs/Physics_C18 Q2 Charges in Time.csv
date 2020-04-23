@@ -1,0 +1,258 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,"current i = 3 A
+time t= 5 min = 5*60 s = 300 s
+we know current i = Q / t
+charge Q = i t
+=900 C","After 300s of current 3A, we will have a transfer of 900C through the resistor. One can express this then in terms of the elementary charge e of the electron, meaning there is 900 e passing through",a2,arg85581,arg65538,arg85581_arg65538,ww,7425a2173f20862a2099086e7e50df,1
+1,"After 300s of current 3A, we will have a transfer of 900C through the resistor. One can express this then in terms of the elementary charge e of the electron, meaning there is 900 e passing through","From the formula I = Q/t, we can calculate Q = I.t so 900e. ",a1,arg65538,arg85597,arg65538_arg85597,ww,1bb0e95dbe983ef043eea333056609,-1
+2,"By using the formula Q=I*t. Q=3*300=900e. So, 900 charges pass through the resistor.","After 300s of current 3A, we will have a transfer of 900C through the resistor. One can express this then in terms of the elementary charge e of the electron, meaning there is 900 e passing through",a2,arg209815,arg65538,arg209815_arg65538,ww,b30ebc7b38b16f7a7d648e81d85abc,1
+3,"After 300s of current 3A, we will have a transfer of 900C through the resistor. One can express this then in terms of the elementary charge e of the electron, meaning there is 900 e passing through",900 charges pass through because we can use the formula for current magnitude to help us calculate it,a1,arg65538,arg209916,arg65538_arg209916,ww,655d24d3a5815b9429beaa0e4419c7,-1
+4,"Using the formula I=Q/t, we have 900 coulombs. That is 900xe charges.","After 300s of current 3A, we will have a transfer of 900C through the resistor. One can express this then in terms of the elementary charge e of the electron, meaning there is 900 e passing through",a2,arg210609,arg65538,arg210609_arg65538,ww,196e91df6818eb96e9a6765116525d,1
+5,"After 300s of current 3A, we will have a transfer of 900C through the resistor. One can express this then in terms of the elementary charge e of the electron, meaning there is 900 e passing through",by using the formula I=Q/t and then rearrange the formula we can find out that Q=It and the plug I=3.0A and t=300s we can know there is 900 charges pass through the resistor,a1,arg65538,arg211244,arg65538_arg211244,ww,6858ee238a2d7657b2b6cd66caaf47,-1
+6,"I=change in Q/change in T, by multiplying 3.0A to 300s we got 900 charges, and e equals to the charge of an electron, so the total charge is 900e.","After 300s of current 3A, we will have a transfer of 900C through the resistor. One can express this then in terms of the elementary charge e of the electron, meaning there is 900 e passing through",a2,arg212166,arg65538,arg212166_arg65538,ww,f73eb39431e437712433aaacb53546,1
+7,"After 300s of current 3A, we will have a transfer of 900C through the resistor. One can express this then in terms of the elementary charge e of the electron, meaning there is 900 e passing through","using the formula I=Q/t, isolate for q then you will get the answer",a1,arg65538,arg213169,arg65538_arg213169,ww,998e7afea6f4996cac41adaf15537e,-1
+8,Using the formula: Q=1t ( 5.0 minutes = 300 seconds). Therefore 3x300s=900 will pass through 900/e electrons.,"After 300s of current 3A, we will have a transfer of 900C through the resistor. One can express this then in terms of the elementary charge e of the electron, meaning there is 900 e passing through",a2,arg213293,arg65538,arg213293_arg65538,ww,7f63a351fa4cdffe0e053545029802,1
+9,"After 300s of current 3A, we will have a transfer of 900C through the resistor. One can express this then in terms of the elementary charge e of the electron, meaning there is 900 e passing through",I believe the answer is A I don't know why but I think it's A.,a1,arg65538,arg213319,arg65538_arg213319,ww,636122b3f12568e3af912876096d18,-1
+10,"The current magnitude is the total charge passing through a cross section per second and is equal to I = delta G / delta T
+<=> delat G = I*delta T = 3.0*300 = 900e.","The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg80799,arg79723,arg80799_arg79723,wr,758a04bfd540a8ebc58054b78e1833,1
+11,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",Current is defined as I=(delta Q/delta t). The Q refers to the net charge of what passes through over a time period. This overall charge is 900 C. The number of charges is giver by 900/1.60e-19 which is b. ,a1,arg79723,arg83969,arg79723_arg83969,rr,5d5c9eeee8f714934b249eebfabd8b,-1
+12,"I = delta(Q)/delta(t). delta(Q) = I * delta(t). I = 3, delta(t) = 300. delta(Q) = 900. delta(Q) = q * N. N = delta(Q)/q. q = e. N = 900/e","The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg84795,arg79723,arg84795_arg79723,rr,f3a94aceae55ca3e3929e1d02b9eea,1
+13,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.","the charge is the current multiplied by the time, so 3(300)=900C. To find the number of charges that go past that point, you would then need to divide that by the charge of an electron.",a1,arg79723,arg84965,arg79723_arg84965,rr,5d4a3241893eba4d2f8cb93ba20291,-1
+14,"I=Q/T, we know I (current) to be 3.0 A and T to be 300s. Then, the charge of the plate, Q is 900. To determine the charge of an electron, we then divide by e. ","The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg85050,arg79723,arg85050_arg79723,rr,ea50e8be727620db4558ff096a8d88,1
+15,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.","delta Q is equal to I times delta t, multiply to get 3 times 5 times 60 to get 900 C. Then divide by the e as the electron charge to show how many electrons pass in the time interval.",a1,arg79723,arg209442,arg79723_arg209442,rr,0c075f5867e6ddb0ca297e206f2446,-1
+16,"As current = charge/time, by plugging in the values we get 900C. To obtain the number of electrons divide the charge by the charge of a single electron.","The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg209943,arg79723,arg209943_arg79723,rr,371badc3fa5560cbb59eb99a029192,1
+17,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.","The total number of charges passing through, Q, is equal to I*change of t, which is 900 C. We have the number of electrons by dividing 900 by e.",a1,arg79723,arg210020,arg79723_arg210020,rr,1803402320a6184492cc7b7a30ac06,-1
+18,A 4.0 W resistor has a current of 3.0 A in it for 5.0 min (300 s). How many charges pass through the resistor during this time interval? Take e as the charge of an electron,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg210129,arg79723,arg210129_arg79723,rr,6ec83f8e2c1e607b12d6db4c4584fe,1
+19,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.","I=Q/t. since I is 3.0 A and t is 300s, plugging them in the equations gets Q is 900 C. By dividing e, we will get the number of charges",a1,arg79723,arg210237,arg79723_arg210237,rr,c934ac2d4e668ccfde50e93dc33a49,-1
+20,"The charge that passed through was 900C, so 900 divided by the charge of an electron will give you the number of charges that pass through","The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg210548,arg79723,arg210548_arg79723,rr,0036b5e34272d4c67bdfcf8bdd7f32,1
+21,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.","I=Q/t, Q=It=3.0*300s=900C divide that by e to get C/electron, so the charges passing through are 900/e. 900 C times e gives Q",a1,arg79723,arg210743,arg79723_arg210743,rr,8eee124d1226dca17322d2d7acdec6,-1
+22,A 4.0 W resistor has a current of 3.0 A in it for 5.0 min (300 s). How many charges pass through the resistor during this time interval? Take e as the charge of an electron.,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg210909,arg79723,arg210909_arg79723,wr,e8cba26b87e6117670875c44a491d4,1
+23,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.","Formula: I = delta Q / delta t  <=> delta Q = I * delta t = 3.0 * 300 = 900C
+Since the charge of a single electron is e, to find the number of electrons: nb = I/e = 900/e",a1,arg79723,arg210936,arg79723_arg210936,rr,6d57c9b23f172d485455946f1da18f,-1
+24,"The # of charges passing through a cross the resistor per second is 
+I = delta Q / delta t
+delta Q = I*delta t = 30 C/s * 300s = 900 C = 900 e","The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg211374,arg79723,arg211374_arg79723,wr,af0fde5fcf4eebf5eb811a140e2df6,1
+25,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",To solve this we must follow the formula I=delta Q/ delta time. If we reaarange the equation to Delta Q= I x delta time and plug in the values we should get 900 charges that must be multiplied by e.,a1,arg79723,arg212128,arg79723_arg212128,wr,a32738f38ffcdddaa5fb0a21408662,-1
+26,"We can calculate the number of coulombs passing through the resistor as 3.0 Amperes measures 3 coulombs/second. Over 300 seconds, 900 coulombs will pass through the resistor. Divide 900 coulombs by the charge on an electron to determine the number of electrons that pass through the resistor.","The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg212224,arg79723,arg212224_arg79723,rr,72bfa936ea0a85d81c2fd603773ca0,1
+27,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",Using the equation I=change in Q/change in T and rearranging it for Q we find 900 and then we divide by e to find the number of charges.,a1,arg79723,arg212300,arg79723_arg212300,rr,fecf0fbfaf7f11258b6552ffe9b609,-1
+28,Current is equal to the change of Q over the change in time which is 300 seconds. Multiply 3A by 300 seconds and we obtain a value of 900e,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg212644,arg79723,arg212644_arg79723,wr,a3651741b640327648c05d0fb605e7,1
+29,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",Since the current is equal to i=Q/t so Q=i*t and we put the numbers in and get Q=900 and number of electrons are 900/e,a1,arg79723,arg212762,arg79723_arg212762,rr,72713fb0cf9139b897c23452a2142b,-1
+30,"According to the relationship deltaQ=Idelta t, a current of 3.0 a for 300 s passes a net charge of 900 c, which, when divided by e, gives the number of electrons","The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg212840,arg79723,arg212840_arg79723,rr,87f1a09302ddf74638c8e4b31d4083,1
+31,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.","When calculating the amount of charges passing through a cross section, we can use the following formula: I = Q/t! We rearrange to solve for Q, giving us 900/e. Q would be the charge of the electron.",a1,arg79723,arg212856,arg79723_arg212856,rr,c8eb901a974dc56d885fd554d34b46,-1
+32,"Change in charge equates to the charge multiplied by the number of electrons. 
+Thus, the change in charge is I (the current) multiplied by the time. 
+3 * 5 * 50 = 900 C","The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg212937,arg79723,arg212937_arg79723,wr,19421a4051da4a2b73d993edb77d83,1
+33,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.","The charge of a current equals to the current times the time which it passes through, hence 900C. e is the charge of an electron, then 900/e is the total number of electrons.",a1,arg79723,arg213050,arg79723_arg213050,rr,5da3c25ba1d86613cfb48d7f7e12d8,-1
+34,"using the equation I=deltaQ/deltat, which we can rewrite to be deltaQ= q•N, we can solve for N, giving us the number of charges passing through the resistor during this time interval.","The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg213064,arg79723,arg213064_arg79723,rr,f94dfbf115be42166cab5bd197dd02,1
+35,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.","If you calculate the total charges that flow, there's 900 electrons that flow through. So you have to divide it by e to get the amount fo charges.",a1,arg79723,arg213073,arg79723_arg213073,rr,0d3ecd977d106ff2cd48fdc3c4fbc4,-1
+36,There are 900/e charges that pass through the resistor during this time interval. The formula I=Q/t is used which gives the charge to be 900 C.,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg213105,arg79723,arg213105_arg79723,rr,94390b070be38b9a509fafe096e6ad,1
+37,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.","Since the current is i = 3A, and the time t = 300s, we know the current is Q = i*t = 900C. Number of electrons is 900C/e.",a1,arg79723,arg213147,arg79723_arg213147,rr,eb4b4b1a96c0fa0c2159887ae39b7d,-1
+38,900 is the charge that passes through in 300 seconds in Coulombs and 900/e is the number of electrons because diving the total charge by the charge of one electron with give you the quantity of electrons,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg213155,arg79723,arg213155_arg79723,rr,000323ca127a9656c82e0bb5348ba2,1
+39,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.","The electric current is the net amount of charge that passes through a point per unit time. Therefore, Q=It, and substitute I=3.0C/s, t=300s, then we can get Q=900C. The number of charges should be the overall charge divided by the charge of an electron, so, 900/e charges pass through the resistor.",a1,arg79723,arg213283,arg79723_arg213283,rr,bb9093cba32c5b09f31b618dd879f9,-1
+40,"If we multiply 3.0 C/s by 300s, we find that Q = 900 C. We can then multiply by the charge of an electron to find out how much charge passes through the resistor.","The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg213313,arg79723,arg213313_arg79723,rr,dbc9a20554893ffc9411c810344b97,1
+41,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.","Because Current is the amount of charge passing per second, we can calculate the total amount of charge that has passes with the equation: Q= IT.
+
+Q = (3.0 * 300)
+= 900C
+If we want to find the amount of charges, then we must find out the amount of electrons that have passed through the resistor at this time, which can be found by dividing the charge by the charge of an electron:
+= 900/e",a1,arg79723,arg213468,arg79723_arg213468,rr,7775e97bc7e3ca0c8d6052d89dc70a,-1
+42,"We know that current I=Q/t, thus charge Q will be equal to 900C. Also, no of electrons is equal to n=Q/e, thus the answer is 900/e.","The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg213481,arg79723,arg213481_arg79723,rr,1a41f99715dd40df2e58b9d0fd5c56,1
+43,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.","EA of currents means 3 coulombs of charge is passing through the cross section in 1 second. Number of electron passing through the cross-section in 1 sec
+= 3/e. So in 50 minutes ie, 300 seconds, ( 3/e ) × 300 electrons will pass through the cross section = 900/e electrons.",a1,arg79723,arg213549,arg79723_arg213549,rr,e3ed13ed8666139e98d24d0e2dd8e8,-1
+44,"We need to use the formula I=     Q/t. We have the time, which is 300s and the charge of the electrons which is e, and we have I which is 3.0.","The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",a2,arg213584,arg79723,arg213584_arg79723,wr,1077b526ab69e78ea6617f0c97418b,1
+45,"The current i can be found by i=Q/t. 
+Rearranging this equation to solve for Q, we have Q=it. 
+Plugging the numbers in we have Q=3(C/s)300(s)=900(C). 
+The number of electrons Ne can be found by Ne=Q/e. 
+Thus Ne=900/e.",Charge = Current * Time. The current is defined as the total number of charge carriers passing through a cross section per second. Therefore the total number of charge carriers is 900. And charges are moving electrons so the answer is 900e,a1,arg79723,arg213589,arg79723_arg213589,wr,deb461e87650bba258e39857684079,-1
+46,Using the I=Q/I equation allows us to solve this problem. Inputting the given values for current and time gives us the current magnitude which is the total charge passing through a cross section per second.,"The current of 3A or 3C/s then becomes 0.01 C after 300s have passed. This can be written as 0.01 e for the elementary charge constant, which means after 5 minutes 0.01 e will pass through the resistor",a2,arg212085,arg65539,arg212085_arg65539,ww,315e7cd64091bf9f1ee57de95168f2,1
+47,"The current of 3A or 3C/s then becomes 0.01 C after 300s have passed. This can be written as 0.01 e for the elementary charge constant, which means after 5 minutes 0.01 e will pass through the resistor","Using the formula I= delta Q / delta T, delta Q is 3 A and delta T is 300 so 3/300 is 0.01 e.",a1,arg65539,arg212697,arg65539_arg212697,ww,4d10f358325f06a20c8185a66553df,-1
+48,"The amount of charges that pass through the resistor can be expressed as           
+deltaQ = I x deltaT. If we plug in the appropriate values ( I = 3.0 A and T = 300s ) we find the answer to be 900 C.","Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg207754,arg134787,arg207754_arg134787,rr,35b8aec81eb72c489491809161863b,1
+49,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","Using the equation I=deltaQ/deltat, I got 900 C. Thus 900/e resembles the amount of electrons passing through which is same as charges passing. To go further, there would be 5.63x10^21 electrons passing.",a1,arg134787,arg207917,arg134787_arg207917,rr,1d8dc023027c8674ca997de0fa1344,-1
+50,"The number of amperes in this battery is given as 3.0 A, thus that value will equal the change in charge divided by the time in seconds, 300 seconds, making the delta Q value 0.01 C, and when this is converted to number of electrons, giving us 900.","Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg208950,arg134787,arg208950_arg134787,wr,7cd5acb02118fd849895ff344df0d7,1
+51,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","I=Q/t  From this we know Q is 900C
+We know that the charge of an electron is 1.6x10^-19C
+
+To find how many charges pass through the resistor, all we need to do is divide 900C by 1.6x10^-19C. In other words, 900/e",a1,arg134787,arg209064,arg134787_arg209064,rr,49c90960d08d34fc8e5d1933a7da99,-1
+52,Using I = delta Q/delta t you solve for delta Q. Delta Q then ends up being 900 C. Then you convert 900 C to number of charges or number of electrons. To do this you divide 900 by e (the charge of an electron).,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg209208,arg134787,arg209208_arg134787,rr,caef573251f4444b06c03b74b3e4ae,1
+53,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","Resistance R = 4W, Current I = 3A, time t = 300s, charge of e = 1.602 *10^(-19), we are looking for C. We know I = Q/t, so Q = It = (3)(300) = 900C.",a1,arg134787,arg209533,arg134787_arg209533,wr,ee6eff01691c0aac4b74790f9f24c3,-1
+54,"Current magnitude: this represent the total # of charges (in [C]) passing through a cross section of a wire per second (in [s]). according to the formula I=Q/t, we can calculate the answer which is 900C. 900C/e, which is the number of  charges.","Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg209594,arg134787,arg209594_arg134787,rr,ddd14a2b9055f9bcd2893ee3f1d9a9,1
+55,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","The total amount of charge that passes through during the time interval delta t is expressed as delta Q=I x delta t. From this, to find out how many charges pass through delta Q needs to be divided by the charge on one electron which is denoted as e in this problem. Thus, the number of charges that pass through is 900/e.",a1,arg134787,arg209733,arg134787_arg209733,rr,ab39b5246062e13ec65aff0d2c581a,-1
+56,The product of the current and time gives you the total number of charge that passes through the resistor during 5 minutes. Then you must divide that number the charge of an electron.,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg210034,arg134787,arg210034_arg134787,rr,a93ead596d3e93cc7c3baf70527825,1
+57,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","total charge passing through a cross section per second can be found using the formula I=Q/t. So, we can derive Q=It. But we know that n=Q/e, and hence we can find that it is equal to 900/e",a1,arg134787,arg210070,arg134787_arg210070,rr,8dcae9cc38f48b69a6dce441862bcb,-1
+58,"The equation for current is I=dQ/dt. The resistor value does not have to be considered. The calculated Q is 900 C, and to find how many charges pass through the resistor in terms of e, we must divide 1.6E-19 from 900 C.","Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg210318,arg134787,arg210318_arg134787,rr,5252015b594cf51f71aa9390dd38c8,1
+59,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","The number of charges passing through the resistor is equal to amperage multiplied by the change in time, and that number over the charge of an electron will equal the number of charges.",a1,arg134787,arg210504,arg134787_arg210504,rr,16e06c5591221168a7916914b398dd,-1
+60,"The equation for current is I = delta(Q)/delta(t). Since we know the values of delta(t) (300 seconds) and I (3.0 Amperes), all the remains is to find the change in charge which is calculated to be 900 C. This can then be divided by the charge of a single electron in order to find how many passed through the resistor in that interval.","Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg210547,arg134787,arg210547_arg134787,rr,cae4855aff4d4756d970006793c280,1
+61,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",A 4.0 W resistor has a current of 3.0 A in it for 5.0 min (300 s). How many charges pass through the resistor during this time interval? Take e as the charge of an electron.,a1,arg134787,arg210752,arg134787_arg210752,rr,593ceff73016b04d2c054edf47d9f2,-1
+62,"Using the equation I = dQ/dt and solving for the charge gives dQ=900 C. Diving this by the chare on one electron, 1.602*10^-19 C, gives 5.61*10^21 electrons. I did not know what do to with the resistor information because I was not sure how to relate Watts (Joules per second) to charge? or how a resistor works...","Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg210814,arg134787,arg210814_arg134787,rr,1dc8137cb44bf8e1d1671f07425ab9,1
+63,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","Ampere's unit is C/s, so Q = It=3 * 300 = 900 C. suppose there are N electrons passing over the resistor, they have 900C in total, every electron has e C. so there should be 900/e electrons.",a1,arg134787,arg211491,arg134787_arg211491,rr,1c85fe6d97ecc03d02c5ecaaf04953,-1
+64,"Using the formula I=?Q/?t, and the formula ?Q=qN. Merge the two formulae to get the formula N=I?t/q. Inserting the given numbers gives N=900/e.","Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg212068,arg134787,arg212068_arg134787,rr,e94bab017aeb7f49f273194c5d9157,1
+65,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","The formula for volts is given by V=P/I. Therefore, the voltage of this system is 4/3=1.333 V. The charge passed through over 5 mins is (300)(3) = 900.",a1,arg134787,arg212077,arg134787_arg212077,wr,dd42b2b59a8b1ed0cc2df92d0cb1f0,-1
+66,"Using the equation I=delta Q/delta t, and we know I=3A and t=300s, we get Q=900 C. To find the number of charges passing through the resistor, you simply divide this charge by the charge of e.","Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg212100,arg134787,arg212100_arg134787,rr,0300009815fc88e2ff631c356aafc8,1
+67,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","First, we are able to find the change in Q by multiplying 3 times 300. Then the number of electrons can be found by dividing the change of electrons by 900.",a1,arg134787,arg212106,arg134787_arg212106,rr,859f62a32b87e854368051bd6d7f85,-1
+68,"We know that current is equal to the change in charge over a recognized time period, with the equation I=deltaQ/delta T. Plugging in and solving for delta Q, 
+3.0A = deltaQ/(300 seconds)
+deltaQ = 0.01C
+Then we know that delta Q is equal to the charge that pass through the resistor at this time interval and the number of those charges is equal to delta Q/charge of a an electron","Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg212130,arg134787,arg212130_arg134787,wr,b94ac0566e9d05f1bc0c9499071d7e,1
+69,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","you use the change in Q= 3 x 5 x 60, which equals to 900 C, which means that is the charge of the entire system which is why we do not write the /e",a1,arg134787,arg212235,arg134787_arg212235,wr,2e6254b7368d81b056d2c2be8ffbb4,-1
+70,"Current magnitude is : I = delta Q / delta t. If I = 3 Amp and the time t = 300s, I* delta t = delta Q or 3x 300 = 900. Current is measured by the passing of electrons so the label would be 900 per electron or 900/e.","Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg212316,arg134787,arg212316_arg134787,rr,d4ae41b623acf3c5c2dc0bb9780a3b,1
+71,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","According to the formula I=change in Q/change in t, and the information given from the question, we can know that I=3A and t=300s. After the whole calculation, we can get that the Q=900. So the answer should be A.",a1,arg134787,arg212397,arg134787_arg212397,wr,057600b39638613252941e7b33f162,-1
+72,"Using the equation, I=Q/t, rearranging for Q=It, we can solve for the charge that causes the current, thus the number of electrons that have passed through in 300s. Subbing in the given values we obtain 900 e.","Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg212414,arg134787,arg212414_arg134787,wr,639c2195d36f58d40571da5a18efbf,1
+73,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","By manipulating the equation I=dQ/dt, we can find dQ by solving I*dt=(3.0A)*(300s)=900C.
+the question asks for the number of charges of e that pass through the resistor, and thus it is 900e as oppose to 900/e.",a1,arg134787,arg212458,arg134787_arg212458,wr,4f06088414ffeecc0b8216a785fc49,-1
+74,A 4.0 W resistor has a current of 3.0 A in it for 5.0 min (300 s). How many charges pass through the resistor during this time interval? Take e as the charge of an electron,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg212572,arg134787,arg212572_arg134787,rr,1d38b5c47c127a9b83ecc454f4cf55,1
+75,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","Current is the amount of charge passing through a wire per unit time, so by multiplying the time frame by the current, you'll get the amount of charge in coulombs. Dividing by the amount of charge in an electron will get you the number of electrons, or  number of charges, that pass through the resistor during this time interval.",a1,arg134787,arg212753,arg134787_arg212753,rr,ee8eacb94d52d20608426a918da3a8,-1
+76,Using Q= IT where I is 3 A and T is 300 we get the charge which we divide by the charge of an electron to get the number of electrons.,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg212790,arg134787,arg212790_arg134787,rr,14f3001d5dda419026adbbdae40843,1
+77,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","Using the formula for current, I = Q/t, gives the charge value of 3x300 = 900. The number of electrons that pass through this in the given time interval is the total charge divided by the charge of an electron, giving 900/e.",a1,arg134787,arg212900,arg134787_arg212900,rr,a98312531d99cff0794a7f985be212,-1
+78,"Using equation I=Q/t we can calculate what the total charge passing through is in 300s. To determine how many charges this is, you would divide by the charge of an electron since Q is the total charge.","Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg212911,arg134787,arg212911_arg134787,rr,f76507d91a5ef1fd2310bae22d20cb,1
+79,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","We know that the magnitude of the current is equal to the amount of charge passing through a cross section per second (I=Q/t). Since the current and time are given to us in this case, we can rearrange the equation to give us I*t=Q and then plug in the given values to give us our answer",a1,arg134787,arg213136,arg134787_arg213136,rr,8e8fdf0f8a1f00ab800b317aa366c6,-1
+80,"1 amp is defined as the number of coulombs of charge passing through that resistor in a second, therefore 3 amps would be 3 coulombs charge, divided by e multiplied by the number of seconds","Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg213216,arg134787,arg213216_arg134787,rr,5ca02b6ead90bc67f568c8d963e73b,1
+81,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.","Using the formula I=(Q/T), we can manipulate it to Q=IT. From there we get the charge to be 900C. To find the number of charges (electrons), we would then need to divide this number by the charge of one electron, thus B is the right answer.",a1,arg134787,arg213338,arg134787_arg213338,rr,fc9076338a6d1c7bb2ef34abd8e79e,-1
+82,"the magnitude of Current is defined as the total charge passing
+through a cross-section per second.
+in this case, I=3.0A, the time interval is 300s.
+thus the charge should be 900C
+each electron has a charge of e
+900/e gives the number of electrons","Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",a2,arg213433,arg134787,arg213433_arg134787,rr,b181c9a297730b4d392400d02cfb36,1
+83,"Current is the flow of charge with time, so assuming a constant current we can calculate that (current x time) = total charge passing through resistor. 3Ax300s = 900 C. Now this is the total charge, so dividing this by magnitude of the charge of one electron (e) will give us the total # of electrons that pass through.",Because of the equation Q=IT and I=3A and T=300s which means that when you multiply the 2 you get Q=900 and to determine the number of charges that pass through you have to divide by the charge of an electron,a1,arg134787,arg213504,arg134787_arg213504,rr,d4ae59b8737d826209425c4fab5b55,-1

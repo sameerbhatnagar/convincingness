@@ -1,0 +1,78 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,"1/4 recessive aa and 1/4 recessive bb 
+1/4 x 1/4 = 1/16 aabb",a2,arg68732,arg68503,arg68732_arg68503,rr,ee7b40f08ecc3e6ceca31a6f6b2a5d,1
+1,"1/4 recessive aa and 1/4 recessive bb 
+1/4 x 1/4 = 1/16 aabb",9:3:3:1,a1,arg68503,arg72840,arg68503_arg72840,rr,708754cef412a0e37feac91458b8fc,-1
+2,punett,"1/4 recessive aa and 1/4 recessive bb 
+1/4 x 1/4 = 1/16 aabb",a2,arg76453,arg68503,arg76453_arg68503,rr,8eb203e403c4e4f5ad0c22b0a6c240,1
+3,"1/4 recessive aa and 1/4 recessive bb 
+1/4 x 1/4 = 1/16 aabb",Just do a Punett square Just do a Punett squareJust do a Punett squareJust do a Punett squareJust do a Punett square,a1,arg68503,arg187010,arg68503_arg187010,rr,cc33d8d001d9067cbcb7f355866a3f,-1
+4,"The ratio for aabb is 1/16 , the same as AABB.","1/4 recessive aa and 1/4 recessive bb 
+1/4 x 1/4 = 1/16 aabb",a2,arg196935,arg68503,arg196935_arg68503,rr,853d76e4fed364ec714932ca6ad13d,1
+5,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,9:3:3:1,a1,arg68732,arg69547,arg68732_arg69547,rr,710f05a894e40d30408e624d812a4b,-1
+6,if both are recessive,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,a2,arg71791,arg68732,arg71791_arg68732,rr,bdec0e8e8e5c06c514969952e12dc0,1
+7,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,"Proportion of aabb
+gene a = 1/4 
+gene b = 1/4 
+
+product rule ",a1,arg68732,arg71801,arg68732_arg71801,rr,e76157e16bb5609476c036748a4d5c,-1
+8,.,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,a2,arg71837,arg68732,arg71837_arg68732,rr,99e13597aca888836f3437b617fdc8,1
+9,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab, ,a1,arg68732,arg74254,arg68732_arg74254,rr,1ecf0b821c364abdbd7b417b940022,-1
+10,I did the math,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,a2,arg78625,arg68732,arg78625_arg68732,rr,3f723e391f6fc48fb0c52046239973,1
+11,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,a,a1,arg68732,arg78695,arg68732_arg78695,rr,8ea6d35ef00f2b5729baa089d59334,-1
+12, ,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,a2,arg79468,arg68732,arg79468_arg68732,rr,177f9fe28a7f447052d4f0c3344b3b,1
+13,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,.,a1,arg68732,arg80120,arg68732_arg80120,rr,52a0801ec0b18861cc6df508f1b10b,-1
+14,  ,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,a2,arg81006,arg68732,arg81006_arg68732,rr,c11828d46b53cbf827f3a1903a57ce,1
+15,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,NORMAL RATIO,a1,arg68732,arg82743,arg68732_arg82743,rr,e24a676b9c1c6fb60ac2698aa4db99,-1
+16, ,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,a2,arg86699,arg68732,arg86699_arg68732,rr,89e8f909166ff575a315ba47797f9f,1
+17,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,assuming they are on two different genes,a1,arg68732,arg92226,arg68732_arg92226,rr,048559c9100373cd2ce89faba8a70e,-1
+18,P(ab) x P(ab) = 1/16,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,a2,arg93073,arg68732,arg93073_arg68732,rr,8802245ba48176f94d3f163c97d717,1
+19,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,n,a1,arg68732,arg97318,arg68732_arg97318,rr,299fca65b4a9087fdb025b7f11cf4c,-1
+20,9:3:3;1,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,a2,arg98937,arg68732,arg98937_arg68732,rr,b1fbc9050f3eb26b5c9a7100ea970a,1
+21,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,punnet squares,a1,arg68732,arg99943,arg68732_arg99943,rr,137ca1fd2b7a8fec23eef0a630e71a,-1
+22,ync8,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,a2,arg100768,arg68732,arg100768_arg68732,rr,6bb07ec8918333ecde1b6697bf38f0,1
+23,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,classic,a1,arg68732,arg103959,arg68732_arg103959,rr,0a82d2f36cda00b9f5e97c580752ac,-1
+24,9:3:3:1,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,a2,arg105118,arg68732,arg105118_arg68732,rr,9bd4ca10705470328068efc939c871,1
+25,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,9331 ration,a1,arg68732,arg105805,arg68732_arg105805,rr,1eac226fa2a7a10fc647fecd01a00e,-1
+26,. .. ,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,a2,arg106289,arg68732,arg106289_arg68732,rr,c3b72f1e3ddc610a90c7743f1e8ee6,1
+27,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,based on 9:3:3:1 ratio,a1,arg68732,arg106660,arg68732_arg106660,rr,1aecf20e8f704b265316810ff5f9df,-1
+28,zxdcfgvhjkl,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,a2,arg106687,arg68732,arg106687_arg68732,rr,d22b2724721ba0da929fb42ad2e456,1
+29,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,dihybrid cross,a1,arg68732,arg106953,arg68732_arg106953,rr,d5cb6aac310874f98e2fec71d14a59,-1
+30,practice test cross,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,a2,arg111643,arg68732,arg111643_arg68732,rr,54b5fd31243de08ea4b8f00b4966e9,1
+31,AaBb * AaBb = 9/16 AB + 3/16 a/B + 3/16 A/b + 1/16 ab,it is part of the ratio 9:3:3:1,a1,arg68732,arg153824,arg68732_arg153824,rr,824b9f3213e446743a4f906e4c7219,-1
+32,that square in that corner,"9:3:3:1, 1/16 for aabb",a2,arg74251,arg70187,arg74251_arg70187,rr,ff8e434947ba49017eff3d2d477ba7,1
+33,"9:3:3:1, 1/16 for aabb",punnett square,a1,arg70187,arg78314,arg70187_arg78314,rr,3c51f38cd05bf8261f066dceafb818,-1
+34,because,"9:3:3:1, 1/16 for aabb",a2,arg99637,arg70187,arg99637_arg70187,rr,d5e869d27e6619d0c52c27cdb10cf3,1
+35,"9:3:3:1, 1/16 for aabb",yupppp,a1,arg70187,arg102166,arg70187_arg102166,rr,568ae852c10bca7ea1cf795580210e,-1
+36,"9;3;3;1, so 1/16","9:3:3:1, 1/16 for aabb",a2,arg105318,arg70187,arg105318_arg70187,rr,9ff916b24a214164ad7838787f7eb5,1
+37,"Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.",This respect the 9:3:3:1 ratio found in dihybrid crosses. Only one combination can result in the genotype aabb.,a1,arg73645,arg188204,arg73645_arg188204,rr,57ae7dc558c5960c54a5493b1cc596,-1
+38,"In the 9:3:3:1 ration , the 1 out of 16 stands for a fully recessive trait","Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.",a2,arg191710,arg73645,arg191710_arg73645,rr,3ee0a37a3248937a4933289610c18b,1
+39,"Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.",9:3:3:1 ratio with 1 being homozygous in both traits and this adds more depth to my explanation,a1,arg73645,arg195276,arg73645_arg195276,rr,eb8dc012d0575cf565fab1618b6af0,-1
+40,"like the other question, this is a classic dihybrid cross with both parents heteroygous. We can even use the product rule, P(aa)*P(bb)=1/4*1/4=1/16","Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.",a2,arg198203,arg73645,arg198203_arg73645,rr,751857d75ddf3bfa4a76fb930a69ed,1
+41,"Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.",The probability of getting aabb is equal to the multiplication of the probability of getting aa independently (1/4) and the probability of getting bb independently (1/4),a1,arg73645,arg200615,arg73645_arg200615,wr,71d60c00d5a476f9d693bbe5c9f642,-1
+42,in a dihybrid cross only 2/16 will be homozygous recessive for both traits and therefore 1/8,"Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.",a2,arg200865,arg73645,arg200865_arg73645,wr,0a598af9ba2a5ecdd82f039f8fc970,1
+43,"Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.","For one gene the rate would be 1/4 homozygous recessive, squared is 1/16. This continues for other genes.",a1,arg73645,arg207407,arg73645_arg207407,rr,9e23ac17c72a3c803ff59f8ff9f2b5,-1
+44,there is only one case in which the offspring could be aabb out of a total of 2^4 possibilities,"Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.",a2,arg231736,arg73645,arg231736_arg73645,rr,ceb472952df8f79ac8cd4cfc6ba4d2,1
+45,"Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.","We can split this up into two crosses, in which the chance of being recessive for each trait is 1/4. We multiply these to get 1/16",a1,arg73645,arg232372,arg73645_arg232372,rr,b29d23b5cb2fda2826bd333ae17500,-1
+46,"Probability of getting aa from Aa x Aa = 1/4. Probability of getting bb from Bb x Bb = 1/4. Multiply both probabilities because they are independent events: 1/4 * 1/4 = 1/16. Therefore, there is a 1/16 chance that the offspring will be aabb.","Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.",a2,arg233877,arg73645,arg233877_arg73645,rr,fa903f4baabaadd2e0c8af7ccd2ff6,1
+47,"Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.","9:3:3:1 
+
+Also 1/4 is the fraction of recessive in one trait. 1/4*1/4=1/16",a1,arg73645,arg235780,arg73645_arg235780,rr,30cf3bab881f2520b066ce70779c07,-1
+48,"In a dihybrid cross AaBb x AaBb, what fraction of the offspring will be homozygous for both recessive traits 1/16","Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.",a2,arg238359,arg73645,arg238359_arg73645,rr,fffa2c73508a730ac92fa9c1510bdd,1
+49,"Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.",you use the product formula. you would get 1/4 x 1/4 which is equal to 1/16,a1,arg73645,arg239763,arg73645_arg239763,rr,60725268dcac5165159269141c66a0,-1
+50,"Use the punnet squares and then do the calculations, you obtain a 1/4 chance for each of the two conditions and then you multiply","Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.",a2,arg240778,arg73645,arg240778_arg73645,rr,284259f0c39bcaf69a972ef4573497,1
+51,"Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.","I draw the punnet square by myself and obtained my result, there is only a 1/16 chance to obtain a aabb",a1,arg73645,arg241693,arg73645_arg241693,rr,d1f0930d280b954c8be1683bc330ba,-1
+52,"in a dihybrid cross of two heterozygotes, the genotypic ratio is 1:2:1 (homozygous dominant: heterozygous: homozygous recessive). as such, 1/4 of the offspring are homozygous for both traits.","Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.",a2,arg243863,arg73645,arg243863_arg73645,wr,840a38e809f7fddf8ab70f0c884d17,1
+53,"Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.",1/4 x 1/4 = 1/16 and since there is an equal probability of each of the genotypes being used and there are 4 possible outcomes 1/4 for each gives the recessive trait,a1,arg73645,arg245564,arg73645_arg245564,rr,f55e29bb376bc202888327462c195d,-1
+54,"A dihybrid cross with two identical heterozygous parents (likely from a F1 following true breeding), will give you a 9:3:3:1 ratio for the progeny","Classic heterozygote cross. To get aa from Aa x Aa, there is a 1/4 chance. To get bb from Bb x Bb, there is a 1/4 chance. To get both together, there is a (1/4)(1/4)=1/16 chance.",a2,arg253205,arg73645,arg253205_arg73645,rr,f6151527677d3e021298dd0358a5ee,1
+55,classic dihybrid cross 9:3:3:1 ratio where aabb will be the 1/16 probability,rationale ,a1,arg79258,arg100199,arg79258_arg100199,rr,8c102c86fa48da8a78b3f2fdea1ce9,-1
+56,i'm not sure about this one but i am writing as much as I can in order to see other ansers,classic dihybrid cross 9:3:3:1 ratio where aabb will be the 1/16 probability,a2,arg185221,arg79258,arg185221_arg79258,rr,7b01bd60c2f527b011a3aa18d019b3,1
+57,classic dihybrid cross 9:3:3:1 ratio where aabb will be the 1/16 probability,These are both heterozygous so the 9:3:3:1 ratio comes in. only 1 will be homozygous recessive for both,a1,arg79258,arg185542,arg79258_arg185542,rr,da3231695068ba111ce58a62e8022c,-1
+58,"Could do a Punnet square to verify, but following the already established ratios, 1/16 becomes the answer",classic dihybrid cross 9:3:3:1 ratio where aabb will be the 1/16 probability,a2,arg185758,arg79258,arg185758_arg79258,rr,8cf65480352acbf71f20638a76cb5c,1
+59,classic dihybrid cross 9:3:3:1 ratio where aabb will be the 1/16 probability,result is 9:3:3:1 so homozygous recessive is 1/16 that's why choose A,a1,arg79258,arg185990,arg79258_arg185990,rr,a4efbb59c3f3cc914065e25300dae6,-1
+60,"In a Punnett square, only one of the 16 possible genotypes can express both recessive traits without being masked by the dominant allele",classic dihybrid cross 9:3:3:1 ratio where aabb will be the 1/16 probability,a2,arg188053,arg79258,arg188053_arg79258,rr,701f012d7a479a0e753bb465628997,1
+61,classic dihybrid cross 9:3:3:1 ratio where aabb will be the 1/16 probability,"As there is only one AABB, there will be only one aabb",a1,arg79258,arg188467,arg79258_arg188467,rr,9d0546d0b7aa6c3969bf6f51e13b40,-1
+62,do the punnet square and you find that answer HOW MUCH LONGER DO U WANT MY RATIONALE TO BE?,classic dihybrid cross 9:3:3:1 ratio where aabb will be the 1/16 probability,a2,arg190445,arg79258,arg190445_arg79258,rr,2810d543fe5fecbfc494e02a0451fb,1
+63,classic dihybrid cross 9:3:3:1 ratio where aabb will be the 1/16 probability,Do the punnett square. Obtain the answer. Or calculate the following odds: 1/4 x 1/4,a1,arg79258,arg191779,arg79258_arg191779,rr,b30634abcfd3a2d844029f291f1dc1,-1
+64,"so basically you just use 1/4 times 1/4, which is equal to 1/16",classic dihybrid cross 9:3:3:1 ratio where aabb will be the 1/16 probability,a2,arg199911,arg79258,arg199911_arg79258,rr,80cb0109279369a2bf8b830e92ae7b,1
+65,classic dihybrid cross 9:3:3:1 ratio where aabb will be the 1/16 probability,A 9:3:3:1 has the 1 being the frequency of two recessive traits,a1,arg79258,arg201469,arg79258_arg201469,rr,684de023663c65f38e391870a513d4,-1

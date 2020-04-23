@@ -1,0 +1,78 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0, ,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg71865,arg68489,arg71865_arg68489,rr,bdec0e8e8e5c06c514969952e12dc0,1
+1,Crossing AA x aa will give all heterozygous offspring Aa,I'm unsure but this seems right?,a1,arg68489,arg72017,arg68489_arg72017,rr,5c8f45fd300963b510e5e583a85f7a,-1
+2,n,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg72288,arg68489,arg72288_arg68489,rr,f5e4fff3a4a9605b12629bf4cac95f,1
+3,Crossing AA x aa will give all heterozygous offspring Aa,.,a1,arg68489,arg72586,arg68489_arg72586,rr,49576fcc061976107dfa27c933b67d,-1
+4,WW x ww gives all heterozygous,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg72624,arg68489,arg72624_arg68489,rr,9c879c20dda43dc90748042d0eb20f,1
+5,Crossing AA x aa will give all heterozygous offspring Aa,j,a1,arg68489,arg72653,arg68489_arg72653,rr,c0b0fe9e84013a644bb70cd23c69a6,-1
+6, ,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg72692,arg68489,arg72692_arg68489,rr,ba2195b8613d1aa0855a6a7d789f3f,1
+7,Crossing AA x aa will give all heterozygous offspring Aa,because the parents are pure breeding,a1,arg68489,arg72864,arg68489_arg72864,rr,708754cef412a0e37feac91458b8fc,-1
+8,Purebreeding parents give rise to hétérozygote progeny.,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg73047,arg68489,arg73047_arg68489,rr,83298ffad1d5c1507c9d8cc4371e8a,1
+9,Crossing AA x aa will give all heterozygous offspring Aa,gg,a1,arg68489,arg73260,arg68489_arg73260,wr,329e19bb2972198cb210a34be61978,-1
+10,HHxhh = Hh 100%,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg74064,arg68489,arg74064_arg68489,rr,ff8e434947ba49017eff3d2d477ba7,1
+11,Crossing AA x aa will give all heterozygous offspring Aa,PP x pp => 100% heterozygous Pp,a1,arg68489,arg76107,arg68489_arg76107,rr,8b9a35ef268a7af3ffa6e39429cb44,-1
+12,Yy,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg76811,arg68489,arg76811_arg68489,rr,8eb203e403c4e4f5ad0c22b0a6c240,1
+13,Crossing AA x aa will give all heterozygous offspring Aa,notes,a1,arg68489,arg77753,arg68489_arg77753,rr,3340368556c1c3339d531fe5657a11,-1
+14,parents are pureblood homozygous recessive and dominant so the offspring are 100% heterozygous,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg77813,arg68489,arg77813_arg68489,rr,6726b97cb4a2a241b4f7d720d97cb9,1
+15,Crossing AA x aa will give all heterozygous offspring Aa,.,a1,arg68489,arg77885,arg68489_arg77885,rr,3e179fba728baed8c01e997ac36184,-1
+16,.,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg78018,arg68489,arg78018_arg68489,rr,05da4f8e559772632f274bc9ec7be3,1
+17,Crossing AA x aa will give all heterozygous offspring Aa,c,a1,arg68489,arg78905,arg68489_arg78905,rr,0be0ff8557741e78e06fc316bfeeec,-1
+18,textbook answer,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg79142,arg68489,arg79142_arg68489,rr,fcf6db7ca0c22a5512281fbf85e807,1
+19,Crossing AA x aa will give all heterozygous offspring Aa,always F1,a1,arg68489,arg80423,arg68489_arg80423,rr,450594fc663e4d694680ebfdda4895,-1
+20,n,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg80944,arg68489,arg80944_arg68489,rr,c1b78ab4dbd2ab5405cde4e9275677,1
+21,Crossing AA x aa will give all heterozygous offspring Aa,  ,a1,arg68489,arg81031,arg68489_arg81031,rr,c11828d46b53cbf827f3a1903a57ce,-1
+22,.,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg81314,arg68489,arg81314_arg68489,rr,54b602f8b6cbd39d1d6e2ec8f5b893,1
+23,Crossing AA x aa will give all heterozygous offspring Aa,.,a1,arg68489,arg81832,arg68489_arg81832,rr,6be9daa2bf82af5976958bafa6bb13,-1
+24,"bc crossing homo rec w/ homo dom, which yields only hetero ",Crossing AA x aa will give all heterozygous offspring Aa,a2,arg83410,arg68489,arg83410_arg68489,rr,0bb1b73bf390a7f789aa2b784a5f47,1
+25,Crossing AA x aa will give all heterozygous offspring Aa,YES,a1,arg68489,arg86394,arg68489_arg86394,rr,710f05a894e40d30408e624d812a4b,-1
+26,.,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg86961,arg68489,arg86961_arg68489,rr,48b961f1db3dd4876b16e703f47af2,1
+27,Crossing AA x aa will give all heterozygous offspring Aa,.,a1,arg68489,arg91968,arg68489_arg91968,rr,d709f71cb4f0a254ee0d56af55a832,-1
+28,cross AA with aa,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg92277,arg68489,arg92277_arg68489,rr,048559c9100373cd2ce89faba8a70e,1
+29,Crossing AA x aa will give all heterozygous offspring Aa, ,a1,arg68489,arg93084,arg68489_arg93084,rr,8802245ba48176f94d3f163c97d717,-1
+30,F1 is a mix of the two pure breeding parents,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg99054,arg68489,arg99054_arg68489,rr,b1fbc9050f3eb26b5c9a7100ea970a,1
+31,Crossing AA x aa will give all heterozygous offspring Aa,Aa from parents AA and aa,a1,arg68489,arg99662,arg68489_arg99662,rr,d5e869d27e6619d0c52c27cdb10cf3,-1
+32,AA x aa = Aa,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg100893,arg68489,arg100893_arg68489,rr,47bcc3f28dd94412885583182b09a0,1
+33,Crossing AA x aa will give all heterozygous offspring Aa,F1 generation with Mendel is hetero,a1,arg68489,arg103689,arg68489_arg103689,rr,be4ae640739623ecce5aa492a2e8e1,-1
+34,Because heterozygous ,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg104669,arg68489,arg104669_arg68489,wr,268002bfc7fcb28d6bdc37f9256674,1
+35,Crossing AA x aa will give all heterozygous offspring Aa,AA*aa=A/a,a1,arg68489,arg105797,arg68489_arg105797,rr,9ff916b24a214164ad7838787f7eb5,-1
+36,one gene trait pure-breeding,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg105858,arg68489,arg105858_arg68489,rr,1eac226fa2a7a10fc647fecd01a00e,1
+37,Crossing AA x aa will give all heterozygous offspring Aa,Knowledge,a1,arg68489,arg106507,arg68489_arg106507,rr,c275a3dcaee83c830c11a05eb20c49,-1
+38,ljkljkjn.,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg107394,arg68489,arg107394_arg68489,rr,0d4f219b69a784ccd808051eac7845,1
+39,Crossing AA x aa will give all heterozygous offspring Aa,"only the P generation because after the first cross two offspring will be homozygous, 1 homo and 1 hetero",a1,arg68489,arg185293,arg68489_arg185293,wr,754a94af492f5a2a02564805a0c5eb,-1
+40,"Both parents are homozygous, one recessive and one dominant, necessarily creating exclusively heterozygous offspring",Crossing AA x aa will give all heterozygous offspring Aa,a2,arg185460,arg68489,arg185460_arg68489,rr,d0c086d8b9728ba0f9968af69a535b,1
+41,Crossing AA x aa will give all heterozygous offspring Aa,"P generation is always true-breeding dominant and recessive. After the first cross, the F1 generation must be heterozygous and appear dominant phenotype",a1,arg68489,arg186217,arg68489_arg186217,rr,8c97974493a339b154793e66c496ec,-1
+42,the phentype and the genotype are what is numbers probability poo,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg186601,arg68489,arg186601_arg68489,rr,36180e824619c72eb4686ff82b2870,1
+43,Crossing AA x aa will give all heterozygous offspring Aa,The cross between pure breeds of the opposite phenotype would always give a heterozygous phenotype .,a1,arg68489,arg188304,arg68489_arg188304,rr,e36459c889ec8ce820903ab849be5b,-1
+44,the F2 generation is ususally heterozygous as you cross two different parental breeds,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg189003,arg68489,arg189003_arg68489,wr,2550db4eafb3efc9fdbbf17f53c876,1
+45,Crossing AA x aa will give all heterozygous offspring Aa,Because in the other generations there can always be homozygous dominants and recessives,a1,arg68489,arg190123,arg68489_arg190123,wr,41c79593ffb7857a7ac3a97563285b,-1
+46,Because the parents are AA  x aa so they give off F1 generation: Aa x Aa for every progeny,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg191856,arg68489,arg191856_arg68489,rr,9d0546d0b7aa6c3969bf6f51e13b40,1
+47,Crossing AA x aa will give all heterozygous offspring Aa,"The F1 generation will be heterozygous as one parent is pure breeding DD while the other has a recessive dd phenotype which, when crossed together, always leads to a Dd genotype.",a1,arg68489,arg191863,arg68489_arg191863,rr,c75778f17bd5973781992a29ed129a,-1
+48,a homozygous dominant and homozygous recessive results in heterozygous offspring,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg192809,arg68489,arg192809_arg68489,rr,3962319de8a4da9a4d63bd889e1904,1
+49,Crossing AA x aa will give all heterozygous offspring Aa,the F1 generation is the result of a cross between two pure breed parents with differing traits (AA and aa). The offspring will thus be 100% Aa.,a1,arg68489,arg192927,arg68489_arg192927,rr,d7b0cae72263cf161f2676714f9066,-1
+50,"If the parents are both true breeds, and one is recessive and the other is dominant than 100% of offspring will be heterozygous.",Crossing AA x aa will give all heterozygous offspring Aa,a2,arg194521,arg68489,arg194521_arg68489,rr,a93ead596d3e93cc7c3baf70527825,1
+51,Crossing AA x aa will give all heterozygous offspring Aa,"F1 generation as both parents differ in one genetic chromosome, therefore, their offspring will be heterozygous",a1,arg68489,arg201535,arg68489_arg201535,rr,0a598af9ba2a5ecdd82f039f8fc970,-1
+52,"Two true breeding parents are two different homozygous alleles. 
+Their progeny must be heterozygous.",Crossing AA x aa will give all heterozygous offspring Aa,a2,arg206190,arg68489,arg206190_arg68489,rr,099516baa7671387394e18f88f2f99,1
+53,Crossing AA x aa will give all heterozygous offspring Aa,"because it cannot be the parents, nor the F1 generation. It cannot be F2 because we have homozygous recessive",a1,arg68489,arg212542,arg68489_arg212542,wr,4df42c6efa9393fbda0cd28c417258,-1
+54,Parental generation cross: AA x aa. F1 must be heterozygous Aa. But they express the dominant phenotype. Aa x Aa give 3:1 ratio phenotypes in F2.,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg220351,arg68489,arg220351_arg68489,rr,7b5937408b2c9b0be4f0036ac74164,1
+55,Crossing AA x aa will give all heterozygous offspring Aa,c is right because Mendel ignored all other traits. D is wrong because he looked at more than one matin.,a1,arg68489,arg230188,arg68489_arg230188,rr,f57af06167bbc10941e05a09d4fc50,-1
+56,"In a Mendelian monohybrid cross, which generation is always completely heterozygous? 
+
+ ALWAYS",Crossing AA x aa will give all heterozygous offspring Aa,a2,arg238473,arg68489,arg238473_arg68489,rr,fffa2c73508a730ac92fa9c1510bdd,1
+57,Crossing AA x aa will give all heterozygous offspring Aa,"Which of the following represents a test cross?
+
+
+A. Ww x WW
+
+B. ww x WW
+
+C. Ww x Ww
+
+D. WW x WW",a1,arg68489,arg239186,arg68489_arg239186,rr,3cb1bcf49a5156777764cd4cade4e0,-1
+58,crossing two pure breds always gives heterozygous this is mendels rationale,Crossing AA x aa will give all heterozygous offspring Aa,a2,arg239967,arg68489,arg239967_arg68489,rr,a401f2426415f5b7a37dee0bc47d09,1
+59,Crossing AA x aa will give all heterozygous offspring Aa,"In a dihybrid cross AaBb x AaBb, what fraction of the offspring will be homozygous for both recessive traits?",a1,arg68489,arg243366,arg68489_arg243366,rr,7676492bc93fe31074d6ddca1523c2,-1
+60,always heterozygous ,Homozygous dominant x homozygous recessive,a2,arg71807,arg70309,arg71807_arg70309,rr,e76157e16bb5609476c036748a4d5c,1
+61,Homozygous dominant x homozygous recessive,because ,a1,arg70309,arg75861,arg70309_arg75861,rr,d53afd173c3f5093853af6b1ad4d38,-1
+62,a,Homozygous dominant x homozygous recessive,a2,arg78952,arg70309,arg78952_arg70309,rr,8ea6d35ef00f2b5729baa089d59334,1
+63,Homozygous dominant x homozygous recessive,"Parents are AA and aa, F1 generation is Aa gametes",a1,arg70309,arg99746,arg70309_arg99746,rr,49de27d597d056c2f2d9261a80f9a8,-1
+64,trust,Homozygous dominant x homozygous recessive,a2,arg104566,arg70309,arg104566_arg70309,rr,080a3f7efc38517b8b22a37ab0ee91,1

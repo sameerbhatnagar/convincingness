@@ -1,0 +1,349 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,RF = .117,40 + 32 = 72; 72/617 = 0.117 x 100 = 11.7,a2,arg127877,arg73803,arg127877_arg73803,rr,dd1b4189a8ac774a3a58a6ffd278d1,1
+1,40 + 32 = 72; 72/617 = 0.117 x 100 = 11.7,hjnhj,a1,arg73803,arg128041,arg73803_arg128041,rr,b2dc02b7b0620f746fd7977a3e3e63,-1
+2,mmmmmmmmmmmm,40 + 32 = 72; 72/617 = 0.117 x 100 = 11.7,a2,arg133079,arg73803,arg133079_arg73803,rr,0a82d2f36cda00b9f5e97c580752ac,1
+3,40 + 32 = 72; 72/617 = 0.117 x 100 = 11.7,hhkjlhkj,a1,arg73803,arg134145,arg73803_arg134145,rr,160bdea33fc0de01bc7240ac29693d,-1
+4,Dddddrr,40 + 32 = 72; 72/617 = 0.117 x 100 = 11.7,a2,arg135686,arg73803,arg135686_arg73803,rr,14899b064827f55df8c48614f4274f,1
+5,40 + 32 = 72; 72/617 = 0.117 x 100 = 11.7,uiop[p,a1,arg73803,arg136811,arg73803_arg136811,wr,4df2f6116d12bcb698b5b6a775933e,-1
+6,whatttt,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg137767,arg135153,arg137767_arg135153,wr,1a91f81232778722fa77d9a510dfbe,1
+7,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",Based on my knowledge this is the dagger answer that will restore balance to the force.,a1,arg135153,arg206369,arg135153_arg206369,rr,e269d62d6994ccca7aff6fcde30e58,-1
+8,the genes are on the same chromosome and are 11.7 cM apart,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg206395,arg135153,arg206395_arg135153,rr,d8fd10340bfb930d8a59e59e51359a,1
+9,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",The progeny proportion is skewed and the calculation is (40+32)/(40+32+285+260),a1,arg135153,arg206642,arg135153_arg206642,wr,c5147c1b67c49927d6b7ef44c8749e,-1
+10,"The F1 of a dihybrid parental cross are yellow and round seeded pea plants.
+
+The F1 was testcrossed, giving the following results","parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg206685,arg135153,arg206685_arg135153,rr,b7df7271f31c316697bac696957a39,1
+11,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","I'm not sure about the answer I chose, but I think it should be this. the genes are linked, and the distance between them is 48.6 cM",a1,arg135153,arg207326,arg135153_arg207326,wr,9d9a2541f5086bf2dbb958d9100dd8,-1
+12,Based on my knowledge this is the dagger answer that will restore balance to the force,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg207465,arg135153,arg207465_arg135153,wr,69226f0b06fd8222b03f9261e554f0,1
+13,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",The chromosomes that are linked... are also on the same chromosome... so we should look for the short distance.,a1,arg135153,arg208037,arg135153_arg208037,rr,32cc4976517d556e4bd21531dbde83,-1
+14,the answer i choose is my own and i just want to see what others think,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg208720,arg135153,arg208720_arg135153,rr,6aa3141c75207df510466b321af54f,1
+15,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","Linked genes occur on the same chromosome, therefore, tend to be inherited together",a1,arg135153,arg209000,arg135153_arg209000,rr,f0d5d7cc1bb3645de472a5aa1cb5d4,-1
+16,because I believe that this is the answer for this specific question,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg209211,arg135153,arg209211_arg135153,wr,41c79593ffb7857a7ac3a97563285b,1
+17,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",the genes are on the same chromosome and are 11.7 cM apart,a1,arg135153,arg209370,arg135153_arg209370,rr,72c895b304c0a6e1c658df40cea1e5,-1
+18,The genes are linked and the recombinant frequency is 285/617= 0.486cM,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg209554,arg135153,arg209554_arg135153,wr,ba03cf7466624efadbe6242cdda7e3,1
+19,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","The genes should be unlinked, since the RF value is equal to 0.88 centiMorgan.",a1,arg135153,arg209652,arg135153_arg209652,wr,c7193b8efa71596d7f375bc34271f6,-1
+20,The RF is 545/617=0.88 so the genes are unlinked. I don't know why I don't have the same numbers as the answers.,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg210422,arg135153,arg210422_arg135153,wr,5f0df47c28d1b11d5e56f5af7732d9,1
+21,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","The F1 of a dihybrid parental cross are yellow and round seeded pea plants.
+
+The F1 was testcrossed, giving the following results
+
+round, yellow 40
+
+round, green 260
+
+wrinkled, yellow 285",a1,arg135153,arg210567,arg135153_arg210567,rr,d52cb885741df004f221c387f1769d,-1
+22,"the genes are linked and then we do the formula It fives o,117 X 100% means 11,7 cM appart.","parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg210725,arg135153,arg210725_arg135153,rr,1182fd51f65265d9fa0f215476622e,1
+23,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","The F1 of a dihybrid parental cross are yellow and round seeded pea plants.
+The F1 was testcrossed, giving the following results.",a1,arg135153,arg211556,arg135153_arg211556,wr,10ec8e3a50e029f1050a03bbf9710b,-1
+24,"The genes are on the same chromosome and the distance between them is 88.3cM...
+why is it 11.7 (1-0.883=0.117)??","parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg221685,arg135153,arg221685_arg135153,rr,cbdf7e56687436116cd12da04d726e,1
+25,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",WOuldn't they be unlinked? if they were linked there should be more progeny that resemble parental phenotypes.,a1,arg135153,arg222487,arg135153_arg222487,wr,bf9c688799bd0587f7eabab4295383,-1
+26,"The F1 of a dihybrid parental cross are yellow and round seeded pea plants.
+
+The F1 was testcrossed, giving the following results","parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg224425,arg135153,arg224425_arg135153,rr,ed7e6b53f4994790ba59aca16b78d6,1
+27,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","Round is dominant R and yellow is dominant Y. so r is wrinkled and y is green. the cross is Rr/Yy * rr/yy. Gametes of F1 should be RY, ry or rY and Ry with recombination. 
+y/r=0.13, 
+Peas AGAIN",a1,arg135153,arg228980,arg135153_arg228980,rr,2810d543fe5fecbfc494e02a0451fb,-1
+28,"A plant of genotype C/C;d/d is crossed to c/c;D/D and an F1 testcrossed to c/c;d/d. If the genes are linked and 40 map units apart, the percentage of c/c;d/d recombinants will be","parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg231769,arg135153,arg231769_arg135153,rr,cf1fe21f7b3dc9be473665c9e08df9,1
+29,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","The maize genes sh and bz are linked, 40 map units apart. If a plant sh + bz/sh bz + is selfed, what proportion of the progeny will be sh bz/sh bz?",a1,arg135153,arg232861,arg135153_arg232861,rr,c765d1c99b80ecdf3f96f19e42f4d4,-1
+30,What proportion of the progeny would be expected to be heterozygous for all five genes?,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg234117,arg135153,arg234117_arg135153,rr,0d0905678fc44ce0fdc960b0bb6167,1
+31,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","recombinants are the round, green and wrinkled yellow and the total number of these in the F2 generation divided by the total number of offspring is the map distance between them",a1,arg135153,arg237714,arg135153_arg237714,wr,bf82d348d6679b0496a6234f127ba7,-1
+32,"when doing the calculations this is what I get, the genes are on the same chromosome and are 11.7 cM apart","parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg238660,arg135153,arg238660_arg135153,rr,2cde0759562626fda57887aefa6810,1
+33,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","Sorry, but there are currently no rationales in the database that have been marked as expert for the correct answer choice(s).",a1,arg135153,arg238736,arg135153_arg238736,rr,3a0f3438a565d68e8265d28cb5a20d,-1
+34,"A plant of genotype C/C;d/d is crossed to c/c;D/D and an F1 testcrossed to c/c;d/d. If the genes are linked and 40 map units apart, the percentage of c/c;d/d recombinants will be","parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg238835,arg135153,arg238835_arg135153,rr,952224f428b3e5d9b939631a9defa7,1
+35,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",honestly a guess I am confused please help and more depth,a1,arg135153,arg238920,arg135153_arg238920,wr,754a94af492f5a2a02564805a0c5eb,-1
+36,I hope I hope I hope I hope I hope I hope I hope I hope I hope I hope I hope I hope I hope I hope,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg239727,arg135153,arg239727_arg135153,rr,57e34afe8c66ff520e6ca14a1c09d1,1
+37,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","hot chocolate for mental heatlh
+hot chocolate for mental heatlh
+hot chocolate for mental heatlh
+hot chocolate for mental heatlh
+hot chocolate for mental heatlh
+hot chocolate for mental heatlh",a1,arg135153,arg240299,arg135153_arg240299,wr,e7559f2e1705bccfad6b27e2258abf,-1
+38,I don't know what you want for me mydalite please just let me answer a stupid question without writing this.,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg240493,arg135153,arg240493_arg135153,rr,e9a6a12d3511a68252c0f7f5fc1a66,1
+39,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","Using the frequency equation (assuming all round, yellow and wrinkled, green are recombinant due to their small frequency relative to others), 11.7% was calculated, and 11.7 cM apart is its equivalence.",a1,arg135153,arg241091,arg135153_arg241091,rr,fa903f4baabaadd2e0c8af7ccd2ff6,-1
+40,"crossing over between 2 linked heterozygous loci close
+C. independent assortment of 2 unlinked heterozygous loci","parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg241195,arg135153,arg241195_arg135153,rr,b522fbb58dc17ebd898d946d316cfd,1
+41,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","The parental gametes are Yr and yR. Therefore, rf = 72/617 = 0.117cm apart.",a1,arg135153,arg241260,arg135153_arg241260,wr,ca97ba7f611f7dd6186d9a713558a8,-1
+42,"since there are more recombinants than parental types, Which of the following is correct about the two genes for pea texture and pea colour?","parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg241451,arg135153,arg241451_arg135153,rr,f7c0eb70420f32fa400aa3b3a617fb,1
+43,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",depth depth depth depth depth depth depth depth depth depth depth depth depth depth depth,a1,arg135153,arg241791,arg135153_arg241791,wr,63557d310c4ce6ef6e8cf5c279b600,-1
+44,"genes are linked and are 6.25 mu apart
+
+C. The genes are linked and are 12.5 mu apart
+
+D. The genes are linked and are 25 mu apart","parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg241924,arg135153,arg241924_arg135153,wr,0dd25bf4271022a430f458130d935a,1
+45,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",the reciprocal exchange between homologous chromosomes is essentially random None of the above,a1,arg135153,arg242805,arg135153_arg242805,rr,3a813cea35613729b5370754f7fa68,-1
+46,I am writing this solely on the basis of my knowledge.,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg243488,arg135153,arg243488_arg135153,rr,77d5c06f5dd4cc8271bfc6e7390c8f,1
+47,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","because if you know, you know. If you don't know, you don't know.",a1,arg135153,arg244964,arg135153_arg244964,rr,a4efbb59c3f3cc914065e25300dae6,-1
+48,"I don't know how to do this; I though u had to find recombinant number and divide by total types, I got 88 %","parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg245262,arg135153,arg245262_arg135153,rr,ecf9c6571349211d23b1488e61b84e,1
+49,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","The F1 of a dihybrid parental cross are yellow and round seeded pea plants.
+
+The F1 was testcrossed, giving the following results
+
+round, yellow 40
+
+round, green 260
+
+wrinkled, yellow 285
+
+wrinkled, green 32",a1,arg135153,arg245506,arg135153_arg245506,rr,e9dd82fb49cbc6c1f61f6930dbc839,-1
+50,guessing. No further explanation is required to solve this question.,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg245700,arg135153,arg245700_arg135153,rr,c0bf50b4127516fec2f23a714be712,1
+51,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","he F1 was testcrossed, giving the following results
+
+round, yellow 40
+
+round, green 260
+
+wrinkled, yellow 285
+
+wrinkled, green 32
+
+Which of the following is correct",a1,arg135153,arg245985,arg135153_arg245985,wr,ba7aa1aebeccd8a8f7e9b64c90f985,-1
+52,"Determine the sequence of genes along a chromosome based on the
+
+following recombination frequencies.","parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg246242,arg135153,arg246242_arg135153,wr,f7301be228b9cd2ae8ced475e16cb8,1
+53,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",i honestly do not know what to think this question confused me bigtime lord,a1,arg135153,arg246706,arg135153_arg246706,rr,fc13639375c6bbf3c6925b790383f9,-1
+54,"The F1 of a dihybrid parental cross are yellow and round seeded pea plants.
+
+The F1 was testcrossed, giving","parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg246940,arg135153,arg246940_arg135153,rr,80e052297206f21b8c3de08638977f,1
+55,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",depth depth depth depth depth depth depth depth depth depth depth depth depth depth depth,a1,arg135153,arg247182,arg135153_arg247182,rr,669fbfe05dbd85112d37a83184daf8,-1
+56,Which of the following is correct about the two genes for pea texture and pea colour?,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg247665,arg135153,arg247665_arg135153,rr,0e0eb905e3ad75dbe188d0fe0e6fb2,1
+57,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",v. the genes are on the same chromosome and are 11.7 cM apart,a1,arg135153,arg248497,arg135153_arg248497,rr,c9490c20513cd10873dd59f3b68c10,-1
+58,"The F1 of a dihybrid parental cross are yellow and round seeded pea plants.
+The F1 was testcrossed, giving the following results
+round, yellow 40
+round, green 260
+wrinkled, yello","parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg248638,arg135153,arg248638_arg135153,rr,e948580ed9173add8689035e17c658,1
+59,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",The Q and P genes are linked and 20 map units apart. In the cross Qp/qP x qp/qp what fraction of the progeny will be QP/qp?,a1,arg135153,arg248663,arg135153_arg248663,rr,ad541efe619fa2c2e113c48f0b6b53,-1
+60,The measured distance between genes D and E in a two point test cross is 50 map units. What does this mean in physical terms?,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM",a2,arg248717,arg135153,arg248717_arg135153,wr,04a32f41a1e4de855718a66d10aafa,1
+61,"parental = Ry and rY 
+recombinant = RY and ry
+R(r-y) = 40+32/617 (total)
+= 0.117 (x100cM)
+= 11.7cM","The F1 of a dihybrid parental cross are yellow and round seeded pea plants.
+
+The F1 was testcrossed, giving the following results
+
+round, yellow 40",a1,arg135153,arg251703,arg135153_arg251703,rr,b93788079b11828db3f660965f6274,-1
+62,I’m not really sure but this is what I’m going with even though I think it is wrong,"The F1 gametes must be yR and Yr, given the large proportion of offspring exhibiting one dominant and one recessive phenotype. Based on this, the RF is 72/617=0.117 which corresponds to an 11.7 cM map distance.",a2,arg209803,arg201798,arg209803_arg201798,wr,e0d6dbfc15685e9555f5bf06898651,1
+63,"The F1 gametes must be yR and Yr, given the large proportion of offspring exhibiting one dominant and one recessive phenotype. Based on this, the RF is 72/617=0.117 which corresponds to an 11.7 cM map distance.",One Drosophila genotype P m/P m is crossed with another genotype p m/p m. If the genes are very closely linkedOne Drosophila genotype P m/P m is crossed with another genotype p m/p m. If the genes are very closely linked,a1,arg201798,arg234615,arg201798_arg234615,rr,81321f84bd424d3514ec0ab2c0aca2,-1
+64,The genes cannot be linked because of the high recombination frequency but the numbers are a little off,"The F1 gametes must be yR and Yr, given the large proportion of offspring exhibiting one dominant and one recessive phenotype. Based on this, the RF is 72/617=0.117 which corresponds to an 11.7 cM map distance.",a2,arg237448,arg201798,arg237448_arg201798,rr,eff6862842ac615ec965161eecf4bf,1
+65,"The F1 gametes must be yR and Yr, given the large proportion of offspring exhibiting one dominant and one recessive phenotype. Based on this, the RF is 72/617=0.117 which corresponds to an 11.7 cM map distance.",During crossing overDuring crossing overDuring crossing overDuring crossing overDuring crossing overDuring crossing overDuring crossing overDuring crossing overDuring crossing overDuring crossing overDuring crossing over,a1,arg201798,arg244487,arg201798_arg244487,rr,7069978eee92f961c62cdf3f449540,-1

@@ -1,0 +1,91 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,on X chromosome,Most sex linked genes are on the X chromosome,a2,arg77836,arg69961,arg77836_arg69961,rr,3340368556c1c3339d531fe5657a11,1
+1,Most sex linked genes are on the X chromosome,s,a1,arg69961,arg78079,arg69961_arg78079,rr,f5e4fff3a4a9605b12629bf4cac95f,-1
+2, ,Most sex linked genes are on the X chromosome,a2,arg78130,arg69961,arg78130_arg69961,rr,dd1b4189a8ac774a3a58a6ffd278d1,1
+3,Most sex linked genes are on the X chromosome,m,a1,arg69961,arg78574,arg69961_arg78574,rr,d53afd173c3f5093853af6b1ad4d38,-1
+4,ya,Most sex linked genes are on the X chromosome,a2,arg79037,arg69961,arg79037_arg69961,rr,841dca9eb28915b9a1d1de4bcdf39b,1
+5,Most sex linked genes are on the X chromosome, ,a1,arg69961,arg79946,arg69961_arg79946,wr,0afa302600bf72169f66c146a163ce,-1
+6,sex linked -> x linked,Most sex linked genes are on the X chromosome,a2,arg81166,arg69961,arg81166_arg69961,rr,54b602f8b6cbd39d1d6e2ec8f5b893,1
+7,Most sex linked genes are on the X chromosome,ll,a1,arg69961,arg87115,arg69961_arg87115,rr,e969de6f57d3ccca6cfb4d0560708d,-1
+8,.,Most sex linked genes are on the X chromosome,a2,arg87926,arg69961,arg87926_arg69961,rr,48b961f1db3dd4876b16e703f47af2,1
+9,Most sex linked genes are on the X chromosome,.,a1,arg69961,arg87984,arg69961_arg87984,rr,49576fcc061976107dfa27c933b67d,-1
+10,"X chromosome is larger than the Y chromosome
+",Most sex linked genes are on the X chromosome,a2,arg92936,arg69961,arg92936_arg69961,rr,8802245ba48176f94d3f163c97d717,1
+11,Most sex linked genes are on the X chromosome,lib,a1,arg69961,arg94658,arg69961_arg94658,rr,0bb1b73bf390a7f789aa2b784a5f47,-1
+12,.,Most sex linked genes are on the X chromosome,a2,arg96762,arg69961,arg96762_arg69961,rr,ec0af916fb5a693fb11f8fe27aa0c6,1
+13,Most sex linked genes are on the X chromosome, bb,a1,arg69961,arg97261,arg69961_arg97261,rr,299fca65b4a9087fdb025b7f11cf4c,-1
+14,yup,Most sex linked genes are on the X chromosome,a2,arg97531,arg69961,arg97531_arg69961,rr,b3e7bae43ae19a10a6ff766e0972d0,1
+15,Most sex linked genes are on the X chromosome,this is the answer,a1,arg69961,arg97984,arg69961_arg97984,rr,1ecf0b821c364abdbd7b417b940022,-1
+16,x link,Most sex linked genes are on the X chromosome,a2,arg99127,arg69961,arg99127_arg69961,rr,176a63efe79737594c0bbdf9767c5a,1
+17,Most sex linked genes are on the X chromosome,.................,a1,arg69961,arg99447,arg69961_arg99447,rr,3e179fba728baed8c01e997ac36184,-1
+18,true,Most sex linked genes are on the X chromosome,a2,arg100086,arg69961,arg100086_arg69961,rr,8c102c86fa48da8a78b3f2fdea1ce9,1
+19,Most sex linked genes are on the X chromosome,x linked,a1,arg69961,arg100690,arg69961_arg100690,rr,d4db6473770e13b88e945e6d720b09,-1
+20,That is the définition.,Most sex linked genes are on the X chromosome,a2,arg101389,arg69961,arg101389_arg69961,rr,83298ffad1d5c1507c9d8cc4371e8a,1
+21,Most sex linked genes are on the X chromosome,X-linked,a1,arg69961,arg103575,arg69961_arg103575,rr,be4ae640739623ecce5aa492a2e8e1,-1
+22,Rationale,Most sex linked genes are on the X chromosome,a2,arg104343,arg69961,arg104343_arg69961,rr,9e9f367dbcc4bb2bca45bde40b4c94,1
+23,Most sex linked genes are on the X chromosome,pedigrees are too small,a1,arg69961,arg104414,arg69961_arg104414,wr,04212d5fb7cf609d17a01f9961ea78,-1
+24,X chromosome is a sex chromosome,Most sex linked genes are on the X chromosome,a2,arg104643,arg69961,arg104643_arg69961,rr,080a3f7efc38517b8b22a37ab0ee91,1
+25,Most sex linked genes are on the X chromosome,ddfzcv ,a1,arg69961,arg104761,arg69961_arg104761,rr,b292ad26093d12c6f412c0099a34dd,-1
+26,x is big,Most sex linked genes are on the X chromosome,a2,arg105079,arg69961,arg105079_arg69961,rr,c26349749ee6d3652a416f7928117e,1
+27,Most sex linked genes are on the X chromosome,based on what we were told in class,a1,arg69961,arg105594,arg69961_arg105594,rr,cb46ddd5247e6998bfafd9754c1f38,-1
+28,yeet,Most sex linked genes are on the X chromosome,a2,arg105669,arg69961,arg105669_arg69961,rr,137ca1fd2b7a8fec23eef0a630e71a,1
+29,Most sex linked genes are on the X chromosome,boys suck,a1,arg69961,arg105715,arg69961_arg105715,rr,0d4f219b69a784ccd808051eac7845,-1
+30,hzdiocjh,Most sex linked genes are on the X chromosome,a2,arg106209,arg69961,arg106209_arg69961,rr,9ff916b24a214164ad7838787f7eb5,1
+31,Most sex linked genes are on the X chromosome,dude for real,a1,arg69961,arg107447,arg69961_arg107447,rr,60f664c85c5bcbe044c8282c286ff1,-1
+32,Definition,Most sex linked genes are on the X chromosome,a2,arg127810,arg69961,arg127810_arg69961,rr,dd1b4189a8ac774a3a58a6ffd278d1,1
+33,Most sex linked genes are on the X chromosome,good,a1,arg69961,arg129479,arg69961_arg129479,rr,268002bfc7fcb28d6bdc37f9256674,-1
+34,lkjhgf,Most sex linked genes are on the X chromosome,a2,arg133858,arg69961,arg133858_arg69961,rr,05da4f8e559772632f274bc9ec7be3,1
+35,Most sex linked genes are on the X chromosome,X-linked,a1,arg69961,arg135028,arg69961_arg135028,rr,2d622cf72648bca831a62b29d9a7ad,-1
+36,X- linked is x chromosome,Most sex linked genes are on the X chromosome,a2,arg136299,arg69961,arg136299_arg69961,rr,d709f71cb4f0a254ee0d56af55a832,1
+37,Most sex linked genes are on the X chromosome,qwertyuiop,a1,arg69961,arg136329,arg69961_arg136329,rr,d22b2724721ba0da929fb42ad2e456,-1
+38,jlbkb,Most sex linked genes are on the X chromosome,a2,arg136496,arg69961,arg136496_arg69961,rr,1a91f81232778722fa77d9a510dfbe,1
+39,Most sex linked genes are on the X chromosome,because,a1,arg69961,arg136501,arg69961_arg136501,rr,e969de6f57d3ccca6cfb4d0560708d,-1
+40,jdtyutydj,Most sex linked genes are on the X chromosome,a2,arg139605,arg69961,arg139605_arg69961,rr,0d4f219b69a784ccd808051eac7845,1
+41,Most sex linked genes are on the X chromosome,just because,a1,arg69961,arg141949,arg69961_arg141949,rr,f277e27b0b9f9b9d37fcae54939ac0,-1
+42,iskkkk,Most sex linked genes are on the X chromosome,a2,arg142109,arg69961,arg142109_arg69961,rr,708754cef412a0e37feac91458b8fc,1
+43,Most sex linked genes are on the X chromosome,definition,a1,arg69961,arg153910,arg69961_arg153910,rr,ef7cec2ad22c937d06e4c5920d954d,-1
+44,Duh,Therefore usually passed down from mother to son. ,a2,arg78588,arg78294,arg78588_arg78294,wr,f83e757fc9e0755b64fe6e172527ae,1
+45,Therefore usually passed down from mother to son. , ,a1,arg78294,arg78866,arg78294_arg78866,rr,708754cef412a0e37feac91458b8fc,-1
+46,a,Therefore usually passed down from mother to son. ,a2,arg81179,arg78294,arg81179_arg78294,rr,c11828d46b53cbf827f3a1903a57ce,1
+47,Therefore usually passed down from mother to son. ,yes,a1,arg78294,arg86868,arg78294_arg86868,rr,75151c3099ca1bb0987f709884fe02,-1
+48,mmmm,Therefore usually passed down from mother to son. ,a2,arg99008,arg78294,arg99008_arg78294,rr,7c68a2b6422c9ef74de7821cbd22e3,1
+49,"The X chromosome is much bigger than the Y chromosome (and there are more X-chromosomes in the world than Y-chromosomes), allowing for more genes to be found on it. Sex-linked traits can be identified with a pedigree and can be inherited by either sex. Males simply have a higher likelihood of expressing since males only have one X chromosome.","Both male and female can have sex linked traits, and both the X and Y gene are sex genes. They can't be identified clearly with just a pedigree due to the amount of genotypes on the chromosomes.",a1,arg105819,arg188780,arg105819_arg188780,wr,32cc4976517d556e4bd21531dbde83,-1
+50,"A sex-linked trait is a trait:
+
+
+A. That can be inherited by only males
+
+B. That can be inherited by only females
+
+C. Whose gene is almost always located on the X-chromosomes
+
+D. That cannot be accurately identified using a pedigree","The X chromosome is much bigger than the Y chromosome (and there are more X-chromosomes in the world than Y-chromosomes), allowing for more genes to be found on it. Sex-linked traits can be identified with a pedigree and can be inherited by either sex. Males simply have a higher likelihood of expressing since males only have one X chromosome.",a2,arg195760,arg105819,arg195760_arg105819,rr,dd2d014da2e300a181076dbb085e70,1
+51,"The X chromosome is much bigger than the Y chromosome (and there are more X-chromosomes in the world than Y-chromosomes), allowing for more genes to be found on it. Sex-linked traits can be identified with a pedigree and can be inherited by either sex. Males simply have a higher likelihood of expressing since males only have one X chromosome.","X-linked inheritance is sometimes referred to as “criss-cross” inheritance. This is because:
+
+A.
+The inheritance pattern is confusing.
+
+B.
+The phenotype of progeny is always the same as their parent of opposite sex.
+
+C.
+The phenotype of the sons reflects the genotype of the mother.
+
+D.
+The phenotype of the daughters reflects the genotype of the father.
+
+E.
+The phenotype of the sons is always the same as their mothers. 
+
+close",a1,arg105819,arg195880,arg105819_arg195880,rr,11f1a8875488de92d068d9568ca86d,-1
+52,Sex-linked traits are located on the x-chromosome because they are a larger chromosome so they can carry more genes then the male. Males are normally effected since they have only one x-chromosome carrying the mutation.,"The X chromosome is much bigger than the Y chromosome (and there are more X-chromosomes in the world than Y-chromosomes), allowing for more genes to be found on it. Sex-linked traits can be identified with a pedigree and can be inherited by either sex. Males simply have a higher likelihood of expressing since males only have one X chromosome.",a2,arg197677,arg105819,arg197677_arg105819,rr,330003db9664bb30ca2002dbddceea,1
+53,"The X chromosome is much bigger than the Y chromosome (and there are more X-chromosomes in the world than Y-chromosomes), allowing for more genes to be found on it. Sex-linked traits can be identified with a pedigree and can be inherited by either sex. Males simply have a higher likelihood of expressing since males only have one X chromosome.","Sex-linked trait is either X-linked or Y-linked. For Y-linked trait, it can only be son inheriting the trait from his father. But for X-linked trait, both genders can inherit the traits from both parents.",a1,arg105819,arg205158,arg105819_arg205158,rr,9d9a2541f5086bf2dbb958d9100dd8,-1
+54,"Pedigree, a human genealogy (ancestry chart)
+Pedigree (animal), a pedigree chart pertaining to a purebred animal; may also refer to such a purebred animal itself, e.g. ""a pedigree dog"" or ""a pedigreed dog"". A collection or database of such pedigrees may be referred to as a breed registry, breed register, herdbook, or studbook. See in particular:
+Pedigree (dog), pertaining to a purebred domestic dog
+Pedigree (cat), pertaining to a purebred domestic cat","The X chromosome is much bigger than the Y chromosome (and there are more X-chromosomes in the world than Y-chromosomes), allowing for more genes to be found on it. Sex-linked traits can be identified with a pedigree and can be inherited by either sex. Males simply have a higher likelihood of expressing since males only have one X chromosome.",a2,arg205375,arg105819,arg205375_arg105819,wr,1bde43446917f09eb4984db8dee567,1
+55,"The X chromosome is much bigger than the Y chromosome (and there are more X-chromosomes in the world than Y-chromosomes), allowing for more genes to be found on it. Sex-linked traits can be identified with a pedigree and can be inherited by either sex. Males simply have a higher likelihood of expressing since males only have one X chromosome.",sex-linked trait is located on the X chromosome. It is not impossible for a female to have it but it is less likely because she needs two recessive traits whereas sons get one x chromosome and will get it.,a1,arg105819,arg207313,arg105819_arg207313,rr,c2846914e3ca3e2575937468b3790b,-1
+56,"This is why mostly males express the phenotype, because the females have 2 X chromosomes so have less chance of getting both recessive alleles whereas males only have 1 X chromosome so will most likely show it","The X chromosome is much bigger than the Y chromosome (and there are more X-chromosomes in the world than Y-chromosomes), allowing for more genes to be found on it. Sex-linked traits can be identified with a pedigree and can be inherited by either sex. Males simply have a higher likelihood of expressing since males only have one X chromosome.",a2,arg215580,arg105819,arg215580_arg105819,rr,28fa71522e0e9045eb383a31968efa,1
+57,"The X chromosome is much bigger than the Y chromosome (and there are more X-chromosomes in the world than Y-chromosomes), allowing for more genes to be found on it. Sex-linked traits can be identified with a pedigree and can be inherited by either sex. Males simply have a higher likelihood of expressing since males only have one X chromosome.","This equation gives the equilibrium value of H when the loss by drift and gain by mutation are balanced. This equation applies only to neutral variation; that is, we are assuming selection is not at work. We are also assuming that each new muta- tion yields a unique allele.",a1,arg105819,arg223888,arg105819_arg223888,rr,3b82a24353e5767c6ea89a77bc0ebc,-1
+58,"pistatic gene. Epistatic gene, in genetics, a gene that determines whether or not a trait will be expressed. The system of genes that determines skin colour in man, for example, is independent of the gene responsible for albinism (lack of pigment) or the development of skin colour. This gene is an epistatic gene","The X chromosome is much bigger than the Y chromosome (and there are more X-chromosomes in the world than Y-chromosomes), allowing for more genes to be found on it. Sex-linked traits can be identified with a pedigree and can be inherited by either sex. Males simply have a higher likelihood of expressing since males only have one X chromosome.",a2,arg238700,arg105819,arg238700_arg105819,rr,bd0b262eca690457b62142ff634b58,1
+59,"The X chromosome is much bigger than the Y chromosome (and there are more X-chromosomes in the world than Y-chromosomes), allowing for more genes to be found on it. Sex-linked traits can be identified with a pedigree and can be inherited by either sex. Males simply have a higher likelihood of expressing since males only have one X chromosome.","The law of segregation lets us predict how a single feature associated with a single gene is inherited. In some cases, though, we might want to predict the inheritance of two characteristics associated with two different genes. How can we do this?",a1,arg105819,arg241932,arg105819_arg241932,rr,4937c56f883e58b135780d31a154b3,-1

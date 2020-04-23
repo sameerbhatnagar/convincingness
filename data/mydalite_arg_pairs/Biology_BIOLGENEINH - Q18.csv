@@ -1,0 +1,67 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,yuh,Chromosomes are pulled to the poles in anaphase,a2,arg74597,arg69946,arg74597_arg69946,rr,3f8c6489c0aa8afc2efe365be73175,1
+1,Chromosomes are pulled to the poles in anaphase, ,a1,arg69946,arg75629,arg69946_arg75629,rr,c0b0fe9e84013a644bb70cd23c69a6,-1
+2, ,Chromosomes are pulled to the poles in anaphase,a2,arg76471,arg69946,arg76471_arg69946,wr,cc092e8e650d7143dbedb338647552,1
+3,Chromosomes are pulled to the poles in anaphase,     ,a1,arg69946,arg76544,arg69946_arg76544,rr,91b81abeeb3dd5b4f163738528596a,-1
+4,a,Chromosomes are pulled to the poles in anaphase,a2,arg77827,arg69946,arg77827_arg69946,rr,3340368556c1c3339d531fe5657a11,1
+5,Chromosomes are pulled to the poles in anaphase,Ana = apart,a1,arg69946,arg78073,arg69946_arg78073,wr,f5e4fff3a4a9605b12629bf4cac95f,-1
+6, ,Chromosomes are pulled to the poles in anaphase,a2,arg78124,arg69946,arg78124_arg69946,rr,dd1b4189a8ac774a3a58a6ffd278d1,1
+7,Chromosomes are pulled to the poles in anaphase,"Metaphase: chromosomes align at the metaphase plate, anaphase: chromosomes separate ",a1,arg69946,arg79771,arg69946_arg79771,rr,8802245ba48176f94d3f163c97d717,-1
+8,Anaphase is when chromosomes are pulled appart.,Chromosomes are pulled to the poles in anaphase,a2,arg81149,arg69946,arg81149_arg69946,rr,54b602f8b6cbd39d1d6e2ec8f5b893,1
+9,Chromosomes are pulled to the poles in anaphase,..,a1,arg69946,arg87110,arg69946_arg87110,rr,e969de6f57d3ccca6cfb4d0560708d,-1
+10,.,Chromosomes are pulled to the poles in anaphase,a2,arg87921,arg69946,arg87921_arg69946,rr,48b961f1db3dd4876b16e703f47af2,1
+11,Chromosomes are pulled to the poles in anaphase,this is just facts,a1,arg69946,arg89189,arg69946_arg89189,rr,0103e5d111b63d8b3864c545edb013,-1
+12,"metaphase: line up
+anaphase: pull",Chromosomes are pulled to the poles in anaphase,a2,arg91898,arg69946,arg91898_arg69946,rr,d709f71cb4f0a254ee0d56af55a832,1
+13,Chromosomes are pulled to the poles in anaphase,.,a1,arg69946,arg92989,arg69946_arg92989,rr,f277e27b0b9f9b9d37fcae54939ac0,-1
+14,hjhb,Chromosomes are pulled to the poles in anaphase,a2,arg94649,arg69946,arg94649_arg69946,rr,0bb1b73bf390a7f789aa2b784a5f47,1
+15,Chromosomes are pulled to the poles in anaphase,.,a1,arg69946,arg96754,arg69946_arg96754,rr,ec0af916fb5a693fb11f8fe27aa0c6,-1
+16,x,Chromosomes are pulled to the poles in anaphase,a2,arg97251,arg69946,arg97251_arg69946,rr,299fca65b4a9087fdb025b7f11cf4c,1
+17,Chromosomes are pulled to the poles in anaphase,yup,a1,arg69946,arg97526,arg69946_arg97526,wr,b3e7bae43ae19a10a6ff766e0972d0,-1
+18,defi,Chromosomes are pulled to the poles in anaphase,a2,arg99000,arg69946,arg99000_arg69946,rr,7c68a2b6422c9ef74de7821cbd22e3,1
+19,Chromosomes are pulled to the poles in anaphase,bgpkmprkmrkl wr,a1,arg69946,arg99100,arg69946_arg99100,rr,176a63efe79737594c0bbdf9767c5a,-1
+20,just like it,Chromosomes are pulled to the poles in anaphase,a2,arg100517,arg69946,arg100517_arg69946,rr,6bb07ec8918333ecde1b6697bf38f0,1
+21,Chromosomes are pulled to the poles in anaphase,splits,a1,arg69946,arg100532,arg69946_arg100532,rr,931fd4c4ea1cd2c0be0bd64b455e7e,-1
+22,pull apart,Chromosomes are pulled to the poles in anaphase,a2,arg105074,arg69946,arg105074_arg69946,rr,c26349749ee6d3652a416f7928117e,1
+23,Chromosomes are pulled to the poles in anaphase,They just do.,a1,arg69946,arg105433,arg69946_arg105433,rr,3742dea18a0847c333b9bf8826a931,-1
+24,dksopjcj,Chromosomes are pulled to the poles in anaphase,a2,arg106199,arg69946,arg106199_arg69946,rr,9ff916b24a214164ad7838787f7eb5,1
+25,Chromosomes are pulled to the poles in anaphase,anaphase 1,a1,arg69946,arg107168,arg69946_arg107168,rr,d5cb6aac310874f98e2fec71d14a59,-1
+26,"anaphase happens after metaphase, the homologous chromosomes are separated from the metaphase plate",Chromosomes are pulled to the poles in anaphase,a2,arg135033,arg69946,arg135033_arg69946,rr,4a79fd803f80b607b31480868d553e,1
+27,Chromosomes are pulled to the poles in anaphase,grgerh,a1,arg69946,arg138222,arg69946_arg138222,rr,417272a507f564ef3bfe9e7ea99568,-1
+28,"of course, the rest are WRONG","Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",a2,arg98314,arg98013,arg98314_arg98013,rr,f42e3beb6d79465220551491ce334b,1
+29,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",.........,a1,arg98013,arg99439,arg98013_arg99439,wr,3e179fba728baed8c01e997ac36184,-1
+30,Anaphase I begins when the sister chromatids of each homologous pair separate and start moving toward opposite poles of the cell as a result of the action of the spindle.,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",a2,arg188652,arg98013,arg188652_arg98013,rr,8cf65480352acbf71f20638a76cb5c,1
+31,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)","prophase is setup, metaphase is line up, anaphase is split, telophase is cell split",a1,arg98013,arg188767,arg98013_arg188767,rr,da3231695068ba111ce58a62e8022c,-1
+32,"During anaphase, chromosomes separate and are pulled to the poles.","Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",a2,arg189962,arg98013,arg189962_arg98013,rr,1182fd51f65265d9fa0f215476622e,1
+33,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)","The chromosomes are pulled apart after the metaphase. The telophase is when the mother cell splits. The chromosomes are then pulled during anaphase, which is in between.",a1,arg98013,arg191981,arg98013_arg191981,rr,9d0546d0b7aa6c3969bf6f51e13b40,-1
+34,"In anaphase, the sister chromatids separate from each other and are pulled towards opposite ends of the cell","Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",a2,arg192167,arg98013,arg192167_arg98013,rr,f0d5d7cc1bb3645de472a5aa1cb5d4,1
+35,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)","Prophase:Chromosomes and centromeres have replicated but centromeres have not split. Homologs synapse. 
+
+Metaphase: homologs align at the metaphase plate
+
+Anaphase: Centromeres attach to spindle and are pulled to poles of cell
+
+Telophase: two cells form",a1,arg98013,arg195152,arg98013_arg195152,wr,339aac440cf950f896c78a66b62c4c,-1
+36,Anaphase is when the chromosomes of the cell are brought to either ends in order to produce the daughter cells,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",a2,arg195382,arg98013,arg195382_arg98013,rr,c75778f17bd5973781992a29ed129a,1
+37,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",anaphase is the phase of mitosis where chromosomes are pulled to opposite,a1,arg98013,arg195473,arg98013_arg195473,rr,3962319de8a4da9a4d63bd889e1904,-1
+38,"this is where they get pulled apart, there is nothing more for me to say","Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",a2,arg198741,arg98013,arg198741_arg98013,rr,65a162e077b61d4970a4a4a0049f99,1
+39,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)","This occurs after the M plate, so anaphase because it is anaphase",a1,arg98013,arg199656,arg98013_arg199656,rr,32250f6f24c2f64fdf2ed372b45e50,-1
+40,Based on my knowledge this is the dagger answer that will restore balance to the force,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",a2,arg207489,arg98013,arg207489_arg98013,rr,69226f0b06fd8222b03f9261e554f0,1
+41,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)","prophase is when homologs pair up, metaphse is when they align at the metaphse plate and anaphase is when the cell physically splits the cytosol",a1,arg98013,arg213772,arg98013_arg213772,wr,563c20b2722e7a9409c4cba2937eeb,-1
+42,"after all chromosomes align at the centre of meta plate, half of chromosomes are pulled to each end of cell.","Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",a2,arg214701,arg98013,arg214701_arg98013,rr,f1278b5969017a6121fa6926e9c04b,1
+43,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",Chromosomes are pulled to opposite poles thanks to the mitotic spindle during anaphase,a1,arg98013,arg221698,arg98013_arg221698,rr,cbdf7e56687436116cd12da04d726e,-1
+44,"anaphase is when of mitosis are chromosomes pulled to opposite poles?
+
+A. prophase","Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",a2,arg223680,arg98013,arg223680_arg98013,rr,293989c95cfc2fe9cd72b018bfe558,1
+45,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)","metaphase they line up and spindle fibres attach, but only in anaphase do they tug tug",a1,arg98013,arg225902,arg98013_arg225902,rr,4c5b69f81935e72eab927acc9968b8,-1
+46,metaphase is when they line up at the metaphase plate and anaphase is when the spindles attach to the dentromeres and telochase is when they are pulled apart and the cell wall divides,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",a2,arg238292,arg98013,arg238292_arg98013,wr,70df4d183d31aed459d8e9b0c489cc,1
+47,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)","sister chromatids are pulled apart during anaphase 
+
+metaphase is when they line up",a1,arg98013,arg241510,arg98013_arg241510,rr,0e0eb905e3ad75dbe188d0fe0e6fb2,-1
+48,Anaphase stands for apart since they pull apart at this time ok,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",a2,arg241775,arg98013,arg241775_arg98013,rr,684de023663c65f38e391870a513d4,1
+49,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",Segregation of sister chromatids occur in anaphase. They are pulled to opposite polls of the cell.,a1,arg98013,arg241811,arg98013_arg241811,rr,32c8a6da5d40325b83f541857ac8f6,-1
+50,Boy is this so much easier than the exam Boy is this so much easier than the exam,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",a2,arg243310,arg98013,arg243310_arg98013,rr,c6300318f3bd32c7eb37fdbc9e45b8,1
+51,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",I'm sorry I just wanted to see the answer since typing up my entire rationale for each question would take forever. We love genetics though!,a1,arg98013,arg245261,arg98013_arg245261,rr,fdcba72eb0e114d5eb4eec087d5aa0,-1
+52,During which phase of mitosis are chromosomes pulled to opposite poles?,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",a2,arg247372,arg98013,arg247372_arg98013,rr,88ab03177a3205bd92843d6c8f64e3,1
+53,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",During the anaphase part of mitosis and meiosis chromosomes are pulled apart.,a1,arg98013,arg247780,arg98013_arg247780,rr,890e093fa4ae8eb40240d67c2989f6,-1
+54,this is a basic definition look at the diagram of mitosis,"Anaphase comes after metaphase, and in metaphase they line up in the middle so in anaphase they are pulled apart (A ana, A apart)",a2,arg248792,arg98013,arg248792_arg98013,rr,2550f335403b6960ece49e5c45f5aa,1

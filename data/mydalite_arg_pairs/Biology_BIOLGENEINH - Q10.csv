@@ -1,0 +1,101 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,ya,Crossing over occurs during early meiosis I,a2,arg74581,arg69901,arg74581_arg69901,rr,3f8c6489c0aa8afc2efe365be73175,1
+1,Crossing over occurs during early meiosis I,m,a1,arg69901,arg75030,arg69901_arg75030,rr,c0b0fe9e84013a644bb70cd23c69a6,-1
+2,Yup,Crossing over occurs during early meiosis I,a2,arg75109,arg69901,arg75109_arg69901,wr,51c8aa81265b76c2eafafaddf7f0f1,1
+3,Crossing over occurs during early meiosis I, ,a1,arg69901,arg78831,arg69901_arg78831,wr,708754cef412a0e37feac91458b8fc,-1
+4,",,",Crossing over occurs during early meiosis I,a2,arg79177,arg69901,arg79177_arg69901,rr,5dc04a99eca53051842d9e165a8534,1
+5,Crossing over occurs during early meiosis I,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",a1,arg69901,arg79402,arg69901_arg79402,rr,8802245ba48176f94d3f163c97d717,-1
+6,Stick with my rationale.,Crossing over occurs during early meiosis I,a2,arg83331,arg69901,arg83331_arg69901,rr,83298ffad1d5c1507c9d8cc4371e8a,1
+7,Crossing over occurs during early meiosis I,.,a1,arg69901,arg87957,arg69901_arg87957,rr,49576fcc061976107dfa27c933b67d,-1
+8,bc,Crossing over occurs during early meiosis I,a2,arg97232,arg69901,arg97232_arg69901,rr,299fca65b4a9087fdb025b7f11cf4c,1
+9,Crossing over occurs during early meiosis I,......,a1,arg69901,arg99427,arg69901_arg99427,wr,3e179fba728baed8c01e997ac36184,-1
+10,just like this ,Crossing over occurs during early meiosis I,a2,arg100451,arg69901,arg100451_arg69901,wr,6bb07ec8918333ecde1b6697bf38f0,1
+11,Crossing over occurs during early meiosis I,Prophaseeeeee,a1,arg69901,arg100518,arg69901_arg100518,rr,931fd4c4ea1cd2c0be0bd64b455e7e,-1
+12,Before they line up at the plate,Crossing over occurs during early meiosis I,a2,arg104309,arg69901,arg104309_arg69901,rr,9e9f367dbcc4bb2bca45bde40b4c94,1
+13,Crossing over occurs during early meiosis I,lkjmn,a1,arg69901,arg105618,arg69901_arg105618,rr,c56ef9ddc618eb7fd119bae5948335,-1
+14,Definition,Crossing over occurs during early meiosis I,a2,arg107317,arg69901,arg107317_arg69901,rr,c0ea6e7059333dd78629a86303cbeb,1
+15,Crossing over involve the end of prophaseI and the beginning of metaphase I.,notes,a1,arg76306,arg77812,arg76306_arg77812,ww,3340368556c1c3339d531fe5657a11,-1
+16,q,Crossing over involve the end of prophaseI and the beginning of metaphase I.,a2,arg81113,arg76306,arg81113_arg76306,ww,c11828d46b53cbf827f3a1903a57ce,1
+17,Crossing over involve the end of prophaseI and the beginning of metaphase I.,In between the two.,a1,arg76306,arg81119,arg76306_arg81119,ww,54b602f8b6cbd39d1d6e2ec8f5b893,-1
+18,of meiosis I,Crossing over involve the end of prophaseI and the beginning of metaphase I.,a2,arg86844,arg76306,arg86844_arg76306,ww,75151c3099ca1bb0987f709884fe02,1
+19,Crossing over involve the end of prophaseI and the beginning of metaphase I.,.,a1,arg76306,arg96930,arg76306_arg96930,ww,5cedf21fe930c659b63d770023ff7e,-1
+20,Said in notes.,Crossing over involve the end of prophaseI and the beginning of metaphase I.,a2,arg99597,arg76306,arg99597_arg76306,rw,698f633fa2bc6eceafc718661f9f47,1
+21,Crossing over involve the end of prophaseI and the beginning of metaphase I.,between prophase 1 and metaphase 1,a1,arg76306,arg104009,arg76306_arg104009,ww,0a82d2f36cda00b9f5e97c580752ac,-1
+22,Prophase the homologous chromosomes and paired up so crossing over occurs then too,Crossing over involve the end of prophaseI and the beginning of metaphase I.,a2,arg104081,arg76306,arg104081_arg76306,rw,1c50098a7e064131283236308ce026,1
+23,Crossing over involve the end of prophaseI and the beginning of metaphase I.,prophase and metaphase,a1,arg76306,arg107150,arg76306_arg107150,ww,d5cb6aac310874f98e2fec71d14a59,-1
+24,cause,Crossing over involve the end of prophaseI and the beginning of metaphase I.,a2,arg111209,arg76306,arg111209_arg76306,ww,c529098d40ac1fccc2b019d768162c,1
+25,Crossing over involve the end of prophaseI and the beginning of metaphase I.,"Crossing over occurs during both stages, starting when the homologous line up during prophase and continuing into when they line up on the metaphase plate",a1,arg76306,arg186488,arg76306_arg186488,ww,f4b2c81c953e83ef891a28f0ffa6c7,-1
+26,Crossing over occurs between prophase 1 and metaphase 1 to creat genetic recombination.,Crossing over involve the end of prophaseI and the beginning of metaphase I.,a2,arg192189,arg76306,arg192189_arg76306,ww,e36459c889ec8ce820903ab849be5b,1
+27,Crossing over involve the end of prophaseI and the beginning of metaphase I.,"metaphase 1 is when the two homologs align at the metaphase plate, and prophase 1 is when the two chromosomes are paired",a1,arg76306,arg196791,arg76306_arg196791,ww,4291dc655a2e0724f018f03fc58a9b,-1
+28,Based on my knowledge this is the dagger answer that will restore balance to the force,Crossing over involve the end of prophaseI and the beginning of metaphase I.,a2,arg207471,arg76306,arg207471_arg76306,rw,69226f0b06fd8222b03f9261e554f0,1
+29,Crossing over involve the end of prophaseI and the beginning of metaphase I.,the answer i choose is my own and i just want to see what others think,a1,arg76306,arg208722,arg76306_arg208722,ww,6aa3141c75207df510466b321af54f,-1
+30,it occurs between these two phases so thats why this is the answer,Crossing over involve the end of prophaseI and the beginning of metaphase I.,a2,arg242874,arg76306,arg242874_arg76306,ww,60725268dcac5165159269141c66a0,1
+31,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,.,a1,arg78214,arg78835,arg78214_arg78835,ww,d559bad2ec1c3fc1b4f926c8c48086,-1
+32,  ,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,a2,arg79921,arg78214,arg79921_arg78214,ww,0afa302600bf72169f66c146a163ce,1
+33,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,i have no idea,a1,arg78214,arg83178,arg78214_arg83178,ww,49608560fb63a67dcb73693d0ceda4,-1
+34,..,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,a2,arg86735,arg78214,arg86735_arg78214,ww,e969de6f57d3ccca6cfb4d0560708d,1
+35,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,what the,a1,arg78214,arg87159,arg78214_arg87159,ww,0103e5d111b63d8b3864c545edb013,-1
+36,recombination,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,a2,arg91890,arg78214,arg91890_arg78214,ww,d709f71cb4f0a254ee0d56af55a832,1
+37,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,iuh,a1,arg78214,arg94630,arg78214_arg94630,ww,0bb1b73bf390a7f789aa2b784a5f47,-1
+38,coreisnd,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,a2,arg98984,arg78214,arg98984_arg78214,ww,7c68a2b6422c9ef74de7821cbd22e3,1
+39,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,metaphase when they are near each other ,a1,arg78214,arg104216,arg78214_arg104216,ww,04212d5fb7cf609d17a01f9961ea78,-1
+40,not sure,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,a2,arg134844,arg78214,arg134844_arg78214,ww,e7a4172d989b21cb4c8cce7fe7fc74,1
+41,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,wherhet,a1,arg78214,arg138179,arg78214_arg138179,ww,417272a507f564ef3bfe9e7ea99568,-1
+42,bjbnkjm,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,a2,arg138488,arg78214,arg138488_arg78214,ww,1a91f81232778722fa77d9a510dfbe,1
+43,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,I love you I love youI love youI love youI love youI love youI love youI love youI love youI love youI love you,a1,arg78214,arg189655,arg78214_arg189655,ww,11f1a8875488de92d068d9568ca86d,-1
+44,"During the metaphase I, the homologous chromosomes line up at the metaphase line and the synapsis formed and crossing over therefore happned.",In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,a2,arg191336,arg78214,arg191336_arg78214,ww,9d9a2541f5086bf2dbb958d9100dd8,1
+45,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,Because the Crossing over can happen right after the first division.,a1,arg78214,arg191903,arg78214_arg191903,ww,9d0546d0b7aa6c3969bf6f51e13b40,-1
+46,This is when crossing over occurs because they are aligned the right way,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,a2,arg205728,arg78214,arg205728_arg78214,ww,bf82d348d6679b0496a6234f127ba7,1
+47,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,i'm not really sure just a guess I don't remember this stuff,a1,arg78214,arg206716,arg78214_arg206716,ww,2540f8ca4d81264ec9541c743dcf6c,-1
+48,"in metaphase I, homologous chromosomes pairs
+I like my answer",In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,a2,arg207743,arg78214,arg207743_arg78214,ww,099516baa7671387394e18f88f2f99,1
+49,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,"She did this in class and s phase is synthesis, so it’s like DNA replication",a1,arg78214,arg220241,arg78214_arg220241,ww,cebcc5341f4b6349a449d5af97d322,-1
+50,occurs at metaphase 1 because I don't know what happens at prophase 1 and s phase 1,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,a2,arg222143,arg78214,arg222143_arg78214,ww,c67a1b94c068522ab958c756d3dbbf,1
+51,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,prophase is the time where genes are duplicated and blah,a1,arg78214,arg223223,arg78214_arg223223,rw,bd3e347bd49c52472eddb6dc4e4fbe,-1
+52,Because it is first apparent in metaphase 1 of meiosis 1,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,a2,arg229129,arg78214,arg229129_arg78214,ww,fffa2c73508a730ac92fa9c1510bdd,1
+53,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,chromosome pair together and metaphase I and can cross over.,a1,arg78214,arg236429,arg78214_arg236429,ww,c5ad51016f5264f488dd1d5ee4ca52,-1
+54,In metaphase there are two possibilities of allignment. so choose C.,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,a2,arg239814,arg78214,arg239814_arg78214,ww,e10d9c9f623af957d3f9cdbe4ffbd4,1
+55,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,corsssing over occrus during metaphase I because es not seem like a clear explanation of your reasoning,a1,arg78214,arg240225,arg78214_arg240225,ww,0dd25bf4271022a430f458130d935a,-1
+56,"Homologous chromosomes pair, align and are close to each other, allowing crossing over between different genes",In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,a2,arg242307,arg78214,arg242307_arg78214,ww,9ebcf4650a401d82198cac7c78cd36,1
+57,In class prof said that its right after the chromosomes line up (Metaphase) and right before they are pulled apart (Anaphase). ,Crossing over happen whensister chromatids are line up right next to each other,a1,arg78214,arg245595,arg78214_arg245595,ww,e948580ed9173add8689035e17c658,-1
+58,.,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",a2,arg87912,arg79402,arg87912_arg79402,rr,48b961f1db3dd4876b16e703f47af2,1
+59,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",meiosis picture ,a1,arg79402,arg101425,arg79402_arg101425,rr,775afec11b93dd23f17e6225796045,-1
+60,definition,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",a2,arg106293,arg79402,arg106293_arg79402,rr,ef7cec2ad22c937d06e4c5920d954d,1
+61,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",S phase is when the chromosomes are duplicated. Crossing over can occur when the chromosome are physically touching. This occurs during prophase.,a1,arg79402,arg187257,arg79402_arg187257,rr,0674751acab1b3c6ce09ea354902f9,-1
+62,this is just when it happens because homologous chromosomes are in close vicinity,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",a2,arg188016,arg79402,arg188016_arg79402,rr,961c78ae187ff1031a265ee11bbc37,1
+63,"During prophase 1, chromosomes assemble and genetic information can be exchanged.","In Prophase I the homologous chromosomes start to pair up and in this process some crossing over can occur, giving rise to more genetic variability",a1,arg79402,arg189991,arg79402_arg189991,rr,5d5c9eeee8f714934b249eebfabd8b,-1
+64,"This is the stage when homologous recombination, including chromosomal crossover (crossing over) occurs","During prophase 1, chromosomes assemble and genetic information can be exchanged.",a2,arg192007,arg79402,arg192007_arg79402,rr,f0d5d7cc1bb3645de472a5aa1cb5d4,1
+65,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",when homologous chromosomes line up in centre plate and cross over,a1,arg79402,arg193163,arg79402_arg193163,wr,3a813cea35613729b5370754f7fa68,-1
+66,Genes interact with allelea in homozygous recessive forms all the time,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",a2,arg196579,arg79402,arg196579_arg79402,rr,36180e824619c72eb4686ff82b2870,1
+67,"During prophase 1, chromosomes assemble and genetic information can be exchanged.","In the primer for meiosis, Prophase I is when it appeared to occur.",a1,arg79402,arg197213,arg79402_arg197213,rr,c2846914e3ca3e2575937468b3790b,-1
+68,crossing over at chiasmata for gene exchange between homologous chromosomes occurs in prophase I where homologous chromosomes line up in pairs,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",a2,arg199627,arg79402,arg199627_arg79402,rr,1afd76d0f8d5f927adf2cd6eeed62e,1
+69,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",Prophase I la.......what do you want me to say.. It is a conceptual quation..,a1,arg79402,arg208488,arg79402_arg208488,rr,ed7e6b53f4994790ba59aca16b78d6,-1
+70,"Crossing over occurs during:
+
+
+A. S phase I
+
+B. Prophase I
+
+C. Metaphase I
+
+D. a and b
+
+E. b and c","During prophase 1, chromosomes assemble and genetic information can be exchanged.",a2,arg214981,arg79402,arg214981_arg79402,rr,c182e01377768877871d4e31b0bf11,1
+71,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",Crossing over of chromosomes can occur in metaphase 1 because it is at this point that the homologous chromosomes are lined up,a1,arg79402,arg219083,arg79402_arg219083,wr,3ac67b187ca3ec12ebf3b9b5ebbabd,-1
+72,i dont know. i just want to know the answers according to the punnet square method,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",a2,arg233339,arg79402,arg233339_arg79402,rr,66a042ade2b69f5648f66599e28e33,1
+73,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",prophase is when chromosomes are assembling so crossing over occurs here,a1,arg79402,arg238027,arg79402_arg238027,rr,c8e309745b6b80fc3a98c4e20f6774,-1
+74,Technically it occurs between prophase I and metaphase I. Technically it occurs between prophase I and metaphase I.,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",a2,arg238815,arg79402,arg238815_arg79402,rr,71ec21c36971a39ec5670e0c5054d6,1
+75,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",Crossing over can occur when the chromosome pairs are matched together.,a1,arg79402,arg241339,arg79402_arg241339,wr,179f7e6f5056ec5d7a097ef3896e81,-1
+76,occurs after replication and before the attachment of spindles for assortment,"During prophase 1, chromosomes assemble and genetic information can be exchanged.",a2,arg241954,arg79402,arg241954_arg79402,rr,e8797b5abf079b9a414b30e1574987,1
+77,"During prophase 1, chromosomes assemble and genetic information can be exchanged.","Based on my knowledge, crossing over occurs during metaphase during meiosis.",a1,arg79402,arg242440,arg79402_arg242440,wr,5f2356cd4afe4604d7732d091ae1ec,-1
+78,"Crossing over occurs during:
+
+Prophase 1 of Meiosis 1
+
+Homologous chromosomes exchange DNA","During prophase 1, chromosomes assemble and genetic information can be exchanged.",a2,arg250550,arg79402,arg250550_arg79402,rr,b93788079b11828db3f660965f6274,1
+79,"Crossing over only occurs between non-sister chromatids, meaning it must occur during the alignment of the tetrads.",yes,a1,arg92967,arg97517,arg92967_arg97517,ww,b3e7bae43ae19a10a6ff766e0972d0,-1
+80,"During Metaphase, homologous chromosomes line up and crossing over occurs.","Crossing over only occurs between non-sister chromatids, meaning it must occur during the alignment of the tetrads.",a2,arg185364,arg92967,arg185364_arg92967,ww,5bac69d515e9e1c3039a361b577798,1
+81,"Crossing over only occurs between non-sister chromatids, meaning it must occur during the alignment of the tetrads.",Crossing over occurs during metaphase I so I chose option C,a1,arg92967,arg186006,arg92967_arg186006,ww,a4efbb59c3f3cc914065e25300dae6,-1
+82,the s phase is whe nthe cell is dividng and the prophase is when the cell is just preparing to undergo meiosis,"Crossing over only occurs between non-sister chromatids, meaning it must occur during the alignment of the tetrads.",a2,arg188821,arg92967,arg188821_arg92967,ww,f0fe06c5bd0b51c7faaf6da53dc103,1
+83,"Crossing over only occurs between non-sister chromatids, meaning it must occur during the alignment of the tetrads.",Crossing over occurs before the sister chromatids migrate towards two opposite poles of the cell.,a1,arg92967,arg191921,arg92967_arg191921,rw,b30634abcfd3a2d844029f291f1dc1,-1

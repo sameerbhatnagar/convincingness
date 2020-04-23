@@ -1,0 +1,102 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,that one soooooooo,The charge of ammonium is one while phosphate is three. Three ammonium ions are necessary and each one contains one atom of nitrogen.,a2,arg10563,arg9512,arg10563_arg9512,wr,umUt1A-Ff04WN7qu-AXDXw++,1
+1,The charge of ammonium is one while phosphate is three. Three ammonium ions are necessary and each one contains one atom of nitrogen.,"Sulfate is a dianion, therefore there will be two ammoniums, therefore there will be two nitrogens!",a1,arg9512,arg10649,arg9512_arg10649,wr,C_W6zRXnnaWSoNfflzKCXA++,-1
+2,"Calcium has a 2+ charge, while nitrate has a -1 charge; therefore, this compound has the most nitrogen atoms per molecule. ",The charge of ammonium is one while phosphate is three. Three ammonium ions are necessary and each one contains one atom of nitrogen.,a2,arg10650,arg9512,arg10650_arg9512,wr,mpatrascu,1
+3,The charge of ammonium is one while phosphate is three. Three ammonium ions are necessary and each one contains one atom of nitrogen.,"NaNO3 only has one
+(NH4)2SO4  only has 2 
+Ca(NO3)2 only has 2
+and (NH4)3PO4 has 3 
+this is found because of the charges
+",a1,arg9512,arg18945,arg9512_arg18945,rr,80172,-1
+4,"(NH4)3 * PO4
+
+3 atoms",The charge of ammonium is one while phosphate is three. Three ammonium ions are necessary and each one contains one atom of nitrogen.,a2,arg18991,arg9512,arg18991_arg9512,rr,68997,1
+5,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"When writing the chemical formula of each molecules, ammonium phosphate has the most amount of Nitrogen with a total of 3.",a1,arg18748,arg18785,arg18748_arg18785,rr,71339,-1
+6,"
+(NH4)3Po4 has 3 nitrogens",The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg18879,arg18748,arg18879_arg18748,rr,84182,1
+7,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,(NH4)3PO4,a1,arg18748,arg19076,arg18748_arg19076,rr,83965,-1
+8,it contains 2 atoms ,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg19114,arg18748,arg19114_arg18748,wr,84180,1
+9,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"NaNO3
+(NH4)2SO4
+Ca(NO3)2
+(NH4)3PO4
+
+",a1,arg18748,arg19236,arg18748_arg19236,rr,84184,-1
+10,"the chemical formula for ammonium phostphate is (NH4)3PO4, whitch has 3 nitrogen atoms when the other compounds only have one.",The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg19264,arg18748,arg19264_arg18748,rr,84183,1
+11,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,ammonium phosphate has 3 nitrogen atoms per molecule while the others have 2 or 1 ,a1,arg18748,arg20486,arg18748_arg20486,rr,53cd8096b28fc873ca843d10e2534a,-1
+12,it has 3 ,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg20542,arg18748,arg20542_arg18748,rr,ef24e2c5509cb534fbe75a88cd5787,1
+13,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"this molecule, has the most N atoms (3/molecule) 
+a -> 1 atom
+b-> 2atoms
+c-> 2 atoms",a1,arg18748,arg20737,arg18748_arg20737,rr,65c07bdfe2443f1f25d042d79baa54,-1
+14,"The chemical formula for ammonium phosphate is (NH4)3PO4 which means that every molecule of ammonium phosphate has 3 atoms of Nitrogen (N) , 12 atoms of hyrogen (H), 1 tom of Phosphorus (P)and 4 atoms of oxygen (O)",The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg21269,arg18748,arg21269_arg18748,rr,8b0ba4755c37c09526f17b2df81f1e,1
+15,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,(NH?)?PO?,a1,arg18748,arg21409,arg18748_arg21409,rr,2aed87f6387e04f68a59b2183225aa,-1
+16,D( NH4)3PO4 because PO4 has 3 negative charges,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg21757,arg18748,arg21757_arg18748,rr,398410031d6a0630370ec974b8cf76,1
+17,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"Sodium nitrate: 1 Nitrogen total
+Ammonium sulfate: 2 nitrogen total
+Calcium nitrate: 2 nitrogen total
+Ammonium phosphate: 3 nitrogen total",a1,arg18748,arg22069,arg18748_arg22069,rr,cd1bd638acd927bfc155a9b0bc95ff,-1
+18,NANo3 has two nitrogen,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg22485,arg18748,arg22485_arg18748,wr,93397d23d42e5d76737780e155c209,1
+19,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"In:
+A) One atom of Nitrogen
+In:
+B) et C) two atoms of Nitrogen
+In:
+D) Three atoms of Nitrogen",a1,arg18748,arg22909,arg18748_arg22909,rr,779ccae396ac02d86a9006934986ed,-1
+20,(NH4)3 PO4 has the highest atomic mass of  nitrogen atoms even though calcium nitrate has the highest molar mass,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg23469,arg18748,arg23469_arg18748,rr,cad58ea89c97bcaaf3598f2db30f47,1
+21,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"Because ammonium phosphate's formula is (NH4)3PO4, so there are 4 nitrogen atoms in this compound.",a1,arg18748,arg34879,arg18748_arg34879,rr,fbca5a26a2b08375e76fcf40ed5c9c,-1
+22,"NaNO3= 1 atoms nitrogen
+(NH4)2SO4= 2 atoms nitrogen
+Ca(NO3)2=2 atoms nitrogen
+(NH4)3=3  atoms nitrogen",The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg37369,arg18748,arg37369_arg18748,rr,3ada4231c423b560980813c28f6e86,1
+23,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"It’s ammonium phosphate because it has 3 nitrogen’s, the other answers had less. ",a1,arg18748,arg37557,arg18748_arg37557,rr,66f1f89887c35741a4d6dc8360fbfe,-1
+24,"In order for the ions yo balance in the molecular formula there needs to exist 3 Nh4 which means there are 3 nitrogen atoms which is the most out of all the others
+",The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg79991,arg18748,arg79991_arg18748,rr,35ba9b9e376277ffac58ec696fa5b3,1
+25,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"Ammonium phosphate because if you write out the chemical formula, it has three nitrogen atoms, whereas calcium nitrate and ammonium sulfate have two and sodium nitrate has one",a1,arg18748,arg80270,arg18748_arg80270,rr,bdb268f089977a5939c1692cf32343,-1
+26,because phosphate is PO4 3- so we will need (NH4) 3 times so the formula would be NH4(3)PO4,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg80673,arg18748,arg80673_arg18748,rr,8124da1a147046cb5fe203926b7a4f,1
+27,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"Phosphate has a -3 charge, so to balance the charges, it requires 3 ammonium molecules, which results in 3 nitrogen atoms, the most out of the list.",a1,arg18748,arg80700,arg18748_arg80700,rr,d8e6dafc6bee090ee807b167d21016,-1
+28,"Ammonium has a charge of +1 and phosphate a charge of -3. This means that thre needs to be three molecules of ammonium for every molecule of phosphate, rendering the total of nitrogen atoms to be 3. ",The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg80885,arg18748,arg80885_arg18748,rr,986f500f18737bcd5ce38c88e467c1,1
+29,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,because it has 3 nitrogen in the molecule,a1,arg18748,arg82674,arg18748_arg82674,rr,e1033d8ce768fcc534195e6fd5aff6,-1
+30,Because it has 3 atoms of nitrogen,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg86334,arg18748,arg86334_arg18748,rr,cd6d22004ed5a0c53f1c251f0f06b9,1
+31,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"Ammonium contains 3 nitrogen atoms per molecule, which is the most out of the list.",a1,arg18748,arg86644,arg18748_arg86644,rr,963c856764e2407c124b538747f31d,-1
+32,(NH4)3PO4  NH4 has a charge of +1 and PO4 -3. Takes 3 NH4,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg105683,arg18748,arg105683_arg18748,rr,7dcd46e5ea119594e2f08d45be5810,1
+33,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"a) NaNO3- has 1 nitrogen atom
+b) (NH4)2S04 has 2 nitrogen atoms
+c) Ca(NO3-)2 has 2 nitrogen atoms 
+d) (NH4)3PO42- has 3 nitrogen atoms",a1,arg18748,arg152527,arg18748_arg152527,rr,4698fd052808c30b9448dff7b193f3,-1
+34,Ammonium phosphate,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg153152,arg18748,arg153152_arg18748,rr,e215720abb97b1666ff7713d8c6de0,1
+35,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"Ammonium is the most common form of Nitrogen, which means that it contains the most nitrogen atoms per molecule",a1,arg18748,arg155923,arg18748_arg155923,wr,b50b32cdc48ea857c778c2e87b5aea,-1
+36,Because nitrogen hold the biggest percentage of that substance at exactly 28.185%,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg156519,arg18748,arg156519_arg18748,rr,c410a375eb8f6d61b814aae98f6a35,1
+37,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"Ca ion has 2+ charge, pairs with two nitrate ions.",a1,arg18748,arg157492,arg18748_arg157492,wr,77d175fe5f5a55812a5dafdb15da61,-1
+38,Ammonium has one positive charge so you need 3 NH3 to match the PO4 that has a negative charge of 3,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg157803,arg18748,arg157803_arg18748,rr,bf6f52f075b18ddb7f8eaa6834d35e,1
+39,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,(NH4)3PO4 contains 3 nitrogen atoms,a1,arg18748,arg157893,arg18748_arg157893,rr,8062fe5562a2bf8e9adba281289055,-1
+40,Ammonium has a charge of +1 while phosphate has a charge of -3 so when exchanged the number of nitrogen atoms are increased.,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg157924,arg18748,arg157924_arg18748,rr,b00aa167374fb12d24ad1201d80af3,1
+41,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,The chemical compound of ammonium phosphate is (NH4)3 PO4 .. compared to all the other compounds this one has the most nitrogen atoms,a1,arg18748,arg158074,arg18748_arg158074,rr,0f2eb989f202ae6e4099335d0beb3d,-1
+42,Ammonium phosphate: (NH4)3PO4 has 3 atoms of N,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg158195,arg18748,arg158195_arg18748,rr,e443c380cec0d49aaf85680a6a23ee,1
+43,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,because of phosphate is po4(3-).,a1,arg18748,arg158310,arg18748_arg158310,rr,965f21bbd2560815bc050e4894580d,-1
+44,Because ammonium phosphate is (NH?)?PO?,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg158328,arg18748,arg158328_arg18748,rr,a32dd8824dda4320b71a48bb79f41b,1
+45,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"My reasoning is that calcium's charge is 2+ and nitrate's basic charge is 1-, therefore, there must be 2 nitrate polyatomic ions to complete the covalent bond.",a1,arg18748,arg158376,arg18748_arg158376,wr,c09ce00b1616ed8720118e26dd3906,-1
+46,Ammonium Phosphate has 28% of nitrogen atoms,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg161185,arg18748,arg161185_arg18748,rr,ac9333015f7ed47014e583ad630e20,1
+47,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"Na(NO3)
+(NH3)2SO4
+Ca(NO3)
+(NH3)3PO4",a1,arg18748,arg173152,arg18748_arg173152,rr,608678106fb527cac38b644da526a4,-1
+48,(NH4)3PO4 = 3 Nitrogen atoms,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg173471,arg18748,arg173471_arg18748,rr,64aec861bac9a07f4c978b1709b418,1
+49,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,phosphate is (-3) which makes ammonium three molecules in the formula,a1,arg18748,arg173504,arg18748_arg173504,rr,3dec5714c687f6d83846a58ba6544d,-1
+50,sdkjfalsdf,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg173654,arg18748,arg173654_arg18748,wr,a4c6f6fc9165966615c0323a377cac,1
+51,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,Ca(NO3)2,a1,arg18748,arg174109,arg18748_arg174109,wr,7aa71486fe6b150355498fc24caea2,-1
+52,A and C are the only answers that contain nitrogen. Calcium nitrate has more than sodium nitrate because you need more nitrate per calcium than you would need to complete a sodium nitrate molecule.,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg210054,arg18748,arg210054_arg18748,wr,117841e2913f4c1b84369d2dcba6de,1
+53,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,ammonium phosphate has 3 nitrogen atoms in the molecule which is more then 2 for calcium nitrate and ammonium sulfate. So as 1 for sodium nitrate,a1,arg18748,arg210266,arg18748_arg210266,rr,8003d161d7681fc6217be3fd9dcb3d,-1
+54,The formula for ammonium phosphate is (NH4)3PO4 so we can see that there is 3 nitrogen atoms which is the most out of the 4 options,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg220676,arg18748,arg220676_arg18748,rr,f07025587755c7a54c4d98efb25cda,1
+55,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,"NH4)3PO4 is 28.2 % N , 8.1% H, 20.8 % P and 43.0 % O by mass.",a1,arg18748,arg220740,arg18748_arg220740,rr,763567613948e2f5170605377580c6,-1
+56,Ammonium phosphate has 42.02g/mole atoms per molecule and the other substances have less.,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg232069,arg18748,arg232069_arg18748,rr,ad24b169af73b510f7de15dc1651fe,1
+57,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,Because there a 3 nitrogens in this compound and there are less in the other compounds,a1,arg18748,arg239919,arg18748_arg239919,rr,0a3b5e324611c9b529bb8111fd83eb,-1
+58,Ca2+ need 2 N3- to balance so it has the most nitrogen atoms.,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,a2,arg243639,arg18748,arg243639_arg18748,wr,9d375f45e76e0de6d771602e907db6,1
+59,The formula unit is (NH4)3PO4 and it therefore contains 3 nitrogen atoms. The other compounds contain either 1 or 2 nitrogen atom per formula unit.,There are 3 Nitrogens in the ammonium phosphate and 2 in the others,a1,arg18748,arg245010,arg18748_arg245010,rr,06801f585b49176e1fcc58156c0612,-1
+60,higher charge,"Calcium has a 2+ charge, while nitrate has a -1 charge; therefore, this compound has the most nitrogen atoms per molecule. ",a2,arg18813,arg10650,arg18813_arg10650,ww,71936,1
+61,"Calcium has a 2+ charge, while nitrate has a -1 charge; therefore, this compound has the most nitrogen atoms per molecule. ","because calcium is a positive 2 and sodium is positive 1
+",a1,arg10650,arg21526,arg10650_arg21526,ww,32365c8169078fe67db42c10fa44ff,-1
+62,"Because the formula for calcium nitrate is Ca(NO3)2, showing that it contains the most nitrogen atoms. ","Calcium has a 2+ charge, while nitrate has a -1 charge; therefore, this compound has the most nitrogen atoms per molecule. ",a2,arg82393,arg10650,arg82393_arg10650,ww,530d33415f21e105f00473bc2616eb,1
+63,"Calcium has a 2+ charge, while nitrate has a -1 charge; therefore, this compound has the most nitrogen atoms per molecule. ",Test,a1,arg10650,arg173342,arg10650_arg173342,ww,3495a8ba33f10400a1dd666aae1336,-1
+64,Ammonium phosphates chemical formula is (NH4)3 PO4. This means that ammonium phosphate has 3 nitrogen atoms which is more than any of the other compounds.,"Calcium has a 2+ charge, while nitrate has a -1 charge; therefore, this compound has the most nitrogen atoms per molecule. ",a2,arg173831,arg10650,arg173831_arg10650,rw,d755069f9e55c9b1662f3fbd628fbc,1
+65,"Calcium has a 2+ charge, while nitrate has a -1 charge; therefore, this compound has the most nitrogen atoms per molecule. ",4 in ammonium plus 3 from the phosphate,a1,arg10650,arg173968,arg10650_arg173968,rw,39939d23cd8242ed6f33faffae8d6e,-1

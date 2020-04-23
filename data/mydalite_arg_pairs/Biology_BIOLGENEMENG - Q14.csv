@@ -1,0 +1,107 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,?,test cross w recessive (ssyy) so YY not possible,a2,arg69809,arg69777,arg69809_arg69777,wr,468d9835aa2dd2ba5ab16b54ebfbc1,1
+1,test cross w recessive (ssyy) so YY not possible,hmmmmm,a1,arg69777,arg69824,arg69777_arg69824,wr,51c8aa81265b76c2eafafaddf7f0f1,-1
+2,YY,test cross w recessive (ssyy) so YY not possible,a2,arg70817,arg69777,arg70817_arg69777,rr,dd1b4189a8ac774a3a58a6ffd278d1,1
+3,test cross w recessive (ssyy) so YY not possible,test cross is with recessive alleles usually,a1,arg69777,arg71790,arg69777_arg71790,rr,bdec0e8e8e5c06c514969952e12dc0,-1
+4,never going to get 2 big Y alleles since the test cross only has yy,test cross w recessive (ssyy) so YY not possible,a2,arg71800,arg69777,arg71800_arg69777,rr,e76157e16bb5609476c036748a4d5c,1
+5,test cross w recessive (ssyy) so YY not possible,test hybrid cross uses ss yy so it is impossible to end up ss Yy,a1,arg69777,arg71933,arg69777_arg71933,wr,6fd733ce744be25ce02e000dcdac24,-1
+6,.,test cross w recessive (ssyy) so YY not possible,a2,arg72564,arg69777,arg72564_arg69777,rr,49576fcc061976107dfa27c933b67d,1
+7,test cross w recessive (ssyy) so YY not possible,because the other parent is heterozygous recessive,a1,arg69777,arg72838,arg69777_arg72838,rr,708754cef412a0e37feac91458b8fc,-1
+8,   ,test cross w recessive (ssyy) so YY not possible,a2,arg73230,arg69777,arg73230_arg69777,wr,329e19bb2972198cb210a34be61978,1
+9,test cross w recessive (ssyy) so YY not possible, ,a1,arg69777,arg73354,arg69777_arg73354,rr,636a75297f7fb81eec8ea53f8010ba,-1
+10,Can’t be YY,test cross w recessive (ssyy) so YY not possible,a2,arg74925,arg69777,arg74925_arg69777,rr,8b9a35ef268a7af3ffa6e39429cb44,1
+11,test cross w recessive (ssyy) so YY not possible,no homo dominant,a1,arg69777,arg76440,arg69777_arg76440,rr,8eb203e403c4e4f5ad0c22b0a6c240,-1
+12,i did the punnett square ,test cross w recessive (ssyy) so YY not possible,a2,arg77580,arg69777,arg77580_arg69777,rr,3340368556c1c3339d531fe5657a11,1
+13,test cross w recessive (ssyy) so YY not possible,.,a1,arg69777,arg77865,arg69777_arg77865,rr,3e179fba728baed8c01e997ac36184,-1
+14,cant have one homozygous dominant gene,test cross w recessive (ssyy) so YY not possible,a2,arg78818,arg69777,arg78818_arg69777,rr,3833d34efac4d96ebc009507f78f02,1
+15,test cross w recessive (ssyy) so YY not possible,oo idk,a1,arg69777,arg83475,arg69777_arg83475,wr,49608560fb63a67dcb73693d0ceda4,-1
+16, ,test cross w recessive (ssyy) so YY not possible,a2,arg86697,arg69777,arg86697_arg69777,rr,89e8f909166ff575a315ba47797f9f,1
+17,test cross w recessive (ssyy) so YY not possible,Y comes from SsYy so other allele must be y from the homozygous recessive tester,a1,arg69777,arg86934,arg69777_arg86934,rr,75151c3099ca1bb0987f709884fe02,-1
+18,no homozygous dominant possible,test cross w recessive (ssyy) so YY not possible,a2,arg91954,arg69777,arg91954_arg69777,rr,d709f71cb4f0a254ee0d56af55a832,1
+19,test cross w recessive (ssyy) so YY not possible,testcross,a1,arg69777,arg96556,arg69777_arg96556,rr,ec0af916fb5a693fb11f8fe27aa0c6,-1
+20,The test cross cannot give big Y,test cross w recessive (ssyy) so YY not possible,a2,arg98826,arg69777,arg98826_arg69777,rr,7a75c18e543c44ba363a19a5c622a3,1
+21,test cross w recessive (ssyy) so YY not possible,"You can't get two dominant Y alleles (one from the parent, but the testcross parent ssyy does not have Y)",a1,arg69777,arg99725,arg69777_arg99725,rr,49de27d597d056c2f2d9261a80f9a8,-1
+22,need a little y from test cross parent,test cross w recessive (ssyy) so YY not possible,a2,arg100599,arg69777,arg100599_arg69777,rr,d4db6473770e13b88e945e6d720b09,1
+23,test cross w recessive (ssyy) so YY not possible,"never all recessive
+",a1,arg69777,arg104328,arg69777_arg104328,wr,c26349749ee6d3652a416f7928117e,-1
+24,"Only one parent has a Y, the other is homozygous recessive",test cross w recessive (ssyy) so YY not possible,a2,arg105516,arg69777,arg105516_arg69777,rr,9008d1eb1761199bc25f860bd6042e,1
+25,test cross w recessive (ssyy) so YY not possible,cant have two dominant alleles,a1,arg69777,arg106654,arg69777_arg106654,rr,1aecf20e8f704b265316810ff5f9df,-1
+26,because,test cross w recessive (ssyy) so YY not possible,a2,arg106952,arg69777,arg106952_arg69777,wr,d5cb6aac310874f98e2fec71d14a59,1
+27,test cross w recessive (ssyy) so YY not possible,yeet,a1,arg69777,arg107421,arg69777_arg107421,rr,c0ea6e7059333dd78629a86303cbeb,-1
+28,a test cross is a homozygous recessive genotype therefore there could not be a homozygous dominant YY phenotype as there is no second Y for it to pair with,test cross w recessive (ssyy) so YY not possible,a2,arg153823,arg69777,arg153823_arg69777,rr,824b9f3213e446743a4f906e4c7219,1
+29,"This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ",The tester is homozygous recessive. Offspring can't be homozygous dominant.,a1,arg74424,arg77726,arg74424_arg77726,rr,14899b064827f55df8c48614f4274f,-1
+30,should be homozygous,"This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ",a2,arg102163,arg74424,arg102163_arg74424,wr,568ae852c10bca7ea1cf795580210e,1
+31,"This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ",test cross is with a homozygous recessive ssyy so can't have Yy,a1,arg74424,arg185989,arg74424_arg185989,rr,a4efbb59c3f3cc914065e25300dae6,-1
+32,"Test cross is done with a recessive (in this case, ssyy) organism. It would be impossible to get 2 dominant alleles (YY) as it can only be donated from one parent, and not the recessive one.","This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ",a2,arg186330,arg74424,arg186330_arg74424,rr,0674751acab1b3c6ce09ea354902f9,1
+33,"This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ",A test cross is with a homo recessive therefore cannot have homo dominent as the outcome,a1,arg74424,arg187824,arg74424_arg187824,rr,91d55b62d66ae26ce4305aa1cda609,-1
+34,A test cross crosses with ssyy so you can't get homozygous YY.,"This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ",a2,arg189883,arg74424,arg189883_arg74424,rr,b68f021a380c337a78402f16be4ab6,1
+35,"This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ",i dont know which one it is so i picked randomely.. this rationale is very annoying,a1,arg74424,arg190441,arg74424_arg190441,rr,2810d543fe5fecbfc494e02a0451fb,-1
+36,"A test cross would cross SsYy with ssyy (homozygous recessive), so we cannot have C, which has 2 dominant Y alleles","This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ",a2,arg199601,arg74424,arg199601_arg74424,rr,efc05df18d8858affef8a46c97598b,1
+37,"This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ","That one just looks weird if I'm being honest, idk",a1,arg74424,arg201858,arg74424_arg201858,wr,2f9cd506c8c3d4ffaa349d74e7ef08,-1
+38,"usually test to autosomal reccesive pare,t WTH IS THIS QUESTION even WTH IS THIS QUESTION even","This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ",a2,arg222385,arg74424,arg222385_arg74424,rr,7017b307af3a32ba313269c26d7413,1
+39,"This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ",You wouldn't find SsYY because there wouldn't be a second Y in the tester,a1,arg74424,arg228681,arg74424_arg228681,rr,a576819841a6a265330e5afdc9ac59,-1
+40,did not study gene interactiondid not study gene interactiondid not study gene interactiondid not study gene interactiondid not study gene interactiondid not study gene interaction,"This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ",a2,arg232434,arg74424,arg232434_arg74424,rr,2e0b0dfc4b4a1f651a3a9db387f7e4,1
+41,"This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ","There is only 1 dominant Y, how can there be 2? No further explanation required.",a1,arg74424,arg237660,arg74424_arg237660,rr,c0bf50b4127516fec2f23a714be712,-1
+42,"When crossing back to the parent, dominant trait will always be present","This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ",a2,arg237810,arg74424,arg237810_arg74424,wr,69757b31e1e07d3dfc9c72fb52a6f4,1
+43,"This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ",The test cross involves only recessive gametes so there would not be the possibility for homozygous dominant genotypes,a1,arg74424,arg237965,arg74424_arg237965,rr,3cb1bcf49a5156777764cd4cade4e0,-1
+44,you do not have two dominant alleles of any trait inthe parents so the progeny cannot,"This means SsYy x ssyy.
+
+With a punnet square, you see that you cannot get SsYY because the tester parent (ssyy) cannot give you a Y ",a2,arg246248,arg74424,arg246248_arg74424,rr,8060014a68bb9e3ae3e28e459e65b6,1
+45,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",only 1 allele of Y between both parents of the test cross therefore not possible to find the arrangement of YY,a1,arg73866,arg80381,arg73866_arg80381,rr,450594fc663e4d694680ebfdda4895,-1
+46,I love you I love you I love you I love you I love you I love you,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",a2,arg189388,arg73866,arg189388_arg73866,rr,11f1a8875488de92d068d9568ca86d,1
+47,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ","because that's what the textbook says I believe, do do do, I like to poo",a1,arg73866,arg190352,arg73866_arg190352,rr,40bc491a6f593eb9fc7227ad0ee62d,-1
+48,"there is no presence of the recessive allele in the Y, therefore it would not be present as a genotype in a test cross.","for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",a2,arg190676,arg73866,arg190676_arg73866,rr,2dc8bb16041fc92d6a3f3829a2470f,1
+49,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ","In a test cross, SsYy is crossed with ssyy. It is not possible to obtain a genotype with YY because only SsYy can give a Y; ssyy can only give y.",a1,arg73866,arg190762,arg73866_arg190762,rr,6faf803c719243718e98e8e184acb0,-1
+50,A testcross is done between a homozygous recessive individual and another individual of unknown genotype to determine this genotype,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",a2,arg193471,arg73866,arg193471_arg73866,rr,952224f428b3e5d9b939631a9defa7,1
+51,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",Since it would not give any information on the unknown genotype of the organism.,a1,arg73866,arg194198,arg73866_arg194198,wr,46ce8b39fbdfa8315ae502cab3688a,-1
+52,"A test cross would involve the second individual as ssyy, therefore no possibility to have YY","for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",a2,arg194830,arg73866,arg194830_arg73866,rr,b7df7271f31c316697bac696957a39,1
+53,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",There would be no way to get homozygous dominant for any of the alleles,a1,arg73866,arg195052,arg73866_arg195052,rr,a6cf216f09945b2becfa4163339c25,-1
+54,There's no way you'd get YY when doing a test cross because the other parent will be all recessive anyways.,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",a2,arg195333,arg73866,arg195333_arg73866,rr,ab909f84d7477c3ad4b2f421bd0603,1
+55,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",cannot produce dominant phenotype for the second trait during test cross,a1,arg73866,arg196038,arg73866_arg196038,rr,3ac67b187ca3ec12ebf3b9b5ebbabd,-1
+56,"test cross, you have to use the parental genotype ssyy, so it won't have the result of SsYY","for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",a2,arg199908,arg73866,arg199908_arg73866,rr,80cb0109279369a2bf8b830e92ae7b,1
+57,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ","test cross requires one parent to be homozygous recessive so would only be able to give s or y. therefore, it is not possible for the offspring to have two copies of the dominant allele because it gets one allele from each parent and the recessive parent does not have a dominant allele to give",a1,arg73866,arg204464,arg73866_arg204464,rr,563c20b2722e7a9409c4cba2937eeb,-1
+58,Because in the test cross we use ssyy to cross with our SsYy subject and so you cannot have YY since you can only have Yy or yy.,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",a2,arg204797,arg73866,arg204797_arg73866,rr,eb673e1b8e90d9fa6bbb7291120bab,1
+59,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",because because because because because because because because because because because,a1,arg73866,arg206901,arg73866_arg206901,rr,d06aa0c42a6cda530fd34d24ff1133,-1
+60,A test cross is done with a recessive genotype and getting two dominant in a test cross would be impossible.,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",a2,arg207401,arg73866,arg207401_arg73866,rr,9e23ac17c72a3c803ff59f8ff9f2b5,1
+61,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ","tester cross uses a homzygous recessive parent such that you can determine the genotype of an unknown, so C is not an option as it has YY",a1,arg73866,arg221986,arg73866_arg221986,rr,2de9909ff87809046a3fe88fcd465e,-1
+62,if you cross this to a recessive for yy there is no way that you can get another yy,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",a2,arg228740,arg73866,arg228740_arg73866,rr,1a77d13663dc9cec4c5551b950d439,1
+63,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ","cannot get option see because the testcross is done against both recessive alleles, could not get YY",a1,arg73866,arg230696,arg73866_arg230696,rr,230acc8039bba8b70b977c31312c95,-1
+64,"a test cross is a cross between an individual and the homozygous recessive parent. since it is homozygous recessive, it can only produce sy gametes, so it is therefore not possible to have two capital Ys","for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",a2,arg233640,arg73866,arg233640_arg73866,rr,2550f335403b6960ece49e5c45f5aa,1
+65,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",Which of the following genotypes would you not find in a SsYy test cross?,a1,arg73866,arg236538,arg73866_arg236538,rr,fdcba72eb0e114d5eb4eec087d5aa0,-1
+66,"AB, Ab, aB, and abWhich of the following genotypes would you not find in a SsYy test cross?","for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",a2,arg239576,arg73866,arg239576_arg73866,rr,680c356440ff1f7be084cbf2d425b9,1
+67,"for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ","I have no idea why I answered this, to me all options are possible",a1,arg73866,arg240775,arg73866_arg240775,wr,284259f0c39bcaf69a972ef4573497,-1
+68,"Since a test cross involves a ssyy tester, there’s no way you can find a dominant homozygous offspring.","for test cross we have a homozygous recessive alleles as a testor , therefore by crossing it with the given genotype it is not possible to obtain a combination that involves homozygous dominant alleles  ",a2,arg253201,arg73866,arg253201_arg73866,rr,f6151527677d3e021298dd0358a5ee,1
+69,this genotype is homozygous recessive and could never create a SsYy heterozygous genoytpe as it does not have any dominant alleles,the recessive phenotype for both alleles will be heterozygous jirjirjfitjgitgjt,a1,arg184944,arg186435,arg184944_arg186435,ww,36180e824619c72eb4686ff82b2870,-1
+70,ssyy is homozygous recessive so it is the test crosser,this genotype is homozygous recessive and could never create a SsYy heterozygous genoytpe as it does not have any dominant alleles,a2,arg230918,arg184944,arg230918_arg184944,ww,3a0f3438a565d68e8265d28cb5a20d,1
+71,this genotype is homozygous recessive and could never create a SsYy heterozygous genoytpe as it does not have any dominant alleles,the normal parents dominant genes will not allow a ssyy,a1,arg184944,arg235445,arg184944_arg235445,ww,6eb2802b8d7d54a16614d693c96ac4,-1
+72,A plant of genotype AaBb should give the following gametes,this genotype is homozygous recessive and could never create a SsYy heterozygous genoytpe as it does not have any dominant alleles,a2,arg243080,arg184944,arg243080_arg184944,ww,7676492bc93fe31074d6ddca1523c2,1

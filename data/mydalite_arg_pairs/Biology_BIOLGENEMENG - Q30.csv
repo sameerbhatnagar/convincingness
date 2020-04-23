@@ -1,0 +1,91 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0, ,the probability of two independent events do not interfere with each other,a2,arg68822,arg68767,arg68822_arg68767,rr,b2dc02b7b0620f746fd7977a3e3e63,1
+1,the probability of two independent events do not interfere with each other,sense,a1,arg68767,arg69566,arg68767_arg69566,rr,0bb1b73bf390a7f789aa2b784a5f47,-1
+2, ,the probability of two independent events do not interfere with each other,a2,arg70865,arg68767,arg70865_arg68767,rr,dd1b4189a8ac774a3a58a6ffd278d1,1
+3,the probability of two independent events do not interfere with each other,.,a1,arg68767,arg71851,arg68767_arg71851,rr,99e13597aca888836f3437b617fdc8,-1
+4,Each new child is like a new coin flip .: doesn't matter what the previous phenotype is. ,the probability of two independent events do not interfere with each other,a2,arg72363,arg68767,arg72363_arg68767,rr,f9492d6919058d9e266fd90f87a2c3,1
+5,the probability of two independent events do not interfere with each other,Probabilities remain constant.,a1,arg68767,arg72493,arg68767_arg72493,rr,5cedf21fe930c659b63d770023ff7e,-1
+6,yeet,the probability of two independent events do not interfere with each other,a2,arg72644,arg68767,arg72644_arg68767,rr,9c879c20dda43dc90748042d0eb20f,1
+7,the probability of two independent events do not interfere with each other,Probabilities won't change,a1,arg68767,arg73060,arg68767_arg73060,rr,83298ffad1d5c1507c9d8cc4371e8a,-1
+8,The chance does not change according to the order of birth.,the probability of two independent events do not interfere with each other,a2,arg76154,arg68767,arg76154_arg68767,rr,8b9a35ef268a7af3ffa6e39429cb44,1
+9,the probability of two independent events do not interfere with each other,n,a1,arg68767,arg77080,arg68767_arg77080,rr,8eb203e403c4e4f5ad0c22b0a6c240,-1
+10,One kid doesn't affect what the other will be.,the probability of two independent events do not interfere with each other,a2,arg77742,arg68767,arg77742_arg68767,rr,14899b064827f55df8c48614f4274f,1
+11,the probability of two independent events do not interfere with each other,it does not matter what the other child's phenotype is ,a1,arg68767,arg77778,arg68767_arg77778,rr,3340368556c1c3339d531fe5657a11,-1
+12,.,the probability of two independent events do not interfere with each other,a2,arg77912,arg68767,arg77912_arg68767,rr,3e179fba728baed8c01e997ac36184,1
+13,the probability of two independent events do not interfere with each other,.,a1,arg68767,arg78040,arg68767_arg78040,rr,05da4f8e559772632f274bc9ec7be3,-1
+14,.,the probability of two independent events do not interfere with each other,a2,arg78381,arg68767,arg78381_arg68767,rr,3c51f38cd05bf8261f066dceafb818,1
+15,the probability of two independent events do not interfere with each other,the chance of each child getting recessive gene is unrelated to each other,a1,arg68767,arg78517,arg68767_arg78517,rr,cead6646672b7b1bc6a7a53b4a3d15,-1
+16,Aa x Aa ,the probability of two independent events do not interfere with each other,a2,arg78922,arg68767,arg78922_arg68767,rr,0be0ff8557741e78e06fc316bfeeec,1
+17,the probability of two independent events do not interfere with each other,d,a1,arg68767,arg78963,arg68767_arg78963,rr,8ea6d35ef00f2b5729baa089d59334,-1
+18, ,the probability of two independent events do not interfere with each other,a2,arg79490,arg68767,arg79490_arg68767,rr,177f9fe28a7f447052d4f0c3344b3b,1
+19,the probability of two independent events do not interfere with each other,The cross probabilities start over with each cross,a1,arg68767,arg79936,arg68767_arg79936,rr,4f1854b22453f2bc5973c572636044,-1
+20, ,the probability of two independent events do not interfere with each other,a2,arg80202,arg68767,arg80202_arg68767,rr,6bc0b3817e64f6acc8651e179a1194,1
+21,the probability of two independent events do not interfere with each other,n,a1,arg68767,arg80955,arg68767_arg80955,rr,c1b78ab4dbd2ab5405cde4e9275677,-1
+22,/,the probability of two independent events do not interfere with each other,a2,arg81861,arg68767,arg81861_arg68767,rr,6be9daa2bf82af5976958bafa6bb13,1
+23,the probability of two independent events do not interfere with each other, ,a1,arg68767,arg82303,arg68767_arg82303,rr,3bd5550c3c04ab9f5d9d55cfba6d09,-1
+24,..,the probability of two independent events do not interfere with each other,a2,arg86171,arg68767,arg86171_arg68767,rr,e969de6f57d3ccca6cfb4d0560708d,1
+25,the probability of two independent events do not interfere with each other,YEP,a1,arg68767,arg86403,arg68767_arg86403,rr,710f05a894e40d30408e624d812a4b,-1
+26,.,the probability of two independent events do not interfere with each other,a2,arg86970,arg68767,arg86970_arg68767,rr,48b961f1db3dd4876b16e703f47af2,1
+27,the probability of two independent events do not interfere with each other, ,a1,arg68767,arg87075,arg68767_arg87075,rr,75151c3099ca1bb0987f709884fe02,-1
+28,.,the probability of two independent events do not interfere with each other,a2,arg87665,arg68767,arg87665_arg68767,rr,49576fcc061976107dfa27c933b67d,1
+29,the probability of two independent events do not interfere with each other,-,a1,arg68767,arg91979,arg68767_arg91979,rr,d709f71cb4f0a254ee0d56af55a832,-1
+30,caus,the probability of two independent events do not interfere with each other,a2,arg96636,arg68767,arg96636_arg68767,rr,ec0af916fb5a693fb11f8fe27aa0c6,1
+31,the probability of two independent events do not interfere with each other,Mendntliann genetics is based on probability ,a1,arg68767,arg98877,arg68767_arg98877,rr,7a75c18e543c44ba363a19a5c622a3,-1
+32,independent probabilities ,the probability of two independent events do not interfere with each other,a2,arg100238,arg68767,arg100238_arg68767,rr,8c102c86fa48da8a78b3f2fdea1ce9,1
+33,the probability of two independent events do not interfere with each other,Made this mistake before lol,a1,arg68767,arg100428,arg68767_arg100428,rr,931fd4c4ea1cd2c0be0bd64b455e7e,-1
+34,",,,,,",the probability of two independent events do not interfere with each other,a2,arg101240,arg68767,arg101240_arg68767,rr,6bb07ec8918333ecde1b6697bf38f0,1
+35,the probability of two independent events do not interfere with each other,chance,a1,arg68767,arg101342,arg68767_arg101342,rr,775afec11b93dd23f17e6225796045,-1
+36,Quick maths,the probability of two independent events do not interfere with each other,a2,arg103931,arg68767,arg103931_arg68767,rr,9e9f367dbcc4bb2bca45bde40b4c94,1
+37,the probability of two independent events do not interfere with each other,"no matter what the first child's phenotype, the next child will have a 1/4 chance of being phenotypically recessive",a1,arg68767,arg103981,arg68767_arg103981,rr,0a82d2f36cda00b9f5e97c580752ac,-1
+38,These are independent occurences,the probability of two independent events do not interfere with each other,a2,arg105557,arg68767,arg105557_arg68767,rr,9008d1eb1761199bc25f860bd6042e,1
+39,the probability of two independent events do not interfere with each other,Math,a1,arg68767,arg105757,arg68767_arg105757,rr,25aacd8fff0658e1a2dfe9953dfc6b,-1
+40,each event is independant,the probability of two independent events do not interfere with each other,a2,arg105815,arg68767,arg105815_arg68767,rr,9ff916b24a214164ad7838787f7eb5,1
+41,the probability of two independent events do not interfere with each other,no matter,a1,arg68767,arg105886,arg68767_arg105886,rr,1eac226fa2a7a10fc647fecd01a00e,-1
+42,/. .. ,the probability of two independent events do not interfere with each other,a2,arg106335,arg68767,arg106335_arg68767,rr,c3b72f1e3ddc610a90c7743f1e8ee6,1
+43,the probability of two independent events do not interfere with each other,aswedrftgyhujikolp,a1,arg68767,arg106759,arg68767_arg106759,rr,d22b2724721ba0da929fb42ad2e456,-1
+44,"probability rules, independent events",the probability of two independent events do not interfere with each other,a2,arg111657,arg68767,arg111657_arg68767,rr,54b5fd31243de08ea4b8f00b4966e9,1
+45,the probability of two independent events do not interfere with each other,The phenotype of the first child has no influence on the phenotype of the next- the odds remain the same for each subsiquent child given the parents remain constant.,a1,arg68767,arg184930,arg68767_arg184930,rr,2435b9cc294a9a0628a2a6e58d36cf,-1
+46,doesn't matter order of children all have the same chance of having chromosomes combine one way or another,the probability of two independent events do not interfere with each other,a2,arg185310,arg68767,arg185310_arg68767,rr,754a94af492f5a2a02564805a0c5eb,1
+47,the probability of two independent events do not interfere with each other,"that is how stats work. Plus, it is independent of what other zygotes received. it's always a new 1/4 chance each time.",a1,arg68767,arg185493,arg68767_arg185493,rr,da3231695068ba111ce58a62e8022c,-1
+48,The first child’s phenotype does not affect the probability of the next child being phenotypically recessive,the probability of two independent events do not interfere with each other,a2,arg185884,arg68767,arg185884_arg68767,rr,10ec8e3a50e029f1050a03bbf9710b,1
+49,the probability of two independent events do not interfere with each other,"The chance of getting dominant trait and recessive trait is fixed: 3 to 1 ratio. No matter how many children;s phenotype are recessive before, the next child still have 3:1 dominant recessive ratio.",a1,arg68767,arg186269,arg68767_arg186269,rr,8c97974493a339b154793e66c496ec,-1
+50,the phentype and the genotype are what is numbers probability poo,the probability of two independent events do not interfere with each other,a2,arg186619,arg68767,arg186619_arg68767,rr,36180e824619c72eb4686ff82b2870,1
+51,the probability of two independent events do not interfere with each other,"Receiving a certain genotype is only a probability, not a certainty that it will happen.",a1,arg68767,arg187178,arg68767_arg187178,rr,5f0df47c28d1b11d5e56f5af7732d9,-1
+52,Each child is an individual event and has the same probability as each other child,the probability of two independent events do not interfere with each other,a2,arg188163,arg68767,arg188163_arg68767,rr,9e82f1cfc19362f43059262bd60c71,1
+53,the probability of two independent events do not interfere with each other,"Every time a mother gives birth, the odds of the offspring possessing a particular genotype remains the same.",a1,arg68767,arg188341,arg68767_arg188341,rr,e36459c889ec8ce820903ab849be5b,-1
+54,they are all independent events and so the phenotype of the first child is irrelevant,the probability of two independent events do not interfere with each other,a2,arg188866,arg68767,arg188866_arg68767,rr,65a162e077b61d4970a4a4a0049f99,1
+55,the probability of two independent events do not interfere with each other,The 2 events are independent. You could have 100 children that are dominant but the 101 will still have 1/4 chances of being recessive.,a1,arg68767,arg189121,arg68767_arg189121,rr,1182fd51f65265d9fa0f215476622e,-1
+56,"no matter what the first child's phenotype, the next child will have a 1/4 chance of being phenotypically recessive",the probability of two independent events do not interfere with each other,a2,arg190743,arg68767,arg190743_arg68767,rr,f54a8b841cb0779773ee3f141588c2,1
+57,the probability of two independent events do not interfere with each other,"A child's phenotype does not affect the phenotype of the next, they are individual unrelated events",a1,arg68767,arg191224,arg68767_arg191224,rr,f0d5d7cc1bb3645de472a5aa1cb5d4,-1
+58,"Each fertilization is a separate event, independent of the first one, hence, there is always a 1/4 chance a child will be recessive, but the ratios could be different in practice.",the probability of two independent events do not interfere with each other,a2,arg191888,arg68767,arg191888_arg68767,rr,c75778f17bd5973781992a29ed129a,1
+59,the probability of two independent events do not interfere with each other,That does not seem like a clear explanation of your reasoning:That does not seem like a clear explanation of your reasoning:That does not seem like a clear explanation of your reasoning:,a1,arg68767,arg192157,arg68767_arg192157,rr,c6300318f3bd32c7eb37fdbc9e45b8,-1
+60,Having a child doesn't change the ratio. You still keep the original 3:1 ratio.,the probability of two independent events do not interfere with each other,a2,arg192234,arg68767,arg192234_arg68767,wr,7ccdbc380580efafcc4d41ac33f911,1
+61,the probability of two independent events do not interfere with each other,Children are independent events. Children are independent events. Children are independent events. Children are independent events. Children are independent events.,a1,arg68767,arg192486,arg68767_arg192486,rr,691059afeec34764e0672543eb1805,-1
+62,"Im an idiot, and i dont know how to explain. Just let me do the questions.",the probability of two independent events do not interfere with each other,a2,arg193782,arg68767,arg193782_arg68767,rr,a8d3b8a2dbf1ce796a7b357d6d7d5b,1
+63,the probability of two independent events do not interfere with each other,I just want to know the goddamn answers. That use punnet squares and genotypes along with phenotypes and ratios.,a1,arg68767,arg194417,arg68767_arg194417,rr,66a042ade2b69f5648f66599e28e33,-1
+64,The chance of being phenotypically recessive should be 1/4 still because all these are independent events.,the probability of two independent events do not interfere with each other,a2,arg197307,arg68767,arg197307_arg68767,rr,d8fd10340bfb930d8a59e59e51359a,1
+65,the probability of two independent events do not interfere with each other,each child's phenotype and genotype is independent from their siblingss,a1,arg68767,arg200982,arg68767_arg200982,rr,59353ae11368a9a11d9762a45010aa,-1
+66,"Every time a new child is conceived, the same 1/4 probability of being phenotypically recessive occurs because the same cross is done (Aa x Aa).",the probability of two independent events do not interfere with each other,a2,arg201946,arg68767,arg201946_arg68767,rr,179f7e6f5056ec5d7a097ef3896e81,1
+67,the probability of two independent events do not interfere with each other,The probability of their child’s genotype is based on the 3:1 probability rule,a1,arg68767,arg206207,arg68767_arg206207,rr,099516baa7671387394e18f88f2f99,-1
+68,There is no affect on phenotypic probability of next offspring,the probability of two independent events do not interfere with each other,a2,arg208188,arg68767,arg208188_arg68767,rr,7019901dea17d4befc5e8774fb6f5a,1
+69,the probability of two independent events do not interfere with each other,The chance of being born recessive doesn't change mathematically with each child born. It's just an average calculated through observation; not a strict law,a1,arg68767,arg208546,arg68767_arg208546,rr,28fa71522e0e9045eb383a31968efa,-1
+70,Which of the following crosses would always result in offspring that only display the dominant phenotype?,the probability of two independent events do not interfere with each other,a2,arg232344,arg68767,arg232344_arg68767,rr,3a0f3438a565d68e8265d28cb5a20d,1
+71,the probability of two independent events do not interfere with each other,I mean this is basic knowledge of these being independent events,a1,arg68767,arg232406,arg68767_arg232406,rr,b29d23b5cb2fda2826bd333ae17500,-1
+72,the probabilities are independent of one another and dalite is very annoying,the probability of two independent events do not interfere with each other,a2,arg233730,arg68767,arg233730_arg68767,rr,2550f335403b6960ece49e5c45f5aa,1
+73,the probability of two independent events do not interfere with each other,I'm sorry I just wanted to see the answer since typing up my entire rationale for each question would take forever. We love genetics though!,a1,arg68767,arg236746,arg68767_arg236746,rr,fdcba72eb0e114d5eb4eec087d5aa0,-1
+74,Each child is a random assortment of gametes. The existence of children will not affect the genotype of future ones.,the probability of two independent events do not interfere with each other,a2,arg237820,arg68767,arg237820_arg68767,rr,9d0546d0b7aa6c3969bf6f51e13b40,1
+75,the probability of two independent events do not interfere with each other,"This is true because we examine the ratios, not exact numbers. No further explanation required.",a1,arg68767,arg238671,arg68767_arg238671,rr,c0bf50b4127516fec2f23a714be712,-1
+76,The two events are independent - the chances remain equal.,the probability of two independent events do not interfere with each other,a2,arg238716,arg68767,arg238716_arg68767,rr,71ec21c36971a39ec5670e0c5054d6,1
+77,the probability of two independent events do not interfere with each other,A mutation of a keratin gene causes hairlessness in cats,a1,arg68767,arg239142,arg68767_arg239142,rr,6394ca300f8024eae9811867796205,-1
+78,children are independent events and having one child with recessive phenotype does not alter the future child's probabilities,the probability of two independent events do not interfere with each other,a2,arg239225,arg68767,arg239225_arg68767,rr,37dc95a2810c253548122ab8e5daec,1
+79,the probability of two independent events do not interfere with each other,"Which of the following represents a test cross?
+
+
+A. Ww x WW
+
+B. ww x WW
+
+C. Ww x Ww
+
+D. WW x WW",a1,arg68767,arg239297,arg68767_arg239297,rr,3cb1bcf49a5156777764cd4cade4e0,-1
+80,it is the same chance to get a recessive trait,the probability of two independent events do not interfere with each other,a2,arg240509,arg68767,arg240509_arg68767,rr,88ab03177a3205bd92843d6c8f64e3,1

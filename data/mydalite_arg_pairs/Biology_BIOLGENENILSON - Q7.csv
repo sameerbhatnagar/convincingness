@@ -1,0 +1,77 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,"Parental homozygous, heterozygous F1","8 percent fequnecy when it should be 25, inversion suppresses recombination",a2,arg136830,arg136773,arg136830_arg136773,rr,f5e4fff3a4a9605b12629bf4cac95f,1
+1,"8 percent fequnecy when it should be 25, inversion suppresses recombination",inversion lead to decreased recombination frequency,a1,arg136773,arg136963,arg136773_arg136963,rr,ee7b40f08ecc3e6ceca31a6f6b2a5d,-1
+2,jhvv jvjgv,"8 percent fequnecy when it should be 25, inversion suppresses recombination",a2,arg138167,arg136773,arg138167_arg136773,wr,9b9df66d78b43b11ee5b39b8765248,1
+3,"8 percent fequnecy when it should be 25, inversion suppresses recombination",ztdxfycguvh,a1,arg136773,arg138221,arg136773_arg138221,wr,5310bc639057f5c2c7aa6316574c07,-1
+4,not sure,"8 percent fequnecy when it should be 25, inversion suppresses recombination",a2,arg139013,arg136773,arg139013_arg136773,rr,df6f9c7a7cbb9863c5fa0349af930c,1
+5,"8 percent fequnecy when it should be 25, inversion suppresses recombination",icwnfoidnew,a1,arg136773,arg139531,arg136773_arg139531,rr,3e179fba728baed8c01e997ac36184,-1
+6,jhnlknklnl,"8 percent fequnecy when it should be 25, inversion suppresses recombination",a2,arg140140,arg136773,arg140140_arg136773,wr,42ea2f31099cfd1dd172a20c84f760,1
+7,"8 percent fequnecy when it should be 25, inversion suppresses recombination",njan kjn.,a1,arg136773,arg140803,arg136773_arg140803,wr,005762fb8b37afea2793f142f145ac,-1
+8,???? Idk,"8 percent fequnecy when it should be 25, inversion suppresses recombination",a2,arg140842,arg136773,arg140842_arg136773,rr,9008d1eb1761199bc25f860bd6042e,1
+9,"8 percent fequnecy when it should be 25, inversion suppresses recombination",after 15 mu there must be mutation,a1,arg136773,arg140857,arg136773_arg140857,rr,825211c8efc74825daf62ea343070c,-1
+10,cross,"8 percent fequnecy when it should be 25, inversion suppresses recombination",a2,arg141062,arg136773,arg141062_arg136773,rr,5967a43ad707a2c87874c36e15ceca,1
+11,"8 percent fequnecy when it should be 25, inversion suppresses recombination",I have no idea,a1,arg136773,arg141257,arg136773_arg141257,rr,0bb1b73bf390a7f789aa2b784a5f47,-1
+12,not sdure,"8 percent fequnecy when it should be 25, inversion suppresses recombination",a2,arg141844,arg136773,arg141844_arg136773,wr,b3ad7b3042256380fffbbd3afd1f01,1
+13,"8 percent fequnecy when it should be 25, inversion suppresses recombination",no recombination,a1,arg136773,arg142316,arg136773_arg142316,wr,c0724b1944d3753aed170807da9f1f,-1
+14,I just wanna see the next question,"8 percent fequnecy when it should be 25, inversion suppresses recombination",a2,arg142363,arg136773,arg142363_arg136773,wr,a81ba66220ab681d3d479ce8190c53,1
+15,"8 percent fequnecy when it should be 25, inversion suppresses recombination",i honestly don't really understand how to solve this question,a1,arg136773,arg226055,arg136773_arg226055,rr,f7c0eb70420f32fa400aa3b3a617fb,-1
+16,by simply analyzing the graph and having the slightest bit of intelligence it seems that this is a reasonable answer dawg.,"8 percent fequnecy when it should be 25, inversion suppresses recombination",a2,arg226332,arg136773,arg226332_arg136773,wr,e269d62d6994ccca7aff6fcde30e58,1
+17,"8 percent fequnecy when it should be 25, inversion suppresses recombination","I'm not too sure about this, is this not a case of recombination and that is how the progeny appear in the given frequencies?",a1,arg136773,arg229504,arg136773_arg229504,rr,d39d466679b501c793e600814de177,-1
+18,hhjhbbhjkj,Heterozygous inversion decreases the RF by the same distance it covers.,a2,arg136944,arg136939,arg136944_arg136939,ww,b2dc02b7b0620f746fd7977a3e3e63,1
+19,Heterozygous inversion decreases the RF by the same distance it covers.,jgiofujewiufhrw,a1,arg136939,arg137012,arg136939_arg137012,ww,3f8c6489c0aa8afc2efe365be73175,-1
+20,answer,Heterozygous inversion decreases the RF by the same distance it covers.,a2,arg137088,arg136939,arg137088_arg136939,ww,1ecf0b821c364abdbd7b417b940022,1
+21,Heterozygous inversion decreases the RF by the same distance it covers.,low number of recombinants,a1,arg136939,arg137122,arg136939_arg137122,ww,f96816c6c17b9482b5003ec783dc5a,-1
+22,mhgjgjfjtyghmj,Heterozygous inversion decreases the RF by the same distance it covers.,a2,arg137367,arg136939,arg137367_arg136939,ww,49b5f9bd9d5dc869acaf08935a080e,1
+23,Heterozygous inversion decreases the RF by the same distance it covers.,Hmmmmmm,a1,arg136939,arg137975,arg136939_arg137975,ww,14899b064827f55df8c48614f4274f,-1
+24,vhvjvhj,Heterozygous inversion decreases the RF by the same distance it covers.,a2,arg138046,arg136939,arg138046_arg136939,ww,1a91f81232778722fa77d9a510dfbe,1
+25,Heterozygous inversion decreases the RF by the same distance it covers.,jkhkjhkhkjhk,a1,arg136939,arg138706,arg136939_arg138706,ww,190ec1ad3c385f00ec7c5e8cd08a2b,-1
+26,"heterozyg = smaller rf
+translocation -> rf=0",Heterozygous inversion decreases the RF by the same distance it covers.,a2,arg138974,arg136939,arg138974_arg136939,ww,54b602f8b6cbd39d1d6e2ec8f5b893,1
+27,Heterozygous inversion decreases the RF by the same distance it covers.,rf ergfer fer,a1,arg136939,arg139271,arg136939_arg139271,ww,5cedf21fe930c659b63d770023ff7e,-1
+28,mmlmlmlm,Heterozygous inversion decreases the RF by the same distance it covers.,a2,arg139592,arg136939,arg139592_arg136939,ww,ef09042833491cc93247a2361f2e8f,1
+29,Heterozygous inversion decreases the RF by the same distance it covers.,of course,a1,arg136939,arg139650,arg136939_arg139650,ww,8b9a35ef268a7af3ffa6e39429cb44,-1
+30,Must be an inversion because the RF has decreased. Not sure if it is heterozygous or homozygous,Heterozygous inversion decreases the RF by the same distance it covers.,a2,arg140592,arg136939,arg140592_arg136939,ww,53336e2a5ba79c145a46b4ad7b2540,1
+31,Heterozygous inversion decreases the RF by the same distance it covers.,dunno,a1,arg136939,arg140704,arg136939_arg140704,rw,87d12d8bf0b77679a64968d62c01a7,-1
+32,bo clie tbj,Heterozygous inversion decreases the RF by the same distance it covers.,a2,arg140968,arg136939,arg140968_arg136939,ww,3742dea18a0847c333b9bf8826a931,1
+33,Heterozygous inversion decreases the RF by the same distance it covers.,kkkkkk,a1,arg136939,arg141181,arg136939_arg141181,ww,1e3fc5ff9f46de177d6c7fc94bf316,-1
+34,what the heck,Heterozygous inversion decreases the RF by the same distance it covers.,a2,arg141861,arg136939,arg141861_arg136939,ww,a07501b2daa04c977630b501ef9a5b,1
+35,Heterozygous inversion decreases the RF by the same distance it covers.,few recombinants means heterozygous for an inversion?,a1,arg136939,arg141913,arg136939_arg141913,ww,787ce80d42462ccb15a5c1afc85a34,-1
+36,becuase homo ouldnt have any effect,Heterozygous inversion decreases the RF by the same distance it covers.,a2,arg141958,arg136939,arg141958_arg136939,ww,708754cef412a0e37feac91458b8fc,1
+37,Heterozygous inversion decreases the RF by the same distance it covers.,Unknown,a1,arg136939,arg142121,arg136939_arg142121,ww,c0ea6e7059333dd78629a86303cbeb,-1
+38,i don t fucking know,Heterozygous inversion decreases the RF by the same distance it covers.,a2,arg153953,arg136939,arg153953_arg136939,ww,d5cb6aac310874f98e2fec71d14a59,1
+39,Heterozygous inversion decreases the RF by the same distance it covers.,The answer must be C due to my calculations so the rabbit heterxygous map units 15.,a1,arg136939,arg229414,arg136939_arg229414,ww,fffa2c73508a730ac92fa9c1510bdd,-1
+40,The colleague’s rabbit is heterozygous for an inversion that spans greater than 15 map units of the region between genes t and r.,Heterozygous inversion decreases the RF by the same distance it covers.,a2,arg251625,arg136939,arg251625_arg136939,ww,McGillBIOL202,1
+41,"The linkage has been reduced to 8 mu, so there must have been a change that cause the distance between the genes to be reduced homozygously in the colleague's rabbits.",there is a RF of 8% for the two crossovers. this lower RF is the result of an inversion. Since 24-8 = 16 : they are more than 15 m.u. apart.,a1,arg137932,arg139669,arg137932_arg139669,rr,1e72e780333201b4cc5375b0cddef7,-1
+42,"Your expected mapping frequency: 24 map units. Experimental mapping frequency with colleague: 8 map units. It is possible that there was an inversion of  a section that included T, or R that brought R and T closer on the chromosome when colleague's rabbit was used.","The linkage has been reduced to 8 mu, so there must have been a change that cause the distance between the genes to be reduced homozygously in the colleague's rabbits.",a2,arg234687,arg137932,arg234687_arg137932,rr,fa903f4baabaadd2e0c8af7ccd2ff6,1
+43,"The linkage has been reduced to 8 mu, so there must have been a change that cause the distance between the genes to be reduced homozygously in the colleague's rabbits.","crossed back to your colleague’s double homozygous recessive. Altogether, the backcrosses produce 50 rabbits, of",a1,arg137932,arg244643,arg137932_arg244643,wr,7676492bc93fe31074d6ddca1523c2,-1
+44,im not sure,"TR/tr x tr/tr
+50 rabbits
+Recombinants = 2+2
+4/50 = 0.08 = 8% < 24%
+24-16=8 : the inversion is occuring on 16 mu",a2,arg139099,arg138580,arg139099_arg138580,wr,ba344396953aab13099bf3b28ca8c2,1
+45,"TR/tr x tr/tr
+50 rabbits
+Recombinants = 2+2
+4/50 = 0.08 = 8% < 24%
+24-16=8 : the inversion is occuring on 16 mu",no idea,a1,arg138580,arg140231,arg138580_arg140231,rr,3c51f38cd05bf8261f066dceafb818,-1
+46,adsada,"TR/tr x tr/tr
+50 rabbits
+Recombinants = 2+2
+4/50 = 0.08 = 8% < 24%
+24-16=8 : the inversion is occuring on 16 mu",a2,arg141687,arg138580,arg141687_arg138580,rr,048559c9100373cd2ce89faba8a70e,1
+47,"TR/tr x tr/tr
+50 rabbits
+Recombinants = 2+2
+4/50 = 0.08 = 8% < 24%
+24-16=8 : the inversion is occuring on 16 mu",Recessive Disease (when q = 0.3) - ratio of carriers to diseased individuals = 5.44 :1,a1,arg138580,arg247095,arg138580_arg247095,rr,bd0b262eca690457b62142ff634b58,-1
+48,These recombinant offspring are due to a crossing over that could only be possible due to a balanced translocation!,there is a RF of 8% for the two crossovers. this lower RF is the result of an inversion. Since 24-8 = 16 : they are more than 15 m.u. apart.,a2,arg223893,arg139669,arg223893_arg139669,wr,dcc4147a5c461bb23c8f37dfd85e77,1
+49,there is a RF of 8% for the two crossovers. this lower RF is the result of an inversion. Since 24-8 = 16 : they are more than 15 m.u. apart.,The progeny suggests that the recombination progeny changed to 8%,a1,arg139669,arg224692,arg139669_arg224692,rr,c5147c1b67c49927d6b7ef44c8749e,-1
+50,"Progenies resemble more the parental genotype, so this means that the genes are linked (under 50 map units). I'd say the results are normal.",there is a RF of 8% for the two crossovers. this lower RF is the result of an inversion. Since 24-8 = 16 : they are more than 15 m.u. apart.,a2,arg225642,arg139669,arg225642_arg139669,wr,cc33d8d001d9067cbcb7f355866a3f,1
+51,there is a RF of 8% for the two crossovers. this lower RF is the result of an inversion. Since 24-8 = 16 : they are more than 15 m.u. apart.,TtRr and ttrr are parent whereas Ttrr and ttRr are recombinant -- there are more heterozygous than homozygous,a1,arg139669,arg229633,arg139669_arg229633,wr,34da66f91c78866480050f50a72b3b,-1
+52,i dont know how to answer this question help helloo hi,there is a RF of 8% for the two crossovers. this lower RF is the result of an inversion. Since 24-8 = 16 : they are more than 15 m.u. apart.,a2,arg240735,arg139669,arg240735_arg139669,wr,a401f2426415f5b7a37dee0bc47d09,1
+53,there is a RF of 8% for the two crossovers. this lower RF is the result of an inversion. Since 24-8 = 16 : they are more than 15 m.u. apart.,"?? recombinant frequency is 8 percent, which is lower than the 24 it should be at.",a1,arg139669,arg245544,arg139669_arg245544,wr,eb8dc012d0575cf565fab1618b6af0,-1
+54,"The maize genes sh and bz are linked, 40 map units apart. If a plant sh + bz/sh bz + is selfed, what proportion of the progeny will be sh bz/sh bz?",An inversion would be a recessive phenotype as it is a mutation therefore a homozygous mutation would result in an inversion that is more than 15 map units of the region between t and r. it is not a translocation as then the phenotype of the offspring would be different.,a2,arg225562,arg153861,arg225562_arg153861,rr,3b82a24353e5767c6ea89a77bc0ebc,1
+55,These recombinant offspring are due to a crossing over that could only be possible due to a balanced translocation!,I'm tired of writing rationals so I am writing this just so MyDaLITE lets me access the next page.,a1,arg223893,arg233182,arg223893_arg233182,ww,fed0376db5d01f1897cbc2e90ca485,-1
+56,"I have no idea, could someone explain this to me?",These recombinant offspring are due to a crossing over that could only be possible due to a balanced translocation!,a2,arg236830,arg223893,arg236830_arg223893,rw,b5b4fdb321d12c84ca3c5101f70675,1
+57,These recombinant offspring are due to a crossing over that could only be possible due to a balanced translocation!,I have no clue what a balanced translocation is so I’m gonna go ahead and not answer,a1,arg223893,arg240989,arg223893_arg240989,ww,284259f0c39bcaf69a972ef4573497,-1
+58,"greater than 15 mu --> allows for independent assortment --> 50% R, 50% P",These recombinant offspring are due to a crossing over that could only be possible due to a balanced translocation!,a2,arg252899,arg223893,arg252899_arg223893,rw,84c5038c7535522b2f30f5d8abb10a,1

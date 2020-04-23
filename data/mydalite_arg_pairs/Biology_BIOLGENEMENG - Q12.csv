@@ -1,0 +1,89 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,"law of independent assortment & segregation (can only give 1 type of allele of a specific gene, and different genes are inherent differentially)","The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg69554,arg68518,arg69554_arg68518,rr,0bb1b73bf390a7f789aa2b784a5f47,1
+1,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",different alleles pair together ,a1,arg68518,arg71798,arg68518_arg71798,rr,e76157e16bb5609476c036748a4d5c,-1
+2,.,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg71835,arg68518,arg71835_arg68518,rr,99e13597aca888836f3437b617fdc8,1
+3,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",independent assortment,a1,arg68518,arg72210,arg68518_arg72210,rr,abfbfd26a0ee2f96d948e8170819d5,-1
+4,gamete,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg72590,arg68518,arg72590_arg68518,rr,c0b0fe9e84013a644bb70cd23c69a6,1
+5,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab","it will give 4 gametes of this type
+",a1,arg68518,arg72766,arg68518_arg72766,rr,5d07ebd235d2702a5fa91e3fa5ebbc,-1
+6,segregation,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg72817,arg68518,arg72817_arg68518,rr,4aa5a55b7283e597d26fc68e2ea0ea,1
+7,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",Alleles sort independently of one another during méioses to produce gamètes so can't have Aa and Bb tgt.,a1,arg68518,arg73017,arg68518_arg73017,rr,83298ffad1d5c1507c9d8cc4371e8a,-1
+8,independant assortment ,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg73564,arg68518,arg73564_arg68518,rr,b1fbc9050f3eb26b5c9a7100ea970a,1
+9,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",;l,a1,arg68518,arg74091,arg68518_arg74091,rr,0afa302600bf72169f66c146a163ce,-1
+10,independent assortment ,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg76393,arg68518,arg76393_arg68518,rr,8eb203e403c4e4f5ad0c22b0a6c240,1
+11,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",notes,a1,arg68518,arg77567,arg68518_arg77567,rr,3340368556c1c3339d531fe5657a11,-1
+12,A combination 2 heterozygous gene will result with 4 possible gametes.,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg77631,arg68518,arg77631_arg68518,rr,57f5ae976a72c13b7d304c721b0a08,1
+13,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab", ,a1,arg68518,arg77710,arg68518_arg77710,rr,14899b064827f55df8c48614f4274f,-1
+14,AB Ab aB ab,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg77782,arg68518,arg77782_arg68518,rr,6726b97cb4a2a241b4f7d720d97cb9,1
+15,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",.,a1,arg68518,arg77861,arg68518_arg77861,rr,3e179fba728baed8c01e997ac36184,-1
+16,00,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg77931,arg68518,arg77931_arg68518,rr,08e4bad90b7521b965ea164814285e,1
+17,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",.,a1,arg68518,arg77993,arg68518_arg77993,wr,05da4f8e559772632f274bc9ec7be3,-1
+18,Aa and Bb,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg78619,arg68518,arg78619_arg68518,wr,3f723e391f6fc48fb0c52046239973,1
+19,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab","AaBb would give gametes AB, Ab, aB and ab",a1,arg68518,arg79092,arg68518_arg79092,rr,fcf6db7ca0c22a5512281fbf85e807,-1
+20, ,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg79460,arg68518,arg79460_arg68518,rr,177f9fe28a7f447052d4f0c3344b3b,1
+21,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab", ,a1,arg68518,arg80067,arg68518_arg80067,rr,6bc0b3817e64f6acc8651e179a1194,-1
+22,n,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg80081,arg68518,arg80081_arg68518,rr,c1b78ab4dbd2ab5405cde4e9275677,1
+23,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",.,a1,arg68518,arg80117,arg68518_arg80117,rr,52a0801ec0b18861cc6df508f1b10b,-1
+24,Because,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg80166,arg68518,arg80166_arg68518,rr,87d12d8bf0b77679a64968d62c01a7,1
+25,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",law of independent assortment,a1,arg68518,arg80377,arg68518_arg80377,rr,450594fc663e4d694680ebfdda4895,-1
+26,Different possibilities for the gametes that will form,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg80926,arg68518,arg80926_arg68518,rr,0be5fbbd69280e7e6725be63847208,1
+27,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab","AbAB, Ab, aB, and ab
+",a1,arg68518,arg81760,arg68518_arg81760,rr,6be9daa2bf82af5976958bafa6bb13,-1
+28,can give for different gametes with meiosis,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg82731,arg68518,arg82731_arg68518,rr,e24a676b9c1c6fb60ac2698aa4db99,1
+29,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab", ,a1,arg68518,arg86690,arg68518_arg86690,rr,89e8f909166ff575a315ba47797f9f,-1
+30,all combos possible,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg91938,arg68518,arg91938_arg68518,rr,d709f71cb4f0a254ee0d56af55a832,1
+31,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab", ,a1,arg68518,arg93060,arg68518_arg93060,rr,8802245ba48176f94d3f163c97d717,-1
+32,n,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg97312,arg68518,arg97312_arg68518,rr,299fca65b4a9087fdb025b7f11cf4c,1
+33,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",Independent assortment ,a1,arg68518,arg98821,arg68518_arg98821,rr,7a75c18e543c44ba363a19a5c622a3,-1
+34,......,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg100748,arg68518,arg100748_arg68518,rr,6bb07ec8918333ecde1b6697bf38f0,1
+35,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",gametes,a1,arg68518,arg101293,arg68518_arg101293,rr,775afec11b93dd23f17e6225796045,-1
+36,c is correct,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg103668,arg68518,arg103668_arg68518,rr,0c8d3eb148df5456ef11b522e6e9ad,1
+37,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",Because,a1,arg68518,arg103879,arg68518_arg103879,rr,9e9f367dbcc4bb2bca45bde40b4c94,-1
+38,asfdfzgjfdlk,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg104167,arg68518,arg104167_arg68518,rr,04212d5fb7cf609d17a01f9961ea78,1
+39,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",Because it could have all the combinations,a1,arg68518,arg104469,arg68518_arg104469,wr,268002bfc7fcb28d6bdc37f9256674,-1
+40,four gamete types,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg105002,arg68518,arg105002_arg68518,rr,fc39c9052e53644a0f068063753f78,1
+41,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",vfchgc,a1,arg68518,arg105460,arg68518_arg105460,rr,c56ef9ddc618eb7fd119bae5948335,-1
+42,ljlkjj,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg105738,arg68518,arg105738_arg68518,rr,0d4f219b69a784ccd808051eac7845,1
+43,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",dfghjkl,a1,arg68518,arg106659,arg68518_arg106659,rr,d22b2724721ba0da929fb42ad2e456,-1
+44,smth,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg106942,arg68518,arg106942_arg68518,rr,d5cb6aac310874f98e2fec71d14a59,1
+45,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",meiosis,a1,arg68518,arg111640,arg68518_arg111640,rr,54b5fd31243de08ea4b8f00b4966e9,-1
+46,meiosis II will split AB and ab,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg135147,arg68518,arg135147_arg68518,wr,4a79fd803f80b607b31480868d553e,1
+47,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",gametes would incorporate one possible allele for each gene,a1,arg68518,arg153821,arg68518_arg153821,rr,824b9f3213e446743a4f906e4c7219,-1
+48,"Aa means gametes with either A or a
+Bb means gametes with either B or b
+Combined, gametes can either be AB, Ab, aB, ab","The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg187856,arg68518,arg187856_arg68518,rr,712976bfa20924574442c60b7539d4,1
+49,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab","According to Mendel's first law, alleles sort independently, and can create the variants shown in answer C.",a1,arg68518,arg188422,arg68518_arg188422,rr,9d0546d0b7aa6c3969bf6f51e13b40,-1
+50,"The chromosomes separate at the metaphase plate, taking one of each sister chromatid.","The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg189042,arg68518,arg189042_arg68518,rr,b68f021a380c337a78402f16be4ab6,1
+51,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",Segregation causes a's to not be with b's and there are 4 possible variations,a1,arg68518,arg190042,arg68518_arg190042,rr,634bc5e919b7b373e3c2762d59bf25,-1
+52,There must be 4 gametes possibilities which each one of the traits,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg192023,arg68518,arg192023_arg68518,rr,76e61980b956aee94f5e320112aa93,1
+53,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",That does not seem like a clear explanation of your reasoning:That does not seem like a clear explanation of your reasoning:,a1,arg68518,arg192193,arg68518_arg192193,rr,c6300318f3bd32c7eb37fdbc9e45b8,-1
+54,"Simple punnet square provides the following results, with gametes associated as above","The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg194828,arg68518,arg194828_arg68518,rr,b7df7271f31c316697bac696957a39,1
+55,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab","The parent is heterozygous for both genes and will thus result in equal ratios of 4 different gamete types (AB, Ab, aB, ab)",a1,arg68518,arg200604,arg68518_arg200604,rr,71d60c00d5a476f9d693bbe5c9f642,-1
+56,each gamete would separate differently with at least one of the genotype mixes.,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg203263,arg68518,arg203263_arg68518,rr,6e8e63e014800da92d41c1891d51c6,1
+57,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",Because it is heterozygous for both genes so you get those four gametes options.,a1,arg68518,arg204796,arg68518_arg204796,rr,eb673e1b8e90d9fa6bbb7291120bab,-1
+58,"Genes sort independently, so gamete will be a combination of A and B alleles.","The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg205629,arg68518,arg205629_arg68518,rr,bf9c688799bd0587f7eabab4295383,1
+59,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab","Due to independent assortment, 
+ All the gamete can assort each other independently in the cross",a1,arg68518,arg207514,arg68518_arg207514,rr,099516baa7671387394e18f88f2f99,-1
+60,"Gametes will have an allele for each gene. Looking at AaBb, four different combinations can be made. Each gamete must have an allele from the A gene and an allele from the B gene","The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg224120,arg68518,arg224120_arg68518,rr,cf4292e3f6469917b9c25e612e915b,1
+61,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",Because of the laws of segragation and the laws of independent assortment.,a1,arg68518,arg224143,arg68518_arg224143,rr,4b467852c7ffb3ac8b43ed02dc6c9a,-1
+62,The plant alone would only give Aa and Bb of its genotype,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg228673,arg68518,arg228673_arg68518,wr,a576819841a6a265330e5afdc9ac59,1
+63,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",gene A and gene B must be in each gamete by segregation,a1,arg68518,arg230913,arg68518_arg230913,rr,3a0f3438a565d68e8265d28cb5a20d,-1
+64,did not study gene interactionvdid not study gene interactionvdid not study gene interactionvdid not study gene interactionvdid not study gene interactionvdid not study gene interactiondid not study gene interactiondid not study gene interaction,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg232431,arg68518,arg232431_arg68518,rr,2e0b0dfc4b4a1f651a3a9db387f7e4,1
+65,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab","each gamete only receives one allele from a single gene, and this is all the possible combinations in which they could assort",a1,arg68518,arg233635,arg68518_arg233635,rr,2550f335403b6960ece49e5c45f5aa,-1
+66,"Law of independent assortment, just run through all the possibilities","The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg235018,arg68518,arg235018_arg68518,wr,81e8e594c65b1b4abc602743d11a83,1
+67,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",Has to be all combos but A and a cannot be together. No further explanation required.,a1,arg68518,arg237658,arg68518_arg237658,rr,c0bf50b4127516fec2f23a714be712,-1
+68,It can only give what it has. This is a depth and readability,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg237804,arg68518,arg237804_arg68518,wr,69757b31e1e07d3dfc9c72fb52a6f4,1
+69,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",Because it is a two trait cross thus these would be the possibilities,a1,arg68518,arg238332,arg68518_arg238332,rr,fffa2c73508a730ac92fa9c1510bdd,-1
+70,"Tay Keith, up!
+Look, I just flipped the switch (flipped, flipped)
+I don't know nobody else that's doin' this
+Bodies start to drop, ayy, hit the floor
+Now they wanna know me since I hit the top, ayy","The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg238333,arg68518,arg238333_arg68518,wr,efef38f0316bd617f672f9335f036d,1
+71,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",it could have many different pairs of gametes if they are unlinked and far enough from each other on the same gene,a1,arg68518,arg239214,arg68518_arg239214,rr,60725268dcac5165159269141c66a0,-1
+72,"Alleles segregate indenpendently. therefore, there are many gamete types possible","The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg239813,arg68518,arg239813_arg68518,rr,a401f2426415f5b7a37dee0bc47d09,1
+73,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab","Because of the ind. assortment, the different genes are associated to the others in an random way",a1,arg68518,arg240766,arg68518_arg240766,rr,a4249b8fbcf083f8df2952bb2393bf,-1
+74,alleles don't pair together on gametes - so must be some combination of a and b.,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg241201,arg68518,arg241201_arg68518,rr,0e0eb905e3ad75dbe188d0fe0e6fb2,1
+75,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab","the 4 different combinations of how they can segregate at meiosis are AB, Ab, aB and ab",a1,arg68518,arg241984,arg68518_arg241984,rr,eff6862842ac615ec965161eecf4bf,-1
+76,"AaBb could give gametes AB, Ab, aB, and ab
+(the question wants depth so ignore this sentence)","The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",a2,arg246188,arg68518,arg246188_arg68518,rr,a861ec1b5d5f5a58013e3d9edecef8,1
+77,"The plant can give either A or a and B or b. So it can give AB, aB, Ab, or ab",Each letter get an opposite partner. This allows for the crossing,a1,arg68518,arg246648,arg68518_arg246648,rr,2b438028e3a53bc6edc53c41d99f47,-1

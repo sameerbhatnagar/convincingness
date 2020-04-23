@@ -1,0 +1,174 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,"To have phenotype A B and D, the offspring can be either homozygous dominant or heterozygous. P(A)=P(AA)*P(Aa)=1/4*1/2=1/8. This is also the same for D. P(B) is one as the parents are homozygous dominant and heterozygous for this this gene. cc&ee have probabilities of 1/4 as the parents are heterozygous. (1/2)^2*(1/4)^4 gives a denominator of 1024, and since there are 3 genes give the same result with different combinations, the numerator is three. ","The probability of producing a dominant phenotype from heterozygous parents for a single gene is (3/4) (Aa x Aa; Dd x Dd).
+
+The probability of producing a dominant phenotype from one heterozygous parent and one homozygous dominant parent is (1/1) (Bb x BB). 
+
+The probability of producing a recessive phenotype from heterozygous parents is (1/4) (Cc x Cc; Ee x Ee). 
+
+To find the overall probability of producing a phenotype of this combination can be found by multiplying each of the possibilities: 
+
+(3/4) x (1) x (1/4) x (3/4) x (1/4) = (9/256)",a2,arg97711,arg60008,arg97711_arg60008,wr,f42e3beb6d79465220551491ce334b,1
+1,"phenotype       probability to get it
+A                        3/4
+B                        4/4=1
+c                         1/4
+D                        3/4
+e                         1/4
+
+probability to get the phenotype  A B c D e is just the multiplication of all the probabilities ",3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a1,arg66525,arg67996,arg66525_arg67996,rr,20d91b665d5dc2471b98eea439ea5f,-1
+2,"If you look at each gene individually, assuming they assort independently, you can calculate the probability of each phenotype then use the product rule to get 9/256","phenotype       probability to get it
+A                        3/4
+B                        4/4=1
+c                         1/4
+D                        3/4
+e                         1/4
+
+probability to get the phenotype  A B c D e is just the multiplication of all the probabilities ",a2,arg191997,arg66525,arg191997_arg66525,rr,5d5c9eeee8f714934b249eebfabd8b,1
+3,"phenotype       probability to get it
+A                        3/4
+B                        4/4=1
+c                         1/4
+D                        3/4
+e                         1/4
+
+probability to get the phenotype  A B c D e is just the multiplication of all the probabilities ",3/4 * 1/4 * 3/4 * 1/4 since the genotypes of the parents are Aa Bb Cc Dd Ee and Aa BB Cc Dd Ee,a1,arg66525,arg195487,arg66525_arg195487,rr,c5147c1b67c49927d6b7ef44c8749e,-1
+4,"for the phenotype
+A = 3/4
+B = 1
+c = 1/4
+D = 3/4
+e = 1/4","phenotype       probability to get it
+A                        3/4
+B                        4/4=1
+c                         1/4
+D                        3/4
+e                         1/4
+
+probability to get the phenotype  A B c D e is just the multiplication of all the probabilities ",a2,arg196348,arg66525,arg196348_arg66525,rr,9e82f1cfc19362f43059262bd60c71,1
+5,"phenotype       probability to get it
+A                        3/4
+B                        4/4=1
+c                         1/4
+D                        3/4
+e                         1/4
+
+probability to get the phenotype  A B c D e is just the multiplication of all the probabilities ",(3/4)x(1)x(1/4)x(3/4)x(1/4)=9/256 of you separate the crosses by each individual trait,a1,arg66525,arg197774,arg66525_arg197774,rr,aa1a136a7a9f4d6b7ecb6558b792d1,-1
+6,"A cross is made between the following parents: Aa Bb Cc Dd Ee x Aa BB Cc Dd Ee. What is
+the probability that they will produce an offspring of the phenotype A B c D e?","phenotype       probability to get it
+A                        3/4
+B                        4/4=1
+c                         1/4
+D                        3/4
+e                         1/4
+
+probability to get the phenotype  A B c D e is just the multiplication of all the probabilities ",a2,arg206683,arg66525,arg206683_arg66525,rr,16661a95a03b72f49ec743e1821943,1
+7,"phenotype       probability to get it
+A                        3/4
+B                        4/4=1
+c                         1/4
+D                        3/4
+e                         1/4
+
+probability to get the phenotype  A B c D e is just the multiplication of all the probabilities ","A cross is made between the following parents: Aa Bb Cc Dd Ee x Aa BB Cc Dd Ee. What is
+
+the probability that they will produce an offspring of the phenotype A B c D e?
+
+
+A. 0
+
+B. 9/512
+
+C. 9/256
+
+D. 1/256
+
+E. 3/1024",a1,arg66525,arg215208,arg66525_arg215208,rr,c182e01377768877871d4e31b0bf11,-1
+8,i dont know. i just want to know the answers according to the punnet square method,"phenotype       probability to get it
+A                        3/4
+B                        4/4=1
+c                         1/4
+D                        3/4
+e                         1/4
+
+probability to get the phenotype  A B c D e is just the multiplication of all the probabilities ",a2,arg233045,arg66525,arg233045_arg66525,rr,66a042ade2b69f5648f66599e28e33,1
+9,"phenotype       probability to get it
+A                        3/4
+B                        4/4=1
+c                         1/4
+D                        3/4
+e                         1/4
+
+probability to get the phenotype  A B c D e is just the multiplication of all the probabilities ",I'm sorry I just wanted to see the answer since typing up my entire rationale for each question would take forever. We love genetics though!,a1,arg66525,arg236889,arg66525_arg236889,rr,fdcba72eb0e114d5eb4eec087d5aa0,-1
+10,i just want to get past this qwuestion and move on so i can do the next question,"phenotype       probability to get it
+A                        3/4
+B                        4/4=1
+c                         1/4
+D                        3/4
+e                         1/4
+
+probability to get the phenotype  A B c D e is just the multiplication of all the probabilities ",a2,arg240347,arg66525,arg240347_arg66525,wr,0ed7200b48394cc32033cb5aff06bf,1
+11,"phenotype       probability to get it
+A                        3/4
+B                        4/4=1
+c                         1/4
+D                        3/4
+e                         1/4
+
+probability to get the phenotype  A B c D e is just the multiplication of all the probabilities ",Take the probabilities individually and multiply them together (3/4*1*1/4*3/4*1/4) in order to get the answer 9/256.,a1,arg66525,arg241656,arg66525_arg241656,rr,eff6862842ac615ec965161eecf4bf,-1
+12,you must multiply the probabilities of each individual scenario and then the answer will be 9/256,"phenotype       probability to get it
+A                        3/4
+B                        4/4=1
+c                         1/4
+D                        3/4
+e                         1/4
+
+probability to get the phenotype  A B c D e is just the multiplication of all the probabilities ",a2,arg242514,arg66525,arg242514_arg66525,rr,60725268dcac5165159269141c66a0,1
+13,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,Students type in rationale here.,a1,arg67996,arg68051,arg67996_arg68051,wr,VeroBee23,-1
+14,"3/4
+4/4
+1/4
+3/4
+1/4",3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a2,arg68285,arg67996,arg68285_arg67996,rr,6fd733ce744be25ce02e000dcdac24,1
+15,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,"the total probability eqauls to the product of probability if obtaining each individual phenotypes
+
+Ex. obtaining A (either Aa or AA) from Aa * Aa is 3/4",a1,arg67996,arg68692,arg67996_arg68692,rr,ee7b40f08ecc3e6ceca31a6f6b2a5d,-1
+16,P(A_B_ccD_ee)=P(A_)*P(B_)*P(cc)*P(D_)*P(ee)=3/4*1*1/4*3/4=9/256,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a2,arg72995,arg67996,arg72995_arg67996,rr,83298ffad1d5c1507c9d8cc4371e8a,1
+17,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,0.75 x 1 x0.25 x 0.75 x 0.25,a1,arg67996,arg73120,arg67996_arg73120,rr,c91a3e6c50ed080aee87353f536a66,-1
+18,"Using 5 punnett squares for each allele pair, you find the probability of each and then multiply to get the probability of the offspring",3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a2,arg74052,arg67996,arg74052_arg67996,rr,0afa302600bf72169f66c146a163ce,1
+19,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,3/4 x 1 x 1/4 x 3/4 x 1/4,a1,arg67996,arg74134,arg67996_arg74134,rr,ff8e434947ba49017eff3d2d477ba7,-1
+20,Prob (ABcDe)= 3/4 x 1/2 x 1/4 x 3/4 x 1/4 = 9/512,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a2,arg78301,arg67996,arg78301_arg67996,wr,42ea2f31099cfd1dd172a20c84f760,1
+21,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,None,a1,arg67996,arg78598,arg67996_arg78598,rr,9bd4ca10705470328068efc939c871,-1
+22,Yeet,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a2,arg78796,arg67996,arg78796_arg67996,wr,ae03af5b7e22e4f7144c26259c5eec,1
+23,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,ya,a1,arg67996,arg79094,arg67996_arg79094,rr,841dca9eb28915b9a1d1de4bcdf39b,-1
+24,The offspring must inherit one from each of parents,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a2,arg80826,arg67996,arg80826_arg67996,wr,0be5fbbd69280e7e6725be63847208,1
+25,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,3/4 *1* 1/4*3/4*1/4,a1,arg67996,arg81350,arg67996_arg81350,rr,8049cb3934a4b0f869218b4bdd1d4b,-1
+26,We multiply the probability for each letter,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a2,arg82662,arg67996,arg82662_arg67996,rr,e24a676b9c1c6fb60ac2698aa4db99,1
+27,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256, ,a1,arg67996,arg86662,arg67996_arg86662,rr,89e8f909166ff575a315ba47797f9f,-1
+28,P(A_) = 3/4; P(B_) = 1; P(cc) = 1/4; P(D_) = 3/4; P(ee) = 1/4; multiply together = 9/256,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a2,arg93027,arg67996,arg93027_arg67996,rr,8802245ba48176f94d3f163c97d717,1
+29,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,"Assuming the genes independently assorted, then the probability of the end phenotype will depend on getting each type and multiplying together ",a1,arg67996,arg98789,arg67996_arg98789,rr,7a75c18e543c44ba363a19a5c622a3,-1
+30,P (A_B_c_D_e_) = P(A_) x P(B_) x P(c_) x P(D_) x P(e_) = 3/4 x 1 x 1/4 x 3/4 x 1/4 = 9/256,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a2,arg99703,arg67996,arg99703_arg67996,rr,49de27d597d056c2f2d9261a80f9a8,1
+31,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,3/4*1*1/4*3/4*1/4,a1,arg67996,arg100630,arg67996_arg100630,rr,6bb07ec8918333ecde1b6697bf38f0,-1
+32,(3/4)(1)(1/4)(3/4)(1/4),3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a2,arg101813,arg67996,arg101813_arg67996,rr,121f3890bbcce5731ae942ee96d242,1
+33,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,(3/4)^4 = 9/256,a1,arg67996,arg102026,arg67996_arg102026,rr,568ae852c10bca7ea1cf795580210e,-1
+34,Each one of the allele can be considered apart and then the probability can be multiplied ,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a2,arg102611,arg67996,arg102611_arg67996,rr,bbead66683ce95b09c1f405afe145e,1
+35,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,3/4*1*1/4*3/4*1/4=9/256,a1,arg67996,arg104313,arg67996_arg104313,rr,1eac226fa2a7a10fc647fecd01a00e,-1
+36,done on paper,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a2,arg104458,arg67996,arg104458_arg67996,rr,135752e81467d35ae2e545486c582c,1
+37,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,Multiply the probabilities of the independent events.,a1,arg67996,arg105457,arg67996_arg105457,rr,25aacd8fff0658e1a2dfe9953dfc6b,-1
+38,Using the multiplication rule,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a2,arg105500,arg67996,arg105500_arg67996,rr,9008d1eb1761199bc25f860bd6042e,1
+39,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,"Prod (Aa or AA)=3/4 
+Prod (BB or Bb)= 4/4
+Prob (cc)= 1/4
+Prob (DD or Dd)= 3/4 
+Prob (ee)= 1/4
+Prod (A B c D e)=9/256",a1,arg67996,arg137595,arg67996_arg137595,rr,597058d51ca6804a9eeba65f985050,-1
+40,3/4x1x1/4x3/4x1/4,3/4A x 4/4B x 1/4c x 3/4D x 1/4e = 36/1024 = 9/256,a2,arg153842,arg67996,arg153842_arg67996,rr,c0724b1944d3753aed170807da9f1f,1
+41,offspring should also be diploid. not haploid. ,Because they all have to be pairs,a1,arg72728,arg73143,arg72728_arg73143,ww,f83e757fc9e0755b64fe6e172527ae,-1
+42,you cant have a single allele to code for a phenotype.,offspring should also be diploid. not haploid. ,a2,arg74179,arg72728,arg74179_arg72728,ww,3f723e391f6fc48fb0c52046239973,1
+43,offspring should also be diploid. not haploid. ,Need 2 genes,a1,arg72728,arg75021,arg72728_arg75021,ww,0103e5d111b63d8b3864c545edb013,-1
+44,0.75x1x0.25x0.75x0.25=9/256,offspring should also be diploid. not haploid. ,a2,arg77825,arg72728,arg77825_arg72728,rw,3e179fba728baed8c01e997ac36184,1
+45,offspring should also be diploid. not haploid. ,offspring should be diploid,a1,arg72728,arg86893,arg72728_arg86893,ww,75151c3099ca1bb0987f709884fe02,-1
+46,the offspring can't have only 1 allele of each gene. ,offspring should also be diploid. not haploid. ,a2,arg97052,arg72728,arg97052_arg72728,ww,5f26641b9519f9f1ec07d26d10303c,1
+47,offspring should also be diploid. not haploid. ,phenotype needs to be dihybrid,a1,arg72728,arg106864,arg72728_arg106864,ww,d5cb6aac310874f98e2fec71d14a59,-1
+48,"if you multiple the individual probabilities of obtaining each phenotype together (keeping in mind that for A and D, you can either have Aa or AA and DD or Dd) you get 9/256. ","Assuming the cross results in an offspring with the same ploidy (number of chromosomes), the probability that an offspring has strictly one allele of each gene is equal to 0.",a2,arg73233,arg72460,arg73233_arg72460,rw,d559bad2ec1c3fc1b4f926c8c48086,1
+49,"Assuming the cross results in an offspring with the same ploidy (number of chromosomes), the probability that an offspring has strictly one allele of each gene is equal to 0.",the offspring must have one chromosome from each parent ,a1,arg72460,arg74169,arg72460_arg74169,ww,3f8c6489c0aa8afc2efe365be73175,-1
+50,"The probability of having an offspring with phenotype of A = 3/4(AA, 2Aa), B = 1, c=1/4, D = 3/4 and e = 1/4. Therefore P(ABcDe) = 3/4x1x1/4x3/4x1/4 = 9/256.","Assuming the cross results in an offspring with the same ploidy (number of chromosomes), the probability that an offspring has strictly one allele of each gene is equal to 0.",a2,arg75062,arg72460,arg75062_arg72460,rw,91b81abeeb3dd5b4f163738528596a,1

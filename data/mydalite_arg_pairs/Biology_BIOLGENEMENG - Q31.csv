@@ -1,0 +1,104 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,the product rule,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg68768,arg68470,arg68768_arg68470,rr,ee7b40f08ecc3e6ceca31a6f6b2a5d,1
+1,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16, ,a1,arg68470,arg68823,arg68470_arg68823,rr,b2dc02b7b0620f746fd7977a3e3e63,-1
+2, ,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg70867,arg68470,arg70867_arg68470,rr,dd1b4189a8ac774a3a58a6ffd278d1,1
+3,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,Multiply ,a1,arg68470,arg77900,arg68470_arg77900,rr,57f5ae976a72c13b7d304c721b0a08,-1
+4,  ,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg81056,arg68470,arg81056_arg68470,rr,c11828d46b53cbf827f3a1903a57ce,1
+5,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16, ,a1,arg68470,arg87076,arg68470_arg87076,rr,75151c3099ca1bb0987f709884fe02,-1
+6,3/4 * 1/4 = 3/16,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg91354,arg68470,arg91354_arg68470,rr,3a2eaf4f9c8c79bfa77887eef620ad,1
+7,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,multiply,a1,arg68470,arg104713,arg68470_arg104713,rr,268002bfc7fcb28d6bdc37f9256674,-1
+8,"multiple
+",The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg105889,arg68470,arg105889_arg68470,rr,1eac226fa2a7a10fc647fecd01a00e,1
+9,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,"If both of them are occuring at the same time, then we are looking at the probability of both independent events occuring. This then means that we use the product rule so the answer is D",a1,arg68470,arg192032,arg68470_arg192032,rr,5d5c9eeee8f714934b249eebfabd8b,-1
+10,Multiplication of those two numbers. Both events must occur so the product rule is applied,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg193029,arg68470,arg193029_arg68470,rr,dd2d014da2e300a181076dbb085e70,1
+11,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,3/4 x 1/4 results in 3/16 is both event A and event B are to occur at the same time,a1,arg68470,arg193151,arg68470_arg193151,rr,0674751acab1b3c6ce09ea354902f9,-1
+12,What is the general demographic of the tenants here? Is it family friendly? Targeted for singles?,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg193194,arg68470,arg193194_arg68470,rr,11f1a8875488de92d068d9568ca86d,1
+13,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,"hen the probability of both A and B occurring at the same time is 3/4x1/4=3/16
+prob of 2 independent events is the product",a1,arg68470,arg194743,arg68470_arg194743,rr,1182fd51f65265d9fa0f215476622e,-1
+14,need to multiply the probabilities together so ya d is right,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg195494,arg68470,arg195494_arg68470,rr,3962319de8a4da9a4d63bd889e1904,1
+15,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,3/4 x 1/4 = 3/16. That does not seem like a clear explanation of your reasoning,a1,arg68470,arg195741,arg68470_arg195741,rr,eb8dc012d0575cf565fab1618b6af0,-1
+16,"product rule ('and' rule), multiple both fractions together (3/4 X 1/4 = 3/16)",The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg196357,arg68470,arg196357_arg68470,rr,9e82f1cfc19362f43059262bd60c71,1
+17,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,"as discussed in class, probability of AB= prob of A * Prob of B",a1,arg68470,arg197491,arg68470_arg197491,rr,4291dc655a2e0724f018f03fc58a9b,-1
+18,This is the correct answer because 75% times 25% is 3/16.,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg197548,arg68470,arg197548_arg68470,rr,a93ead596d3e93cc7c3baf70527825,1
+19,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,you must multiply two events that are linked together by an intersection.,a1,arg68470,arg198629,arg68470_arg198629,rr,65a162e077b61d4970a4a4a0049f99,-1
+20,because 3/4 * 1/4 = 3/16 so D is the correct answer.,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg199452,arg68470,arg199452_arg68470,rr,d8fd10340bfb930d8a59e59e51359a,1
+21,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,"Using the probability rule, must multiply the probabilities of events A and B: 3/4 x 1/4 = 3/16",a1,arg68470,arg199786,arg68470_arg199786,rr,efc05df18d8858affef8a46c97598b,-1
+22,According to the lecture notes the answer that I have provided is what I'm going with.,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg205962,arg68470,arg205962_arg68470,rr,69226f0b06fd8222b03f9261e554f0,1
+23,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,you multiple the two probabilities together - (3/4)(1/4)=3/16 to give you the final answer,a1,arg68470,arg207428,arg68470_arg207428,rr,dfc32d2e2f1479630f6295a8a437ec,-1
+24,"both=multiply 
+Probability of both A and B occurring at the same time=P(A)*P(B)=3/4*1/4=3/16",The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg208767,arg68470,arg208767_arg68470,rr,b93788079b11828db3f660965f6274,1
+25,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,for them to happen at the same time you multiply their fractions.,a1,arg68470,arg212189,arg68470_arg212189,rr,ed52993f96d865a578bb4e1953b2ad,-1
+26,"product rule says that p(AintersectionB)= P(a)*P(b) if a and b are independent. Therfore, 1/16 if we assume independence",The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg222277,arg68470,arg222277_arg68470,rr,528440c46ca66eb37b04ab6d41ed29,1
+27,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,you just have to multiply according to the law of the probability thingy,a1,arg68470,arg223427,arg68470_arg223427,rr,bd3e347bd49c52472eddb6dc4e4fbe,-1
+28,Product rule - probability of A AND B occuring is3/4 x 1/4,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg226113,arg68470,arg226113_arg68470,rr,2de9909ff87809046a3fe88fcd465e,1
+29,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,you have to multiply the two probabilities since we are asking when they occur at the same time! yes true,a1,arg68470,arg226544,arg68470_arg226544,rr,dcc4147a5c461bb23c8f37dfd85e77,-1
+30,"The following pedigree shows the inheritance of a blood condition. If the woman II-2 (first woman in second generation) was to marry her cousin II-8 (last male in second generation), what is the probability of their first child having the blood condition?",The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg226773,arg68470,arg226773_arg68470,rr,cf1fe21f7b3dc9be473665c9e08df9,1
+31,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,Answer Answer Answer Answer Answer Answer Answer Answer Answer Answer Answer Answer Answer Answer AnswerAnswer Answer Answer Answer Answer Answer Answer Answer Answer Answer Answer Answer Answer Answer Answer Answer Answer Answer,a1,arg68470,arg230783,arg68470_arg230783,rr,f57af06167bbc10941e05a09d4fc50,-1
+32,you multiply them together because that's how probability works here,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg231668,arg68470,arg231668_arg68470,rr,4c5b69f81935e72eab927acc9968b8,1
+33,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,All progeny having red eyes does not indicate whether the eye color is sex linked but could just be an indication of red being dominant to white and clearly red is not recessive to white if all progeny have it and the father is white-eyed,a1,arg68470,arg232549,arg68470_arg232549,rr,2e0b0dfc4b4a1f651a3a9db387f7e4,-1
+34,"Key word is and, had it said or then we would have added",The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg234192,arg68470,arg234192_arg68470,rr,230acc8039bba8b70b977c31312c95,1
+35,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,"multiplication rule = 3/4 x 1/4 = 3/16
+
+can't give a better explanation than that MyDALITE!",a1,arg68470,arg235653,arg68470_arg235653,rr,908ca5afb5430cb20581b57e97d1b9,-1
+36,I'm sorry I just wanted to see the answer since typing up my entire rationale for each question would take forever. We love genetics though!,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg236924,arg68470,arg236924_arg68470,rr,fdcba72eb0e114d5eb4eec087d5aa0,1
+37,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,"obability of event A is 3/4 and the probability of event B is 1/4, then the probability of both A and B occurring at the same time is 
+
+
+A. 3/4",a1,arg68470,arg237051,arg68470_arg237051,rr,1d3e28e1b591473dee83bb9be112cf,-1
+38,if they are independent then we use the product rule. 3/4 x 1/4 = 3/16,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg238966,arg68470,arg238966_arg68470,rr,57e34afe8c66ff520e6ca14a1c09d1,1
+39,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,"If the probability of event A is 3/4 and the probability of event B is 1/4, then the probability of both A and B occurring at the same time is",a1,arg68470,arg241486,arg68470_arg241486,rr,ef19782cf9333eb6a5a608a66790e2,-1
+40,"multiplication rule love that If the probability of event A is 3/4 and the probability of event B is 1/4, then the probability of both A and B occurring at the same time is",The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg242273,arg68470,arg242273_arg68470,rr,1a77d13663dc9cec4c5551b950d439,1
+41,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,"it is the product rule it is an ""and"" not an ""or"" event",a1,arg68470,arg242376,arg68470_arg242376,rr,7069978eee92f961c62cdf3f449540,-1
+42,you have to multiply both probbailities to get the probability that both will occur at the same time,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg242771,arg68470,arg242771_arg68470,rr,60725268dcac5165159269141c66a0,1
+43,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,"An X-linked gene:
+A. is not inherited according to Mendel's principles",a1,arg68470,arg242806,arg68470_arg242806,rr,4f317126c5644e93399653d41dce4a,-1
+44,Boy is this so much easier than the exam Boy is this so much easier than the exam Boy is this so much easier than the exam,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg243078,arg68470,arg243078_arg68470,rr,c6300318f3bd32c7eb37fdbc9e45b8,1
+45,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,"In a dihybrid cross AaBb x AaBb, what fraction of the offspring will be homozygous for both recessive traits?",a1,arg68470,arg243743,arg68470_arg243743,rr,7676492bc93fe31074d6ddca1523c2,-1
+46,The phenotype of the daughters reflects the genotype of the father.,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,a2,arg245148,arg68470,arg245148_arg68470,rr,5f2356cd4afe4604d7732d091ae1ec,1
+47,The probability of 2 events both occurring is the product of the two individual event's probabilities. 3/4 x 1/4 = 3/16,Probability of two separate events occuring at the same time is multiplication.,a1,arg68470,arg247621,arg68470_arg247621,rr,890e093fa4ae8eb40240d67c2989f6,-1
+48,math,the product rule,a2,arg69564,arg68768,arg69564_arg68768,rr,0bb1b73bf390a7f789aa2b784a5f47,1
+49,the product rule,product rule ,a1,arg68768,arg71822,arg68768_arg71822,rr,e76157e16bb5609476c036748a4d5c,-1
+50, ,the product rule,a2,arg72710,arg68768,arg72710_arg68768,rr,ba2195b8613d1aa0855a6a7d789f3f,1
+51,the product rule, ,a1,arg68768,arg73406,arg68768_arg73406,rr,636a75297f7fb81eec8ea53f8010ba,-1
+52,product law,the product rule,a2,arg76160,arg68768,arg76160_arg68768,rr,8b9a35ef268a7af3ffa6e39429cb44,1
+53,the product rule,n,a1,arg68768,arg80958,arg68768_arg80958,rr,c1b78ab4dbd2ab5405cde4e9275677,-1
+54,AND = multiply probabilities ,the product rule,a2,arg105381,arg68768,arg105381_arg68768,rr,fc39c9052e53644a0f068063753f78,1
+55,the product rule,product rule,a1,arg68768,arg153840,arg68768_arg153840,rr,824b9f3213e446743a4f906e4c7219,-1
+56,and = +,The probability of both events happening is the sum of the individual event's probabilities. 1/4 + 3/4 = 4/4 or 1.,a2,arg71875,arg68471,arg71875_arg68471,ww,bdec0e8e8e5c06c514969952e12dc0,1
+57,The probability of both events happening is the sum of the individual event's probabilities. 1/4 + 3/4 = 4/4 or 1.,"this applies the law of sum in probability, 3/4 +1/4 is 1",a1,arg68471,arg195037,arg68471_arg195037,ww,7d74aafc6f4143740a99ce570485df,-1
+58,"we multiply both and get 3/16. That does not seem like a clear explanation of your reasoning:
+Depth",The probability of both events happening is the sum of the individual event's probabilities. 1/4 + 3/4 = 4/4 or 1.,a2,arg215133,arg68471,arg215133_arg68471,rw,2810d543fe5fecbfc494e02a0451fb,1
+59,The probability of both events happening is the sum of the individual event's probabilities. 1/4 + 3/4 = 4/4 or 1.,"Event A and B are mutully exclusive, one happening does not affect B's happening. So PA and PB occuring at the same time i s 0",a1,arg68471,arg242894,arg68471_arg242894,ww,751857d75ddf3bfa4a76fb930a69ed,-1
+60,I'm not sure if you have to add or multiply,The probability of both events happening is the sum of the individual event's probabilities. 1/4 + 3/4 = 4/4 or 1.,a2,arg245314,arg68471,arg245314_arg68471,ww,ba7aa1aebeccd8a8f7e9b64c90f985,1
+61,The probability of both events happening is the sum of the individual event's probabilities. 1/4 + 3/4 = 4/4 or 1.,"If the probability of event A is 3/4 and the probability of event B is 1/4, then the probability of both A and B occurring at the same time is 
+
+
+A. 3/4",a1,arg68471,arg246751,arg68471_arg246751,rw,1b3143df331373f0fea8b9d1770630,-1
+62, ,Product Rule = (3/4)*(1/4) = (3/16),a2,arg72300,arg71946,arg72300_arg71946,rr,f5e4fff3a4a9605b12629bf4cac95f,1
+63,Product Rule = (3/4)*(1/4) = (3/16),we use product rule ,a1,arg71946,arg76140,arg71946_arg76140,rr,b27b4bb4927884566ec40cf4a4fb06,-1
+64,.,Product Rule = (3/4)*(1/4) = (3/16),a2,arg77913,arg71946,arg77913_arg71946,rr,3e179fba728baed8c01e997ac36184,1
+65,Product Rule = (3/4)*(1/4) = (3/16),product rule,a1,arg71946,arg78384,arg71946_arg78384,rr,3c51f38cd05bf8261f066dceafb818,-1
+66,3/4 x 1/4 = 3/16,Product Rule = (3/4)*(1/4) = (3/16),a2,arg78964,arg71946,arg78964_arg71946,rr,8ea6d35ef00f2b5729baa089d59334,1
+67,Product Rule = (3/4)*(1/4) = (3/16), ,a1,arg71946,arg80203,arg71946_arg80203,rr,6bc0b3817e64f6acc8651e179a1194,-1
+68,3/4 x 1/4,Product Rule = (3/4)*(1/4) = (3/16),a2,arg81326,arg71946,arg81326_arg71946,rr,54b602f8b6cbd39d1d6e2ec8f5b893,1
+69,Product Rule = (3/4)*(1/4) = (3/16),multiply,a1,arg71946,arg100636,arg71946_arg100636,rr,d4db6473770e13b88e945e6d720b09,-1
+70,multiply,Product Rule = (3/4)*(1/4) = (3/16),a2,arg104422,arg71946,arg104422_arg71946,rr,c26349749ee6d3652a416f7928117e,1
+71,Product Rule = (3/4)*(1/4) = (3/16),P(AnB)=P(A)P(B),a1,arg71946,arg105558,arg71946_arg105558,rr,9008d1eb1761199bc25f860bd6042e,-1
+72,3/4 x 1/4 = 3/4 due to product rule.,"(3/4)(1/4)=3/16
+product rule",a2,arg75572,arg74473,arg75572_arg74473,wr,91b81abeeb3dd5b4f163738528596a,1
+73,"(3/4)(1/4)=3/16
+product rule", ,a1,arg74473,arg79491,arg74473_arg79491,rr,177f9fe28a7f447052d4f0c3344b3b,-1
+74,.,"(3/4)(1/4)=3/16
+product rule",a2,arg81868,arg74473,arg81868_arg74473,rr,6be9daa2bf82af5976958bafa6bb13,1
+75,"(3/4)(1/4)=3/16
+product rule",and = multiplication,a1,arg74473,arg93100,arg74473_arg93100,rr,8802245ba48176f94d3f163c97d717,-1
+76,math,"(3/4)(1/4)=3/16
+product rule",a2,arg96638,arg74473,arg96638_arg74473,rr,ec0af916fb5a693fb11f8fe27aa0c6,1
+77,"(3/4)(1/4)=3/16
+product rule",Multiplication of the two independent events,a1,arg74473,arg98878,arg74473_arg98878,rr,7a75c18e543c44ba363a19a5c622a3,-1
+78,......,"(3/4)(1/4)=3/16
+product rule",a2,arg101241,arg74473,arg101241_arg74473,rr,6bb07ec8918333ecde1b6697bf38f0,1
+79,"(3/4)(1/4)=3/16
+product rule",. bruhhhh .,a1,arg74473,arg106337,arg74473_arg106337,rr,c3b72f1e3ddc610a90c7743f1e8ee6,-1
+80,"product rule, probability rule","(3/4)(1/4)=3/16
+product rule",a2,arg111658,arg74473,arg111658_arg74473,rr,54b5fd31243de08ea4b8f00b4966e9,1

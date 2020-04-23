@@ -1,0 +1,184 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,two lenses,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg127467,arg94141,arg127467_arg94141,rr,ad3b8e552df69a50fe67b42f7b70bd,1
+1,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",Two lens system,a1,arg94141,arg127468,arg94141_arg127468,rr,f25052a7788fbbb891a39d524ef6c3,-1
+2,at the end of the slides,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg127564,arg94141,arg127564_arg94141,rr,ff66f9b89b87259f5353e30a304c72,1
+3,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",multiply magnifications of the two lenses to get the total magnification,a1,arg94141,arg128032,arg94141_arg128032,rr,49ab6955e82103dceffcc20dbc3767,-1
+4,"m = -di/do
+m = -76/60","The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg128091,arg94141,arg128091_arg94141,wr,951b634c1e6c8efcc64b5934edfb01,1
+5,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",based on,a1,arg94141,arg128109,arg94141_arg128109,rr,e2e3fcd9765735150359e4673ea348,-1
+6,"Find each magnification, multiply them?","The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg128185,arg94141,arg128185_arg94141,wr,8a8b41b780fd6a0f1f708afa0e273a,1
+7,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",m1 = -do1/di1 = -1.267. do2 = 70cm - 76cm = -6cm. di2 = (f2)(do2) / (do2-f2) = 8.5714. m2 = -di2/do2 = 1.4286. m = m1 x m2 = -1.81.,a1,arg94141,arg128193,arg94141_arg128193,wr,4feaebb447b99f8dec5bfb3532042a,-1
+8,i guess,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg128269,arg94141,arg128269_arg94141,wr,2183449d867b806af06cb4a1fc6cd5,1
+9,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2","Using the formula for magnification, we plug in the values and get mag=2",a1,arg94141,arg128272,arg94141_arg128272,rr,fcfda819c48edfa7d1700fd21ae587,-1
+10,"taking do = 60, the original distance and di = the final image distance.
+plug in the formula m = - di/ do","The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg128284,arg94141,arg128284_arg94141,wr,4ade896fe60f28ac6df5761fb79095,1
+11,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2","we do the calculations twice, for each lens",a1,arg94141,arg128309,arg94141_arg128309,rr,8943f59ad21378965ff8f104860fbb,-1
+12,using equations,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg128321,arg94141,arg128321_arg94141,rr,754a94af492f5a2a02564805a0c5eb,1
+13,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",Based on combining lenses note,a1,arg94141,arg128361,arg94141_arg128361,rr,c4c4d81a8a4ea6297c4c11e5ae3b42,-1
+14,solve for di1 and di2,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg128556,arg94141,arg128556_arg94141,rr,971d35ac2e64dc455547403654e570,1
+15,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",the case,a1,arg94141,arg128623,arg94141_arg128623,rr,7d74aafc6f4143740a99ce570485df,-1
+16,multiply the magnifications for each lens,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg128648,arg94141,arg128648_arg94141,rr,3962319de8a4da9a4d63bd889e1904,1
+17,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",find m1 and m2 and multiply them together,a1,arg94141,arg128650,arg94141_arg128650,wr,acddc4721f00de312d711ba5bc6120,-1
+18,not sure,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg128708,arg94141,arg128708_arg94141,wr,7a1a14181dff82a5757531cd6a7416,1
+19,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",formula- m1*m2 = mtotal,a1,arg94141,arg128751,arg94141_arg128751,rr,2712dfe59e3a387aa473f6269727f8,-1
+20,Assuming total magnification,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg128819,arg94141,arg128819_arg94141,wr,3b1afa3897ec702094f2c3852c5776,1
+21,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",according to formula,a1,arg94141,arg128831,arg94141_arg128831,rr,8395773f45d7ef631e74a152a7e8d1,-1
+22,Adding together both -di/do expressions to solve for final magnification.,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg128858,arg94141,arg128858_arg94141,rr,6f3e1a38b42392dca71ac84b89b818,1
+23,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",according to the formula,a1,arg94141,arg128892,arg94141_arg128892,rr,6969642f2a72a5f33c32a98b0b9d3e,-1
+24,by calculation,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg128903,arg94141,arg128903_arg94141,wr,a0cd456c0cddb1953373e34c169a1d,1
+25,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",Magnification formula,a1,arg94141,arg128922,arg94141_arg128922,rr,497412b999c900817683b7285d7645,-1
+26,Its 2,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg128926,arg94141,arg128926_arg94141,rr,2d292e0559f5aac3fc7e9ce4031de1,1
+27,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",converge lense formula,a1,arg94141,arg128927,arg94141_arg128927,rr,b4a4743ac53c4aa6e8a7e1d32c0a87,-1
+28,using formula,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg128996,arg94141,arg128996_arg94141,rr,a034ef66c8af607414f6798264a5ee,1
+29,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",1/d01 +1/di1 =1/f1,a1,arg94141,arg129021,arg94141_arg129021,rr,81321f84bd424d3514ec0ab2c0aca2,-1
+30,Use the formula,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129044,arg94141,arg129044_arg94141,rr,ef3da73f45e56dc4f85c77ab03bf43,1
+31,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2","di1=1/25-1/60= ...
+m1= di1/do1
+di2= 1/20-1/70-di1=...
+m2=di2/do2
+m1*m2= 1.98",a1,arg94141,arg129171,arg94141_arg129171,rr,5a7b8d2b226cedd8c8e83968f072d0,-1
+32,hell yea,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129178,arg94141,arg129178_arg94141,rr,74575410a1b0611bd17eca7d306d52,1
+33,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2","to find the magnification of the final image, m=-di/d0=146/60=2.",a1,arg94141,arg129201,arg94141_arg129201,rr,36a947e102f9902556c7a044125717,-1
+34,"image 1: m = -di/do = -42.86/60 = -0.7143
+image 2: m = -di/do = -76/27.14 = -2.800
+M= M1M2 = -0.7143*-2.88=2","The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129202,arg94141,arg129202_arg94141,rr,fae82d8f6064350ce8b8c32942fbc4,1
+35,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",idk idk,a1,arg94141,arg129211,arg94141_arg129211,rr,50651c5a40bc6733a9cddacc7a1ac8,-1
+36,mirror equation,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129221,arg94141,arg129221_arg94141,rr,37253c50abffa447480d37cb20f7d7,1
+37,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",multiply magnification,a1,arg94141,arg129234,arg94141_arg129234,rr,e6f9a98ac9108f15c77c6a2ec2153f,-1
+38,It is a guess,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129277,arg94141,arg129277_arg94141,rr,31a56220550c74e9f5f98adf666e0f,1
+39,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",m = -di/do,a1,arg94141,arg129296,arg94141_arg129296,rr,c189feb3f4447bdd81273920abd2a9,-1
+40,by using the mirror equations twice,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129315,arg94141,arg129315_arg94141,rr,cbb8cd75da74f497c581834e34b5a8,1
+41,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",use equation twice,a1,arg94141,arg129316,arg94141_arg129316,rr,0bfbcb4ca46aae369c7ad5697b8d9f,-1
+42,Find magnification from each mirror and multiply together,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129319,arg94141,arg129319_arg94141,rr,b54392bfcfc57fe1a0c5f3d7111040,1
+43,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",use the formula,a1,arg94141,arg129333,arg94141_arg129333,rr,31b2dacd0db9fe62862d534d9386a1,-1
+44,is the given di for 1 or 2? kind of confusing that this was added,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129417,arg94141,arg129417_arg94141,wr,bced035743d174fc1895f88aa7b95f,1
+45,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2","Heck if I know.
+
+M = -di/do
+1/f = 1/di + 1/do",a1,arg94141,arg129434,arg94141_arg129434,rr,f22066281a3b471d67a02f5f54c544,-1
+46,"1/do+1/di=1/f
+di=42.86cm
+do2=27.14cm
+1/di2+1/do2=1/f2
+di2=76cm
+m1=-di/do=-0.714
+m2=-di2/do2=-2.8
+m=m1*m2=2","The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129489,arg94141,arg129489_arg94141,rr,a4efbb59c3f3cc914065e25300dae6,1
+47,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",By calculations,a1,arg94141,arg129528,arg94141_arg129528,rr,818a9a04e5e57b2a102eefd364c138,-1
+48,using the lens equation. d11 = d02,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129588,arg94141,arg129588_arg94141,rr,3628c47b39b066ae3a2562d019c701,1
+49,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",answer is c,a1,arg94141,arg129603,arg94141_arg129603,rr,3ab46143c5869f532e0a898432ee0c,-1
+50,2 is wrong,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129613,arg94141,arg129613_arg94141,wr,39d7a5ba2888c855868c6d272bc06c,1
+51,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",based on equation,a1,arg94141,arg129625,arg94141_arg129625,rr,0319b33682faaebaa280b6347f034a,-1
+52,"use the do and di from both lenses to find the magnification of each lens. Then use mtot=mamb, which gives positive 2.","The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129635,arg94141,arg129635_arg94141,rr,f42e3beb6d79465220551491ce334b,1
+53,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",answer C,a1,arg94141,arg129649,arg94141_arg129649,rr,3c24f7e56fd26cf5d667902203a6bc,-1
+54,I'm not sure,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129696,arg94141,arg129696_arg94141,rr,9c0c822100dfc0e658f25fb211d101,1
+55,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",use the formula,a1,arg94141,arg129706,arg94141_arg129706,rr,c33171bec06d038b55d524268f2173,-1
+56,magnification = 2,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129726,arg94141,arg129726_arg94141,rr,fe46d33262122502c12264562e75c9,1
+57,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",because of the physics,a1,arg94141,arg129738,arg94141_arg129738,rr,f65c036e87b883cdfa3dd351e66413,-1
+58,by calculation,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129800,arg94141,arg129800_arg94141,wr,5a4e248e3dbddc2c4553b28ad236ab,1
+59,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",because of math,a1,arg94141,arg129839,arg94141_arg129839,rr,e46864c953d0b8e10a440d0c03c14b,-1
+60,interestign conepts could not tell you,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129869,arg94141,arg129869_arg94141,rr,6adbe8d921d8f3e95fbbc07577e933,1
+61,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",using equations,a1,arg94141,arg129874,arg94141_arg129874,rr,bdd5b30937fecfecd59b2bf7ad4802,-1
+62,follow procedure for combining lenses,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129878,arg94141,arg129878_arg94141,rr,2de9909ff87809046a3fe88fcd465e,1
+63,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",Use the thin lens equation to find the distance of the corresponding image with respect to the lens. Then apply magnification law to determine the size of the image and finally figure out the magnification.,a1,arg94141,arg129884,arg94141_arg129884,rr,b87d42125b372f8d1694a7b5b957bf,-1
+64,I don't know,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129952,arg94141,arg129952_arg94141,wr,beed8d0634d021ac5551e1afe9d05e,1
+65,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",Due to the procedure for combining lenses...,a1,arg94141,arg129961,arg94141_arg129961,rr,aab94745f656eca4c31a37fa5822fc,-1
+66,Use the formula.,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg129971,arg94141,arg129971_arg94141,rr,b7f979d788db0fc09ff9270e6c078d,1
+67,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",i guessed.,a1,arg94141,arg129986,arg94141_arg129986,wr,b727b5e6408e50ba398854510592b5,-1
+68,i saw it,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130092,arg94141,arg130092_arg94141,rr,5fb3e4c34f9ebbc53949dc42fcd3f0,1
+69,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",I have no clue,a1,arg94141,arg130128,arg94141_arg130128,rr,169434956d85d729300dd8435a8e3c,-1
+70,the equation,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130152,arg94141,arg130152_arg94141,rr,ecf9c6571349211d23b1488e61b84e,1
+71,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",First find the real image produced by the first lens and its magnification and then find the second using the real image produced by the first.,a1,arg94141,arg130154,arg94141_arg130154,rr,9baea03ee40d1f63677aa4319e60e0,-1
+72,i/o=do/di,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130172,arg94141,arg130172_arg94141,rr,5dc4452ebdbc0b3d65e22c227052ba,1
+73,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",it be like that,a1,arg94141,arg130177,arg94141_arg130177,rr,c5b5cc972c9f5630234e82b4535c24,-1
+74,2 is the correct ans,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130245,arg94141,arg130245_arg94141,rr,853d76e4fed364ec714932ca6ad13d,1
+75,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",m=-di/do,a1,arg94141,arg130261,arg94141_arg130261,wr,2e5e32821d0aa594a45e8a3bcadbc8,-1
+76,calculations were done,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130297,arg94141,arg130297_arg94141,rr,89fa1bf80aed62bec451014dc7d89c,1
+77,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",the mirror function,a1,arg94141,arg130308,arg94141_arg130308,rr,36b6acf1252130cba97f5528f2f047,-1
+78,the equation,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130350,arg94141,arg130350_arg94141,rr,e379742081d02af5821ff2fd25aff6,1
+79,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2","cfdrsue46849569p0u;pj/klnj.b,hjgchdyi7r68to7yp98up9i[pohikugjyfhnmv,bn",a1,arg94141,arg130474,arg94141_arg130474,rr,c41f62f99faeae1b348a11d9983dde,-1
+80,Magic says so,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130540,arg94141,arg130540_arg94141,rr,d5513d38716f6ed0d07900ba9ec88c,1
+81,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",m=-di/do,a1,arg94141,arg130561,arg94141_arg130561,wr,fab821d5570fb19559ebed57bfa414,-1
+82,based on the formula,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130564,arg94141,arg130564_arg94141,rr,cc4c3ebd1bafa1ac4cc9d74db98c63,1
+83,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",it's upright,a1,arg94141,arg130572,arg94141_arg130572,rr,020871b408828091702497a9b61b70,-1
+84,it is confusing,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130582,arg94141,arg130582_arg94141,rr,3dbfc99d9e703a0bff2eb305022043,1
+85,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",.6/.7 /.76,a1,arg94141,arg130585,arg94141_arg130585,rr,17000b65b1d2abb61d5b34d7363437,-1
+86,"Total Magnification = Product of both magnifications = [-di(1)/do(1)]*[-di(2)/do(2)]
+On calculating using mirror equations, you get:
+di(1) = 42.86
+do(1) = 60
+di(2) = 76
+do(2) = 27.14
+On putting in the values, you get Magnification = 2","The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130611,arg94141,arg130611_arg94141,rr,8841b6dc3b72bf3716349e4389f5c2,1
+87,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2","do 1 lens first, then follow up with the second",a1,arg94141,arg130615,arg94141_arg130615,rr,da3231695068ba111ce58a62e8022c,-1
+88,. 0.225,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130633,arg94141,arg130633_arg94141,wr,f5de3be167c2e263e3164ff2d83d47,1
+89,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",ASDFGH ASDFGHJ,a1,arg94141,arg130637,arg94141_arg130637,rr,8060014a68bb9e3ae3e28e459e65b6,-1
+90,"1/f=1/do+1/di
+
+m=m1*m2","The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130639,arg94141,arg130639_arg94141,rr,c0688155bff4014dcbbc2eae1872e8,1
+91,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",lens equation,a1,arg94141,arg130657,arg94141_arg130657,rr,d5e91758a75ddca54158fc9f87220f,-1
+92,wild guess,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130660,arg94141,arg130660_arg94141,rr,5d4a3241893eba4d2f8cb93ba20291,1
+93,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",positive because M=m1*m2 and both are +,a1,arg94141,arg130686,arg94141_arg130686,rr,04d98465bbc3fdc07b8f2726b7dc5d,-1
+94,magnification formulas,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130688,arg94141,arg130688_arg94141,rr,517144d8a3bae0e61bdf9445a63046,1
+95,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",magnification is 2,a1,arg94141,arg130698,arg94141_arg130698,rr,5641f6804ca461a461d8887170b2e7,-1
+96,just guess,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130745,arg94141,arg130745_arg94141,rr,2b2213ba2e4022eb36f0785717ea9c,1
+97,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",Based on this week's reading.,a1,arg94141,arg130766,arg94141_arg130766,rr,a01bfd3e6e4ea05425cfb21a91dd24,-1
+98,1/f1=1/do1+1/di1. do2=L-di1. 1/f2=1/do2+1/di2. m1=-di1/do1. m2=-di2/do2. hi1=ho2----> hi1=m1m2ho1-----> hi1=2ho1,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130792,arg94141,arg130792_arg94141,rr,ac526d118a314db1aa024d9354fd8f,1
+99,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",slide 55 in notes,a1,arg94141,arg130819,arg94141_arg130819,rr,230acc8039bba8b70b977c31312c95,-1
+100,by calculation,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130890,arg94141,arg130890_arg94141,rr,d9eac52461418da092e58cda1b5c4a,1
+101,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",the mirror equation,a1,arg94141,arg130891,arg94141_arg130891,rr,be82d6a7d7eab4ff1a9d730353eef6,-1
+102,using quesiton with v you get 2,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130934,arg94141,arg130934_arg94141,rr,da5966d07d4dd27ec2bad6c3a608d6,1
+103,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",1/di+1/d0=1/f,a1,arg94141,arg130939,arg94141_arg130939,wr,571883632e2ac18d5fc882fc6d5ea2,-1
+104,m=m1xm2,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130964,arg94141,arg130964_arg94141,rr,d288ce03a4c22e20e8e226d4dad3fc,1
+105,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",Hi there,a1,arg94141,arg130968,arg94141_arg130968,rr,eacecc5129fbad5ca8d8209f2601c2,-1
+106,based on the same formula,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130989,arg94141,arg130989_arg94141,rr,f459fc7f37bdaf7ca27c926f49c0d4,1
+107,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",just calculate,a1,arg94141,arg130990,arg94141_arg130990,rr,b522fbb58dc17ebd898d946d316cfd,-1
+108,"Using the thin lens equations, we obtain an m value of 2.","The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg130994,arg94141,arg130994_arg94141,rr,f3a94aceae55ca3e3929e1d02b9eea,1
+109,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",multiply the two manification,a1,arg94141,arg131010,arg94141_arg131010,rr,e10d9c9f623af957d3f9cdbe4ffbd4,-1
+110,I read the notes,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131027,arg94141,arg131027_arg94141,rr,f28b2cf71b423d8525fde6128fbf1f,1
+111,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",Answer is 2,a1,arg94141,arg131060,arg94141_arg131060,rr,c765d1c99b80ecdf3f96f19e42f4d4,-1
+112,1/di1 + 1/do1 = 1/f1 and 1/d2 + 1/do2 = 1/f2,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131092,arg94141,arg131092_arg94141,rr,4c2bf539b8febc8d0213841f9c2b26,1
+113,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",I thought it was 2.187...,a1,arg94141,arg131101,arg94141_arg131101,rr,6fdca0c9e8ed8eb059b8e5bc203ad3,-1
+114,Not sure... I roughly got this number somehow.,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131110,arg94141,arg131110_arg94141,wr,22f3826b9cceb8a274bbf38c82b40a,1
+115,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",by the equation,a1,arg94141,arg131115,arg94141_arg131115,rr,637ecb1b8c33e7098073b0d6996d67,-1
+116,It is difficult for me to explain my rationale,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131117,arg94141,arg131117_arg94141,rr,0acdde991e539bf11fbb9197588b85,1
+117,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",because is 2,a1,arg94141,arg131138,arg94141_arg131138,rr,03e8f43f9f6ae3a6abd4c7513f02e8,-1
+118,"using the formula to get the distance of the object from the second lens, thus getting the distance of the image from the second lens","The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131150,arg94141,arg131150_arg94141,rr,afff89b40b07401f4d166e2cdf717b,1
+119,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",m = -di/do,a1,arg94141,arg131156,arg94141_arg131156,rr,de294ad56a908c224687631607160c,-1
+120,magnification is 2,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131162,arg94141,arg131162_arg94141,rr,6287803f5c3f4ad62eac744d80d8bd,1
+121,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",use equations,a1,arg94141,arg131170,arg94141_arg131170,rr,570da4f90d4f8f43178f432240ce29,-1
+122,thin lense equation,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131252,arg94141,arg131252_arg94141,rr,e829716b3b475d9dd33053afa9a76a,1
+123,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",See notes.,a1,arg94141,arg131263,arg94141_arg131263,rr,d80e61dbd9483ab619bd31d7a97807,-1
+124,kn oj,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131270,arg94141,arg131270_arg94141,rr,969ae3729cdb5cc4c6c5d6a68a13c2,1
+125,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",I think so,a1,arg94141,arg131339,arg94141_arg131339,rr,5b965c4c4a214c00e25f6df4f97fd0,-1
+126,think so,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131366,arg94141,arg131366_arg94141,wr,06b0c8b7501e214ef3d3641b907956,1
+127,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",Did the maths g,a1,arg94141,arg131372,arg94141_arg131372,rr,1bf09bfecd7e41bbc3e8cf9b1d60f3,-1
+128,using the equation,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131383,arg94141,arg131383_arg94141,rr,daddcaf8a1c1e55ef33bcab10bf2fa,1
+129,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2","m1=-di1/do1=-0.7, m2=-di2/do2=-2.8, mtot=m1xm2=2",a1,arg94141,arg131414,arg94141_arg131414,rr,1f2e681af29f2fe9e85941414031ed,-1
+130,m= (di 1)(di2)/(do1)(do2),"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131422,arg94141,arg131422_arg94141,rr,c755935165bc5afe30483e054451cd,1
+131,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",yetyy e5yt,a1,arg94141,arg131427,arg94141_arg131427,rr,3fc358f2540d01cd3bacd0577fdd20,-1
+132,the answer,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131436,arg94141,arg131436_arg94141,rr,666d79e68a00c216b8d4e5bd7218db,1
+133,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",yes baby,a1,arg94141,arg131492,arg94141_arg131492,rr,ab909f84d7477c3ad4b2f421bd0603,-1
+134,Magnification total is the magnification of both multiplied by each other.,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131500,arg94141,arg131500_arg94141,wr,016c1d52a2c7e9a8c6a0be6093054b,1
+135,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",Because I said so,a1,arg94141,arg131509,arg94141_arg131509,rr,167cdc17ae31d36ad424bd6d73c842,-1
+136,Lez go,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131549,arg94141,arg131549_arg94141,rr,81647c63e8e9742ee20bee516b38d1,1
+137,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",https://vsb.mcgill.ca/vsb/s/caieipd,a1,arg94141,arg131594,arg94141_arg131594,rr,d13cd2372f708041af9bca82d45d49,-1
+138,The formula!!,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131624,arg94141,arg131624_arg94141,rr,7d40d2be887821ac7460b2982dcd44,1
+139,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",You just know,a1,arg94141,arg131655,arg94141_arg131655,rr,602136700d171023b55c9ab9054b51,-1
+140,i rlly dunno,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131673,arg94141,arg131673_arg94141,rr,72fae5872632cc335716df7acf68e0,1
+141,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",1/f=1/di+1/do  do=300/7,a1,arg94141,arg131713,arg94141_arg131713,wr,7fa5a961f81ed70314cff2d5907c11,-1
+142,you calculate the magnification from each lens and then multiply them,"The total final magnification is just m = m1 x m2 where m1 = -42.86/60 = -0.714 and m2 = -76/27.14 = -2.8, so m = 2",a2,arg131714,arg94141,arg131714_arg94141,rr,243d151030e57173a0cdb8e2b7e62c,1
+143,"As usual, the magnification is just the ratio of distances, m = -di/do = -76/60 = -1.27 ",cause,a1,arg94146,arg127962,arg94146_arg127962,ww,c529098d40ac1fccc2b019d768162c,-1
+144,Beans,"As usual, the magnification is just the ratio of distances, m = -di/do = -76/60 = -1.27 ",a2,arg128592,arg94146,arg128592_arg94146,ww,e4f73eefa67faeb00e787978b25b94,1
+145,"As usual, the magnification is just the ratio of distances, m = -di/do = -76/60 = -1.27 ",i think so yeet,a1,arg94146,arg129163,arg94146_arg129163,ww,52a0801ec0b18861cc6df508f1b10b,-1
+146,equation,"As usual, the magnification is just the ratio of distances, m = -di/do = -76/60 = -1.27 ",a2,arg129345,arg94146,arg129345_arg94146,ww,1a77d13663dc9cec4c5551b950d439,1
+147,"As usual, the magnification is just the ratio of distances, m = -di/do = -76/60 = -1.27 ",ljk;hoijf;oiadjsf,a1,arg94146,arg129427,arg94146_arg129427,ww,5338a50b488890b4bf959de0611616,-1
+148,-di/do,"As usual, the magnification is just the ratio of distances, m = -di/do = -76/60 = -1.27 ",a2,arg129950,arg94146,arg129950_arg94146,ww,f4a5c0b7ae826123feb1439ef1c2ac,1
+149,"As usual, the magnification is just the ratio of distances, m = -di/do = -76/60 = -1.27 ",m=di/2,a1,arg94146,arg130390,arg94146_arg130390,ww,7f8bcb583357777ba8d8ccdbd198c7,-1
+150,-1/12.5,"As usual, the magnification is just the ratio of distances, m = -di/do = -76/60 = -1.27 ",a2,arg130877,arg94146,arg130877_arg94146,ww,aa80322984ed70d3309d61f1326d23,1
+151,"As usual, the magnification is just the ratio of distances, m = -di/do = -76/60 = -1.27 ",no idea,a1,arg94146,arg131014,arg94146_arg131014,ww,02729dad98b5d98fa9e784a4af701f,-1
+152,It is always negative of the di/do,"As usual, the magnification is just the ratio of distances, m = -di/do = -76/60 = -1.27 ",a2,arg131021,arg94146,arg131021_arg94146,ww,f906081ec90b99ecccceeb9eaf3715,1
+153,"As usual, the magnification is just the ratio of distances, m = -di/do = -76/60 = -1.27 ",please be right,a1,arg94146,arg131040,arg94146_arg131040,rw,a1a685f0d53ec633203b55df90ed26,-1
+154,"1/f1= 1/di + 1/dA => 1/25 = 1/76 + 1/60
+1/f1= 1/di + 1/dB => 1/20 = 1/76 + 1/",The magnification is the product of the mag. from object to image one and image one to image two: m1= -42.86/60 = -0.714 and m2=76/27.14 = 2.8 so we get m = m1 x m2 = -2 ,a2,arg131700,arg94136,arg131700_arg94136,ww,1c53c4e01b84532b9175413673cfce,1
+155,First use (1/d0)+(1/di)=(1/f) to solve for the distance of the first image. Than use the position of the first image to find the position of the second. Apply the magnification equation to both lenses and then multiply together to find the total magnification.,Two converging lenses (f1=25 cm and f2=20 cm) are placed 70 cm apart. An object is placed 60 cm in front of the first lens.  What is the magnification is 2.,a1,arg128115,arg128939,arg128115_arg128939,rr,be4c9bfbb9ec07e05df9632c5f9c8b,-1

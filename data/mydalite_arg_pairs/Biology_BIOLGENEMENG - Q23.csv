@@ -1,0 +1,164 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0, ,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg68813,arg68493,arg68813_arg68493,rr,b2dc02b7b0620f746fd7977a3e3e63,1
+1,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",all 3 are found for a selfed heterozygote ,a1,arg68493,arg71808,arg68493_arg71808,rr,e76157e16bb5609476c036748a4d5c,-1
+2,all F1 Aa ,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg71844,arg68493,arg71844_arg68493,rr,99e13597aca888836f3437b617fdc8,1
+3,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa", ,a1,arg68493,arg71866,arg68493_arg71866,rr,bdec0e8e8e5c06c514969952e12dc0,-1
+4,b,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg72290,arg68493,arg72290_arg68493,rr,f5e4fff3a4a9605b12629bf4cac95f,1
+5,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",.,a1,arg68493,arg72486,arg68493_arg72486,rr,5cedf21fe930c659b63d770023ff7e,-1
+6,Ww x Ww together would give all 3,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg72626,arg68493,arg72626_arg68493,rr,9c879c20dda43dc90748042d0eb20f,1
+7,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",all,a1,arg68493,arg72654,arg68493_arg72654,rr,c0b0fe9e84013a644bb70cd23c69a6,-1
+8,Aa X Aa will give AA Aa and aa,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg72866,arg68493,arg72866_arg68493,rr,708754cef412a0e37feac91458b8fc,1
+9,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",yup,a1,arg68493,arg74331,arg68493_arg74331,rr,3f8c6489c0aa8afc2efe365be73175,-1
+10,"when heterozygous in crossed with each other from the F1 generation we will have all the traits showing 
+","P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg75916,arg68493,arg75916_arg68493,rr,b27b4bb4927884566ec40cf4a4fb06,1
+11,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",yp,a1,arg68493,arg76817,arg68493_arg76817,rr,8eb203e403c4e4f5ad0c22b0a6c240,-1
+12, ,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg77731,arg68493,arg77731_arg68493,rr,14899b064827f55df8c48614f4274f,1
+13,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",notes,a1,arg68493,arg77754,arg68493_arg77754,rr,3340368556c1c3339d531fe5657a11,-1
+14,.,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg77889,arg68493,arg77889_arg68493,rr,3e179fba728baed8c01e997ac36184,1
+15,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",k,a1,arg68493,arg78315,arg68493_arg78315,rr,065848127b9d0b9b206a17ee151b73,-1
+16,makes sense,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg78634,arg68493,arg78634_arg68493,rr,3f723e391f6fc48fb0c52046239973,1
+17,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",000,a1,arg68493,arg78655,arg68493_arg78655,rr,08e4bad90b7521b965ea164814285e,-1
+18,c,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg78954,arg68493,arg78954_arg68493,rr,8ea6d35ef00f2b5729baa089d59334,1
+19,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",textbook answer,a1,arg68493,arg79143,arg68493_arg79143,rr,fcf6db7ca0c22a5512281fbf85e807,-1
+20, ,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg79479,arg68493,arg79479_arg68493,rr,177f9fe28a7f447052d4f0c3344b3b,1
+21,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",ok,a1,arg68493,arg81394,arg68493_arg81394,rr,8049cb3934a4b0f869218b4bdd1d4b,-1
+22,You get a 1:2:1 ratio,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg81416,arg68493,arg81416_arg68493,rr,0be5fbbd69280e7e6725be63847208,1
+23,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",.,a1,arg68493,arg81834,arg68493_arg81834,rr,6be9daa2bf82af5976958bafa6bb13,-1
+24,If Heterozygous F1,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg83759,arg68493,arg83759_arg68493,rr,87d12d8bf0b77679a64968d62c01a7,1
+25,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",Aa * Aa,a1,arg68493,arg86395,arg68493_arg86395,rr,710f05a894e40d30408e624d812a4b,-1
+26,.,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg86962,arg68493,arg86962_arg68493,rr,48b961f1db3dd4876b16e703f47af2,1
+27,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa", ,a1,arg68493,arg86991,arg68493_arg86991,rr,75151c3099ca1bb0987f709884fe02,-1
+28,.,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg87609,arg68493,arg87609_arg68493,rr,49576fcc061976107dfa27c933b67d,1
+29,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",F1 het parents,a1,arg68493,arg91969,arg68493_arg91969,rr,d709f71cb4f0a254ee0d56af55a832,-1
+30,"parents are from f1, hence they are both Aa","P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg92278,arg68493,arg92278_arg68493,rr,048559c9100373cd2ce89faba8a70e,1
+31,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",caus,a1,arg68493,arg96600,arg68493_arg96600,rr,ec0af916fb5a693fb11f8fe27aa0c6,-1
+32,............,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg100215,arg68493,arg100215_arg68493,rr,8c102c86fa48da8a78b3f2fdea1ce9,1
+33,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",logic,a1,arg68493,arg100620,arg68493_arg100620,rr,d4db6473770e13b88e945e6d720b09,-1
+34,Aa x Aa,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg100895,arg68493,arg100895_arg68493,rr,47bcc3f28dd94412885583182b09a0,1
+35,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",.....,a1,arg68493,arg101232,arg68493_arg101232,rr,6bb07ec8918333ecde1b6697bf38f0,-1
+36,Aa x Aa ,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg103690,arg68493,arg103690_arg68493,rr,be4ae640739623ecce5aa492a2e8e1,1
+37,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",classic,a1,arg68493,arg103973,arg68493_arg103973,rr,0a82d2f36cda00b9f5e97c580752ac,-1
+38,From heterozygous parents,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg105153,arg68493,arg105153_arg68493,rr,9bd4ca10705470328068efc939c871,1
+39,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",This is because,a1,arg68493,arg105543,arg68493_arg105543,rr,9008d1eb1761199bc25f860bd6042e,-1
+40,cross aA and Aa get AA aa aA,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg105798,arg68493,arg105798_arg68493,rr,9ff916b24a214164ad7838787f7eb5,1
+41,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",AaAa,a1,arg68493,arg105859,arg68493_arg105859,rr,1eac226fa2a7a10fc647fecd01a00e,-1
+42,recombination,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",a2,arg149836,arg68493,arg149836_arg68493,rr,eb94a2f0be51bf3b459f87bc8e34c7,1
+43,"P = AA x aa
+F1 = Aa
+F2 = AA Aa and aa",same as ratio 1:2:1 or 3:1 phenotype depending on type of dominance,a1,arg68493,arg153832,arg68493_arg153832,rr,824b9f3213e446743a4f906e4c7219,-1
+44,j,"Their parents (F1) are heterozygous, so produce AA, Aa, aa",a2,arg78907,arg78215,arg78907_arg78215,rr,0be0ff8557741e78e06fc316bfeeec,1
+45,"Their parents (F1) are heterozygous, so produce AA, Aa, aa",.,a1,arg78215,arg81316,arg78215_arg81316,rr,54b602f8b6cbd39d1d6e2ec8f5b893,-1
+46,"A regular monohybrid cross always has an organism with a dominant genotype, so the offspring of F2 gen will show a ratio of these genotypes.","Their parents (F1) are heterozygous, so produce AA, Aa, aa",a2,arg185646,arg78215,arg185646_arg78215,rr,32cc4976517d556e4bd21531dbde83,1
+47,"Their parents (F1) are heterozygous, so produce AA, Aa, aa","Aa x Aa gives AA, Aa, aa if you do a punnet square",a1,arg78215,arg185985,arg78215_arg185985,rr,aa1a136a7a9f4d6b7ecb6558b792d1,-1
+48,Aa x Aa would give the offspring AA Aa and aa according to the punnett square .,"Their parents (F1) are heterozygous, so produce AA, Aa, aa",a2,arg188312,arg78215,arg188312_arg78215,rr,e36459c889ec8ce820903ab849be5b,1
+49,"Their parents (F1) are heterozygous, so produce AA, Aa, aa","F1 would be completely Aa, so the progeny would be separated onto the 3:1 phenotype ratio (1/4 AA, 1/2 Aa, 1/4 aa)",a1,arg78215,arg191864,arg78215_arg191864,rr,9d0546d0b7aa6c3969bf6f51e13b40,-1
+50,"Because the F1 parents are both heterozygous Aa and they cross to give 25% AA, 50% Aa and 25% aa.","Their parents (F1) are heterozygous, so produce AA, Aa, aa",a2,arg195084,arg78215,arg195084_arg78215,rr,eb673e1b8e90d9fa6bbb7291120bab,1
+51,"Their parents (F1) are heterozygous, so produce AA, Aa, aa","There would be 1/4 homozygous dom, 1/2 heterozygous and 1/4 homozygous recessive",a1,arg78215,arg195415,arg78215_arg195415,rr,d52cb885741df004f221c387f1769d,-1
+52,This is what results from the F1 heterozygous cross ok thanks,"Their parents (F1) are heterozygous, so produce AA, Aa, aa",a2,arg206579,arg78215,arg206579_arg78215,rr,684de023663c65f38e391870a513d4,1
+53,"Their parents (F1) are heterozygous, so produce AA, Aa, aa","BIOLGENEMENG - Q23
+The F2 offspring of a monohybrid cross would show the genotype(s)",a1,arg78215,arg214256,arg78215_arg214256,rr,c182e01377768877871d4e31b0bf11,-1
+54,c is right because Mendel ignored all other traits. D is wrong because he looked at more than one matin.,"Their parents (F1) are heterozygous, so produce AA, Aa, aa",a2,arg230189,arg78215,arg230189_arg78215,rr,f57af06167bbc10941e05a09d4fc50,1
+55,"Their parents (F1) are heterozygous, so produce AA, Aa, aa",That does not seem like a clear explanation of your reasoning:,a1,arg78215,arg230253,arg78215_arg230253,rr,109f3a77e93e4859f50c02f7a8a122,-1
+56,"Which of the following represents a test cross?
+
+
+A. Ww x WW
+
+B. ww x WW
+
+C. Ww x Ww
+
+D. WW x WW","Their parents (F1) are heterozygous, so produce AA, Aa, aa",a2,arg239222,arg78215,arg239222_arg78215,rr,3cb1bcf49a5156777764cd4cade4e0,1
+57,"Their parents (F1) are heterozygous, so produce AA, Aa, aa","In a dihybrid cross AaBb x AaBb, what fraction of the offspring will be homozygous for both recessive traits?",a1,arg78215,arg243368,arg78215_arg243368,rr,7676492bc93fe31074d6ddca1523c2,-1
+58,hot chocolate for mental healthhot chocolate for mental healthhot chocolate for mental healthhot chocolate for mental healthhot chocolate for mental healthhot chocolate for mental healthhot chocolate for mental healthhot chocolate for mental health,"Their parents (F1) are heterozygous, so produce AA, Aa, aa",a2,arg245135,arg78215,arg245135_arg78215,rr,e7559f2e1705bccfad6b27e2258abf,1
+59,"Aa x Aa gives AA, Aa, and aa in a 1:2:1 ratio","F1 is all Aa, so F2 offsprings will be AA, Aa, and aa",a1,arg185710,arg185919,arg185710_arg185919,rr,a4efbb59c3f3cc914065e25300dae6,-1
+60,Monohybrid cross: Aa x Aa. That does not seem like a clear explanation of your reasoning:That does not seem like a clear explanation of your reasoning:That does not seem like a clear explanation of your reasoning:,"Aa x Aa gives AA, Aa, and aa in a 1:2:1 ratio",a2,arg192092,arg185710,arg192092_arg185710,rr,c6300318f3bd32c7eb37fdbc9e45b8,1
+61,"Aa x Aa gives AA, Aa, and aa in a 1:2:1 ratio",do the punnet square and you will find the answer,a1,arg185710,arg193085,arg185710_arg193085,rr,3962319de8a4da9a4d63bd889e1904,-1
+62,"The monohybrid cross of Aa*Aa produce 1/4AA,1/2Aa and 1/4 aa","Aa x Aa gives AA, Aa, and aa in a 1:2:1 ratio",a2,arg197146,arg185710,arg197146_arg185710,rr,deb798562c393afa3f28bd8f30142f,1
+63,"Aa x Aa gives AA, Aa, and aa in a 1:2:1 ratio",obvious depth depth depth depth depth depthdepth depth depth depth depth depthdepth depth depth depth depth depthdepth depth depth depth depth depthdepth depth depth depth depth depth,a1,arg185710,arg232262,arg185710_arg232262,rr,e9a6a12d3511a68252c0f7f5fc1a66,-1

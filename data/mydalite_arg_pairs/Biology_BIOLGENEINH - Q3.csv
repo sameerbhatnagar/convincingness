@@ -1,0 +1,220 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,"A son will only inherit his mother's X chromosome, reflecting any mutations she may have on it","The X chromosome of a son will always be from the mother, therefore if he inherits an X-linked disease he will show it and by analyzing the phenotype of the mother, you will know if she is homozygous normal or heterozygous.",a2,arg75061,arg75045,arg75061_arg75045,rr,51c8aa81265b76c2eafafaddf7f0f1,1
+1,"The X chromosome of a son will always be from the mother, therefore if he inherits an X-linked disease he will show it and by analyzing the phenotype of the mother, you will know if she is homozygous normal or heterozygous.","while the phenotype of the daughters may not always reflect the genotype of the father, the phenotype of the son reflects the genotype of the mother ",a1,arg75045,arg78938,arg75045_arg78938,rr,20c5547f9555f5a4a978a54045258f,-1
+2,"The son can only get one X chromosome, and it comes from the mother. Therefore the son’s phenotype reflects the genotype of the mother ","The X chromosome of a son will always be from the mother, therefore if he inherits an X-linked disease he will show it and by analyzing the phenotype of the mother, you will know if she is homozygous normal or heterozygous.",a2,arg79101,arg75045,arg79101_arg75045,rr,8802245ba48176f94d3f163c97d717,1
+3,"The X chromosome of a son will always be from the mother, therefore if he inherits an X-linked disease he will show it and by analyzing the phenotype of the mother, you will know if she is homozygous normal or heterozygous.","The phenotype of sons for the X chromosome is entirely determined by the mother's génotype whereas the daughter's is half the mother and half the father. And also, the phenotype of the sons is not the phenotype of the mother b/c the mother has 2 X chromosomes whereas the son can only express from one and so expresses different phénotypes often.",a1,arg75045,arg80156,arg75045_arg80156,rr,83298ffad1d5c1507c9d8cc4371e8a,-1
+4,"Since the father only gives his Y chromosome, so the son's X chromosomes has to come from his mother.","The X chromosome of a son will always be from the mother, therefore if he inherits an X-linked disease he will show it and by analyzing the phenotype of the mother, you will know if she is homozygous normal or heterozygous.",a2,arg80998,arg75045,arg80998_arg75045,rr,54b602f8b6cbd39d1d6e2ec8f5b893,1
+5,"The X chromosome of a son will always be from the mother, therefore if he inherits an X-linked disease he will show it and by analyzing the phenotype of the mother, you will know if she is homozygous normal or heterozygous.",The only X the son receives is from the mother as it receives a Y chromosome from the father,a1,arg75045,arg83186,arg75045_arg83186,rr,092fab0fe87f26bc2b1a93552ea75c,-1
+6,"son gets one x chromosome from mom and one y chromosome from dad
+","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg79809,arg74952,arg79809_arg74952,rr,3833d34efac4d96ebc009507f78f02,1
+7,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","the mom doesn't need to be affected, but she gives the son an X-chromosome",a1,arg74952,arg90064,arg74952_arg90064,rr,2d622cf72648bca831a62b29d9a7ad,-1
+8,the mother give the only X the son will have,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg91637,arg74952,arg91637_arg74952,rr,3f723e391f6fc48fb0c52046239973,1
+9,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","Sons inherit their X chromosome from their mothers, thus they reflect the mother's phenotype. ",a1,arg74952,arg97845,arg74952_arg97845,rr,f42e3beb6d79465220551491ce334b,-1
+10,"Sons get their X chromosome from their mother
+
+","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg100107,arg74952,arg100107_arg74952,rr,cc2059593433c9b9c4b4dec4b70285,1
+11,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",mother contributes the x chromosome to the son,a1,arg74952,arg101085,arg74952_arg101085,rr,57a2451f7b09543cfa704b6fdd15ee,-1
+12,Sons get only one X and it's from the mother,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg103537,arg74952,arg103537_arg74952,rr,be4ae640739623ecce5aa492a2e8e1,1
+13,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",X linked means that sons will always have it,a1,arg74952,arg104860,arg74952_arg104860,rr,268002bfc7fcb28d6bdc37f9256674,-1
+14,Mothers are always carriers and the sons show the phenotype,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg105384,arg74952,arg105384_arg74952,rr,150a56e433f4b996961d08465a7973,1
+15,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","If the father is affected, the daughters will be carriers (if they aren't affected themselves), and will have a chance to pass the trait on to their sons.",a1,arg74952,arg105984,arg74952_arg105984,wr,ef7cec2ad22c937d06e4c5920d954d,-1
+16,"If the mother is heterozygous, the son will be one or the other. If . the mother is homozygous, the son will automatically be the same","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg106356,arg74952,arg106356_arg74952,rr,0be5fbbd69280e7e6725be63847208,1
+17,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","I mean, it has to right, right?",a1,arg74952,arg106612,arg74952_arg106612,rr,c3b72f1e3ddc610a90c7743f1e8ee6,-1
+18,receive their x chromosome from mom and their y chromosome from dad,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg107237,arg74952,arg107237_arg74952,rr,048559c9100373cd2ce89faba8a70e,1
+19,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","Affected mother will give rise to an affected son. Whereas, the father won't contribute 
+If its a dominant X-linked, an affected father will give rise to an affected daughter as well",a1,arg74952,arg111663,arg74952_arg111663,wr,597058d51ca6804a9eeba65f985050,-1
+20,"boy's only X chromosome is from mother,","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg134964,arg74952,arg134964_arg74952,wr,4a79fd803f80b607b31480868d553e,1
+21,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","The male always has an XY, so the daughter will have the X of the father and one of the two Xs of the mother.",a1,arg74952,arg188768,arg74952_arg188768,wr,32cc4976517d556e4bd21531dbde83,-1
+22,"The sons must inherit a Y chromosome from their father, thus the X chromosome with phenotypic, sex-linked traits must come from their mother.","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg188987,arg74952,arg188987_arg74952,rr,f4b2c81c953e83ef891a28f0ffa6c7,1
+23,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","if the mother gives X linked inheritance to their son, the son will 100% express the X chromosome.",a1,arg74952,arg189775,arg74952_arg189775,rr,1182fd51f65265d9fa0f215476622e,-1
+24,This is because sons inherit their only X chromosome from their mother.,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg195124,arg74952,arg195124_arg74952,rr,c7193b8efa71596d7f375bc34271f6,1
+25,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","Not necessarily, but I can’t find a fully right answer",a1,arg74952,arg195348,arg74952_arg195348,rr,8cf65480352acbf71f20638a76cb5c,-1
+26,"You do the math, I am tired of filling out this rationale.","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg195872,arg74952,arg195872_arg74952,rr,b30634abcfd3a2d844029f291f1dc1,1
+27,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","Because the son only has one X chromosome that is from the mother, and he does not have gene dosage for the gene that is mutated.",a1,arg74952,arg196872,arg74952_arg196872,rr,f1278b5969017a6121fa6926e9c04b,-1
+28,The phenotype of the sons reflects the genotype of the mother.,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg198061,arg74952,arg198061_arg74952,rr,a93ead596d3e93cc7c3baf70527825,1
+29,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","If the son is affected, the mother is usually a carrier.",a1,arg74952,arg199031,arg74952_arg199031,rr,853d76e4fed364ec714932ca6ad13d,-1
+30,Different F1 results when the mother or father are recessive and have different patterns for males and females,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg200035,arg74952,arg200035_arg74952,rr,9e82f1cfc19362f43059262bd60c71,1
+31,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",this is the answer because this is the meaning of criss-cross inheritance,a1,arg74952,arg202332,arg74952_arg202332,rr,3962319de8a4da9a4d63bd889e1904,-1
+32,"Because males only have one X chromosome, it must be inherited from their mother.","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg203099,arg74952,arg203099_arg74952,wr,7c0a9ed88a944bf19ff11868c06407,1
+33,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","The son's phenotype is a reflection of what the mom has, due to the fact that males only have one x chromosome .",a1,arg74952,arg205193,arg74952_arg205193,rr,d52cb885741df004f221c387f1769d,-1
+34,"The son gets y from dad and x from mom. Since x is the one thats being expressed, the phenotype will be the same as the mom","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg206110,arg74952,arg206110_arg74952,rr,4522f3c6892e3959dd4824bfb7f075,1
+35,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",male progeny get their x chromosome from their mother so if she is a carrier then the son will express the phenotype,a1,arg74952,arg206393,arg74952_arg206393,rr,7cdc3e9791d9698ad1152794be8957,-1
+36,"ate them together, then mate their offspring to see what color the grandchildren are--the other color will be the dominant color.","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg206969,arg74952,arg206969_arg74952,rr,51e80df97f8c972a86b8d282e47e5e,1
+37,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",because because because because because because because because because because because because because because because because,a1,arg74952,arg207397,arg74952_arg207397,rr,d06aa0c42a6cda530fd34d24ff1133,-1
+38,"This is how life functions sorry not sorry. I really don't know what else to say, it is written in the notes.","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg207909,arg74952,arg207909_arg74952,rr,2a87911568577de9bf4b7b181f67bc,1
+39,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","sons inherit one X chromosome from the mother and, so, whatever X they inherit will be their phenotype",a1,arg74952,arg208023,arg74952_arg208023,rr,06e2a22e4f8dafd4a8754230fc1f78,-1
+40,"From slides 
+From slides From slides From slides From slides From slides From slides From slides From slides From slides From slides From slides From slides","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg208613,arg74952,arg208613_arg74952,rr,691059afeec34764e0672543eb1805,1
+41,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","readability
+in this case, the son always gets the genotype of the mother. we can realize this by doing a monohybrid cross",a1,arg74952,arg211093,arg74952_arg211093,rr,18c047fbdd39a2af752b7930cb6881,-1
+42,phenotype that is reflected from opposite sex of progeny and parent,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg211653,arg74952,arg211653_arg74952,wr,0dd25bf4271022a430f458130d935a,1
+43,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","If the gene is linked to the X chromosome, the son will only ever be able to inherit his mom's genotype.",a1,arg74952,arg212136,arg74952_arg212136,rr,bf9c688799bd0587f7eabab4295383,-1
+44,This is because the son only has one X chromosome which comes from his mother.,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg214548,arg74952,arg214548_arg74952,rr,2810d543fe5fecbfc494e02a0451fb,1
+45,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","Because the sons will get a y chromosome from dad. Therefore, their x chromosome must come from mom",a1,arg74952,arg215425,arg74952_arg215425,rr,c182e01377768877871d4e31b0bf11,-1
+46,"in x-linked, males can only obtain the allele from the mother so if recessive, the son will be affected if mother affected. For dominant, the daughter will take the x allele from the father (if affected he will give her the dominant allele).","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg222409,arg74952,arg222409_arg74952,rr,528440c46ca66eb37b04ab6d41ed29,1
+47,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","This equation gives the equilibrium value of H when the loss by drift and gain by mutation are balanced. This equation applies only to neutral variation; that is, we are assuming selection is not at work. We are also assuming that each new muta- tion yields a unique allele.",a1,arg74952,arg223886,arg74952_arg223886,rr,3b82a24353e5767c6ea89a77bc0ebc,-1
+48,X-linked inheritance is sometimes referred to as “criss-cross” inheritance. This is because:,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg224379,arg74952,arg224379_arg74952,rr,ed7e6b53f4994790ba59aca16b78d6,1
+49,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","Because males are hemizygous for X chromosome, whatever X chromosome they receive from their mother will determine their phenotype",a1,arg74952,arg226208,arg74952_arg226208,rr,c0ea55cf5627d65b8c2b95d5a99b6a,-1
+50,"this is the case because the son will only have one x chromosome, which had to be donated by the mother, and therefore whatever phenotype she had he will have as well","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg233744,arg74952,arg233744_arg74952,rr,2550f335403b6960ece49e5c45f5aa,1
+51,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",sons get their X from their mothers so their phenotype is determined by the mother's genotype,a1,arg74952,arg233800,arg74952_arg233800,rr,daddcaf8a1c1e55ef33bcab10bf2fa,-1
+52,what kind of question is this. None of the answers seem to be right,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg236243,arg74952,arg236243_arg74952,wr,6cb51fff1a6525f52bf84f7d450d02,1
+53,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",X-linked inheritance is sometimes referred to as “criss-cross” inheritance. This is because:,a1,arg74952,arg236380,arg74952_arg236380,rr,c00a4b3af35b44fcc095622cc766fa,-1
+54,In the parental generation there is a recessive parent and a dominant parent. The F1 generation is heterogeneous purple. These are the parents of F2 generation.,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg238348,arg74952,arg238348_arg74952,rr,30cf3bab881f2520b066ce70779c07,1
+55,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",because becausebecause becausebecause becausebecause becausebecause because because because because because because because because because because because because because because because,a1,arg74952,arg238675,arg74952_arg238675,rr,efe22e5cde3a259024cb04dae6bcbd,-1
+56,X-linked inheritance is sometimes referred to as “criss-cross” inheritance. This is because:,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg238897,arg74952,arg238897_arg74952,rr,7566305038049926938095b030a9bd,1
+57,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",son get its x from mom and y from dad,a1,arg74952,arg239724,arg74952_arg239724,rr,dd5aec8135ba90dbdc078f1fb546ed,-1
+58,Because mom has to give one X. No further explanation required to solve this question.,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg240566,arg74952,arg240566_arg74952,rr,c0bf50b4127516fec2f23a714be712,1
+59,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","because it's sex linked and guys only have one x chromosome, their phenotype always reflects their mothers genotype because of the XX in females",a1,arg74952,arg241119,arg74952_arg241119,rr,eba17fafcb1c9b98979aeda6a2fb11,-1
+60,"Due to the sons only having a single X-chromosome, they can express their mother's recessive allele which was not necessarily their mother's phenotype (bc she had a dose of dominant, for example)","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg241881,arg74952,arg241881_arg74952,rr,eff6862842ac615ec965161eecf4bf,1
+61,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ","the son gets the x chromosome from the mother so depending on what she has, the son has",a1,arg74952,arg243425,arg74952_arg243425,rr,60725268dcac5165159269141c66a0,-1
+62,Boy is this so much easier than the exam Boy is this so much easier than the exam,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg243507,arg74952,arg243507_arg74952,wr,c6300318f3bd32c7eb37fdbc9e45b8,1
+63,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",Sons will always inherit their X chromosome from their mother,a1,arg74952,arg244830,arg74952_arg244830,rr,27388131550e8dd6888258178667f1,-1
+64,"Because of the gametes, they're the same in the sons","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg244914,arg74952,arg244914_arg74952,wr,ba7aa1aebeccd8a8f7e9b64c90f985,1
+65,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",the sons inherit an X chromosome from their mothers. and thus it is criss cross,a1,arg74952,arg246190,arg74952_arg246190,rr,e9dd82fb49cbc6c1f61f6930dbc839,-1
+66,"men have only one x gene, the other is Y, so the x must be inherited from the mother","Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg246899,arg74952,arg246899_arg74952,rr,6eb2802b8d7d54a16614d693c96ac4,1
+67,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",During which stage of meiosis are the bivalents arranged along the equator? During which stage of meiosis are the bivalents arranged along the equator?,a1,arg74952,arg248508,arg74952_arg248508,rr,ba0d4a2d564f032f5cd269e5ac73d1,-1
+68,Do I really need to write this rationale again? This depth thing is getting to me,"Because sons get their only X from their mother, their phenotype will be that of the mother's genotype. 
+
+Daughters inherit one X from each parent, so their genotype is more variable. ",a2,arg253572,arg74952,arg253572_arg74952,wr,f6151527677d3e021298dd0358a5ee,1
+69,Son's always get from their moms because they always inherit the Y from dad. Daughter's always get from dad because since they are girls they obviously don't inherit the Y and get whatever X the dad has. ,"since a son only gets 1 X, it will indicate the genotype of the mother since that X will be what the son shows",a1,arg78792,arg82177,arg78792_arg82177,rw,d53f48ea17d993c5e36514188b22de,-1
+70,"if the mother is homozygous recessive then the son must be recessive. and if the genotype of the father is dominant, then the phenotype of the daughter will be dominant.",Son's always get from their moms because they always inherit the Y from dad. Daughter's always get from dad because since they are girls they obviously don't inherit the Y and get whatever X the dad has. ,a2,arg196013,arg78792,arg196013_arg78792,ww,95c14abde7f298ae4cf8da63b92b9e,1
+71,Son's always get from their moms because they always inherit the Y from dad. Daughter's always get from dad because since they are girls they obviously don't inherit the Y and get whatever X the dad has. ,criss-cross inheritance The transmission of a gene from mother to son or father to daughter,a1,arg78792,arg201014,arg78792_arg201014,ww,f0d5d7cc1bb3645de472a5aa1cb5d4,-1
+72,"I think that's because the Y chromosome is null, and the phenotype will always reflect what is on the mother X chromosome, but Im not super sure",Son's always get from their moms because they always inherit the Y from dad. Daughter's always get from dad because since they are girls they obviously don't inherit the Y and get whatever X the dad has. ,a2,arg202903,arg78792,arg202903_arg78792,rw,4291dc655a2e0724f018f03fc58a9b,1
+73,Son's always get from their moms because they always inherit the Y from dad. Daughter's always get from dad because since they are girls they obviously don't inherit the Y and get whatever X the dad has. ,"This seems to be the most closely linked answer. The son gets an X chromosome from the mother and Y from the father, so genetic information is brought by the X chromosome from the mother. The daughter gets two sources, an X from each parent but her gender is determined by the chromosome from the father.",a1,arg78792,arg207302,arg78792_arg207302,ww,c2846914e3ca3e2575937468b3790b,-1
+74,The son gets the mothers phenotype while the daughter gets the fathers phenotype. Therefore it is an X,Son's always get from their moms because they always inherit the Y from dad. Daughter's always get from dad because since they are girls they obviously don't inherit the Y and get whatever X the dad has. ,a2,arg208388,arg78792,arg208388_arg78792,ww,6e8e63e014800da92d41c1891d51c6,1
+75,Son's always get from their moms because they always inherit the Y from dad. Daughter's always get from dad because since they are girls they obviously don't inherit the Y and get whatever X the dad has. ,This answer seems right because I know my definitions and this is the right one,a1,arg78792,arg240827,arg78792_arg240827,ww,284259f0c39bcaf69a972ef4573497,-1
+76,"The law of segregation lets us predict how a single feature associated with a single gene is inherited. In some cases, though, we might want to predict the inheritance of two characteristics associated with two different genes. How can we do this?",Son's always get from their moms because they always inherit the Y from dad. Daughter's always get from dad because since they are girls they obviously don't inherit the Y and get whatever X the dad has. ,a2,arg241922,arg78792,arg241922_arg78792,ww,4937c56f883e58b135780d31a154b3,1
+77,Son's always get from their moms because they always inherit the Y from dad. Daughter's always get from dad because since they are girls they obviously don't inherit the Y and get whatever X the dad has. ,this is going to be the answer I will always use to speed things up because this takes too long,a1,arg78792,arg245900,arg78792_arg245900,rw,da34c249c6f53f22714a5efbfc67c8,-1
+78,"Less shielding around nuclei = more EWG = nuclei feel stronger magnetic field which means energy gap is higher so higher resonance frequency
+
+Less shielding = de-shielding
+
+So in this case the nuclei is the hydrogen????? Or is it still the carbon? If it is still the carbon, why would the ppm values be different from the previous slide?","traits encoded by genes on the X chromosome will show X-linked inheritance. A female carrying two recessive X-linked alleles, when crossed with a wild-type male will produce criss-cross inheritance.",a2,arg195879,arg191680,arg195879_arg191680,ww,11f1a8875488de92d068d9568ca86d,1
+79,"traits encoded by genes on the X chromosome will show X-linked inheritance. A female carrying two recessive X-linked alleles, when crossed with a wild-type male will produce criss-cross inheritance.","This is because only one X chromosome is allocated to the males and that comes from the mother. only this X chromosome will give the phenotype. however, the mother may have this X chromosome and another X chromosome that is dominant masking this one. so the phenotype of the mother could be different.",a1,arg191680,arg197381,arg191680_arg197381,rw,80acc2c3fa00643282224c364384e9,-1
+80,"I'm hesitating between c and e, not sure what to choose or how to justify, sorry.","traits encoded by genes on the X chromosome will show X-linked inheritance. A female carrying two recessive X-linked alleles, when crossed with a wild-type male will produce criss-cross inheritance.",a2,arg201925,arg191680,arg201925_arg191680,ww,09a22c1210ff184f6bf64e36f69c1c,1
+81,"traits encoded by genes on the X chromosome will show X-linked inheritance. A female carrying two recessive X-linked alleles, when crossed with a wild-type male will produce criss-cross inheritance.","The phenotype of the sons is always the same as their mothers. , but I think both C and E are correct?",a1,arg191680,arg208327,arg191680_arg208327,ww,e10d9c9f623af957d3f9cdbe4ffbd4,-1
+82,"if the mother has the condition and it is X-linked then she has to pass that one down to her son, and since he only has one X chromosome it has to be expressed.","traits encoded by genes on the X chromosome will show X-linked inheritance. A female carrying two recessive X-linked alleles, when crossed with a wild-type male will produce criss-cross inheritance.",a2,arg224076,arg191680,arg224076_arg191680,ww,dcc4147a5c461bb23c8f37dfd85e77,1

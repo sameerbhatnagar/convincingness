@@ -4,12 +4,14 @@ import itertools
 from sklearn.model_selection import StratifiedKFold
 from sklearn.feature_extraction.text import CountVectorizer
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DATA_DIR = os.path.join(BASE_DIR,"data")
 DATASETS = {}
 
 DATASETS["IBM_ArgQ"] = {}
 DATASETS["IBM_ArgQ"][
     "data_dir"
-] = "gdrive/My Drive/Colab Notebooks/convincingness/data/IBM-ArgQ-9.1kPairs"
+] = os.path.join(BASE_DATA_DIR,"IBM-ArgQ-9.1kPairs")
 DATASETS["IBM_ArgQ"]["files"] = [
     ("vaccination_PRO", "Flu-vaccination-should-be-mandatory-(PRO).tsv"),
     ("vaccination_CON", "Flu-vaccination-should-not-be-mandatory-(CON).tsv"),
@@ -42,7 +44,7 @@ DATASETS["IBM_ArgQ"]["files"] = [
 DATASETS["UKP"] = {}
 DATASETS["UKP"][
     "data_dir"
-] = "gdrive/My Drive/Colab Notebooks/convincingness/data/UKPConvArg1Strict-CSV"
+] = os.path.join(BASE_DATA_DIR,"UKPConvArg1Strict-CSV")
 DATASETS["UKP"]["files"] = [
     ("plastic_CON", "ban-plastic-water-bottles_no-bad-for-the-economy.csv"),
     ("plastic_PRO", "ban-plastic-water-bottles_yes-emergencies-only.csv"),
@@ -200,9 +202,7 @@ def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False):
 
     df_all = pd.DataFrame()
     for ftype in ["train", "test"]:
-        fname = "gdrive/My Drive/Colab Notebooks/convincingness/data/IBM_Debater_(R)_EviConv-ACL-2019.v1/{}.csv".format(
-            ftype
-        )
+        fname = os.path.join(BASE_DATA_DIR,"IBM_Debater_(R)_EviConv-ACL-2019.v1/{}.csv".format(ftype))
         df = pd.read_csv(fname)
         df = df.rename(
             columns={
@@ -248,7 +248,7 @@ def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False):
 
 def load_dalite_data(N_folds=5,cross_topic_validation=False,discipline=None):
 
-    data_dir = "gdrive/My Drive/Colab Notebooks/convincingness/data/mydalite_arg_pairs"
+    data_dir = os.path.join(BASE_DATA_DIR,"mydalite_arg_pairs")
 
     topics = os.listdir(data_dir)
     df_all = pd.DataFrame()

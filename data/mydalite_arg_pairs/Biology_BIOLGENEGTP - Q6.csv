@@ -1,0 +1,78 @@
+,a1,a2,label,a1_id,a2_id,#id,transition,annotator,y
+0,dddddddddddddddddddddddddd,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg133034,arg132614,arg133034_arg132614,rr,0a82d2f36cda00b9f5e97c580752ac,1
+1,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",ITS 20/64,a1,arg132614,arg133989,arg132614_arg133989,rr,160bdea33fc0de01bc7240ac29693d,-1
+2,answer,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg134908,arg132614,arg134908_arg132614,rr,47bcc3f28dd94412885583182b09a0,1
+3,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",yo i understand but this bitttt do not wanna do it,a1,arg132614,arg135327,arg132614_arg135327,wr,1c50098a7e064131283236308ce026,-1
+4,who knows,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg135508,arg132614,arg135508_arg132614,rr,dd1b4189a8ac774a3a58a6ffd278d1,1
+5,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",Kkkkkkkk,a1,arg132614,arg135811,arg132614_arg135811,rr,14899b064827f55df8c48614f4274f,-1
+6,makes sense,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg136259,arg132614,arg136259_arg132614,wr,d5e869d27e6619d0c52c27cdb10cf3,1
+7,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",Because,a1,arg132614,arg136586,arg132614_arg136586,rr,e969de6f57d3ccca6cfb4d0560708d,-1
+8,"jbk,.bgyfh","A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg136653,arg132614,arg136653_arg132614,rr,3f8c6489c0aa8afc2efe365be73175,1
+9,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",ddddon,a1,arg132614,arg137789,arg132614_arg137789,wr,597058d51ca6804a9eeba65f985050,-1
+10,not sure,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg138531,arg132614,arg138531_arg132614,rr,be4ae640739623ecce5aa492a2e8e1,1
+11,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",not really sure,a1,arg132614,arg138988,arg132614_arg138988,wr,c11828d46b53cbf827f3a1903a57ce,-1
+12,Math,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg141931,arg132614,arg141931_arg132614,rr,f0f2a852594992556acd3f8df9f8c0,1
+13,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",because that is the right answer for this question in genetics,a1,arg132614,arg192303,arg132614_arg192303,wr,41c79593ffb7857a7ac3a97563285b,-1
+14,"The following pedigree shows the inheritance of a blood condition. If the woman II-2 (first woman in second generation) was to marry her cousin II-8 (last male in second generation), what is the probability of their first child having the blood condition?","A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg194269,arg132614,arg194269_arg132614,rr,dccab1f02141795634c10bbdc7ba59,1
+15,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",you need to do 3/4 x 3/4 x 3/4 since there is a 3/4 chance of getting the dominant phenotype in each case.,a1,arg132614,arg195014,arg132614_arg195014,rr,e36459c889ec8ce820903ab849be5b,-1
+16,A large portion is likely going to be as tall as the parents because they are heterozygous.,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg195532,arg132614,arg195532_arg132614,rr,cbb9fa693c1e4428d91dc12815d88f,1
+17,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",This would require using both product and sum rule since the cross consists of 3 genes.,a1,arg132614,arg196787,arg132614_arg196787,rr,8b2792c7600643e583c76f2796f7e5,-1
+18,"To be as tall as the parents, the progeny need to have the Aa Bb Cc genotype.","A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg197679,arg132614,arg197679_arg132614,rr,cc7c4a9e7355ec3ed89d427e1acd92,1
+19,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",THe probability of F1 progeny to have three or more doses of dominant allele is 27/64,a1,arg132614,arg198783,arg132614_arg198783,rr,cca18bdbf60e3930d472d5e3975feb,-1
+20,I do not know..... I think you may treat each as independent monocrosses but then I'm not sure how to add,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg198871,arg132614,arg198871_arg132614,rr,e0d6dbfc15685e9555f5bf06898651,1
+21,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.","Once we find how many will be tall through the product rule.  We simply do 1- that number because that will represent the remaining population, indicating how many are shorter",a1,arg132614,arg199419,arg132614_arg199419,rr,c56d64a5d668aa1e9c248f128a8c52,-1
+22,I like my answer I will stick with my answer.,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg201044,arg132614,arg201044_arg132614,rr,e269d62d6994ccca7aff6fcde30e58,1
+23,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",According to the lecture notes the answer that I have provided is what I'm going with.,a1,arg132614,arg205974,arg132614_arg205974,rr,69226f0b06fd8222b03f9261e554f0,-1
+24,"i dont knowww im guesssssing 
+im assuming for the plants to be short, they must at least have one homozygous recessive pair.
+for the plant to be taller than the parents, all genotypes must be either hetero zygous dom or homo dominant","A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg208120,arg132614,arg208120_arg132614,wr,59353ae11368a9a11d9762a45010aa,1
+25,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.","You need an A,B,C at the same time. Therefore, you check the ratio. There is 3/4 chance of A,B,C. Therefore, simple math tells you 27/64",a1,arg132614,arg215218,arg132614_arg215218,rr,c182e01377768877871d4e31b0bf11,-1
+26,A cross is made between the following parents: Aa Bb Cc Dd Ee x Aa BB Cc Dd Ee. What is,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg223636,arg132614,arg223636_arg132614,rr,3b82a24353e5767c6ea89a77bc0ebc,1
+27,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",because because because because because because because because because because because because because because because because,a1,arg132614,arg229207,arg132614_arg229207,rr,44b7f6ba94b4f09a40694355bfbe4f,-1
+28,"If the probability of event A is 3/4 and the probability of event B is 1/4, then the probability of both A and B occurring at the same time is","A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg229675,arg132614,arg229675_arg132614,rr,16661a95a03b72f49ec743e1821943,1
+29,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",ou cross a true-breeding snap-poppy with blue flowers with a true-breeding snap-poppy with white flowers. The F1 progeny all have purple flowers.,a1,arg132614,arg230135,arg132614_arg230135,rr,0d0905678fc44ce0fdc960b0bb6167,-1
+30,"Independent assortment of the alleles leads to this, I dont think this is right","A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg231460,arg132614,arg231460_arg132614,rr,f9bde9aae2bbe4dd9169d9d585f1f9,1
+31,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",im not sure on this one - how to calc the shorter number,a1,arg132614,arg232529,arg132614_arg232529,rr,c765d1c99b80ecdf3f96f19e42f4d4,-1
+32,"Height in merigonias is determined by 3 genes that act additively. Each has two alleles, one completely dominant allele (A, B or C) that makes plants taller and one recessive allele that makes plants shorter. You do the cross Aa BbCc x AaBbCc. The F1 progeny will be:","A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg232775,arg132614,arg232775_arg132614,rr,80e052297206f21b8c3de08638977f,1
+33,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.","Height in merigonias is determined by 3 genes that act additively. Each has two alleles, one completely dominant allele (A, B or C) that makes plants taller and one recessive allele that makes plants shorter. You do the cross Aa BbCc x AaBbCc. The F1 progeny will be",a1,arg132614,arg237803,arg132614_arg237803,wr,36b1052c68d5630214ae83af1c767a,-1
+34,"Height in merigonias is determined by 3 genes that act additively. Each has two alleles, one completely dominant allele (A, B or C) that makes plants taller and one recessive allele that makes plants shorter. You do the cross Aa BbCc x AaBbCc. The F1 progeny will be:","A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg238819,arg132614,arg238819_arg132614,rr,40bc491a6f593eb9fc7227ad0ee62d,1
+35,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",I don't really get itI don't really get itI don't really get itI don't really get itI don't really get itI don't really get itI don't really get it,a1,arg132614,arg239043,arg132614_arg239043,rr,71ec21c36971a39ec5670e0c5054d6,-1
+36,"Height in merigonias is determined by 3 genes that act additively. Each has two alleles, one completely dominant allele (A, B or C) that makes plants taller and one recessive allele that makes plants shorter. You do the cross Aa BbCc x AaBbCc. The F1 pro","A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg241513,arg132614,arg241513_arg132614,rr,ef19782cf9333eb6a5a608a66790e2,1
+37,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.","There is 3/4 chance that the progeny will be taller for one gene. Since there is 3 genes, we multiply 3/4*3/4*3/4= 27/64. However, im not sure how to get the 37/64 part.",a1,arg132614,arg242599,arg132614_arg242599,rr,76d28048d8091ddc11652f29af3275,-1
+38,because because because because because because because because because because because because because because because,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg244183,arg132614,arg244183_arg132614,rr,d06aa0c42a6cda530fd34d24ff1133,1
+39,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.","Height in merigonias is determined by 3 genes that act additively. Each has two alleles, one completely dominant allele (A, B or C) that makes plants taller and one recessive allele that makes plants shorter. You do the cross Aa BbCc x AaBbCc. The F1 progeny will be:",a1,arg132614,arg245369,arg132614_arg245369,wr,ba7aa1aebeccd8a8f7e9b64c90f985,-1
+40,Why did I lose my paste option that is not fair and annoying,"A_b_c = 3 *3/64 = 9/64 short. A_B_c = 3/4*3/4 *1/4*3 = 27/64. a_b_c_ = 1/64. Add all, 37/64 short.",a2,arg253427,arg132614,arg253427_arg132614,wr,f6151527677d3e021298dd0358a5ee,1
+41,"for AABBCC its 1/4*1/4*1/4 =1/64 then AaBbCc is 1/2*1/2*1/2 = 1/8, aabbcc is all shorter, 1/64+1/8 = 9/64 as tall  or taller, then 55/64 shorter.","ate them together, then mate their offspring to see what color the grandchildren are--the other color will be the dominant color.",a1,arg198004,arg207030,arg198004_arg207030,ww,51e80df97f8c972a86b8d282e47e5e,-1
+42,"I'm not sure, I got 8/64 will be as tall as the parents which is not an option so I'm guessing 9/64 since its closest","for AABBCC its 1/4*1/4*1/4 =1/64 then AaBbCc is 1/2*1/2*1/2 = 1/8, aabbcc is all shorter, 1/64+1/8 = 9/64 as tall  or taller, then 55/64 shorter.",a2,arg213850,arg198004,arg213850_arg198004,ww,5534d4ed0f5412c52acabe5be83ce4,1
+43,"for AABBCC its 1/4*1/4*1/4 =1/64 then AaBbCc is 1/2*1/2*1/2 = 1/8, aabbcc is all shorter, 1/64+1/8 = 9/64 as tall  or taller, then 55/64 shorter.",depth depth depth depth depth depth depth depth depth depth depth depth depth depth depth,a1,arg198004,arg234208,arg198004_arg234208,ww,91d55b62d66ae26ce4305aa1cda609,-1
+44,9/64 will be as tall as the parents; 55/64 will be shorter than the parents,"for AABBCC its 1/4*1/4*1/4 =1/64 then AaBbCc is 1/2*1/2*1/2 = 1/8, aabbcc is all shorter, 1/64+1/8 = 9/64 as tall  or taller, then 55/64 shorter.",a2,arg243204,arg198004,arg243204_arg198004,ww,0e0eb905e3ad75dbe188d0fe0e6fb2,1
+45,"AaBbCc x AaBbCc 
+Gametes are ABC, abc, ABc, AbC, aBC, aBc, abC
+
+progeny need 6 dominant and 6 recessive to be as tall as parents
+only one will get ABC from both parents",I am really unsure what is intended by this question and need some clarification on the wording of the problem,a1,arg141175,arg207341,arg141175_arg207341,ww,5787ac10acb9bfb152860b9b9cda29,-1
+46,there is only 1/64 chances of getting the abc alleles from both parents in an offspring that would be shorter than the parents.,"AaBbCc x AaBbCc 
+Gametes are ABC, abc, ABc, AbC, aBC, aBc, abC
+
+progeny need 6 dominant and 6 recessive to be as tall as parents
+only one will get ABC from both parents",a2,arg225696,arg141175,arg225696_arg141175,ww,f7c0eb70420f32fa400aa3b3a617fb,1
+47,"AaBbCc x AaBbCc 
+Gametes are ABC, abc, ABc, AbC, aBC, aBc, abC
+
+progeny need 6 dominant and 6 recessive to be as tall as parents
+only one will get ABC from both parents","The following pedigree shows the inheritance of a blood condition. If the woman II-2 (first woman in second generation) was to marry her cousin II-8 (last male in second generation), what is the probability of their first child having the blood condition?",a1,arg141175,arg226824,arg141175_arg226824,ww,cf1fe21f7b3dc9be473665c9e08df9,-1
+48,IDK IDK IDK IDK IDK IDK IDK IDK IDK IDK IDK IDK I dont know the answer IDK which probabilities i should do i dont knowwwwww,"AaBbCc x AaBbCc 
+Gametes are ABC, abc, ABc, AbC, aBC, aBc, abC
+
+progeny need 6 dominant and 6 recessive to be as tall as parents
+only one will get ABC from both parents",a2,arg235239,arg141175,arg235239_arg141175,ww,70df4d183d31aed459d8e9b0c489cc,1
+49,"AaBbCc x AaBbCc 
+Gametes are ABC, abc, ABc, AbC, aBC, aBc, abC
+
+progeny need 6 dominant and 6 recessive to be as tall as parents
+only one will get ABC from both parents",i dont know this is a guess im not sure what the question means and how to calcualte it,a1,arg141175,arg242779,arg141175_arg242779,ww,60725268dcac5165159269141c66a0,-1
+50,"Height in merigonias is determined by 3 genes that act additively. Each has two alleles, one completely dominant allele (A, B or C) that makes plants taller and one recessive allele that makes plants shorter. You do the cross Aa BbCc x AaBbCc. The F1 progeny will be:","AaBbCc x AaBbCc 
+Gametes are ABC, abc, ABc, AbC, aBC, aBc, abC
+
+progeny need 6 dominant and 6 recessive to be as tall as parents
+only one will get ABC from both parents",a2,arg248849,arg141175,arg248849_arg141175,rw,1d257eef4dab5bbd057f39cad821fa,1
