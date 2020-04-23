@@ -3,3 +3,4 @@ jupyter
 spacy
 scikit-learn
 seaborn
+nltk

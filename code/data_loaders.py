@@ -269,17 +269,18 @@ def load_dalite_data(N_folds=5,cross_topic_validation=False,discipline=None):
         train_dataframes = [pd.DataFrame() for _ in itertools.repeat(None,N_folds)]
         test_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
 
-        skf = StratifiedKFold(n_splits=N_folds)
-        for i, (train_indices, test_indices) in enumerate(
-            skf.split(X=df_stance, y=df_stance["label"])
-        ):
+        for topic,df_topic in df_all.groupby("question"):
+            skf = StratifiedKFold(n_splits=N_folds)
+            for i, (train_indices, test_indices) in enumerate(
+                skf.split(X=df_topic, y=df_topic["label"])
+            ):
 
-            train_dataframes[i] = pd.concat(
-                [train_dataframes[i], df_stance.iloc[train_indices]]
-            )
-            test_dataframes[i] = pd.concat(
-                [test_dataframes[i], df_stance.iloc[test_indices]]
-            )
+                train_dataframes[i] = pd.concat(
+                    [train_dataframes[i], df_topic.iloc[train_indices]]
+                )
+                test_dataframes[i] = pd.concat(
+                    [test_dataframes[i], df_topic.iloc[test_indices]]
+                )
 
     return train_dataframes, test_dataframes, df_all
 
