@@ -9,3 +9,4 @@ samplepaper.*
 *.ipynb_checkpoints/
 *.ipynb
 code/__pycache__/
+tmp/

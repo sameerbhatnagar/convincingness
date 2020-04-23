@@ -70,6 +70,7 @@ order thinking.
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\todo[inline]{Must be anonymized before submission}
 \section{Introduction}
 As online learning environments scale in the number of question items, providing 
 immediate and tailored feedback to students becomes intractable for activities 
@@ -145,18 +146,48 @@ approaches match neural models for performance on this task across datasets.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related Work}
 
-\subsection{Automated Short Answer Grading}
-Scalable Peer Assessment of open response items~\cite{piech_tuned_2013}
-Automated Essay Scoring~\cite{shermis_automated_2003}
-
 
 \subsection{Learnersourcing \& Comparative Peer Assessment}
-Ripple~\cite{khosravi_ripple_2019}, 
-AXIS~\cite{williams_axis:_2016}
-Juxtapeer~\cite{cambre_juxtapeer:_2018}, 
-ComPAIR~\cite{potter_compair:_2017}
-UBCPI~\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}
-Peerwise~\cite{denny_peerwise:_2008}
+The term ``learnersourcing'' was coined by \cite{weir_learnersourcing_2015}, 
+and defined as the process in ``which learners collectively generate useful 
+content for future learners while engaging in a meaningful learning experience 
+themselves.'' 
+One of the earliest examples of a learning environment centred on this mode is  
+Peerwise~\cite{denny_peerwise:_2008}, wherein students generate question items 
+for the subjects they are learning, share them with their peers, so that others 
+can use them for practice. 
+Ripple~\cite{khosravi_ripple_2019} is a similarly built system, but they add a 
+recommendation engine which adaptively selects which problems to suggest to 
+which students.
+
+Other tools leave the creation of question items to teachers, but call on 
+students to generate and evaluate \textit{explanations} for the answers.
+The AXIS~\cite{williams_axis:_2016} system prompts students to provide an 
+generate explanation for their response to a short answer question, and then 
+evaluate a similar explanation from one of their peers on a scale of 1-10 for 
+\textit{helpfulness}. This rating-data drives the reinforcement learning 
+algorithm that then decides which explanations to show to which future students.
+
+A similar class of learning platforms leverage comparative judgement for 
+supporting how students can evaluate the work of their peers. 
+Juxtapeer~\cite{cambre_juxtapeer:_2018} asks students to provide feedback to a 
+single peer on their work by explicitly comparing to that of another.
+ComPAIR~\cite{potter_compair:_2017} asks students for feedback on each item of 
+the pair they are presented with, with a focus on what makes one ``better'' 
+than the other.
+
+Finally, \textit{peer instruction} question prompts are being used more 
+frequently inside online learning 
+assignments~UBCPI~\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}
+\cite{charles_harnessing_2019}.
+The student is presented with a multiple choice item, and prompted to provide 
+an explanation of their answer choice. 
+In order to encourage students to reflect on their own reasoning, they are then 
+presented with a subset of alternative peer explanations to their own answer 
+choice, as well for another choice. The student is then given the chance to 
+revise their answer choice (or not), by indicating which of the peer 
+explanations was most \textit{convincing} from the subset.
+
 
 \subsection{Argument Quality \& Convincingness}
 Conventional argument-mining pipelines include several successive components, 
@@ -182,9 +213,6 @@ be challenging, which has led to significant work in adopting a pairwise
 approach, where data consists of pairwise observations of two arguments, 
 labelled with which of the two is most convincing.
 
-	\input{publication_artefacts/data/sample_obs_UKP}
-	\input{publication_artefacts/data/sample_obs_IBM}	
-
 In \cite{habernal_which_2016}, the authors propose a feature-rich support 
 vector machine, as well as an end-to-end neural approach based on pre-trained 
 Glove vectors and a bidirectional Long-Short-Term Memory network for the 
@@ -206,7 +234,7 @@ predict the most convincing argument in a pair.
 One of the objectives of this study is to compare and contrast how argument 
 mining methods for evaluating argument quality, specifically for argument 
 \textit{convincingness}, perform in an online learning environment with 
-learner-generated and annotated arguments. Along with myDALITE\todo{Must be anonymized} data, we include 
+learner-generated and annotated arguments. Along with myDALITE data, we include 
 in our study two publicly 
 available datasets, each specifically curated for the task of automatic 
 assessment of argument quality along the dimension \textit{convincingness}. 
@@ -215,11 +243,17 @@ can be used to compare these sources, and potentially explain some of our
 experimental results.
 
 \begin{table}
-	\caption{Descriptive statistic for each dataset of argument pairs, with 
-		last rows showing \textit{dalite} split by discipline.}
-	\centerline{\input{publication_artefacts/data/df_summary_final}}
-	\label{tab:data_summary}
+	\begin{subtable}[t]{\textwidth}
+	\input{publication_artefacts/data/sample_obs_UKP}
+	\end{subtable}
+	\begin{subtable}[t]{\textwidth}
+	\input{publication_artefacts/data/sample_obs_IBM}
+	\end{subtable}
+
+	\caption{Examples of argument pairs from reference datasets}
+	\label{tab:sample_obs}
 \end{table}
+
 
 
 \subsection{UKP \& IBM}
@@ -252,6 +286,12 @@ respective topic from Wikipedia, and hence represent cleaner well-formed text
 than our other reference datasets.
 
 
+\begin{table}
+	\caption{Descriptive statistic for each dataset of argument pairs, with 
+		last rows showing \textit{dalite} split by discipline.}
+	\centerline{\input{publication_artefacts/data/df_summary_final}}
+	\label{tab:data_summary}
+\end{table}
 
 \subsection{myDALITE}
 The dataset is comprised of pairs of student explanations for a particular 
@@ -264,6 +304,11 @@ least \input{publication_artefacts/data/VOTES_MIN}times.
 To ensure that the explanations in each pair are of comparable length, we keep 
 only those with word counts that are within 
 \input{publication_artefacts/data/MAX_WORD_COUNT_DIFF}words of each other. 
+
+\begin{table}
+	\input{publication_artefacts/data/sample_obs_dalite}
+	\caption{Example of argument pair constructed from dalite dataset}
+\end{table}
 
 This leaves us a dataset with \input{publication_artefacts/data/N}observations, 
 spanning \input{publication_artefacts/data/n_students} learner annotators having 
