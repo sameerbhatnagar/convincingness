@@ -120,50 +120,83 @@ DATASETS["UKP"]["files"] = [
     ),
 ]
 
+def get_cross_topic_validation_df(df_all):
 
-def load_arg_pairs(data_source,N_folds=5):
-
+    df_all=df_all.rename(columns={"question":"topic"})
+    N_folds = len(df_all["topic"].value_counts().index.to_list())
     train_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
     test_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
+
+    for i,(topic,df_topic) in enumerate(df_all.groupby("topic")):
+        train_dataframes[i] = pd.concat(
+            [train_dataframes[i], df_all[df_all["topic"]!=topic]]
+            )
+        test_dataframes[i] = pd.concat(
+            [test_dataframes[i],df_topic]
+        )
+    return train_dataframes,test_dataframes
+
+def load_arg_pairs(data_source,N_folds=5,cross_topic_validation=False):
+
 
     topics = DATASETS[data_source]["files"]
     data_dir = DATASETS[data_source]["data_dir"]
 
     df_all = pd.DataFrame()
-    for topic, filename in topics:
-        print(filename)
-        d = {}
-        fpath = os.path.join(data_dir, filename)
-        df_stance = pd.read_csv(fpath, sep="\t")
 
-        df_stance["a1_id"] = df_stance["#id"].str.split("_").apply(lambda x: x[0])
-        df_stance["a2_id"] = df_stance["#id"].str.split("_").apply(lambda x: x[1])
+    if cross_topic_validation:
 
-        df_stance["stance"] = topic.split("_")[1]
-        df_stance["topic"] = topic.split("_")[0]
-        df_stance["y"] = df_stance["label"].map({"a1": 0, "a2": 1})
+        for topic, filename in topics:
+            print(filename)
+            fpath = os.path.join(data_dir, filename)
+            df_stance = pd.read_csv(fpath, sep="\t")
 
-        df_all = pd.concat([df_all, df_stance])
+            df_stance["a1_id"] = df_stance["#id"].str.split("_").apply(lambda x: x[0])
+            df_stance["a2_id"] = df_stance["#id"].str.split("_").apply(lambda x: x[1])
 
-        skf = StratifiedKFold(n_splits=N_folds)
-        for i, (train_indices, test_indices) in enumerate(
-            skf.split(X=df_stance, y=df_stance["label"])
-        ):
+            df_stance["stance"] = topic.split("_")[1]
+            df_stance["topic"] = topic.split("_")[0]
+            df_stance["y"] = df_stance["label"].map({"a1": 0, "a2": 1})
 
-            train_dataframes[i] = pd.concat(
-                [train_dataframes[i], df_stance.iloc[train_indices]]
-            )
-            test_dataframes[i] = pd.concat(
-                [test_dataframes[i], df_stance.iloc[test_indices]]
-            )
+            df_all = pd.concat([df_all, df_stance])
+
+        train_dataframes,test_dataframes = get_cross_topic_validation_df(df_all)
+
+    else:
+        train_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
+        test_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
+
+        for topic, filename in topics:
+            print(filename)
+            d = {}
+            fpath = os.path.join(data_dir, filename)
+            df_stance = pd.read_csv(fpath, sep="\t")
+
+            df_stance["a1_id"] = df_stance["#id"].str.split("_").apply(lambda x: x[0])
+            df_stance["a2_id"] = df_stance["#id"].str.split("_").apply(lambda x: x[1])
+
+            df_stance["stance"] = topic.split("_")[1]
+            df_stance["topic"] = topic.split("_")[0]
+            df_stance["y"] = df_stance["label"].map({"a1": 0, "a2": 1})
+
+            df_all = pd.concat([df_all, df_stance])
+
+            skf = StratifiedKFold(n_splits=N_folds)
+            for i, (train_indices, test_indices) in enumerate(
+                skf.split(X=df_stance, y=df_stance["label"])
+            ):
+
+                train_dataframes[i] = pd.concat(
+                    [train_dataframes[i], df_stance.iloc[train_indices]]
+                )
+                test_dataframes[i] = pd.concat(
+                    [test_dataframes[i], df_stance.iloc[test_indices]]
+                )
 
     return train_dataframes, test_dataframes, df_all
 
 
-def load_arg_pairs_IBM_Evi(N_folds=5):
-
-    train_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
-    test_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
+def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False):
 
     df_all = pd.DataFrame()
     for ftype in ["train", "test"]:
@@ -190,28 +223,32 @@ def load_arg_pairs_IBM_Evi(N_folds=5):
     per_topic = df_all["topic"].value_counts()
     df_all = df_all[df_all["topic"].isin(per_topic[per_topic >= 50].index)]
 
-    for topic, df_topic in df_all.groupby("topic"):
-        skf = StratifiedKFold(n_splits=N_folds)
-        for i, (train_indices, test_indices) in enumerate(
-            skf.split(X=df_topic, y=df_topic["label"])
-        ):
+    if cross_topic_validation:
+        train_dataframes,test_dataframes = get_cross_topic_validation_df(df_all)
 
-            train_dataframes[i] = pd.concat(
-                [train_dataframes[i], df_topic.iloc[train_indices]]
-            )
-            test_dataframes[i] = pd.concat(
-                [test_dataframes[i], df_topic.iloc[test_indices]]
-            )
+    else:
+        train_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
+        test_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
+
+        for topic, df_topic in df_all.groupby("topic"):
+            skf = StratifiedKFold(n_splits=N_folds)
+            for i, (train_indices, test_indices) in enumerate(
+                skf.split(X=df_topic, y=df_topic["label"])
+            ):
+
+                train_dataframes[i] = pd.concat(
+                    [train_dataframes[i], df_topic.iloc[train_indices]]
+                )
+                test_dataframes[i] = pd.concat(
+                    [test_dataframes[i], df_topic.iloc[test_indices]]
+                )
 
     return train_dataframes, test_dataframes, df_all
 
 
-def load_dalite_data(N_folds=5):
+def load_dalite_data(N_folds=5,cross_topic_validation=False,discipline=None):
 
     data_dir = "gdrive/My Drive/Colab Notebooks/convincingness/data/mydalite_arg_pairs"
-
-    train_dataframes = [pd.DataFrame() for _ in itertools.repeat(None,N_folds)]
-    test_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
 
     topics = os.listdir(data_dir)
     df_all = pd.DataFrame()
@@ -221,6 +258,17 @@ def load_dalite_data(N_folds=5):
         df_stance["discipline"] = topic.split("_")[0]
         df_stance["question"] = topic.split("_")[1]
         df_all = pd.concat([df_all, df_stance])
+
+    if cross_topic_validation:
+        if discipline:
+            df_all = df_all[df_all["discipline"]==discipline]
+
+        train_dataframes,test_dataframes = get_cross_topic_validation_df(df_all)
+    else:
+
+        train_dataframes = [pd.DataFrame() for _ in itertools.repeat(None,N_folds)]
+        test_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
+
         skf = StratifiedKFold(n_splits=N_folds)
         for i, (train_indices, test_indices) in enumerate(
             skf.split(X=df_stance, y=df_stance["label"])

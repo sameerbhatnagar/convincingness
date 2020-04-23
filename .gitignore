@@ -6,3 +6,6 @@
 *.cut
 samplepaper.*
 *.bib
+*.ipynb_checkpoints/
+*.ipynb
+code/__pycache__/
