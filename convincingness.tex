@@ -252,6 +252,7 @@ respective topic from Wikipedia, and hence represent cleaner well-formed text
 than our other reference datasets.
 
 
+
 \subsection{myDALITE}
 The dataset is comprised of pairs of student explanations for a particular 
 answer choice to a given question. 
@@ -356,6 +357,19 @@ using our argument-pair data
 script provided by the \verb|tranformers| package, built by company hugging 
 face}.
 
+\begin{table}
+\centering\begin{tabular}{l|*{2}{c}r}
+	Dataset     & Acc & AUC & model  	   \\
+	\hline
+	UKP 		& 0.83 & 0.89 & ArgBERT\cite{toledo_automatic_2019}    \\
+	IBM\_ArgQ   & 0.80 & 0.86 & ArgBERT\cite{toledo_automatic_2019}    \\
+	IBM\_Evi    & 0.73 & - 	  & EviConvNet\cite{gleize_are_2019} \\
+\end{tabular}
+\caption{State of the art performance for pairwise argument classification of 
+convincingness for three publicly available datasets, using cross-topic 
+validation scheme}
+\label{tab:sota}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
@@ -368,6 +382,7 @@ face}.
 	ArgBoW due to wide-ranging vocabulary (lots of unknown tokens in test set), 
 	which reveals limitation of approach 
 \end{itemize}
+
 
 \begin{figure}
 	\begin{subfigure}[t]{0.5\linewidth}
