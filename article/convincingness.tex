@@ -299,6 +299,11 @@ answer choice to a given question.
 The first explanation is always the one written by the learner-annotator, while 
 the second is an alternative which they either chose as more convincing, or 
 not. 
+In this respect, our peer-instruction dataset is different than the one 
+mentioned above, since its is the same person, the student, who wrote the 
+explanation, and as well as evaluated the its relative convincingness in the 
+pair.
+
 To ensure internal reliability, we only keep explanations that were chosen at 
 least \input{publication_artefacts/data/VOTES_MIN}times. 
 To ensure that the explanations in each pair are of comparable length, we keep 
@@ -396,14 +401,14 @@ This has led to experiments for this
 task\cite{habernal_which_2016}\cite{gleize_are_2019} with language models that 
 offer pre-trained word-embeddings that have already learned from massive 
 corpora of text.    
-In our \textit{ArgGlove} model, we encode each token of each argument using 
+In our \textbf{ArgGlove} model, we encode each token of each argument using 
 300-dimensional GloVe vectors~\cite{pennington_glove:_2014}, 
 and represent each argument as the average of its token embedding vectors. 
 We then feed these into the same SVM-rank architecture described above. 
 
 \subsection{Transfer Learning}
 Finally, in order to leverage recent advances in transfer-learning for NLP, the 
-final model we explore is \textit{ArgBert}.
+final model we explore is \textbf{ArgBert}.
 We begin with a pre-trained language model for English built using  
 Bi-directional Encoder Representation from Transformers, known as 
 \textit{BERT}\cite{devlin_bert_2018}, trained on large bodies of text for the 
@@ -420,14 +425,19 @@ argument \verb|B|.
 script provided by the \verb|tranformers| package, built by company hugging 
 face. All code for this study provided in associated github repository}.
 
-\subsection{Cross Validation and State of the Art}
+\subsection{Cross-Validation \& State of the Art}
 
 The objective of this study is to apply methodology from the argument mining 
 research community to inform the design of environment built upon 
 learnersourcing of student explanations, so as to be able to be present student 
 explanations that are \textit{convincing} to students as they engage with their 
 reasoning when they answer conceptual questions.
-So as to get a reliable estimate of performance, we employ stratified 5-fold 
+As a baseline, we build a baseline model, \textbf{ArgLength}, which is trained 
+on simply the number of words in each argument, as there may be many contexts 
+where students will simply choose the longer/shorter argument, based on the 
+prompt. 
+
+In order to get a reliable estimate of performance, we employ stratified 5-fold 
 cross-validation for our experiments.
 This means that for each fold, we train our model on 80\% of the available 
 data, ensuring that each topic and output class is represented equally. 
@@ -527,10 +537,15 @@ features, but also a 0.82 accuracy with the content words as features alone.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Future Work}
-\cite{nguyen_computational_2015} and \cite{louis_what_2013} use combination of 
-writing and content (BoW) features to achieve their best results, and thus this 
-avenue must be explored more thoroughly, especially as this maybe vary across 
-disciplines an teaching contexts.
+\cite{nguyen_computational_2015} and \cite{louis_what_2013} use a combination 
+of writing and content (BoW) features to achieve their best results, and thus 
+this avenue must be explored more thoroughly, especially as this maybe vary 
+across disciplines an teaching contexts. 
+The state-of-the-art performance for pairwise classification accuracy on the 
+\textbf{IBM\_Evi} dataset employs Siamese architechture\cite{gleize_are_2019}, 
+where each leg of the network  is a Bi-directional Long-Short-Term-Memory 
+network, with documents represented by word2vec embeddings. These variations 
+are left to explore in future work.
 
 In this study we do not ever infer which are, overall, the most convincing 
 student explanations for any given item. Inferring a gold standard of global 
