@@ -3,6 +3,11 @@
 \providecommand{\urlprefix}{URL }
 \providecommand{\doi}[1]{https://doi.org/#1}
 
+\bibitem{bhatnagar_dalite:_2016}
+Bhatnagar, S., Lasry, N., Desmarais, M., Charles, E.: {DALITE}: {Asynchronous}
+  {Peer} {Instruction} for {MOOCs}. In: European {Conference} on {Technology}
+  {Enhanced} {Learning}. pp. 505--508. Springer (2016)
+
 \bibitem{univeristy_of_british_columbia_ubc/ubcpi_2019}
 Univeristy~of British~Columbia, T..L.T.: ubc/ubcpi (Aug 2019),
   \url{https://github.com/ubc/ubcpi}, original-date: 2015-02-17T21:37:02Z
@@ -22,12 +27,6 @@ Charles, E.S., Lasry, N., Bhatnagar, S., Adams, R., Lenton, K., Brouillette,
   Optical Society of America (2019),
   \url{http://www.osapublishing.org/abstract.cfm?URI=ETOP-2019-11143_89}
 
-\bibitem{charles-woods_designing_nodate}
-Charles-Woods, E., Whittaker, C., Dugdale, M., Lasry, N., Lenton, K.,
-  Bhatnagar, S.: Designing of {DALITE}: {Bringing} {Peer} {Instruction}
-  on-line. In: Rummel, N., Kapur, M., Nathan, M., Puntambekar, S. (eds.)
-  Computer {Supported} {Collaborative} {Learning}
-
 \bibitem{chen_pairwise_2013}
 Chen, X., Bennett, P.N., Collins-Thompson, K., Horvitz, E.: Pairwise ranking
   aggregation in a crowdsourced setting. In: Proceedings of the sixth {ACM}
@@ -36,6 +35,13 @@ Chen, X., Bennett, P.N., Collins-Thompson, K., Horvitz, E.: Pairwise ranking
 \bibitem{crouch_peer_2001}
 Crouch, C.H., Mazur, E.: Peer instruction: {Ten} years of experience and
   results. American Journal of Physics  \textbf{69}(9),  970--977 (2001)
+
+\bibitem{denny_effect_2013}
+Denny, P.: The {Effect} of {Virtual} {Achievements} on {Student} {Engagement}.
+  In: Proceedings of the {SIGCHI} {Conference} on {Human} {Factors} in
+  {Computing} {Systems}. pp. 763--772. {CHI} '13, ACM, New York, NY, USA
+  (2013). \doi{10.1145/2470654.2470763},
+  \url{http://doi.acm.org/10.1145/2470654.2470763}, event-place: Paris, France
 
 \bibitem{denny_peerwise:_2008}
 Denny, P., Hamer, J., Luxton-Reilly, A., Purchase, H.: {PeerWise}: {Students}
@@ -68,11 +74,6 @@ Habernal, I., Gurevych, I.: Which argument is more convincing? {Analyzing} and
 \bibitem{herbrich_support_1999}
 Herbrich, R., Graepel, T., Obermayer, K.: Support vector learning for ordinal
   regression  (1999), publisher: IET
-
-\bibitem{jhangiani_impact_2016}
-Jhangiani, R.S.: The impact of participating in a peer assessment activity on
-  subsequent academic performance. Teaching of Psychology  \textbf{43}(3),
-  180--186 (2016), publisher: SAGE Publications Sage CA: Los Angeles, CA
 
 \bibitem{joachims_optimizing_2002}
 Joachims, T.: Optimizing search engines using clickthrough data. In:
@@ -124,11 +125,6 @@ Potter, T., Englund, L., Charbonneau, J., MacLean, M.T., Newell, J., Roll, I.,
   {others}: {ComPAIR}: {A} new online tool using adaptive comparative judgement
   to support learning with peer feedback. Teaching \& Learning Inquiry
   \textbf{5}(2),  89--113 (2017)
-
-\bibitem{saltise_saltises4/dalite-ng_2019}
-SALTISE: {SALTISES4}/dalite-ng (Jun 2019),
-  \url{https://github.com/SALTISES4/dalite-ng}, original-date:
-  2018-01-11T16:36:55Z
 
 \bibitem{simpson_finding_2018}
 Simpson, E., Gurevych, I.: Finding {Convincing} {Arguments} {Using} {Scalable}
