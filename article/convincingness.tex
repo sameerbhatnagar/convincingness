@@ -56,7 +56,7 @@ The peer-explanations that students find most convincing represent valuable
 data, for teachers to better grasp their students' understanding, and for the 
 learning environment itself, as higher quality explanations can be shown to 
 students as examples to compare their work to. 
-This study reports on the application of argument mining methods in the 
+This study reports on the application of text mining methods in the 
 context of asynchronous peer instruction, with the objective of automatically 
 identifying high quality student explanations. 
 Our results offer the potential to inform the design of ``learnersourcing'' 
@@ -260,16 +260,19 @@ predict the most convincing argument in a pair.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 \section{Data}
 
-One of the objectives of this study is to compare and contrast how argument 
+One of the objectives of this study is to compare and contrast how text 
 mining methods for evaluating argument quality, specifically for argument 
 \textit{convincingness}, perform in an online learning environment with 
-learner-generated and annotated arguments. Along with myDALITE data, we include 
-in our study two publicly 
-available datasets, each specifically curated for the task of automatic 
-assessment of argument quality along the dimension \textit{convincingness}. 
-Table \ref{tab:data_summary} summarizes some of the descriptive statistics that 
-can be used to compare these sources, and potentially explain some of our 
-experimental results.
+learner-generated and annotated arguments. 
+Our primary dataset comes from a \textit{peer instruction} learning 
+environment, myDALITE.org. 
+To provide context as to the performance that can be expected for this 
+relatively novel task, we include in our study three publicly available 
+datasets, each specifically curated for the task of automatic assessment of 
+argument quality along the dimension \textit{convincingness}. 
+Table \ref{tab:sample_obs} provides examples of an example of an argument paoir 
+from each of the datasets.
+
 
 \begin{table}
 	\begin{subtable}[t]{\textwidth}
@@ -278,8 +281,13 @@ experimental results.
 	\begin{subtable}[t]{\textwidth}
 	\input{publication_artefacts/data/sample_obs_IBM}
 	\end{subtable}
+	\begin{subtable}[t]{\textwidth}
+		\caption{Example of argument pair constructed from dalite 
+				dataset}
+		\input{publication_artefacts/data/sample_obs_dalite}
 
-	\caption{Examples of argument pairs from reference datasets}
+	\end{subtable}
+	\caption{Examples of argument pairs from each dataset}
 	\label{tab:sample_obs}
 \end{table}
 
@@ -307,42 +315,53 @@ merely on the length of the text, the mean difference in word count,
 $\overline{\Delta wc}$, is just 3 words across the entire dataset, which is 10 
 times more homogeneous than pairs in \textbf{UKP}.
 
-Finally, we include a fourth dataset, \textbf{IBM\_Evi}, consisting of 1.5k 
-individual arguments, organized into 5.2k pairs annotated for pairwise 
+Finally, we include a third reference dataset, \textbf{IBM\_Evi}, consisting of 
+1.5k individual arguments, organized into 5.2k pairs annotated for pairwise 
 preference for convincingness~\cite{gleize_are_2019}. The important distinction 
 here is that the arguments are actually extracted as evidence for their 
 respective topic from Wikipedia, and hence represent cleaner well-formed text 
 than our other reference datasets.
 
+Table \ref{tab:data_summary} summarizes some of the descriptive statistics that 
+can be used to compare these sources, and potentially explain some of our 
+experimental results. 
 
 \begin{table}
-	\caption{Descriptive statistic for each dataset of argument pairs, with 
-		last rows showing \textit{dalite} split by discipline.}
+	\caption{Descriptive statistics for each dataset of argument pairs, with 
+		last rows showing \textbf{dalite} data split by discipline.$N_{args}$ 
+		is the number of individual arguments, distributed across $N_{pairs}$ 
+		revolving around $N_{topics}$. $\overline{wc}$ is the average number of 
+		words per argument, shown with the standard deviation $(SD)$. 
+		$\overline{\Delta wc}$ is the average relative difference in number of 
+		words for each argument in each pair, shown with the standard deviation 
+		.}
 	\centerline{\input{publication_artefacts/data/df_summary_final}}
 	\label{tab:data_summary}
 \end{table}
 
 \subsection{myDALITE}
-The dataset is comprised of pairs of student explanations for a particular 
-answer choice to a given question. 
-The first explanation is always the one written by the learner-annotator, while 
-the second is an alternative which they either chose as more convincing, or 
-not. 
+A data point from a peer instruction item, will have the following fields: 
+question prompt, answer choices, student's first answer choice, student's 
+explanation for their first answer choice, the peer explanations they are shown 
+on the review step, their second answer choice, and the explanation they found 
+most convincing.
+Quite often, students decide to keep the same answer choice, and indicate that 
+their own explanation is te most convincing.
+We construct our \textbf{dalite} dataset by keeping only the observations where 
+students chose a peer's explanation as more convincing on the review step.   
+Each argument pair is thus made up of the one written by the current learner, 
+while the other is an alternative which they either chose as more convincing. 
 In this respect, our peer-instruction dataset is different than the one 
 mentioned above, since its is the same person, the student, who wrote the 
 explanation, and as well as evaluated the its relative convincingness in the 
 pair.
 
-To ensure internal reliability, we only keep explanations that were chosen at 
-least \input{publication_artefacts/data/VOTES_MIN}times. 
+To ensure internal reliability, we only keep arguments that were chosen by
+at least \input{publication_artefacts/data/VOTES_MIN}different students. 
 To ensure that the explanations in each pair are of comparable length, we keep 
 only those with word counts that are within 
 \input{publication_artefacts/data/MAX_WORD_COUNT_DIFF}words of each other. 
 
-\begin{table}
-	\input{publication_artefacts/data/sample_obs_dalite}
-	\caption{Example of argument pair constructed from dalite dataset}
-\end{table}
 
 This leaves us a dataset with \input{publication_artefacts/data/N}observations, 
 spanning \input{publication_artefacts/data/n_students} learner annotators having 
@@ -366,17 +385,18 @@ per item.
 	\label{tab:transitions_by_discipline}
 \end{table}
 
-Table \ref{tab:transitions_by_discipline} highlights one key difference between 
+Table \ref{tab:transitions_by_discipline} highlights two key difference between 
 the modelling task of this study, and related work in argument mining, where 
-annotators are presented pairs of arguments that are always for the same 
-stance, in order to limit bias due to their opinion on the motion when 
-evaluating which argument is more convincing.
-In a \textit{Peer Instruction} learning environment, other pairings are 
+learner-annotators are presented pairs of arguments that are always for the 
+same stance, in order to limit bias due to their opinion on the motion when 
+evaluating which argument is more convincing (except in some observations of 
+\textbf{IBM\_Evi}).
+First, in a \textit{Peer Instruction} learning environment, other pairings are 
 possible and pedagogically relevant. 
 In this dataset, the majority of students keep the same answer choice between 
 the two steps of the prompt, and so they are comparing two explanations that 
 are either both correct (\textit{``rr''}) or incorrect (\textit{``wr''}). 
-However, there is \input{publication_artefacts/data/frac_switch}\% of the 
+However, \input{publication_artefacts/data/frac_switch}\% of the 
 observations in this dataset are for students who not only choose an 
 explanation more convincing than their own, but also switch answer choice, 
 either from the incorrect to correct, or the reverse. 
@@ -385,7 +405,13 @@ pertinent in the pedagogical context: what are the argumentative features which
 can help students remediate an initial wrong answer choice (\textit{``wr''})?
 What are the features that might be responsible for getting students to 
 actually move away from the correct answer choice (\textit{``rw''})?
-
+Second, a more fundamental difference is that our study focuses on 
+undergraduate science courses across three disciplines, wherein the notion of 
+answer ``correctness'' is important.
+There are a growing number of ethics and humanities instructors using the peer 
+instruction platform, where the question prompts are surrounding topics more 
+like a debate, as in our reference datasets. 
+We leave this comparison for future work.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -412,15 +438,18 @@ and for predicting which argument is more convincing~\cite{habernal_which_2016}.
 
 \subsection{Vector Space Models}
 
-We follow-up on this work, building simple vector space models to represent our 
-text. 
+We follow-up on this work, building simple ``bag-of-words'' vector space models 
+to represent our argument text. 
 We take all of the individual arguments for a particular topic in our training 
 set (known as  ``explanations'' for a particular question item in the case of 
 the \textbf{dalite} data), lemmatize the tokens, and build term-document 
 matrices for each topic.
 We then take the arithmetic difference of these normalized term frequency 
 vector representations of each argument to train Support Vector Machine 
-classifiers on. We refer to this model as \textbf{ArgBow}.
+classifiers on. 
+We refer to this model as \textbf{ArgBow}. 
+We do not, for this study, include any information related to the topic prompt 
+in our document representation
 
 
 \subsection{Pre-trained word embeddings}
@@ -448,7 +477,7 @@ classification layer, and fine-tune all of the pre-trained weights
 using our argument-pair data. 
 As in other applications involving sentence pairs for BERT, each argument pair 
 is encoded as \verb|[CLS] A [SEP] B]|, where the special \verb|[SEP]| token 
-instructs the model as which token belong to argument \verb|A| and which to 
+instructs the model as to which token belong to argument \verb|A| and which to 
 argument \verb|B|. 
 \footnote{modified from the \verb|run_glue.py| 
 script provided by the \verb|tranformers| package, built by company hugging 
@@ -477,10 +506,11 @@ of responses have been collected.
 
 In Table \ref{tab:sota}, we denote, to the best of our knowledge, the 
 state-of-the-art performance for each dataset on the task of pairwise 
-classification for \textit{convincingness}. These values are meant provide a 
-reference as we present our results in the next section, but cannot be directly 
-compared, as we employ a stratified 5-fold cross-validation scheme, while the 
-reference studies measure cross-topic validation.
+classification for \textit{convincingness}. 
+These values are meant to provide a reference as we present our results in the 
+next section, but cannot be directly compared, as we employ a stratified 5-fold 
+cross-validation scheme, while the reference studies measure cross-topic 
+validation.
 
 \begin{table} 
 \centering\begin{tabular}{l|*{2}{c}r}
