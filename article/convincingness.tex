@@ -545,35 +545,76 @@ validation scheme}
 		\centering
 		\scalebox{0.5}{\input{publication_artefacts/img/acc.pgf}}
 		\caption{Accuracy}
+		\label{fig:acc_kfold}
 	\end{subfigure}%
 	\qquad
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
 		\scalebox{0.5}{\input{publication_artefacts/img/AUC.pgf}}
 		\caption{RoC-AuC}
+		\label{fig:AUC_kfold}
 	\end{subfigure}
-		\caption{Pairwise ranking classification accuracy and ROC-AUC for 
-		different models across datasets}
-	\label{fig:performance}
-\end{figure}
 
-
-\begin{figure}
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
 		\scalebox{0.5}{\input{publication_artefacts/img/acc_dalite.pgf}}
 		\caption{Accuracy}
+		\label{fig:acc_dalite_kfold}
 	\end{subfigure}%
 	\qquad
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
 		\scalebox{0.5}{\input{publication_artefacts/img/AUC_dalite.pgf}}
-		\caption{RoC-AuC}
+		\caption{ROC-AUC}
+		\label{fig:AUC_dalite_kfold}
 	\end{subfigure}	
-		\caption{Pairwise ranking classification accuracy and ROC-AUC for 
-		different models in myDalite dataset, across disciplines}
-		\label{fig:performance_dalite}
+	\caption{Pairwise ranking classification accuracy and ROC-AUC for 
+	different models in across datasets in figures \ref{fig:acc_kfold} and 
+	\ref{fig:AUC_kfold}. Figures \ref{fig:acc_dalite_kfold} and 
+	\ref{fig:AUC_dalite_kfold} split the performance for the \textbf{dalite} 
+	dataset, across disciplines. All results evaluated using 5-fold stratified 
+	cross-validation}.
+	\label{fig:performance_k_fold}
 \end{figure}
+
+\begin{figure}
+	\begin{subfigure}[t]{0.5\linewidth}
+	\centering
+	\scalebox{0.5}{\input{publication_artefacts/img/acc_cross_topic_val_True.pgf}}
+	\caption{Accuracy}
+	\label{fig:acc_cross_topic}
+	\end{subfigure}%
+\qquad
+	\begin{subfigure}[t]{0.5\linewidth}
+		\centering
+		\scalebox{0.5}{\input{publication_artefacts/img/AUC_cross_topic_val_True.pgf}}
+		\caption{ROC-AUC}
+		\label{fig:AUC_cross_topic}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.5\linewidth}
+		\centering
+		\scalebox{0.5}{\input{publication_artefacts/img/acc_dalite_cross_topic_val_True.pgf}}
+		\caption{Accuracy}
+		\label{fig:acc_dalite_cross_topic}
+	\end{subfigure}%
+\qquad
+	\begin{subfigure}[t]{0.5\linewidth}
+		\centering
+		\scalebox{0.5}{\input{publication_artefacts/img/AUC_dalite_cross_topic_val_True.pgf}}
+		\caption{ROC-AUC}
+		\label{fig:AUC_dalite_cross_topic}
+	\end{subfigure}
+	\caption{Pairwise ranking classification accuracy and ROC-AUC for 
+	different models in across datasets in figures \ref{fig:acc_cross_topic} 
+	and \ref{fig:AUC_cross_topic}. Figures \ref{fig:acc_dalite_cross_topic} and 
+	\ref{fig:AUC_dalite_cross_topic} split the performance for the 
+	\textbf{dalite} dataset, across disciplines. All results evaluated using 
+	cross-topic validation, where the number of folds equals the number of 
+	topics}.
+\label{fig:performance_cross_topic}
+
+\end{figure}
+
 
 \begin{itemize}
 	\item performance of in chemistry worst, physics best, given their relative 
