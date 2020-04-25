@@ -57,6 +57,11 @@ Devlin, J., Chang, M.W., Lee, K., Toutanova, K.: Bert: {Pre}-training of deep
   bidirectional transformers for language understanding. arXiv preprint
   arXiv:1810.04805  (2018)
 
+\bibitem{gagnon_filtering_2019}
+Gagnon, V., Labrie, A., Desmarais, M., Bhatnagar, S.: Filtering non-relevant
+  short answers in peer learning applications. In: Proc. {Conference} on
+  {Educational} {Data} {Mining} ({EDM}) (2019)
+
 \bibitem{gleize_are_2019}
 Gleize, M., Shnarch, E., Choshen, L., Dankin, L., Moshkowich, G., Aharonov, R.,
   Slonim, N.: Are you convinced? choosing the more convincing evidence with a

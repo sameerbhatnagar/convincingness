@@ -54,17 +54,18 @@ given the opportunity to change their initial answer choice, based on those
 they find most convincing. 
 The peer-explanations that students find most convincing represent valuable 
 data, for teachers to better grasp their students' understanding, and for the 
-learning environment itself, as higher quality explanations can be shown to 
-students as examples to compare their work to. 
+learning environment itself, as an instance of ``learnersourcing'' higher 
+quality explanations that can be shown to future students. 
 This study reports on the application of text mining methods in the 
 context of asynchronous peer instruction, with the objective of automatically 
 identifying high quality student explanations. 
-Our results offer the potential to inform the design of ``learnersourcing'' 
-systems, such as asynchronous peer instruction.
-These design choices are critical as these systems scale, especially with 
-respect to providing pedagogically insightful reports to teachers, and 
-presenting engaging alternative explanations to students to promote higher 
-order thinking. 
+Our study compares the performance of state-of-the-art methods across different 
+reference datasets and validation schemes, and our findings lays the groundwork 
+for future research along this novel line of inquiry. 
+We demonstrate that when we extend the task of argument quality assessment 
+along the dimensions of \textit{convincingness}, from curated datasets to data 
+from a real learning environments, new challenges arise, and simpler vector 
+space models perform as well as a state-of-the-art neural approach. 
 
 \keywords{Argument mining  \and Learnersourcing \and Peer Instruction}
 \end{abstract}
@@ -161,9 +162,9 @@ own work?
 To our knowledge, this is the first analysis of peer instruction data through 
 the lens of \textit{learnersourcing} and argument \textit{convincingness}.
 Thus, as a reference, we include datasets and methods from the \textit{argument 
-mining} research community specifically focused on pairwise preference ranking 
+mining} research community, specifically focused on pairwise preference ranking 
 of arguments for automatic assessment of convincingness.
-We apply vector space models, as well as state-of-the-art neural approaches, 
+We apply vector space models, as well as a state-of-the-art neural approach, 
 and report on their performance on this task.
 
 Our findings suggest that the arguments generated in learning environments 
@@ -185,14 +186,14 @@ One of the earliest examples of a learning environment centred on this mode is
 Peerwise~\cite{denny_peerwise:_2008}, wherein students generate question items 
 for the subjects they are learning, share them with their peers, so that others 
 can use them for practice. 
-Ripple~\cite{khosravi_ripple_2019} is a similarly built system, but they add a 
-recommendation engine which adaptively selects which problems to suggest to 
-which students.
+Ripple~\cite{khosravi_ripple_2019} is a similarly built system, but with an 
+added recommendation engine which adaptively selects which problems to suggest 
+to which students.
 
 Other tools leave the creation of question items to teachers, but call on 
 students to generate and evaluate \textit{explanations} for the answers.
-The AXIS~\cite{williams_axis:_2016} system prompts students to provide an 
-generate explanation for their response to a short answer question, and then 
+The AXIS~\cite{williams_axis:_2016} system prompts students to
+generate an explanation for their response to a short answer question, and then 
 evaluate a similar explanation from one of their peers on a scale of 1-10 for 
 \textit{helpfulness}. This rating-data drives the reinforcement learning 
 algorithm that then decides which explanations to show to which future students.
@@ -207,7 +208,7 @@ than the other.
 
 Finally, \textit{peer instruction} question prompts are being used more 
 frequently inside online learning 
-assignments~UBCPI~\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}
+assignments~\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}
 \cite{charles_harnessing_2019}.
 The student is presented with a multiple choice item, and prompted to provide 
 an explanation of their answer choice. 
@@ -216,6 +217,9 @@ presented with a subset of alternative peer explanations to their own answer
 choice, as well for another choice. The student is then given the chance to 
 revise their answer choice (or not), by indicating which of the peer 
 explanations was most \textit{convincing} from the subset.
+Moderating the quality of these explanations is important work that can begin 
+with some unsupervised clustering \cite{gagnon_filtering_2019}, but identifying 
+the best explanations that promote learning is at the heart of this research.
 
 
 \subsection{Argument Quality \& Convincingness}
@@ -225,7 +229,7 @@ these units into types (e.g. major claim, minor claim, premise), and
 identification of argumentative relations (which evidence units support which 
 claim). 
 Such pipelines are essential in question-answering systems 
-\cite{lippi_argumentation_2016} and are at the heart if the IBM Project Debater 
+\cite{lippi_argumentation_2016} and are at the heart of the IBM Project Debater 
 initiative. 
 
 Work in the area of automatic evaluation of argument quality finds its roots in 
@@ -233,8 +237,7 @@ detecting evidence in legal texts~\cite{moens_automatic_2007}, but has
 accelerated in recent years as more datasets become available in everyday 
 contexts, and focus shifts to modelling more qualitative measures, such as 
 \textit{convincingness}. 
-
-Some of the earlier efforts included work on automatically 
+Some earlier efforts included work on automatically 
 scoring of persuasive essays \cite{persing_end--end_2016} and modelling 
 persuasiveness in online debate forums \cite{tan_winning_2016}. 
 However, evaluating argument \textit{convincingness} with an absolute score can 
@@ -244,17 +247,16 @@ labelled with which of the two is most convincing.
 
 In \cite{habernal_which_2016}, the authors propose a feature-rich support 
 vector machine, as well as an end-to-end neural approach based on pre-trained 
-Glove vectors and a bidirectional Long-Short-Term Memory network for the 
-pairwise classification task. 
+GloVe vectors\cite{pennington_glove:_2014} and a bidirectional Long-Short-Term 
+Memory network for the pairwise classification task. 
 This is extended in \cite{gleize_are_2019}, where the authors build a Siamese 
 network architecture, where each leg is a BiLSTM, taking as input the pair of 
-explanations as Glove embeddings \cite{pennington_glove:_2014}, in order to 
-detect which of argument in a pair 
-has the most convincing evidence.
+explanations as GloVe embeddings, in order to detect which of argument in a 
+pair has the most convincing evidence.
 Finally, based on the success of transformer models such as 
 BERT~\cite{devlin_bert_2018}, the authors of \cite{toledo_automatic_2019}  
-release a dataset of argument pairs and show that these models accurately 
-predict the most convincing argument in a pair.
+release a dataset of argument pairs and show that the pre-trained weights can 
+be fine tuned to accurately predict the most convincing argument in a pair.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -270,7 +272,7 @@ To provide context as to the performance that can be expected for this
 relatively novel task, we include in our study three publicly available 
 datasets, each specifically curated for the task of automatic assessment of 
 argument quality along the dimension \textit{convincingness}. 
-Table \ref{tab:sample_obs} provides examples of an example of an argument paoir 
+Table \ref{tab:sample_obs} provides examples of an argument pair 
 from each of the datasets.
 
 
@@ -298,12 +300,13 @@ from each of the datasets.
 \textbf{UKP}, was the first to propose the task of pairwise preference learning 
 for argument convincingness. 
 The dataset consists of just over 1k individual arguments, that support a 
-particular stance for one of 16 topics. 
+particular stance for one of 16 topics, collected from online debate portals. 
 These arguments were distributed as 11.6k pairs to annotators on a 
 crowd-sourcing platform, where the task was to choose which of the two 
 arguments, for the same stance regarding the same topic, was more convincing. 
 
-More recently, a second similar dataset, 
+More recently, a second similar dataset was released by the research group 
+associated with IBM Project Debater, 
 \textbf{IBMArgQ-9.1kPairs}\cite{toledo_automatic_2019}, henceforth 
 referred to as \textbf{IBM\_ArgQ}, which is made of 3.4k individual arguments 
 for 11 topics, assembled into 9.1k pairs labelled for which is more convincing. 
@@ -320,7 +323,8 @@ Finally, we include a third reference dataset, \textbf{IBM\_Evi}, consisting of
 preference for convincingness~\cite{gleize_are_2019}. The important distinction 
 here is that the arguments are actually extracted as evidence for their 
 respective topic from Wikipedia, and hence represent cleaner well-formed text 
-than our other reference datasets.
+than our other reference datasets. We filter the dataset to only include topics 
+that have at least 50 associated argument pairs.
 
 Table \ref{tab:data_summary} summarizes some of the descriptive statistics that 
 can be used to compare these sources, and potentially explain some of our 
@@ -346,22 +350,17 @@ explanation for their first answer choice, the peer explanations they are shown
 on the review step, their second answer choice, and the explanation they found 
 most convincing.
 Quite often, students decide to keep the same answer choice, and indicate that 
-their own explanation is te most convincing.
+their own explanation is the most convincing.
 We construct our \textbf{dalite} dataset by keeping only the observations where 
-students chose a peer's explanation as more convincing on the review step.   
-Each argument pair is thus made up of the one written by the current learner, 
-while the other is an alternative which they either chose as more convincing. 
-In this respect, our peer-instruction dataset is different than the one 
-mentioned above, since its is the same person, the student, who wrote the 
-explanation, and as well as evaluated the its relative convincingness in the 
-pair.
+students chose a peer's explanation as more convincing than their own, on the 
+review step.   
 
-To ensure internal reliability, we only keep arguments that were chosen by
-at least \input{publication_artefacts/data/VOTES_MIN}different students. 
+To ensure internal reliability, we only keep argument explanations that were 
+also chosen by at least \input{publication_artefacts/data/VOTES_MIN}different 
+students. 
 To ensure that the explanations in each pair are of comparable length, we keep 
 only those with word counts that are within 
 \input{publication_artefacts/data/MAX_WORD_COUNT_DIFF}words of each other. 
-
 
 This leaves us a dataset with \input{publication_artefacts/data/N}observations, 
 spanning \input{publication_artefacts/data/n_students} learner annotators having 
@@ -386,25 +385,29 @@ per item.
 \end{table}
 
 Table \ref{tab:transitions_by_discipline} highlights two key difference between 
-the modelling task of this study, and related work in argument mining, where 
-learner-annotators are presented pairs of arguments that are always for the 
-same stance, in order to limit bias due to their opinion on the motion when 
-evaluating which argument is more convincing (except in some observations of 
-\textbf{IBM\_Evi}).
-First, in a \textit{Peer Instruction} learning environment, other pairings are 
-possible and pedagogically relevant. 
-In this dataset, the majority of students keep the same answer choice between 
-the two steps of the prompt, and so they are comparing two explanations that 
+the modelling task of this study, and related work in argument mining. 
+In \textbf{IBM\_ArgQ} and \textbf{UKP}, annotators are presented pairs of 
+arguments that are always for the same stance, in order to limit bias due to 
+their opinion on the topic when evaluating which argument is more convincing 
+(this is also true of many of the pairs in \textbf{IBM\_Evi}).
+
+In a \textit{Peer Instruction} learning environment, other pairings are 
+possible, and pedagogically relevant. 
+In \textbf{dalite}, the majority of students keep the same answer choice 
+on the review step, and so they are comparing two explanations that 
 are either both correct (\textit{``rr''}) or incorrect (\textit{``wr''}). 
 However, \input{publication_artefacts/data/frac_switch}\% of the 
 observations in this dataset are for students who not only choose an 
 explanation more convincing than their own, but also switch answer choice, 
 either from the incorrect to correct, or the reverse. 
-These pairs add a different level of complexity to the model, but are very 
-pertinent in the pedagogical context: what are the argumentative features which 
-can help students remediate an initial wrong answer choice (\textit{``wr''})?
+These pairs add a different level of complexity that models must learn, and are 
+very pertinent in the pedagogical context: what are the argumentative features 
+which can help students remediate an initial wrong answer choice 
+(\textit{``wr''})?
 What are the features that might be responsible for getting students to 
 actually move away from the correct answer choice (\textit{``rw''})?
+(We leave this for future work).
+ 
 Second, a more fundamental difference is that our study focuses on 
 undergraduate science courses across three disciplines, wherein the notion of 
 answer ``correctness'' is important.
@@ -413,28 +416,37 @@ instruction platform, where the question prompts are surrounding topics more
 like a debate, as in our reference datasets. 
 We leave this comparison for future work.
 
+Thirdly, each argument pair is made up of the one written by the current 
+learner, while the other is an alternative generated by a peer that the current 
+learner chose as more convincing. 
+In this respect, our the \textbf{dalite} dataset is different than the 
+reference datasets, since it is the same person, the current learner, who is 
+author and annotator. In the refernce datasets, data was always independantly 
+annotated using crowdsourcing platforms.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Methods}
+\section{Methodology}
 
 %\todo[inline]{This section might be before the data sets and should clearly 
 %name and describe the methods.....@Michel: with the new table describing State 
 %of the Art performance of these methods on different datasets, i wonder if now 
 %it is better to have methods after data?}
-Choosing which argument is more convincing from a pair, is a binary 
+Choosing which argument is more convincing from a pair is a binary 
 ordinal regression task, where the objective is to learn a function that, given 
 two feature vectors, can assign the better argument a rank of $+1$, and the 
 other a rank of $-1$.   
-It has been proven that such a binary ordinal regression problem, can be cast 
-into an equivalent binary classification problem, wherein the model is trained 
-on the \textit{difference} of the feature vectors of each argument in the pair 
-\cite{herbrich_support_1999}. 
+It has been proven that such a binary ordinal \textit{regression} problem, can 
+be cast into an equivalent binary \textit{classification} problem, wherein the 
+model is trained on the \textit{difference} of the feature vectors of each 
+argument in the pair \cite{herbrich_support_1999}. 
 Referred to as \textit{SVM-rank}, this method of learning pairwise preferences 
 has been used extensively in the context of information retrieval (e.g. ranking 
-search results for a query based on past clickthrough data) 
+search results for a query) 
 \cite{joachims_optimizing_2002}, but also more recently in evaluating the 
-journalistic quality of newspaper and magazine articles \cite{louis_what_2013}, 
-and for predicting which argument is more convincing~\cite{habernal_which_2016}.
+journalistic quality of newspaper and magazine articles \cite{louis_what_2013}.
+The study accompanying the release of \textbf{UKP} first proposed this method 
+for predicting which argument is more convincing~\cite{habernal_which_2016}.
 
 \subsection{Vector Space Models}
 
@@ -449,19 +461,20 @@ vector representations of each argument to train Support Vector Machine
 classifiers on. 
 We refer to this model as \verb|ArgBoW| 
 We do not, for this study, include any information related to the topic prompt 
-in our document representation
+in our document representation.
 
 
 \subsection{Pre-trained word embeddings}
-A limitation of vectors space models is the exclusion of words that are 
-``out-of-vocabulary'' between the test set and the training data.
-This has led to experiments for this 
-task\cite{habernal_which_2016}\cite{gleize_are_2019} with language models that 
+A limitation of vector space models for text classification is the exclusion of 
+words that are ``out-of-vocabulary'' in the test set when compared to the 
+training data.
+This is addressed in experiments for this task that employ language models that 
 offer pre-trained word-embeddings that have already learned from massive 
-corpora of text.    
+corpora of text~\cite{habernal_which_2016}\cite{gleize_are_2019}.    
 In our \verb|ArgGloVe| model, we encode each token of each argument using 
 300-dimensional GloVe vectors~\cite{pennington_glove:_2014}, 
-and represent each argument as the average of its token embedding vectors. 
+and represent each argument as the average of its token-level embedding 
+vectors. 
 We then feed these into the same SVM-rank architecture described above. 
 
 \subsection{Transfer Learning}
@@ -473,12 +486,11 @@ Bi-directional Encoder Representation from Transformers, known as
 task of masked token prediction and sentence-pair inference. 
 As proposed in \cite{toledo_automatic_2019}, we take the final 768-dimensional 
 hidden state of the base-uncased BERT model, feed it into a binary 
-classification layer, and fine-tune all of the pre-trained weights 
-using our argument-pair data. 
+classification layer, and fine-tune all of the pre-trained weights for the task 
+of sequence classification using our argument-pair data. 
 As in other applications involving sentence pairs for BERT, each argument pair 
-is encoded as \verb|[CLS] A [SEP] B]|, where the special \verb|[SEP]| token 
-instructs the model as to which token belong to argument \verb|A| and which to 
-argument \verb|B|. 
+is encoded as \verb|[CLS] A [SEP] B|, where the special \verb|[SEP]| token 
+instructs the model as to the boundary between arguments \verb|A| and \verb|B|. 
 \footnote{modified from the \verb|run_glue.py| 
 script provided by the \verb|tranformers| package, built by company hugging 
 face. All code for this study provided in associated github repository}.
@@ -486,10 +498,13 @@ face. All code for this study provided in associated github repository}.
 \subsection{Cross-Validation \& State of the Art}
 
 The objective of this study is to apply methodology from the argument mining 
-research community to inform the design of environment built upon 
-learnersourcing of student explanations, so as to be able to be present student 
-explanations that are \textit{convincing} to students as they engage with their 
-reasoning when they answer conceptual questions.
+research community to inform the design of environments built upon 
+learnersourcing of student explanations. 
+This will help automatically moderate the quality of content in the database, 
+so as to be able to be present student explanations that are 
+\textit{convincing} to future students as they engage with their own reasoning 
+when they answer the same conceptual questions.
+
 As a baseline, we build a baseline model, \verb|ArgLength|, which is trained 
 on simply the number of words in each argument, as there may be many contexts 
 where students will simply choose the longer/shorter argument, based on the 
@@ -502,7 +517,8 @@ data, ensuring that each topic and output class is represented equally.
 In the context of peer instruction learning environments, this is meant to give 
 a reasonable estimate of how our models would perform in predicting which 
 explanations will be chosen as most convincing, \textit{after} a certain number 
-of responses have been collected. 
+of responses have been collected.
+ 
 However standard practice in the argument mining community is to employ 
 ``cross-topic'' validation for this task. 
 For each fold, the arguments for one topic (or question item, in the case of 
@@ -510,6 +526,17 @@ For each fold, the arguments for one topic (or question item, in the case of
 Evaluating model performance on a yet unseen topic is a stronger estimate for 
 how a model will perform when new question items are introduced into the 
 content base.
+We evaluate our models using both validation schemes.
+
+\subsection{State of the Art}
+In Table \ref{tab:sota}, we denote, to the best of our knowledge, the 
+state-of-the-art performance for each dataset on the task of pairwise 
+classification for \textit{convincingness}. 
+The state-of-the-art performance for pairwise classification accuracy on the 
+\textbf{IBM\_Evi} dataset employs Siamese architechture\cite{gleize_are_2019}, 
+where each leg of the network  is a Bi-directional Long-Short-Term-Memory 
+network, with documents represented by word2vec embeddings. These variations 
+are left to explore in future work.
 
 \begin{table} 
 \centering\begin{tabular}{l|*{2}{c}r}
@@ -525,21 +552,51 @@ validation scheme}
 \label{tab:sota}
 \end{table}
 
-In Table \ref{tab:sota}, we denote, to the best of our knowledge, the 
-state-of-the-art performance for each dataset on the task of pairwise 
-classification for \textit{convincingness}. 
-The state-of-the-art performance for pairwise classification accuracy on the 
-\textbf{IBM\_Evi} dataset employs Siamese architechture\cite{gleize_are_2019}, 
-where each leg of the network  is a Bi-directional Long-Short-Term-Memory 
-network, with documents represented by word2vec embeddings. These variations 
-are left to explore in future work.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results \& Discussion}
 
 The performance of different models across the different datasets are presented 
 in figures \ref{fig:performance_k_fold} and \ref{fig:performance_cross_topic}, 
 using either 5-fold cross-validation, or cross-topic validation, respectively. 
+
+\begin{figure}
+	\begin{subfigure}[t]{0.5\linewidth}
+		\centering
+		\scalebox{0.5}{\input{publication_artefacts/img/acc.pgf}}
+		\caption{Accuracy}
+		\label{fig:acc_kfold}
+	\end{subfigure}%
+	\qquad
+	\begin{subfigure}[t]{0.5\linewidth}
+		\centering
+		\scalebox{0.5}{\input{publication_artefacts/img/AUC.pgf}}
+		\caption{RoC-AuC}
+		\label{fig:AUC_kfold}
+	\end{subfigure}
+	
+	\begin{subfigure}[t]{0.5\linewidth}
+		\centering
+		\scalebox{0.5}{\input{publication_artefacts/img/acc_dalite.pgf}}
+		\caption{Accuracy}
+		\label{fig:acc_dalite_kfold}
+	\end{subfigure}%
+	\qquad
+	\begin{subfigure}[t]{0.5\linewidth}
+		\centering
+		\scalebox{0.5}{\input{publication_artefacts/img/AUC_dalite.pgf}}
+		\caption{ROC-AUC}
+		\label{fig:AUC_dalite_kfold}
+	\end{subfigure}	
+	\caption{Pairwise ranking classification accuracy and ROC-AUC for 
+		different models in across datasets in figures \ref{fig:acc_kfold} and 
+		\ref{fig:AUC_kfold}. Figures \ref{fig:acc_dalite_kfold} and 
+		\ref{fig:AUC_dalite_kfold} split the performance for the 
+		\textbf{dalite} 
+		dataset, across disciplines. All results evaluated using 5-fold 
+		stratified 
+		cross-validation}.
+	\label{fig:performance_k_fold}
+\end{figure}
 
 The first point we remark is that the performance of \verb|ArgBERT|, which is 
 the state-of-the-art for our reference datasets, also performs relatively well 
@@ -581,6 +638,7 @@ under conditions where at least some data is available for a topic.
 This effect is pronounced for \textbf{dalite}, where the vocabulary is 
 relatively constrained, as seen in Table \ref{tab:data_summary}, where the 
 ratio of $N_{vocab}$ to $N_{args}$ is lowest for \textbf{dalite}. 
+
 This result is not without precedent: in a study on the task of pairwise 
 ranking of newspaper articles based on ``quality'', the authors achieve a 
 similar result: when comparing the performance of SVM-rank models using 
@@ -632,48 +690,11 @@ to express arguments (most pronounced in \textbf{UKP}).
 \begin{figure}
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/acc.pgf}}
+		\scalebox{0.5}{\input{publication_artefacts/img/acc_cross_topic_val_True.pgf}}
 		\caption{Accuracy}
-		\label{fig:acc_kfold}
+		\label{fig:acc_cross_topic}
 	\end{subfigure}%
 	\qquad
-	\begin{subfigure}[t]{0.5\linewidth}
-		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/AUC.pgf}}
-		\caption{RoC-AuC}
-		\label{fig:AUC_kfold}
-	\end{subfigure}
-
-	\begin{subfigure}[t]{0.5\linewidth}
-		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/acc_dalite.pgf}}
-		\caption{Accuracy}
-		\label{fig:acc_dalite_kfold}
-	\end{subfigure}%
-	\qquad
-	\begin{subfigure}[t]{0.5\linewidth}
-		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/AUC_dalite.pgf}}
-		\caption{ROC-AUC}
-		\label{fig:AUC_dalite_kfold}
-	\end{subfigure}	
-	\caption{Pairwise ranking classification accuracy and ROC-AUC for 
-	different models in across datasets in figures \ref{fig:acc_kfold} and 
-	\ref{fig:AUC_kfold}. Figures \ref{fig:acc_dalite_kfold} and 
-	\ref{fig:AUC_dalite_kfold} split the performance for the \textbf{dalite} 
-	dataset, across disciplines. All results evaluated using 5-fold stratified 
-	cross-validation}.
-	\label{fig:performance_k_fold}
-\end{figure}
-
-\begin{figure}
-	\begin{subfigure}[t]{0.5\linewidth}
-	\centering
-	\scalebox{0.5}{\input{publication_artefacts/img/acc_cross_topic_val_True.pgf}}
-	\caption{Accuracy}
-	\label{fig:acc_cross_topic}
-	\end{subfigure}%
-\qquad
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
 		\scalebox{0.5}{\input{publication_artefacts/img/AUC_cross_topic_val_True.pgf}}
@@ -686,7 +707,7 @@ to express arguments (most pronounced in \textbf{UKP}).
 		\caption{Accuracy}
 		\label{fig:acc_dalite_cross_topic}
 	\end{subfigure}%
-\qquad
+	\qquad
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
 		\scalebox{0.5}{\input{publication_artefacts/img/AUC_dalite_cross_topic_val_True.pgf}}
@@ -694,14 +715,17 @@ to express arguments (most pronounced in \textbf{UKP}).
 		\label{fig:AUC_dalite_cross_topic}
 	\end{subfigure}
 	\caption{Pairwise ranking classification accuracy and ROC-AUC for 
-	different models in across datasets in figures \ref{fig:acc_cross_topic} 
-	and \ref{fig:AUC_cross_topic}. Figures \ref{fig:acc_dalite_cross_topic} and 
-	\ref{fig:AUC_dalite_cross_topic} split the performance for the 
-	\textbf{dalite} dataset, across disciplines. All results evaluated using 
-	cross-topic validation, where the number of folds equals the number of 
-	topics}.
-\label{fig:performance_cross_topic}
-
+		different models in across datasets in figures 
+		\ref{fig:acc_cross_topic} 
+		and \ref{fig:AUC_cross_topic}. Figures \ref{fig:acc_dalite_cross_topic} 
+		and 
+		\ref{fig:AUC_dalite_cross_topic} split the performance for the 
+		\textbf{dalite} dataset, across disciplines. All results evaluated 
+		using 
+		cross-topic validation, where the number of folds equals the number of 
+		topics}.
+	\label{fig:performance_cross_topic}
+	
 \end{figure}
 
 
