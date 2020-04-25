@@ -22,8 +22,8 @@
 
 \begin{document}
 %
-\title{Automatic Explanation Quality Assessment in Online Learning 
-Environments: new datasets and methods}
+\title{Learnersourcing Quality Assessment of Explanations for \textit{Peer 
+Instruction}}
 \titlerunning{Convincingness \& Peer Instruction}
 %
 \author{Sameer Bhatnagar\inst{1} \and
@@ -447,7 +447,7 @@ matrices for each topic.
 We then take the arithmetic difference of these normalized term frequency 
 vector representations of each argument to train Support Vector Machine 
 classifiers on. 
-We refer to this model as \textbf{ArgBow}. 
+We refer to this model as \verb|ArgBoW| 
 We do not, for this study, include any information related to the topic prompt 
 in our document representation
 
@@ -459,14 +459,14 @@ This has led to experiments for this
 task\cite{habernal_which_2016}\cite{gleize_are_2019} with language models that 
 offer pre-trained word-embeddings that have already learned from massive 
 corpora of text.    
-In our \textbf{ArgGlove} model, we encode each token of each argument using 
+In our \verb|ArgGloVe| model, we encode each token of each argument using 
 300-dimensional GloVe vectors~\cite{pennington_glove:_2014}, 
 and represent each argument as the average of its token embedding vectors. 
 We then feed these into the same SVM-rank architecture described above. 
 
 \subsection{Transfer Learning}
 Finally, in order to leverage recent advances in transfer-learning for NLP, the 
-final model we explore is \textbf{ArgBert}.
+final model we explore is \verb|ArgBERT|.
 We begin with a pre-trained language model for English built using  
 Bi-directional Encoder Representation from Transformers, known as 
 \textit{BERT}\cite{devlin_bert_2018}, trained on large bodies of text for the 
@@ -490,7 +490,7 @@ research community to inform the design of environment built upon
 learnersourcing of student explanations, so as to be able to be present student 
 explanations that are \textit{convincing} to students as they engage with their 
 reasoning when they answer conceptual questions.
-As a baseline, we build a baseline model, \textbf{ArgLength}, which is trained 
+As a baseline, we build a baseline model, \verb|ArgLength|, which is trained 
 on simply the number of words in each argument, as there may be many contexts 
 where students will simply choose the longer/shorter argument, based on the 
 prompt. 
@@ -503,14 +503,13 @@ In the context of peer instruction learning environments, this is meant to give
 a reasonable estimate of how our models would perform in predicting which 
 explanations will be chosen as most convincing, \textit{after} a certain number 
 of responses have been collected. 
-
-In Table \ref{tab:sota}, we denote, to the best of our knowledge, the 
-state-of-the-art performance for each dataset on the task of pairwise 
-classification for \textit{convincingness}. 
-These values are meant to provide a reference as we present our results in the 
-next section, but cannot be directly compared, as we employ a stratified 5-fold 
-cross-validation scheme, while the reference studies measure cross-topic 
-validation.
+However standard practice in the argument mining community is to employ 
+``cross-topic'' validation for this task. 
+For each fold, the arguments for one topic (or question item, in the case of 
+\textbf{dalite}) are held out from model training.
+Evaluating model performance on a yet unseen topic is a stronger estimate for 
+how a model will perform when new question items are introduced into the 
+content base.
 
 \begin{table} 
 \centering\begin{tabular}{l|*{2}{c}r}
@@ -526,18 +525,108 @@ validation scheme}
 \label{tab:sota}
 \end{table}
 
+In Table \ref{tab:sota}, we denote, to the best of our knowledge, the 
+state-of-the-art performance for each dataset on the task of pairwise 
+classification for \textit{convincingness}. 
+The state-of-the-art performance for pairwise classification accuracy on the 
+\textbf{IBM\_Evi} dataset employs Siamese architechture\cite{gleize_are_2019}, 
+where each leg of the network  is a Bi-directional Long-Short-Term-Memory 
+network, with documents represented by word2vec embeddings. These variations 
+are left to explore in future work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Results}
+\section{Results \& Discussion}
 
-\begin{itemize}
-	\item ArgLength sets baseline for each dataset. IBM datasets curate most 
-	aggressively for pairs with comparable lengths.
-	\item Vector space models performance comparable to BERT.
-	\item GloVe most stable across datasets. UKP and IBMEvi performance on 
-	ArgBoW due to wide-ranging vocabulary (lots of unknown tokens in test set), 
-	which reveals limitation of approach 
-\end{itemize}
+The performance of different models across the different datasets are presented 
+in figures \ref{fig:performance_k_fold} and \ref{fig:performance_cross_topic}, 
+using either 5-fold cross-validation, or cross-topic validation, respectively. 
+
+The first point we remark is that the performance of \verb|ArgBERT|, which is 
+the state-of-the-art for our reference datasets, also performs relatively well 
+on \textbf{dalite} data.
+This, in part, provides some support for the premise that student explanations, 
+and the peer-vote-data we extract from a \textit{peer instruction} learning 
+environment, can actually be modelled via a pairwise argument ranking 
+methodology.
+We propose that this validates our line of inquiry, and lays the foundation 
+for future research in this area.
+
+Second, we see that the baseline performance set by \verb|ArgLength| is 
+not uniform across the datasets, which is due in most part to how carefully 
+curated the datasets are to begin with.
+\textbf{IBM\_ArgQ} and \textbf{IBM\_Evi} are datasets that were released, in 
+part, for the purpose of promoting research on automatic assessment of argument 
+quality, and are meant to serve as a benchmark that cannot simply be learned 
+with word counts alone.   
+As can be seen in Table \ref{tab:data_summary}, $\overline{\Delta wc}$ is 
+greatest \textbf{UKP} and \textbf{dalite}, as they are less carefully curated, 
+and hence there are many more argument pairs that have a larger relative 
+difference in length. 
+This is particularly relevant in the context of learning environments based 
+on \textit{peer instruction}: depending on the importance placed on the the 
+review step, students may, or may not, truly engage with their peers' 
+explanations, reverting to simply choosing explanations based solely on how 
+many words they have to read (or not). 
+This sets the bar very high for other more sophisticated approaches.
+
+Third, when evaluating performance using 5-fold cross-validation, as shown in 
+figure \ref{fig:performance_k_fold}, the relatively simple \verb|ArgBoW| 
+performs at least as well, if not better, than all other models, including the 
+state-of-the-art \verb|ArgBERT|.
+Since this is not the case in figure \ref{fig:performance_cross_topic}, where 
+each individual topic is completely held out from training, we surmise that  
+\verb|ArgBoW| models can learn the necessary requisite vocabulary 
+to explain what makes an argument more \textit{convincing} and perform well 
+under conditions where at least some data is available for a topic. 
+This effect is pronounced for \textbf{dalite}, where the vocabulary is 
+relatively constrained, as seen in Table \ref{tab:data_summary}, where the 
+ratio of $N_{vocab}$ to $N_{args}$ is lowest for \textbf{dalite}. 
+This result is not without precedent: in a study on the task of pairwise 
+ranking of newspaper articles based on ``quality'', the authors achieve a 
+similar result: when comparing the performance of SVM-rank models using 
+different input feature sets (e.g. \textit{use of visual language}, \textit{use 
+of named entities}, \textit{affective content}), their top performing models 
+achieve pairwise ranking accuracy of 0.84 using a combination of content and 
+writing features, but also a 0.82 accuracy with the content words as features 
+alone\cite{louis_what_2013}.
+While \verb|ArgBoW| will suffer from the \textit{cold-start} problem when new 
+question items are added to the set of learning activities, as no student 
+explanations are yet available, and the vocabulary is still unknown, this may 
+be remedied by the addition of calculated features to the model.
+
+Fourth, we observe the performance of models across different disciplines in 
+\textbf{dalite}. 
+Results seems to indicate that argument pairs from items in 
+\textbf{dalite:Physics} are easiest to classify.
+This effect is even more important when we take into account that we have the 
+least data from this discipline ($N_{pairs}$ in Table \ref{tab:data_summary}).
+This may be in part due to the impact of upstream tokenizers, which fail to 
+adequately parse arguments that have a lot of chemical equations, or molecular 
+formulae.
+Most of the items in \textbf{dalite:Physics} are conceptual in nature, and the 
+arguments contain fewer non-word tokens.
+ 
+Finally, we highlight the variance in performance across models, datasets, and 
+validation schemes. We posit that the task of pairwise classification of 
+argument quality, along the dimension of \textit{convincingness}, is more 
+challenging when the data is generated by students as part of a learning 
+activity, than with data collected from crowd-sourcing annotation platforms and 
+online debate portals. 
+This effect is expected to be more pronounced in explanations for items from 
+STEM education, as the difference between correct and incorrect answer choices 
+will be more prevalent than in learning contexts focused on humanistic 
+disciplines.
+When a student is comparing their explanation, which may be for a incorrect 
+answer choice, with that for an explanation of a correct answer choice, we 
+refer to this as ``wr''.
+This would be the equivalent of argument pairs which contained arguments of 
+opposite stance, which is only true in \textbf{IBM\_Evi}.  
+%(check if true in IBM Evi, where stances can be different)
+Of note is the relative stable performance of \verb|ArgGlove| across datasets. 
+This may further indicate that there is promise in vector space approaches, as 
+the semantic information captured in well-trained word embeddings can be 
+leveraged to address the challenge when there is large variance in words used 
+to express arguments (most pronounced in \textbf{UKP}).
 
 
 \begin{figure}
@@ -616,49 +705,36 @@ validation scheme}
 \end{figure}
 
 
-\begin{itemize}
-	\item performance of in chemistry worst, physics best, given their relative 
-	proportions in data
-	\item proportionately more errors for observations switch their answer 
-	(check if true in IBM Evi, where stances can be different)
-\end{itemize}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Discussion}
-
-In \cite{louis_what_2013}, for task of pairwise ranking of newspaper articles 
-based on ``quality'', the authors achieve a similar result: when comparing the 
-performance of SVM-rank models using different input feature sets (e.g. 
-\textit{use of visual language}, \textit{use of named entities}, 
-\textit{affective content}), their top performing models achieve ``same-topic'' 
-pairwise ranking accuracy of 0.84 using a combination of content and writing 
-features, but also a 0.82 accuracy with the content words as features alone.
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Future Work}
-\cite{nguyen_computational_2015} and \cite{louis_what_2013} use a combination 
-of writing and content (BoW) features to achieve their best results, and thus 
-this avenue must be explored more thoroughly, especially as this maybe vary 
-across disciplines an teaching contexts. 
-The state-of-the-art performance for pairwise classification accuracy on the 
-\textbf{IBM\_Evi} dataset employs Siamese architechture\cite{gleize_are_2019}, 
-where each leg of the network  is a Bi-directional Long-Short-Term-Memory 
-network, with documents represented by word2vec embeddings. These variations 
-are left to explore in future work.
 
+The performance of vectors space models in this study indicates that more work 
+should be done in now expanding the representation of text arguments using 
+calculated features.
+This approach has been the best performing in other studies: 
+\cite{louis_what_2013} and \cite{nguyen_computational_2015} and both use a 
+combination of writing and content (BoW) features to achieve their best 
+results, and thus this avenue must be explored more thoroughly, especially as 
+this maybe vary across disciplines and teaching contexts. 
+
+A second important line of future work lies in inferring a global ranking of 
+argument quality, using pairwise preference data.
 In this study we do not ever infer which are, overall, the most convincing 
-student explanations for any given item. Inferring a gold standard of global 
-rankings, starting from these pairwise preference data can be accomplished 
-using research from the information retrieval 
-community~\cite{chen_pairwise_2013}. Work on deriving point wise scores for 
-argument pairs is proposed as a Gaussian Process Preference Learning task by 
-\cite{simpson_finding_2018}. Seeing the lack of pointwise labels for overall 
-convincingness, \cite{toledo_automatic_2019} released a dataset where they 
-collect this data as well. A comparable source of data inside the myDALITE 
-platform are the feedback scores teachers can optionally provide to students on 
-their explanations.
+student explanations for any given item. 
+There is a rich body of research from the information retrieval 
+community~\cite{chen_pairwise_2013} that can be leveraged here. 
+Work on deriving point wise scores for argument pairs is proposed as a Gaussian 
+Process Preference Learning task by \cite{simpson_finding_2018}. 
+Seeing the lack of pointwise labels for overall convincingness, 
+\cite{toledo_automatic_2019} released a dataset where they 
+collect this data as well. 
+A comparable source of data inside the myDALITE platform are the feedback 
+scores teachers can optionally provide to students on their explanations.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Acknowledgements}
+NSERC Discovery grant
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \bibliographystyle{splncs04}
  \bibliography{MyLibrary}
