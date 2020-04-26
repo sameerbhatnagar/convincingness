@@ -299,31 +299,26 @@ from each of the datasets.
 \textbf{UKP}, was the first to propose the task of pairwise preference learning 
 for argument convincingness. 
 The dataset consists of just over 1k individual arguments, that support a 
-particular stance for one of 16 topics, collected from online debate portals. 
-These arguments were distributed as 11.6k pairs to annotators on a 
-crowd-sourcing platform, where the task was to choose which of the two 
-arguments, for the same stance regarding the same topic, was more convincing. 
+particular stance for one of 16 topics, collected from online debate portals 
+and annotated as most/less convincing in a crowd-sourcing platform.  
 
 More recently, a second similar dataset was released by the research group 
 associated with IBM Project Debater, 
 \textbf{IBMArgQ-9.1kPairs}\cite{toledo_automatic_2019}, henceforth 
-referred to as \textbf{IBM\_ArgQ}, which is made of 3.4k individual arguments 
-for 11 topics, assembled into 9.1k pairs labelled for which is more convincing. 
-One of the key differences between these two is that \textbf{IBM\_ArgQ} data is 
-more strongly curated with respect to the relative length of the arguments in 
-each pair: in order to control for the possibility that annotators may make 
-their choice of which argument in the pair is more \textit{convincing} based 
-merely on the length of the text, the mean difference in word count, 
-$\overline{\Delta wc}$, is just 3 words across the entire dataset, which is 10 
-times more homogeneous than pairs in \textbf{UKP}.
+referred to as \textbf{IBM\_ArgQ}.
+\textbf{IBM\_ArgQ} data is strongly curated with respect to the relative length 
+of the arguments in each pair: in order to control for the possibility that 
+annotators may make their choice of which argument in the pair is more 
+\textit{convincing} based merely on the length of the text, the mean difference 
+in word count, $\overline{\Delta wc}$, is just 3 words across the entire 
+dataset, which is 10 times more homogeneous than pairs in \textbf{UKP}.
 
-Finally, we include a third reference dataset, \textbf{IBM\_Evi}, consisting of 
-1.5k individual arguments, organized into 5.2k pairs annotated for pairwise 
-preference for convincingness~\cite{gleize_are_2019}. The important distinction 
-here is that the arguments are actually extracted as evidence for their 
-respective topic from Wikipedia, and hence represent cleaner well-formed text 
-than our other reference datasets. We filter the dataset to only include topics 
-that have at least 50 associated argument pairs.
+Finally, we include a third reference dataset, 
+\textbf{IBM\_Evi}~\cite{gleize_are_2019}. 
+The important distinction here is that the arguments are actually extracted as 
+evidence for their respective topic from Wikipedia, and hence represent cleaner 
+well-formed text than our other reference datasets. We filter the dataset to 
+only include topics that have at least 50 associated argument pairs.
 
 Table \ref{tab:data_summary} summarizes some of the descriptive statistics that 
 can be used to compare these sources, and potentially explain some of our 
@@ -343,16 +338,10 @@ experimental results.
 \end{table}
 
 \subsection{myDALITE}
-A data point from a peer instruction item, will have the following fields: 
-question prompt, answer choices, student's first answer choice, student's 
-explanation for their first answer choice, the peer explanations they are shown 
-on the review step, their second answer choice, and the explanation they found 
-most convincing.
-Quite often, students decide to keep the same answer choice, and indicate that 
-their own explanation is the most convincing.
-We construct our \textbf{dalite} dataset by keeping only the observations where 
-students chose a peer's explanation as more convincing than their own, on the 
-review step.   
+The \textbf{dalite} dataset is from a \textit{peer instruction} environment 
+explained in the introduction.
+It contains only the observations where, on the review step, students chose a 
+peer's explanation as more \textit{convincing} than their own.  
 
 To ensure internal reliability, we only keep argument explanations that were 
 also chosen by at least \input{publication_artefacts/data/VOTES_MIN}different 
