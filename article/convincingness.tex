@@ -18,6 +18,15 @@
 \VerbatimFootnotes
 
 
+\hypersetup{
+	colorlinks   = true, %Colours links instead of ugly boxes
+	urlcolor     = blue, %Colour for external hyperlinks
+	linkcolor    = blue, %Colour of internal links
+	citecolor   = blue %Colour of citations
+}
+
+\renewcommand{\floatpagefraction}{.8}
+\renewcommand{\topfraction}{.75}
 
 
 \begin{document}
@@ -277,6 +286,10 @@ from each of the datasets.
 
 
 \begin{table}
+	\caption{Examples of argument pairs from each dataset. These examples were 
+	selected because they were incorrectly classified by all of our models, and 
+	demonstrate the challenging nature of the task.}
+	\label{tab:sample_obs}
 	\begin{subtable}[t]{\textwidth}
 	\input{publication_artefacts/data/sample_obs_UKP}
 	\end{subtable}
@@ -286,10 +299,6 @@ from each of the datasets.
 	\begin{subtable}[t]{\textwidth}
 	\input{publication_artefacts/data/sample_obs_dalite}
 	\end{subtable}
-	\caption{Examples of argument pairs from each dataset. These examples were 
-	selected because they were incorrectly classified by all of our models, and 
-	demonstrate the challenging nature of the task.}
-	\label{tab:sample_obs}
 \end{table}
 
 
@@ -447,7 +456,7 @@ journalistic quality of newspaper and magazine articles \cite{louis_what_2013}.
 The study accompanying the release of \textbf{UKP} first proposed this method 
 for predicting which argument is more convincing~\cite{habernal_which_2016}.
 
-\subsection{Vector Space Models}
+\paragraph{\textbf{Vector Space Models, \tt{ArgBoW}:}}
 
 We follow-up on this work, building simple ``bag-of-words'' vector space models 
 to represent our argument text. 
@@ -463,7 +472,7 @@ We do not, for this study, include any information related to the topic prompt
 in our document representation.
 
 
-\subsection{Pre-trained word embeddings}
+\paragraph{\textbf{Pre-trained word embeddings, \tt{ArgGloVe}:}}
 A limitation of vector space models for text classification is the exclusion of 
 words that are ``out-of-vocabulary'' in the test set when compared to the 
 training data.
@@ -476,7 +485,7 @@ and represent each argument as the average of its token-level embedding
 vectors. 
 We then feed these into the same SVM-rank architecture described above. 
 
-\subsection{Transfer Learning}
+\paragraph{\textbf{Transfer Learning, \tt{ArgBERT}:}}
 Finally, in order to leverage recent advances in transfer-learning for NLP, the 
 final model we explore is \verb|ArgBERT|.
 We begin with a pre-trained language model for English built using  
@@ -597,6 +606,46 @@ using either 5-fold cross-validation, or cross-topic validation, respectively.
 	\label{fig:performance_k_fold}
 \end{figure}
 
+\begin{figure}
+	\begin{subfigure}[t]{0.5\linewidth}
+		\centering
+		\scalebox{0.5}{\input{publication_artefacts/img/acc_cross_topic_val_True.pgf}}
+		\caption{Accuracy}
+		\label{fig:acc_cross_topic}
+	\end{subfigure}%
+	\qquad
+	\begin{subfigure}[t]{0.5\linewidth}
+		\centering
+		\scalebox{0.5}{\input{publication_artefacts/img/AUC_cross_topic_val_True.pgf}}
+		\caption{ROC-AUC}
+		\label{fig:AUC_cross_topic}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.5\linewidth}
+		\centering
+		\scalebox{0.5}{\input{publication_artefacts/img/acc_dalite_cross_topic_val_True.pgf}}
+		\caption{Accuracy}
+		\label{fig:acc_dalite_cross_topic}
+	\end{subfigure}%
+	\qquad
+	\begin{subfigure}[t]{0.5\linewidth}
+		\centering
+		\scalebox{0.5}{\input{publication_artefacts/img/AUC_dalite_cross_topic_val_True.pgf}}
+		\caption{ROC-AUC}
+		\label{fig:AUC_dalite_cross_topic}
+	\end{subfigure}
+	\caption{Pairwise ranking classification accuracy and ROC-AUC for 
+		different models in across datasets in figures 
+		\ref{fig:acc_cross_topic} 
+		and \ref{fig:AUC_cross_topic}. Figures \ref{fig:acc_dalite_cross_topic} 
+		and 
+		\ref{fig:AUC_dalite_cross_topic} split the performance for the 
+		\textbf{dalite} dataset, across disciplines. All results evaluated 
+		using 
+		cross-topic validation, where the number of folds equals the number of 
+		topics}.
+	\label{fig:performance_cross_topic}
+	
+\end{figure}
 The first point we remark is that the performance of \verb|ArgBERT|, which is 
 the state-of-the-art for our reference datasets, also performs relatively well 
 on \textbf{dalite} data.
@@ -684,48 +733,6 @@ This may further indicate that there is promise in vector space approaches, as
 the semantic information captured in well-trained word embeddings can be 
 leveraged to address the challenge when there is large variance in words used 
 to express arguments (most pronounced in \textbf{UKP}).
-
-
-\begin{figure}
-	\begin{subfigure}[t]{0.5\linewidth}
-		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/acc_cross_topic_val_True.pgf}}
-		\caption{Accuracy}
-		\label{fig:acc_cross_topic}
-	\end{subfigure}%
-	\qquad
-	\begin{subfigure}[t]{0.5\linewidth}
-		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/AUC_cross_topic_val_True.pgf}}
-		\caption{ROC-AUC}
-		\label{fig:AUC_cross_topic}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.5\linewidth}
-		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/acc_dalite_cross_topic_val_True.pgf}}
-		\caption{Accuracy}
-		\label{fig:acc_dalite_cross_topic}
-	\end{subfigure}%
-	\qquad
-	\begin{subfigure}[t]{0.5\linewidth}
-		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/AUC_dalite_cross_topic_val_True.pgf}}
-		\caption{ROC-AUC}
-		\label{fig:AUC_dalite_cross_topic}
-	\end{subfigure}
-	\caption{Pairwise ranking classification accuracy and ROC-AUC for 
-		different models in across datasets in figures 
-		\ref{fig:acc_cross_topic} 
-		and \ref{fig:AUC_cross_topic}. Figures \ref{fig:acc_dalite_cross_topic} 
-		and 
-		\ref{fig:AUC_dalite_cross_topic} split the performance for the 
-		\textbf{dalite} dataset, across disciplines. All results evaluated 
-		using 
-		cross-topic validation, where the number of folds equals the number of 
-		topics}.
-	\label{fig:performance_cross_topic}
-	
-\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
