@@ -54,7 +54,7 @@ Dawson College
 \begin{abstract}
 Online learning environments increasingly rely on students to generate 
 explanations and ``hints'' that can subsequently be shown to future students. 
-Automatically identifying the best content is crucial for these systems to 
+Automatically identifying the best student generated content is crucial for these systems to 
 scale well. 
 This study reports on the application of text mining and machine learning 
 methods in the context of asynchronous peer instruction, with the objective of 
@@ -332,14 +332,14 @@ experimental results.
 
 \begin{table}
 	\caption{Descriptive statistics for each dataset of argument pairs, with 
-		last rows showing \textbf{dalite} data split by discipline.$N_{args}$ 
-		is the number of individual arguments, distributed across $N_{pairs}$ 
-		revolving around $N_{topics}$. $N_{vocab}$ is the number of unique 
+		last rows showing \textbf{dalite} data split by discipline. $N_{\mathrm{args}}$ 
+		is the number of individual arguments, distributed across $N_{\mathrm{pairs}}$ 
+		revolving around $N_{\mathrm{topics}}$. $N_{\mathrm{vocab}}$ is the number of unique 
 		tokens in all the arguments. $\overline{wc}$ is the average number of 
 		words per argument, shown with the standard deviation $(SD)$. 
 		$\overline{\Delta wc}$ is the average relative difference in number of 
-		words for each argument in each pair% shown with the standard deviation 
-		.}
+		words for each argument in each pair.% shown with the standard deviation 
+		}
 	\centerline{\input{publication_artefacts/data/df_summary_final}}
 	\label{tab:data_summary}
 \end{table}
@@ -361,7 +361,9 @@ This leaves us a dataset with \input{publication_artefacts/data/N}observations,
 spanning \input{publication_artefacts/data/n_students} learner annotators having 
 completed, on average, 
 \input{publication_artefacts/data/avg_q_per_student} items each, from a total of 
-\input{publication_artefacts/data/n_questions} items across three disciplines, 
+\input{publication_artefacts/data/n_questions}
+\todo{If items are topics, it shows 102 in the table 2.  And the distiction between topics and items should be discussed somewhere, especially because it is critical to the two validations.}
+items across three disciplines, 
 with at least 
 \input{publication_artefacts/data/MIN_RECORDS_PER_QUESTION}explanation-pairs 
 per item.
@@ -555,7 +557,7 @@ using respectively 5-fold cross-validation and cross-topic validation.
 		\ref{fig:AUC_kfold}. Figures \ref{fig:acc_dalite_kfold} and 
 		\ref{fig:AUC_dalite_kfold} split the performance for the  
 		\textbf{dalite} dataset, across disciplines. 
-		All results evaluated using 5-fold stratified cross-validation}.
+		All results evaluated using 5-fold stratified cross-validation.}
 	\label{fig:performance_k_fold}
 \end{figure}
 
@@ -595,7 +597,7 @@ using respectively 5-fold cross-validation and cross-topic validation.
 		\textbf{dalite} dataset, across disciplines. All results evaluated 
 		using 
 		cross-topic validation, where the number of folds equals the number of 
-		topics}.
+		topics.}
 	\label{fig:performance_cross_topic}
 	
 \end{figure}
@@ -628,11 +630,11 @@ This, in part, provides some support for the premise that student explanations,
 and the peer-vote-data we extract from a \textit{peer instruction} learning 
 environment, can actually be modelled via a pairwise argument ranking 
 methodology.
-We propose that this validates our line of inquiry, and lays the foundation 
+It also supports our line of inquiry, and lays the foundation 
 for future research in this area.
 
 Second, we see that the baseline performance set by \verb|ArgLength| is 
-not uniform across the datasets, which is due in most part to how carefully 
+not uniform across the datasets, which, we surmise, is due in most part to how carefully 
 curated the datasets are to begin with.
 \textbf{IBM\_ArgQ} and \textbf{IBM\_Evi} are datasets that were released, in 
 part, for the purpose of promoting research on automatic assessment of argument 
@@ -641,7 +643,7 @@ with word counts alone.
 As can be seen in Table \ref{tab:data_summary}, $\overline{\Delta wc}$ is 
 greatest in \textbf{UKP} and \textbf{dalite}, as they are less carefully 
 curated, 
-and hence there are many more argument pairs that have a larger relative 
+and contain many more argument pairs that have a larger relative 
 difference in length. 
 This is particularly relevant in the context of learning environments based 
 on \textit{peer instruction}: depending on the importance placed on the the 
@@ -652,9 +654,8 @@ This sets the bar very high for other more sophisticated approaches.
 
 Third, we present the results for two different validation schemes, in Figures 
 \ref{fig:performance_k_fold} and \ref{fig:performance_cross_topic}, to 
-highlight the impact this can have on interpreting experimental results.
-When evaluating performance using 5-fold cross-validation (standard practice in 
-machine learning literature), as shown in figure \ref{fig:performance_k_fold}, 
+highlight the impact of the availability of the current topic data for the training.
+When evaluating performance using 5-fold cross-validation (figure~\ref{fig:performance_k_fold}), where the topic data is held-in for the training,
 the relatively simple \verb|ArgBoW| performs at least as well, if not better, 
 than all other models, including the state-of-the-art \verb|ArgBERT|.
 This is not the case in figure \ref{fig:performance_cross_topic}, where 
@@ -666,7 +667,7 @@ perform well under conditions where at least some data is available for a
 topic. 
 This effect is pronounced for \textbf{dalite}, where the vocabulary is 
 relatively constrained, as seen in Table \ref{tab:data_summary}, where the 
-ratio of $N_{vocab}$ to $N_{args}$ is lowest for \textbf{dalite}. 
+ratio of $N_{\mathrm{vocab}}$ to $N_{\mathrm{args}}$ is lowest for \textbf{dalite}. 
 
 This result is not without precedent: in a study on the task of pairwise 
 ranking of newspaper articles based on ``quality'', the authors achieve a 
@@ -696,7 +697,7 @@ Fourth, we observe the performance of models across different disciplines in
 Results seems to indicate that argument pairs from items in 
 \textbf{dalite:Physics} are easiest to classify.
 This effect is even more important when we take into account that we have the 
-least data from this discipline ($N_{pairs}$ in Table \ref{tab:data_summary}).
+least data from this discipline ($N_{\mathrm{pairs}}$ in Table \ref{tab:data_summary}).
 This may be in part due to the impact of upstream tokenizers, which fail to 
 adequately parse arguments that have a lot of chemical equations, or molecular 
 formulae.
@@ -730,10 +731,9 @@ to express arguments (most pronounced in \textbf{UKP}).
 \section{Conclusion and Future Work}
 
 The performance of vectors space models in this study indicates that more work 
-should be done in now expanding the representation of text arguments using 
+should be done in expanding the representation of text arguments using 
 calculated features.
-This approach has been the best performing in other studies: 
-\cite{louis_what_2013} and \cite{nguyen_computational_2015} and both use a 
+This approach has been the best performing in other studies~\cite{louis_what_2013,nguyen_computational_2015} and both use a 
 combination of writing and content features to achieve their best 
 results, and thus this avenue must be explored more thoroughly, especially as 
 this may vary across disciplines and teaching contexts. 
