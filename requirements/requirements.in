@@ -4,3 +4,5 @@ spacy
 scikit-learn
 seaborn
 nltk
+black
+plac
