@@ -62,9 +62,9 @@ automatically identifying high quality student explanations.
 Our study compares the performance of state-of-the-art methods across different 
 reference datasets and validation schemes.
 We demonstrate that when we extend the task of argument quality assessment 
-along the dimensions of \textit{convincingness}, from curated datasets to data 
+along the dimensions of \textit{convincingness}, from curated datasets, to data 
 from a real learning environments, new challenges arise, and simpler vector 
-space models perform as well as a state-of-the-art neural approach. 
+space models can perform as well as a state-of-the-art neural approach. 
 
 \keywords{Argument mining  \and Learnersourcing \and Peer Instruction}
 \end{abstract}
@@ -133,8 +133,8 @@ turn leads to the challenge of optimizing which items need evaluation by the
 %\textit{learnersourcing}\cite{weir_learnersourcing_2015}.
 
 Our work is centred on data coming from the subset of these learning 
-environments that enable \textit{peer instruction}\cite{crouch_peer_2001}, and 
-are built on a specific two-stage script: 
+environments that enable \textit{peer instruction}\cite{crouch_peer_2001}, 
+which follow a specific two-stage script: 
 \begin{enumerate}
 	\item students are prompted to answer a multiple choice question, and 
 	provide a free-text explanation that justifies their answer;
@@ -144,22 +144,21 @@ are built on a specific two-stage script:
 	Students can either decide that their own explanation is best, or indicate 
 	which of their peers' explanation was the most convincing.
 \end{enumerate}
-In this instance of \textit{learnersourcing}, as in the tools above, this 
-``vote data'' is valuable at two levels: it can then be used to determine what 
-to present to future students, but also inform instructors of their students' 
-understanding of the material.
+%In this instance of \textit{learnersourcing}, as in the tools above, this 
+%``vote data'' is valuable at two levels: it can then be used to determine what 
+%to present to future students, but also inform instructors of their students' 
+%understanding of the material.
 
 We frame the explanations students produce here as \textit{arguments} 
 meant to persuade one's peers that their own reasoning is correct.
 The ultimate objective of this study is to automatically assess the quality of 
 these arguments, as they may help future students reflect on their own 
 reasoning surrounding different concepts.
-We borrow from work in the argument mining community, where argument quality 
-can be measured along the dimension of \textit{convincingness}. 
-This provides us with an operational definition for \textit{convincingness} 
-around which we build our central research question: in a peer-instruction 
-setting, can we predict which peer-explanations will be selected as more 
-convincing than the student's own work? 
+We borrow from work in the argument mining community, which offers an 
+operational definition for argument quality along the dimension of 
+\textit{convincingness}, around which we build our central research question: 
+in a peer-instruction setting, can we predict which explanations will be 
+selected as more convincing than the student's own work? 
 
 To our knowledge, this is the first analysis of peer instruction data through 
 the lens of \textit{learnersourcing} and argument \textit{convincingness}.
@@ -323,8 +322,9 @@ Finally, we include a third reference dataset,
 \textbf{IBM\_Evi}~\cite{gleize_are_2019}. 
 The important distinction here is that the arguments are actually extracted as 
 evidence for their respective topic from Wikipedia, and hence represent cleaner 
-well-formed text than our other reference datasets. We filter the dataset to 
-only include topics that have at least 50 associated argument pairs.
+well-formed text than our other reference datasets. 
+We filter the dataset to only include topics that have at least 50 associated 
+argument pairs.
 
 Table \ref{tab:data_summary} summarizes some of the descriptive statistics that 
 can be used to compare these sources, and potentially explain some of our 
@@ -334,10 +334,11 @@ experimental results.
 	\caption{Descriptive statistics for each dataset of argument pairs, with 
 		last rows showing \textbf{dalite} data split by discipline.$N_{args}$ 
 		is the number of individual arguments, distributed across $N_{pairs}$ 
-		revolving around $N_{topics}$. $\overline{wc}$ is the average number of 
+		revolving around $N_{topics}$. $N_{vocab}$ is the number of unique 
+		tokens in all the arguments. $\overline{wc}$ is the average number of 
 		words per argument, shown with the standard deviation $(SD)$. 
 		$\overline{\Delta wc}$ is the average relative difference in number of 
-		words for each argument in each pair, shown with the standard deviation 
+		words for each argument in each pair% shown with the standard deviation 
 		.}
 	\centerline{\input{publication_artefacts/data/df_summary_final}}
 	\label{tab:data_summary}
@@ -367,7 +368,8 @@ per item.
 
 
 \begin{table}
-	\caption{Number of argument pairs, broken down by discipline, and the 
+	\caption{Number of argument pairs in \textbf{dalite}, broken down by 
+	discipline, and the 
 	correctness of the selected answer choice on initial step, and then on 
 	review step.}
 	
@@ -383,7 +385,7 @@ arguments that are always for the same stance, in order to limit bias due to
 their opinion on the topic when evaluating which argument is more convincing 
 (this is also true of many of the pairs in \textbf{IBM\_Evi}).
 
-In a \textit{Peer Instruction} learning environment, other pairings are 
+In a \textit{peer instruction} learning environment, other pairings are 
 possible, and pedagogically relevant. 
 In \textbf{dalite}, the majority of students keep the same answer choice 
 on the review step, and so they are comparing two explanations that 
@@ -392,13 +394,15 @@ However, \input{publication_artefacts/data/frac_switch}\% of the
 observations in this dataset are for students who not only choose an 
 explanation more convincing than their own, but also switch answer choice, 
 either from the incorrect to correct, or the reverse. 
-These pairs add a different level of complexity that models must learn, and are 
-very pertinent in the pedagogical context: what are the argumentative features 
-which can help students remediate an initial wrong answer choice 
-(\textit{``wr''})?
-What are the features that might be responsible for getting students to 
-actually move away from the correct answer choice (\textit{``rw''})?
-(We leave this for future work).
+%These pairs add a different level of complexity that models must learn, and 
+%are 
+%very pertinent in the pedagogical context.
+%: what are the argumentative features 
+%which can help students remediate an initial wrong answer choice 
+%%(\textit{``wr''})?
+%What are the features that might be responsible for getting students to 
+%actually move away from the correct answer choice (\textit{``rw''})?
+%(We leave this for future work).
  
 Second, a more fundamental difference is that our study focuses on 
 undergraduate science courses across three disciplines, wherein the notion of 
@@ -406,7 +410,7 @@ answer ``correctness'' is important.
 There are a growing number of ethics and humanities instructors using the peer 
 instruction platform, where the question prompts are surrounding topics more 
 like a debate, as in our reference datasets. 
-We leave this comparison for future work.
+We leave these comparisons for future work.
 
 Thirdly, each argument pair is made up of the one written by the current 
 learner, while the other is an alternative generated by a peer that the current 
