@@ -111,7 +111,7 @@ In platforms where students generate content that is part of the learning
 activities of future students, filtering out irrelevant and misleading material 
 is paramount. 
 However, while removing bad content is important, educators hope to identify, 
-and subsequently maximize the use of, the best student generated items.
+and subsequently maximize the use of the best student generated items.
 Since not all students can be asked to evaluate all possible pairs, this in 
 turn leads to the challenge of optimizing which items need evaluation by the 
 ``student-come-moderators'', without hindering their learning.
@@ -138,9 +138,9 @@ which follow a specific two-stage script:
 \begin{enumerate}
 	\item students are prompted to answer a multiple choice question, and 
 	provide a free-text explanation that justifies their answer;
-	\item without revealing the correct answer, students are then prompted to 
-	reconsider their answer, by presenting them a selection of explanations 
-	written by previous students~\cite{bhatnagar_dalite:_2016}.
+	\item students are then prompted to reconsider their answer, by presenting 
+	them a selection of explanations written by previous 
+	students~\cite{bhatnagar_dalite:_2016}.
 	Students can either decide that their own explanation is best, or indicate 
 	which of their peers' explanation was the most convincing.
 \end{enumerate}
@@ -150,7 +150,7 @@ which follow a specific two-stage script:
 %understanding of the material.
 
 We frame the explanations students produce here as \textit{arguments} 
-meant to persuade one's peers that their own reasoning is correct.
+meant to persuade one's peers that their own reasoning is best.
 The ultimate objective of this study is to automatically assess the quality of 
 these arguments, as they may help future students reflect on their own 
 reasoning surrounding different concepts.
@@ -197,7 +197,7 @@ The AXIS~\cite{williams_axis:_2016} system prompts students to
 generate an explanation for their response to a short answer question, and then 
 evaluate a similar explanation from one of their peers on a scale of 1-10 for 
 \textit{helpfulness}. This rating-data drives the reinforcement learning 
-algorithm that then decides which explanations to show to which future students.
+algorithm that decides which explanations to show to future students.
 
 A similar class of learning platforms leverage comparative judgement for 
 supporting how students can evaluate the work of their peers. 
@@ -347,8 +347,9 @@ experimental results.
 \subsection{myDALITE}
 The \textbf{dalite} dataset is from a \textit{peer instruction} environment 
 explained in the introduction.
-It contains only the observations where, on the review step, students chose a 
-peer's explanation as more \textit{convincing} than their own.  
+It contains only the observations where, after writing an explanation for their 
+answer choice, on the review step, students chose a peer's explanation as more 
+\textit{convincing} than their own.  
 
 To ensure internal reliability, we only keep argument explanations that were 
 also chosen by at least \input{publication_artefacts/data/VOTES_MIN}different 
@@ -361,12 +362,16 @@ This leaves us a dataset with \input{publication_artefacts/data/N}observations,
 spanning \input{publication_artefacts/data/n_students} learner annotators having 
 completed, on average, 
 \input{publication_artefacts/data/avg_q_per_student} items each, from a total of 
-\input{publication_artefacts/data/n_questions}
-\todo{If items are topics, it shows 102 in the table 2.  And the distiction between topics and items should be discussed somewhere, especially because it is critical to the two validations.}
-items across three disciplines, 
+%\input{publication_artefacts/data/n_questions}
+%\todo{If items are topics, it shows 102 in the table 2.  And the distiction 
+%between topics and items should be discussed somewhere, especially because it 
+%is critical to the two validations.}
+102 items across three disciplines, 
 with at least 
 \input{publication_artefacts/data/MIN_RECORDS_PER_QUESTION}explanation-pairs 
 per item.
+We draw an analogy between a ``topic'' in the reference data, and a 
+``question item'' in \textbf{dalite}.
 
 
 \begin{table}
@@ -395,7 +400,7 @@ are either both correct (\textit{``rr''}) or incorrect (\textit{``wr''}).
 However, \input{publication_artefacts/data/frac_switch}\% of the 
 observations in this dataset are for students who not only choose an 
 explanation more convincing than their own, but also switch answer choice, 
-either from the incorrect to correct, or the reverse. 
+either from the wrong to right, or the reverse. 
 %These pairs add a different level of complexity that models must learn, and 
 %are 
 %very pertinent in the pedagogical context.
@@ -430,7 +435,7 @@ Choosing which argument is more convincing from a pair is a binary
 ordinal regression task, where the objective is to learn a function that, given 
 two feature vectors, can assign the better argument a rank of $+1$, and the 
 other a rank of $-1$.   
-It has been proven that such a binary ordinal \textit{regression} problem, can 
+It has been proven that such a binary ordinal \textit{regression} problem can 
 be cast into an equivalent binary \textit{classification} problem, wherein the 
 model is trained on the \textit{difference} of the feature vectors of each 
 argument in the pair \cite{herbrich_support_1999}. 
@@ -442,12 +447,12 @@ journalistic quality of newspaper and magazine articles \cite{louis_what_2013}.
 The study accompanying the release of \textbf{UKP} first proposed this method 
 for predicting which argument is more convincing~\cite{habernal_which_2016}.
 
-Three models are defined and compared.  They are described below.
+In our study, three models are defined and compared, and are described below.
 
 \paragraph{\textbf{Vector Space Models, \tt{ArgBoW}:}}
 
-We follow-up on this work, building simple ``bag-of-words'' vector space models 
-to represent our argument text. 
+We follow-up work using SVM-rank, building simple ``bag-of-words'' vector space 
+models to represent our argument text. 
 We take all of the individual arguments for a particular topic in our training 
 set (known as  ``explanations'' for a particular question item in the case of 
 the \textbf{dalite} data), lemmatize the tokens, and build term-document 
