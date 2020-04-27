@@ -212,27 +212,30 @@ Finally, \textit{peer instruction} question prompts are being used more
 frequently inside online learning 
 assignments~\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}
 \cite{charles_harnessing_2019}.
-The student is presented with a multiple choice item, and prompted to provide 
-an explanation of their answer choice. 
-In order to encourage students to reflect on their own reasoning, they are then 
-presented with a subset of alternative peer explanations to their own answer 
-choice, as well for another choice. The student is then given the chance to 
-revise their answer choice (or not), by indicating which of the peer 
-explanations was most \textit{convincing} from the subset.
+%The student is presented with a multiple choice item, and prompted to provide 
+%an explanation of their answer choice. 
+%In order to encourage students to reflect on their own reasoning, they are 
+%then 
+%presented with a subset of alternative peer explanations to their own answer 
+%choice, as well for another choice. The student is then given the chance to 
+%revise their answer choice (or not), by indicating which of the peer 
+%explanations was most \textit{convincing} from the subset.
 Moderating the quality of these explanations is important work that can begin 
 with some unsupervised clustering \cite{gagnon_filtering_2019}, but identifying 
 the best explanations that promote learning is at the heart of this research.
 
 
 \subsection{Argument Quality \& Convincingness}
-Conventional argument-mining pipelines include several successive components, 
-starting with the automatic detection of argumentative units, classification of 
-these units into types (e.g. major claim, minor claim, premise), and 
-identification of argumentative relations (which evidence units support which 
-claim). 
-Such pipelines are essential in question-answering systems 
-\cite{lippi_argumentation_2016} and are at the heart of the IBM Project Debater 
-initiative. 
+%Conventional argument-mining pipelines include several successive components, 
+%starting with the automatic detection of argumentative units, classification 
+%of 
+%these units into types (e.g. major claim, minor claim, premise), and 
+%identification of argumentative relations (which evidence units support which 
+%claim). 
+%Such pipelines are essential in question-answering systems 
+%\cite{lippi_argumentation_2016} and are at the heart of the IBM Project 
+%Debater 
+%initiative. 
 
 Work in the area of automatic evaluation of argument quality finds its roots in 
 detecting evidence in legal texts~\cite{moens_automatic_2007}, but has 
@@ -477,7 +480,7 @@ of sequence classification using our argument-pair data.
 As in other applications involving sentence pairs for BERT, each argument pair 
 is encoded as \verb|[CLS] A [SEP] B|, where the special \verb|[SEP]| token 
 instructs the model as to the boundary between arguments \verb|A| and \verb|B|. 
-\footnote{modified from the \verb|run_glue.py| 
+\footnote{Modified from the \verb|run_glue.py| 
 script provided by the \verb|tranformers| package, built by company hugging 
 face. All code for this study provided in associated github repository}.
 
@@ -517,28 +520,28 @@ using respectively 5-fold cross-validation and cross-topic validation.
 \begin{figure}
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/acc.pgf}}
+		\scalebox{0.4}{\input{publication_artefacts/img/acc.pgf}}
 		\caption{Accuracy}
 		\label{fig:acc_kfold}
 	\end{subfigure}%
 	\qquad
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/AUC.pgf}}
+		\scalebox{0.4}{\input{publication_artefacts/img/AUC.pgf}}
 		\caption{RoC-AuC}
 		\label{fig:AUC_kfold}
 	\end{subfigure}
 	
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/acc_dalite.pgf}}
+		\scalebox{0.4}{\input{publication_artefacts/img/acc_dalite.pgf}}
 		\caption{Accuracy}
 		\label{fig:acc_dalite_kfold}
 	\end{subfigure}%
 	\qquad
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/AUC_dalite.pgf}}
+		\scalebox{0.4}{\input{publication_artefacts/img/AUC_dalite.pgf}}
 		\caption{ROC-AUC}
 		\label{fig:AUC_dalite_kfold}
 	\end{subfigure}	
@@ -554,27 +557,27 @@ using respectively 5-fold cross-validation and cross-topic validation.
 \begin{figure}
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/acc_cross_topic_val_True.pgf}}
+		\scalebox{0.4}{\input{publication_artefacts/img/acc_cross_topic_val_True.pgf}}
 		\caption{Accuracy}
 		\label{fig:acc_cross_topic}
 	\end{subfigure}%
 	\qquad
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/AUC_cross_topic_val_True.pgf}}
+		\scalebox{0.4}{\input{publication_artefacts/img/AUC_cross_topic_val_True.pgf}}
 		\caption{ROC-AUC}
 		\label{fig:AUC_cross_topic}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/acc_dalite_cross_topic_val_True.pgf}}
+		\scalebox{0.4}{\input{publication_artefacts/img/acc_dalite_cross_topic_val_True.pgf}}
 		\caption{Accuracy}
 		\label{fig:acc_dalite_cross_topic}
 	\end{subfigure}%
 	\qquad
 	\begin{subfigure}[t]{0.5\linewidth}
 		\centering
-		\scalebox{0.5}{\input{publication_artefacts/img/AUC_dalite_cross_topic_val_True.pgf}}
+		\scalebox{0.4}{\input{publication_artefacts/img/AUC_dalite_cross_topic_val_True.pgf}}
 		\caption{ROC-AUC}
 		\label{fig:AUC_dalite_cross_topic}
 	\end{subfigure}
@@ -592,11 +595,17 @@ using respectively 5-fold cross-validation and cross-topic validation.
 	
 \end{figure}
 
-In Table \ref{tab:sota}, we denote, to the best of our knowledge, the 
-state-of-the-art performance for each dataset on the task of pairwise  
-classification for \textit{convincingness}. 
+
+For the purposes of comparison, in Table \ref{tab:sota}, we denote, to the best 
+of our knowledge, the state-of-the-art performance for each dataset on the task 
+of pairwise  classification for \textit{convincingness}. 
 
 \begin{table} 
+	\caption{State of the art performance for pairwise argument classification 
+	of 
+	convincingness for three publicly available datasets, using cross-topic 
+	validation scheme}
+\label{tab:sota}
 	\centering\begin{tabular}{l|*{2}{c}r}
 		Dataset     & Acc & AUC & model  	   \\
 		\hline
@@ -604,11 +613,6 @@ classification for \textit{convincingness}.
 		IBM\_ArgQ   & 0.80 & 0.86 & ArgBERT\cite{toledo_automatic_2019}    \\
 		IBM\_Evi    & 0.73 & - 	  & EviConvNet\cite{gleize_are_2019} \\
 	\end{tabular}
-	\caption{State of the art performance for pairwise argument classification 
-	of 
-		convincingness for three publicly available datasets, using cross-topic 
-		validation scheme}
-	\label{tab:sota}
 \end{table}
 
 
@@ -748,10 +752,9 @@ scores teachers can optionally provide to students on their explanations.
 Funding for the development of xxxxxxxx is made possible by 
 \textit{xxxxxxxxxxxx} program, and the \textit{xxxxxxxxxxxxxx}. Funding for 
 this research was made possible by the support of the xxxxxxxxxxxx 
-\textit{xxxx} Grant program. Special thanks to xxxxxxxxx for his help building 
-different data visualizations. This project would not have been possible 
+\textit{xxxx} Grant program. This project would not have been possible 
 without the xxxxxx network of researcher practitioners, and the students using 
-xxxxxxxx.org who consented to share their learning traces with the research 
+xxxxxxxx who consented to share their learning traces with the research 
 community.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
