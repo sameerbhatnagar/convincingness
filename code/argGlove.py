@@ -9,6 +9,8 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn import svm
 from sklearn.metrics import accuracy_score
 
+import plac
+
 import spacy
 
 NLP_MD = spacy.load("en_core_web_md", disable=["ner", "tagger", "parser"])
@@ -24,110 +26,129 @@ class GloveVectorizer(BaseEstimator, TransformerMixin):
     def transform(self, X):
         return np.concatenate([doc.vector.reshape(1, -1) for doc in self._nlp.pipe(X)])
 
+@plac.annotations(
+    N_folds=plac.Annotation("N_folds",kind="option"),
+    cross_topic_validation=plac.Annotation("cross_topic_validation",kind="flag"),
+    data_source=plac.Annotation("data_source"),
 
-CROSS_TOPIC = True
-data = {}
-data_sources = ["IBM_ArgQ", "UKP"]
-for data_source in data_sources:
-    data[data_source] = data_loaders.load_arg_pairs(
-        data_source, cross_topic_validation=CROSS_TOPIC
-    )
-
-data["dalite"] = data_loaders.load_dalite_data(cross_topic_validation=CROSS_TOPIC)
-data["IBM_Evi"] = data_loaders.load_arg_pairs_IBM_Evi(
-    cross_topic_validation=CROSS_TOPIC
 )
 
-total_t0 = time.time()
+def main(cross_topic_validation,data_source,N_folds=5):
 
-import sys
+    if data_source == "all":
+        data_sources = data.keys()
+    else:
+        data_sources = [data_source]
 
-data_source = sys.argv[1]
 
-if data_source == "all":
-    data_sources = data.keys()
-else:
-    data_sources = [data_source]
+    CROSS_TOPIC = False
+    N_FOLDS = 10
 
-df_results_all = pd.DataFrame()
-for data_source in data_sources:
-    print(data_source)
-    train_dataframes, test_dataframes, df_all = data[data_source]
-    df_all = df_all.rename(columns={"question": "topic"})
+    data = {}
+    data_sources = ["IBM_ArgQ", "UKP"]
+    for data_source in data_sources:
+        data[data_source] = data_loaders.load_arg_pairs(
+            data_source,
+            N_folds=N_FOLDS,
+            cross_topic_validation=CROSS_TOPIC,
+        )
 
-    t_source = time.time()
+    data["dalite"] = data_loaders.load_dalite_data(
+        N_folds = N_FOLDS,
+        cross_topic_validation=CROSS_TOPIC
+        )
+    data["IBM_Evi"] = data_loaders.load_arg_pairs_IBM_Evi(
+        N_folds = N_FOLDS,
+        cross_topic_validation=CROSS_TOPIC
+    )
 
-    df_test_all = pd.DataFrame()
+    total_t0 = time.time()
 
-    for i, (df_train, df_test) in enumerate(zip(train_dataframes, test_dataframes)):
-        print("Fold {}".format(i))
-        t_fold = time.time()
 
-        df_train["y"] = df_train["label"].map({"a1": -1, "a2": 1})
-        df_test["y"] = df_test["label"].map({"a1": -1, "a2": 1})
-        df_train = df_train.rename(columns={"question": "topic"})
-        df_test = df_test.rename(columns={"question": "topic"})
 
-        topic = df_test["topic"].value_counts().index[0]
-        t_topic = time.time()
+    df_results_all = pd.DataFrame()
+    for data_source in data_sources:
+        print(data_source)
+        train_dataframes, test_dataframes, df_all = data[data_source]
+        df_all = df_all.rename(columns={"question": "topic"})
 
-        vec = GloveVectorizer()
+        t_source = time.time()
 
-        A1_train = vec.transform(df_train["a1"])
-        A2_train = vec.transform(df_train["a2"])
+        df_test_all = pd.DataFrame()
 
-        X_train = A2_train - A1_train
+        for i, (df_train, df_test) in enumerate(zip(train_dataframes, test_dataframes)):
+            print("Fold {}".format(i))
+            t_fold = time.time()
 
-        y_train = df_train["y"]
-        clf = svm.SVC(kernel="linear", C=0.1, probability=True)
-        clf.fit(X_train, y_train)
+            df_train["y"] = df_train["label"].map({"a1": -1, "a2": 1})
+            df_test["y"] = df_test["label"].map({"a1": -1, "a2": 1})
+            df_train = df_train.rename(columns={"question": "topic"})
+            df_test = df_test.rename(columns={"question": "topic"})
 
-        A1_test = vec.transform(df_test["a1"])
-        A2_test = vec.transform(df_test["a2"])
-        X_test = A2_test - A1_test
+            topic = df_test["topic"].value_counts().index[0]
+            t_topic = time.time()
 
-        y_test = df_test["y"]
-        df_test["predicted_label"] = clf.predict(X_test)
-        df_test["pred_score_1_soft"] = clf.predict_proba(X_test)[:, 1]
-        # print("\t\t"+"; ".join([vec.get_feature_names()[i] for i in clf.coef_.toarray().argsort()[0][::-1][:5]]))
-        # print("\t\t"+"; ".join([vec.get_feature_names()[i] for i in clf.coef_.toarray().argsort()[0][:5]]))
+            vec = GloveVectorizer()
 
-        print(
-            "***\t time for fold {}: {:}; accuracy={}".format(
-                topic,
-                utils.format_time(time.time() - t_fold),
-                np.round(
-                    accuracy_score(
-                        y_true=df_test["y"], y_pred=df_test["predicted_label"]
+            A1_train = vec.transform(df_train["a1"])
+            A2_train = vec.transform(df_train["a2"])
+
+            X_train = A2_train - A1_train
+
+            y_train = df_train["y"]
+            clf = svm.SVC(kernel="linear", C=0.1, probability=True)
+            clf.fit(X_train, y_train)
+
+            A1_test = vec.transform(df_test["a1"])
+            A2_test = vec.transform(df_test["a2"])
+            X_test = A2_test - A1_test
+
+            y_test = df_test["y"]
+            df_test["predicted_label"] = clf.predict(X_test)
+            df_test["pred_score_1_soft"] = clf.predict_proba(X_test)[:, 1]
+            # print("\t\t"+"; ".join([vec.get_feature_names()[i] for i in clf.coef_.toarray().argsort()[0][::-1][:5]]))
+            # print("\t\t"+"; ".join([vec.get_feature_names()[i] for i in clf.coef_.toarray().argsort()[0][:5]]))
+
+            print(
+                "***\t time for fold {}: {:}; accuracy={}".format(
+                    topic,
+                    utils.format_time(time.time() - t_fold),
+                    np.round(
+                        accuracy_score(
+                            y_true=df_test["y"], y_pred=df_test["predicted_label"]
+                        ),
+                        2,
                     ),
-                    2,
-                ),
+                )
+            )
+
+            df_test_all = pd.concat([df_test_all, df_test])
+
+        fname = os.path.join(
+            data_loaders.BASE_DIR,
+            "tmp",
+            "df_test_all_ArgGlove_cross_topic_validation_{}_{}.csv".format(
+                CROSS_TOPIC, data_source
+            ),
+        )
+        df_test_all.to_csv(fname)
+
+        df_test_all["dataset"] = data_source
+        df_results_all = pd.concat([df_results_all, df_test_all])
+        print(
+            "*** time for {}: {:}".format(
+                data_source, utils.format_time(time.time() - t_source)
             )
         )
 
-        df_test_all = pd.concat([df_test_all, df_test])
-
+    print("*** time for ArgGlove: {:}".format(utils.format_time(time.time() - total_t0)))
     fname = os.path.join(
         data_loaders.BASE_DIR,
         "tmp",
-        "df_test_all_ArgGlove_cross_topic_validation_{}_{}.csv".format(
-            CROSS_TOPIC, data_source
-        ),
+        "df_results_all_ArgGlove_cross_topic_validation_{}.csv".format(CROSS_TOPIC),
     )
-    df_test_all.to_csv(fname)
+    df_results_all.to_csv(fname)
 
-    df_test_all["dataset"] = data_source
-    df_results_all = pd.concat([df_results_all, df_test_all])
-    print(
-        "*** time for {}: {:}".format(
-            data_source, utils.format_time(time.time() - t_source)
-        )
-    )
 
-print("*** time for ArgGlove: {:}".format(utils.format_time(time.time() - total_t0)))
-fname = os.path.join(
-    data_loaders.BASE_DIR,
-    "tmp",
-    "df_results_all_ArgGlove_cross_topic_validation_{}.csv".format(CROSS_TOPIC),
-)
-df_results_all.to_csv(fname)
+if __name__ == '__main__':
+    import plac; plac.call(main)
