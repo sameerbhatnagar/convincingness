@@ -138,7 +138,7 @@ def get_cross_topic_validation_df(df_all):
         )
     return train_dataframes,test_dataframes
 
-def load_arg_pairs(data_source,N_folds=5,cross_topic_validation=False):
+def load_arg_pairs_UKP_IBMArg(data_source,N_folds=5,cross_topic_validation=False):
 
 
     topics = DATASETS[data_source]["files"]
@@ -285,6 +285,25 @@ def load_dalite_data(N_folds=5,cross_topic_validation=False,discipline=None):
     return train_dataframes, test_dataframes, df_all
 
 
+
+def load_arg_pairs(**kwargs):
+
+    if kwargs["data_source"] in DATASETS.keys():
+        return load_arg_pairs_UKP_IBMArg(**kwargs)
+    else:
+        if kwargs["data_source"] == 'IBM_Evi':
+            del kwargs["data_source"]
+            return load_arg_pairs_IBM_Evi(**kwargs)
+        else:
+            del kwargs["data_source"]
+            return load_dalite_data(**kwargs)
+
+
+
+
+
+
+# ARCHIVE
 def load_textbook_data():
 
     data_dir = "gdrive/My Drive/Colab Notebooks/convincingness/data/textbooks"

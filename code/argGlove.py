@@ -4,6 +4,7 @@ import pandas as pd
 import time
 import numpy as np
 import os
+from pathlib import Path
 
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn import svm
@@ -15,8 +16,8 @@ import spacy
 
 NLP_MD = spacy.load("en_core_web_md", disable=["ner", "tagger", "parser"])
 
-
 class GloveVectorizer(BaseEstimator, TransformerMixin):
+
     def __init__(self):
         self._nlp = NLP_MD
 
@@ -30,40 +31,43 @@ class GloveVectorizer(BaseEstimator, TransformerMixin):
     N_folds=plac.Annotation("N_folds",kind="option"),
     cross_topic_validation=plac.Annotation("cross_topic_validation",kind="flag"),
     data_source=plac.Annotation("data_source"),
-
 )
 
 def main(cross_topic_validation,data_source,N_folds=5):
 
     if data_source == "all":
-        data_sources = data.keys()
+        data_sources = ["IBM_ArgQ","UKP","IBM_Evi","dalite"]
     else:
         data_sources = [data_source]
 
 
-    CROSS_TOPIC = False
-    N_FOLDS = 10
-
     data = {}
-    data_sources = ["IBM_ArgQ", "UKP"]
     for data_source in data_sources:
         data[data_source] = data_loaders.load_arg_pairs(
-            data_source,
-            N_folds=N_FOLDS,
-            cross_topic_validation=CROSS_TOPIC,
+            data_source=data_source,
+            N_folds=N_folds,
+            cross_topic_validation=cross_topic_validation,
         )
-
-    data["dalite"] = data_loaders.load_dalite_data(
-        N_folds = N_FOLDS,
-        cross_topic_validation=CROSS_TOPIC
-        )
-    data["IBM_Evi"] = data_loaders.load_arg_pairs_IBM_Evi(
-        N_folds = N_FOLDS,
-        cross_topic_validation=CROSS_TOPIC
-    )
 
     total_t0 = time.time()
 
+    # save results to:
+    if cross_topic_validation:
+        results_sub_dir="cross_topic_validation"
+    else:
+        results_sub_dir="{}_fold_validation".format(N_folds)
+
+    fname="df_results_all_ArgGlove_{}.csv".format("_".join(data_sources))
+
+    fpath = os.path.join(
+        data_loaders.BASE_DIR,
+        os.pardir,
+        "tmp",
+        results_sub_dir,
+        fname
+    )
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+    print("Saving results to {}".format(fname))
 
 
     df_results_all = pd.DataFrame()
@@ -85,7 +89,10 @@ def main(cross_topic_validation,data_source,N_folds=5):
             df_train = df_train.rename(columns={"question": "topic"})
             df_test = df_test.rename(columns={"question": "topic"})
 
-            topic = df_test["topic"].value_counts().index[0]
+            if cross_topic_validation:
+                fold_name = df_test["topic"].value_counts().index[0]
+            else:
+                fold_name=i
             t_topic = time.time()
 
             vec = GloveVectorizer()
@@ -111,7 +118,7 @@ def main(cross_topic_validation,data_source,N_folds=5):
 
             print(
                 "***\t time for fold {}: {:}; accuracy={}".format(
-                    topic,
+                    fold_name,
                     utils.format_time(time.time() - t_fold),
                     np.round(
                         accuracy_score(
@@ -124,14 +131,14 @@ def main(cross_topic_validation,data_source,N_folds=5):
 
             df_test_all = pd.concat([df_test_all, df_test])
 
-        fname = os.path.join(
-            data_loaders.BASE_DIR,
-            "tmp",
-            "df_test_all_ArgGlove_cross_topic_validation_{}_{}.csv".format(
-                CROSS_TOPIC, data_source
-            ),
-        )
-        df_test_all.to_csv(fname)
+        # fname = os.path.join(
+        #     data_loaders.BASE_DIR,
+        #     "tmp",
+        #     "df_test_all_ArgGlove_cross_topic_validation_{}_{}.csv".format(
+        #         CROSS_TOPIC, data_source
+        #     ),
+        # )
+        # df_test_all.to_csv(fname)
 
         df_test_all["dataset"] = data_source
         df_results_all = pd.concat([df_results_all, df_test_all])
@@ -142,11 +149,7 @@ def main(cross_topic_validation,data_source,N_folds=5):
         )
 
     print("*** time for ArgGlove: {:}".format(utils.format_time(time.time() - total_t0)))
-    fname = os.path.join(
-        data_loaders.BASE_DIR,
-        "tmp",
-        "df_results_all_ArgGlove_cross_topic_validation_{}.csv".format(CROSS_TOPIC),
-    )
+
     df_results_all.to_csv(fname)
 
 
