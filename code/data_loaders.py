@@ -149,7 +149,7 @@ def load_arg_pairs_UKP_IBMArg(data_source,N_folds=5,cross_topic_validation=False
     if cross_topic_validation:
 
         for topic, filename in topics:
-            print(filename)
+            # print(filename)
             fpath = os.path.join(data_dir, filename)
             df_stance = pd.read_csv(fpath, sep="\t")
 
@@ -169,7 +169,7 @@ def load_arg_pairs_UKP_IBMArg(data_source,N_folds=5,cross_topic_validation=False
         test_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
 
         for topic, filename in topics:
-            print(filename)
+            # print(filename)
             d = {}
             fpath = os.path.join(data_dir, filename)
             df_stance = pd.read_csv(fpath, sep="\t")
@@ -195,6 +195,7 @@ def load_arg_pairs_UKP_IBMArg(data_source,N_folds=5,cross_topic_validation=False
                     [test_dataframes[i], df_stance.iloc[test_indices]]
                 )
 
+    print("Loaded {} arg pairs".format(data_source))
     return train_dataframes, test_dataframes, df_all
 
 
@@ -242,6 +243,7 @@ def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False):
                 test_dataframes[i] = pd.concat(
                     [test_dataframes[i], df_topic.iloc[test_indices]]
                 )
+    print("Loaded {} arg pairs".format("IBM_Evi"))
 
     return train_dataframes, test_dataframes, df_all
 
@@ -281,6 +283,7 @@ def load_dalite_data(N_folds=5,cross_topic_validation=False,discipline=None):
                 test_dataframes[i] = pd.concat(
                     [test_dataframes[i], df_topic.iloc[test_indices]]
                 )
+    print("Loaded {} arg pairs".format("dalite"))
 
     return train_dataframes, test_dataframes, df_all
 
