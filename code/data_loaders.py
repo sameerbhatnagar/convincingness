@@ -158,6 +158,7 @@ def load_arg_pairs_UKP_IBMArg(data_source,N_folds=5,cross_topic_validation=False
 
             df_stance["stance"] = topic.split("_")[1]
             df_stance["topic"] = topic.split("_")[0]
+            df_stance["filename"] = filename
             df_stance["y"] = df_stance["label"].map({"a1": 0, "a2": 1})
 
             df_all = pd.concat([df_all, df_stance])
@@ -179,6 +180,8 @@ def load_arg_pairs_UKP_IBMArg(data_source,N_folds=5,cross_topic_validation=False
 
             df_stance["stance"] = topic.split("_")[1]
             df_stance["topic"] = topic.split("_")[0]
+            df_stance["filename"] = filename
+
             df_stance["y"] = df_stance["label"].map({"a1": 0, "a2": 1})
 
             df_all = pd.concat([df_all, df_stance])
