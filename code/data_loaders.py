@@ -156,6 +156,7 @@ def get_arg_ranks(pairs_df, rank_data_dir, fname):
             ),
         ]
     ).drop_duplicates("id_pair")
+
     args_from_pairs_df["_argument"] = (
         args_from_pairs_df["argument"].str.lower().str.strip()
     )
@@ -167,6 +168,8 @@ def get_arg_ranks(pairs_df, rank_data_dir, fname):
         )
 
     elif "UKP" in rank_data_dir:
+        args_df["#id"] = args_df["#id"].astype("str")
+
         args_df = pd.merge(
             args_df, args_from_pairs_df, left_on="#id", right_on="id_pair"
         )
