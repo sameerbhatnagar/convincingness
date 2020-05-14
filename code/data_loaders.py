@@ -5,13 +5,13 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.feature_extraction.text import CountVectorizer
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DATA_DIR = os.path.join(BASE_DIR,"data")
+BASE_DATA_DIR = os.path.join(BASE_DIR, "data")
 DATASETS = {}
 
 DATASETS["IBM_ArgQ"] = {}
-DATASETS["IBM_ArgQ"][
-    "data_dir"
-] = os.path.join(BASE_DATA_DIR,"IBM-ArgQ-9.1kPairs")
+DATASETS["IBM_ArgQ"]["data_dir"] = os.path.join(BASE_DATA_DIR, "IBM-ArgQ-9.1kPairs")
+DATASETS["IBM_ArgQ"]["rank_data_dir"] = os.path.join(BASE_DATA_DIR, "IBM-ArgQ-6.3kArgs")
+
 DATASETS["IBM_ArgQ"]["files"] = [
     ("vaccination_PRO", "Flu-vaccination-should-be-mandatory-(PRO).tsv"),
     ("vaccination_CON", "Flu-vaccination-should-not-be-mandatory-(CON).tsv"),
@@ -42,9 +42,11 @@ DATASETS["IBM_ArgQ"]["files"] = [
 
 
 DATASETS["UKP"] = {}
-DATASETS["UKP"][
-    "data_dir"
-] = os.path.join(BASE_DATA_DIR,"UKPConvArg1Strict-CSV")
+DATASETS["UKP"]["data_dir"] = os.path.join(BASE_DATA_DIR, "UKPConvArg1Strict-CSV")
+DATASETS["UKP"]["rank_data_dir"] = os.path.join(
+    BASE_DATA_DIR, "UKPConvArg1-Ranking-CSV"
+)
+
 DATASETS["UKP"]["files"] = [
     ("plastic_CON", "ban-plastic-water-bottles_no-bad-for-the-economy.csv"),
     ("plastic_PRO", "ban-plastic-water-bottles_yes-emergencies-only.csv"),
@@ -122,24 +124,62 @@ DATASETS["UKP"]["files"] = [
     ),
 ]
 
+
 def get_cross_topic_validation_df(df_all):
 
-    df_all=df_all.rename(columns={"question":"topic"})
+    df_all = df_all.rename(columns={"question": "topic"})
     N_folds = len(df_all["topic"].value_counts().index.to_list())
     train_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
     test_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
 
-    for i,(topic,df_topic) in enumerate(df_all.groupby("topic")):
+    for i, (topic, df_topic) in enumerate(df_all.groupby("topic")):
         train_dataframes[i] = pd.concat(
-            [train_dataframes[i], df_all[df_all["topic"]!=topic]]
-            )
-        test_dataframes[i] = pd.concat(
-            [test_dataframes[i],df_topic]
+            [train_dataframes[i], df_all[df_all["topic"] != topic]]
         )
-    return train_dataframes,test_dataframes
+        test_dataframes[i] = pd.concat([test_dataframes[i], df_topic])
+    return train_dataframes, test_dataframes
 
-def load_arg_pairs_UKP_IBMArg(data_source,N_folds=5,cross_topic_validation=False):
 
+def get_arg_ranks(pairs_df, rank_data_dir, fname):
+    # load ground truth rankings
+    args_df = pd.read_csv(os.path.join(BASE_DATA_DIR, rank_data_dir, fname), sep="\t")
+    args_df["_argument"] = args_df["argument"].str.lower().str.strip()
+
+    # append pair_id column to table of ground truth rankings
+    args_from_pairs_df = pd.concat(
+        [
+            pairs_df[["a1", "a1_id"]].rename(
+                columns={"a1": "argument", "a1_id": "id_pair"}
+            ),
+            pairs_df[["a2", "a2_id"]].rename(
+                columns={"a2": "argument", "a2_id": "id_pair"}
+            ),
+        ]
+    ).drop_duplicates("id_pair")
+    args_from_pairs_df["_argument"] = (
+        args_from_pairs_df["argument"].str.lower().str.strip()
+    )
+
+    if "IBM" in rank_data_dir:
+        args_df = pd.merge(args_df, args_from_pairs_df, on="_argument",)
+        arg_rank_id_dict = (
+            args_df[["id_pair", "rank"]].set_index("id_pair").to_dict()["rank"]
+        )
+
+    elif "UKP" in rank_data_dir:
+        args_df = pd.merge(
+            args_df, args_from_pairs_df, left_on="#id", right_on="id_pair"
+        )
+
+        arg_rank_id_dict = args_df[["#id", "rank"]].set_index("#id").to_dict()["rank"]
+
+    pairs_df["a1_rank"] = pairs_df["a1_id"].map(arg_rank_id_dict)
+    pairs_df["a2_rank"] = pairs_df["a2_id"].map(arg_rank_id_dict)
+
+    return pairs_df
+
+
+def load_arg_pairs_UKP_IBMArg(data_source, N_folds=5, cross_topic_validation=False):
 
     topics = DATASETS[data_source]["files"]
     data_dir = DATASETS[data_source]["data_dir"]
@@ -163,7 +203,7 @@ def load_arg_pairs_UKP_IBMArg(data_source,N_folds=5,cross_topic_validation=False
 
             df_all = pd.concat([df_all, df_stance])
 
-        train_dataframes,test_dataframes = get_cross_topic_validation_df(df_all)
+        train_dataframes, test_dataframes = get_cross_topic_validation_df(df_all)
 
     else:
         train_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
@@ -206,7 +246,9 @@ def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False):
 
     df_all = pd.DataFrame()
     for ftype in ["train", "test"]:
-        fname = os.path.join(BASE_DATA_DIR,"IBM_Debater_(R)_EviConv-ACL-2019.v1/{}.csv".format(ftype))
+        fname = os.path.join(
+            BASE_DATA_DIR, "IBM_Debater_(R)_EviConv-ACL-2019.v1/{}.csv".format(ftype)
+        )
         df = pd.read_csv(fname)
         df = df.rename(
             columns={
@@ -214,6 +256,8 @@ def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False):
                 "evidence_2": "a2",
                 "evidence_1_id": "a1_id",
                 "evidence_2_id": "a2_id",
+                "evidence_1_detection_score": "a1_rank",
+                "evidence_2_detection_score": "a2_rank",
             }
         )
         df["#id"] = "arg" + df["a1_id"].astype(str) + "_arg" + df["a2_id"].astype(str)
@@ -221,14 +265,30 @@ def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False):
         df["y"] = df["label"].map({"a1": 0, "a2": 1})
 
         df_all = pd.concat(
-            [df_all, df[["#id", "label", "y", "a1", "a2", "topic", "a1_id", "a2_id"]]]
+            [
+                df_all,
+                df[
+                    [
+                        "#id",
+                        "label",
+                        "y",
+                        "a1",
+                        "a2",
+                        "topic",
+                        "a1_id",
+                        "a2_id",
+                        "a1_rank",
+                        "a2_rank",
+                    ]
+                ],
+            ]
         )
 
     per_topic = df_all["topic"].value_counts()
     df_all = df_all[df_all["topic"].isin(per_topic[per_topic >= 50].index)]
 
     if cross_topic_validation:
-        train_dataframes,test_dataframes = get_cross_topic_validation_df(df_all)
+        train_dataframes, test_dataframes = get_cross_topic_validation_df(df_all)
 
     else:
         train_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
@@ -251,9 +311,9 @@ def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False):
     return train_dataframes, test_dataframes, df_all
 
 
-def load_dalite_data(N_folds=5,cross_topic_validation=False,discipline=None):
+def load_dalite_data(N_folds=5, cross_topic_validation=False, discipline=None):
 
-    data_dir = os.path.join(BASE_DATA_DIR,"mydalite_arg_pairs")
+    data_dir = os.path.join(BASE_DATA_DIR, "mydalite_arg_pairs")
 
     topics = os.listdir(data_dir)
     df_all = pd.DataFrame()
@@ -266,15 +326,15 @@ def load_dalite_data(N_folds=5,cross_topic_validation=False,discipline=None):
 
     if cross_topic_validation:
         if discipline:
-            df_all = df_all[df_all["discipline"]==discipline]
+            df_all = df_all[df_all["discipline"] == discipline]
 
-        train_dataframes,test_dataframes = get_cross_topic_validation_df(df_all)
+        train_dataframes, test_dataframes = get_cross_topic_validation_df(df_all)
     else:
 
-        train_dataframes = [pd.DataFrame() for _ in itertools.repeat(None,N_folds)]
+        train_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
         test_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
 
-        for topic,df_topic in df_all.groupby("question"):
+        for topic, df_topic in df_all.groupby("question"):
             skf = StratifiedKFold(n_splits=N_folds)
             for i, (train_indices, test_indices) in enumerate(
                 skf.split(X=df_topic, y=df_topic["label"])
@@ -291,22 +351,17 @@ def load_dalite_data(N_folds=5,cross_topic_validation=False,discipline=None):
     return train_dataframes, test_dataframes, df_all
 
 
-
 def load_arg_pairs(**kwargs):
 
     if kwargs["data_source"] in DATASETS.keys():
         return load_arg_pairs_UKP_IBMArg(**kwargs)
     else:
-        if kwargs["data_source"] == 'IBM_Evi':
+        if kwargs["data_source"] == "IBM_Evi":
             del kwargs["data_source"]
             return load_arg_pairs_IBM_Evi(**kwargs)
         else:
             del kwargs["data_source"]
             return load_dalite_data(**kwargs)
-
-
-
-
 
 
 # ARCHIVE
