@@ -51,23 +51,22 @@ def main(cross_topic_validation,data_source,N_folds=5):
 
     total_t0 = time.time()
 
+    model_name = "argGlove"
+
     # save results to:
     if cross_topic_validation:
-        results_sub_dir="cross_topic_validation"
+        results_sub_dir = os.path.join(
+            data_loaders.BASE_DIR, "tmp", model_name, "cross_topic_validation"
+        )
     else:
-        results_sub_dir="{}_fold_validation".format(N_folds)
+        results_sub_dir = os.path.join(
+            data_loaders.BASE_DIR,
+            "tmp",
+            model_name,
+            "{}_fold_validation".format(N_folds),
+        )
 
-    fname="df_results_all_ArgGlove_{}.csv".format("_".join(data_sources))
-
-    fpath = os.path.join(
-        data_loaders.BASE_DIR,
-        os.pardir,
-        "tmp",
-        results_sub_dir,
-        fname
-    )
-    Path(output_dir).mkdir(parents=True, exist_ok=True)
-    print("Saving results to {}".format(fname))
+    Path(results_sub_dir).mkdir(parents=True, exist_ok=True)
 
 
     df_results_all = pd.DataFrame()
@@ -148,9 +147,15 @@ def main(cross_topic_validation,data_source,N_folds=5):
             )
         )
 
+    fname = "df_results_all_{}_{}.csv".format(model_name, data_source)
+
+    fpath = os.path.join(results_sub_dir, fname)
+    print("\n Saving results to {}".format(fpath))
+    df_results_all.to_csv(fpath)
+
     print("*** time for ArgGlove: {:}".format(utils.format_time(time.time() - total_t0)))
 
-    df_results_all.to_csv(fname)
+
 
 
 if __name__ == '__main__':
