@@ -229,7 +229,7 @@ def load_arg_pairs_UKP_IBMArg(data_source, N_folds=5, cross_topic_validation=Fal
 
             df_all = pd.concat([df_all, df_stance])
 
-            skf = StratifiedKFold(n_splits=N_folds)
+            skf = StratifiedKFold(n_splits=N_folds,random_state=123)
             for i, (train_indices, test_indices) in enumerate(
                 skf.split(X=df_stance, y=df_stance["label"])
             ):
