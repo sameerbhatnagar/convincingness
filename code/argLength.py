@@ -28,21 +28,25 @@ def main(cross_topic_validation,N_folds=5):
 
     total_t0 = time.time()
 
+    model_name="ArgLength"
+
     # save results to:
     if cross_topic_validation:
-        results_sub_dir="cross_topic_validation"
+        results_sub_dir=os.path.join(
+            data_loaders.BASE_DIR,
+            "tmp",
+            model_name,
+            "cross_topic_validation"
+            )
     else:
-        results_sub_dir="{}_fold_validation".format(N_folds)
+        results_sub_dir=os.path.join(
+            data_loaders.BASE_DIR,
+            "tmp",
+            model_name,
+            "{}_fold_validation".format(N_folds)
+            )
 
-    fname="df_results_all_ArgLength_{}.csv".format("_".join(data_sources))
-
-    fpath = os.path.join(
-        data_loaders.BASE_DIR,
-        "tmp",
-        fname
-    )
     Path(results_sub_dir).mkdir(parents=True, exist_ok=True)
-    print("Saving results to {}".format(fpath))
 
     df_test_all_arglength = pd.DataFrame()
     for data_source in data.keys():
@@ -52,7 +56,7 @@ def main(cross_topic_validation,N_folds=5):
         df_test_all = pd.DataFrame()
 
         for i, (df_train, df_test) in enumerate(zip(train_dataframes, test_dataframes)):
-            print("Fold {}".format(i))
+            print("Fold {}".format(i),end=",")
             df_train = df_train.rename(columns={"question": "topic"})
             df_test = df_test.rename(columns={"question": "topic"})
             df_train["a1_wc"] = df_train["a1"].str.count("\w+")
@@ -78,10 +82,19 @@ def main(cross_topic_validation,N_folds=5):
             df_test["fold"] = i
             df_test_all = pd.concat([df_test_all, df_test])
 
-        df_test_all["dataset"] = data_source
-        df_test_all_arglength = pd.concat([df_test_all_arglength, df_test_all])
+        # df_test_all["dataset"] = data_source
+        # df_test_all_arglength = pd.concat([df_test_all_arglength, df_test_all])
 
-    df_test_all_arglength.to_csv(fpath)
+        fname="df_results_all_ArgLength_{}.csv".format(data_source)
+
+        fpath = os.path.join(
+            results_sub_dir,
+            fname
+        )
+        print("\n Saving results to {}".format(fpath))
+
+        df_test_all.to_csv(fpath)
+
     print("*** time for ArgLength: {:}".format(utils.format_time(time.time() - total_t0)))
 
 if __name__ == '__main__':
