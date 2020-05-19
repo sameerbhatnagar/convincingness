@@ -192,7 +192,7 @@ def main(cross_topic_validation, data_source, N_folds=5):
         df_results_all.to_csv(fpath)
 
     print(
-        "*** time for {}: {:}".format(data_source, format_time(time.time() - t_source))
+        "*** time for {}: {:}".format(data_source, utils.format_time(time.time() - t_source))
     )
 
 
