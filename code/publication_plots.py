@@ -7,7 +7,43 @@ from scipy.special import softmax
 
 CROSS_TOPIC = True
 
+import matplotlib.pyplot as plt
+import numpy as np
 
+# https://stackoverflow.com/a/42033734
+def grouped_barplot(df, cat,subcat, val ,ylabel, err,bar_colors,fname=None):
+    plt.style.use("ggplot")
+    u = df[cat].unique()
+    x = np.arange(len(u))
+    # print(x)
+    subx = df[subcat].unique()
+    offsets = (np.arange(len(subx))-np.arange(len(subx)).mean())/(len(subx)+1.)
+    # print(offsets)
+    width= np.diff(offsets).mean()
+    for i,gr in enumerate(subx):
+        dfg = df[df[subcat] == gr]
+        plt.bar(
+            x+offsets[i],
+            dfg[val].values,
+            width=width,
+            # label="{} {}".format(subcat, gr),
+            label="{}".format(gr),
+            yerr=dfg[err].values,
+            color=bar_colors[i],
+            error_kw=dict(ecolor='gray',capsize=3)
+            )
+    plt.xlabel(cat)
+    plt.ylabel(ylabel)
+    plt.ylim((0.5,1))
+    plt.xticks(x, u)
+    # plt.axhline(y=0.83,color="black",linewidth=8)
+    plt.legend()
+    if fname:
+      plt.savefig(fname)
+    else:
+      plt.show()
+
+      
 def melt_results(means_df, id_var="dataset"):
 
     x = means_df.reset_index()[["acc", "AUC", id_var]].melt(id_vars=[id_var])
@@ -24,7 +60,8 @@ def argLength():
     data_sources = ["IBM_ArgQ", "UKP"]
     for data_source in data_sources:
         data[data_source] = data_loaders.load_arg_pairs(
-            data_source, cross_topic_validation=CROSS_TOPIC
+            data_source=data_source,
+            cross_topic_validation=CROSS_TOPIC
         )
 
     data["dalite"] = data_loaders.load_dalite_data(cross_topic_validation=CROSS_TOPIC)
