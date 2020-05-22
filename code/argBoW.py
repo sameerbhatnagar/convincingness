@@ -92,6 +92,14 @@ def main(cross_topic_validation, data_source, N_folds=5):
             cross_topic_validation=cross_topic_validation,
         )
 
+    for discipline in ["Physics","Chemistry","Biology"]:
+        data[discipline] = data_loaders.load_arg_pairs(
+            data_source="dalite",
+            N_folds=N_folds,
+            cross_topic_validation=cross_topic_validation,
+            discipline=discipline,
+        )
+
     lemmatize = True
     term_freq = True
     idf = False
