@@ -30,7 +30,7 @@ def grouped_barplot(df, cat,subcat, val ,ylabel, err,bar_colors,fname=None):
             label="{}".format(gr),
             yerr=dfg[err].values,
             color=bar_colors[i],
-            error_kw=dict(ecolor='gray',capsize=3)
+            error_kw=dict(ecolor='gray',capsize=3),
             )
     plt.xlabel(cat)
     plt.ylabel(ylabel)
@@ -43,7 +43,55 @@ def grouped_barplot(df, cat,subcat, val ,ylabel, err,bar_colors,fname=None):
     else:
       plt.show()
 
-      
+
+def grouped_barplot_by_dataset(df, cat,subcat, val ,ylabel, err,bar_colors,fname=None):
+    """
+    e.g.
+    means_df_plot_all2.groupby("variable").apply(
+    lambda x: grouped_barplot_by_dataset(
+        x,
+        cat="dataset",
+        subcat="model",
+        val="value",
+        ylabel=x["variable"].iat[0],
+        bar_colors=["cornflowerblue","lightsteelblue","darkorange","mediumturquoise"],
+        err="+/-",
+        )
+    )
+    """
+
+    hatch = ["","-",".","///"]
+    plt.style.use("ggplot")
+    u = df[cat].unique()
+    x = np.arange(len(u))
+    subx = df[subcat].unique()
+    offsets = (np.arange(len(subx))-np.arange(len(subx)).mean())/(len(subx)+1.)
+    width= np.diff(offsets).mean()
+
+    for i,gr in enumerate(subx):
+        dfg = df[df[subcat] == gr]
+        plt.bar(
+            x+offsets[i],
+            dfg[val].values,
+            width=width,
+            label="{}".format(gr),
+            yerr=dfg[err].values,
+            linewidth=dfg["sig"].values,
+            edgecolor=['black']*len(x), #bug for linewidth: https://github.com/matplotlib/matplotlib/issues/9351
+            color=bar_colors,
+            hatch=hatch[i],
+            error_kw=dict(ecolor='gray',capsize=3),
+            )
+    plt.xlabel(cat)
+    plt.ylabel(ylabel)
+    plt.ylim((0.5,1))
+    plt.xticks(x, u)
+    plt.legend()
+    if fname:
+      plt.savefig(fname)
+    else:
+      plt.show()
+
 def melt_results(means_df, id_var="dataset"):
 
     x = means_df.reset_index()[["acc", "AUC", id_var]].melt(id_vars=[id_var])
