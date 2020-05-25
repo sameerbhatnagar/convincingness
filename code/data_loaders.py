@@ -314,7 +314,7 @@ def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False):
     return train_dataframes, test_dataframes, df_all
 
 
-def load_dalite_data(N_folds=5, cross_topic_validation=False, discipline=None):
+def load_dalite_data(discipline, N_folds=5, cross_topic_validation=False):
 
     data_dir = os.path.join(BASE_DATA_DIR, "mydalite_arg_pairs")
 
@@ -327,10 +327,11 @@ def load_dalite_data(N_folds=5, cross_topic_validation=False, discipline=None):
         df_stance["question"] = topic.split("_")[1]
         df_all = pd.concat([df_all, df_stance])
 
-    if cross_topic_validation:
-        if discipline:
-            df_all = df_all[df_all["discipline"] == discipline]
+    if discipline:
+        df_all = df_all[df_all["discipline"] == discipline]
 
+
+    if cross_topic_validation:
         train_dataframes, test_dataframes = get_cross_topic_validation_df(df_all)
     else:
 
