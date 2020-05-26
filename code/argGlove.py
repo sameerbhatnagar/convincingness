@@ -43,19 +43,20 @@ def main(cross_topic_validation,data_source,N_folds=5):
 
     data = {}
     for data_source in data_sources:
-        data[data_source] = data_loaders.load_arg_pairs(
-            data_source=data_source,
-            N_folds=N_folds,
-            cross_topic_validation=cross_topic_validation,
-        )
 
-    for discipline in ["Physics","Chemistry","Biology"]:
-        data[discipline] = data_loaders.load_arg_pairs(
-            data_source="dalite",
-            N_folds=N_folds,
-            cross_topic_validation=cross_topic_validation,
-            discipline=discipline,
-        )
+        if data_source in ["Physics","Chemistry","Biology"]:
+            data[data_source]=data_loaders.load_dalite_data(
+                discipline=data_source,
+                cross_topic_validation=cross_topic_validation,
+                N_folds=N_folds,
+            )
+        else:
+            data[data_source] = data_loaders.load_arg_pairs(
+                data_source=data_source,
+                N_folds=N_folds,
+                cross_topic_validation=cross_topic_validation,
+            )
+
 
     total_t0 = time.time()
 
@@ -78,7 +79,7 @@ def main(cross_topic_validation,data_source,N_folds=5):
 
 
     df_results_all = pd.DataFrame()
-    for data_source in data_sources:
+    for data_source in data.keys():
         print(data_source)
         train_dataframes, test_dataframes, df_all = data[data_source]
         df_all = df_all.rename(columns={"question": "topic"})

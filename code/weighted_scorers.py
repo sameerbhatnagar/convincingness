@@ -3,12 +3,16 @@ import pandas as pd
 from sklearn.metrics import accuracy_score,roc_auc_score
 
 
-def my_scores(df_g):
+def my_scores(df_g, roc=True):
   d={}
   d["acc"] = accuracy_score(y_true=df_g["y"],y_pred=df_g["predicted_label"])
-  d["AUC"] = roc_auc_score(y_true=df_g["y"],y_score=df_g["pred_score_1_soft"])
   d["N"] = df_g.shape[0]
-  return pd.Series(d,index=["acc","AUC","N"])
+
+  if roc:
+      d["AUC"] = roc_auc_score(y_true=df_g["y"],y_score=df_g["pred_score_1_soft"])
+      return pd.Series(d,index=["acc","AUC","N"])
+  else:
+      return pd.Series(d,index=["acc","N"])
 
 def weighted_avg(df_g):
   d={}
