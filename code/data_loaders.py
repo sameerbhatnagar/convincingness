@@ -182,7 +182,31 @@ def get_arg_ranks(pairs_df, rank_data_dir, fname):
     return pairs_df
 
 
-def load_arg_pairs_UKP_IBMArg(data_source, N_folds=5, cross_topic_validation=False):
+def invert_and_double_data(train_dataframes,test_dataframes):
+    """
+    testing hypothesis that data can be augmented for BERT by inverting labels
+    """
+    for i,(train_df,test_df) in enumerate(zip(train_dataframes,test_dataframes)):
+        train_df_inverted = train_df.copy()
+        test_df_inverted = test_df.copy()
+        train_df_inverted["y"] = train_df_inverted["label"].map({"a1":1,"a2":0})
+        test_df_inverted["y"] = test_df_inverted["label"].map({"a1":1,"a2":0})
+        train_dataframes[i] = pd.concat(
+            [
+                train_dataframes[i],
+                train_df_inverted
+            ]
+        )
+        test_dataframes[i] = pd.concat(
+            [
+                test_dataframes[i],
+                test_df_inverted
+            ]
+        )
+    return train_dataframes,test_dataframes
+
+
+def load_arg_pairs_UKP_IBMArg(data_source, N_folds=5, cross_topic_validation=False,bert_double_data=False):
 
     topics = DATASETS[data_source]["files"]
     data_dir = DATASETS[data_source]["data_dir"]
@@ -242,10 +266,16 @@ def load_arg_pairs_UKP_IBMArg(data_source, N_folds=5, cross_topic_validation=Fal
                 )
 
     print("Loaded {} arg pairs".format(data_source))
+
+    if bert_double_data:
+        train_dataframes, test_dataframes = invert_and_double_data(
+            train_dataframes,test_dataframes
+        )
+
     return train_dataframes, test_dataframes, df_all
 
 
-def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False):
+def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False,bert_double_data=False):
 
     df_all = pd.DataFrame()
     for ftype in ["train", "test"]:
@@ -311,10 +341,15 @@ def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False):
                 )
     print("Loaded {} arg pairs".format("IBM_Evi"))
 
+    if bert_double_data:
+        train_dataframes, test_dataframes = invert_and_double_data(
+            train_dataframes,test_dataframes
+        )
+
     return train_dataframes, test_dataframes, df_all
 
 
-def load_dalite_data(discipline, N_folds=5, cross_topic_validation=False):
+def load_dalite_data(discipline, N_folds=5, cross_topic_validation=False, bert_double_data=False):
 
     data_dir = os.path.join(BASE_DATA_DIR, "mydalite_arg_pairs")
 
@@ -351,6 +386,11 @@ def load_dalite_data(discipline, N_folds=5, cross_topic_validation=False):
                     [test_dataframes[i], df_topic.iloc[test_indices]]
                 )
     print("Loaded {} arg pairs".format("dalite"))
+
+    if bert_double_data:
+        train_dataframes, test_dataframes = invert_and_double_data(
+            train_dataframes,test_dataframes
+        )
 
     return train_dataframes, test_dataframes, df_all
 
