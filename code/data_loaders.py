@@ -127,7 +127,8 @@ DATASETS["UKP"]["files"] = [
 
 def get_cross_topic_validation_df(df_all):
 
-    df_all = df_all.rename(columns={"question": "topic"})
+    # df_all = df_all.rename(columns={"question": "topic"})
+
     N_folds = len(df_all["topic"].value_counts().index.to_list())
     train_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
     test_dataframes = [pd.DataFrame() for _ in itertools.repeat(None, N_folds)]
@@ -351,7 +352,7 @@ def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False,bert_double_d
 
 def load_dalite_data(discipline, N_folds=5, cross_topic_validation=False, bert_double_data=False):
 
-    data_dir = os.path.join(BASE_DATA_DIR, "mydalite_arg_pairs")
+    data_dir = os.path.join(BASE_DATA_DIR, "mydalite_arg_pairs_others")
 
     topics = os.listdir(data_dir)
     df_all = pd.DataFrame()

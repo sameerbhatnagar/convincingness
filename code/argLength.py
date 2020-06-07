@@ -16,7 +16,7 @@ from pathlib import Path
 
 def main(cross_topic_validation,N_folds=5):
 
-    data_sources = ["IBM_ArgQ","UKP","IBM_Evi","dalite"]
+    data_sources = ["IBM_ArgQ","UKP","IBM_Evi"]
 
     data = {}
     for data_source in data_sources:
@@ -26,9 +26,8 @@ def main(cross_topic_validation,N_folds=5):
             cross_topic_validation=cross_topic_validation,
         )
 
-    for discipline in ["Physics","Chemistry","Biology"]:
-        data[discipline] = data_loaders.load_arg_pairs(
-            data_source="dalite",
+    for discipline in ["Physics","Chemistry","Biology","Ethics"]:
+        data[discipline] = data_loaders.load_dalite_data(
             N_folds=N_folds,
             cross_topic_validation=cross_topic_validation,
             discipline=discipline,
@@ -44,7 +43,7 @@ def main(cross_topic_validation,N_folds=5):
             data_loaders.BASE_DIR,
             "tmp",
             model_name,
-            "cross_topic_validation"
+            "cross_topic_others_validation"
             )
     else:
         results_sub_dir=os.path.join(

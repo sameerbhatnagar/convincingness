@@ -78,26 +78,18 @@ def get_vocab(corpus):
 )
 
 def main(cross_topic_validation, data_source, N_folds=5):
-
-    if data_source == "all":
-        data_sources = ["IBM_ArgQ", "UKP", "IBM_Evi", "dalite"]
+    data={}
+    if data_source in ["Physics","Chemistry","Biology","Ethics"]:
+        data[data_source] = data_loaders.load_dalite_data(
+            N_folds=N_folds,
+            cross_topic_validation=cross_topic_validation,
+            discipline=data_source,
+        )
     else:
-        data_sources = [data_source]
-
-    data = {}
-    for data_source in data_sources:
         data[data_source] = data_loaders.load_arg_pairs(
             data_source=data_source,
             N_folds=N_folds,
             cross_topic_validation=cross_topic_validation,
-        )
-
-    for discipline in ["Physics","Chemistry","Biology"]:
-        data[discipline] = data_loaders.load_arg_pairs(
-            data_source="dalite",
-            N_folds=N_folds,
-            cross_topic_validation=cross_topic_validation,
-            discipline=discipline,
         )
 
     lemmatize = True
@@ -111,7 +103,7 @@ def main(cross_topic_validation, data_source, N_folds=5):
     # save results to:
     if cross_topic_validation:
         results_sub_dir = os.path.join(
-            data_loaders.BASE_DIR, "tmp", model_name, "cross_topic_validation"
+            data_loaders.BASE_DIR, "tmp", model_name, "cross_topic_others_validation"
         )
     else:
         results_sub_dir = os.path.join(
@@ -137,8 +129,8 @@ def main(cross_topic_validation, data_source, N_folds=5):
 
             df_train["y"] = df_train["label"].map({"a1": -1, "a2": 1})
             df_test["y"] = df_test["label"].map({"a1": -1, "a2": 1})
-            df_train = df_train.rename(columns={"question": "topic"})
-            df_test = df_test.rename(columns={"question": "topic"})
+            # df_train = df_train.rename(columns={"question": "topic"})
+            # df_test = df_test.rename(columns={"question": "topic"})
             topic = df_test["topic"].value_counts().index[0]
             print("Fold {}".format(i), end=",")
             t_topic = time.time()
