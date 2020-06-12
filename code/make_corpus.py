@@ -7,8 +7,8 @@ import data_loaders
 
 # from peerinst.models import Question,Answer
 
-VOTES_MIN = 5
-MIN_RECORDS_PER_QUESTION = 100
+VOTES_MIN = 10
+MIN_RECORDS_PER_QUESTION = 50
 MIN_WORD_COUNT = 10
 
 def get_shown_rationales(row):
@@ -31,19 +31,22 @@ def get_mydalite_answers():
     #     discipline__title__in=["Physics","Chemistry","Biology","Statistics"]
     # ).values_list("id",flat=True)
     #
+    # # remove students who have not given consent
+    # usernames_to_exclude = (
+    #     Consent.objects.filter(tos__role="student")
+    #     .values("user__username")
+    #     .annotate(Max("datetime"))
+    #     .filter(accepted=False)
+    #     .values_list("user",flat=True)
+    # )
+    #
     # # answers where students chose a peer's explanation over their own
     # answers=Answer.objects.filter(
     #     chosen_rationale_id__isnull=False,
     #     question_id__in=q_list
-    # )
-    # chosen_rationales=Answer.objects.filter(
-    #     id__in=answers.values_list(
-    #         "chosen_rationale",flat=True
-    #     )
-    # ).values("id","user_token","rationale","datetime_second")
-    #
-    # df=pd.merge(
-    #     pd.DataFrame(
+    # ).exclude(user_token__in=usernames_to_exclude)
+
+    # answers_df= pd.DataFrame(
     #         answers.values(
     #             "id",
     #             "user_token",
@@ -54,20 +57,50 @@ def get_mydalite_answers():
     #             "chosen_rationale_id",
     #             "datetime_second"
     #         )
-    #     ).rename(columns={"datetime_second":"timestamp_chosen"}),
-    #     pd.DataFrame(
+    #     ).rename(columns={"datetime_second":"timestamp_rationale"})
+
+    # # rank answers by time of submission
+    # answers_df["a_rank_by_time"]=(
+    #     answers_df.groupby("question_id")["id"].rank()
+    # )
+    # # get chosen rationales (not just id)
+    # chosen_rationales=Answer.objects.filter(
+    #     id__in=answers.values_list(
+    #         "chosen_rationale",flat=True
+    #     )
+    # ).values("id","user_token","rationale","datetime_second")
+    #
+    # chosen_rationales_df=pd.DataFrame(
     #         chosen_rationales
     #     ).rename(
     #         columns={
     #             "id":"chosen_rationale_id",
     #             "rationale":"chosen_rationale",
     #             "user_token":"chosen_student",
-    #             "datetime_second":"timestamp_written"
+    #             "datetime_second":"timestamp_chosen_rationale"
     #         }
-    #     ),
+    #     )
+    #
+    # # add rank by time for chosen rationale
+    # df=pd.merge(
+    #     answers_df,
+    #     chosen_rationales_df,
     #     on="chosen_rationale_id"
     # )
     #
+    # # add rank by time for chosen rationale
+    # df=pd.merge(
+    #     (
+    #         df[["id","a_rank_by_time"]]
+    #         .rename(columns={
+    #             "id":"chosen_rationale_id",
+    #             "a_rank_by_time":"chosen_a_rank_by_time",
+    #         })
+    #     ),
+    #     df,
+    #     on="chosen_rationale_id",
+    #     how="right"
+    # )
     # # load data on questions so as to append columns on first/second correct
     # path_to_data=os.path.join(data_loaders.BASE_DIR,"data","2020_03_18__all_questions.csv")
     # all_q = pd.read_csv(path_to_data)
@@ -90,7 +123,7 @@ def get_mydalite_answers():
     # print(fpath)
 
     fpath = os.path.join(
-        data_loaders.BASE_DIR, os.pardir, "mydalite_answers_2020_06_10.csv"
+        data_loaders.BASE_DIR, os.pardir, "mydalite_answers_2020_06_11.csv"
     )
     df = pd.read_csv(fpath)
 
@@ -104,7 +137,7 @@ def get_ethics_answers():
 
     df = pd.read_csv(fname)
 
-    df = df.rename(columns={"edx_user_hash_id": "user_token", "rationale_id": "id"})
+    df = df.rename(columns={"edx_user_hash_id": "user_token", "rationale_id": "id","second_check_time":"timestamp_rationale"})
     df["chosen_rationale_id"] = df["chosen_rationale_id"].astype(int)
     df["topic"] = (
         df["question_text"].str.strip("[?.,]").apply(lambda x: max(x.split(), key=len))
@@ -116,6 +149,8 @@ def get_ethics_answers():
         .astype(int)
         .map({0: "switch_ans", 1: "same_ans"})
     )
+
+    df=df[~df["rationale"].isna()]
 
     return df
 
@@ -227,6 +262,7 @@ def make_pairs(df):
             # dr["transition"]=row["transition"]
             dr["annotator"] = row["user_token"]
             ranked_pairs.append(dr)
+            dr
 
             try:
                 others_df = pd.DataFrame(
@@ -247,11 +283,14 @@ def make_pairs(df):
             except AttributeError:
                 others_df = pd.DataFrame()
 
+
             if others_df.shape[0] > 0:
                 # word counts
                 others_df["shown_rationale_word_count"] = others_df[
                     "shown_answer__rationale"
                 ].str.count("\w+")
+
+                others_df=others_df[others_df["shown_rationale_word_count"]>=MIN_WORD_COUNT]
 
                 # others_df[np.abs(others_df["shown_rationale_word_count"]-row["chosen_rationale_word_count"])<=MAX_WORD_COUNT_DIFF]
                 for j, (i2, p) in enumerate(others_df.iterrows()):
@@ -317,13 +356,14 @@ def make_all_pairs():
     df_mydalite["rationale_word_count"] = df_mydalite["rationale"].str.count("\w+")
 
     df_pairs_mydalite = make_pairs(df_mydalite)
-
+    print("mydalite pairs : {}".format(df_pairs_mydalite.shape[0]))
     df_ethics = get_ethics_answers()
     # word counts
     df_ethics["rationale_word_count"] = df_ethics["rationale"].str.count("\w+")
     df_ethics["discipline"]="Ethics"
 
     df_pairs_ethics = make_pairs(df_ethics)
+    print("ethics pairs : {}".format(df_pairs_ethics.shape[0]))
 
     df_pairs_all = pd.concat([df_pairs_mydalite, df_pairs_ethics])
 
