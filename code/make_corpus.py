@@ -88,7 +88,7 @@ def get_mydalite_answers():
     #     on="chosen_rationale_id"
     # )
     #
-    # # add rank by time for chosen rationale
+    # add rank by time for chosen rationale
     # df=pd.merge(
     #     (
     #         df[["id","a_rank_by_time"]]
@@ -148,6 +148,20 @@ def get_ethics_answers():
         (df["first_answer_choice"] == df["second_answer_choice"].astype(int))
         .astype(int)
         .map({0: "switch_ans", 1: "same_ans"})
+    )
+    df["a_rank_by_time"]=df.groupby("question_id")["id"].rank()
+
+    df=pd.merge(
+        (
+            df[["id","a_rank_by_time"]]
+            .rename(columns={
+                "id":"chosen_rationale_id",
+                "a_rank_by_time":"chosen_a_rank_by_time",
+            })
+        ),
+        df,
+        on="chosen_rationale_id",
+        how="right"
     )
 
     df=df[~df["rationale"].isna()]
@@ -241,6 +255,8 @@ def make_pairs(df):
                     != 0
                     else "",
                     "a1_author": row["user_token"],
+                    "a1_rank_by_time":row["a_rank_by_time"],
+                    "a2_rank_by_time":row["chosen_a_rank_by_time"],
                 }
             else:
                 dr = {
@@ -256,13 +272,15 @@ def make_pairs(df):
                     != 0
                     else "",
                     "a2_author": row["user_token"],
+                    "a2_rank_by_time":row["a_rank_by_time"],
+                    "a1_rank_by_time":row["chosen_a_rank_by_time"],
                 }
 
             dr["#id"] = "{}_{}".format(dr["a1_id"], dr["a2_id"])
-            # dr["transition"]=row["transition"]
+            dr["transition"]=row["transition"]
             dr["annotator"] = row["user_token"]
+            dr["annotation_rank_by_time"]=row["a_rank_by_time"]
             ranked_pairs.append(dr)
-            dr
 
             try:
                 others_df = pd.DataFrame(
@@ -274,6 +292,9 @@ def make_pairs(df):
                             ].iat[0],
                             "shown_answer__user_token": df.loc[
                                 df["id"] == int(k), "user_token"
+                            ].iat[0],
+                            "shown_answer__a_rank_by_time":df.loc[
+                                df["id"] == int(k), "a_rank_by_time"
                             ].iat[0],
                         }
                         for k in row["rationales"].strip("[]").split(",")
@@ -304,6 +325,8 @@ def make_pairs(df):
                             "a2_id": "arg" + str(row["chosen_rationale_id"]),
                             "a1_author": p["shown_answer__user_token"],
                             "a2_author": row["user_token"],
+                            "a1_rank_by_time":p["shown_answer__a_rank_by_time"],
+                            "a2_rank_by_time":row["chosen_a_rank_by_time"],
                         }
                     else:
                         dr = {
@@ -314,12 +337,14 @@ def make_pairs(df):
                             "a1_id": "arg" + str(row["chosen_rationale_id"]),
                             "a1_author": row["user_token"],
                             "a2_author": p["shown_answer__user_token"],
+                            "a2_rank_by_time":p["shown_answer__a_rank_by_time"],
+                            "a1_rank_by_time":row["chosen_a_rank_by_time"],
                         }
 
                     dr["#id"] = "{}_{}".format(dr["a1_id"], dr["a2_id"])
                     dr["transition"] = row["transition"]
                     dr["annotator"] = row["user_token"]
-
+                    dr["annotation_rank_by_time"]=row["a_rank_by_time"]
                     ranked_pairs.append(dr)
 
         df_rank = pd.DataFrame(ranked_pairs)
