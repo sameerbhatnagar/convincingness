@@ -1386,7 +1386,7 @@
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
 \pgftext[x=4.613116in,y=0.652006in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont
- xxxxxxx}%
+ dalite}%
 \end{pgfscope}%
 \end{pgfpicture}%
 \makeatother%
