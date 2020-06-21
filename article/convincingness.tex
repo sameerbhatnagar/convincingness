@@ -743,38 +743,49 @@ to express arguments (most pronounced in \textbf{UKP}).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion and Future Work}
+\section{Conclusion}
 
-The performance of vectors space models in this study indicates that more work 
-should be done in expanding the representation of text arguments using 
-calculated features.
-This approach has been the best performing in other studies~\cite{louis_what_2013,nguyen_computational_2015} and both use a 
-combination of writing and content features to achieve their best 
-results, and thus this avenue must be explored more thoroughly, especially as 
-this may vary across disciplines and teaching contexts. 
+Asynchronous peer instruction offers the potential of not only 
+\textit{learnersourcing} explanations for formative assessment items, but the 
+curation of those explanations as well.
+This is a scalable modality that enables students to interact with their peers' 
+contributions, all as part of the learning process.
+However, to our knowledge, we are among the first to propose methods that can 
+distill the data from such a context and automatically assess the quality of 
+student explanations along the dimension of \textit{convincingness}.
+The implications of this study for technology-enhanced-learning are in the 
+design of peer instruction platforms.
+A machine learning approach, with careful choice of validation scheme, can help 
+automatically identify the explanations students find most convincing. 
+Directions for future work lie in exploring the features that these models 
+leverage for their predictions, and developing frameworks for providing 
+feedback to both teachers and students.
 
-A second important line of future work lies in inferring a global ranking of 
-argument quality, using pairwise preference data.
-In this study we do not ever infer which are, overall, the most convincing 
-student explanations for any given item. 
-There is a rich body of research from the information retrieval 
-community~\cite{chen_pairwise_2013} that can be leveraged here. 
-Work on deriving point wise scores for argument pairs is proposed as a Gaussian 
-Process Preference Learning task by \cite{simpson_finding_2018}. 
-Seeing the lack of pointwise labels for overall convincingness, 
-\cite{toledo_automatic_2019} released a dataset where they 
-collect this data as well. 
-A comparable source of data inside the myDALITE.org platform are the feedback 
-scores teachers can optionally provide to students on their explanations.
+%The performance of vectors space models in this study indicates that more work 
+%should be done in expanding the representation of text arguments using 
+%calculated features.
+%This approach has been the best performing in other 
+%studies~\cite{louis_what_2013,nguyen_computational_2015} and both use a 
+%combination of writing and content features to achieve their best 
+%results, and thus this avenue must be explored more thoroughly, especially as 
+%this may vary across disciplines and teaching contexts. 
+%
+%A second important line of future work lies in inferring a global ranking of 
+%argument quality, using pairwise preference data.
+%In this study we do not ever infer which are, overall, the most convincing 
+%student explanations for any given item. 
+%There is a rich body of research from the information retrieval 
+%community~\cite{chen_pairwise_2013} that can be leveraged here. 
+%Work on deriving point wise scores for argument pairs is proposed as a 
+%Gaussian 
+%Process Preference Learning task by \cite{simpson_finding_2018}. 
+%Seeing the lack of pointwise labels for overall convincingness, 
+%\cite{toledo_automatic_2019} released a dataset where they 
+%collect this data as well. 
+%A comparable source of data inside the myDALITE.org platform are the feedback 
+%scores teachers can optionally provide to students on their explanations.
 
-The implications of this work for technology-enhanced-learning emerge from our 
-application a methodology borrowed from the argument mining community to the 
-context of asynchronous peer instruction. 
-The learnersourcing of student explanations, as well as the labelling of 
-explanation quality, is a scalable modality enabling students to interact with 
-their peers' content as part of the learning process.
-However the scale of the data generated can be overwhelming for instructors, 
-limiting how they can 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgements}
