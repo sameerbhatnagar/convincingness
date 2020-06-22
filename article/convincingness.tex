@@ -54,10 +54,6 @@ Dawson College
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-Online learning environments increasingly rely on students to generate 
-explanations and ``hints'' that can subsequently be shown to future students. 
-Automatically identifying the best student generated content is crucial for these systems to 
-scale well. 
 This study reports on the application of text mining and machine learning 
 methods in the context of asynchronous peer instruction, with the objective of 
 automatically identifying high quality student explanations. 
@@ -89,11 +85,9 @@ items.
 Critical to the success of such environments is the capacity to 
 automatically assess the quality of learner-generated content.
 There are a growing number of tools which put students at the centre of this 
-challenge of quality assessment
-\cite{potter_compair:_2017}\cite{cambre_juxtapeer:_2018},
-wherein students submit their own work, and then are prompted to 
+challenge: students submit their own work, but then are prompted to 
 evaluate a subset of their peers' submissions, and sometimes even provide 
-feedback.
+feedback \cite{potter_compair:_2017}\cite{cambre_juxtapeer:_2018}.
 
 To counter the drawback that lies in the varying ability of novices to evaluate 
 and provide good feedback to their peers, these environments often use 
@@ -153,14 +147,22 @@ which follow a specific two-stage script:
 
 We frame the explanations students produce here as \textit{arguments} 
 meant to persuade one's peers that their own reasoning is best.
-The ultimate objective of this study is to automatically assess the quality of 
-these arguments, as they may help future students reflect on their own 
-reasoning surrounding different concepts.
-We borrow from work in the argument mining community, which offers an 
-operational definition for argument quality along the dimension of 
-\textit{convincingness}, around which we build our central research question: 
-in a peer-instruction setting, can we predict which explanations will be 
-selected as more convincing than the student's own work? 
+Recent research in argument mining has proposed a novel machine learning task: 
+given a pair of arguments on a given topic, can we predict which is more 
+\textit{convincing}? \cite{habernal_which_2016} \cite{simpson_finding_2018} 
+\cite{toledo_automatic_2019} \cite{gleize_are_2019}
+Our objective is to evaluate if we can extend this task to a peer-instruction 
+setting: given a pair of explanations, one written by a student, and another by 
+their peer, can we predict which they will select as more convincing?
+
+%The reference work in argument mining is centred on arguments regarding 
+%open-ended contentious issues, written by users of various backgrounds. 
+%We focus on students writing explanations to their answers to question items 
+%from undergraduate science courses, where the vocabulary is significantly more 
+%constrained.
+%We aim to explore whether the same methods and models will have as much 
+%success 
+%in this setting.
 
 To our knowledge, this is the first analysis of peer instruction data through 
 the lens of \textit{learnersourcing} and argument \textit{convincingness}.
@@ -274,11 +276,12 @@ mining methods for evaluating argument quality, specifically for argument
 \textit{convincingness}, perform in an online learning environment with 
 learner-generated and annotated arguments. 
 Our primary dataset comes from a \textit{peer instruction} learning 
-environment myDALITE.org . 
+environment myDALITE.org , used by instructors in a context of low-stakes 
+formative assessment in introductory undergraduate science courses.
 To provide context as to the performance that can be expected for this 
-relatively novel task, we include in our study three publicly available 
-datasets, each specifically curated for the task of automatic assessment of 
-argument quality along the dimension \textit{convincingness}. 
+task in a relatively novel setting, we include in our study three publicly 
+available datasets, each specifically curated for the task of automatic 
+assessment of argument quality along the dimension \textit{convincingness}. 
 Table \ref{tab:sample_obs} provides examples of an argument pair 
 from each of the datasets.
 
@@ -362,7 +365,6 @@ students.
 To ensure that the explanations in each pair are of comparable length, we keep 
 only those with word counts that are within 
 \input{publication_artefacts/data/MAX_WORD_COUNT_DIFF}words of each other. 
-
 This leaves us a dataset with \input{publication_artefacts/data/N}observations, 
 spanning \input{publication_artefacts/data/n_students} learner annotators having 
 completed, on average, 
@@ -504,7 +506,8 @@ is encoded as \verb|[CLS] A [SEP] B|, where the special \verb|[SEP]| token
 instructs the model as to the boundary between arguments \verb|A| and \verb|B|. 
 \footnote{Modified from the \verb|run_glue.py| 
 script provided by the \verb|tranformers| package, built by company hugging 
-face. All code for this study provided in associated github repository}.
+face. All code for this study provided at 
+https://github.com/sameerbhatnagar/ectel2020}.
 
 \subsection{Baselines \& Validation Schemes}
 
@@ -743,15 +746,15 @@ to express arguments (most pronounced in \textbf{UKP}).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion}
+\section{Conclusion and Future Work}
 
 Asynchronous peer instruction offers the potential of not only 
 \textit{learnersourcing} explanations for formative assessment items, but the 
 curation of those explanations as well.
 This is a scalable modality that enables students to interact with their peers' 
 contributions, all as part of the learning process.
-However, to our knowledge, we are among the first to propose methods that can 
-distill the data from such a context and automatically assess the quality of 
+However, to our knowledge, we are among the first to explore methods that aim 
+to distill the data from such a context and automatically assess the quality of 
 student explanations along the dimension of \textit{convincingness}.
 The implications of this study for technology-enhanced-learning are in the 
 design of peer instruction platforms.
@@ -761,24 +764,29 @@ Directions for future work lie in exploring the features that these models
 leverage for their predictions, and developing frameworks for providing 
 feedback to both teachers and students.
 
-%The performance of vectors space models in this study indicates that more work 
-%should be done in expanding the representation of text arguments using 
-%calculated features.
-%This approach has been the best performing in other 
-%studies~\cite{louis_what_2013,nguyen_computational_2015} and both use a 
-%combination of writing and content features to achieve their best 
-%results, and thus this avenue must be explored more thoroughly, especially as 
-%this may vary across disciplines and teaching contexts. 
-%
-%A second important line of future work lies in inferring a global ranking of 
-%argument quality, using pairwise preference data.
+The performance of vectors space models in this study indicate that more work 
+should be done in expanding the representation of text arguments using 
+calculated features.
+This approach has been the best performing in other 
+studies~\cite{louis_what_2013,nguyen_computational_2015}, where a 
+combination of writing and content features to achieve the best 
+results. 
+This avenue must be explored more thoroughly, especially as 
+this may vary across disciplines and teaching contexts. 
+
+
+This current study only addressed the task of predicting which of the 
+explanations was more convincing in pair. 
+The next task for future work lies in \textit{Learning to Rank}, wherein this 
+pairwise preference data is used to infer a global ranking of argument quality.
+
+
 %In this study we do not ever infer which are, overall, the most convincing 
 %student explanations for any given item. 
 %There is a rich body of research from the information retrieval 
 %community~\cite{chen_pairwise_2013} that can be leveraged here. 
 %Work on deriving point wise scores for argument pairs is proposed as a 
-%Gaussian 
-%Process Preference Learning task by \cite{simpson_finding_2018}. 
+%Gaussian Process Preference Learning task by \cite{simpson_finding_2018}. 
 %Seeing the lack of pointwise labels for overall convincingness, 
 %\cite{toledo_automatic_2019} released a dataset where they 
 %collect this data as well. 
