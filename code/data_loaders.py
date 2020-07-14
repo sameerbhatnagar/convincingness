@@ -207,7 +207,7 @@ def invert_and_double_data(train_dataframes,test_dataframes):
     return train_dataframes,test_dataframes
 
 
-def load_arg_pairs_UKP_IBMArg(data_source, N_folds=5, cross_topic_validation=False,bert_double_data=False):
+def load_arg_pairs_UKP_IBMArg(data_source, N_folds=5, cross_topic_validation=False,bert_double_data=False,train_test_split=True):
 
     topics = DATASETS[data_source]["files"]
     data_dir = DATASETS[data_source]["data_dir"]
@@ -273,10 +273,13 @@ def load_arg_pairs_UKP_IBMArg(data_source, N_folds=5, cross_topic_validation=Fal
             train_dataframes,test_dataframes
         )
 
-    return train_dataframes, test_dataframes, df_all
+    if not train_test_split:
+        return df_all
+    else:
+        return train_dataframes, test_dataframes, df_all
 
 
-def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False,bert_double_data=False):
+def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False,bert_double_data=False,train_test_split=True):
 
     df_all = pd.DataFrame()
     for ftype in ["train", "test"]:
@@ -321,6 +324,9 @@ def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False,bert_double_d
     per_topic = df_all["topic"].value_counts()
     df_all = df_all[df_all["topic"].isin(per_topic[per_topic >= 50].index)]
 
+    if not train_test_split:
+        return df_all
+
     if cross_topic_validation:
         train_dataframes, test_dataframes = get_cross_topic_validation_df(df_all)
 
@@ -350,7 +356,7 @@ def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False,bert_double_d
     return train_dataframes, test_dataframes, df_all
 
 
-def load_dalite_data(discipline, N_folds=5, cross_topic_validation=False, bert_double_data=False):
+def load_dalite_data(discipline, N_folds=5, cross_topic_validation=False, bert_double_data=False,train_test_split=True):
 
     data_dir = os.path.join(BASE_DATA_DIR, "mydalite_arg_pairs_others")
 
@@ -366,6 +372,8 @@ def load_dalite_data(discipline, N_folds=5, cross_topic_validation=False, bert_d
     if discipline:
         df_all = df_all[df_all["discipline"] == discipline]
 
+    if not train_test_split:
+        return df_all
 
     if cross_topic_validation:
         train_dataframes, test_dataframes = get_cross_topic_validation_df(df_all)

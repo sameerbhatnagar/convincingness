@@ -8,15 +8,22 @@ import pandas as pd
 from sklearn.metrics import accuracy_score
 from scipy.stats import kendalltau, rankdata
 import matplotlib.pyplot as plt
-from itertools import combinations, permutations
+from itertools import combinations
+from collections import Counter
 
 import choix
 
 import data_loaders
+from make_corpus import get_ethics_answers,get_mydalite_answers
 
 only_one_arg_pair = {}
 model = "argBT"
 results_dir = os.path.join(data_loaders.BASE_DIR, "tmp", model)
+MAX_ITERATIONS = 1500
+
+# @plac.annotations(
+#     rank_score_type=plac.Annotation("rank_score_type",kind="option")
+# )
 
 
 # http://vene.ro/blog/kemeny-young-optimal-rank-aggregation-in-python.html
@@ -79,18 +86,41 @@ def get_rankings(pairs_train):
     return sorted_arg_ids, ranks_dict
 
 
+def get_rankings_baseline(df_train):
+    """
+    Arguments:
+    ----------
+        - df_train: pandas DataFrame with column "rationales" (what was shown)
+        and "chosen_rationale_id", for what was chosen
+    Returns:
+    --------
+        - sorted_arg_ids
+        - ranks_dict
+    """
+    times_shown_counter = Counter()
+    s=df_train["rationales"].dropna().apply(lambda x: [int(k) for k in x.strip("[]").replace(" ","").split(",") if k!=""])
+    _ = s.apply(lambda x: times_shown_counter.update(x))
+
+    votes_count=df_train["chosen_rationale_id"].value_counts().to_dict()
+    ranks_dict={
+        "arg{}".format(k):(v+1)/(times_shown_counter[k]+8) for k,v in votes_count.items()
+    }
+    sorted_arg_ids=["arg{}".format(p[0]) for p in sorted(ranks_dict.items(),key=lambda x: x[1])[::-1]]
+    return sorted_arg_ids,ranks_dict
+
 def pairwise_predict(x):
 
     if x["a1_rank"] > x["a2_rank"]:
-        pred="a1"
+        pred = "a1"
     elif x["a1_rank"] < x["a2_rank"]:
-        pred="a2"
+        pred = "a2"
     else:
-        pred=np.nan
+        pred = np.nan
 
     return pred
 
-def build_rankings():
+
+def build_rankings(rank_score_type=None):
     """
     - load dalite arg pairs by discipline
     - for each topic:
@@ -110,83 +140,126 @@ def build_rankings():
     ground_truth_rankings = {}
     rankings_by_batch = {}
 
-    for discipline in ["Physics", "Biology", "Chemistry","Ethics"]:
-        _, _, df_all = data_loaders.load_dalite_data(discipline=discipline)
-        df_all = df_all[df_all["a1_id"] != df_all["a2_id"]]
+    for discipline in ["Ethics"]:#"Physics","Biology","Chemistry",
+
+        if rank_score_type=="baseline":
+            if discipline=="Ethics":
+                df = get_ethics_answers()
+            else:
+                df=get_mydalite_answers()
+            df["annotation_rank_by_time"]=df["a_rank_by_time"]
+            df["annotator"]=df["user_token"]
 
         results_acc[discipline] = {}
         ground_truth_rankings[discipline] = {}
-        rankings_by_batch[discipline]={}
+        rankings_by_batch[discipline] = {}
 
-        for topic, df_topic in df_all.groupby("topic"):
+        topics_already_done = [
+            t[:-5]
+            for t in os.listdir(
+                os.path.join(
+                    data_loaders.BASE_DIR,
+                    "tmp",
+                    "argBT",
+                    discipline,
+                    rank_score_type,
+                    "rankings_by_batch",
+                )
+            )
+        ]
+
+        data_dir = os.path.join(data_loaders.BASE_DIR, "data", "mydalite_arg_pairs_others")
+        topics = [
+            t.replace("{}_".format(discipline),"").replace(".csv","")
+            for t in os.listdir(data_dir)
+            if t.startswith(discipline)
+        ]
+
+        topics = [t for t in topics if t not in topics_already_done]
+
+        for topic in topics:
+
+            if rank_score_type=="baseline":
+                df_topic = df[df["topic"]==topic]
+
+                # load pairs for testing
+                pairs_df = pd.read_csv(
+                    os.path.join(data_dir, "{}_{}.csv".format(discipline, topic))
+                )
+                pairs_df = pairs_df[pairs_df["a1_id"] != pairs_df["a2_id"]]
+
+            else:
+                df_topic = pd.read_csv(
+                    os.path.join(data_dir, "{}_{}.csv".format(discipline, topic))
+                )
+                df_topic = df_topic[df_topic["a1_id"] != df_topic["a2_id"]]
 
             print(topic)
 
             results_acc[discipline][topic] = []
             ground_truth_rankings[discipline][topic] = []
-            rankings_by_batch[discipline][topic]=[]
+            rankings_by_batch[discipline][topic] = []
 
             for counter, (r, df_r) in enumerate(
                 df_topic.groupby("annotation_rank_by_time")
             ):
-                if r % 10 == 0:
-                    print(
-                        "time step {}/{}".format(
-                            counter,
-                            df_topic["annotation_rank_by_time"].value_counts().shape[0],
-                        )
-                    )
 
-                pairs_train = df_topic[df_topic["annotation_rank_by_time"] < r]
-                pairs_test = df_topic[df_topic["annotation_rank_by_time"] == r].copy()
+                if r <= MAX_ITERATIONS:
 
-                students = pairs_train["annotator"].drop_duplicates().to_list()
-
-                if pairs_train.shape[0] > 0 and len(students) > 10:
-
-                    # learn rankings from all previous students
-                    sorted_arg_ids, ranks_dict = get_rankings(pairs_train=pairs_train)
-
-                    ground_truth_rankings[discipline][topic].append(sorted_arg_ids)
-
-                    # test ability of rankings to predict winning argument in
-                    # held out pairs at current timestep
-                    pairs_test["a1_rank"] = pairs_test["a1_id"].map(ranks_dict)
-                    pairs_test["a2_rank"] = pairs_test["a2_id"].map(ranks_dict)
-
-                    # pairs with current student's argument must be dropped
-                    # as it is as yet unseen
-                    pairs_test_ = pairs_test.dropna().copy()
-
-                    # for each pair in held out pairs at current timestep,
-                    # predict winner based on higher BT param
-                    if pairs_test_.shape[0] > 0:
-                        pairs_test_["label_pred"] = pairs_test_.apply(
-                            lambda x: pairwise_predict(x),
-                            axis=1,
-                        )
-
-                        try:
-                            results_acc[discipline][topic].append(
-                                {
-                                    "r": r,
-                                    "n": pairs_test_.shape[0],
-                                    "acc": accuracy_score(
-                                        y_true=pairs_test_["label"],
-                                        y_pred=pairs_test_["label_pred"],
-                                    ),
-                                }
+                    if r % 10 == 0:
+                        print(
+                            "time step {}/{}".format(
+                                counter,
+                                df_topic["annotation_rank_by_time"].value_counts().shape[0],
                             )
-                        except TypeError:
-                            # drop any ties
-                            n_ties=pairs_test_.isna().shape[0]
-                            pairs_test_ = pairs_test_.dropna().copy()
+                        )
 
-                            if pairs_test_.shape[0] > 0:
-                                pairs_test_["label_pred"] = pairs_test_.apply(
-                                    lambda x: pairwise_predict(x),
-                                    axis=1,
-                                )
+                    pairs_train = df_topic[df_topic["annotation_rank_by_time"] < r]
+
+                    if rank_score_type=="baseline":
+                        pairs_test = pairs_df[pairs_df["annotation_rank_by_time"] == r
+                        ].copy()
+                    else:
+                        pairs_test = df_topic[
+                            df_topic["annotation_rank_by_time"] == r
+                        ].copy()
+
+                    students = pairs_train["annotator"].drop_duplicates().to_list()
+
+                    if pairs_train.shape[0] > 0 and len(students) > 10:
+
+                        if rank_score_type=="baseline":
+                            # learn rankings from all previous students
+                            sorted_arg_ids, ranks_dict = get_rankings_baseline(
+                                df_train=pairs_train
+                            )
+                        else:
+                            # learn rankings from all previous students
+                            sorted_arg_ids, ranks_dict = get_rankings(
+                                pairs_train=pairs_train
+                            )
+
+                        ground_truth_rankings[discipline][topic].append(sorted_arg_ids)
+
+                        # test ability of rankings to predict winning argument in
+                        # held out pairs at current timestep
+                        pairs_test["a1_rank"] = pairs_test["a1_id"].map(ranks_dict)
+                        pairs_test["a2_rank"] = pairs_test["a2_id"].map(ranks_dict)
+
+                        # pairs with current student's argument must be dropped
+                        # as it is as yet unseen
+                        pairs_test_ = (
+                            pairs_test[["a1_rank", "a2_rank", "label"]].dropna().copy()
+                        )
+
+                        # for each pair in held out pairs at current timestep,
+                        # predict winner based on higher BT param
+                        if pairs_test_.shape[0] > 0:
+                            pairs_test_["label_pred"] = pairs_test_.apply(
+                                lambda x: pairwise_predict(x), axis=1,
+                            )
+                            pairs_test_ = pairs_test_.dropna().copy()
+                            try:
                                 results_acc[discipline][topic].append(
                                     {
                                         "r": r,
@@ -195,49 +268,74 @@ def build_rankings():
                                             y_true=pairs_test_["label"],
                                             y_pred=pairs_test_["label_pred"],
                                         ),
-                                        "ties": n_ties,
                                     }
                                 )
-                    # make two batches of students, interleaved in time
-                    student_batch1 = students[::2]
-                    student_batch2 = [s for s in students if s not in student_batch1]
+                            except TypeError:
+                                # drop any ties
+                                n_ties = pairs_test_.isna().shape[0]
+                                pairs_test_ = pairs_test_.dropna().copy()
 
-                    # get rankings for each batch and save
-                    batch_rankings = {}
-                    for sb, student_batch in zip(
-                        ["batch1","batch2"],
-                        [student_batch1, student_batch2]
-                    ):
-
-                        pairs_train_batch = pairs_train[
-                            pairs_train["annotator"].isin(student_batch)
+                                if pairs_test_.shape[0] > 0:
+                                    pairs_test_["label_pred"] = pairs_test_.apply(
+                                        lambda x: pairwise_predict(x), axis=1,
+                                    )
+                                    results_acc[discipline][topic].append(
+                                        {
+                                            "r": r,
+                                            "n": pairs_test_.shape[0],
+                                            "acc": accuracy_score(
+                                                y_true=pairs_test_["label"],
+                                                y_pred=pairs_test_["label_pred"],
+                                            ),
+                                            "ties": n_ties,
+                                        }
+                                    )
+                        # make two batches of students, interleaved in time
+                        student_batch1 = students[::2]
+                        student_batch2 = [
+                            s for s in students if s not in student_batch1
                         ]
 
-                        sorted_arg_ids, ranks_dict = get_rankings(
-                            pairs_train=pairs_train_batch
-                        )
-                        batch_rankings[sb]=sorted_arg_ids
+                        # get rankings for each batch and save
+                        batch_rankings = {}
+                        for sb, student_batch in zip(
+                            ["batch1", "batch2"], [student_batch1, student_batch2]
+                        ):
 
-                    rankings_by_batch[discipline][topic].append(batch_rankings)
+                            pairs_train_batch = pairs_train[
+                                pairs_train["annotator"].isin(student_batch)
+                            ]
 
+                            if rank_score_type=="baseline":
+                                sorted_arg_ids, ranks_dict = get_rankings_baseline(
+                                    df_train=pairs_train_batch
+                                )
+                            else:
+                                sorted_arg_ids, ranks_dict = get_rankings(
+                                    pairs_train=pairs_train_batch
+                                )
+
+                            batch_rankings[sb] = sorted_arg_ids
+
+                        rankings_by_batch[discipline][topic].append(batch_rankings)
 
             fp = os.path.join(
-                results_dir, discipline, "accuracies", "{}.json".format(topic)
+                results_dir, discipline, rank_score_type,"accuracies", "{}.json".format(topic)
             )
             with open(fp, "w+") as f:
-                f.write(json.dumps(results_acc[discipline][topic]))
+                f.write(json.dumps(results_acc[discipline][topic], indent=2))
 
             fp = os.path.join(
-                results_dir, discipline, "rankings", "{}.json".format(topic)
+                results_dir, discipline, rank_score_type,"rankings", "{}.json".format(topic)
             )
             with open(fp, "w+") as f:
-                f.write(json.dumps(ground_truth_rankings[discipline][topic]))
+                f.write(json.dumps(ground_truth_rankings[discipline][topic], indent=2))
 
             fp = os.path.join(
-                results_dir, discipline, "rankings_by_batch", "{}.json".format(topic)
+                results_dir, discipline, rank_score_type,"rankings_by_batch", "{}.json".format(topic),
             )
             with open(fp, "w+") as f:
-                f.write(json.dumps(rankings_by_batch[discipline][topic]))
+                f.write(json.dumps(rankings_by_batch[discipline][topic], indent=2))
 
     return
 

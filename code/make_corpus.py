@@ -8,7 +8,7 @@ import data_loaders
 # from peerinst.models import Question,Answer
 
 VOTES_MIN = 10
-MIN_RECORDS_PER_QUESTION = 50
+MIN_RECORDS_PER_QUESTION = 100
 MIN_WORD_COUNT = 10
 
 def get_shown_rationales(row):
@@ -31,7 +31,7 @@ def get_mydalite_answers():
     #     discipline__title__in=["Physics","Chemistry","Biology","Statistics"]
     # ).values_list("id",flat=True)
     #
-    # # remove students who have not given consent
+    # remove students who have not given consent
     # usernames_to_exclude = (
     #     Consent.objects.filter(tos__role="student")
     #     .values("user__username")
@@ -39,13 +39,30 @@ def get_mydalite_answers():
     #     .filter(accepted=False)
     #     .values_list("user",flat=True)
     # )
+    # usernames_tos = (
+    #     Consent.objects.filter(tos__role="student")
+    #     .values("user__username")
+    #     .annotate(Max("datetime"))
+    #     .filter(accepted=True)
+    #     .values_list("user",flat=True)
+    # )
     #
     # # answers where students chose a peer's explanation over their own
+    #
     # answers=Answer.objects.filter(
-    #     chosen_rationale_id__isnull=False,
-    #     question_id__in=q_list
-    # ).exclude(user_token__in=usernames_to_exclude)
-
+    # #     chosen_rationale_id__isnull=False,
+    #     question_id__in=q_list,
+    # ).exclude(
+    #     user_token__in=usernames_to_exclude
+    # ).exclude(
+    #     first_answer_choice=0
+    # )
+    # #.filter(
+    # #     user_token__in=usernames_tos
+    # # )
+    # print("answers where students consent and belong to disciplines of interest")
+    # print(answers.count())
+    #
     # answers_df= pd.DataFrame(
     #         answers.values(
     #             "id",
@@ -58,37 +75,46 @@ def get_mydalite_answers():
     #             "datetime_second"
     #         )
     #     ).rename(columns={"datetime_second":"timestamp_rationale"})
-
+    #
+    # print("as df")
+    # print(answers_df.shape)
+    #
+    # # to stay consistent with HarvardX data, stick to my own rationale means chosen_rationale_id = id, not ""
+    # answers_df.loc[answers_df["chosen_rationale_id"].isna(),"chosen_rationale_id"]=(
+    #     answers_df.loc[answers_df["chosen_rationale_id"].isna(),"id"]
+    # )
     # # rank answers by time of submission
     # answers_df["a_rank_by_time"]=(
     #     answers_df.groupby("question_id")["id"].rank()
     # )
-    # # get chosen rationales (not just id)
-    # chosen_rationales=Answer.objects.filter(
-    #     id__in=answers.values_list(
-    #         "chosen_rationale",flat=True
-    #     )
-    # ).values("id","user_token","rationale","datetime_second")
     #
-    # chosen_rationales_df=pd.DataFrame(
-    #         chosen_rationales
-    #     ).rename(
+    # # get chosen rationales (not just id)
+    # chosen_answer_ids = answers_df["chosen_rationale_id"].value_counts().index.to_list()
+    # chosen_rationales_df = (
+    #     answers_df.loc[answers_df["id"].isin(chosen_answer_ids),
+    #                    ["id","user_token","rationale","timestamp_rationale"]
+    #                   ]
+    # ).rename(
     #         columns={
     #             "id":"chosen_rationale_id",
     #             "rationale":"chosen_rationale",
     #             "user_token":"chosen_student",
-    #             "datetime_second":"timestamp_chosen_rationale"
+    #             "timestamp_rationale":"timestamp_chosen_rationale"
     #         }
     #     )
     #
-    # # add rank by time for chosen rationale
+    #
     # df=pd.merge(
     #     answers_df,
     #     chosen_rationales_df,
-    #     on="chosen_rationale_id"
+    #     on="chosen_rationale_id",
     # )
     #
-    # add rank by time for chosen rationale
+    # print("after chosen rationale merge")
+    # print(df.shape)
+    #
+    #
+    # # add rank by time for chosen rationale
     # df=pd.merge(
     #     (
     #         df[["id","a_rank_by_time"]]
@@ -101,8 +127,12 @@ def get_mydalite_answers():
     #     on="chosen_rationale_id",
     #     how="right"
     # )
+    #
+    # print("after rank by time for chosen rationale")
+    # print(df.shape)
+    #
     # # load data on questions so as to append columns on first/second correct
-    # path_to_data=os.path.join(data_loaders.BASE_DIR,"data","2020_03_18__all_questions.csv")
+    # path_to_data=os.path.join("/home/sbhatnagar/PhD/convincingness_project/convincingness/data/mydalite_metadata/2020_06_09__all_questions.csv")
     # all_q = pd.read_csv(path_to_data)
     # df=pd.merge(
     #     df,
@@ -115,17 +145,20 @@ def get_mydalite_answers():
     # df.loc[(df["first_correct"]==True)&(df["second_correct"]==False),"transition"]="rw"
     # df.loc[(df["first_correct"]==False)&(df["second_correct"]==True),"transition"]="wr"
     # df.loc[(df["first_correct"]==False)&(df["second_correct"]==False),"transition"]="ww"
-
+    #
     # df["rationales"]=df.apply(lambda x: get_shown_rationales(x),axis=1)
+    # print("final")
     # print(df.shape)
     # fpath="/home/sbhatnagar/PhD/convincingness_project/mydalite_answers_{}.csv".format(datetime.datetime.today().strftime("%Y_%m_%d"))
     # df.to_csv(fpath)
     # print(fpath)
-
     fpath = os.path.join(
-        data_loaders.BASE_DIR, os.pardir, "mydalite_answers_2020_06_11.csv"
+        data_loaders.BASE_DIR, os.pardir, "mydalite_answers_2020_06_20.csv"
     )
     df = pd.read_csv(fpath)
+    df["rationale_word_count"] = df["rationale"].str.count("\w+")
+
+    df["topic"]=df["title"]
 
     return df
 
@@ -166,6 +199,8 @@ def get_ethics_answers():
 
     df=df[~df["rationale"].isna()]
 
+    df["rationale_word_count"] = df["rationale"].str.count("\w+")
+
     return df
 
 
@@ -174,12 +209,12 @@ def filter_df_answers(df):
     print("all")
     print(df.shape)
 
-    df_switchers = df[df["chosen_rationale_id"] != df["id"]].copy()
+    # df_switchers = df[df["chosen_rationale_id"] != df["id"]].copy()
 
-    print("all switchers")
-    print(df_switchers.shape)
+    # print("all switchers")
+    # print(df_switchers.shape)
 
-    df2 = df_switchers[(df_switchers["rationale_word_count"] >= MIN_WORD_COUNT)].copy()
+    df2 = df[(df["rationale_word_count"] >= MIN_WORD_COUNT)].copy()
 
     print("\n wc filter")
     print(df2.shape)
@@ -189,21 +224,21 @@ def filter_df_answers(df):
     # )].copy()
 
     # ensure that each explanation has been chosen a minimum number of times for reliability,
-    votes = df["chosen_rationale_id"].value_counts()
+    # votes = df["chosen_rationale_id"].value_counts()
+    #
+    # df3 = df2[
+    #     ((df2["chosen_rationale_id"].isin(votes[votes >= VOTES_MIN].index)))
+    # ].copy()
 
-    df3 = df2[
-        ((df2["chosen_rationale_id"].isin(votes[votes >= VOTES_MIN].index)))
-    ].copy()
+    # print("\n vote_min filter")
+    # print(df3.shape)
 
-    print("\n vote_min filter")
-    print(df3.shape)
+    records_per_question = df2["topic"].value_counts()
 
-    records_per_question = df3["topic"].value_counts()
-
-    df_filtered = df3[
+    df_filtered = df2[
         (
             (
-                df3["topic"].isin(
+                df2["topic"].isin(
                     records_per_question[
                         records_per_question >= MIN_RECORDS_PER_QUESTION
                     ].index
@@ -240,49 +275,53 @@ def make_pairs(df):
 
         # balanced classes
         for i, (index, row) in enumerate(df_question.iterrows()):
-            dr = {}
-            if i % 2 == 0:
-                dr = {
-                    "a1": row["rationale"],
-                    "a2": row["chosen_rationale"],
-                    "label": "a2",
-                    "a1_id": "arg" + str(row["id"]),
-                    "a2_id": "arg" + str(row["chosen_rationale_id"]),
-                    "a2_author": df[df["id"] == row["chosen_rationale_id"]][
-                        "user_token"
-                    ].iat[0]
-                    if df[df["id"] == row["chosen_rationale_id"]]["user_token"].shape[0]
-                    != 0
-                    else "",
-                    "a1_author": row["user_token"],
-                    "a1_rank_by_time":row["a_rank_by_time"],
-                    "a2_rank_by_time":row["chosen_a_rank_by_time"],
-                }
-            else:
-                dr = {
-                    "a1": row["chosen_rationale"],
-                    "a2": row["rationale"],
-                    "label": "a1",
-                    "a2_id": "arg" + str(row["id"]),
-                    "a1_id": "arg" + str(row["chosen_rationale_id"]),
-                    "a1_author": df[df["id"] == row["chosen_rationale_id"]][
-                        "user_token"
-                    ].iat[0]
-                    if df[df["id"] == row["chosen_rationale_id"]]["user_token"].shape[0]
-                    != 0
-                    else "",
-                    "a2_author": row["user_token"],
-                    "a2_rank_by_time":row["a_rank_by_time"],
-                    "a1_rank_by_time":row["chosen_a_rank_by_time"],
-                }
+            if row["id"] != row["chosen_rationale_id"]:
+                dr = {}
+                if i % 2 == 0:
+                    dr = {
+                        "a1": row["rationale"],
+                        "a2": row["chosen_rationale"],
+                        "label": "a2",
+                        "a1_id": "arg" + str(row["id"]),
+                        "a2_id": "arg" + str(row["chosen_rationale_id"]),
+                        "a2_author": df[df["id"] == row["chosen_rationale_id"]][
+                            "user_token"
+                        ].iat[0]
+                        if df[df["id"] == row["chosen_rationale_id"]]["user_token"].shape[0]
+                        != 0
+                        else "",
+                        "a1_author": row["user_token"],
+                        "a1_rank_by_time":row["a_rank_by_time"],
+                        "a2_rank_by_time":row["chosen_a_rank_by_time"],
+                    }
+                else:
+                    dr = {
+                        "a1": row["chosen_rationale"],
+                        "a2": row["rationale"],
+                        "label": "a1",
+                        "a2_id": "arg" + str(row["id"]),
+                        "a1_id": "arg" + str(row["chosen_rationale_id"]),
+                        "a1_author": df[df["id"] == row["chosen_rationale_id"]][
+                            "user_token"
+                        ].iat[0]
+                        if df[df["id"] == row["chosen_rationale_id"]]["user_token"].shape[0]
+                        != 0
+                        else "",
+                        "a2_author": row["user_token"],
+                        "a2_rank_by_time":row["a_rank_by_time"],
+                        "a1_rank_by_time":row["chosen_a_rank_by_time"],
+                    }
 
-            dr["#id"] = "{}_{}".format(dr["a1_id"], dr["a2_id"])
-            dr["transition"]=row["transition"]
-            dr["annotator"] = row["user_token"]
-            dr["annotation_rank_by_time"]=row["a_rank_by_time"]
-            ranked_pairs.append(dr)
+                dr["#id"] = "{}_{}".format(dr["a1_id"], dr["a2_id"])
+                dr["transition"]=row["transition"]
+                dr["switch_exp"]=1
+                dr["annotator"] = row["user_token"]
+                dr["annotation_rank_by_time"]=row["a_rank_by_time"]
+                ranked_pairs.append(dr)
 
             try:
+                shown_ids=row["rationales"].strip("[]").split(",")
+                shown_ids = [k for k in shown_ids if k!=""]
                 others_df = pd.DataFrame(
                     [
                         {
@@ -297,7 +336,7 @@ def make_pairs(df):
                                 df["id"] == int(k), "a_rank_by_time"
                             ].iat[0],
                         }
-                        for k in row["rationales"].strip("[]").split(",")
+                        for k in shown_ids
                         if df.loc[df["id"] == int(k), "rationale"].shape[0] != 0
                     ]
                 )
@@ -345,10 +384,14 @@ def make_pairs(df):
                     dr["transition"] = row["transition"]
                     dr["annotator"] = row["user_token"]
                     dr["annotation_rank_by_time"]=row["a_rank_by_time"]
+                    if row["id"]==row["chosen_rationale_id"]:
+                        dr["switch_exp"]=0
+                    else:
+                        dr["switch_exp"]=1
                     ranked_pairs.append(dr)
 
         df_rank = pd.DataFrame(ranked_pairs)
-        df_rank["y"] = df_rank["label"].map({"a1": -1, "a2": 1})
+        # df_rank["y"] = df_rank["label"].map({"a1": -1, "a2": 1})
         df_rank["topic"] = topic
 
         # # exclude pairs which have an argument that only appears once
@@ -375,16 +418,11 @@ def make_pairs(df):
 def make_all_pairs():
 
     df_mydalite = get_mydalite_answers()
-    df_mydalite["topic"] = df_mydalite["title"]
-
-    # word counts
-    df_mydalite["rationale_word_count"] = df_mydalite["rationale"].str.count("\w+")
-
     df_pairs_mydalite = make_pairs(df_mydalite)
     print("mydalite pairs : {}".format(df_pairs_mydalite.shape[0]))
+
+
     df_ethics = get_ethics_answers()
-    # word counts
-    df_ethics["rationale_word_count"] = df_ethics["rationale"].str.count("\w+")
     df_ethics["discipline"]="Ethics"
 
     df_pairs_ethics = make_pairs(df_ethics)
