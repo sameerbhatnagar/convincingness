@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LogisticRegression
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 import os
 import data_loaders, weighted_scorers
 from scipy.special import softmax
@@ -9,6 +10,14 @@ CROSS_TOPIC = True
 
 import matplotlib.pyplot as plt
 import numpy as np
+from nltk import word_tokenize
+from nltk.stem import WordNetLemmatizer
+class LemmaTokenizer:
+    def __init__(self):
+        self.wnl = WordNetLemmatizer()
+    def __call__(self, doc):
+        return [self.wnl.lemmatize(t) for t in word_tokenize(doc)]
+
 
 # https://stackoverflow.com/a/42033734
 def grouped_barplot(df, cat,subcat, val ,ylabel, err,bar_colors,fname=None):
@@ -389,3 +398,121 @@ def assemble_results():
     )
 
     return means_df_plot_all, means_df_plot_dalite_disc
+
+
+def get_unique_args(df):
+  return len(list(set(df["a1_id"].value_counts().index.to_list()+df["a2_id"].value_counts().index.to_list())))
+
+
+def get_corpus(df):
+  all_args_train = pd.concat(
+          [
+           df[["a1_id","a1"]].rename(columns={"a1_id":"id","a1":"a"}),
+           df[["a2_id","a2"]].rename(columns={"a2_id":"id","a2":"a"})
+          ]
+          )
+
+  corpus = all_args_train.drop_duplicates("id")["a"]
+  return corpus
+
+def get_vocab(corpus):
+  vec=get_vectorizer()
+  vec.fit(corpus)
+  return(vec.get_feature_names())
+
+from nltk import word_tokenize
+from nltk.stem import WordNetLemmatizer
+class LemmaTokenizer:
+    def __init__(self):
+        self.wnl = WordNetLemmatizer()
+    def __call__(self, doc):
+        return [self.wnl.lemmatize(t) for t in word_tokenize(doc)]
+
+
+def get_vectorizer(term_freq=False,lemmatize=False,idf=True):
+  if term_freq:
+    if lemmatize:
+      return TfidfVectorizer(tokenizer=LemmaTokenizer(),use_idf=idf,token_pattern=None)
+    else:
+      return TfidfVectorizer(use_idf=idf)
+  else:
+    if lemmatize:
+      return CountVectorizer(tokenizer=LemmaTokenizer(),token_pattern=None)
+    else:
+      return CountVectorizer()
+
+
+def make_data_summary_table(fpath):
+    """
+    produce table which give N_args,N_pairs, and other overall stats for dataset
+    """
+    CROSS_TOPIC=False
+    N_FOLDS=10
+    data = {}
+    data_sources=["IBM_ArgQ","UKP"]
+    for data_source in data_sources:
+      data[data_source] = data_loaders.load_arg_pairs(
+          data_source=data_source,
+          N_folds=N_FOLDS,
+          cross_topic_validation=CROSS_TOPIC,
+          train_test_split=False
+      )
+
+    for discipline in ["Physics","Biology","Chemistry","Ethics"]:
+        data[discipline] = data_loaders.load_dalite_data(
+            discipline=discipline,
+            N_folds=N_FOLDS,
+            cross_topic_validation=CROSS_TOPIC,
+            train_test_split=False
+        )
+    data["IBM_Evi"] = data_loaders.load_arg_pairs_IBM_Evi(
+        N_folds=N_FOLDS,
+        cross_topic_validation=CROSS_TOPIC,
+        train_test_split=False
+    )
+    summary=[]
+    for data_source in ["IBM_ArgQ","UKP","IBM_Evi","Physics","Biology","Chemistry","Ethics"]:
+        d={}
+    #     _,_,df_all=data[data_source]
+        df_all=data[data_source]
+        df_all = df_all.rename(columns={"question":"topic"})
+        d["dataset"]=data_source
+        d["N_pairs"]=df_all.shape[0]
+        try:
+            d["N_topics"]=df_all["topic"].value_counts().shape[0]
+        except AttributeError:
+            d["N_topics"]=df_all["topic"].iloc[:,0].value_counts().shape[0]
+    #     if data_source!="dalite":
+    #     df_all["a1_id"]=df_all["#id"].str.split("_").apply(lambda x: x[0])
+    #     df_all["a2_id"]=df_all["#id"].str.split("_").apply(lambda x: x[1])
+
+        d["N_args"]=get_unique_args(df_all)
+
+        corpus = get_corpus(df_all)
+        d["Vocab"] = len(get_vocab(corpus))
+
+        # d["Args/topic"],d["Args/topic_std"]=df_all.groupby("topic").apply(lambda x: get_unique_args(x)).describe()[["mean","std"]].astype(int)
+
+        m,s=pd.concat(
+          [
+                 df_all[["a1_id","a1"]].rename(columns={"a1_id":"id","a1":"a"}),
+                 df_all[["a2_id","a2"]].rename(columns={"a2_id":"id","a2":"a"})
+          ]
+        ).drop_duplicates("id")["a"].str.count("\w+").describe()[["mean","std"]].astype(int)
+
+        d["wc_mean (SD)"]= "{} ({})".format(m,s)
+
+        m,s=np.abs(
+              df_all["a1"].str.count("\w+")-df_all["a2"].str.count("\w+")
+              ).describe()[["mean","std"]].astype(int)
+
+        d["wc_diff_mean (SD)"]="{} ({})".format(m,s)
+
+        summary.append(d)
+
+    df_summary=pd.DataFrame(summary).set_index("dataset")
+
+    print("saving df_summary to {}".format(fpath))
+    df_summary.to_latex(fpath)
+
+    return df_summary

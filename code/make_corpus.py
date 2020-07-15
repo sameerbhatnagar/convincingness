@@ -204,15 +204,17 @@ def get_ethics_answers():
     return df
 
 
-def filter_df_answers(df):
+def filter_df_answers(df,stick_to_own=False):
 
     print("all")
     print(df.shape)
 
-    # df_switchers = df[df["chosen_rationale_id"] != df["id"]].copy()
+    if not stick_to_own:
+        df_switchers = df[df["chosen_rationale_id"] != df["id"]].copy()
 
-    # print("all switchers")
-    # print(df_switchers.shape)
+        print("all switchers")
+        print(df_switchers.shape)
+        df = df_switchers
 
     df2 = df[(df["rationale_word_count"] >= MIN_WORD_COUNT)].copy()
 
@@ -269,6 +271,10 @@ def make_pairs(df):
     df_filtered = filter_df_answers(df)
 
     df_dalite = pd.DataFrame()
+
+    # iterate through filtered answers, but access to unfiltered df is needed to
+    # get rationales of students who stuck to their own (should their rationale
+    # be chosen)
     for topic, df_question in df_filtered.groupby("topic"):
 
         ranked_pairs = []
