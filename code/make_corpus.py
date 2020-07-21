@@ -153,7 +153,7 @@ def get_mydalite_answers():
     # df.to_csv(fpath)
     # print(fpath)
     fpath = os.path.join(
-        data_loaders.BASE_DIR, os.pardir, "mydalite_answers_2020_06_20.csv"
+        data_loaders.BASE_DIR, os.pardir, "mydalite_answers_2020_07_21.csv"
     )
     df = pd.read_csv(fpath)
     df["rationale_word_count"] = df["rationale"].str.count("\w+")

@@ -12,62 +12,6 @@ from sklearn import svm
 
 import data_loaders, utils
 
-import nltk
-
-# nltk.download("punkt")
-# nltk.download("wordnet")
-
-
-def get_unique_args(df):
-    return len(
-        list(
-            set(
-                df["a1_id"].value_counts().index.to_list()
-                + df["a2_id"].value_counts().index.to_list()
-            )
-        )
-    )
-
-
-class LemmaTokenizer:
-    def __init__(self):
-        self.wnl = WordNetLemmatizer()
-
-    def __call__(self, doc):
-        return [self.wnl.lemmatize(t) for t in word_tokenize(doc)]
-
-
-def get_vectorizer(term_freq=False, lemmatize=False, idf=True):
-    if term_freq:
-        if lemmatize:
-            return TfidfVectorizer(
-                tokenizer=LemmaTokenizer(), use_idf=idf, token_pattern=None
-            )
-        else:
-            return TfidfVectorizer(use_idf=idf)
-    else:
-        if lemmatize:
-            return CountVectorizer(tokenizer=LemmaTokenizer(), token_pattern=None)
-        else:
-            return CountVectorizer()
-
-
-def get_corpus(df):
-    all_args_train = pd.concat(
-        [
-            df[["a1_id", "a1"]].rename(columns={"a1_id": "id", "a1": "a"}),
-            df[["a2_id", "a2"]].rename(columns={"a2_id": "id", "a2": "a"}),
-        ]
-    )
-
-    corpus = all_args_train.drop_duplicates("id")["a"]
-    return corpus
-
-
-def get_vocab(corpus):
-    vec = get_vectorizer()
-    vec.fit(corpus)
-    return vec.get_feature_names()
 
 
 
@@ -135,9 +79,9 @@ def main(cross_topic_validation, data_source, N_folds=5):
             print("Fold {}".format(i), end=",")
             t_topic = time.time()
 
-            corpus = get_corpus(df=df_train)
+            corpus = utils.get_corpus(df=df_train)
 
-            vec = get_vectorizer(term_freq=term_freq, lemmatize=lemmatize, idf=idf)
+            vec = utils.get_vectorizer(term_freq=term_freq, lemmatize=lemmatize, idf=idf)
             vec.fit(corpus)
             # vocab=vec.get_feature_names()
             # d["vocab_train"]=len(vocab)
