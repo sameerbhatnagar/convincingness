@@ -2,6 +2,8 @@ import datetime
 
 import nltk
 
+from sklearn.feature_extraction.text import CountVectorizer
+
 # nltk.download("punkt")
 # nltk.download("wordnet")
 
