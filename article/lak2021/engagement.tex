@@ -46,9 +46,10 @@ Analytics \& Knowledge}{April 2021}{UCI,CA}
 Peer-Instruction}
 
 \author{Sameer Bhatnagar}
+\author{Antoine Lefebvre-Brossard}
 \author{Michel C. Desmarais}
 \author{Amal Zouaq}
-\email{{sameer.bhatnagar,michel.desmarais,amal.zouaq}@polymtl.ca}
+\email{{sameer.bhatnagar,antoine.lefebvre-brossard,michel.desmarais,amal.zouaq}@polymtl.ca}
 \affiliation{%
   \institution{Ecole Polytechnique Montreal}
   \country{Canada}
@@ -272,6 +273,77 @@ which can be divided into two families:
 
 
 \section{Methodology}
+
+\subsection{Relative Learning Gain}
+Learning platforms used by teachers for 
+formative assessment 
+over the course of 
+a semester generate longitudinal learning 
+traces. 
+Fine grained modelling of student 
+learning with such data is 
+only possible if 
+question items have been tagged with 
+Knowledge Components\cite{corbett_knowledge_1994}, or an 
+item-skill 
+mapping\cite{barnes_q-matrix_2005} has been defined.
+Learning gains on the time-scale of a few 
+weeks, or a semester, 
+are often 
+measured using the administration of a 
+carefully validated 
+pre-post test, such 
+as the Force Concept Inventory\cite{hestenes_force_1992} from the 
+Physics Education 
+Research community.
+
+However both of these methodologies 
+require resource intensive 
+development of 
+domain knowledge mappings and validated 
+instruments. 
+In the iterative design of learning 
+tools, it is desirable to 
+have a definition 
+of learning that can be measured without 
+such prohibitive 
+limitations, even it 
+can serve as a baseline to more 
+comprehensive evaluations.
+
+We propose a definition of 
+\textit{Relative 
+	Learning Gain} for each student over 
+the course of a semester 
+which requires 
+only that all students within a group 
+have completed a common 
+set of items.
+\begin{equation}
+Relative Learning Gain_{student} = 
+\frac{W \rightarrow R_{second 
+		half of semester} }{W \rightarrow 
+	R_{first half of 
+		semester} }
+\end{equation}
+
+
+\subsection{Engagement}
+
+\begin{equation}
+Engagement_{student} = 
+\frac{1}{N_{explanations}}\sum{WordCount_{explanation}}
+\end{equation}
+
+
+
+\begin{equation}
+Engagement_{student} = 
+\overline{P(ChosenExplanation \ne 
+	OwnExplanation)} 
+\label{eq:engagement_choose_peer}
+\end{equation}
+
 
 \subsection{Vector Space Models}
 We experiment with vector space models with 
