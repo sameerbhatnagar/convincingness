@@ -71,8 +71,8 @@ def shown_feature_counts(shown_ids_str, df, feature):
 
 def append_features(df):
     """
-    for each of the pre-calculated features,
-    make new features based on what was shown
+    for each feature in  PRE_CALCULATED_FEATURES,
+    for each answer, aggregate feature values for those rationales that were shown
     Same for LSA vectors
     """
 

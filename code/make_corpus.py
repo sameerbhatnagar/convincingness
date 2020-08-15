@@ -11,17 +11,16 @@ VOTES_MIN = 10
 MIN_RECORDS_PER_QUESTION = 100
 MIN_WORD_COUNT = 10
 
+
 def get_shown_rationales(row):
     shown = list(
         ShownRationale.objects.filter(shown_for_answer=row["id"])
         .exclude(shown_answer=row["chosen_rationale_id"])
         .exclude(shown_answer__isnull=True)
-        .values_list(
-            "shown_answer__id",
-            flat=True
-        )
+        .values_list("shown_answer__id", flat=True)
     )
-    return shown if len(shown)>0 else [0]
+    return shown if len(shown) > 0 else [0]
+
 
 def get_mydalite_answers():
 
@@ -158,7 +157,7 @@ def get_mydalite_answers():
     df = pd.read_csv(fpath)
     df["rationale_word_count"] = df["rationale"].str.count("\w+")
 
-    df["topic"]=df["title"]
+    df["topic"] = df["title"]
 
     return df
 
@@ -170,7 +169,13 @@ def get_ethics_answers():
 
     df = pd.read_csv(fname)
 
-    df = df.rename(columns={"edx_user_hash_id": "user_token", "rationale_id": "id","second_check_time":"timestamp_rationale"})
+    df = df.rename(
+        columns={
+            "edx_user_hash_id": "user_token",
+            "rationale_id": "id",
+            "second_check_time": "timestamp_rationale",
+        }
+    )
     df["chosen_rationale_id"] = df["chosen_rationale_id"].astype(int)
     df["topic"] = (
         df["question_text"].str.strip("[?.,]").apply(lambda x: max(x.split(), key=len))
@@ -182,39 +187,45 @@ def get_ethics_answers():
         .astype(int)
         .map({0: "switch_ans", 1: "same_ans"})
     )
-    df["a_rank_by_time"]=df.groupby("question_id")["id"].rank()
+    df["a_rank_by_time"] = df.groupby("question_id")["id"].rank()
 
-    df=pd.merge(
+    df = pd.merge(
         (
-            df[["id","a_rank_by_time"]]
-            .rename(columns={
-                "id":"chosen_rationale_id",
-                "a_rank_by_time":"chosen_a_rank_by_time",
-            })
+            df[["id", "a_rank_by_time"]].rename(
+                columns={
+                    "id": "chosen_rationale_id",
+                    "a_rank_by_time": "chosen_a_rank_by_time",
+                }
+            )
         ),
         df,
         on="chosen_rationale_id",
-        how="right"
+        how="right",
     )
 
-    df=df[~df["rationale"].isna()]
+    df = df[~df["rationale"].isna()]
 
     df["rationale_word_count"] = df["rationale"].str.count("\w+")
 
     return df
 
 
-def filter_df_answers(df,stick_to_own=False):
+def filter_out_stick_to_own(df):
+    df_switchers = df[df["chosen_rationale_id"] != df["id"]].copy()
+
+    print("all switchers")
+    print(df_switchers.shape)
+
+    return df_switchers
+
+
+def filter_df_answers(df, stick_to_own=False):
 
     print("all")
     print(df.shape)
 
     if not stick_to_own:
-        df_switchers = df[df["chosen_rationale_id"] != df["id"]].copy()
-
-        print("all switchers")
-        print(df_switchers.shape)
-        df = df_switchers
+        df = filter_out_stick_to_own(df)
 
     df2 = df[(df["rationale_word_count"] >= MIN_WORD_COUNT)].copy()
 
@@ -256,7 +267,171 @@ def filter_df_answers(df,stick_to_own=False):
     return df_filtered
 
 
-def make_pairs(df):
+def make_pairs_by_topic(df_question, topic, df_unfiltered):
+    """
+    Arguments:
+    =========
+        df_question : dataframe of answers which will be included when making
+                        pairs from student answers. Columns must included:
+                         - id, rationale, user_token, chosen_rationale,
+                         rationales, a_rank_by_time
+        topic : question title
+        df_unfiltered : shown rationales may include answers that were
+                        filtered out (for which we do not make pairs), so this
+                        dataframe is needed
+    Returns:
+    ========
+        df_rank : dataframe with pairs of arguments/rationales, labelled
+                    which of the pair was chosen, who the chooser was, and
+                    who wrote the chosen rationale (user_token)
+    """
+    ranked_pairs = []
+
+    # balanced classes
+    for i, (index, row) in enumerate(df_question.iterrows()):
+        # make pairs with answers where student chose someone else's explanation
+        if row["id"] != row["chosen_rationale_id"]:
+            dr = {}
+            if i % 2 == 0:
+                dr = {
+                    "a1": row["rationale"],
+                    "a2": row["chosen_rationale"],
+                    "label": "a2",
+                    "a1_id": "arg" + str(row["id"]),
+                    "a2_id": "arg" + str(row["chosen_rationale_id"]),
+                    "a2_author": df_unfiltered[
+                        df_unfiltered["id"] == row["chosen_rationale_id"]
+                    ]["user_token"].iat[0]
+                    if df_unfiltered[df_unfiltered["id"] == row["chosen_rationale_id"]][
+                        "user_token"
+                    ].shape[0]
+                    != 0
+                    else "",
+                    "a1_author": row["user_token"],
+                    "a1_rank_by_time": row["a_rank_by_time"],
+                    "a2_rank_by_time": row["chosen_a_rank_by_time"],
+                }
+            else:
+                dr = {
+                    "a1": row["chosen_rationale"],
+                    "a2": row["rationale"],
+                    "label": "a1",
+                    "a2_id": "arg" + str(row["id"]),
+                    "a1_id": "arg" + str(row["chosen_rationale_id"]),
+                    "a1_author": df_unfiltered[
+                        df_unfiltered["id"] == row["chosen_rationale_id"]
+                    ]["user_token"].iat[0]
+                    if df_unfiltered[df_unfiltered["id"] == row["chosen_rationale_id"]][
+                        "user_token"
+                    ].shape[0]
+                    != 0
+                    else "",
+                    "a2_author": row["user_token"],
+                    "a2_rank_by_time": row["a_rank_by_time"],
+                    "a1_rank_by_time": row["chosen_a_rank_by_time"],
+                }
+
+            dr["#id"] = "{}_{}".format(dr["a1_id"], dr["a2_id"])
+            dr["transition"] = row["transition"]
+            dr["switch_exp"] = 1
+            dr["annotator"] = row["user_token"]
+            dr["annotation_rank_by_time"] = row["a_rank_by_time"]
+            ranked_pairs.append(dr)
+
+        # if we have data on what was shown, make dataframe of answers
+        # that were shown
+        try:
+            shown_ids = row["rationales"].strip("[]").split(",")
+            shown_ids = [k for k in shown_ids if k != ""]
+            others_df = pd.DataFrame(
+                [
+                    {
+                        "shown_answer__id": int(k),
+                        "shown_answer__rationale": df_unfiltered.loc[
+                            df_unfiltered["id"] == int(k), "rationale"
+                        ].iat[0],
+                        "shown_answer__user_token": df_unfiltered.loc[
+                            df_unfiltered["id"] == int(k), "user_token"
+                        ].iat[0],
+                        "shown_answer__a_rank_by_time": df_unfiltered.loc[
+                            df_unfiltered["id"] == int(k), "a_rank_by_time"
+                        ].iat[0],
+                    }
+                    for k in shown_ids
+                    if df_unfiltered.loc[
+                        df_unfiltered["id"] == int(k), "rationale"
+                    ].shape[0]
+                    != 0
+                ]
+            )
+        except AttributeError:
+            others_df = pd.DataFrame()
+
+        if others_df.shape[0] > 0:
+            # word counts
+            others_df["shown_rationale_word_count"] = others_df[
+                "shown_answer__rationale"
+            ].str.count("\w+")
+
+            others_df = others_df[
+                others_df["shown_rationale_word_count"] >= MIN_WORD_COUNT
+            ]
+
+            # others_df[np.abs(others_df["shown_rationale_word_count"]-row["chosen_rationale_word_count"])<=MAX_WORD_COUNT_DIFF]
+            for j, (i2, p) in enumerate(others_df.iterrows()):
+                dr = {}
+                if j % 2 == 0:
+                    dr = {
+                        "a1": p["shown_answer__rationale"],
+                        "a2": row["chosen_rationale"],
+                        "label": "a2",
+                        "a1_id": "arg" + str(p["shown_answer__id"]),
+                        "a2_id": "arg" + str(row["chosen_rationale_id"]),
+                        "a1_author": p["shown_answer__user_token"],
+                        "a2_author": row["user_token"],
+                        "a1_rank_by_time": p["shown_answer__a_rank_by_time"],
+                        "a2_rank_by_time": row["chosen_a_rank_by_time"],
+                    }
+                else:
+                    dr = {
+                        "a1": row["chosen_rationale"],
+                        "a2": p["shown_answer__rationale"],
+                        "label": "a1",
+                        "a2_id": "arg" + str(p["shown_answer__id"]),
+                        "a1_id": "arg" + str(row["chosen_rationale_id"]),
+                        "a1_author": row["user_token"],
+                        "a2_author": p["shown_answer__user_token"],
+                        "a2_rank_by_time": p["shown_answer__a_rank_by_time"],
+                        "a1_rank_by_time": row["chosen_a_rank_by_time"],
+                    }
+
+                dr["#id"] = "{}_{}".format(dr["a1_id"], dr["a2_id"])
+                dr["transition"] = row["transition"]
+                dr["annotator"] = row["user_token"]
+                dr["annotation_rank_by_time"] = row["a_rank_by_time"]
+                if row["id"] == row["chosen_rationale_id"]:
+                    dr["switch_exp"] = 0
+                else:
+                    dr["switch_exp"] = 1
+                ranked_pairs.append(dr)
+
+    df_rank = pd.DataFrame(ranked_pairs)
+    # df_rank["y"] = df_rank["label"].map({"a1": -1, "a2": 1})
+    df_rank["topic"] = topic
+
+    # # exclude pairs which have an argument that only appears once
+    arg_appearance_counts = collections.Counter(
+        df_rank["a1_id"].to_list() + df_rank["a2_id"].to_list()
+    )
+    exclude_args = [k for k, v in arg_appearance_counts.items() if v == 1]
+    df_rank = df_rank[
+        (~df_rank["a1_id"].isin(exclude_args)) | (~df_rank["a2_id"].isin(exclude_args))
+    ].copy()
+
+    return df_rank
+
+
+def make_pairs(df_unfiltered):
     """
     Function that takes answer level observations and converts to pairs
     Arguments:
@@ -268,7 +443,7 @@ def make_pairs(df):
         data_loaders.BASE_DIR, "data", "mydalite_arg_pairs_others"
     )
 
-    df_filtered = filter_df_answers(df)
+    df_filtered = filter_df_answers(df_unfiltered)
 
     df_dalite = pd.DataFrame()
 
@@ -276,140 +451,7 @@ def make_pairs(df):
     # get rationales of students who stuck to their own (should their rationale
     # be chosen)
     for topic, df_question in df_filtered.groupby("topic"):
-
-        ranked_pairs = []
-
-        # balanced classes
-        for i, (index, row) in enumerate(df_question.iterrows()):
-            if row["id"] != row["chosen_rationale_id"]:
-                dr = {}
-                if i % 2 == 0:
-                    dr = {
-                        "a1": row["rationale"],
-                        "a2": row["chosen_rationale"],
-                        "label": "a2",
-                        "a1_id": "arg" + str(row["id"]),
-                        "a2_id": "arg" + str(row["chosen_rationale_id"]),
-                        "a2_author": df[df["id"] == row["chosen_rationale_id"]][
-                            "user_token"
-                        ].iat[0]
-                        if df[df["id"] == row["chosen_rationale_id"]]["user_token"].shape[0]
-                        != 0
-                        else "",
-                        "a1_author": row["user_token"],
-                        "a1_rank_by_time":row["a_rank_by_time"],
-                        "a2_rank_by_time":row["chosen_a_rank_by_time"],
-                    }
-                else:
-                    dr = {
-                        "a1": row["chosen_rationale"],
-                        "a2": row["rationale"],
-                        "label": "a1",
-                        "a2_id": "arg" + str(row["id"]),
-                        "a1_id": "arg" + str(row["chosen_rationale_id"]),
-                        "a1_author": df[df["id"] == row["chosen_rationale_id"]][
-                            "user_token"
-                        ].iat[0]
-                        if df[df["id"] == row["chosen_rationale_id"]]["user_token"].shape[0]
-                        != 0
-                        else "",
-                        "a2_author": row["user_token"],
-                        "a2_rank_by_time":row["a_rank_by_time"],
-                        "a1_rank_by_time":row["chosen_a_rank_by_time"],
-                    }
-
-                dr["#id"] = "{}_{}".format(dr["a1_id"], dr["a2_id"])
-                dr["transition"]=row["transition"]
-                dr["switch_exp"]=1
-                dr["annotator"] = row["user_token"]
-                dr["annotation_rank_by_time"]=row["a_rank_by_time"]
-                ranked_pairs.append(dr)
-
-            try:
-                shown_ids=row["rationales"].strip("[]").split(",")
-                shown_ids = [k for k in shown_ids if k!=""]
-                others_df = pd.DataFrame(
-                    [
-                        {
-                            "shown_answer__id": int(k),
-                            "shown_answer__rationale": df.loc[
-                                df["id"] == int(k), "rationale"
-                            ].iat[0],
-                            "shown_answer__user_token": df.loc[
-                                df["id"] == int(k), "user_token"
-                            ].iat[0],
-                            "shown_answer__a_rank_by_time":df.loc[
-                                df["id"] == int(k), "a_rank_by_time"
-                            ].iat[0],
-                        }
-                        for k in shown_ids
-                        if df.loc[df["id"] == int(k), "rationale"].shape[0] != 0
-                    ]
-                )
-            except AttributeError:
-                others_df = pd.DataFrame()
-
-
-            if others_df.shape[0] > 0:
-                # word counts
-                others_df["shown_rationale_word_count"] = others_df[
-                    "shown_answer__rationale"
-                ].str.count("\w+")
-
-                others_df=others_df[others_df["shown_rationale_word_count"]>=MIN_WORD_COUNT]
-
-                # others_df[np.abs(others_df["shown_rationale_word_count"]-row["chosen_rationale_word_count"])<=MAX_WORD_COUNT_DIFF]
-                for j, (i2, p) in enumerate(others_df.iterrows()):
-                    dr = {}
-                    if j % 2 == 0:
-                        dr = {
-                            "a1": p["shown_answer__rationale"],
-                            "a2": row["chosen_rationale"],
-                            "label": "a2",
-                            "a1_id": "arg" + str(p["shown_answer__id"]),
-                            "a2_id": "arg" + str(row["chosen_rationale_id"]),
-                            "a1_author": p["shown_answer__user_token"],
-                            "a2_author": row["user_token"],
-                            "a1_rank_by_time":p["shown_answer__a_rank_by_time"],
-                            "a2_rank_by_time":row["chosen_a_rank_by_time"],
-                        }
-                    else:
-                        dr = {
-                            "a1": row["chosen_rationale"],
-                            "a2": p["shown_answer__rationale"],
-                            "label": "a1",
-                            "a2_id": "arg" + str(p["shown_answer__id"]),
-                            "a1_id": "arg" + str(row["chosen_rationale_id"]),
-                            "a1_author": row["user_token"],
-                            "a2_author": p["shown_answer__user_token"],
-                            "a2_rank_by_time":p["shown_answer__a_rank_by_time"],
-                            "a1_rank_by_time":row["chosen_a_rank_by_time"],
-                        }
-
-                    dr["#id"] = "{}_{}".format(dr["a1_id"], dr["a2_id"])
-                    dr["transition"] = row["transition"]
-                    dr["annotator"] = row["user_token"]
-                    dr["annotation_rank_by_time"]=row["a_rank_by_time"]
-                    if row["id"]==row["chosen_rationale_id"]:
-                        dr["switch_exp"]=0
-                    else:
-                        dr["switch_exp"]=1
-                    ranked_pairs.append(dr)
-
-        df_rank = pd.DataFrame(ranked_pairs)
-        # df_rank["y"] = df_rank["label"].map({"a1": -1, "a2": 1})
-        df_rank["topic"] = topic
-
-        # # exclude pairs which have an argument that only appears once
-        arg_appearance_counts = collections.Counter(
-            df_rank["a1_id"].to_list() + df_rank["a2_id"].to_list()
-        )
-        exclude_args = [k for k, v in arg_appearance_counts.items() if v == 1]
-        df_rank = df_rank[
-            (~df_rank["a1_id"].isin(exclude_args))
-            | (~df_rank["a2_id"].isin(exclude_args))
-        ].copy()
-
+        df_rank = make_pairs_by_topic(topic, df_question, df_unfiltered)
         df_dalite = pd.concat([df_dalite, df_rank])
 
         discipline = df_question["discipline"].value_counts().index[0]
@@ -427,9 +469,8 @@ def make_all_pairs():
     df_pairs_mydalite = make_pairs(df_mydalite)
     print("mydalite pairs : {}".format(df_pairs_mydalite.shape[0]))
 
-
     df_ethics = get_ethics_answers()
-    df_ethics["discipline"]="Ethics"
+    df_ethics["discipline"] = "Ethics"
 
     df_pairs_ethics = make_pairs(df_ethics)
     print("ethics pairs : {}".format(df_pairs_ethics.shape[0]))
