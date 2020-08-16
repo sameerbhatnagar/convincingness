@@ -3,13 +3,18 @@ import os
 import json
 import re
 import spacy
-
+import plac
+import datetime
 import data_loaders
 
 from spacy.matcher import PhraseMatcher
 from spacy_readability import Readability
 import pandas as pd
 from utils_scrape_openstax import OPENSTAX_TEXTBOOK_DISCIPLINES
+
+from make_corpus import make_pairs_by_topic, filter_out_stick_to_own
+
+from argBT import get_rankings_baseline, get_rankings
 
 
 def on_match(matcher, doc, id, matches):
@@ -177,6 +182,25 @@ def extract_readability_features(rationales, nlp):
     return readability_features
 
 
+def extract_convincingness_features(topic, df_topic_unfiltered):
+    df_topic = filter_out_stick_to_own(df_topic_unfiltered)
+
+    df_pairs = make_pairs_by_topic(
+        df_question=df_topic, topic=topic, df_unfiltered=df_topic_unfiltered
+    )
+
+    r = get_rankings(df_pairs)[1]
+    r = {int(k[3:]): v for k, v in r.items()}
+    convincingness_features = {}
+    f = "convincingness_BT"
+    df_topic[f]=df_topic["id"].map(r)
+    convincingness_features[f] = [
+        [d["id"],d[f]] for d in df_topic[["id",f]].to_dict(orient="records")
+    ]
+
+    return convincingness_features
+
+
 def extract_features_and_save(
     with_features_dir, df_answers, topic, feature_type, nlp, subject=None
 ):
@@ -207,22 +231,26 @@ def extract_features_and_save(
             features = extract_lexical_features(
                 df_answers[["id", "rationale"]], nlp=nlp, subject=subject,
             )
+        elif feature_type == "convincingness":
+            features = extract_convincingness_features(
+                topic=topic, df_topic_unfiltered=df_answers
+            )
         with open(feature_type_fpath, "w") as f:
             json.dump(features, f, indent=2)
 
         return features
 
 
-def get_features(df_answers,path_to_data,topic, subject=None,
+def get_features(
+    df_answers, path_to_data, topic, subject=None,
 ):
     """
     append lexical, syntactic or readability features for rationales
     """
 
-    nlp = spacy.load("en_core_web_md")
+    nlp = spacy.load("en_core_web_sm")
 
-
-    df_answers["rationale"] = df_answers["rationale"].fillna(" ")
+    df_answers.loc[df_answers["rationale"].isna(),"rationale"]=" "
 
     with_features_dir = os.path.join(path_to_data, topic + "_features")
 
@@ -230,7 +258,7 @@ def get_features(df_answers,path_to_data,topic, subject=None,
         os.mkdir(with_features_dir)
 
     # TO DO: "lexical"
-    for feature_type in ["syntax", "readability"]:
+    for feature_type in ["convincingness"]:#, "syntax", "readability"]:
         features = extract_features_and_save(
             with_features_dir=with_features_dir,
             df_answers=df_answers,
@@ -248,3 +276,57 @@ def get_features(df_answers,path_to_data,topic, subject=None,
             )
 
     return df_answers
+
+def main(discipline):
+    print(discipline)
+    print("Start: {}".format(datetime.datetime.now()))
+
+    RESULTS_DIR = os.path.join(data_loaders.BASE_DIR, "tmp", "switch_exp")
+
+    data_dir_discipline = os.path.join(RESULTS_DIR, discipline, "data")
+
+    # sort files by size to get biggest ones done first
+    # https://stackoverflow.com/a/20253803
+    all_files = (
+        os.path.join(data_dir_discipline, filename)
+        for basedir, dirs, files in os.walk(data_dir_discipline)
+        for filename in files
+    )
+    all_files = sorted(all_files, key=os.path.getsize, reverse=True)
+
+    topics = [os.path.basename(fp)[:-4] for fp in all_files]
+
+    results_dir_discipline = os.path.join(RESULTS_DIR, discipline, "data_with_features")
+    topics_already_done = [fp[:-5] for fp in os.listdir(results_dir_discipline)]
+
+    topics_to_do = [t for t in topics if t not in topics_already_done]
+
+    df_all = pd.DataFrame()
+
+    for t, topic in enumerate(topics_to_do):
+
+        print("{}/{}: {}".format(t, len(topics_to_do), topic))
+        df_topic = pd.read_csv(
+            os.path.join(data_dir_discipline, "{}.csv".format(topic))
+        )
+
+        df_topic=get_features(
+            df_answers=df_topic,
+            topic=topic,
+            path_to_data=results_dir_discipline,
+            subject=discipline
+        )
+
+        df_all=pd.concat([df_all,df_topic])
+
+    fp=os.path.join(
+        results_dir_discipline,
+        "all_topics_with_features.csv"
+        )
+    df_all.to_csv(fp)
+    print("Finished: {} ".format(datetime.datetime.now()))
+
+if __name__ == "__main__":
+    import plac
+
+    plac.call(main)

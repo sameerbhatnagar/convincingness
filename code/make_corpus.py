@@ -213,8 +213,8 @@ def get_ethics_answers():
 def filter_out_stick_to_own(df):
     df_switchers = df[df["chosen_rationale_id"] != df["id"]].copy()
 
-    print("all switchers")
-    print(df_switchers.shape)
+    # print("all switchers")
+    # print(df_switchers.shape)
 
     return df_switchers
 
