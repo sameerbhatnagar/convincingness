@@ -189,14 +189,18 @@ def extract_convincingness_features(topic, df_topic_unfiltered):
         df_question=df_topic, topic=topic, df_unfiltered=df_topic_unfiltered
     )
 
-    r = get_rankings(df_pairs)[1]
-    r = {int(k[3:]): v for k, v in r.items()}
     convincingness_features = {}
-    f = "convincingness_BT"
-    df_topic[f]=df_topic["id"].map(r)
-    convincingness_features[f] = [
-        [d["id"],d[f]] for d in df_topic[["id",f]].to_dict(orient="records")
-    ]
+
+    for f in ["convincingness_baseline","convincingness_BT"]:
+        if f=="convincingness_BT":
+            r = get_rankings(df_pairs)[1]
+        else:
+            r = get_rankings_baseline(df_topic_unfiltered)[1]
+        r = {int(k[3:]): v for k, v in r.items()}
+        df_topic[f]=df_topic["id"].map(r)
+        convincingness_features[f] = [
+            [d["id"],d[f]] for d in df_topic[["id",f]].to_dict(orient="records")
+        ]
 
     return convincingness_features
 
