@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 import data_loaders
 
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.impute import SimpleImputer
@@ -20,22 +21,10 @@ from sklearn.model_selection import cross_val_score
 from sklearn.linear_model import LogisticRegression
 import statsmodels.api as sm
 
+from feature_extraction import PRE_CALCULATED_FEATURES
 
 RESULTS_DIR = os.path.join(data_loaders.BASE_DIR, "tmp", "switch_exp")
 MIN_WORD_COUNT = 5
-PRE_CALCULATED_FEATURES = [
-    "rationale_word_count",
-    "num_keywords",
-    "num_equations",
-    "num_sents",
-    "num_verbs",
-    "num_conj",
-    "flesch_kincaid_grade_level",
-    "flesch_kincaid_reading_ease",
-    "times_chosen",
-    # "time_writing",
-    # "time_reading",
-]
 
 
 def get_pipeline(feature_columns_numeric, feature_columns_categorical):
@@ -57,83 +46,31 @@ def get_pipeline(feature_columns_numeric, feature_columns_categorical):
 
 
 def shown_feature_counts(shown_ids_str, df, feature):
+    avg_feature_value = df[feature].mean()
     shown_ids = shown_ids_str.strip("[]").replace(" ", "").split(",")
     shown_wc = []
     for k in shown_ids:
         if k != "":
             try:
-                shown_wc.append(df.loc[int(k), feature])
-            except KeyError:  # data got filtered out
-                pass
-
+                shown_wc.append(
+                    df.loc[df["id"]==int(k), feature].iat[0] if not (df.loc[df["id"]==int(k), feature].isna().iat[0]) else avg_feature_value
+                )
+            except IndexError:  # data got filtered out
+                shown_wc.append(avg_feature_value)
     return shown_wc
 
-
-def append_features(df):
+def append_features_shown_LSA(df_q):
     """
-    for each feature in  PRE_CALCULATED_FEATURES,
-    for each answer, aggregate feature values for those rationales that were shown
-    Same for LSA vectors
+    Arguments:
+    =========
+        df_q: all answers for a particular question, with "rationale" and shown
+                "rationales" columns. Ordered by "a_rank_by_time" (i.e.
+                when the answer was put in DB)
+    Returns:
+    =======
+        df_q : add columns for <mean, max> LSA distances to
+                - shown "rationales", all other rationales
     """
-
-    for feature in PRE_CALCULATED_FEATURES:
-        feature_name = "shown_{}".format(feature)
-        df[feature_name] = df["rationales"].apply(
-            shown_feature_counts, args=(df, feature,)
-        )
-
-        # for the answers where we have "shown rationale data"
-        # take the average of shown word counts as feature
-        df.loc[
-            df[feature_name].apply(lambda x: len(x) > 0), feature_name + "_mean"
-        ] = df.loc[df[feature_name].apply(lambda x: len(x) > 0), feature_name].apply(
-            lambda x: np.array(x).mean()
-        )
-
-        df.loc[
-            df[feature_name].apply(lambda x: len(x) > 0), feature_name + "_max"
-        ] = df.loc[df[feature_name].apply(lambda x: len(x) > 0), feature_name].apply(
-            lambda x: np.array(x).max()
-        )
-
-        if feature == "rationale_word_count":
-            # take the number of shown rationales with word_count<MIN_WORD_COUNT
-            # as feature
-            df.loc[
-                df[feature_name].apply(lambda x: len(x) > 0), "n_shown_short"
-            ] = df.loc[
-                df[feature_name].apply(lambda x: len(x) > 0), feature_name
-            ].apply(
-                lambda x: len([s for s in x if s < MIN_WORD_COUNT])
-            )
-
-            # take the number of shown rationales with word_count less than 0.5 times
-            # their own rationale_word_count as feature
-            df.loc[
-                df[feature_name].apply(lambda x: len(x) > 0), "n_shown_shorter_than_own"
-            ] = df.loc[
-                df[feature_name].apply(lambda x: len(x) > 0), [feature, feature_name]
-            ].apply(
-                lambda x: len([i for i in x[feature_name] if i < 0.5 * x[feature]]),
-                axis=1,
-            )
-
-            # take the number of shown rationales with word_count greater than 1.5 times
-            # their own rationale_word_count as feature
-            df.loc[
-                df[feature_name].apply(lambda x: len(x) > 0), "n_shown_longer_than_own"
-            ] = df.loc[
-                df[feature_name].apply(lambda x: len(x) > 0), [feature, feature_name]
-            ].apply(
-                lambda x: len([i for i in x[feature_name] if i > 1.5 * x[feature]]),
-                axis=1,
-            )
-
-    # features based on cosine similarity of LSA vectors
-    # (TfIdf + SVD + Norm)
-    df_q = df.sort_values("a_rank_by_time")
-    df_q["a_rank_by_time"] = list(range(df_q.shape[0]))
-
     # make LSA space with all rationales
     corpus = df_q["rationale"]
     vocab = get_vocab(corpus)
@@ -180,6 +117,85 @@ def append_features(df):
             lsa.transform(df_q["rationale"]),
         ).mean()
 
+
+
+def append_features_shown(df,kwargs):
+    """
+    for each feature in  pre_calculated_features,
+    for each answer, aggregate feature values for those rationales that were shown
+    Same for LSA vectors
+    """
+
+    LSA_features = kwargs.get("LSA_features")
+    pre_calculated_features = kwargs.get("pre_calculated_features")
+
+    for feature in pre_calculated_features:
+        feature_name = "shown_{}".format(feature)
+        df[feature_name] = df["rationales"].apply(
+            shown_feature_counts, args=(df, feature,)
+        )
+
+        # for the answers where we have "shown rationale data"
+        # take the <max,min,mean> of shown <feature> as feature
+        df.loc[
+            df[feature_name].apply(lambda x: len(x) > 0), feature_name + "_mean"
+        ] = df.loc[df[feature_name].apply(lambda x: len(x) > 0), feature_name].apply(
+            lambda x: np.array(x).mean()
+        )
+
+        df.loc[
+            df[feature_name].apply(lambda x: len(x) > 0), feature_name + "_max"
+        ] = df.loc[df[feature_name].apply(lambda x: len(x) > 0), feature_name].apply(
+            lambda x: np.array(x).max()
+        )
+
+        df.loc[
+            df[feature_name].apply(lambda x: len(x) > 0), feature_name + "_min"
+        ] = df.loc[df[feature_name].apply(lambda x: len(x) > 0), feature_name].apply(
+            lambda x: np.array(x).min()
+        )
+
+        if feature == "rationale_word_count":
+            # take the number of shown rationales with word_count<MIN_WORD_COUNT
+            # as feature
+            df.loc[
+                df[feature_name].apply(lambda x: len(x) > 0), "n_shown_short"
+            ] = df.loc[
+                df[feature_name].apply(lambda x: len(x) > 0), feature_name
+            ].apply(
+                lambda x: len([s for s in x if s < MIN_WORD_COUNT])
+            )
+
+            # take the number of shown rationales with word_count less than 0.5 times
+            # their own rationale_word_count as feature
+            df.loc[
+                df[feature_name].apply(lambda x: len(x) > 0), "n_shown_shorter_than_own"
+            ] = df.loc[
+                df[feature_name].apply(lambda x: len(x) > 0), [feature, feature_name]
+            ].apply(
+                lambda x: len([i for i in x[feature_name] if i < 0.5 * x[feature]]),
+                axis=1,
+            )
+
+            # take the number of shown rationales with word_count greater than 1.5 times
+            # their own rationale_word_count as feature
+            df.loc[
+                df[feature_name].apply(lambda x: len(x) > 0), "n_shown_longer_than_own"
+            ] = df.loc[
+                df[feature_name].apply(lambda x: len(x) > 0), [feature, feature_name]
+            ].apply(
+                lambda x: len([i for i in x[feature_name] if i > 1.5 * x[feature]]),
+                axis=1,
+            )
+
+    # features based on cosine similarity of LSA vectors
+    # (TfIdf + SVD + Norm)
+    df_q = df.sort_values("a_rank_by_time")
+    df_q["a_rank_by_time"] = list(range(df_q.shape[0]))
+
+    if LSA_features:
+        df_q = append_features_shown_LSA(df_q)
+
     return df_q
 
 
@@ -191,21 +207,20 @@ def main_by_topic(df_q, kwargs):
     results_dir_discipline = kwargs.get("results_dir_discipline")
     topic = kwargs.get("topic")
 
-    print(len(feature_columns_numeric))
-
     feature_transformer = get_pipeline(
         feature_columns_numeric=feature_columns_numeric,
         feature_columns_categorical=feature_columns_categorical,
     )
 
     # only make predictions for students, not teacher answers, where user token is ""/null
+    # for Wrong--> Right transitions
+
     X = feature_transformer.fit_transform(
-        df_q.loc[
-            df_q["user_token"].isna() == False,
+        df_q.loc[:,
             feature_columns_numeric + feature_columns_categorical,
         ]
     )
-    y = df_q.loc[df_q["user_token"].isna() == False, target].values  # .reshape(-1,1)
+    y = df_q[target].values  # .reshape(-1,1)
 
     scores = cross_val_score(LogisticRegression(), X, y)
     scores_f1 = cross_val_score(LogisticRegression(), X, y, scoring="f1")
@@ -213,8 +228,7 @@ def main_by_topic(df_q, kwargs):
     # names for variables in statsmodels
     X_df = pd.DataFrame(
         X,
-        columns=feature_columns_numeric
-        + list(
+        columns= feature_columns_numeric + list(
             feature_transformer.named_transformers_["categorical"]
             .steps[0][1]
             .get_feature_names(feature_columns_categorical)
@@ -245,6 +259,10 @@ def main_by_topic(df_q, kwargs):
                 .to_dict()
                 .items()
             },
+            "params_all": {
+                k: np.round(v, 3)
+                for k, v in logit_model_results.params.to_dict().items()
+            }
         }
         fname = os.path.join(results_dir_discipline, "{}.json".format(topic))
         with open(fname, "w") as f:
@@ -277,22 +295,33 @@ def main(discipline):
 
     topics_to_do = [t for t in topics if t not in topics_already_done]
 
+    feature_types_included = [
+        "convincingness"
+    ]
+
+    pre_calculated_features = [
+        x for x in [
+            PRE_CALCULATED_FEATURES[feature_type] for feature_type in feature_types_included]
+            for x in x
+        ]
     feature_columns_numeric = (
         [
             "a_rank_by_time",
-            "n_shown_short",
-            "n_shown_shorter_than_own",
-            "n_shown_longer_than_own",
-            "P_switch_exp_student",
-            "P_switch_exp_topic",
-            "mean_cosine_sim_to_shown",
-            "mean_cosine_sim_to_others",
-            "q_diff1",
+            "rationale_word_count",
+            # "n_shown_short",
+            # "n_shown_shorter_than_own",
+            # "n_shown_longer_than_own",
+            # "P_switch_exp_student",
+            # "P_switch_exp_topic",
+            # "mean_cosine_sim_to_shown",
+            # "mean_cosine_sim_to_others",
+            # "q_diff1",
             "student_strength1",
         ]
-        + ["shown_{}".format(feature) for feature in PRE_CALCULATED_FEATURES]
-        + ["shown_{}_mean".format(feature) for feature in PRE_CALCULATED_FEATURES]
-        + ["shown_{}_max".format(feature) for feature in PRE_CALCULATED_FEATURES]
+        + pre_calculated_features
+        + ["shown_{}_mean".format(feature) for feature in pre_calculated_features]
+        + ["shown_{}_max".format(feature) for feature in pre_calculated_features]
+        + ["shown_{}_min".format(feature) for feature in pre_calculated_features]
     )
     feature_columns_categorical = [
         "first_correct",
@@ -302,19 +331,44 @@ def main(discipline):
     kwargs = {
         "feature_columns_categorical": feature_columns_categorical,
         "target": target,
+        "LSA_features": False,
+        "pre_calculated_features": pre_calculated_features,
     }
+
 
     for t, topic in enumerate(topics_to_do):
 
         print("{}/{}: {}".format(t, len(topics_to_do), topic))
+
+        # read answer data
         df = pd.read_csv(
             os.path.join(data_dir_discipline, "{}.csv".format(topic)), index_col="id"
         )
         df["rationale"] = df["rationale"].fillna("")
 
-        df_q = append_features(df)
+        # append columns with pre-calculated features
+        features_dir = os.path.join(data_dir_discipline+"_with_features",topic+"_features")
+        for feature_type in feature_types_included:
 
-        # some columns don't even come back from append_features function
+            feature_type_fpath = os.path.join(
+                features_dir, topic+"_"+feature_type + ".json"
+            )
+            with open(feature_type_fpath,"r") as f:
+                features_json = json.load(f)
+
+            # each feature_type includes multiple features
+            for feature in features_json:
+                df = pd.merge(
+                    df,
+                    pd.DataFrame(features_json[feature], columns=["id",feature]),
+                    on="id",
+                    how="left"
+                )
+
+        # derive features based on shown rationales
+        df_q = append_features_shown(df,kwargs)
+
+        # some columns don't even come back from append_features_shown function
         feature_columns_numeric = [
             f for f in feature_columns_numeric if f in df_q.columns
         ]
@@ -327,7 +381,14 @@ def main(discipline):
             )
             if not fn
         ]
-        if len(feature_columns_numeric_non_null) > 0:
+
+        df_q_w = df_q[(
+            (df_q["user_token"].isna() == False)
+            &
+            (df_q["transition"].isin(["wr","ww"]))
+            )]
+
+        if len(feature_columns_numeric_non_null) > 0 and df_q_w.shape[0]>10:
             kwargs.update(
                 {
                     "topic": topic,
@@ -335,7 +396,7 @@ def main(discipline):
                     "feature_columns_numeric": feature_columns_numeric_non_null,
                 }
             )
-            main_by_topic(df_q, kwargs)
+            main_by_topic(df_q_w, kwargs)
         else:
             print("skipping topic")
 

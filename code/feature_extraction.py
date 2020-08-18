@@ -16,6 +16,26 @@ from make_corpus import make_pairs_by_topic, filter_out_stick_to_own
 
 from argBT import get_rankings_baseline, get_rankings
 
+# make sure this matches the calculations below
+PRE_CALCULATED_FEATURES = {
+    "syntax":[
+        "num_sents",
+    ],
+    "readability":[
+        "flesch_kincaid_grade_level",
+        "flesch_kincaid_reading_ease",
+    ],
+    "lexical":[
+        "num_equations",
+        "num_keywords"
+    ],
+    "convincingness":[
+        "convincingness_BT",
+        "convincingness_baseline",
+    ],
+    "semantic":[]
+}
+
 
 def on_match(matcher, doc, id, matches):
     """
@@ -191,7 +211,7 @@ def extract_convincingness_features(topic, df_topic_unfiltered):
 
     convincingness_features = {}
 
-    for f in ["convincingness_baseline","convincingness_BT"]:
+    for f in PRE_CALCULATED_FEATURES["convincingness"]:
         if f=="convincingness_BT":
             r = get_rankings(df_pairs)[1]
         else:
