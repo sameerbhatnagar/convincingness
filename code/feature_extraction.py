@@ -18,23 +18,29 @@ from argBT import get_rankings_baseline, get_rankings
 
 # make sure this matches the calculations below
 PRE_CALCULATED_FEATURES = {
-    "syntax":[
-        "num_sents",
+    "surface": [
+        "rationale_word_count",
+        # "num_sents",
     ],
-    "readability":[
-        "flesch_kincaid_grade_level",
-        "flesch_kincaid_reading_ease",
-    ],
-    "lexical":[
-        "num_equations",
-        "num_keywords"
-    ],
-    "convincingness":[
-        "convincingness_BT",
-        "convincingness_baseline",
-    ],
-    "semantic":[]
+    "syntax": [],
+    "readability": ["flesch_kincaid_grade_level", "flesch_kincaid_reading_ease",],
+    "lexical": ["num_equations", "num_keywords"],
+    "convincingness": ["convincingness_BT", "convincingness_baseline",],
+    "semantic": [],
 }
+
+
+def extract_surface_features(df):
+    surface_features = {}
+
+    df["rationale_word_count"] = df["rationale"].str.count("\w+")
+
+    surface_features["rationale_word_count"] = [
+        [d["id"], d["rationale_word_count"]]
+        for d in df[["id", "rationale_word_count"]].to_dict(orient="records")
+    ]
+
+    return surface_features
 
 
 def on_match(matcher, doc, id, matches):
@@ -212,15 +218,17 @@ def extract_convincingness_features(topic, df_topic_unfiltered):
     convincingness_features = {}
 
     for f in PRE_CALCULATED_FEATURES["convincingness"]:
-        if f=="convincingness_BT":
+        if f == "convincingness_BT":
             r = get_rankings(df_pairs)[1]
         else:
             r = get_rankings_baseline(df_topic_unfiltered)[1]
+
+        # remove "arg" prefix
         r = {int(k[3:]): v for k, v in r.items()}
-        df_topic[f]=df_topic["id"].map(r)
-        convincingness_features[f] = [
-            [d["id"],d[f]] for d in df_topic[["id",f]].to_dict(orient="records")
-        ]
+
+        # store as list of lists, where first element is answer id, and second
+        # is feature value
+        convincingness_features[f] = list(r.items())
 
     return convincingness_features
 
@@ -274,7 +282,7 @@ def get_features(
 
     nlp = spacy.load("en_core_web_sm")
 
-    df_answers.loc[df_answers["rationale"].isna(),"rationale"]=" "
+    df_answers.loc[df_answers["rationale"].isna(), "rationale"] = " "
 
     with_features_dir = os.path.join(path_to_data, topic + "_features")
 
@@ -282,7 +290,7 @@ def get_features(
         os.mkdir(with_features_dir)
 
     # TO DO: "lexical"
-    for feature_type in ["convincingness"]:#, "syntax", "readability"]:
+    for feature_type in ["convincingness"]:  # , "syntax", "readability"]:
         features = extract_features_and_save(
             with_features_dir=with_features_dir,
             df_answers=df_answers,
@@ -300,6 +308,7 @@ def get_features(
             )
 
     return df_answers
+
 
 def main(discipline):
     print(discipline)
@@ -334,21 +343,19 @@ def main(discipline):
             os.path.join(data_dir_discipline, "{}.csv".format(topic))
         )
 
-        df_topic=get_features(
+        df_topic = get_features(
             df_answers=df_topic,
             topic=topic,
             path_to_data=results_dir_discipline,
-            subject=discipline
+            subject=discipline,
         )
 
-        df_all=pd.concat([df_all,df_topic])
+        df_all = pd.concat([df_all, df_topic])
 
-    fp=os.path.join(
-        results_dir_discipline,
-        "all_topics_with_features.csv"
-        )
+    fp = os.path.join(results_dir_discipline, "all_topics_with_features.csv")
     df_all.to_csv(fp)
     print("Finished: {} ".format(datetime.datetime.now()))
+
 
 if __name__ == "__main__":
     import plac
