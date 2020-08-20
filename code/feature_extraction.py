@@ -208,20 +208,21 @@ def extract_readability_features(rationales, nlp):
     return readability_features
 
 
-def extract_convincingness_features(topic, df_topic_unfiltered):
-    df_topic = filter_out_stick_to_own(df_topic_unfiltered)
+def extract_convincingness_features(topic,discipline):
 
-    df_pairs = make_pairs_by_topic(
-        df_question=df_topic, topic=topic, df_unfiltered=df_topic_unfiltered
-    )
+    data_dir_discipline = os.path.join(data_loaders.BASE_DIR,"tmp","switch_exp",discipline)
 
+    fp=os.path.join(data_dir_discipline,"data_pairs","pairs_{}.csv".format(topic.replace("/", "_")))
+    df_pairs = pd.read_csv(fp)
     convincingness_features = {}
 
     for f in PRE_CALCULATED_FEATURES["convincingness"]:
         if f == "convincingness_BT":
             r = get_rankings(df_pairs)[1]
         else:
-            r = get_rankings_baseline(df_topic_unfiltered)[1]
+            fp = os.path.join(data_dir_discipline,"data","{}.csv".format(topic.replace("/", "_")))
+            df_topic = pd.read_csv(fp)
+            r = get_rankings_baseline(df_topic)[1]
 
         # remove "arg" prefix
         r = {int(k[3:]): v for k, v in r.items()}
@@ -265,7 +266,7 @@ def extract_features_and_save(
             )
         elif feature_type == "convincingness":
             features = extract_convincingness_features(
-                topic=topic, df_topic_unfiltered=df_answers
+                topic=topic, discipline= subject
             )
         with open(feature_type_fpath, "w") as f:
             json.dump(features, f, indent=2)

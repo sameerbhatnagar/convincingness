@@ -7,12 +7,13 @@ import data_loaders
 
 # from peerinst.models import Question,Answer
 
-VOTES_MIN = 10
 MIN_RECORDS_PER_QUESTION = 100
-MIN_WORD_COUNT = 10
 
 
 def get_shown_rationales(row):
+    """
+    this function is used in extraction of mydalite data from django db
+    """
     shown = list(
         ShownRationale.objects.filter(shown_for_answer=row["id"])
         .exclude(shown_answer=row["chosen_rationale_id"])
@@ -155,7 +156,6 @@ def get_mydalite_answers():
         data_loaders.BASE_DIR, os.pardir, "mydalite_answers_2020_07_21.csv"
     )
     df = pd.read_csv(fpath)
-    df["rationale_word_count"] = df["rationale"].str.count("\w+")
 
     df["topic"] = df["title"]
 
@@ -205,8 +205,6 @@ def get_ethics_answers():
 
     df = df[~df["rationale"].isna()]
 
-    df["rationale_word_count"] = df["rationale"].str.count("\w+")
-
     return df
 
 
@@ -219,39 +217,17 @@ def filter_out_stick_to_own(df):
     return df_switchers
 
 
-def filter_df_answers(df, stick_to_own=False):
+def filter_df_answers(df):
 
-    print("all")
-    print(df.shape)
+    print("all answers")
+    print(df.shape[0])
 
-    if not stick_to_own:
-        df = filter_out_stick_to_own(df)
+    records_per_question = df["topic"].value_counts()
 
-    df2 = df[(df["rationale_word_count"] >= MIN_WORD_COUNT)].copy()
-
-    print("\n wc filter")
-    print(df2.shape)
-
-    # df2 = df[(
-    #     abs(df["chosen_rationale_word_count"]-df["rationale_word_count"])<=MAX_WORD_COUNT_DIFF
-    # )].copy()
-
-    # ensure that each explanation has been chosen a minimum number of times for reliability,
-    # votes = df["chosen_rationale_id"].value_counts()
-    #
-    # df3 = df2[
-    #     ((df2["chosen_rationale_id"].isin(votes[votes >= VOTES_MIN].index)))
-    # ].copy()
-
-    # print("\n vote_min filter")
-    # print(df3.shape)
-
-    records_per_question = df2["topic"].value_counts()
-
-    df_filtered = df2[
+    df_filtered = df[
         (
             (
-                df2["topic"].isin(
+                df["topic"].isin(
                     records_per_question[
                         records_per_question >= MIN_RECORDS_PER_QUESTION
                     ].index
@@ -267,24 +243,27 @@ def filter_df_answers(df, stick_to_own=False):
     return df_filtered
 
 
-def make_pairs_by_topic(df_question, topic, df_unfiltered):
+def make_pairs_by_topic(topic, df_unfiltered):
     """
     Arguments:
     =========
-        df_question : dataframe of answers which will be included when making
-                        pairs from student answers. Columns must included:
-                         - id, rationale, user_token, chosen_rationale,
-                         rationales, a_rank_by_time
         topic : question title
-        df_unfiltered : shown rationales may include answers that were
-                        filtered out (for which we do not make pairs), so this
-                        dataframe is needed
+        df_unfiltered
     Returns:
     ========
         df_rank : dataframe with pairs of arguments/rationales, labelled
                     which of the pair was chosen, who the chooser was, and
                     who wrote the chosen rationale (user_token)
     """
+    print(topic)
+    print("\t{} answers".format(df_unfiltered.shape[0]))
+    # pairs are made only from records where students changed their answer choice.
+    # the BradleyTerry scores derived are more
+    # valid
+    # TO DO: show this clearly! Predict winning
+    # argument in each pair with derived BT score
+    df_question = filter_out_stick_to_own(df_unfiltered)
+    print("\t{} answers where students switched explanations".format(df_question.shape[0]))
     ranked_pairs = []
 
     # balanced classes
@@ -373,11 +352,7 @@ def make_pairs_by_topic(df_question, topic, df_unfiltered):
                 "shown_answer__rationale"
             ].str.count("\w+")
 
-            others_df = others_df[
-                others_df["shown_rationale_word_count"] >= MIN_WORD_COUNT
-            ]
 
-            # others_df[np.abs(others_df["shown_rationale_word_count"]-row["chosen_rationale_word_count"])<=MAX_WORD_COUNT_DIFF]
             for j, (i2, p) in enumerate(others_df.iterrows()):
                 dr = {}
                 if j % 2 == 0:
@@ -420,69 +395,92 @@ def make_pairs_by_topic(df_question, topic, df_unfiltered):
     df_rank["topic"] = topic
 
     # # exclude pairs which have an argument that only appears once
-    arg_appearance_counts = collections.Counter(
-        df_rank["a1_id"].to_list() + df_rank["a2_id"].to_list()
-    )
-    exclude_args = [k for k, v in arg_appearance_counts.items() if v == 1]
-    df_rank = df_rank[
-        (~df_rank["a1_id"].isin(exclude_args)) | (~df_rank["a2_id"].isin(exclude_args))
-    ].copy()
-
+    # arg_appearance_counts = collections.Counter(
+    #     df_rank["a1_id"].to_list() + df_rank["a2_id"].to_list()
+    # )
+    # exclude_args = [k for k, v in arg_appearance_counts.items() if v == 1]
+    # df_rank = df_rank[
+    #     (~df_rank["a1_id"].isin(exclude_args)) | (~df_rank["a2_id"].isin(exclude_args))
+    # ].copy()
+    print("\t{} pairs".format(df_rank.shape[0]))
     return df_rank
 
 
-def make_pairs(df_unfiltered):
+
+def label_switch_exp(df):
+    # label students with a 1 if they chose a peer explanation on review step, otherwise 0
+    df.loc[
+        (df["chosen_rationale_id"] != df["id"]),
+        "switch_exp",
+    ] = 1
+    df.loc[df["switch_exp"].isna(), "switch_exp"] = 0
+
+    return df
+
+
+def make_all_pairs(data_file_dict, output_dir):
     """
     Function that takes answer level observations and converts to pairs
     Arguments:
-        - df: all answers
+        - df_answers_all: all answers
+        - output_dir: where to save pairs
     Returns:
         - pandas Dataframe of pairs
     """
-    output_dir = os.path.join(
-        data_loaders.BASE_DIR, "data", "mydalite_arg_pairs_others"
-    )
 
-    df_filtered = filter_df_answers(df_unfiltered)
+    df_pairs_all = pd.DataFrame()
+    for topic, fp in data_file_dict.items():
+        df_topic = pd.read_csv(fp)
+        df_pairs = make_pairs_by_topic(topic=topic, df_unfiltered=df_topic)
 
-    df_dalite = pd.DataFrame()
+        # save
+        data_dir = os.path.join(output_dir, "data_pairs")
+        fp = os.path.join(data_dir, "pairs_{}.csv".format(topic.replace("/", "_")))
+        df_pairs.to_csv(fp)
 
-    # iterate through filtered answers, but access to unfiltered df is needed to
-    # get rationales of students who stuck to their own (should their rationale
-    # be chosen)
-    for topic, df_question in df_filtered.groupby("topic"):
-        df_rank = make_pairs_by_topic(topic, df_question, df_unfiltered)
-        df_dalite = pd.concat([df_dalite, df_rank])
-
-        discipline = df_question["discipline"].value_counts().index[0]
-
-        fname = "{}_{}.csv".format(discipline, topic.replace("/", "_"),)
-        fpath = os.path.join(output_dir, fname)
-        df_rank.to_csv(fpath)
-
-    return df_dalite
-
-
-def make_all_pairs():
-
-    df_mydalite = get_mydalite_answers()
-    df_pairs_mydalite = make_pairs(df_mydalite)
-    print("mydalite pairs : {}".format(df_pairs_mydalite.shape[0]))
-
-    df_ethics = get_ethics_answers()
-    df_ethics["discipline"] = "Ethics"
-
-    df_pairs_ethics = make_pairs(df_ethics)
-    print("ethics pairs : {}".format(df_pairs_ethics.shape[0]))
-
-    df_pairs_all = pd.concat([df_pairs_mydalite, df_pairs_ethics])
+        df_pairs_all = pd.concat([df_pairs_all,df_pairs])
 
     return df_pairs_all
 
 
-def main():
+def main(discipline):
 
-    df_all = make_all_pairs()
+    output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", "switch_exp", discipline)
+    data_dir = os.path.join(output_dir,"data")
+    data_file_dict = {}
+    if discipline == "Ethics":
+        df_answers_all_unfiltered = get_ethics_answers()
+        df_answers_all_unfiltered["discipline"] = "Ethics"
+
+    else:
+        df_answers_all_unfiltered_all_disciplines = get_mydalite_answers()
+        df_answers_all_unfiltered = df_answers_all_unfiltered_all_disciplines[
+            df_answers_all_unfiltered_all_disciplines["discipline"] == discipline
+        ]
+        # free up memory
+        del df_answers_all_unfiltered_all_disciplines
+
+    # filter out based on at least MIN_RECORDS_PER_QUESTION
+    df_answers_all = filter_df_answers(df_answers_all_unfiltered)
+
+    # free up memory
+    del df_answers_all_unfiltered
+
+    df_answers_all = label_switch_exp(df_answers_all)
+
+    for topic,df_topic in df_answers_all.groupby("topic"):
+        fp=os.path.join(
+            data_dir,
+            "{}.csv".format(topic.replace("/", "_"))
+        )
+        df_topic.to_csv(fp)
+        data_file_dict[topic]=fp
+
+    # free up memory
+    del df_answers_all
+
+    df_pairs_all = make_all_pairs(data_file_dict=data_file_dict, output_dir=output_dir)
+    print("{} pairs : {}".format(discipline,df_pairs_all.shape[0]))
 
 
 if __name__ == "__main__":
