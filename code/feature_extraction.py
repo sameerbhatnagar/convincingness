@@ -12,7 +12,7 @@ from spacy_readability import Readability
 import pandas as pd
 from utils_scrape_openstax import OPENSTAX_TEXTBOOK_DISCIPLINES
 
-from make_corpus import make_pairs_by_topic, filter_out_stick_to_own
+from make_pairs import make_pairs_by_topic, filter_out_stick_to_own
 
 from argBT import get_rankings_baseline, get_rankings
 

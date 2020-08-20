@@ -14,7 +14,7 @@ from collections import Counter
 import choix
 
 import data_loaders
-from make_corpus import get_ethics_answers,get_mydalite_answers
+from make_pairs import get_ethics_answers,get_mydalite_answers
 
 only_one_arg_pair = {}
 model = "argBT"

@@ -3,7 +3,6 @@ import json
 import plac
 from joblib import dump
 
-from make_corpus import get_mydalite_answers
 from utils import get_vocab
 
 import pandas as pd
