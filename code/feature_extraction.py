@@ -16,11 +16,12 @@ from make_pairs import make_pairs_by_topic, filter_out_stick_to_own
 
 from argBT import get_rankings_baseline, get_rankings
 
+MIN_WORD_COUNT = 5
+
 # make sure this matches the calculations below
 PRE_CALCULATED_FEATURES = {
     "surface": [
         "rationale_word_count",
-        # "num_sents",
     ],
     "syntax": [],
     "readability": ["flesch_kincaid_grade_level", "flesch_kincaid_reading_ease",],
@@ -30,7 +31,13 @@ PRE_CALCULATED_FEATURES = {
 }
 
 
-def extract_surface_features(df):
+def extract_surface_features(topic,discipline):
+
+    data_dir_discipline = os.path.join(data_loaders.BASE_DIR,"tmp","switch_exp",discipline)
+
+    fp = os.path.join(data_dir_discipline,"data","{}.csv".format(topic.replace("/", "_")))
+    df = pd.read_csv(fp)
+
     surface_features = {}
 
     df["rationale_word_count"] = df["rationale"].str.count("\w+")
@@ -268,6 +275,10 @@ def extract_features_and_save(
             features = extract_convincingness_features(
                 topic=topic, discipline= subject
             )
+        elif feature_type == "surface":
+            features = extract_surface_features(
+                topic=topic,discipline=subject
+            )
         with open(feature_type_fpath, "w") as f:
             json.dump(features, f, indent=2)
 
@@ -291,7 +302,7 @@ def get_features(
         os.mkdir(with_features_dir)
 
     # TO DO: "lexical"
-    for feature_type in ["convincingness"]:  # , "syntax", "readability"]:
+    for feature_type in ["surface","convincingness"]:  # , "syntax", "readability"]:
         features = extract_features_and_save(
             with_features_dir=with_features_dir,
             df_answers=df_answers,
@@ -331,6 +342,10 @@ def main(discipline):
     topics = [os.path.basename(fp)[:-4] for fp in all_files]
 
     results_dir_discipline = os.path.join(RESULTS_DIR, discipline, "data_with_features")
+
+    if not os.path.exists(results_dir_discipline):
+        os.mkdir(results_dir_discipline)
+
     topics_already_done = [fp[:-5] for fp in os.listdir(results_dir_discipline)]
 
     topics_to_do = [t for t in topics if t not in topics_already_done]
