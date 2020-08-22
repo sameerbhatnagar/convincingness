@@ -14,7 +14,7 @@ from sklearn.svm import SVC
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler, OneHotEncoder, Normalizer
+from sklearn.preprocessing import QuantileTransformer, OneHotEncoder, Normalizer
 from sklearn.pipeline import Pipeline
 from sklearn.decomposition import TruncatedSVD
 from sklearn.compose import ColumnTransformer
@@ -29,10 +29,12 @@ RESULTS_DIR = os.path.join(data_loaders.BASE_DIR, "tmp", "switch_exp")
 from feature_extraction import MIN_WORD_COUNT
 
 
-def get_pipeline(feature_columns_numeric, feature_columns_categorical):
+def get_pipeline(feature_columns_numeric, feature_columns_categorical, df):
 
+    n_quantiles = int(0.75*df.shape[0])
     numeric_transformer = Pipeline(
-        steps=[("imputer", SimpleImputer()), ("std_scaler", StandardScaler()),]
+        steps=[("imputer", SimpleImputer()), ("quantile_transformer", QuantileTransformer(n_quantiles=n_quantiles)),]
+        # steps=[("imputer", SimpleImputer()), ("std_scaler", StandardScaler()),]
     )
 
     categorical_transformer = Pipeline(steps=[("onehot", OneHotEncoder(drop="first"))])
@@ -165,33 +167,34 @@ def append_features_shown(df, kwargs):
             lambda x: np.array(x).min()
         )
 
-    # take the number of shown rationales with word_count<MIN_WORD_COUNT
-    # as feature
-    feature = "rationale_word_count"
-    feature_name="shown_{}".format(feature)
-    df.loc[df[feature_name].apply(lambda x: len(x) > 0), "n_shown_short"] = df.loc[
-        df[feature_name].apply(lambda x: len(x) > 0), feature_name
-    ].apply(lambda x: len([s for s in x if s < MIN_WORD_COUNT]))
+    if "rationale_word_count" in pre_calculated_features:
+        # take the number of shown rationales with word_count<MIN_WORD_COUNT
+        # as feature
+        feature = "rationale_word_count"
+        feature_name="shown_{}".format(feature)
+        df.loc[df[feature_name].apply(lambda x: len(x) > 0), "n_shown_short"] = df.loc[
+            df[feature_name].apply(lambda x: len(x) > 0), feature_name
+        ].apply(lambda x: len([s for s in x if s < MIN_WORD_COUNT]))
 
-    # take the number of shown rationales with word_count less than 0.5 times
-    # their own rationale_word_count as feature
-    df.loc[
-        df[feature_name].apply(lambda x: len(x) > 0), "n_shown_shorter_than_own"
-    ] = df.loc[
-        df[feature_name].apply(lambda x: len(x) > 0), [feature, feature_name]
-    ].apply(
-        lambda x: len([i for i in x[feature_name] if i < 0.5 * x[feature]]), axis=1,
-    )
+        # take the number of shown rationales with word_count less than 0.5 times
+        # their own rationale_word_count as feature
+        df.loc[
+            df[feature_name].apply(lambda x: len(x) > 0), "n_shown_shorter_than_own"
+        ] = df.loc[
+            df[feature_name].apply(lambda x: len(x) > 0), [feature, feature_name]
+        ].apply(
+            lambda x: len([i for i in x[feature_name] if i < 0.5 * x[feature]]), axis=1,
+        )
 
-    # take the number of shown rationales with word_count greater than 1.5 times
-    # their own rationale_word_count as feature
-    df.loc[
-        df[feature_name].apply(lambda x: len(x) > 0), "n_shown_longer_than_own"
-    ] = df.loc[
-        df[feature_name].apply(lambda x: len(x) > 0), [feature, feature_name]
-    ].apply(
-        lambda x: len([i for i in x[feature_name] if i > 1.5 * x[feature]]), axis=1,
-    )
+        # take the number of shown rationales with word_count greater than 1.5 times
+        # their own rationale_word_count as feature
+        df.loc[
+            df[feature_name].apply(lambda x: len(x) > 0), "n_shown_longer_than_own"
+        ] = df.loc[
+            df[feature_name].apply(lambda x: len(x) > 0), [feature, feature_name]
+        ].apply(
+            lambda x: len([i for i in x[feature_name] if i > 1.5 * x[feature]]), axis=1,
+        )
 
     df_q = df.sort_values("a_rank_by_time")
 
@@ -215,6 +218,7 @@ def main_by_topic(df_q, kwargs):
     feature_transformer = get_pipeline(
         feature_columns_numeric=feature_columns_numeric,
         feature_columns_categorical=feature_columns_categorical,
+        df = df_q,
     )
 
     # only make predictions for students, not teacher answers, where user token is ""/null
@@ -234,7 +238,7 @@ def main_by_topic(df_q, kwargs):
     for name, clf in [
         ("LR", LogisticRegression()),
         ("SVM", SVC()),
-        ("RF", RandomForestClassifier()),
+        ("RF", RandomForestClassifier(max_depth=5)),
     ]:
         clf = Pipeline([
         ("feature_transformer",feature_transformer),
@@ -324,7 +328,23 @@ def main_by_topic(df_q, kwargs):
     return
 
 
-def main(discipline):
+def main(discipline, feature_types_included="all"):
+    """
+    Command line utility to run experiments on predicting
+    whether a student will choose a peer's explanation
+    over their own in Technology Mediated Peer Instruction
+
+    Arguments:
+    =========
+        - discipline -> str
+            - options: Physics, Chemistry, Biology,
+            Statistics, or Ethics
+        - feature_types_included -> str
+            - options: all, convincingness, surface
+    Returns:
+    ========
+        None
+    """
     print(discipline)
 
     data_dir_discipline = os.path.join(RESULTS_DIR, discipline, "data")
@@ -340,19 +360,23 @@ def main(discipline):
 
     topics = [os.path.basename(fp)[:-4] for fp in all_files]
 
-    results_dir_discipline = os.path.join(RESULTS_DIR, discipline, "results")
+    if feature_types_included == "all":
+        feature_types_included = [
+            "surface",
+            "convincingness",
+        ]
+        results_dir_discipline = os.path.join(RESULTS_DIR, discipline, "results")
+    else:
+        results_dir_discipline = os.path.join(RESULTS_DIR, discipline, "results_{}".format(feature_types_included))
+        feature_types_included=[feature_types_included]
 
+    # make directory for results if it doesn't already exits
     if not os.path.exists(results_dir_discipline):
         os.mkdir(results_dir_discipline)
 
+    # make list of what has not already been done
     topics_already_done = [fp[:-5] for fp in os.listdir(results_dir_discipline)]
-
     topics_to_do = [t for t in topics if t not in topics_already_done]
-
-    feature_types_included = [
-        "surface",
-        "convincingness",
-    ]
 
     pre_calculated_features = [
         x
@@ -362,24 +386,24 @@ def main(discipline):
         ]
         for x in x
     ]
+
     feature_columns_numeric = (
-        [
-            # "a_rank_by_time",
-            "n_shown_short",
-            "n_shown_shorter_than_own",
-            "n_shown_longer_than_own",
-            # "P_switch_exp_student",
-            # "P_switch_exp_topic",
-            # "mean_cosine_sim_to_shown",
-            # "mean_cosine_sim_to_others",
-            # "q_diff1",
-            # "student_strength1",
-        ]
-        + pre_calculated_features
+        pre_calculated_features
         + ["shown_{}_mean".format(feature) for feature in pre_calculated_features]
         + ["shown_{}_max".format(feature) for feature in pre_calculated_features]
         + ["shown_{}_min".format(feature) for feature in pre_calculated_features]
     )
+
+    if "surface" in feature_types_included:
+        feature_columns_numeric.extend([
+            # "a_rank_by_time",
+            "n_shown_short",
+            "n_shown_shorter_than_own",
+            "n_shown_longer_than_own",
+            # "q_diff1",
+            # "student_strength1",
+        ])
+
     if discipline != "Ethics":
         feature_columns_categorical = [
             "first_correct",
@@ -425,7 +449,7 @@ def main(discipline):
                     how="left",
                 )
 
-        # derive features based on shown rationales
+        # derive features based on shown rationales, for feature_types_included
         df_q = append_features_shown(df, kwargs)
 
         # some columns don't even come back from append_features_shown function
