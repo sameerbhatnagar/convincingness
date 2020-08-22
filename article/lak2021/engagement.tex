@@ -231,110 +231,16 @@ for student
 \subsection{Engagement}
 
 
-\subsection{Automatic Short Answer Grading}
+\subsection{Modelling Argument Persuasiveness}
 
 
-\subsection{Text-to-text similarity}
-Many of the features in our models are based on 
-similarity 
-metrics between 
-student explanations with each other, as well as 
-with other 
-references. 
-
-Consideration must be taken in choosing a metric 
-for measuring 
-similarity 
-between two texts. 
-The use of cosine similarity is standard practice 
-in Latent 
-Semantic 
-Indexing,
-
-\begin{equation}
-sim(T_1,T_2) = \frac{T_1 \cdot T_2}{\| T_1 \| \| 
-T_2 \|}
-\end{equation}
-
-where $T_1$ and $T_2$ are the \textit{Tf-Idf} 
-vector 
-representations of 
-each text.
-
-However there is extensive work on text-to-text 
-similarity 
-metrics 
-\cite{mihalcea_corpus-based_2006}, 
-which can be divided into two families:
-\begin{enumerate}
-	\item Knowledge Based:
-	\item Corpus Based
-\end{enumerate}
 
 
 \section{Methodology}
 
-\subsection{Relative Learning Gain}
-Learning platforms used by teachers for 
-formative assessment 
-over the course of 
-a semester generate longitudinal learning 
-traces. 
-Fine grained modelling of student 
-learning with such data is 
-only possible if 
-question items have been tagged with 
-Knowledge Components\cite{corbett_knowledge_1994}, or an 
-item-skill 
-mapping\cite{barnes_q-matrix_2005} has been defined.
-Learning gains on the time-scale of a few 
-weeks, or a semester, 
-are often 
-measured using the administration of a 
-carefully validated 
-pre-post test, such 
-as the Force Concept Inventory\cite{hestenes_force_1992} from the 
-Physics Education 
-Research community.
-
-However both of these methodologies 
-require resource intensive 
-development of 
-domain knowledge mappings and validated 
-instruments. 
-In the iterative design of learning 
-tools, it is desirable to 
-have a definition 
-of learning that can be measured without 
-such prohibitive 
-limitations, even it 
-can serve as a baseline to more 
-comprehensive evaluations.
-
-We propose a definition of 
-\textit{Relative 
-	Learning Gain} for each student over 
-the course of a semester 
-which requires 
-only that all students within a group 
-have completed a common 
-set of items.
-\begin{equation}
-Relative Learning Gain_{student} = 
-\frac{W \rightarrow R_{second 
-		half of semester} }{W \rightarrow 
-	R_{first half of 
-		semester} }
-\end{equation}
 
 
 \subsection{Engagement}
-
-\begin{equation}
-Engagement_{student} = 
-\frac{1}{N_{explanations}}\sum{WordCount_{explanation}}
-\end{equation}
-
 
 
 \begin{equation}
@@ -345,122 +251,18 @@ Engagement_{student} =
 \end{equation}
 
 
-\subsection{Vector Space Models}
-We experiment with vector space models with 
-different document representations:
-\begin{enumerate}
-	\item LSA vectors (10,50,100 components) 
-	\cite{deerwester_indexing_1990}
-	\item Glove embeddings 
-	\cite{pennington_glove:_2014}
-	\item BERT embeddings \cite{devlin_bert_2018}, 
-	out-of-the-box, and 
-	fine-tuned for the current classification task
-\end{enumerate}
 
+\subsection{Features}
 
-\subsection{Feature Rich Models}
+\subsection{Surface Features}
 
-The list of features included here are derived 
-from related work in argument 
-mining 
-\cite{habernal_which_2016}\cite{persing_end--end_2016}
- on student 
-essays, automatic short answer scoring 
-\cite{mohler_text--text_2009}
-
-\begin{enumerate}
-	\item Non-linguistic features
-	
 	\begin{enumerate}
-		\item First answer correct
-		\item time spent writing
+	\item First answer correct
+	\item time spent writing
 	\end{enumerate}
-	
-	
-	
-	\item Linguistic features
-	
-	\begin{enumerate}
-		
-		\item Surface Features
-		\begin{enumerate}
-			\item word count
-			\item sentence count
-			\item max/mean word length
-			\item max/mean sentence length
-		\end{enumerate}
-		
-		\item Lexical
-		\begin{enumerate}
-			\item uni-grams \& bigrams
-			\item Type Token Ratio
-			\item number of keywords, where 
-			keywords are defined by open-source 
-			discipline specific text-book
-			\item number of equations
-		\end{enumerate}
-		
-		\item Syntactic
-		\begin{enumerate}
-			\item POS n-grams (e.g. \textit{nouns, 
-			prepositions, 
-				verbs,conjunctions,negation, 
-				adjectives, 
-				adverbs, punctuation})
-			\item modal verbs (e.g. \textit{must, 
-			should, can, might})
-			\item contextuality/formality measure 
-			\cite{heylighen_variation_2002}
-			\item dependency tree depth
-			\item 
-		\end{enumerate}
-		
-		\item Semantic
-		The LSA vectors should be trained on 
-		domain specific corpora, such as 
-		lecture slides or a textbook in the 
-		discipline 
-		\cite{mohler_text--text_2009}. 
-		
-		
-		\begin{enumerate}
-			\item Similarity to all other 
-			explanations in LSA 
-			space
-			\item Co-reference Features 
-			\cite{persing_end--end_2016} 
-			\begin{enumerate}
-				\item Fraction of entities from 
-				the prompt mentioned in each 
-				sentence, averaged over all 
-				sentences (using neural 
-				Co-reference 
-				resolution)
-				\item Vector cosine similarity 
-				between student explanation and 
-				prompt, and answer choices 
-			\end{enumerate}
-		\end{enumerate}
-		
-		
-		\item Readability
-		\begin{enumerate}
-			\item Fleish-Kincaid
-			\item Coleman-Liau
-			\item spelling errors
-		\end{enumerate}
-	\end{enumerate}
-\end{enumerate}
 
-Features typical to NLP analyses in Learning 
-Analytics that are not included 
-here:
-\begin{enumerate}
-	\item Cohesion
-	\item Sentiment analysis
-	\item psycholinguistic features
-\end{enumerate}
+
+\subsection{Convincingness Features}
 
 
 \begin{acks}
@@ -473,3 +275,208 @@ here:
 \end{document}
 \endinput
 %% End of file `engagement.tex'.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ARCHIVE
+
+%\subsection{Text-to-text similarity}
+%Many of the features in our models are based on 
+%similarity 
+%metrics between 
+%student explanations with each other, as well as 
+%with other 
+%references. 
+%
+%Consideration must be taken in choosing a metric 
+%for measuring 
+%similarity 
+%between two texts. 
+%The use of cosine similarity is standard practice 
+%in Latent 
+%Semantic 
+%Indexing,
+%
+%\begin{equation}
+%sim(T_1,T_2) = \frac{T_1 \cdot T_2}{\| T_1 \| \| 
+%	T_2 \|}
+%\end{equation}
+%
+%where $T_1$ and $T_2$ are the \textit{Tf-Idf} 
+%vector 
+%representations of 
+%each text.
+%
+%However there is extensive work on text-to-text 
+%similarity 
+%metrics 
+%\cite{mihalcea_corpus-based_2006}, 
+%which can be divided into two families:
+%\begin{enumerate}
+%	\item Knowledge Based:
+%	\item Corpus Based
+%\end{enumerate}
+%
+%\subsection{Relative Learning Gain}
+%Learning platforms used by teachers for 
+%formative assessment 
+%over the course of 
+%a semester generate longitudinal learning 
+%traces. 
+%Fine grained modelling of student 
+%learning with such data is 
+%only possible if 
+%question items have been tagged with 
+%Knowledge Components\cite{corbett_knowledge_1994}, or an 
+%item-skill 
+%mapping\cite{barnes_q-matrix_2005} has been defined.
+%Learning gains on the time-scale of a few 
+%weeks, or a semester, 
+%are often 
+%measured using the administration of a 
+%carefully validated 
+%pre-post test, such 
+%as the Force Concept Inventory\cite{hestenes_force_1992} from the 
+%Physics Education 
+%Research community.
+%
+%However both of these methodologies 
+%require resource intensive 
+%development of 
+%domain knowledge mappings and validated 
+%instruments. 
+%In the iterative design of learning 
+%tools, it is desirable to 
+%have a definition 
+%of learning that can be measured without 
+%such prohibitive 
+%limitations, even it 
+%can serve as a baseline to more 
+%comprehensive evaluations.
+%
+%We propose a definition of 
+%\textit{Relative 
+%	Learning Gain} for each student over 
+%the course of a semester 
+%which requires 
+%only that all students within a group 
+%have completed a common 
+%set of items.
+%\begin{equation}
+%Relative Learning Gain_{student} = 
+%\frac{W \rightarrow R_{second 
+%		half of semester} }{W \rightarrow 
+%	R_{first half of 
+%		semester} }
+%\end{equation}
+
+%\begin{equation}
+%Engagement_{student} = 
+%\frac{1}{N_{explanations}}\sum{WordCount_{explanation}}
+%\end{equation}
+
+
+%\subsection{Vector Space Models}
+%We experiment with vector space models with 
+%different document representations:
+%\begin{enumerate}
+%	\item LSA vectors (10,50,100 components) 
+%	\cite{deerwester_indexing_1990}
+%	\item Glove embeddings 
+%	\cite{pennington_glove:_2014}
+%	\item BERT embeddings \cite{devlin_bert_2018}, 
+%	out-of-the-box, and 
+%	fine-tuned for the current classification task
+%\end{enumerate}
+
+%The list of features included here are derived 
+%from related work in argument 
+%mining 
+%\cite{habernal_which_2016}\cite{persing_end--end_2016}
+%on student 
+%essays, automatic short answer scoring 
+%\cite{mohler_text--text_2009}
+
+%\begin{enumerate}
+%	
+%	\item Linguistic features
+%	
+%	\begin{enumerate}
+%		
+%		\item Surface Features
+%		\begin{enumerate}
+%			\item word count
+%			\item sentence count
+%			\item max/mean word length
+%			\item max/mean sentence length
+%		\end{enumerate}
+%		
+%		\item Lexical
+%		\begin{enumerate}
+%			\item uni-grams \& bigrams
+%			\item Type Token Ratio
+%			\item number of keywords, where 
+%			keywords are defined by open-source 
+%			discipline specific text-book
+%			\item number of equations
+%		\end{enumerate}
+%		
+%		\item Syntactic
+%		\begin{enumerate}
+%			\item POS n-grams (e.g. \textit{nouns, 
+%				prepositions, 
+%				verbs,conjunctions,negation, 
+%				adjectives, 
+%				adverbs, punctuation})
+%			\item modal verbs (e.g. \textit{must, 
+%				should, can, might})
+%			\item contextuality/formality measure 
+%			\cite{heylighen_variation_2002}
+%			\item dependency tree depth
+%			\item 
+%		\end{enumerate}
+%		
+%		\item Semantic
+%		The LSA vectors should be trained on 
+%		domain specific corpora, such as 
+%		lecture slides or a textbook in the 
+%		discipline 
+%		\cite{mohler_text--text_2009}. 
+%		
+%		
+%		\begin{enumerate}
+%			\item Similarity to all other 
+%			explanations in LSA 
+%			space
+%			\item Co-reference Features 
+%			\cite{persing_end--end_2016} 
+%			\begin{enumerate}
+%				\item Fraction of entities from 
+%				the prompt mentioned in each 
+%				sentence, averaged over all 
+%				sentences (using neural 
+%				Co-reference 
+%				resolution)
+%				\item Vector cosine similarity 
+%				between student explanation and 
+%				prompt, and answer choices 
+%			\end{enumerate}
+%		\end{enumerate}
+%		
+%		
+%		\item Readability
+%		\begin{enumerate}
+%			\item Fleish-Kincaid
+%			\item Coleman-Liau
+%			\item spelling errors
+%		\end{enumerate}
+%	\end{enumerate}
+%\end{enumerate}
+%
+%Features typical to NLP analyses in Learning 
+%Analytics that are not included 
+%here:
+%\begin{enumerate}
+%	\item Cohesion
+%	\item Sentiment analysis
+%	\item psycholinguistic features
+%\end{enumerate}

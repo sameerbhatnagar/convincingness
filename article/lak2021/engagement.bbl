@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{17}
+\begin{thebibliography}{6}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -37,17 +37,6 @@
 \providecommand\natexlab[1]{#1}
 \providecommand\showeprint[2][]{arXiv:#2}
 
-\bibitem[\protect\citeauthoryear{Barnes}{Barnes}{2005}]%
-        {barnes_q-matrix_2005}
-\bibfield{author}{\bibinfo{person}{Tiffany Barnes}.}
-  \bibinfo{year}{2005}\natexlab{}.
-\newblock \showarticletitle{The {Q}-matrix method: {Mining} student response
-  data for knowledge}. In \bibinfo{booktitle}{\emph{American {Association} for
-  {Artificial} {Intelligence} 2005 {Educational} {Data} {Mining} {Workshop}}}.
-  \bibinfo{publisher}{Pittsburgh, PA: AAAI Press}, \bibinfo{pages}{1--8}.
-\newblock
-
-
 \bibitem[\protect\citeauthoryear{Charles, Lasry, Bhatnagar, Adams, Lenton,
   Brouillette, Dugdale, Whittaker, and Jackson}{Charles et~al\mbox{.}}{2019}]%
         {charles_harnessing_2019}
@@ -66,147 +55,6 @@
 \url{http://www.osapublishing.org/abstract.cfm?URI=ETOP-2019-11143_89}
 \showURL{%
 \tempurl}
-
-
-\bibitem[\protect\citeauthoryear{Corbett and Anderson}{Corbett and
-  Anderson}{1994}]%
-        {corbett_knowledge_1994}
-\bibfield{author}{\bibinfo{person}{Albert~T Corbett} {and}
-  \bibinfo{person}{John~R Anderson}.} \bibinfo{year}{1994}\natexlab{}.
-\newblock \showarticletitle{Knowledge tracing: {Modeling} the acquisition of
-  procedural knowledge}.
-\newblock \bibinfo{journal}{\emph{User modeling and user-adapted interaction}}
-  \bibinfo{volume}{4}, \bibinfo{number}{4} (\bibinfo{year}{1994}),
-  \bibinfo{pages}{253--278}.
-\newblock
-\newblock
-\shownote{Publisher: Springer.}
-
-
-\bibitem[\protect\citeauthoryear{Deerwester, Dumais, Landauer, Furnas, and
-  Harshman}{Deerwester et~al\mbox{.}}{1990}]%
-        {deerwester_indexing_1990}
-\bibfield{author}{\bibinfo{person}{Scott~C. Deerwester},
-  \bibinfo{person}{Susan~T Dumais}, \bibinfo{person}{Thomas~K. Landauer},
-  \bibinfo{person}{George~W. Furnas}, {and} \bibinfo{person}{Richard~A.
-  Harshman}.} \bibinfo{year}{1990}\natexlab{}.
-\newblock \showarticletitle{Indexing by latent semantic analysis}.
-\newblock \bibinfo{journal}{\emph{JASIS}} \bibinfo{volume}{41},
-  \bibinfo{number}{6} (\bibinfo{year}{1990}), \bibinfo{pages}{391--407}.
-\newblock
-
-
-\bibitem[\protect\citeauthoryear{Devlin, Chang, Lee, and Toutanova}{Devlin
-  et~al\mbox{.}}{2018}]%
-        {devlin_bert_2018}
-\bibfield{author}{\bibinfo{person}{Jacob Devlin}, \bibinfo{person}{Ming-Wei
-  Chang}, \bibinfo{person}{Kenton Lee}, {and} \bibinfo{person}{Kristina
-  Toutanova}.} \bibinfo{year}{2018}\natexlab{}.
-\newblock \showarticletitle{Bert: {Pre}-training of deep bidirectional
-  transformers for language understanding}.
-\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1810.04805}}
-  (\bibinfo{year}{2018}).
-\newblock
-
-
-\bibitem[\protect\citeauthoryear{Habernal and Gurevych}{Habernal and
-  Gurevych}{2016}]%
-        {habernal_which_2016}
-\bibfield{author}{\bibinfo{person}{Ivan Habernal} {and} \bibinfo{person}{Iryna
-  Gurevych}.} \bibinfo{year}{2016}\natexlab{}.
-\newblock \showarticletitle{Which argument is more convincing? {Analyzing} and
-  predicting convincingness of {Web} arguments using bidirectional {LSTM}}. In
-  \bibinfo{booktitle}{\emph{Proceedings of the 54th {Annual} {Meeting} of the
-  {Association} for {Computational} {Linguistics} ({Volume} 1: {Long}
-  {Papers})}}. \bibinfo{publisher}{Association for Computational Linguistics},
-  \bibinfo{address}{Berlin, Germany}, \bibinfo{pages}{1589--1599}.
-\newblock
-\urldef\tempurl%
-\url{https://doi.org/10.18653/v1/P16-1150}
-\showDOI{\tempurl}
-
-
-\bibitem[\protect\citeauthoryear{Hestenes, Wells, and Swackhamer}{Hestenes
-  et~al\mbox{.}}{1992}]%
-        {hestenes_force_1992}
-\bibfield{author}{\bibinfo{person}{David Hestenes}, \bibinfo{person}{Malcolm
-  Wells}, {and} \bibinfo{person}{Gregg Swackhamer}.}
-  \bibinfo{year}{1992}\natexlab{}.
-\newblock \showarticletitle{Force concept inventory}.
-\newblock \bibinfo{journal}{\emph{The physics teacher}} \bibinfo{volume}{30},
-  \bibinfo{number}{3} (\bibinfo{year}{1992}), \bibinfo{pages}{141--158}.
-\newblock
-
-
-\bibitem[\protect\citeauthoryear{Heylighen and Dewaele}{Heylighen and
-  Dewaele}{2002}]%
-        {heylighen_variation_2002}
-\bibfield{author}{\bibinfo{person}{Francis Heylighen} {and}
-  \bibinfo{person}{Jean-Marc Dewaele}.} \bibinfo{year}{2002}\natexlab{}.
-\newblock \showarticletitle{Variation in the contextuality of language: {An}
-  empirical measure}.
-\newblock \bibinfo{journal}{\emph{Foundations of science}} \bibinfo{volume}{7},
-  \bibinfo{number}{3} (\bibinfo{year}{2002}), \bibinfo{pages}{293--340}.
-\newblock
-\newblock
-\shownote{Publisher: Springer.}
-
-
-\bibitem[\protect\citeauthoryear{Mihalcea, Corley, Strapparava, and
-  {others}}{Mihalcea et~al\mbox{.}}{2006}]%
-        {mihalcea_corpus-based_2006}
-\bibfield{author}{\bibinfo{person}{Rada Mihalcea}, \bibinfo{person}{Courtney
-  Corley}, \bibinfo{person}{Carlo Strapparava}, {and}
-  \bibinfo{person}{{others}}.} \bibinfo{year}{2006}\natexlab{}.
-\newblock \showarticletitle{Corpus-based and knowledge-based measures of text
-  semantic similarity}. In \bibinfo{booktitle}{\emph{Aaai}},
-  Vol.~\bibinfo{volume}{6}. \bibinfo{pages}{775--780}.
-\newblock
-\newblock
-\shownote{Issue: 2006.}
-
-
-\bibitem[\protect\citeauthoryear{Mohler and Mihalcea}{Mohler and
-  Mihalcea}{2009}]%
-        {mohler_text--text_2009}
-\bibfield{author}{\bibinfo{person}{Michael Mohler} {and} \bibinfo{person}{Rada
-  Mihalcea}.} \bibinfo{year}{2009}\natexlab{}.
-\newblock \showarticletitle{Text-to-text {Semantic} {Similarity} for
-  {Automatic} {Short} {Answer} {Grading}}. In
-  \bibinfo{booktitle}{\emph{Proceedings of the 12th {Conference} of the
-  {European} {Chapter} of the {Association} for {Computational} {Linguistics}}}
-  \emph{(\bibinfo{series}{{EACL} '09})}. \bibinfo{publisher}{Association for
-  Computational Linguistics}, \bibinfo{address}{Stroudsburg, PA, USA},
-  \bibinfo{pages}{567--575}.
-\newblock
-\urldef\tempurl%
-\url{http://dl.acm.org/citation.cfm?id=1609067.1609130}
-\showURL{%
-\tempurl}
-\newblock
-\shownote{event-place: Athens, Greece.}
-
-
-\bibitem[\protect\citeauthoryear{Pennington, Socher, and Manning}{Pennington
-  et~al\mbox{.}}{2014}]%
-        {pennington_glove:_2014}
-\bibfield{author}{\bibinfo{person}{Jeffrey Pennington},
-  \bibinfo{person}{Richard Socher}, {and} \bibinfo{person}{Christopher~D
-  Manning}.} \bibinfo{year}{2014}\natexlab{}.
-\newblock \showarticletitle{Glove: {Global} {Vectors} for {Word}
-  {Representation}.}. In \bibinfo{booktitle}{\emph{{EMNLP}}},
-  Vol.~\bibinfo{volume}{14}. \bibinfo{pages}{1532--1543}.
-\newblock
-
-
-\bibitem[\protect\citeauthoryear{Persing and Ng}{Persing and Ng}{2016}]%
-        {persing_end--end_2016}
-\bibfield{author}{\bibinfo{person}{Isaac Persing} {and}
-  \bibinfo{person}{Vincent Ng}.} \bibinfo{year}{2016}\natexlab{}.
-\newblock \showarticletitle{End-to-{End} {Argumentation} {Mining} in {Student}
-  {Essays}.}. In \bibinfo{booktitle}{\emph{{HLT}-{NAACL}}}.
-  \bibinfo{pages}{1384--1394}.
-\newblock
 
 
 \bibitem[\protect\citeauthoryear{Pintrich}{Pintrich}{1989}]%
