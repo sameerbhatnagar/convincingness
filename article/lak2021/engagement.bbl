@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{6}
+\begin{thebibliography}{7}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -65,6 +65,18 @@
   cognition in the college classroom}.
 \newblock \bibinfo{journal}{\emph{Advances in motivation and achievement}}
   \bibinfo{volume}{6} (\bibinfo{year}{1989}), \bibinfo{pages}{117--160}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Potash, Ferguson, and Hazen}{Potash
+  et~al\mbox{.}}{2019}]%
+        {potash_ranking_2019}
+\bibfield{author}{\bibinfo{person}{Peter Potash}, \bibinfo{person}{Adam
+  Ferguson}, {and} \bibinfo{person}{Timothy~J Hazen}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Ranking passages for argument convincingness}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 6th {Workshop} on {Argument}
+  {Mining}}}. \bibinfo{pages}{146--155}.
 \newblock
 
 
