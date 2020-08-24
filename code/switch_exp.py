@@ -327,6 +327,47 @@ def main_by_topic(df_q, kwargs):
 
     return
 
+def get_features_names(feature_types_included,discipline):
+    """
+
+    """
+    pre_calculated_features = [
+        x
+        for x in [
+            PRE_CALCULATED_FEATURES[feature_type]
+            for feature_type in feature_types_included
+        ]
+        for x in x
+    ]
+
+    feature_columns_numeric = (
+        pre_calculated_features
+        + ["shown_{}_mean".format(feature) for feature in pre_calculated_features]
+        + ["shown_{}_max".format(feature) for feature in pre_calculated_features]
+        + ["shown_{}_min".format(feature) for feature in pre_calculated_features]
+    )
+
+    if "surface" in feature_types_included:
+        feature_columns_numeric.extend([
+            # "a_rank_by_time",
+            "n_shown_short",
+            "n_shown_shorter_than_own",
+            "n_shown_longer_than_own",
+            # "q_diff1",
+            # "student_strength1",
+        ])
+
+    if discipline != "Ethics":
+        feature_columns_categorical = [
+            "first_correct",
+        ]
+    else:
+        feature_columns_categorical = []
+
+
+    return feature_columns_numeric,feature_columns_categorical
+
+
 
 def main(discipline, feature_types_included="all"):
     """
@@ -378,38 +419,12 @@ def main(discipline, feature_types_included="all"):
     topics_already_done = [fp[:-5] for fp in os.listdir(results_dir_discipline)]
     topics_to_do = [t for t in topics if t not in topics_already_done]
 
-    pre_calculated_features = [
-        x
-        for x in [
-            PRE_CALCULATED_FEATURES[feature_type]
-            for feature_type in feature_types_included
-        ]
-        for x in x
-    ]
 
-    feature_columns_numeric = (
-        pre_calculated_features
-        + ["shown_{}_mean".format(feature) for feature in pre_calculated_features]
-        + ["shown_{}_max".format(feature) for feature in pre_calculated_features]
-        + ["shown_{}_min".format(feature) for feature in pre_calculated_features]
+    feature_columns_numeric,feature_columns_categorical = get_feature_names(
+        feature_types_included=feature_types_included,
+        discipline=discipline
     )
 
-    if "surface" in feature_types_included:
-        feature_columns_numeric.extend([
-            # "a_rank_by_time",
-            "n_shown_short",
-            "n_shown_shorter_than_own",
-            "n_shown_longer_than_own",
-            # "q_diff1",
-            # "student_strength1",
-        ])
-
-    if discipline != "Ethics":
-        feature_columns_categorical = [
-            "first_correct",
-        ]
-    else:
-        feature_columns_categorical = []
     target = "switch_exp"
 
     kwargs = {
