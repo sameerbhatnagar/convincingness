@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{7}
+\begin{thebibliography}{11}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -55,6 +55,60 @@
 \url{http://www.osapublishing.org/abstract.cfm?URI=ETOP-2019-11143_89}
 \showURL{%
 \tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Charles, Lasry, Whittaker, Dugdale, Lenton,
+  Bhatnagar, and Guillemette}{Charles et~al\mbox{.}}{2015}]%
+        {charles_beyond_2015}
+\bibfield{author}{\bibinfo{person}{Elizabeth~S. Charles},
+  \bibinfo{person}{Nathaniel Lasry}, \bibinfo{person}{Chris Whittaker},
+  \bibinfo{person}{Michael Dugdale}, \bibinfo{person}{Kevin Lenton},
+  \bibinfo{person}{Sameer Bhatnagar}, {and} \bibinfo{person}{Jonathan
+  Guillemette}.} \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Beyond and {Within} {Classroom} {Walls}:
+  {Designing} {Principled} {Pedagogical} {Tools} for {Student} and {Faculty}
+  {Uptake}}.
+\newblock \bibinfo{publisher}{International Society of the Learning Sciences,
+  Inc.[ISLS].}
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Chi, Leeuw, Chiu, and LaVancher}{Chi
+  et~al\mbox{.}}{1994}]%
+        {chi_eliciting_1994}
+\bibfield{author}{\bibinfo{person}{Michelene~TH Chi}, \bibinfo{person}{Nicholas
+  Leeuw}, \bibinfo{person}{Mei-Hung Chiu}, {and} \bibinfo{person}{Christian
+  LaVancher}.} \bibinfo{year}{1994}\natexlab{}.
+\newblock \showarticletitle{Eliciting self‐explanations improves
+  understanding}.
+\newblock \bibinfo{journal}{\emph{Cognitive science}} \bibinfo{volume}{18},
+  \bibinfo{number}{3} (\bibinfo{year}{1994}), \bibinfo{pages}{439--477}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Crouch and Mazur}{Crouch and Mazur}{2001}]%
+        {crouch_peer_2001}
+\bibfield{author}{\bibinfo{person}{Catherine~H Crouch} {and}
+  \bibinfo{person}{Eric Mazur}.} \bibinfo{year}{2001}\natexlab{}.
+\newblock \showarticletitle{Peer instruction: {Ten} years of experience and
+  results}.
+\newblock \bibinfo{journal}{\emph{American Journal of Physics}}
+  \bibinfo{volume}{69}, \bibinfo{number}{9} (\bibinfo{year}{2001}),
+  \bibinfo{pages}{970--977}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Nathan, Koedinger, Alibali, and
+  {others}}{Nathan et~al\mbox{.}}{2001}]%
+        {nathan_expert_2001}
+\bibfield{author}{\bibinfo{person}{Mitchell~J Nathan},
+  \bibinfo{person}{Kenneth~R Koedinger}, \bibinfo{person}{Martha~W Alibali},
+  {and} \bibinfo{person}{{others}}.} \bibinfo{year}{2001}\natexlab{}.
+\newblock \showarticletitle{Expert blind spot: {When} content knowledge
+  eclipses pedagogical content knowledge}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the third international conference
+  on cognitive science}}, Vol.~\bibinfo{volume}{644648}.
+\newblock
 
 
 \bibitem[\protect\citeauthoryear{Pintrich}{Pintrich}{1989}]%

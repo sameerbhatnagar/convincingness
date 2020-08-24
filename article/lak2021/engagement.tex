@@ -42,7 +42,7 @@ Analytics \& Knowledge}{April 2021}{UCI,CA}
 %%
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
-\title{Modelling engagement in Technology-mediated 
+\title{Modelling Engagement in Technology-mediated 
 Peer-Instruction}
 
 \author{Sameer Bhatnagar}
@@ -95,26 +95,24 @@ language processing}
 %%
 %% Keywords. The author(s) should pick words that accurately describe
 %% the work being presented. Separate the keywords with commas.
-\keywords{Peer Instruction, Text Mining}
+\keywords{Peer Instruction, Learnersourcing}
 
 
 \maketitle
 
 \section{Introduction}
 
-Technology-mediated peer instruction platforms 
-\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}\cite{charles_harnessing_2019}
-prompt students to not only answer multiple-choice items, but also provide 
-explanations that justify their reasoning. 
-Students are then prompted to revise their answer choice by reading some of the 
-explanations written by their peers, for another answer choice.
-This modality is a specific case of 
-\textit{learnersourcing}\cite{weir_learnersourcing_2015}, wherein students 
-generate content as part of their own learning process, that is ultimately used 
-to help their peers learn as well. 
-
-At this \textit{review step}, students are also presented with peer-written 
-explanations for the same answer choice. 
+Technology-mediated peer instruction \textit{(TMPI)} platforms 
+\cite{charles_harnessing_2019}\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}
+expand multiple choice items into a two step process.
+On the first step, students must not only choose an answer choice, but also 
+provide an explanation that justifies their reasoning. 
+On the second step, students are prompted to revise their answer choice, by 
+taking into consideration a subset of explanations written by their peers for
+another answer choice.
+In the case that the student wants to keep their original answer choice, but 
+may be unsure of their own explanation, they are also shown peer-explanations 
+for their own same answer choice. 
 The student now has three options:
 \begin{enumerate}
 	\item Change their answer choice, by indicating which of their peer's 
@@ -125,8 +123,24 @@ The student now has three options:
 	is best from amongst those that are shown.
 \end{enumerate}
 
-In many teaching contexts, teachers do not have the time to review, and provide 
-feedback, to every student explanation for every question item. 
+The design of TMPI is inspired by three schools of thought: firstly, prompting 
+students to explain their reasoning is beneficial to their learning 
+\cite{chi_eliciting_1994}. 
+Second, classroom based \textit{Peer Instruction}\cite{crouch_peer_2001}, often 
+mediated by automated response systems (e.g. clickers), has become a prevalent, 
+and often effective component in the teaching practice of instructors looking 
+to drive student engagement as part of an active learning experience 
+\cite{charles_beyond_2015}. 
+In discussing with peers \textit{after} they have formulated their own 
+reasoning, students are engaged with a higher order thinking task from Bloom's 
+taxonomy as the evaluate what is the strongest argument, before answering again.
+Thirdly, by capturing data on which explanations students find most convincing, 
+TMPI affords teachers the opportunity to mitigate the ``expert blind spot'' 
+\cite{nathan_expert_2001}, addressing student misconceptions they might not 
+otherwise have known of.
+
+In many teaching contexts, however, teachers do not have the time to review, 
+and provide feedback, to every student explanation for every question item. 
 The feedback students receive is primarily based on the correctness of their 
 first and second answer, not the explanations they write and choose.
 Moreover, activities from online learning environments are often used for 
@@ -135,7 +149,7 @@ Framed as a low-stakes test, this can lead to low student
 motivation \cite{wise_low_2005}. 
 A version of the expectancy-value model \cite{pintrich_dynamic_1989}, which 
 describes factors that influence the effort students will direct towards a 
-task, include ``how important they perceive the test to be'', and the 
+task, includes ``how important they perceive the test to be'', and the 
 ``affective reaction to how mentally taxing the task appears to be'' 
 \cite{wolf_consequence_1995}.
 
@@ -169,16 +183,28 @@ explanations.
 	\label{fig:sankey}
 \end{figure}
 
-These numbers suggest that when a student chooses a peer's explanation as more 
-convincing than their own, for the same answer choice, this ``vote'' that has 
-been cast, can be interpreted as a proxy for learner \textit{engagement}.
-
 In this work, we suggest that if we can accurately model when students 
 \textit{change} explanations, we may have proxy for student 
 \textit{engagement}. 
+Being able to identify when students are likely to be ``disengaged'' in their 
+formative assessment activities can serve as valuable information for 
+instructors, as well as the designers of TMPI learning environments.
 
+We also explore the utility of ``learnersourced'' data in our models of student 
+engagement. 
+Each time an explanation is chosen as most convincing by a student, it earns 
+a``vote''. 
+These votes represent a proxy for argument quality along the dimension of 
+\textit{convincingness}, as judged by peer learners. 
+We set out to examine the relationship between the \textit{convincingness} of 
+student explanations, and their \textit{engagement} in the learning activity. 
 
 \section{Related Work}
+This modality is a specific case of  
+\textit{learnersourcing}\cite{weir_learnersourcing_2015}, wherein students first
+generate content as part of their own learning process, that is ultimately used 
+to help their peers learn as well.
+
 
 \subsection{Engagement}
 
