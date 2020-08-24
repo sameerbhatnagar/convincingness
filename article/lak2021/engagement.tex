@@ -42,7 +42,7 @@ Analytics \& Knowledge}{April 2021}{UCI,CA}
 %%
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
-\title{Modelling Engagement in Technology-mediated 
+\title{Modelling Argument Quality in Technology-Mediated 
 Peer-Instruction}
 
 \author{Sameer Bhatnagar}
@@ -112,7 +112,7 @@ taking into consideration a subset of explanations written by their peers for
 another answer choice.
 In the case that the student wants to keep their original answer choice, but 
 may be unsure of their own explanation, they are also shown peer-explanations 
-for their own same answer choice. 
+for their original answer choice. 
 The student now has three options:
 \begin{enumerate}
 	\item Change their answer choice, by indicating which of their peer's 
@@ -123,81 +123,64 @@ The student now has three options:
 	is best from amongst those that are shown.
 \end{enumerate}
 
-The design of TMPI is inspired by three schools of thought: firstly, prompting 
-students to explain their reasoning is beneficial to their learning 
-\cite{chi_eliciting_1994}. 
+Whenever the student goes with either of the first two scenarios above, we 
+frame this as ``casting a vote'' for the chosen peer explanation.
+
+The design and growing popularity of TMPI is inspired by three schools of 
+thought: firstly, prompting students to explain their reasoning is beneficial 
+to their learning \cite{chi_eliciting_1994}. 
 Second, classroom based \textit{Peer Instruction}\cite{crouch_peer_2001}, often 
 mediated by automated response systems (e.g. clickers), has become a prevalent, 
 and often effective component in the teaching practice of instructors looking 
 to drive student engagement as part of an active learning experience 
 \cite{charles_beyond_2015}. 
 In discussing with peers \textit{after} they have formulated their own 
-reasoning, students are engaged with a higher order thinking task from Bloom's 
-taxonomy as the evaluate what is the strongest argument, before answering again.
+reasoning, students are engaged in a higher order thinking task from Bloom's 
+taxonomy, as they evaluate what is the strongest argument, before answering 
+again.
 Thirdly, by capturing data on which explanations students find most convincing, 
 TMPI affords teachers the opportunity to mitigate the ``expert blind spot'' 
 \cite{nathan_expert_2001}, addressing student misconceptions they might not 
-otherwise have known of.
+otherwise have thought of.
 
-In many teaching contexts, however, teachers do not have the time to review, 
-and provide feedback, to every student explanation for every question item. 
+In many teaching contexts, however, teachers do not have the time to provide 
+feedback to every student explanation for every question item. 
 The feedback students receive is primarily based on the correctness of their 
-first and second answer, not the explanations they write and choose.
+first and second answer choices, not the \textit{explanations} they write and 
+choose.
+
 Moreover, activities from online learning environments are often used for 
 formative assessment, and carry little weight in terms of course credit. 
-Framed as a low-stakes test, this can lead to low student 
-motivation \cite{wise_low_2005}. 
-A version of the expectancy-value model \cite{pintrich_dynamic_1989}, which 
+Framed as a low-stakes test, this can lead to low student motivation 
+\cite{wise_low_2005}. 
+The expectancy-value model \cite{pintrich_dynamic_1989}, which 
 describes factors that influence the effort students will direct towards a 
 task, includes ``how important they perceive the test to be'', and the 
 ``affective reaction to how mentally taxing the task appears to be'' 
 \cite{wolf_consequence_1995}.
 
-This may explain, in part, the tendency for students to simply ``stick to their 
-own'', as shown in figure \ref{fig:sankey}. 
-Of the students who choose the correct answer choice on the first step, more 
-than half choose their own as ``most convincing'' over the explanations that 
-are shown on the \textit{review} step (39\% vs 35\%).
-Of those who begin with incorrect answer, and maintain their 
-incorrect answer on the review step, we find approximately the same relative 
-ratios (9\% vs 8\%).
-The last third of these students demonstrate some form of \textit{learning} as 
-well, as they transition to the correct answer after reading their peer's 
-explanations.
+This makes providing feedback to students on the quality of their explanations 
+a desirable goal, in order to emphasize the importance of the writing 
+activity, as well as promote engagement.
+The data at hand in TMPI environments enable scaling up how much feedback that 
+can given. 
+The ``vote'' data represent a proxy for argument quality along the dimension 
+of \textit{convincingness}, as judged by peer learners. 
+These votes can be aggregated into a \textit{convincingness} score to students, 
+as a measure of how effective their explanations are in persuading their peers 
+to change their own answer.
 
-\begin{figure}
-	\includegraphics[width=\linewidth]{img/transitions_final}
-	\caption{
-		Sankey Diagram depicting transitions in peer-instruction 
-		platform.
-		On the left, responses are separated by whether the student chose the 
-		correct answer at the first step, or not.
-		For each of these two scenarios, there are three possible transitions 
-		towards the right: a) keep the same answer choice, and choose their own 
-		explanation, b) keep the same answer choice, and choose a peer's 
-		explanation, or c) choose a different answer choice (by choosing a 
-		peer's explanation for the other answer choice option presented)
-		\textbf{TO DO}: make diagram for different 
-		disciplines
-	}
-	\label{fig:sankey}
-\end{figure}
+We set out to examine the different measures of argument quality, along the 
+dimension of \textit{convincingness}, and model their role in the TMPI process. 
+Our specific research questions are:
+\begin{itemize}
+	\item[RQ1] What factors influence whether a student will choose a peer's 
+	explanation over their own in TMPI?
+	\item[RQ2] What measures of argument \textit{convincingness} are most 
+	useful in 
+	aggregating the ``vote'' data from TMPI?
+\end{itemize}
 
-In this work, we suggest that if we can accurately model when students 
-\textit{change} explanations, we may have proxy for student 
-\textit{engagement}. 
-Being able to identify when students are likely to be ``disengaged'' in their 
-formative assessment activities can serve as valuable information for 
-instructors, as well as the designers of TMPI learning environments.
-
-We also explore the utility of ``learnersourced'' data in our models of student 
-engagement. 
-Each time an explanation is chosen as most convincing by a student, it earns 
-a``vote''. 
-These votes represent a proxy for argument quality along the dimension of 
-\textit{convincingness}, as judged by peer learners. 
-We set out to examine the relationship between the \textit{convincingness} of 
-student explanations, and their \textit{engagement} in the learning activity. 
 
 \section{Related Work}
 This modality is a specific case of  
