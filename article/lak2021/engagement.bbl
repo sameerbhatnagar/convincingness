@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{11}
+\begin{thebibliography}{15}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -73,6 +73,19 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Chen, Bennett, Collins-Thompson, and
+  Horvitz}{Chen et~al\mbox{.}}{2013}]%
+        {chen_pairwise_2013}
+\bibfield{author}{\bibinfo{person}{Xi Chen}, \bibinfo{person}{Paul~N Bennett},
+  \bibinfo{person}{Kevyn Collins-Thompson}, {and} \bibinfo{person}{Eric
+  Horvitz}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Pairwise ranking aggregation in a crowdsourced
+  setting}. In \bibinfo{booktitle}{\emph{Proceedings of the sixth {ACM}
+  international conference on {Web} search and data mining}}.
+  \bibinfo{pages}{193--202}.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Chi, Leeuw, Chiu, and LaVancher}{Chi
   et~al\mbox{.}}{1994}]%
         {chi_eliciting_1994}
@@ -96,6 +109,41 @@
   \bibinfo{volume}{69}, \bibinfo{number}{9} (\bibinfo{year}{2001}),
   \bibinfo{pages}{970--977}.
 \newblock
+
+
+\bibitem[\protect\citeauthoryear{Gleize, Shnarch, Choshen, Dankin, Moshkowich,
+  Aharonov, and Slonim}{Gleize et~al\mbox{.}}{2019}]%
+        {gleize_are_2019}
+\bibfield{author}{\bibinfo{person}{Martin Gleize}, \bibinfo{person}{Eyal
+  Shnarch}, \bibinfo{person}{Leshem Choshen}, \bibinfo{person}{Lena Dankin},
+  \bibinfo{person}{Guy Moshkowich}, \bibinfo{person}{Ranit Aharonov}, {and}
+  \bibinfo{person}{Noam Slonim}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Are you convinced? choosing the more convincing
+  evidence with a {Siamese} network}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1907.08971}}
+  (\bibinfo{year}{2019}).
+\newblock
+\urldef\tempurl%
+\url{https://www.aclweb.org/anthology/P19-1093/}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Habernal and Gurevych}{Habernal and
+  Gurevych}{2016}]%
+        {habernal_which_2016}
+\bibfield{author}{\bibinfo{person}{Ivan Habernal} {and} \bibinfo{person}{Iryna
+  Gurevych}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Which argument is more convincing? {Analyzing} and
+  predicting convincingness of {Web} arguments using bidirectional {LSTM}}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 54th {Annual} {Meeting} of the
+  {Association} for {Computational} {Linguistics} ({Volume} 1: {Long}
+  {Papers})}}. \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{address}{Berlin, Germany}, \bibinfo{pages}{1589--1599}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.18653/v1/P16-1150}
+\showDOI{\tempurl}
 
 
 \bibitem[\protect\citeauthoryear{Nathan, Koedinger, Alibali, and
@@ -161,6 +209,26 @@
   {Computer} {Supported} {Cooperative} {Work} \& {Social} {Computing}}}.
   \bibinfo{publisher}{ACM}, \bibinfo{pages}{405--416}.
 \newblock
+
+
+\bibitem[\protect\citeauthoryear{Williams, Kim, Rafferty, Maldonado, Gajos,
+  Lasecki, and Heffernan}{Williams et~al\mbox{.}}{2016}]%
+        {williams_axis:_2016}
+\bibfield{author}{\bibinfo{person}{Joseph~Jay Williams}, \bibinfo{person}{Juho
+  Kim}, \bibinfo{person}{Anna Rafferty}, \bibinfo{person}{Samuel Maldonado},
+  \bibinfo{person}{Krzysztof~Z. Gajos}, \bibinfo{person}{Walter~S. Lasecki},
+  {and} \bibinfo{person}{Neil Heffernan}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{{AXIS}: {Generating} {Explanations} at {Scale} with
+  {Learnersourcing} and {Machine} {Learning}}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the {Third} (2016) {ACM}
+  {Conference} on {Learning} @ {Scale} - {L}@{S} '16}}. \bibinfo{publisher}{ACM
+  Press}, \bibinfo{address}{Edinburgh, Scotland, UK},
+  \bibinfo{pages}{379--388}.
+\newblock
+\showISBNx{978-1-4503-3726-7}
+\urldef\tempurl%
+\url{https://doi.org/10.1145/2876034.2876042}
+\showDOI{\tempurl}
 
 
 \bibitem[\protect\citeauthoryear{Wise and DeMars}{Wise and DeMars}{2005}]%

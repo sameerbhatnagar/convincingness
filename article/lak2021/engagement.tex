@@ -177,64 +177,143 @@ Our specific research questions are:
 	\item[RQ1] What factors influence whether a student will choose a peer's 
 	explanation over their own in TMPI?
 	\item[RQ2] What measures of argument \textit{convincingness} are most 
-	useful in 
-	aggregating the ``vote'' data from TMPI?
+	useful in aggregating the ``vote'' data from TMPI?
 \end{itemize}
 
 
 \section{Related Work}
+
+\subsection{Learnersourcing student explanations}
 This modality is a specific case of  
 \textit{learnersourcing}\cite{weir_learnersourcing_2015}, wherein students first
 generate content as part of their own learning process, that is ultimately used 
 to help their peers learn as well.
 
+One of the earliest efforts to leverage peer judgments of peer-written 
+explanations is from the AXIS system\cite{williams_axis:_2016}, wherein 
+students solved a problem, provided an explanation for their answer, and 
+evaluated explanations written by their peers.
+Using a reinforcement-learning approach known as ``multi-armed bandits'', the 
+system was able to select peer-written explanations that were rated as helpful 
+as those written by an expert.
 
-\subsection{Engagement}
 
 
-\subsection{Modelling Argument Persuasiveness}
+\subsection{Ranking Arguments for Quality}
+Rank aggregation is the task of combining the preferences of multiple agents 
+into a single representative ranked list.
+It has long been understood that obtaining pairwise preference data may be 
+less prone to error on the part of the annotator, as it is a simpler task than 
+rating on scales with more gradations. 
+(This is relevant in TMPI, since each student is choosing one explanation as 
+the most convincing in relation to the subset of others that are shown.)
+ 
+A classical approach for rank aggregation from pairwise preference data is 
+using the Bradley-Terry model, which has been extended to incorporate the 
+quality of contributions of different annotators in a crowdsourced setting when 
+evaluating relative reading level in a pair passages \cite{chen_pairwise_2013}. 
 
+When evaluating argument convincingness, one of the first approaches proposed 
+is based on constructing an ``argument graph'', where a weighted edge is drawn 
+from node A to node B for every pair where argument A is labelled as more 
+convincing than argument B. 
+After filtering example pairs that lead to cycles in the graph, PageRank scores 
+are derived from this directed acyclic graph, and the PageRank 
+scores of each argument are used as the gold-standard to rank for 
+convincingness \cite{habernal_which_2016}.
 
+More recently, a relatively simpler heuristic Win-Rate score has been shown to 
+be competitive alternative, wherein the rank score of an argument is simply the 
+(normalized) number of times that argument has been chosen as more convincing 
+in a pair, divided by the number of pairs it appears in
+\cite{potash_ranking_2019}.
+
+Finally, a neural approach based on RankNet has recently yielded state of the 
+art results. By joining two Bidirectional Long-Short-Term Memory Networks in a 
+Siamese architecture, and appending a softmax layer to the output, 
+\cite{gleize_are_2019} show that we can jointly model pairwise preferences and 
+overall ranks publicly available datasets.
+
+We will explore two of these options as part of our methodology in our rank 
+aggregation step: the probabilistic Bradley-Terry model, and the simple 
+heuristic scoring model. 
+(We leave the neural approach for future work, as the additional work required 
+to address make the models interpretable enough for the educational context is 
+out of the scope of this study)
 
 
 \section{Methodology}
 
+We borrow our methodological approach from research in argument mining (AM), 
+specifically related to modelling argument quality along the 
+dimension of \textit{convincingness}.
+A common approach is to curate pairs of arguments made in defence of the same 
+stance on the same topic.
+These pairs are then presented to crowd-workers who label which of the two is 
+more convincing. 
+These pairwise comparisons can then be aggregated using rank-aggregation 
+methods so as to produce a overall ranked list of arguments.
+
+We extend this work to the domain of TMPI, and change the prediction task: 
+using only vote-data on student explanations, can we effectively predict when a 
+student will choose a student explanation as more convincing than their own?
+
+We build interpretable predictive models for this task, and inspect the 
+relative feature importances in order to address our research questions from 
+above.
+
+Our feature sets include
+\begin{itemize}
+	\item \textit{Surface level} features, including: 
+	the word count of explanation that the current student wrote; 
+	word counts of explanations that were shown on the review step; 
+	the number of explanations shown that were much shorter, or much longer 
+	than than the student's own explanation; 
+	whether the student's first answer is correct;
+
+	\item \textit{Question and Student level} features, including: 
+	the difficulty of the question; 
+	the strength of the student
+	(Both of these are defined by overall success rate on getting the correct 
+	answer on first attempt);
+	
+	\item \textit{Convincingness} features, including: 
+	\textbf{win-rate}, defined as the ratio of times an explanation is chosen 
+	to the number of times it was shown; 
+	\textbf{Bradle-Terry} score, which is the argument ``quality'' parameter 
+	estimated for each explanation, according to the Bradley-Terry model, where 
+	the probability of argument A being chosen over argument B is given by 
+
+$$
+P(a>b) = 
+\frac{\beta_a}{\beta_a+\beta_b}
+$$
 
 
-\subsection{Engagement}
+$$
+\ell(\boldsymbol{\beta})=\sum_{i=1}^{m}\sum_{j=1}^{m} 
+[w_{ij}ln\beta_i-w_{ij}ln(\beta_i+\beta_j)]
+$$
 
+subject to $\sum_{i}\beta_i=0$.
+	
+	 The parameters are estimated by minimizing the log-likelihood of the 
+	 explanations chosen in the 
+	 pairwise comparison data
+\end{itemize}
 
-\begin{equation}
-Engagement_{student} = 
-\overline{P(ChosenExplanation \ne 
-	OwnExplanation)} 
-\label{eq:engagement_choose_peer}
-\end{equation}
+\section{Data}
 
+\section{Results}
 
+\section{Discussion}
 
-\subsection{Features}
-
-
-\subsubsection{Surface Features}
-
-	\begin{enumerate}
-	\item Word count of explanation that the student wrote 
-	\item Word counts of explanations that were shown on the review step
-	\item Number of explanations shown that were much shorter, or much longer 
-	than than the student's own explanation 
-	\item First answer correct
-%	\item time spent writing
-	\end{enumerate}
-
-
-\subsubsection{Convincingness Features}
-Two measures of \textit{convincingness} are explored in this work:
+\section{Limitations and Future Work}
 \begin{enumerate}
-	\item \textbf{Win Rate}: a heuristic measure \cite{potash_ranking_2019}
-	\item \textbf{Bradley-Terry}
+	\item Students are not explicitly directed on how to evaluate their peers' 
+	explanations. This may have an impact 
+	https://link.springer.com/article/10.1007/s10734-017-0220-3
 \end{enumerate}
-
 
 \begin{acks}
 \textbf{TO DO}
