@@ -176,7 +176,7 @@ Our specific research questions are:
 \begin{itemize}
 	\item[RQ1] What factors influence whether a student will choose a peer's 
 	explanation over their own in TMPI?
-	\item[RQ2] What measures of argument \textit{convincingness} are most 
+	\item[RQ3] What measures of argument \textit{convincingness} are most 
 	useful in aggregating the ``vote'' data from TMPI?
 \end{itemize}
 
@@ -373,8 +373,16 @@ spans different teachers at different colleges and universities in Canada.
 \end{table}
 
 \section{Results}
-All accuracies and F1 scores shown are the results aggregated over 5-fold 
-cross-validation.
+All classification accuracies and F1 scores shown are the results aggregated 
+over 5-fold cross-validation are reported in table \ref{tab:data_results}.
+
+\begin{table}
+	\input{data/data_results}
+	\caption{Classification results on prediction of whether or not student 
+	will choose a peer's explanation over their own in TMPI. (LR: Logistic 
+	Regression; RF: Random Forests)}
+	\label{tab:data_results}
+\end{table}
 
 \section{Discussion}
 
