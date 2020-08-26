@@ -321,7 +321,7 @@ $$
 where $\beta_i$ is the latent strength parameter of argument $i$. 
 We decompose each student-item observation into argument pairs, where the 
 chosen explanation is paired with each of the other shown ones, and the pair is 
-labelled with $y=+/-1$, depending on whether the chosen explanation is 
+labelled with $y=-/+1$, depending on whether the chosen explanation is 
 first/second in the pair.   
 The latent argument strength parameters are estimated by maximizing the 
 log-likelihood of the $m$ explanation-pairs:
@@ -333,18 +333,48 @@ $$
 subject to $\sum_{i}\beta_i=0$.
 Once these parameters are estimated for each student explanation, they are set 
 as features for the prediction task, as are related statistics with respect to 
-the shown explanations (e.g. maximum, minimum and mean BT scores of shown 
+the shown explanations (e.g. maximum, minimum and mean \textbf{win rate} scores 
+of shown 
 explanations).
 \end{itemize}
 
 We experiment with classification models that are interpretable, but limit our 
 selection to the most linear (linear regression), to the most acceptably 
-non-linear (Random Forests).
+non-linear (Random Forests, where each tree is limited to a maximum depth of 3 
+so as to mitigate overfitting).
 
 
 \section{Data}
 
+The data for this study come from myDALITE.org, which is a hosted instance of 
+an open-source project, 
+\verb|dalite|\footnote{\url{https://github.com/SALTISES4/dalite-ng}}, 
+maintained by a Canadian researcher-practitioner partnership focused on 
+supporting teachers develpping active learning pedagogy 
+\href{saltise.ca}{SALTISE}.
+
+Table \ref{tab:data_summary} gives an overview of the dataset included in this 
+study.
+The data is from introductory level university science courses, and generally 
+spans different teachers at different colleges and universities in Canada. 
+ 
+\begin{table}
+	\input{data/data_summary_final}
+	\caption{
+		Summary statistics of data, aggregated by discipline. 
+		The columns are a=number of answers, s=number of students, q=number of 
+		items, $\overline{a/s}$=mean number of answers completed by each 
+		student (with standard deviation), d=question difficulty, as defined by 
+		overall success rate of choosing correct answer choice on first 
+		attempt, and $\Delta$=the fraction of answers where students chose an 
+		explanation other than their own on the review step. 
+	}
+	\label{tab:data_summary}
+\end{table}
+
 \section{Results}
+All accuracies and F1 scores shown are the results aggregated over 5-fold 
+cross-validation.
 
 \section{Discussion}
 
