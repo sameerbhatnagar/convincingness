@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{15}
+\begin{thebibliography}{19}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -36,6 +36,25 @@
 \providecommand\bibinfo[2]{#2}
 \providecommand\natexlab[1]{#1}
 \providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{Cambre, Klemmer, and Kulkarni}{Cambre
+  et~al\mbox{.}}{2018}]%
+        {cambre_juxtapeer:_2018}
+\bibfield{author}{\bibinfo{person}{Julia Cambre}, \bibinfo{person}{Scott
+  Klemmer}, {and} \bibinfo{person}{Chinmay Kulkarni}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Juxtapeer: {Comparative} {Peer} {Review} {Yields}
+  {Higher} {Quality} {Feedback} and {Promotes} {Deeper} {Reflection}}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2018 {CHI} {Conference} on
+  {Human} {Factors} in {Computing} {Systems} - {CHI} '18}}.
+  \bibinfo{publisher}{ACM Press}, \bibinfo{address}{Montreal QC, Canada},
+  \bibinfo{pages}{1--13}.
+\newblock
+\showISBNx{978-1-4503-5620-6}
+\urldef\tempurl%
+\url{https://doi.org/10.1145/3173574.3173868}
+\showDOI{\tempurl}
+
 
 \bibitem[\protect\citeauthoryear{Charles, Lasry, Bhatnagar, Adams, Lenton,
   Brouillette, Dugdale, Whittaker, and Jackson}{Charles et~al\mbox{.}}{2019}]%
@@ -111,6 +130,26 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Denny, Hamer, Luxton-Reilly, and
+  Purchase}{Denny et~al\mbox{.}}{2008}]%
+        {denny_peerwise:_2008}
+\bibfield{author}{\bibinfo{person}{Paul Denny}, \bibinfo{person}{John Hamer},
+  \bibinfo{person}{Andrew Luxton-Reilly}, {and} \bibinfo{person}{Helen
+  Purchase}.} \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{{PeerWise}: {Students} {Sharing} {Their} {Multiple}
+  {Choice} {Questions}}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  {Fourth} {International} {Workshop} on {Computing} {Education} {Research}}}
+  \emph{(\bibinfo{series}{{ICER} '08})}. \bibinfo{publisher}{ACM},
+  \bibinfo{address}{New York, NY, USA}, \bibinfo{pages}{51--58}.
+\newblock
+\showISBNx{978-1-60558-216-0}
+\urldef\tempurl%
+\url{https://doi.org/10.1145/1404520.1404526}
+\showDOI{\tempurl}
+\newblock
+\shownote{event-place: Sydney, Australia.}
+
+
 \bibitem[\protect\citeauthoryear{Gleize, Shnarch, Choshen, Dankin, Moshkowich,
   Aharonov, and Slonim}{Gleize et~al\mbox{.}}{2019}]%
         {gleize_are_2019}
@@ -146,6 +185,19 @@
 \showDOI{\tempurl}
 
 
+\bibitem[\protect\citeauthoryear{Khosravi, Kitto, and Williams}{Khosravi
+  et~al\mbox{.}}{2019}]%
+        {khosravi_ripple_2019}
+\bibfield{author}{\bibinfo{person}{Hassan Khosravi}, \bibinfo{person}{Kirsty
+  Kitto}, {and} \bibinfo{person}{Joseph~Jay Williams}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Ripple: {A} crowdsourced adaptive platform for
+  recommendation of learning activities}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1910.05522}}
+  (\bibinfo{year}{2019}).
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Nathan, Koedinger, Alibali, and
   {others}}{Nathan et~al\mbox{.}}{2001}]%
         {nathan_expert_2001}
@@ -179,6 +231,21 @@
 \newblock \showarticletitle{Ranking passages for argument convincingness}. In
   \bibinfo{booktitle}{\emph{Proceedings of the 6th {Workshop} on {Argument}
   {Mining}}}. \bibinfo{pages}{146--155}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Potter, Englund, Charbonneau, MacLean, Newell,
+  Roll, and {others}}{Potter et~al\mbox{.}}{2017}]%
+        {potter_compair:_2017}
+\bibfield{author}{\bibinfo{person}{Tiffany Potter}, \bibinfo{person}{Letitia
+  Englund}, \bibinfo{person}{James Charbonneau}, \bibinfo{person}{Mark~Thomson
+  MacLean}, \bibinfo{person}{Jonathan Newell}, \bibinfo{person}{Ido Roll},
+  {and} \bibinfo{person}{{others}}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{{ComPAIR}: {A} new online tool using adaptive
+  comparative judgement to support learning with peer feedback}.
+\newblock \bibinfo{journal}{\emph{Teaching \& Learning Inquiry}}
+  \bibinfo{volume}{5}, \bibinfo{number}{2} (\bibinfo{year}{2017}),
+  \bibinfo{pages}{89--113}.
 \newblock
 
 

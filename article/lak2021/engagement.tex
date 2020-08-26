@@ -2,7 +2,7 @@
 %% This is file `engagement.tex',
 %% The first command in your LaTeX source must be the \documentclass command.
 \documentclass[sigconf]{acmart}
-
+\usepackage{hyperref}
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
 \AtBeginDocument{%
@@ -153,22 +153,22 @@ Moreover, activities from online learning environments are often used for
 formative assessment, and carry little weight in terms of course credit. 
 Framed as a low-stakes test, this can lead to low student motivation 
 \cite{wise_low_2005}. 
-The expectancy-value model \cite{pintrich_dynamic_1989}, which 
-describes factors that influence the effort students will direct towards a 
-task, includes ``how important they perceive the test to be'', and the 
-``affective reaction to how mentally taxing the task appears to be'' 
-\cite{wolf_consequence_1995}.
+The expectancy-value model \cite{pintrich_dynamic_1989}, which describes 
+factors that influence the effort students will direct towards a task, includes 
+``how important they perceive the test to be'', and the ``affective reaction to 
+how mentally taxing the task appears to be'' \cite{wolf_consequence_1995}.
 
-This makes providing feedback to students on the quality of their explanations 
-a desirable goal, in order to emphasize the importance of the writing 
-activity, as well as promote engagement.
-The data at hand in TMPI environments enable scaling up how much feedback that 
-can given. 
-The ``vote'' data represent a proxy for argument quality along the dimension 
-of \textit{convincingness}, as judged by peer learners. 
-These votes can be aggregated into a \textit{convincingness} score to students, 
-as a measure of how effective their explanations are in persuading their peers 
-to change their own answer.
+This further highlights the importance of providing feedback to students on the 
+quality of their explanations, so as to emphasize the formative importance of 
+the writing activity and promote engagement.
+The data at hand in TMPI environments enables scaling up how much feedback that 
+can given.
+We suggest that the ``vote'' data collected on each explanation, is a proxy for 
+argument quality, along the dimension of \textit{convincingness}, as judged by 
+peer learners. 
+These votes can be aggregated into a \textit{convincingness} score, as a 
+measure of how effective that explanation is in persuading peers to change 
+their own answer.
 
 We set out to examine the different measures of argument quality, along the 
 dimension of \textit{convincingness}, and model their role in the TMPI process. 
@@ -180,6 +180,21 @@ Our specific research questions are:
 	useful in aggregating the ``vote'' data from TMPI?
 \end{itemize}
 
+We suggest that the results of our work can inform the design of TMPI 
+platforms, in how feedback is generated and presented to students. 
+In a broader context, we aim to contribute the growing body of research 
+surrounding peer-review contexts where students do not provide holistic scores, 
+but generate their evaluative judgments in a comparative setting.
+Peer-review platforms most often ask students to provide a score based on a 
+rubric, but the difficulty lies in the ability of novices to generate useful 
+feedback before they have gained expertise with the content. 
+A growing number of peer-review platforms address this issue with pairwise
+\textit{comparative} judgments.
+Notable examples include ComPAIR\cite{potter_compair:_2017} and 
+JuxtaPeer\cite{cambre_juxtapeer:_2018}, both of which present students with a 
+pair of their peers' submissions, and evaluate them with respect to one another.
+
+
 
 \section{Related Work}
 
@@ -188,16 +203,21 @@ This modality is a specific case of
 \textit{learnersourcing}\cite{weir_learnersourcing_2015}, wherein students first
 generate content as part of their own learning process, that is ultimately used 
 to help their peers learn as well.
+Notable examples include PeerWise \cite{denny_peerwise:_2008} and RiPPLE 
+\cite{khosravi_ripple_2019}, both of which have student generate learning 
+resources, which are subsequently used and evaluated by peers as part of 
+formative assessment activities.
 
 One of the earliest efforts to leverage peer judgments of peer-written 
-explanations is from the AXIS system\cite{williams_axis:_2016}, wherein 
-students solved a problem, provided an explanation for their answer, and 
-evaluated explanations written by their peers.
+explanations specifically is from the AXIS system\cite{williams_axis:_2016}, 
+wherein students solved a problem, provided an explanation for their answer, 
+and evaluated explanations written by their peers.
 Using a reinforcement-learning approach known as ``multi-armed bandits'', the 
 system was able to select peer-written explanations that were rated as helpful 
 as those written by an expert.
-
-
+Our research follows from these studies in scaling to multiple domains, and 
+focusing on how the vote data can be used more directly to model argument 
+quality as judged by peers.
 
 \subsection{Ranking Arguments for Quality}
 Rank aggregation is the task of combining the preferences of multiple agents 
@@ -258,6 +278,14 @@ We extend this work to the domain of TMPI, and change the prediction task:
 using only vote-data on student explanations, can we effectively predict when a 
 student will choose a student explanation as more convincing than their own?
 
+The raw data emerging from a TMPI platform is tabular, in the form of 
+student-item observations.
+The fields include the item prompt, the student's \textit{first} answer choice, 
+their accompanying explanation, the peer explanations shown on the review step, 
+the student's \textit{second} answer choice, and the peer explanation they 
+chose as most convincing (\verb|None| if they choose to ``stick to their own'').
+At each observation, we aim to predict whether the student will choose a peer's 
+explanation over their own.
 We build interpretable predictive models for this task, and inspect the 
 relative feature importances in order to address our research questions from 
 above.
@@ -280,27 +308,39 @@ Our feature sets include
 	\item \textit{Convincingness} features, including: 
 	\textbf{win-rate}, defined as the ratio of times an explanation is chosen 
 	to the number of times it was shown; 
-	\textbf{Bradle-Terry} score, which is the argument ``quality'' parameter 
-	estimated for each explanation, according to the Bradley-Terry model, where 
-	the probability of argument A being chosen over argument B is given by 
+	\textbf{BT} score, which is the argument ``quality'' parameter 
+	estimated for each explanation, according to the \textit{Bradley-Terry} 
+	model, where the probability of argument A being chosen over argument B is 
+	given by 
 
 $$
 P(a>b) = 
-\frac{\beta_a}{\beta_a+\beta_b}
+\frac{e^{\beta_a}}{e^{\beta_a}+e^{\beta_b}}
 $$
 
-
+where $\beta_i$ is the latent strength parameter of argument $i$. 
+We decompose each student-item observation into argument pairs, where the 
+chosen explanation is paired with each of the other shown ones, and the pair is 
+labelled with $y=+/-1$, depending on whether the chosen explanation is 
+first/second in the pair.   
+The latent argument strength parameters are estimated by maximizing the 
+log-likelihood of the $m$ explanation-pairs:
 $$
 \ell(\boldsymbol{\beta})=\sum_{i=1}^{m}\sum_{j=1}^{m} 
 [w_{ij}ln\beta_i-w_{ij}ln(\beta_i+\beta_j)]
 $$
 
 subject to $\sum_{i}\beta_i=0$.
-	
-	 The parameters are estimated by minimizing the log-likelihood of the 
-	 explanations chosen in the 
-	 pairwise comparison data
+Once these parameters are estimated for each student explanation, they are set 
+as features for the prediction task, as are related statistics with respect to 
+the shown explanations (e.g. maximum, minimum and mean BT scores of shown 
+explanations).
 \end{itemize}
+
+We experiment with classification models that are interpretable, but limit our 
+selection to the most linear (linear regression), to the most acceptably 
+non-linear (Random Forests).
+
 
 \section{Data}
 
@@ -312,11 +352,15 @@ subject to $\sum_{i}\beta_i=0$.
 \begin{enumerate}
 	\item Students are not explicitly directed on how to evaluate their peers' 
 	explanations. This may have an impact 
-	https://link.springer.com/article/10.1007/s10734-017-0220-3
+	 \url{https://link.springer.com/article/10.1007/s10734-017-0220-3}
 \end{enumerate}
 
 \begin{acks}
-\textbf{TO DO}
+Funding for this research was made possible by the support of the Canadian 
+Social Sciences and Humanities Research Council \textit{Insight} Grant. This 
+project would not have been possible without the SALTISE/S4 network of 
+researcher practitioners, and the students using myDALITE.org who consented to 
+share their learning traces with the research community.
 \end{acks}
 
 \bibliographystyle{ACM-Reference-Format}
