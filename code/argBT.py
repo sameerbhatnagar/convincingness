@@ -157,7 +157,7 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
             ].copy()
 
             df_train=df_topic[df_topic["a_rank_by_time"]<r]
-            students = df_train["user_token"].to_list()
+            students = pairs_train["annotator"].drop_duplicates().to_list()
 
             if pairs_train.shape[0] > 0 and len(students) > 10:
 
@@ -224,9 +224,6 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                                 }
                             )
                 # make two batches of students, interleaved in time
-                if not rank_score_type=="baseline":
-                    students = pairs_train["annotator"].drop_duplicates().to_list()
-
                 student_batch1 = students[::2]
                 student_batch2 = [
                     s for s in students if s not in student_batch1
