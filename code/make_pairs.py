@@ -161,7 +161,6 @@ def get_mydalite_answers():
 
     return df
 
-
 def get_ethics_answers():
     fname = (
         "/home/sbhatnagar/PhD/convincingness_project/data_harvardx/dalite_20161101.csv"
@@ -443,9 +442,9 @@ def make_all_pairs(data_file_dict, output_dir):
     return df_pairs_all
 
 
-def main(discipline):
+def main(discipline,output_dir_name):
 
-    output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", "switch_exp", discipline)
+    output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", output_dir_name, discipline)
     data_dir = os.path.join(output_dir,"data")
     data_file_dict = {}
     if discipline == "Ethics":
