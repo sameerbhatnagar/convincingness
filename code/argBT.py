@@ -224,6 +224,9 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                                 }
                             )
                 # make two batches of students, interleaved in time
+                if not rank_score_type=="baseline":
+                    students = pairs_train["annotator"].drop_duplicates().to_list()
+
                 student_batch1 = students[::2]
                 student_batch2 = [
                     s for s in students if s not in student_batch1
