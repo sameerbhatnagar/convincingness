@@ -204,10 +204,6 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                                     y_true=pairs_test_["label"],
                                     y_pred=pairs_test_["label_pred"],
                                 ),
-                                "f1": f1_score(
-                                    y_true=pairs_test_["label"],
-                                    y_pred=pairs_test_["label_pred"],
-                                )
                             }
                         )
                     except TypeError:
@@ -227,10 +223,6 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                                         y_true=pairs_test_["label"],
                                         y_pred=pairs_test_["label_pred"],
                                     ),
-                                    "f1": f1_score(
-                                        y_true=pairs_test_["label"],
-                                        y_pred=pairs_test_["label_pred"],
-                                    )
                                     "ties": n_ties,
                                 }
                             )
