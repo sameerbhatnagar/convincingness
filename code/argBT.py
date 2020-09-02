@@ -5,7 +5,7 @@ import plac
 import numpy as np
 import pandas as pd
 
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, f1_score
 from scipy.stats import kendalltau, rankdata
 import matplotlib.pyplot as plt
 from itertools import combinations
@@ -137,6 +137,8 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
     accuracies = []
     ground_truth_rankings = []
     rankings_by_batch = []
+    rank_scores = []
+    rank_scores_by_batch = []
 
     for counter, (r, df_r) in enumerate(
         pairs_df.groupby("annotation_rank_by_time")
@@ -173,6 +175,7 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                     )
 
                 ground_truth_rankings.append(sorted_arg_ids)
+                rank_scores.append(ranks_dict)
 
                 # test ability of rankings to predict winning argument in
                 # held out pairs at current timestep
@@ -201,6 +204,10 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                                     y_true=pairs_test_["label"],
                                     y_pred=pairs_test_["label_pred"],
                                 ),
+                                "f1": f1_score(
+                                    y_true=pairs_test_["label"],
+                                    y_pred=pairs_test_["label_pred"],
+                                )
                             }
                         )
                     except TypeError:
@@ -220,6 +227,10 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                                         y_true=pairs_test_["label"],
                                         y_pred=pairs_test_["label_pred"],
                                     ),
+                                    "f1": f1_score(
+                                        y_true=pairs_test_["label"],
+                                        y_pred=pairs_test_["label_pred"],
+                                    )
                                     "ties": n_ties,
                                 }
                             )
@@ -230,7 +241,7 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                 ]
 
                 # get rankings for each batch and save
-                batch_rankings = {}
+                batch_rankings, batch_rank_scores = {}, {}
                 for sb, student_batch in zip(
                     ["batch1", "batch2"], [student_batch1, student_batch2]
                 ):
@@ -249,9 +260,12 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                         )
 
                     batch_rankings[sb] = sorted_arg_ids
+                    batch_rank_scores[sb] = ranks_dict
 
                 rankings_by_batch.append(batch_rankings)
-    return accuracies, ground_truth_rankings, rankings_by_batch
+                rank_scores_by_batch.append(batch_rank_scores)
+
+    return accuracies, ground_truth_rankings, rankings_by_batch, rank_scores,rank_scores_by_batch
 
 def build_rankings(discipline, rank_score_type="baseline"):
     """
@@ -295,6 +309,18 @@ def build_rankings(discipline, rank_score_type="baseline"):
                 "rankings_by_batch",
             )
         )
+        os.mkdir(
+            os.path.join(
+                results_dir_discipline,
+                "rank_scores",
+            )
+        )
+        os.mkdir(
+            os.path.join(
+                results_dir_discipline,
+                "rank_scores_by_batch",
+            )
+        )
 
     # sort files by size to get biggest ones done first
     # https://stackoverflow.com/a/20253803
@@ -322,7 +348,7 @@ def build_rankings(discipline, rank_score_type="baseline"):
     for i,topic in enumerate(topics):
         print("\t{}/{} {}".format(i,len(topics),topic))
 
-        accuracies, ground_truth_rankings, rankings_by_batch = build_rankings_by_topic(
+        accuracies, ground_truth_rankings, rankings_by_batch, rank_scores, rank_scores_by_batch = build_rankings_by_topic(
             topic=topic,
             discipline=discipline,
             rank_score_type=rank_score_type
@@ -345,6 +371,19 @@ def build_rankings(discipline, rank_score_type="baseline"):
         )
         with open(fp, "w+") as f:
             f.write(json.dumps(rankings_by_batch, indent=2))
+
+        fp = os.path.join(
+            results_dir_discipline,"rank_scores", "{}.json".format(topic),
+        )
+        with open(fp, "w+") as f:
+            f.write(json.dumps(rank_scores, indent=2))
+
+        fp = os.path.join(
+            results_dir_discipline,"rank_scores_by_batch", "{}.json".format(topic),
+        )
+        with open(fp, "w+") as f:
+            f.write(json.dumps(rank_scores_by_batch, indent=2))
+
 
     return
 
