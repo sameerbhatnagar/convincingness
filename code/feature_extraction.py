@@ -321,6 +321,44 @@ def get_features(
 
     return df_answers
 
+def append_features(df,feature_types_included):
+    """
+    Arguments:
+    =========
+        df: dataframe with answers from peer instruction, with column "id"
+            for each answer, the topic, and discipline
+        feature_types_included: string from one of the keys of
+            PRE_CALCULATED_FEATURES defined at top of this file
+    Returns:
+    ========
+        df: dataframe with feature columns appended
+    """
+    from argBT import get_data_dir
+
+    discipline = df["discipline"].value_counts().head(1).index.values[0]
+    data_dir_discipline = get_data_dir(discipline)
+    topic = df["topic"].value_counts().head(1).index.values[0]
+
+    # append columns with pre-calculated features
+    features_dir = os.path.join(
+        data_dir_discipline + "_with_features", topic + "_features"
+    )
+    for feature_type in feature_types_included:
+        feature_type_fpath = os.path.join(
+            features_dir, topic + "_" + feature_type + ".json"
+        )
+        with open(feature_type_fpath, "r") as f:
+            features_json = json.load(f)
+
+        # each feature_type includes multiple features
+        for feature in features_json:
+            df = pd.merge(
+                df,
+                pd.DataFrame(features_json[feature], columns=["id", feature]),
+                on="id",
+                how="left",
+            )
+    return df
 
 def main(discipline):
     print(discipline)

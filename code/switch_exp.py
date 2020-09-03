@@ -9,6 +9,7 @@ from features_shown import get_feature_names, append_features_shown
 import pandas as pd
 import numpy as np
 import data_loaders
+from feature_extraction import append_features 
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
@@ -243,25 +244,7 @@ def main(discipline, feature_types_included="all"):
         )
         df["rationale"] = df["rationale"].fillna("")
 
-        # append columns with pre-calculated features
-        features_dir = os.path.join(
-            data_dir_discipline + "_with_features", topic + "_features"
-        )
-        for feature_type in feature_types_included:
-            feature_type_fpath = os.path.join(
-                features_dir, topic + "_" + feature_type + ".json"
-            )
-            with open(feature_type_fpath, "r") as f:
-                features_json = json.load(f)
-
-            # each feature_type includes multiple features
-            for feature in features_json:
-                df = pd.merge(
-                    df,
-                    pd.DataFrame(features_json[feature], columns=["id", feature]),
-                    on="id",
-                    how="left",
-                )
+        df = append_features(df)
 
         # derive features based on shown rationales, for feature_types_included
         df_q = append_features_shown(df, kwargs)
