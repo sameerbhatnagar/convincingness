@@ -272,10 +272,15 @@ These pairs are then presented to crowd-workers who label which of the two is
 more convincing. 
 These pairwise comparisons can then be aggregated using rank-aggregation 
 methods so as to produce a overall ranked list of arguments.
-
-We extend this work to the domain of TMPI, and change the prediction task: 
-using only vote-data on student explanations, can we effectively predict when a 
-student will choose a student explanation as more convincing than their own?
+We extend this work to the domain of TMPI, and set prediction tasks which 
+answer to our research questions: 
+\begin{enumerate}
+	\item using only vote-data on student explanations, can we effectively 
+	predict when a student will choose a student explanation as more convincing 
+	than their own?
+	\item what linguistic features are predictive of scores of the aggregated 
+	argument \textit{convincingness} score?
+\end{enumerate}
 
 The raw data emerging from a TMPI platform is tabular, in the form of 
 student-item observations.
@@ -283,8 +288,7 @@ The fields include the item prompt, the student's \textit{first} answer choice,
 their accompanying explanation, the peer explanations shown on the review step, 
 the student's \textit{second} answer choice, and the peer explanation they 
 chose as most convincing (\verb|None| if they choose to ``stick to their own'').
-At each observation, we aim to predict whether the student will choose a peer's 
-explanation over their own.
+
 We build interpretable predictive models for this task, and inspect the 
 relative feature importances in order to address our research questions from 
 above.
@@ -304,7 +308,8 @@ Our feature sets include
 	(Both of these are defined by overall success rate on getting the correct 
 	answer on first attempt);
 	
-	\item \textit{Convincingness} features, including: 
+	\item \textit{Convincingness} features of the explanations shown, 
+	including: 
 	\textbf{win-rate}, defined as the ratio of times an explanation is chosen 
 	to the number of times it was shown; 
 	\textbf{BT} score, which is the argument ``quality'' parameter 
@@ -372,16 +377,7 @@ spans different teachers at different colleges and universities in Canada.
 \end{table}
 
 \section{Results}
-All classification accuracies and F1 scores shown are the results aggregated 
-over 5-fold cross-validation are reported in table \ref{tab:data_results}.
 
-\begin{table}
-	\input{data/data_results}
-	\caption{Classification results on prediction of whether or not student 
-	will choose a peer's explanation over their own in TMPI. (LR: Logistic 
-	Regression; RF: Random Forests)}
-	\label{tab:data_results}
-\end{table}
 
 \section{Discussion}
 
