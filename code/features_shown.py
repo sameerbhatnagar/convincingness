@@ -102,7 +102,7 @@ def append_features_shown(df, kwargs):
     for feature in pre_calculated_features:
         # e.g. shown_convincingness_baseline will be array of values
         feature_name = "shown_{}".format(feature)
-        print("\t appending column for {}".format(feature_name))
+        # print("\t appending column for {}".format(feature_name))
         df[feature_name] = df["rationales"].apply(
             shown_feature_counts, args=(df, feature,)
         )

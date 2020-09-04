@@ -20,9 +20,7 @@ MIN_WORD_COUNT = 5
 
 # make sure this matches the calculations below
 PRE_CALCULATED_FEATURES = {
-    "surface": [
-        "rationale_word_count",
-    ],
+    "surface": ["rationale_word_count",],
     "syntax": [],
     "readability": ["flesch_kincaid_grade_level", "flesch_kincaid_reading_ease",],
     "lexical": ["num_equations", "num_keywords"],
@@ -31,11 +29,15 @@ PRE_CALCULATED_FEATURES = {
 }
 
 
-def extract_surface_features(topic,discipline):
+def extract_surface_features(topic, discipline):
 
-    data_dir_discipline = os.path.join(data_loaders.BASE_DIR,"tmp","switch_exp",discipline)
+    data_dir_discipline = os.path.join(
+        data_loaders.BASE_DIR, "tmp", "switch_exp", discipline
+    )
 
-    fp = os.path.join(data_dir_discipline,"data","{}.csv".format(topic.replace("/", "_")))
+    fp = os.path.join(
+        data_dir_discipline, "data", "{}.csv".format(topic.replace("/", "_"))
+    )
     df = pd.read_csv(fp)
 
     surface_features = {}
@@ -215,11 +217,17 @@ def extract_readability_features(rationales, nlp):
     return readability_features
 
 
-def extract_convincingness_features(topic,discipline):
+def extract_convincingness_features(topic, discipline):
 
-    data_dir_discipline = os.path.join(data_loaders.BASE_DIR,"tmp","switch_exp",discipline)
+    data_dir_discipline = os.path.join(
+        data_loaders.BASE_DIR, "tmp", "switch_exp", discipline
+    )
 
-    fp=os.path.join(data_dir_discipline,"data_pairs","pairs_{}.csv".format(topic.replace("/", "_")))
+    fp = os.path.join(
+        data_dir_discipline,
+        "data_pairs",
+        "pairs_{}.csv".format(topic.replace("/", "_")),
+    )
     df_pairs = pd.read_csv(fp)
     convincingness_features = {}
 
@@ -227,7 +235,9 @@ def extract_convincingness_features(topic,discipline):
         if f == "convincingness_BT":
             r = get_rankings(df_pairs)[1]
         else:
-            fp = os.path.join(data_dir_discipline,"data","{}.csv".format(topic.replace("/", "_")))
+            fp = os.path.join(
+                data_dir_discipline, "data", "{}.csv".format(topic.replace("/", "_"))
+            )
             df_topic = pd.read_csv(fp)
             r = get_rankings_baseline(df_topic)[1]
 
@@ -272,13 +282,9 @@ def extract_features_and_save(
                 df_answers[["id", "rationale"]], nlp=nlp, subject=subject,
             )
         elif feature_type == "convincingness":
-            features = extract_convincingness_features(
-                topic=topic, discipline= subject
-            )
+            features = extract_convincingness_features(topic=topic, discipline=subject)
         elif feature_type == "surface":
-            features = extract_surface_features(
-                topic=topic,discipline=subject
-            )
+            features = extract_surface_features(topic=topic, discipline=subject)
         with open(feature_type_fpath, "w") as f:
             json.dump(features, f, indent=2)
 
@@ -302,7 +308,7 @@ def get_features(
         os.mkdir(with_features_dir)
 
     # TO DO: "lexical"
-    for feature_type in ["surface","convincingness"]:  # , "syntax", "readability"]:
+    for feature_type in ["surface", "convincingness"]:  # , "syntax", "readability"]:
         features = extract_features_and_save(
             with_features_dir=with_features_dir,
             df_answers=df_answers,
@@ -321,7 +327,8 @@ def get_features(
 
     return df_answers
 
-def append_features(df,feature_types_included):
+
+def append_features(df, feature_types_included, timestep=None):
     """
     Arguments:
     =========
@@ -343,6 +350,28 @@ def append_features(df,feature_types_included):
     features_dir = os.path.join(
         data_dir_discipline + "_with_features", topic + "_features"
     )
+    if timestep:
+        # get the other features normally
+        feature_types_included = [
+            f for f in feature_types_included if f != "convincingness"
+        ]
+        # get the convincingness features as calculated with the data before current timestep
+        # this was calculated/saved as part of experiments in argBT.py
+        rank_score_types = ["baseline", "BT"]
+        for rank_score_type in rank_score_types:
+            rankings_dir = os.path.join(
+                data_dir_discipline, os.pardir, rank_score_type, "rank_scores"
+            )
+            fp = os.path.join(rankings_dir, "{}.json".format(topic))
+            with open(fp, "r") as f:
+                rank_scores = json.load(f)
+            rank_scores_timestep = {
+                int(k.replace("arg", "")): v for k, v in rank_scores[int(timestep)].items()
+            }
+            df.loc[:,"convincingness_{}".format(rank_score_type)] = df["id"].map(
+                rank_scores_timestep
+            )
+
     for feature_type in feature_types_included:
         feature_type_fpath = os.path.join(
             features_dir, topic + "_" + feature_type + ".json"
@@ -359,6 +388,7 @@ def append_features(df,feature_types_included):
                 how="left",
             )
     return df
+
 
 def main(discipline):
     print(discipline)
