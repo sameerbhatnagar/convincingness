@@ -128,7 +128,7 @@ def main_by_topic(df_train, kwargs):
         })
 
         if name == "LR":
-            weights = clf.coef_
+            weights = clf.coef_[0]
         elif name == "RF":
             weights = clf.feature_importances_
         d.update({
@@ -265,11 +265,6 @@ def main(discipline, feature_types_included="all"):
                     )
                     if not fn
                 ]
-                # df_train_w = df_train[(
-                #     (df_train["user_token"].isna() == False)
-                #     &
-                #     (df_train["transition"].isin(["wr","ww"]))
-                #     )]
 
                 if (
                     len(feature_columns_numeric_non_null) > 0
