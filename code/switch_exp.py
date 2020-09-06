@@ -152,7 +152,8 @@ def main_by_topic(df_train, kwargs):
             k: np.round(v, 3) for k, v in logit_model_results.params.to_dict().items()
         },
         "transition":df_train.tail(1)["transition"].iat[0],
-        "test_answer_id":str(df_train.tail(1)["id"].iat[0])
+        "test_answer_id":str(df_train.tail(1)["id"].iat[0]),
+        "y_true":df_train.tail(1)[target].iat[0],
     })
     return d
 
