@@ -124,7 +124,7 @@ def main_by_topic(df_train, kwargs):
         # make prediction on last row
         X_test = X[-1, :].reshape(1, -1)
         d.update({
-            "predictions_{}".format(name): list(clf.predict(X_test))
+            "prediction_{}".format(name): list(clf.predict(X_test))
         })
 
         if name == "LR":
@@ -151,7 +151,8 @@ def main_by_topic(df_train, kwargs):
         "params_all": {
             k: np.round(v, 3) for k, v in logit_model_results.params.to_dict().items()
         },
-        "transition":df_train.tail(1)["transition"],
+        "transition":df_train.tail(1)["transition"].iat[0],
+        "test_answer_id":df_train.tail(1)["id"].iat[0]
     })
     return d
 
