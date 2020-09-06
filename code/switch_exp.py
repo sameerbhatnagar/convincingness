@@ -144,7 +144,7 @@ def main_by_topic(df_train, kwargs):
         "r2": np.round(logit_model_results.prsquared, 2),
         "params": {
             k: np.round(v, 3)
-            for k, v in logit_model_results.params[logit_model_results.pvalues < 0.01]
+            for k, v in logit_model_results.params[logit_model_results.pvalues < 0.05]
             .to_dict()
             .items()
         },
@@ -152,7 +152,7 @@ def main_by_topic(df_train, kwargs):
             k: np.round(v, 3) for k, v in logit_model_results.params.to_dict().items()
         },
         "transition":df_train.tail(1)["transition"].iat[0],
-        "test_answer_id":df_train.tail(1)["id"].iat[0]
+        "test_answer_id":str(df_train.tail(1)["id"].iat[0])
     })
     return d
 
@@ -287,7 +287,7 @@ def main(discipline, feature_types_included="all"):
 
         fname = os.path.join(results_dir_discipline, "{}.json".format(topic))
         with open(fname, "w") as f:
-            f.write(json.dumps(results, indent=2))
+            json.dump(results,f, indent=2)
 
 
 if __name__ == "__main__":
