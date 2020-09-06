@@ -264,24 +264,19 @@ out of the scope of this study)
 \section{Methodology}
 
 We borrow our methodological approach from research in argument mining (AM), 
-specifically related to modelling argument quality along the 
-dimension of \textit{convincingness}.
+specifically related to modelling argument quality along the dimension of 
+\textit{convincingness}.
 A common approach is to curate pairs of arguments made in defence of the same 
 stance on the same topic.
-These pairs are then presented to crowd-workers who label which of the two is 
+These pairs are then presented to crowd-workers, who label which of the two is 
 more convincing. 
 These pairwise comparisons can then be aggregated using rank-aggregation 
 methods so as to produce a overall ranked list of arguments.
-We extend this work to the domain of TMPI, and set prediction tasks which 
-answer to our research questions: 
-\begin{enumerate}
-	\item using only vote-data on student explanations, can we effectively 
-	predict when a student will choose a student explanation as more convincing 
-	than their own?
-	\item what linguistic features are predictive of scores of the aggregated 
-	argument \textit{convincingness} score?
-\end{enumerate}
+We extend this work to the domain of TMPI, and define prediction tasks that not 
+only aim to validate this methodology, but help answer our specific research 
+questions.
 
+\subsection{Rank Aggregation}
 The raw data emerging from a TMPI platform is tabular, in the form of 
 student-item observations.
 The fields include the item prompt, the student's \textit{first} answer choice, 
@@ -289,63 +284,140 @@ their accompanying explanation, the peer explanations shown on the review step,
 the student's \textit{second} answer choice, and the peer explanation they 
 chose as most convincing (\verb|None| if they choose to ``stick to their own'').
 
-We build interpretable predictive models for this task, and inspect the 
-relative feature importances in order to address our research questions from 
-above.
-
-Our feature sets include
-\begin{itemize}
-	\item \textit{Surface level} features, including: 
-	the word count of explanation that the current student wrote; 
-	word counts of explanations that were shown on the review step; 
-	the number of explanations shown that were much shorter, or much longer 
-	than than the student's own explanation; 
-	whether the student's first answer is correct;
-
-	\item \textit{Question and Student level} features, including: 
-	the difficulty of the question; 
-	the strength of the student
-	(Both of these are defined by overall success rate on getting the correct 
-	answer on first attempt);
-	
-	\item \textit{Convincingness} features of the explanations shown, 
-	including: 
-	\textbf{win-rate}, defined as the ratio of times an explanation is chosen 
-	to the number of times it was shown; 
-	\textbf{BT} score, which is the argument ``quality'' parameter 
+\begin{enumerate}
+	\item \textbf{win-rate}, defined as the ratio of times an explanation is 
+	chosen to the number of times it was shown (we add a correction for 
+	rationales that were never shown); 
+	\item \textbf{BT} score, which is the argument ``quality'' parameter 
 	estimated for each explanation, according to the \textit{Bradley-Terry} 
 	model, where the probability of argument A being chosen over argument B is 
 	given by 
 
-$$
-P(a>b) = 
-\frac{e^{\beta_a}}{e^{\beta_a}+e^{\beta_b}}
-$$
+	$$
+	P(a>b) = 
+	\frac{e^{\beta_a}}{e^{\beta_a}+e^{\beta_b}}
+	$$
+	where $\beta_i$ is the latent strength parameter of argument $i$. 
+	
+	We decompose each student-item observation into argument pairs, where the 
+	chosen explanation is paired with each of the other shown ones, and the 
+	pair is labelled with $y=-/+1$, depending on whether the chosen explanation 
+	is first/second in the pair.   
+	The latent argument strength parameters are estimated by maximizing the 
+	log-likelihood of the $m$ explanation-pairs:
+	$$
+	\ell(\boldsymbol{\beta})=\sum_{i=1}^{m}\sum_{j=1}^{m} 
+	[w_{ij}ln\beta_i-w_{ij}ln(\beta_i+\beta_j)]
+	$$
+	subject to $\sum_{i}\beta_i=0$.
+\end{enumerate}
 
-where $\beta_i$ is the latent strength parameter of argument $i$. 
-We decompose each student-item observation into argument pairs, where the 
-chosen explanation is paired with each of the other shown ones, and the pair is 
-labelled with $y=-/+1$, depending on whether the chosen explanation is 
-first/second in the pair.   
-The latent argument strength parameters are estimated by maximizing the 
-log-likelihood of the $m$ explanation-pairs:
-$$
-\ell(\boldsymbol{\beta})=\sum_{i=1}^{m}\sum_{j=1}^{m} 
-[w_{ij}ln\beta_i-w_{ij}ln(\beta_i+\beta_j)]
-$$
+In order to evaluate these rank aggregation different scores, and address 
+\textbf{RQ1}, we employ a time-series based cross-validation scheme:
+at each timestep, we calculate the aggregated argument \textit{convincingness} 
+scores from past students, and set out to predict:
+\begin{enumerate}
+	\item which arguments will be chosen as more convincing from the pairs 
+	constructed for the current student?  
+	\item will the current student choose a peer's explanation as more 
+	convincing than their own, or not?
+\end{enumerate}
 
-subject to $\sum_{i}\beta_i=0$.
-Once these parameters are estimated for each student explanation, they are set 
-as features for the prediction task, as are related statistics with respect to 
-the shown explanations (e.g. maximum, minimum and mean \textbf{win rate} scores 
-of shown 
-explanations).
-\end{itemize}
+For the latter binary classification task, we also include \textit{surface 
+level} features as a baseline, including the word count of explanation that the 
+current student wrote; word counts of explanations that were shown on the 
+review step; the number of explanations shown that were much shorter, or much 
+longer than than the student's own explanation; and finally whether the 
+student's first answer is correct.
+
+Once these \textit{surface level} and \textit{convincingness} features are 
+calculated for each student explanation, related statistics are assembled as 
+well with respect to the \textit{shown} explanations at each time step (e.g. 
+maximum, minimum and mean \textbf{win rate} and \textbf{BT} scores of shown 
+explanations, etc).
+
+We build interpretable predictive models for this task, and inspect the 
+relative feature importances in order to address our research questions from 
+above.
 
 We experiment with classification models that are interpretable, but limit our 
 selection to the most linear (linear regression), to the most acceptably 
-non-linear (Random Forests, where each tree is limited to a maximum depth of 3 
-so as to mitigate overfitting).
+non-linear (Random Forests).
+
+
+\subsection{Modelling Argument Quality Scores}
+The goal \textbf{RQ1} is establish which rank aggregation methods are best 
+suited for the context of TMPI, such that one can take the comparative 
+preference data from many students who each see different subsets of peer 
+explanations.
+We build on the results from the previous section to now predict these 
+aggregate scores for each explanation, using linguistic properties of the 
+explanations.
+We address \textbf{RQ2} with a regression task of predicting the argument 
+\textit{convincingness} scores using two different approaches to representing 
+the student text: as an embedding inside a vector space models, or via a 
+feature-rich document vector.
+
+We experiment with vector space models with different document representations:
+\begin{enumerate}
+	\item LSA vectors (10,50,100 components) \cite{deerwester_indexing_1990}
+	\item Glove embeddings \cite{pennington_glove:_2014}
+	\item BERT embeddings \cite{devlin_bert_2018}, out-of-the-box, and 
+	fine-tuned for the current classification task
+\end{enumerate}
+
+The advantage of a feature-rich approach lies in the interpretability for 
+teachers in their reporting tools, as well as generalizability to new items 
+before vote data can be collected.
+The list of features included here are derived from related work in argument 
+mining \cite{habernal_which_2016}\cite{persing_end--end_2016}on student essays, 
+automatic short answer scoring \cite{mohler_text--text_2009}
+
+	\begin{itemize}
+		
+		\item Surface Features: 
+		word count,
+		sentence count, 
+		max/mean word length, 
+		max/mean sentence length;
+
+		\item Lexical: 
+		uni-grams \& bigrams, 
+		type-token ratio, 
+		number of keywords (defined by open-source discipline specific 
+		text-book), 
+		number of equations;
+		
+		\item Syntactic: 
+		POS n-grams (e.g. \textit{nouns, prepositions, 
+		verbs,conjunctions,negation, adjectives, adverbs, punctuation}), 
+		modal verbs (e.g. \textit{must, should, can, might}),
+		contextuality/formality measure \cite{heylighen_variation_2002},
+		dependency tree depth;
+		
+		\item Semantic:
+		using LSA vectors trained on domain specific corpora, in this case an 
+		open-source textbook in the discipline, we calculate similarity to all 
+		other explanations in LSA space;
+		
+		\item Co-reference \cite{persing_end--end_2016}: 
+			fraction of entities from the prompt mentioned in each sentence, 
+			averaged over all sentences (using neural Co-reference resolution)
+			vector cosine similarity between student explanation and prompt, 
+			and answer choices; 
+		
+		\item Readability:
+			Fleish-Kincaid,
+			Coleman-Liau,
+			spelling errors
+	\end{itemize}
+
+
+Features typical to NLP analyses in Learning Analytics that are not included 
+here are cohesion, sentiment, and psycholinguistic features.
+
+
+
 
 
 \section{Data}
@@ -378,10 +450,15 @@ spans different teachers at different colleges and universities in Canada.
 
 \section{Results}
 
+\textbf{TO DO}
 
 \section{Discussion}
+\textbf{TO DO}
+
 
 \section{Limitations and Future Work}
+\textbf{TO DO}
+
 \begin{enumerate}
 	\item Students are not explicitly directed on how to evaluate their peers' 
 	explanations. This may have an impact 
@@ -502,111 +579,6 @@ share their learning traces with the research community.
 %\end{equation}
 
 
-%\subsection{Vector Space Models}
-%We experiment with vector space models with 
-%different document representations:
-%\begin{enumerate}
-%	\item LSA vectors (10,50,100 components) 
-%	\cite{deerwester_indexing_1990}
-%	\item Glove embeddings 
-%	\cite{pennington_glove:_2014}
-%	\item BERT embeddings \cite{devlin_bert_2018}, 
-%	out-of-the-box, and 
-%	fine-tuned for the current classification task
-%\end{enumerate}
-
-%The list of features included here are derived 
-%from related work in argument 
-%mining 
-%\cite{habernal_which_2016}\cite{persing_end--end_2016}
-%on student 
-%essays, automatic short answer scoring 
-%\cite{mohler_text--text_2009}
-
-%\begin{enumerate}
-%	
-%	\item Linguistic features
-%	
-%	\begin{enumerate}
-%		
-%		\item Surface Features
-%		\begin{enumerate}
-%			\item word count
-%			\item sentence count
-%			\item max/mean word length
-%			\item max/mean sentence length
-%		\end{enumerate}
-%		
-%		\item Lexical
-%		\begin{enumerate}
-%			\item uni-grams \& bigrams
-%			\item Type Token Ratio
-%			\item number of keywords, where 
-%			keywords are defined by open-source 
-%			discipline specific text-book
-%			\item number of equations
-%		\end{enumerate}
-%		
-%		\item Syntactic
-%		\begin{enumerate}
-%			\item POS n-grams (e.g. \textit{nouns, 
-%				prepositions, 
-%				verbs,conjunctions,negation, 
-%				adjectives, 
-%				adverbs, punctuation})
-%			\item modal verbs (e.g. \textit{must, 
-%				should, can, might})
-%			\item contextuality/formality measure 
-%			\cite{heylighen_variation_2002}
-%			\item dependency tree depth
-%			\item 
-%		\end{enumerate}
-%		
-%		\item Semantic
-%		The LSA vectors should be trained on 
-%		domain specific corpora, such as 
-%		lecture slides or a textbook in the 
-%		discipline 
-%		\cite{mohler_text--text_2009}. 
-%		
-%		
-%		\begin{enumerate}
-%			\item Similarity to all other 
-%			explanations in LSA 
-%			space
-%			\item Co-reference Features 
-%			\cite{persing_end--end_2016} 
-%			\begin{enumerate}
-%				\item Fraction of entities from 
-%				the prompt mentioned in each 
-%				sentence, averaged over all 
-%				sentences (using neural 
-%				Co-reference 
-%				resolution)
-%				\item Vector cosine similarity 
-%				between student explanation and 
-%				prompt, and answer choices 
-%			\end{enumerate}
-%		\end{enumerate}
-%		
-%		
-%		\item Readability
-%		\begin{enumerate}
-%			\item Fleish-Kincaid
-%			\item Coleman-Liau
-%			\item spelling errors
-%		\end{enumerate}
-%	\end{enumerate}
-%\end{enumerate}
-%
-%Features typical to NLP analyses in Learning 
-%Analytics that are not included 
-%here:
-%\begin{enumerate}
-%	\item Cohesion
-%	\item Sentiment analysis
-%	\item psycholinguistic features
-%\end{enumerate}
 
 
 %Moreover, activities from online learning environments are often used for 
