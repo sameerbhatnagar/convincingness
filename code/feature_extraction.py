@@ -217,7 +217,7 @@ def extract_readability_features(rationales, nlp):
     return readability_features
 
 
-def extract_convincingness_features(topic, discipline):
+def extract_convincingness_features(topic, discipline, timestep=None):
 
     data_dir_discipline = os.path.join(
         data_loaders.BASE_DIR, "tmp", "switch_exp", discipline
@@ -229,6 +229,9 @@ def extract_convincingness_features(topic, discipline):
         "pairs_{}.csv".format(topic.replace("/", "_")),
     )
     df_pairs = pd.read_csv(fp)
+    if timestep:
+        df_pairs = df_pairs[df_pairs["annotation_rank_by_time"]<timestep]
+
     convincingness_features = {}
 
     for f in PRE_CALCULATED_FEATURES["convincingness"]:
@@ -239,10 +242,12 @@ def extract_convincingness_features(topic, discipline):
                 data_dir_discipline, "data", "{}.csv".format(topic.replace("/", "_"))
             )
             df_topic = pd.read_csv(fp)
+            if timestep:
+                df_topic = df_topic[df_topic["a_rank_by_time"]<timestep]
             r = get_rankings_baseline(df_topic)[1]
 
         # remove "arg" prefix
-        r = {int(k[3:]): v for k, v in r.items()}
+        r = {int(k.replace("arg","")): v for k, v in r.items()}
 
         # store as list of lists, where first element is answer id, and second
         # is feature value
@@ -356,20 +361,27 @@ def append_features(df, feature_types_included, timestep=None):
             f for f in feature_types_included if f != "convincingness"
         ]
         # get the convincingness features as calculated with the data before current timestep
-        # this was calculated/saved as part of experiments in argBT.py
         rank_score_types = ["baseline", "BT"]
         for rank_score_type in rank_score_types:
-            rankings_dir = os.path.join(
-                data_dir_discipline, os.pardir, rank_score_type, "rank_scores"
+            colname ="convincingness_{}".format(rank_score_type)
+            rank_scores_list = extract_convincingness_features(
+                topic=topic,
+                discipline=discipline,
+                timestep=timestep
+            )[colname]
+            rank_scores = pd.DataFrame(
+                rank_scores_list,
+                columns=[
+                    "id",
+                    colname
+                ]
             )
-            fp = os.path.join(rankings_dir, "{}.json".format(topic))
-            with open(fp, "r") as f:
-                rank_scores = json.load(f)
-            rank_scores_timestep = {
-                int(k.replace("arg", "")): v for k, v in rank_scores[int(timestep)].items()
-            }
-            df.loc[:,"convincingness_{}".format(rank_score_type)] = df["id"].map(
-                rank_scores_timestep
+
+            df = pd.merge(
+                df,
+                rank_scores,
+                on="id",
+                how="left"
             )
 
     for feature_type in feature_types_included:

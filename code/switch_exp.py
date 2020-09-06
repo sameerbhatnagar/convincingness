@@ -1,7 +1,16 @@
 import os
 import json
 import plac
+from itertools import compress
 from joblib import dump
+
+import warnings
+
+warnings.filterwarnings("ignore")
+from statsmodels.tools.sm_exceptions import ConvergenceWarning, HessianInversionWarning
+
+warnings.simplefilter("ignore", ConvergenceWarning)
+warnings.simplefilter("ignore", HessianInversionWarning)
 
 
 from features_shown import get_feature_names, append_features_shown
@@ -21,12 +30,14 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import cross_val_score
 from sklearn.linear_model import LogisticRegression
+from sklearn.feature_selection import VarianceThreshold, SelectKBest
+
 import statsmodels.api as sm
 from statsmodels.tools.sm_exceptions import PerfectSeparationError
 
 from argBT import RESULTS_DIR
 
-MIN_TRAINING_RECORDS = 10
+MIN_TRAINING_RECORDS = 20
 
 
 def get_pipeline(feature_columns_numeric, feature_columns_categorical, df):
@@ -49,7 +60,15 @@ def get_pipeline(feature_columns_numeric, feature_columns_categorical, df):
         ]
     )
 
-    return feature_transformer
+    feature_transform_select = Pipeline(
+        steps=[
+            ("feature_transformer", feature_transformer),
+            ("var_thresh", VarianceThreshold()),
+            # ("select_k_best",SelectKBest(k=5))
+        ]
+    )
+
+    return feature_transform_select
 
 
 def main_by_topic(df_train, kwargs):
@@ -67,21 +86,6 @@ def main_by_topic(df_train, kwargs):
 
     y = df_train.loc[~(df_train["user_token"].isna()), target].values
 
-    # drop multi-collinear features
-    # https://chrisalbon.com/machine_learning/feature_selection/drop_highly_correlated_features/
-    drop_cols = df_train_data.columns[df_train_data.sum() == 0]
-    df_train_data = df_train_data.drop(drop_cols, axis=1)
-    feature_names = [f for f in feature_names if f not in drop_cols]
-
-    corr_matrix = df_train_data.corr().abs()
-    upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(np.bool))
-    drop_cols = [column for column in upper.columns if any(upper[column] > 0.95)]
-    df_train_data = df_train_data.drop(drop_cols, axis=1)
-    feature_columns_numeric = [f for f in feature_columns_numeric if f not in drop_cols]
-    feature_columns_categorical = [f for f in feature_columns_categorical if f not in drop_cols]
-    feature_names = feature_columns_numeric + feature_columns_categorical
-
-
     feature_transformer = get_pipeline(
         feature_columns_numeric=feature_columns_numeric,
         feature_columns_categorical=feature_columns_categorical,
@@ -89,13 +93,25 @@ def main_by_topic(df_train, kwargs):
     )
 
     # run feature transformation on all rows
-    X = feature_transformer.fit_transform(df_train_data)
+    X = feature_transformer.fit_transform(df_train_data, y)
 
-    results_dir_discipline_models_all = os.path.join(results_dir_discipline, "models")
-    if not os.path.exists(results_dir_discipline_models_all):
-        os.mkdir(results_dir_discipline_models_all)
+    # names for variables in statsmodels
+    X_array = feature_transformer.fit_transform(df_train_data, y)
 
-    predictions = {}
+    feature_names = list(
+        compress(
+            feature_names, feature_transformer.named_steps["var_thresh"].get_support(),
+        )
+    )
+    # feature_names=compress(
+    #     feature_names,
+    #     feature_transformer.named_steps["select_k_best"].get_support()
+    # )
+
+    # rebuild dataframe, but with sklearn feature transformation
+    X_df = pd.DataFrame(X_array, columns=feature_names,)
+
+    d = {}
     for name, clf in [
         ("LR", LogisticRegression()),
         ("RF", RandomForestClassifier(max_depth=3)),
@@ -107,77 +123,37 @@ def main_by_topic(df_train, kwargs):
 
         # make prediction on last row
         X_test = X[-1, :].reshape(1, -1)
-        predictions[name] = clf.predict(X_test)
+        d.update({
+            "predictions_{}".format(name): list(clf.predict(X_test))
+        })
 
-        results_dir_discipline_model = os.path.join(
-            results_dir_discipline_models_all, name
-        )
-        if not os.path.exists(results_dir_discipline_model):
-            os.mkdir(results_dir_discipline_model)
+        if name == "LR":
+            weights = clf.coef_
+        elif name == "RF":
+            weights = clf.feature_importances_
+        d.update({
+            "feature_names_{}".format(name): list(zip(weights, feature_names)),
+        })
 
-        fname = os.path.join(
-            results_dir_discipline_model, "{}_{}_{}.pkl".format(name, topic, timestep)
-        )
-
-        with open(fname, "wb") as f:
-            dump(clf, f)
-
-        fname = os.path.join(
-            results_dir_discipline_model,
-            "{}_features_{}_{}.json".format(name, topic, timestep),
-        )
-        with open(fname, "w") as f:
-            json.dump(feature_names, f)
-
-    # names for variables in statsmodels
-    if len(feature_columns_categorical) > 0:
-        feature_names = feature_columns_numeric + list(
-            feature_transformer.named_transformers_["categorical"]
-            .steps[0][1]
-            .get_feature_names(feature_columns_categorical)
-        )
-    else:
-        feature_names = feature_columns_numeric
-
-    # rebuild dataframe, but with sklearn feature transformation
-    X_df = pd.DataFrame(
-        feature_transformer.fit_transform(df_train_data), columns=feature_names,
-    )
-    print(X_df.corr().iloc[:,5:8])
     logit_model = sm.Logit(y, sm.add_constant(X_df))
-    try:
-        logit_model_results = logit_model.fit()
-        d = {
-            "topic": topic,
-            "n": df_train.shape[0],
-            "predictions": predictions,
-            "r2": np.round(logit_model_results.prsquared, 2),
-            "dropped_cols": list(drop_cols),
-            "params": {
-                k: np.round(v, 3)
-                for k, v in logit_model_results.params[
-                    logit_model_results.pvalues < 0.01
-                ]
-                .to_dict()
-                .items()
-            },
-            "params_all": {
-                k: np.round(v, 3)
-                for k, v in logit_model_results.params.to_dict().items()
-            },
-        }
-        fname = os.path.join(
-            results_dir_discipline, "{}_{}.json".format(topic, timestep)
-        )
-        with open(fname, "w") as f:
-            f.write(json.dumps(d, indent=2))
-
-    except PerfectSeparationError as e:
-        print(e)
-        # print(df_train.groupby(target)["first_correct"].value_counts())
-        pass
-
-    return
+    logit_model_results = logit_model.fit(method="bfgs", disp=0)
+    d.update({
+        "topic": topic,
+        "timestep": timestep,
+        "n": X_df.shape[0],
+        "r2": np.round(logit_model_results.prsquared, 2),
+        "params": {
+            k: np.round(v, 3)
+            for k, v in logit_model_results.params[logit_model_results.pvalues < 0.01]
+            .to_dict()
+            .items()
+        },
+        "params_all": {
+            k: np.round(v, 3) for k, v in logit_model_results.params.to_dict().items()
+        },
+        "transition":df_train.tail(1)["transition"],
+    })
+    return d
 
 
 def main(discipline, feature_types_included="all"):
@@ -208,7 +184,7 @@ def main(discipline, feature_types_included="all"):
         for basedir, dirs, files in os.walk(data_dir_discipline)
         for filename in files
     )
-    all_files = sorted(all_files, key=os.path.getsize, reverse=True)
+    all_files = sorted(all_files, key=os.path.getsize)  # , reverse=True)
 
     topics = [os.path.basename(fp)[:-4] for fp in all_files]
 
@@ -223,10 +199,6 @@ def main(discipline, feature_types_included="all"):
             RESULTS_DIR, discipline, "results_{}".format(feature_types_included)
         )
         feature_types_included = [feature_types_included]
-
-    # make directory for results if it doesn't already exits
-    if not os.path.exists(results_dir_discipline):
-        os.mkdir(results_dir_discipline)
 
     # make list of what has not already been done
     topics_already_done = [fp[:-5] for fp in os.listdir(results_dir_discipline)]
@@ -253,6 +225,7 @@ def main(discipline, feature_types_included="all"):
         df = pd.read_csv(os.path.join(data_dir_discipline, "{}.csv".format(topic)),)
         df["rationale"] = df["rationale"].fillna("")
 
+        results = []
         # run training on all previous times steps; test on current time step
         for counter, (r, _) in enumerate(df.groupby("a_rank_by_time")):
 
@@ -310,9 +283,15 @@ def main(discipline, feature_types_included="all"):
                             "timestep": r,
                         }
                     )
-                    main_by_topic(df_train, kwargs)
+                    df_train = df_train.sort_values("a_rank_by_time")
+                    d = main_by_topic(df_train, kwargs)
+                    results.append(d)
                 else:
                     print("skipping topic")
+
+        fname = os.path.join(results_dir_discipline, "{}.json".format(topic))
+        with open(fname, "w") as f:
+            f.write(json.dumps(results, indent=2))
 
 
 if __name__ == "__main__":
