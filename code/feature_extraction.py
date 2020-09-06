@@ -218,6 +218,23 @@ def extract_readability_features(rationales, nlp):
 
 
 def extract_convincingness_features(topic, discipline, timestep=None):
+    """
+    This function retunr sthe same data structure as with the other
+    `extract_<>_features` functions, except that teh optional `timestep`
+    argument allows to learn rankings as they change over over time.
+    Arguments:
+    =========
+        `topic` (question title), `discipline`, are strings which help load the
+        data from the correct csv files
+        `timestep` is optional argument, which will filter the data to train
+        rank scores only based on upto a certain number of students.
+
+    Returns:
+    ========
+        dict, where the keyes are the different measures of convincingness
+    """
+
+    from switch_exp import MIN_TRAINING_RECORDS
 
     data_dir_discipline = os.path.join(
         data_loaders.BASE_DIR, "tmp", "switch_exp", discipline
@@ -231,6 +248,8 @@ def extract_convincingness_features(topic, discipline, timestep=None):
     df_pairs = pd.read_csv(fp)
     if timestep:
         df_pairs = df_pairs[df_pairs["annotation_rank_by_time"]<timestep]
+        if df_pairs.shape[0] < MIN_TRAINING_RECORDS:
+            return {f:[] for f in PRE_CALCULATED_FEATURES["convincingness"]}
 
     convincingness_features = {}
 

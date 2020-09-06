@@ -96,8 +96,6 @@ def main_by_topic(df_train, kwargs):
     X = feature_transformer.fit_transform(df_train_data, y)
 
     # names for variables in statsmodels
-    X_array = feature_transformer.fit_transform(df_train_data, y)
-
     feature_names = list(
         compress(
             feature_names, feature_transformer.named_steps["var_thresh"].get_support(),
@@ -108,8 +106,8 @@ def main_by_topic(df_train, kwargs):
     #     feature_transformer.named_steps["select_k_best"].get_support()
     # )
 
-    # rebuild dataframe, but with sklearn feature transformation
-    X_df = pd.DataFrame(X_array, columns=feature_names,)
+    # rebuild dataframe, but with sklearn feature transformation (for statsmodels)
+    X_df = pd.DataFrame(X, columns=feature_names,)
 
     d = {}
     for name, clf in [
@@ -119,6 +117,9 @@ def main_by_topic(df_train, kwargs):
 
         # train model on all but last row
         X_train = X[:-1, :]
+        if X_train.shape[0] < MIN_TRAINING_RECORDS:
+            return {}
+            
         clf.fit(X_train, y[:-1])
 
         # make prediction on last row
