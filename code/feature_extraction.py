@@ -32,7 +32,7 @@ PRE_CALCULATED_FEATURES = {
 def extract_surface_features(topic, discipline):
 
     data_dir_discipline = os.path.join(
-        data_loaders.BASE_DIR, "tmp", "switch_exp", discipline
+        data_loaders.BASE_DIR, "tmp", "fine_grained_arg_rankings", discipline
     )
 
     fp = os.path.join(
@@ -237,7 +237,7 @@ def extract_convincingness_features(topic, discipline, timestep=None):
     from switch_exp import MIN_TRAINING_RECORDS
 
     data_dir_discipline = os.path.join(
-        data_loaders.BASE_DIR, "tmp", "switch_exp", discipline
+        data_loaders.BASE_DIR, "tmp", "fine_grained_arg_rankings", discipline
     )
 
     fp = os.path.join(
@@ -425,7 +425,7 @@ def main(discipline):
     print(discipline)
     print("Start: {}".format(datetime.datetime.now()))
 
-    RESULTS_DIR = os.path.join(data_loaders.BASE_DIR, "tmp", "switch_exp")
+    RESULTS_DIR = os.path.join(data_loaders.BASE_DIR, "tmp", "fine_grained_arg_rankings")
 
     data_dir_discipline = os.path.join(RESULTS_DIR, discipline, "data")
 
