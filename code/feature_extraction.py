@@ -6,6 +6,7 @@ import spacy
 import plac
 import datetime
 import data_loaders
+import pathlib
 
 from spacy.matcher import PhraseMatcher
 from spacy_readability import Readability
@@ -332,7 +333,7 @@ def get_features(
         os.mkdir(with_features_dir)
 
     # TO DO: "lexical"
-    for feature_type in ["surface", "convincingness"]:  # , "syntax", "readability"]:
+    for feature_type in ["surface", "convincingness", "syntax",]:# "readability"]:
         features = extract_features_and_save(
             with_features_dir=with_features_dir,
             df_answers=df_answers,
@@ -426,6 +427,10 @@ def main(discipline):
     print("Start: {}".format(datetime.datetime.now()))
 
     RESULTS_DIR = os.path.join(data_loaders.BASE_DIR, "tmp", "fine_grained_arg_rankings")
+
+    # make directory if doesn't exist
+    pathlib.Path(RESULTS_DIR).mkdir(parents=True,exist_ok=True)
+
 
     data_dir_discipline = os.path.join(RESULTS_DIR, discipline, "data")
 
