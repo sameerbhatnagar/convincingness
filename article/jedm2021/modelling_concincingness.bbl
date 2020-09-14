@@ -1,0 +1,58 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Deerwester, Dumais, Landauer, Furnas, and
+  Harshman}{Deerwester et~al\mbox{.}}{1990}]{deerwester_indexing_1990}
+{\sc Deerwester, S.~C.}, {\sc Dumais, S.~T.}, {\sc Landauer, T.~K.}, {\sc
+  Furnas, G.~W.}, {\sc and} {\sc Harshman, R.~A.} 1990.
+\newblock Indexing by latent semantic analysis.
+\newblock {\em JASIS\/}~{\em 41,\/}~6, 391--407.
+
+\bibitem[\protect\citeauthoryear{Devlin, Chang, Lee, and Toutanova}{Devlin
+  et~al\mbox{.}}{2018}]{devlin_bert_2018}
+{\sc Devlin, J.}, {\sc Chang, M.-W.}, {\sc Lee, K.}, {\sc and} {\sc Toutanova,
+  K.} 2018.
+\newblock Bert: {Pre}-training of deep bidirectional transformers for language
+  understanding.
+\newblock {\em arXiv preprint arXiv:1810.04805\/}.
+
+\bibitem[\protect\citeauthoryear{Habernal and Gurevych}{Habernal and
+  Gurevych}{2016}]{habernal_which_2016}
+{\sc Habernal, I.} {\sc and} {\sc Gurevych, I.} 2016.
+\newblock Which argument is more convincing? {Analyzing} and predicting
+  convincingness of {Web} arguments using bidirectional {LSTM}.
+\newblock In {\em Proceedings of the 54th {Annual} {Meeting} of the
+  {Association} for {Computational} {Linguistics} ({Volume} 1: {Long}
+  {Papers})}. Association for Computational Linguistics, Berlin, Germany,
+  1589--1599.
+
+\bibitem[\protect\citeauthoryear{Heylighen and Dewaele}{Heylighen and
+  Dewaele}{2002}]{heylighen_variation_2002}
+{\sc Heylighen, F.} {\sc and} {\sc Dewaele, J.-M.} 2002.
+\newblock Variation in the contextuality of language: {An} empirical measure.
+\newblock {\em Foundations of science\/}~{\em 7,\/}~3, 293--340.
+\newblock Publisher: Springer.
+
+\bibitem[\protect\citeauthoryear{Mohler and Mihalcea}{Mohler and
+  Mihalcea}{2009}]{mohler_text--text_2009}
+{\sc Mohler, M.} {\sc and} {\sc Mihalcea, R.} 2009.
+\newblock Text-to-text {Semantic} {Similarity} for {Automatic} {Short} {Answer}
+  {Grading}.
+\newblock In {\em Proceedings of the 12th {Conference} of the {European}
+  {Chapter} of the {Association} for {Computational} {Linguistics}}. {EACL}
+  '09. Association for Computational Linguistics, Stroudsburg, PA, USA,
+  567--575.
+\newblock event-place: Athens, Greece.
+
+\bibitem[\protect\citeauthoryear{Pennington, Socher, and Manning}{Pennington
+  et~al\mbox{.}}{2014}]{pennington_glove:_2014}
+{\sc Pennington, J.}, {\sc Socher, R.}, {\sc and} {\sc Manning, C.~D.} 2014.
+\newblock Glove: {Global} {Vectors} for {Word} {Representation}.
+\newblock In {\em {EMNLP}}. Vol.~14. 1532--1543.
+
+\bibitem[\protect\citeauthoryear{Persing and Ng}{Persing and
+  Ng}{2016}]{persing_end--end_2016}
+{\sc Persing, I.} {\sc and} {\sc Ng, V.} 2016.
+\newblock End-to-{End} {Argumentation} {Mining} in {Student} {Essays}.
+\newblock In {\em {HLT}-{NAACL}}. 1384--1394.
+
+\end{thebibliography}

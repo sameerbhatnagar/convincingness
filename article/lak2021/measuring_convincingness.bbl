@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{22}
+\begin{thebibliography}{16}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -130,19 +130,6 @@
 \newblock
 
 
-\bibitem[\protect\citeauthoryear{Deerwester, Dumais, Landauer, Furnas, and
-  Harshman}{Deerwester et~al\mbox{.}}{1990}]%
-        {deerwester_indexing_1990}
-\bibfield{author}{\bibinfo{person}{Scott~C. Deerwester},
-  \bibinfo{person}{Susan~T Dumais}, \bibinfo{person}{Thomas~K. Landauer},
-  \bibinfo{person}{George~W. Furnas}, {and} \bibinfo{person}{Richard~A.
-  Harshman}.} \bibinfo{year}{1990}\natexlab{}.
-\newblock \showarticletitle{Indexing by latent semantic analysis}.
-\newblock \bibinfo{journal}{\emph{JASIS}} \bibinfo{volume}{41},
-  \bibinfo{number}{6} (\bibinfo{year}{1990}), \bibinfo{pages}{391--407}.
-\newblock
-
-
 \bibitem[\protect\citeauthoryear{Denny, Hamer, Luxton-Reilly, and
   Purchase}{Denny et~al\mbox{.}}{2008}]%
         {denny_peerwise:_2008}
@@ -161,19 +148,6 @@
 \showDOI{\tempurl}
 \newblock
 \shownote{event-place: Sydney, Australia.}
-
-
-\bibitem[\protect\citeauthoryear{Devlin, Chang, Lee, and Toutanova}{Devlin
-  et~al\mbox{.}}{2018}]%
-        {devlin_bert_2018}
-\bibfield{author}{\bibinfo{person}{Jacob Devlin}, \bibinfo{person}{Ming-Wei
-  Chang}, \bibinfo{person}{Kenton Lee}, {and} \bibinfo{person}{Kristina
-  Toutanova}.} \bibinfo{year}{2018}\natexlab{}.
-\newblock \showarticletitle{Bert: {Pre}-training of deep bidirectional
-  transformers for language understanding}.
-\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1810.04805}}
-  (\bibinfo{year}{2018}).
-\newblock
 
 
 \bibitem[\protect\citeauthoryear{Gleize, Shnarch, Choshen, Dankin, Moshkowich,
@@ -211,20 +185,6 @@
 \showDOI{\tempurl}
 
 
-\bibitem[\protect\citeauthoryear{Heylighen and Dewaele}{Heylighen and
-  Dewaele}{2002}]%
-        {heylighen_variation_2002}
-\bibfield{author}{\bibinfo{person}{Francis Heylighen} {and}
-  \bibinfo{person}{Jean-Marc Dewaele}.} \bibinfo{year}{2002}\natexlab{}.
-\newblock \showarticletitle{Variation in the contextuality of language: {An}
-  empirical measure}.
-\newblock \bibinfo{journal}{\emph{Foundations of science}} \bibinfo{volume}{7},
-  \bibinfo{number}{3} (\bibinfo{year}{2002}), \bibinfo{pages}{293--340}.
-\newblock
-\newblock
-\shownote{Publisher: Springer.}
-
-
 \bibitem[\protect\citeauthoryear{Khosravi, Kitto, and Williams}{Khosravi
   et~al\mbox{.}}{2019}]%
         {khosravi_ripple_2019}
@@ -238,27 +198,6 @@
 \newblock
 
 
-\bibitem[\protect\citeauthoryear{Mohler and Mihalcea}{Mohler and
-  Mihalcea}{2009}]%
-        {mohler_text--text_2009}
-\bibfield{author}{\bibinfo{person}{Michael Mohler} {and} \bibinfo{person}{Rada
-  Mihalcea}.} \bibinfo{year}{2009}\natexlab{}.
-\newblock \showarticletitle{Text-to-text {Semantic} {Similarity} for
-  {Automatic} {Short} {Answer} {Grading}}. In
-  \bibinfo{booktitle}{\emph{Proceedings of the 12th {Conference} of the
-  {European} {Chapter} of the {Association} for {Computational} {Linguistics}}}
-  \emph{(\bibinfo{series}{{EACL} '09})}. \bibinfo{publisher}{Association for
-  Computational Linguistics}, \bibinfo{address}{Stroudsburg, PA, USA},
-  \bibinfo{pages}{567--575}.
-\newblock
-\urldef\tempurl%
-\url{http://dl.acm.org/citation.cfm?id=1609067.1609130}
-\showURL{%
-\tempurl}
-\newblock
-\shownote{event-place: Athens, Greece.}
-
-
 \bibitem[\protect\citeauthoryear{Nathan, Koedinger, Alibali, and
   {others}}{Nathan et~al\mbox{.}}{2001}]%
         {nathan_expert_2001}
@@ -269,28 +208,6 @@
   eclipses pedagogical content knowledge}. In
   \bibinfo{booktitle}{\emph{Proceedings of the third international conference
   on cognitive science}}, Vol.~\bibinfo{volume}{644648}.
-\newblock
-
-
-\bibitem[\protect\citeauthoryear{Pennington, Socher, and Manning}{Pennington
-  et~al\mbox{.}}{2014}]%
-        {pennington_glove:_2014}
-\bibfield{author}{\bibinfo{person}{Jeffrey Pennington},
-  \bibinfo{person}{Richard Socher}, {and} \bibinfo{person}{Christopher~D
-  Manning}.} \bibinfo{year}{2014}\natexlab{}.
-\newblock \showarticletitle{Glove: {Global} {Vectors} for {Word}
-  {Representation}.}. In \bibinfo{booktitle}{\emph{{EMNLP}}},
-  Vol.~\bibinfo{volume}{14}. \bibinfo{pages}{1532--1543}.
-\newblock
-
-
-\bibitem[\protect\citeauthoryear{Persing and Ng}{Persing and Ng}{2016}]%
-        {persing_end--end_2016}
-\bibfield{author}{\bibinfo{person}{Isaac Persing} {and}
-  \bibinfo{person}{Vincent Ng}.} \bibinfo{year}{2016}\natexlab{}.
-\newblock \showarticletitle{End-to-{End} {Argumentation} {Mining} in {Student}
-  {Essays}.}. In \bibinfo{booktitle}{\emph{{HLT}-{NAACL}}}.
-  \bibinfo{pages}{1384--1394}.
 \newblock
 
 

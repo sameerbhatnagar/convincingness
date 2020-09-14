@@ -5,7 +5,6 @@
 *.blg
 *.cut
 *.dvi
-*.bst
 *.xcp
 samplepaper.*
 *.bib
@@ -13,3 +12,4 @@ samplepaper.*
 *.ipynb
 code/__pycache__/
 tmp/
+jedm-latex-2018/
