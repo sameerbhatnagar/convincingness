@@ -9,12 +9,26 @@ from sklearn.metrics import accuracy_score, f1_score
 from scipy.stats import kendalltau, rankdata
 import matplotlib.pyplot as plt
 from itertools import combinations
-from collections import Counter
+from collections import Counter, defaultdict
 
 import choix
 
 import data_loaders
 from make_pairs import get_ethics_answers,get_mydalite_answers
+
+import crowd_bt
+
+PRIORS={
+    "ALPHA":crowd_bt.ALPHA_PRIOR,
+    "BETA":crowd_bt.BETA_PRIOR,
+    "MU":crowd_bt.MU_PRIOR,
+    "SIGMA_SQ":crowd_bt.SIGMA_SQ_PRIOR
+}
+
+def prior_factory(key):
+    return lambda: PRIORS[key]
+
+
 
 only_one_arg_pair = {}
 model = "argBT"
@@ -35,6 +49,64 @@ def kendalltau_dist_norm(rank_a, rank_b):
     tau = kendalltau_dist(rank_a, rank_b)
     n_items = len(rank_a)
     return 2 * tau / (n_items * (n_items - 1))
+
+
+def get_rankings_crowdBT(pairs_train):
+    """
+    Arguments:
+    ----------
+        - pairs_train: pandas DataFrame, with columns
+            - a1_id
+            - a2_id
+            - label: which of the columns, "a1" or "a2" is the winning argument
+
+    Returns:
+    --------
+        - sorted_arg_ids - > list
+        - ranks_dict
+    """
+
+
+    a1_winners = pairs_train.loc[pairs_train["label"]=="a1",:].rename(columns={"a1_id":"winner","a2_id":"loser"})
+    a2_winners = pairs_train.loc[pairs_train["label"]=="a2",:].rename(columns={"a2_id":"winner","a1_id":"loser"})
+    a = pd.concat([a1_winners,a2_winners])
+
+    (
+        alpha,
+        beta,
+        mu,
+        sigma_sq,
+    ) = (
+            defaultdict(prior_factory("ALPHA")),
+            defaultdict(prior_factory("BETA")),
+            defaultdict(prior_factory("MU")),
+            defaultdict(prior_factory("SIGMA_SQ")),
+    )
+
+    for i,row in a.iterrows():
+        (
+            alpha[row["annotator"]],
+            beta[row["annotator"]],
+            mu[row["winner"]],
+            sigma_sq[row["winner"]],
+            mu[row["loser"]],
+            sigma_sq[row["loser"]]
+        ) = crowd_bt.update(
+                alpha[row["annotator"]],
+                beta[row["annotator"]],
+                mu[row["winner"]],
+                sigma_sq[row["winner"]],
+                mu[row["loser"]],
+                sigma_sq[row["loser"]]
+            )
+
+    ranks_dict = mu
+    # FIXME
+    sorted_arg_ids = []
+
+    return sorted_arg_ids, ranks_dict
+
+
 
 
 def get_rankings(pairs_train):
@@ -169,10 +241,15 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                         df_train=df_train
                     )
                 else:
+                    if rank_score_type=="crowd_BT":
                     # learn rankings from all previous students
-                    sorted_arg_ids, ranks_dict = get_rankings(
-                        pairs_train=pairs_train
-                    )
+                        sorted_arg_ids, ranks_dict = get_rankings_crowdBT(
+                            pairs_train=pairs_train
+                        )
+                    else:
+                        sorted_arg_ids, ranks_dict = get_rankings(
+                            pairs_train=pairs_train
+                        )
 
                 ground_truth_rankings.append(sorted_arg_ids)
                 rank_scores.append(ranks_dict)
@@ -321,7 +398,7 @@ def build_rankings(discipline, rank_score_type="baseline"):
         for basedir, dirs, files in os.walk(data_dir_discipline)
         for filename in files
     )
-    all_files = sorted(all_files, key=os.path.getsize, reverse=True)
+    all_files = sorted(all_files, key=os.path.getsize)
 
     topics = [os.path.basename(fp)[:-4] for fp in all_files]
 
