@@ -275,8 +275,8 @@ specifically related to modelling argument quality along the dimension of
 \textit{convincingness}.
 A common approach is to curate pairs of arguments made in defence of the same 
 stance on the same topic.
-These pairs are then presented to crowd-workers, who label which of the two is 
-more convincing. 
+These pairs are then presented to crowd-workers, whose task it is to label 
+which of the two is more convincing. 
 These pairwise comparisons can then be aggregated using rank-aggregation 
 methods so as to produce a overall ranked list of arguments.
 We extend this work to the domain of TMPI, and define prediction tasks that not 
@@ -322,13 +322,13 @@ chose as most convincing (\verb|None| if they choose to ``stick to their own'').
 In order to evaluate these rank aggregation different scores, and address 
 \textbf{RQ1}, we employ a time-series based cross-validation scheme:
 at each timestep, we calculate the aggregated argument \textit{convincingness} 
-scores from past students, and set out to predict:
-\begin{enumerate}
-	\item which arguments will be chosen as more convincing from the pairs 
-	constructed for the current student?  
-	\item will the current student choose a peer's explanation as more 
-	convincing than their own, or not?
-\end{enumerate}
+scores from past students, and set out to predict: which arguments will be 
+chosen as more convincing from the pairs constructed for the current student?  
+
+\subsection{Choosing what to show}
+To address \textbf{RQ2} we propose a seperate binary classification task: will 
+the current student choose a peer's explanation as more convincing than their 
+own, or not?
 
 For the latter binary classification task, we also include \textit{surface 
 level} features as a baseline, including the word count of explanation that the 
