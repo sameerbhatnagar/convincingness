@@ -3,7 +3,7 @@ import collections
 import pandas as pd
 import plac
 import data_loaders
-
+import pathlib
 
 # from peerinst.models import Question,Answer
 
@@ -153,7 +153,7 @@ def get_mydalite_answers():
     # df.to_csv(fpath)
     # print(fpath)
     fpath = os.path.join(
-        data_loaders.BASE_DIR, os.pardir, "mydalite_answers_2020_07_21.csv"
+        data_loaders.BASE_DIR, os.pardir, "mydalite_answers_2020_09_18.csv"
     )
     df = pd.read_csv(fpath)
 
@@ -257,8 +257,7 @@ def make_pairs_by_topic(topic, df_unfiltered):
     print(topic)
     print("\t{} answers".format(df_unfiltered.shape[0]))
     # pairs are made only from records where students changed their answer choice.
-    # the BradleyTerry scores derived are more
-    # valid
+    # the BradleyTerry scores derived are more valid
     # TO DO: show this clearly! Predict winning
     # argument in each pair with derived BT score
     df_question = filter_out_stick_to_own(df_unfiltered)
@@ -434,6 +433,7 @@ def make_all_pairs(data_file_dict, output_dir):
 
         # save
         data_dir = os.path.join(output_dir, "data_pairs")
+        pathlib.Path(data_dir).mkdir(parents=True,exist_ok=True)
         fp = os.path.join(data_dir, "pairs_{}.csv".format(topic.replace("/", "_")))
         df_pairs.to_csv(fp)
 
@@ -445,7 +445,10 @@ def make_all_pairs(data_file_dict, output_dir):
 def main(discipline,output_dir_name):
 
     output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", output_dir_name, discipline)
+
+
     data_dir = os.path.join(output_dir,"data")
+    pathlib.Path(data_dir).mkdir(parents=True,exist_ok=True)
     data_file_dict = {}
     if discipline == "Ethics":
         df_answers_all_unfiltered = get_ethics_answers()
@@ -472,6 +475,7 @@ def main(discipline,output_dir_name):
             data_dir,
             "{}.csv".format(topic.replace("/", "_"))
         )
+
         df_topic.to_csv(fp)
         data_file_dict[topic]=fp
 
