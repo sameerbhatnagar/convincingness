@@ -16,7 +16,7 @@ import choix
 
 import data_loaders
 from make_pairs import get_ethics_answers,get_mydalite_answers
-
+from elo import get_initial_ratings, compute_updated_ratings
 import crowd_bt
 
 PRIORS={
@@ -157,6 +157,22 @@ def get_rankings(pairs_train):
 
     return sorted_arg_ids, ranks_dict
 
+def get_rankings_elo(pairs_df):
+    """
+    calculate elo ratings given labelled pairs
+    """
+    args=list(set(list(pairs_df["a1_id"])+list(pairs_df["a2_id"])))
+    items=get_initial_ratings(args)
+    pairs_df["elo_outcome"]=pairs_df["label"].map({"a1":0,"a2":1})
+    results={
+        (a1,a2):r
+        for a1,a2,r in pairs_df[["a1_id","a2_id","elo_outcome"]].values
+    }
+    ranks_dict = compute_updated_ratings(items,results)
+
+    sorted_arg_ids = [k for k,v in sorted(ranks_dict.items(),key=lambda x: x[1], reverse=True)]
+
+    return sorted_arg_ids, ranks_dict
 
 def get_rankings_baseline(df_train):
     """
@@ -249,17 +265,19 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                     sorted_arg_ids, ranks_dict = get_rankings_baseline(
                         df_train=df_train
                     )
-                else:
-                    if rank_score_type=="crowd_BT":
+                elif rank_score_type=="crowd_BT":
                     # learn rankings from all previous students
-                        sorted_arg_ids, ranks_dict, annotator_strengths = get_rankings_crowdBT(
-                            pairs_train=pairs_train
-                        )
-                        annotator_params.append(annotator_strengths)
-                    else:
-                        sorted_arg_ids, ranks_dict = get_rankings(
-                            pairs_train=pairs_train
-                        )
+                    sorted_arg_ids, ranks_dict, annotator_strengths = get_rankings_crowdBT(
+                        pairs_train=pairs_train
+                    )
+                    annotator_params.append(annotator_strengths)
+                elif rank_score_type=="elo":
+                    sorted_arg_ids,ranks_dict = get_rankings_elo(pairs_df=pairs_train.copy())
+
+                else:
+                    sorted_arg_ids, ranks_dict = get_rankings(
+                        pairs_train=pairs_train
+                    )
 
                 ground_truth_rankings.append(sorted_arg_ids)
                 rank_scores.append(ranks_dict)
