@@ -7,6 +7,7 @@ import pandas as pd
 
 from sklearn.metrics import accuracy_score, f1_score
 from scipy.stats import kendalltau, rankdata
+from scipy.stats import beta as beta_dist
 import matplotlib.pyplot as plt
 from itertools import combinations
 from collections import Counter, defaultdict
@@ -32,7 +33,7 @@ def prior_factory(key):
 
 only_one_arg_pair = {}
 model = "argBT"
-RESULTS_DIR = os.path.join(data_loaders.BASE_DIR, "tmp", "fine_grained_arg_rankings")
+RESULTS_DIR = os.path.join(data_loaders.BASE_DIR, "tmp", "measure_convincingness")
 MAX_ITERATIONS = 1500
 
 
@@ -101,10 +102,14 @@ def get_rankings_crowdBT(pairs_train):
             )
 
     ranks_dict = mu
-    # FIXME
-    sorted_arg_ids = []
 
-    return sorted_arg_ids, ranks_dict
+    sorted_arg_ids = [k for k,v in sorted(ranks_dict.items(),key=lambda x: x[1], reverse=True)]
+
+    annotator_strengths = {
+        annotator:beta_dist.mean(alpha[annotator],beta[annotator]) for annotator in alpha.keys()
+    }
+
+    return sorted_arg_ids, ranks_dict, annotator_strengths
 
 
 
@@ -208,6 +213,7 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
 
     accuracies = []
     ground_truth_rankings = []
+    annotator_params=[]
     rankings_by_batch = []
     rank_scores = []
     rank_scores_by_batch = []
@@ -235,6 +241,9 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
 
             if pairs_train.shape[0] > 0 and len(students) > 10:
 
+                transition = df_topic.loc[df_topic["a_rank_by_time"]==r,"transition"].iat[0]
+                annotator = df_topic.loc[df_topic["a_rank_by_time"]==r,"user_token"].iat[0]
+
                 if rank_score_type=="baseline":
                     # learn rankings from all previous students
                     sorted_arg_ids, ranks_dict = get_rankings_baseline(
@@ -243,9 +252,10 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                 else:
                     if rank_score_type=="crowd_BT":
                     # learn rankings from all previous students
-                        sorted_arg_ids, ranks_dict = get_rankings_crowdBT(
+                        sorted_arg_ids, ranks_dict, annotator_strengths = get_rankings_crowdBT(
                             pairs_train=pairs_train
                         )
+                        annotator_params.append(annotator_strengths)
                     else:
                         sorted_arg_ids, ranks_dict = get_rankings(
                             pairs_train=pairs_train
@@ -281,6 +291,8 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                                     y_true=pairs_test_["label"],
                                     y_pred=pairs_test_["label_pred"],
                                 ),
+                                "transition":transition,
+                                "annotator":annotator,
                             }
                         )
                     except TypeError:
@@ -301,6 +313,8 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                                         y_pred=pairs_test_["label_pred"],
                                     ),
                                     "ties": n_ties,
+                                    "transition":transition,
+                                    "annotator":annotator,
                                 }
                             )
                 # make two batches of students, interleaved in time
@@ -334,7 +348,17 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                 rankings_by_batch.append(batch_rankings)
                 rank_scores_by_batch.append(batch_rank_scores)
 
-    return accuracies, ground_truth_rankings, rankings_by_batch, rank_scores,rank_scores_by_batch
+    results = {
+        "accuracies":accuracies,
+        "ground_truth_rankings": ground_truth_rankings,
+        "rankings_by_batch": rankings_by_batch,
+        "rank_scores" : rank_scores,
+        "rank_scores_by_batch" : rank_scores_by_batch,
+    }
+    if rank_score_type=="crowd_BT":
+        results.update({"annotator_params":annotator_params})
+
+    return results
 
 def build_rankings(discipline, rank_score_type="baseline"):
     """
@@ -390,7 +414,12 @@ def build_rankings(discipline, rank_score_type="baseline"):
                 "rank_scores_by_batch",
             )
         )
-
+        os.mkdir(
+            os.path.join(
+                results_dir_discipline,
+                "annotator_params",
+            )
+        )
     # sort files by size to get biggest ones done first
     # https://stackoverflow.com/a/20253803
     all_files = (
@@ -417,7 +446,7 @@ def build_rankings(discipline, rank_score_type="baseline"):
     for i,topic in enumerate(topics):
         print("\t{}/{} {}".format(i,len(topics),topic))
 
-        accuracies, ground_truth_rankings, rankings_by_batch, rank_scores, rank_scores_by_batch = build_rankings_by_topic(
+        results = build_rankings_by_topic(
             topic=topic,
             discipline=discipline,
             rank_score_type=rank_score_type
@@ -427,31 +456,38 @@ def build_rankings(discipline, rank_score_type="baseline"):
             results_dir_discipline,"accuracies", "{}.json".format(topic)
         )
         with open(fp, "w+") as f:
-            f.write(json.dumps(accuracies, indent=2))
+            f.write(json.dumps(results["accuracies"], indent=2))
 
         fp = os.path.join(
             results_dir_discipline,"rankings", "{}.json".format(topic)
         )
         with open(fp, "w+") as f:
-            f.write(json.dumps(ground_truth_rankings, indent=2))
+            f.write(json.dumps(results["ground_truth_rankings"], indent=2))
 
         fp = os.path.join(
             results_dir_discipline,"rankings_by_batch", "{}.json".format(topic),
         )
         with open(fp, "w+") as f:
-            f.write(json.dumps(rankings_by_batch, indent=2))
+            f.write(json.dumps(results["rankings_by_batch"], indent=2))
 
         fp = os.path.join(
             results_dir_discipline,"rank_scores", "{}.json".format(topic),
         )
         with open(fp, "w+") as f:
-            f.write(json.dumps(rank_scores, indent=2))
+            f.write(json.dumps(results["rank_scores"], indent=2))
 
         fp = os.path.join(
             results_dir_discipline,"rank_scores_by_batch", "{}.json".format(topic),
         )
         with open(fp, "w+") as f:
-            f.write(json.dumps(rank_scores_by_batch, indent=2))
+            f.write(json.dumps(results["rank_scores_by_batch"], indent=2))
+
+        if rank_score_type=="crowd_BT":
+            fp = os.path.join(
+                results_dir_discipline,"annotator_params", "{}.json".format(topic),
+            )
+            with open(fp, "w+") as f:
+                f.write(json.dumps(results["annotator_params"], indent=2))
 
 
     return
