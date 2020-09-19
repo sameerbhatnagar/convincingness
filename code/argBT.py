@@ -1,6 +1,7 @@
 import os
 import json
 import plac
+import math
 
 import numpy as np
 import pandas as pd
@@ -35,6 +36,7 @@ only_one_arg_pair = {}
 model = "argBT"
 RESULTS_DIR = os.path.join(data_loaders.BASE_DIR, "tmp", "measure_convincingness")
 MAX_ITERATIONS = 1500
+MIN_WORD_COUNT_DIFF=5
 
 
 # http://vene.ro/blog/kemeny-young-optimal-rank-aggregation-in-python.html
@@ -51,6 +53,21 @@ def kendalltau_dist_norm(rank_a, rank_b):
     n_items = len(rank_a)
     return 2 * tau / (n_items * (n_items - 1))
 
+
+def get_rankings_wc(df_train):
+    """
+    ranking = Word Count
+    """
+
+    df_train["rationale_word_count"]=df_train["rationale"].str.count("\w+")
+    ranks_dict = {
+        "arg{}".format(i):float(math.floor(wc/MIN_WORD_COUNT_DIFF)*MIN_WORD_COUNT_DIFF)
+        for i,wc in df_train[["id","rationale_word_count"]].values
+    }
+
+    sorted_arg_ids=[k for k,v in sorted(ranks_dict.items(),key=lambda x: x[1], reverse=True)]
+
+    return sorted_arg_ids, ranks_dict
 
 def get_rankings_crowdBT(pairs_train):
     """
@@ -203,7 +220,7 @@ def pairwise_predict(x):
     elif x["a1_rank"] < x["a2_rank"]:
         pred = "a2"
     else:
-        pred = np.nan
+        pred = "a{}".format(np.random.randint(low=1,high=3))
 
     return pred
 
@@ -252,7 +269,7 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
             pairs_test = pairs_df[pairs_df["annotation_rank_by_time"] == r
             ].copy()
 
-            df_train=df_topic[df_topic["a_rank_by_time"]<r]
+            df_train=df_topic[df_topic["a_rank_by_time"]<r].copy()
             students = pairs_train["annotator"].drop_duplicates().to_list()
 
             if pairs_train.shape[0] > 0 and len(students) > 10:
@@ -265,6 +282,10 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                     sorted_arg_ids, ranks_dict = get_rankings_baseline(
                         df_train=df_train
                     )
+                elif rank_score_type=="wc":
+                    sorted_arg_ids, ranks_dict = get_rankings_wc(
+                        df_train=df_train
+                    )
                 elif rank_score_type=="crowd_BT":
                     # learn rankings from all previous students
                     sorted_arg_ids, ranks_dict, annotator_strengths = get_rankings_crowdBT(
@@ -273,7 +294,6 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                     annotator_params.append(annotator_strengths)
                 elif rank_score_type=="elo":
                     sorted_arg_ids,ranks_dict = get_rankings_elo(pairs_df=pairs_train.copy())
-
                 else:
                     sorted_arg_ids, ranks_dict = get_rankings(
                         pairs_train=pairs_train
@@ -300,41 +320,42 @@ def build_rankings_by_topic(topic,discipline,rank_score_type):
                         lambda x: pairwise_predict(x), axis=1,
                     )
                     pairs_test_ = pairs_test_.dropna().copy()
-                    try:
-                        accuracies.append(
-                            {
-                                "r": r,
-                                "n": pairs_test_.shape[0],
-                                "acc": accuracy_score(
-                                    y_true=pairs_test_["label"],
-                                    y_pred=pairs_test_["label_pred"],
-                                ),
-                                "transition":transition,
-                                "annotator":annotator,
-                            }
-                        )
-                    except TypeError:
-                        # drop any ties
-                        n_ties = pairs_test_.isna().shape[0]
-                        pairs_test_ = pairs_test_.dropna().copy()
-
-                        if pairs_test_.shape[0] > 0:
-                            pairs_test_["label_pred"] = pairs_test_.apply(
-                                lambda x: pairwise_predict(x), axis=1,
-                            )
-                            accuracies.append(
-                                {
-                                    "r": r,
-                                    "n": pairs_test_.shape[0],
-                                    "acc": accuracy_score(
-                                        y_true=pairs_test_["label"],
-                                        y_pred=pairs_test_["label_pred"],
-                                    ),
-                                    "ties": n_ties,
-                                    "transition":transition,
-                                    "annotator":annotator,
-                                }
-                            )
+                    # try:
+                    accuracies.append(
+                        {
+                            "r": r,
+                            "n": pairs_test_.shape[0],
+                            "acc": accuracy_score(
+                                y_true=pairs_test_["label"],
+                                y_pred=pairs_test_["label_pred"],
+                            ),
+                            "transition":transition,
+                            "annotator":annotator,
+                            "n_ties": pairs_test_[pairs_test_["a1_rank"]==pairs_test_["a2_rank"]].shape[0]
+                        }
+                    )
+                    # except TypeError:
+                    #     # drop any ties
+                    #     n_ties = pairs_test_.isna().shape[0]
+                    #     pairs_test_ = pairs_test_.dropna().copy()
+                    #
+                    #     if pairs_test_.shape[0] > 0:
+                    #         pairs_test_["label_pred"] = pairs_test_.apply(
+                    #             lambda x: pairwise_predict(x), axis=1,
+                    #         )
+                    #         accuracies.append(
+                    #             {
+                    #                 "r": r,
+                    #                 "n": pairs_test_.shape[0],
+                    #                 "acc": accuracy_score(
+                    #                     y_true=pairs_test_["label"],
+                    #                     y_pred=pairs_test_["label_pred"],
+                    #                 ),
+                    #                 "ties": n_ties,
+                    #                 "transition":transition,
+                    #                 "annotator":annotator,
+                    #             }
+                    #         )
                 # make two batches of students, interleaved in time
                 student_batch1 = students[::2]
                 student_batch2 = [
@@ -393,9 +414,7 @@ def build_rankings(discipline, rank_score_type="baseline"):
         - save strength ratings of all argument rankings at each timestep,
         as well as classification accuracy
     """
-
-    print(discipline)
-
+    print("Discipline : {} - Rank Score Type: {}".format(discipline,rank_score_type))
     data_dir_discipline = get_data_dir(discipline)
     results_dir_discipline = os.path.join(RESULTS_DIR, discipline,rank_score_type)
 
@@ -474,38 +493,38 @@ def build_rankings(discipline, rank_score_type="baseline"):
             results_dir_discipline,"accuracies", "{}.json".format(topic)
         )
         with open(fp, "w+") as f:
-            f.write(json.dumps(results["accuracies"], indent=2))
+            json.dump(results["accuracies"],f, indent=2)
 
         fp = os.path.join(
             results_dir_discipline,"rankings", "{}.json".format(topic)
         )
         with open(fp, "w+") as f:
-            f.write(json.dumps(results["ground_truth_rankings"], indent=2))
+            json.dump(results["ground_truth_rankings"],f, indent=2)
 
         fp = os.path.join(
             results_dir_discipline,"rankings_by_batch", "{}.json".format(topic),
         )
         with open(fp, "w+") as f:
-            f.write(json.dumps(results["rankings_by_batch"], indent=2))
+            json.dump(results["rankings_by_batch"],f, indent=2)
 
         fp = os.path.join(
             results_dir_discipline,"rank_scores", "{}.json".format(topic),
         )
         with open(fp, "w+") as f:
-            f.write(json.dumps(results["rank_scores"], indent=2))
+            json.dump(results["rank_scores"],f, indent=2)
 
         fp = os.path.join(
             results_dir_discipline,"rank_scores_by_batch", "{}.json".format(topic),
         )
         with open(fp, "w+") as f:
-            f.write(json.dumps(results["rank_scores_by_batch"], indent=2))
+            json.dump(results["rank_scores_by_batch"],f, indent=2)
 
         if rank_score_type=="crowd_BT":
             fp = os.path.join(
                 results_dir_discipline,"annotator_params", "{}.json".format(topic),
             )
             with open(fp, "w+") as f:
-                f.write(json.dumps(results["annotator_params"], indent=2))
+                json.dump(results["annotator_params"],f, indent=2)
 
 
     return
