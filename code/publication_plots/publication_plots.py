@@ -20,12 +20,14 @@ class LemmaTokenizer:
 
 
 # https://stackoverflow.com/a/42033734
-def grouped_barplot(df, cat,subcat, val ,ylabel, err,bar_colors,fname=None):
+def grouped_barplot(df, cat,subcat, val ,ylabel, err,bar_colors,fname=None,ordering=None):
     plt.style.use("ggplot")
     u = df[cat].unique()
     x = np.arange(len(u))
-    # print(x)
-    subx = df[subcat].unique()
+    if ordering:
+        subx=ordering
+    else:
+        subx = df[subcat].unique()
     offsets = (np.arange(len(subx))-np.arange(len(subx)).mean())/(len(subx)+1.)
     # print(offsets)
     width= np.diff(offsets).mean()
@@ -37,9 +39,9 @@ def grouped_barplot(df, cat,subcat, val ,ylabel, err,bar_colors,fname=None):
             width=width,
             # label="{} {}".format(subcat, gr),
             label="{}".format(gr),
-            yerr=dfg[err].values,
-            color=bar_colors[i],
-            error_kw=dict(ecolor='gray',capsize=3),
+            yerr=dfg[err].values/2,
+            color=bar_colors[gr],
+            error_kw=dict(ecolor='lightgray',capsize=3),
             )
     plt.xlabel(cat)
     plt.ylabel(ylabel)

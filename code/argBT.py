@@ -60,6 +60,7 @@ def get_rankings_wc(df_train):
     """
 
     df_train["rationale_word_count"] = df_train["rationale"].str.count("\w+")
+    df_train["rationale_word_count"] = df_train["rationale_word_count"].fillna(0)
     ranks_dict = {
         "arg{}".format(i): float(
             math.floor(wc / MIN_WORD_COUNT_DIFF) * MIN_WORD_COUNT_DIFF
@@ -413,9 +414,9 @@ def build_rankings(discipline, rank_score_type="baseline"):
         os.mkdir(results_dir_discipline)
         os.mkdir(os.path.join(results_dir_discipline, "accuracies",))
         os.mkdir(os.path.join(results_dir_discipline, "rankings",))
-        os.mkdir(os.path.join(results_dir_discipline, "rankings_by_batch",))
+        # os.mkdir(os.path.join(results_dir_discipline, "rankings_by_batch",))
         os.mkdir(os.path.join(results_dir_discipline, "rank_scores",))
-        os.mkdir(os.path.join(results_dir_discipline, "rank_scores_by_batch",))
+        # os.mkdir(os.path.join(results_dir_discipline, "rank_scores_by_batch",))
         os.mkdir(os.path.join(results_dir_discipline, "annotator_params",))
     # sort files by size to get biggest ones done first
     # https://stackoverflow.com/a/20253803
@@ -430,7 +431,7 @@ def build_rankings(discipline, rank_score_type="baseline"):
 
     topics_already_done = [
         t[:-5]
-        for t in os.listdir(os.path.join(results_dir_discipline, "rankings_by_batch",))
+        for t in os.listdir(os.path.join(results_dir_discipline, "rank_scores",))
     ]
 
     topics = [t for t in topics if t not in topics_already_done]

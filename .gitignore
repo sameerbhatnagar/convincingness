@@ -10,6 +10,6 @@ samplepaper.*
 *.bib
 *.ipynb_checkpoints/
 *.ipynb
-code/__pycache__/
+__pycache__/
 tmp/
 jedm-latex-2018/
