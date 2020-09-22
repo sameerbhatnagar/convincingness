@@ -136,7 +136,7 @@ def get_rankings_crowdBT(pairs_train):
     return sorted_arg_ids, ranks_dict, annotator_strengths
 
 
-def get_rankings(pairs_train):
+def get_rankings_BT(pairs_train):
     """
     Arguments:
     ----------
@@ -172,6 +172,7 @@ def get_rankings(pairs_train):
     params = choix.ilsr_pairwise(
         n_items, data, alpha=0.01
     )  # smaller alpha leads to runtime error
+
     # save ground truth sorted ranks
     sorted_arg_ids = [arg_ids_dict_train_reverse[p] for p in np.argsort(params)[::-1]]
 
@@ -186,7 +187,7 @@ def get_rankings_elo(pairs_df):
     """
     args = list(set(list(pairs_df["a1_id"]) + list(pairs_df["a2_id"])))
     items = get_initial_ratings(args)
-    pairs_df["elo_outcome"] = pairs_df["label"].map({"a1": 0, "a2": 1})
+    pairs_df["elo_outcome"] = pairs_df["label"].map({"a1": 1, "a2": 0})
     results = {
         (a1, a2): r for a1, a2, r in pairs_df[["a1_id", "a2_id", "elo_outcome"]].values
     }
@@ -199,7 +200,7 @@ def get_rankings_elo(pairs_df):
     return sorted_arg_ids, ranks_dict
 
 
-def get_rankings_baseline(df_train):
+def get_rankings_winrate(df_train):
     """
     Arguments:
     ----------
@@ -210,6 +211,9 @@ def get_rankings_baseline(df_train):
         - sorted_arg_ids
         - ranks_dict
     """
+
+    MIN_VOTES, MIN_SHOWN = 1, 8
+
     times_shown_counter = Counter()
     s = (
         df_train["rationales"]
@@ -224,9 +228,12 @@ def get_rankings_baseline(df_train):
 
     votes_count = df_train["chosen_rationale_id"].value_counts().to_dict()
     ranks_dict = {
-        "arg{}".format(k): (v + 1) / (times_shown_counter[k] + 8)
+        "arg{}".format(k): (v + MIN_VOTES) / (times_shown_counter[k] + MIN_SHOWN)
         for k, v in votes_count.items()
     }
+    # need to add entries for rationales never shown
+    never_chosen = [r for r in df_train["id"].to_list() if r not in votes_count]
+    ranks_dict.update({"arg{}".format(r): MIN_VOTES / MIN_SHOWN for r in never_chosen})
     sorted_arg_ids = [
         "arg{}".format(p[0])
         for p in sorted(ranks_dict.items(), key=lambda x: x[1])[::-1]
@@ -241,7 +248,7 @@ def pairwise_predict(x):
     elif x["a1_rank"] < x["a2_rank"]:
         pred = "a2"
     else:
-        pred = "a{}".format(np.random.randint(low=1, high=3))
+        pred = np.nan  # "a{}".format(np.random.randint(low=1, high=3))
 
     return pred
 
@@ -266,7 +273,7 @@ def build_rankings_by_topic(topic, discipline, rank_score_type):
     )
     pairs_df = pairs_df[pairs_df["a1_id"] != pairs_df["a2_id"]]
 
-    accuracies = []
+    accuracies, accuracies_train = [], []
     ground_truth_rankings = []
     annotator_params = []
     # rankings_by_batch = []
@@ -278,7 +285,7 @@ def build_rankings_by_topic(topic, discipline, rank_score_type):
         if r % 20 == 0:
             print("\t\ttime step {}/{}".format(counter, steps,))
 
-        pairs_train = pairs_df[pairs_df["annotation_rank_by_time"] < r]
+        pairs_train = pairs_df[pairs_df["annotation_rank_by_time"] < r].copy()
         pairs_test = pairs_df[pairs_df["annotation_rank_by_time"] == r].copy()
 
         df_train = df_topic[df_topic["a_rank_by_time"] < r].copy()
@@ -293,24 +300,78 @@ def build_rankings_by_topic(topic, discipline, rank_score_type):
                 0
             ]
 
-            if rank_score_type == "baseline":
-                # learn rankings from all previous students
-                sorted_arg_ids, ranks_dict = get_rankings_baseline(df_train=df_train)
+            if rank_score_type == "winrate":
+                # ranking = times_chosen/times_shown
+                sorted_arg_ids, ranks_dict = get_rankings_winrate(df_train=df_train)
+
             elif rank_score_type == "wc":
+                # ranking = num tokens
                 sorted_arg_ids, ranks_dict = get_rankings_wc(df_train=df_train)
+
             elif rank_score_type == "crowd_BT":
-                # learn rankings from all previous students
+                # ranking + annotator params based on crowd_BT
                 sorted_arg_ids, ranks_dict, annotator_strengths = get_rankings_crowdBT(
                     pairs_train=pairs_train
                 )
                 annotator_params.append(annotator_strengths)
-            elif rank_score_type == "elo":
-                sorted_arg_ids, ranks_dict = get_rankings_elo(
-                    pairs_df=pairs_train.copy()
-                )
-            else:
-                sorted_arg_ids, ranks_dict = get_rankings(pairs_train=pairs_train)
 
+            elif rank_score_type == "elo":
+                # ranking based on ELO match-ups, mean = 1500
+                sorted_arg_ids, ranks_dict = get_rankings_elo(pairs_df=pairs_train)
+
+            elif rank_score_type == "BT":
+                # rankings from conventional Bradley Terry
+                sorted_arg_ids, ranks_dict = get_rankings_BT(pairs_train=pairs_train)
+
+            # get model fit on training data at current timestep
+            pairs_train["a1_rank"] = pairs_train["a1_id"].map(ranks_dict)
+            pairs_train["a2_rank"] = pairs_train["a2_id"].map(ranks_dict)
+            pairs_train["label_pred"] = pairs_train.apply(
+                lambda x: pairwise_predict(x), axis=1,
+            )
+            pairs_train_no_ties = pairs_train.dropna()
+
+            accuracies_train.append(
+                {
+                    "r": r,
+                    "n": pairs_train.shape[0],
+                    "acc": accuracy_score(
+                        y_true=pairs_train_no_ties["label"],
+                        y_pred=pairs_train_no_ties["label_pred"],
+                    ),
+                    "acc_by_transition": [
+                        {
+                            "transition": transition,
+                            "r": r,
+                            "n_shape": pairs_train_no_ties[
+                                pairs_train_no_ties["transition"] == transition
+                            ].shape[0],
+                            "acc": accuracy_score(
+                                y_true=pairs_train_no_ties.loc[
+                                    pairs_train_no_ties["transition"] == transition,
+                                    "label",
+                                ],
+                                y_pred=pairs_train_no_ties.loc[
+                                    pairs_train_no_ties["transition"] == transition,
+                                    "label_pred",
+                                ],
+                            ),
+                            "n_ties": pairs_train[
+                                (
+                                    (pairs_train["a1_rank"] == pairs_train["a2_rank"])
+                                    & (pairs_train["transition"] == transition)
+                                )
+                            ].shape[0],
+                        }
+                        for transition in ["rr", "rw", "wr", "ww"]
+                    ],
+                    "n_ties": pairs_train[
+                        pairs_train["a1_rank"] == pairs_train["a2_rank"]
+                    ].shape[0],
+                }
+            )
+
+            # save for analysis
             ground_truth_rankings.append(sorted_arg_ids)
             rank_scores.append(ranks_dict)
 
@@ -324,7 +385,7 @@ def build_rankings_by_topic(topic, discipline, rank_score_type):
             pairs_test_ = pairs_test[["a1_rank", "a2_rank", "label"]].dropna().copy()
 
             # for each pair in held out pairs at current timestep,
-            # predict winner based on higher BT param
+            # predict winner based on higher param
             if pairs_test_.shape[0] > 0:
                 pairs_test_["label_pred"] = pairs_test_.apply(
                     lambda x: pairwise_predict(x), axis=1,
@@ -379,6 +440,7 @@ def build_rankings_by_topic(topic, discipline, rank_score_type):
 
     results = {
         "accuracies": accuracies,
+        "accuracies_train": accuracies_train,
         "ground_truth_rankings": ground_truth_rankings,
         # "rankings_by_batch": rankings_by_batch,
         "rank_scores": rank_scores,
@@ -413,12 +475,13 @@ def build_rankings(discipline, rank_score_type="baseline"):
     if not os.path.exists(results_dir_discipline):
         os.mkdir(results_dir_discipline)
         os.mkdir(os.path.join(results_dir_discipline, "accuracies",))
+        os.mkdir(os.path.join(results_dir_discipline, "accuracies_train",))
         os.mkdir(os.path.join(results_dir_discipline, "rankings",))
         # os.mkdir(os.path.join(results_dir_discipline, "rankings_by_batch",))
         os.mkdir(os.path.join(results_dir_discipline, "rank_scores",))
         # os.mkdir(os.path.join(results_dir_discipline, "rank_scores_by_batch",))
         os.mkdir(os.path.join(results_dir_discipline, "annotator_params",))
-    # sort files by size to get biggest ones done first
+    # sort files by size to get smallest ones done first
     # https://stackoverflow.com/a/20253803
     all_files = (
         os.path.join(data_dir_discipline, filename)
@@ -430,8 +493,7 @@ def build_rankings(discipline, rank_score_type="baseline"):
     topics = [os.path.basename(fp)[:-4] for fp in all_files]
 
     topics_already_done = [
-        t[:-5]
-        for t in os.listdir(os.path.join(results_dir_discipline, "rank_scores",))
+        t[:-5] for t in os.listdir(os.path.join(results_dir_discipline, "rank_scores",))
     ]
 
     topics = [t for t in topics if t not in topics_already_done]
@@ -446,6 +508,12 @@ def build_rankings(discipline, rank_score_type="baseline"):
         fp = os.path.join(results_dir_discipline, "accuracies", "{}.json".format(topic))
         with open(fp, "w+") as f:
             json.dump(results["accuracies"], f, indent=2)
+
+        fp = os.path.join(
+            results_dir_discipline, "accuracies_train", "{}.json".format(topic)
+        )
+        with open(fp, "w+") as f:
+            json.dump(results["accuracies_train"], f, indent=2)
 
         fp = os.path.join(results_dir_discipline, "rankings", "{}.json".format(topic))
         with open(fp, "w+") as f:
