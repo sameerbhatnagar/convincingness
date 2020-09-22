@@ -364,6 +364,9 @@ def build_rankings_by_topic(topic, discipline, rank_score_type):
                             ].shape[0],
                         }
                         for transition in ["rr", "rw", "wr", "ww"]
+                        if pairs_train_no_ties[
+                            pairs_train_no_ties["transition"] == transition
+                            ].shape[0]>0
                     ],
                     "n_ties": pairs_train[
                         pairs_train["a1_rank"] == pairs_train["a2_rank"]
