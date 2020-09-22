@@ -471,7 +471,7 @@ def main(
         str,
         ["BT", "elo", "crowd_bt", "winrate", "wc"],
     ),
-    largest_first=False,
+    largest_first: ("Largest Files First", "flag", "l", bool,),
 ):
     """
     - load dalite arg pairs by discipline
