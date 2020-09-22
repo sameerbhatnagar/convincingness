@@ -366,7 +366,8 @@ def build_rankings_by_topic(topic, discipline, rank_score_type):
                         for transition in ["rr", "rw", "wr", "ww"]
                         if pairs_train_no_ties[
                             pairs_train_no_ties["transition"] == transition
-                            ].shape[0]>0
+                        ].shape[0]
+                        > 0
                     ],
                     "n_ties": pairs_train[
                         pairs_train["a1_rank"] == pairs_train["a2_rank"]
@@ -455,7 +456,23 @@ def build_rankings_by_topic(topic, discipline, rank_score_type):
     return results
 
 
-def build_rankings(discipline, rank_score_type="baseline"):
+def main(
+    discipline: (
+        "Discipline",
+        "positional",
+        None,
+        str,
+        ["Physics", "Biology", "Chemistry"],
+    ),
+    rank_score_type: (
+        "Rank Score Type",
+        "positional",
+        None,
+        str,
+        ["BT", "elo", "crowd_bt", "winrate", "wc"],
+    ),
+    largest_first=False,
+):
     """
     - load dalite arg pairs by discipline
     - for each topic:
@@ -491,7 +508,7 @@ def build_rankings(discipline, rank_score_type="baseline"):
         for basedir, dirs, files in os.walk(data_dir_discipline)
         for filename in files
     )
-    all_files = sorted(all_files, key=os.path.getsize)
+    all_files = sorted(all_files, key=os.path.getsize, reverse=largest_first)
 
     topics = [os.path.basename(fp)[:-4] for fp in all_files]
 
@@ -551,6 +568,5 @@ def build_rankings(discipline, rank_score_type="baseline"):
 
 
 if __name__ == "__main__":
-    import plac
 
-    plac.call(build_rankings)
+    plac.call(main)
