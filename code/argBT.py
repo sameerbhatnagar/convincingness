@@ -343,7 +343,7 @@ def build_rankings_by_topic(topic, discipline, rank_score_type):
                         {
                             "transition": transition,
                             "r": r,
-                            "n_shape": pairs_train_no_ties[
+                            "n": pairs_train_no_ties[
                                 pairs_train_no_ties["transition"] == transition
                             ].shape[0],
                             "acc": accuracy_score(

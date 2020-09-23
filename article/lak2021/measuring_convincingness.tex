@@ -292,9 +292,13 @@ the student's \textit{second} answer choice, and the peer explanation they
 chose as most convincing (\verb|None| if they choose to ``stick to their own'').
 
 \begin{enumerate}
+
 	\item \textbf{win-rate}, defined as the ratio of times an explanation is 
 	chosen to the number of times it was shown (we add a correction for 
 	rationales that were never shown); 
+
+	\item \textbf{Elo}
+
 	\item \textbf{BT} score, which is the argument ``quality'' parameter 
 	estimated for each explanation, according to the \textit{Bradley-Terry} 
 	model, where the probability of argument A being chosen over argument B is 
@@ -317,6 +321,20 @@ chose as most convincing (\verb|None| if they choose to ``stick to their own'').
 	[w_{ij}ln\beta_i-w_{ij}ln(\beta_i+\beta_j)]
 	$$
 	subject to $\sum_{i}\beta_i=0$.
+	
+	\item \textbf{CrowdBT}\cite{chen_pairwise_2013}
+
+	\item \textbf{Length}, a method used purely as a baseline, where for each 
+	pair, we simply predict that the explanation with more words is the more 
+	convincing.
+	This is a commonly used baseline  for the pairwise classification task of 
+	predicting argument quality \cite{toledo_automatic_2019} has been shown to 
+	be competitive for data from learning environments 
+	\cite{bhatnagar_learnersourcing_2020}.
+	(Since we only use a basic white-space tokenizer, we round the token-counts 
+	of each explanation down to the nearest multiple of five, as it is unlikely 
+	that a student could discern which is longer if the difference in lengths 
+	is less than this.)
 \end{enumerate}
 
 In order to evaluate these rank aggregation different scores, and address 

@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{16}
+\begin{thebibliography}{18}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -36,6 +36,25 @@
 \providecommand\bibinfo[2]{#2}
 \providecommand\natexlab[1]{#1}
 \providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{Bhatnagar, Zouaq, Desmarais, and
+  Charles}{Bhatnagar et~al\mbox{.}}{2020}]%
+        {bhatnagar_learnersourcing_2020}
+\bibfield{author}{\bibinfo{person}{Sameer Bhatnagar}, \bibinfo{person}{Amal
+  Zouaq}, \bibinfo{person}{Michel~C. Desmarais}, {and}
+  \bibinfo{person}{Elizabeth Charles}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Learnersourcing {Quality} {Assessment} of
+  {Explanations} for {Peer} {Instruction}}. In
+  \bibinfo{booktitle}{\emph{Addressing {Global} {Challenges} and {Quality}
+  {Education}}}, \bibfield{editor}{\bibinfo{person}{Carlos Alario-Hoyos},
+  \bibinfo{person}{María~Jesús Rodríguez-Triana}, \bibinfo{person}{Maren
+  Scheffel}, \bibinfo{person}{Inmaculada Arnedillo-Sánchez}, {and}
+  \bibinfo{person}{Sebastian~Maximilian Dennerlein}} (Eds.).
+  \bibinfo{publisher}{Springer International Publishing},
+  \bibinfo{address}{Cham}, \bibinfo{pages}{144--157}.
+\newblock
+\showISBNx{978-3-030-57717-9}
+
 
 \bibitem[\protect\citeauthoryear{Cambre, Klemmer, and Kulkarni}{Cambre
   et~al\mbox{.}}{2018}]%
@@ -236,6 +255,26 @@
   \bibinfo{volume}{5}, \bibinfo{number}{2} (\bibinfo{year}{2017}),
   \bibinfo{pages}{89--113}.
 \newblock
+
+
+\bibitem[\protect\citeauthoryear{Toledo, Gretz, Cohen-Karlik, Friedman,
+  Venezian, Lahav, Jacovi, Aharonov, and Slonim}{Toledo et~al\mbox{.}}{2019}]%
+        {toledo_automatic_2019}
+\bibfield{author}{\bibinfo{person}{Assaf Toledo}, \bibinfo{person}{Shai Gretz},
+  \bibinfo{person}{Edo Cohen-Karlik}, \bibinfo{person}{Roni Friedman},
+  \bibinfo{person}{Elad Venezian}, \bibinfo{person}{Dan Lahav},
+  \bibinfo{person}{Michal Jacovi}, \bibinfo{person}{Ranit Aharonov}, {and}
+  \bibinfo{person}{Noam Slonim}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Automatic {Argument} {Quality} {Assessment}-{New}
+  {Datasets} and {Methods}}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  2019 {Conference} on {Empirical} {Methods} in {Natural} {Language}
+  {Processing} and the 9th {International} {Joint} {Conference} on {Natural}
+  {Language} {Processing} ({EMNLP}-{IJCNLP})}}. \bibinfo{pages}{5629--5639}.
+\newblock
+\urldef\tempurl%
+\url{https://www.aclweb.org/anthology/D19-1564.pdf}
+\showURL{%
+\tempurl}
 
 
 \bibitem[\protect\citeauthoryear{Univeristy~of British~Columbia}{Univeristy~of
