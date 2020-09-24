@@ -6,6 +6,10 @@ import math
 import numpy as np
 import pandas as pd
 
+import spacy
+
+nlp = spacy.load("en_core_web_sm")
+
 from sklearn.metrics import accuracy_score, f1_score
 from scipy.stats import kendalltau, rankdata
 from scipy.stats import beta as beta_dist
@@ -59,15 +63,14 @@ def get_rankings_wc(df_train):
     ranking = Word Count
     """
 
-    df_train["rationale_word_count"] = df_train["rationale"].str.count("\w+")
-    df_train["rationale_word_count"] = df_train["rationale_word_count"].fillna(0)
+    rationales = df_train[["rationale", "id"]].values
+    dropped_POS = ["PUNCT", "SPACE"]
     ranks_dict = {
-        "arg{}".format(i): float(
-            math.floor(wc / MIN_WORD_COUNT_DIFF) * MIN_WORD_COUNT_DIFF
+        "arg{}".format(arg_id): len(
+            [token for token in doc if token.pos not in dropped_POS]
         )
-        for i, wc in df_train[["id", "rationale_word_count"]].values
+        for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
     }
-
     sorted_arg_ids = [
         k for k, v in sorted(ranks_dict.items(), key=lambda x: x[1], reverse=True)
     ]
