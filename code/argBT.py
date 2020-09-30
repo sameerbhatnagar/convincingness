@@ -151,7 +151,9 @@ def get_rankings_BT(pairs_train):
 
     Returns:
     --------
-        -
+    Tuple:
+        - sorted_arg_ids : array or arg_ids sorted by rank_score
+        - ranks_dict: dict where keys are arg_id, and values are BT rank scores
     """
     arg_ids_train = list(
         set(pd.concat([pairs_train["a1_id"], pairs_train["a2_id"],]).values)
@@ -265,7 +267,13 @@ def get_topic_data(topic, discipline):
     """
     given topic/question and associated discipline (needed for subdirectories),
     return mydalite answer observations, and associated pairs that are
-    constructed using `mauke_pairs.py`
+    constructed using `make_pairs.py`
+
+    Returns:
+    ========
+    Tuple of dataframes:
+        - pairs_df
+        - df_topic
     """
 
     data_dir_discipline = get_data_dir(discipline)
@@ -451,43 +459,11 @@ def build_rankings_by_topic_over_time(topic, discipline, rank_score_type):
                         ].shape[0],
                     }
                 )
-            # # make two batches of students, interleaved in time
-            # student_batch1 = students[::2]
-            # student_batch2 = [
-            #     s for s in students if s not in student_batch1
-            # ]
-            #
-            # # get rankings for each batch and save
-            # batch_rankings, batch_rank_scores = {}, {}
-            # for sb, student_batch in zip(
-            #     ["batch1", "batch2"], [student_batch1, student_batch2]
-            # ):
-            #
-            #     if rank_score_type=="baseline":
-            #         df_train_batch = df_topic[df_topic["user_token"].isin(student_batch)]
-            #         sorted_arg_ids, ranks_dict = get_rankings_baseline(
-            #             df_train=df_train_batch
-            #         )
-            #     else:
-            #         pairs_train_batch = pairs_train[
-            #             pairs_train["annotator"].isin(student_batch)
-            #         ]
-            #         sorted_arg_ids, ranks_dict = get_rankings(
-            #             pairs_train=pairs_train_batch
-            #         )
-            #
-            #     batch_rankings[sb] = sorted_arg_ids
-            #     batch_rank_scores[sb] = ranks_dict
-            #
-            # rankings_by_batch.append(batch_rankings)
-            # rank_scores_by_batch.append(batch_rank_scores)
 
     results = {
         "accuracies": accuracies,
         "accuracies_train": accuracies_train,
-        # "rankings_by_batch": rankings_by_batch,
         "rank_scores": rank_scores,
-        # "rank_scores_by_batch" : rank_scores_by_batch,
     }
     if rank_score_type == "crowd_BT":
         results.update({"annotator_params": annotator_params})
@@ -536,14 +512,25 @@ def main(
             RESULTS_DIR, discipline, "model_fit", rank_score_type
         )
     # make results directories if they do not exist:
-    if not os.path.exists(results_dir_discipline):
-        Path(results_dir_discipline).mkdir(parents=True, exist_ok=True)
-        os.mkdir(os.path.join(results_dir_discipline, "accuracies",))
-        os.mkdir(os.path.join(results_dir_discipline, "accuracies_train",))
-        # os.mkdir(os.path.join(results_dir_discipline, "rankings_by_batch",))
-        os.mkdir(os.path.join(results_dir_discipline, "rank_scores",))
-        # os.mkdir(os.path.join(results_dir_discipline, "rank_scores_by_batch",))
-        os.mkdir(os.path.join(results_dir_discipline, "annotator_params",))
+    Path(results_dir_discipline).mkdir(parents=True, exist_ok=True)
+    Path(os.path.join(results_dir_discipline, "accuracies")).mkdir(
+        parents=True, exist_ok=True
+    )
+    Path(os.path.join(results_dir_discipline, "accuracies_train",)).mkdir(
+        parents=True, exist_ok=True
+    )
+    Path(os.path.join(results_dir_discipline, "rank_scores",)).mkdir(
+        parents=True, exist_ok=True
+    )
+    Path(os.path.join(results_dir_discipline, "rank_scores_by_batch")).mkdir(
+        parents=True, exist_ok=True
+    )
+    Path(os.path.join(results_dir_discipline, "accuracies_by_batch")).mkdir(
+        parents=True, exist_ok=True
+    )
+    Path(os.path.join(results_dir_discipline, "annotator_params")).mkdir(
+        parents=True, exist_ok=True
+    )
     # sort files by size to get smallest ones done first
     # https://stackoverflow.com/a/20253803
     all_files = (
@@ -575,34 +562,112 @@ def main(
             with open(fp, "w+") as f:
                 json.dump(results["accuracies_train"], f, indent=2)
         else:
-            # results only for all data on tis topic/question
+            # results only for all data on this topic/question
+
             pairs_df, df_topic = get_topic_data(topic=topic, discipline=discipline)
+
+            print("\t {} pairs, {} students".format(pairs_df.shape[0], df_topic.shape[0]))
+
             results = get_ranking_model_fit(
                 pairs_train=pairs_df, df_train=df_topic, rank_score_type=rank_score_type
             )
 
+            batch_rank_scores, batch_accuracies = {},{}
+            for transition in ["rr","wr","rw","ww"]:
+                df_transition=df_topic[df_topic["transition"]==transition].copy()
+                students = df_transition.sort_values("id")["user_token"].dropna().to_list()
+                if len(students)>=10:
+                    # make two batches of students, interleaved in time
+                    student_batch1 = students[::2]
+                    student_batch2 = [s for s in students if s not in student_batch1]
+                    batch_rank_scores[transition],batch_accuracies[transition]={},{}
+                    print("\t{}".format(transition))
+                    # get rankings for each batch and save
+                    for sb, student_batch in zip(
+                        ["batch1", "batch2"], [student_batch1, student_batch2]
+                    ):
+                        df_train_batch = df_transition[
+                            df_transition["user_token"].isin(student_batch)
+                        ].copy()
+                        pairs_train_batch = pairs_df[
+                            pairs_df["annotator"].isin(student_batch)
+                        ].copy()
+
+                        rb = get_ranking_model_fit(
+                            pairs_train=pairs_train_batch,
+                            df_train=df_train_batch,
+                            rank_score_type=rank_score_type,
+                        )
+                        # just keep the rank scores for each batch
+                        batch_rank_scores[transition][sb] = rb["rank_scores"]
+
+                        # test ability of rankings to predict winning argument in
+                        # other batch
+                        if sb=="batch1":
+                            other_batch=student_batch2
+                        else:
+                            other_batch=student_batch1
+                        pairs_test=pairs_df[pairs_df["annotator"].isin(other_batch)].copy()
+                        pairs_test["a1_rank"] = pairs_test["a1_id"].map(rb["rank_scores"])
+                        pairs_test["a2_rank"] = pairs_test["a2_id"].map(rb["rank_scores"])
+
+                        # pairs with current student's argument must be dropped
+                        # as it is as yet unseen
+                        pairs_test_ = pairs_test[["a1_rank", "a2_rank", "label"]].dropna().copy()
+
+                        if pairs_test_.shape[0]>0:
+                            print(
+                                "\t\t {}:{} pairs, {} students".format(
+                                    sb, pairs_test_.shape[0], len(student_batch)
+                                )
+                            )
+                            # for each pair in held out pairs,
+                            # predict winner based on higher param
+                            pairs_test_["label_pred"] = pairs_test_.apply(
+                                lambda x: pairwise_predict(x), axis=1,
+                            )
+                            pairs_test_ = pairs_test_.dropna().copy()
+
+                            batch_accuracies[transition][sb]={
+                                    "n": pairs_test_.shape[0],
+                                    "acc": accuracy_score(
+                                        y_true=pairs_test_["label"],
+                                        y_pred=pairs_test_["label_pred"],
+                                    ),
+                                    "transition": transition,
+                                    "n_ties": pairs_test_[
+                                        pairs_test_["a1_rank"] == pairs_test_["a2_rank"]
+                                    ].shape[0],
+                                }
+
+        # pairwise classification results
         fp = os.path.join(results_dir_discipline, "accuracies", "{}.json".format(topic))
         with open(fp, "w+") as f:
             json.dump(results["accuracies"], f, indent=2)
 
-        # fp = os.path.join(
-        #     results_dir_discipline,"rankings_by_batch", "{}.json".format(topic),
-        # )
-        # with open(fp, "w+") as f:
-        #     json.dump(results["rankings_by_batch"],f, indent=2)
-
+        # rank scores
         fp = os.path.join(
             results_dir_discipline, "rank_scores", "{}.json".format(topic),
         )
         with open(fp, "w+") as f:
             json.dump(results["rank_scores"], f, indent=2)
 
-        # fp = os.path.join(
-        #     results_dir_discipline,"rank_scores_by_batch", "{}.json".format(topic),
-        # )
-        # with open(fp, "w+") as f:
-        #     json.dump(results["rank_scores_by_batch"],f, indent=2)
+        # rank_scores_by_batch
+        fp = os.path.join(
+            results_dir_discipline, "rank_scores_by_batch", "{}.json".format(topic),
+        )
+        with open(fp, "w+") as f:
+            json.dump(batch_rank_scores, f, indent=2)
 
+        # accuracies by batch
+        fp = os.path.join(
+            results_dir_discipline, "accuracies_by_batch", "{}.json".format(topic),
+        )
+        with open(fp, "w+") as f:
+            json.dump(batch_accuracies, f, indent=2)
+
+
+        # crowd_BT give annotator params as well
         if rank_score_type == "crowd_BT":
             fp = os.path.join(
                 results_dir_discipline, "annotator_params", "{}.json".format(topic),

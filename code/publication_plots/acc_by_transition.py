@@ -9,24 +9,36 @@ import spacy
 
 nlp = spacy.load("en_core_web_sm")
 DROPPED_POS = ["PUNCT", "SPACE"]
+TRANSITIONS = ["rr", "rw", "wr", "ww"]
+TRANSITION_LABELS = {
+    "rr": "Right -> Right",
+    "rw": "Right -> Wrong",
+    "wr": "Wrong -> Right",
+    "ww": "Wrong -> Wrong",
+}
 
-import matplotlib
+RANK_SCORE_TYPES = ["crowd_BT", "BT","elo", "winrate","wc"]
+RANK_SCORE_TYPES_RENAMED={
+    "crowd_BT":"CrowdBT",
+    "wc":"Length",
+    "elo":"Elo",
+    "winrate":"WinRate",
+    "BT":"BT"
+}
 
-matplotlib.use("pgf")
-matplotlib.rcParams.update(
-    {
-        "pgf.texsystem": "pdflatex",
-        "font.family": "serif",
-        "text.usetex": True,
-        "pgf.rcfonts": False,
-    }
-)
-
+TRANSITION_COLORS = {
+    "rr": "forestgreen",
+    "rw": "gold",
+    "wr": "cornflowerblue",
+    "ww": "firebrick",
+}
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # careful if dir names change
 RESULTS_DIR = os.path.join(BASE_DIR, "tmp", "measure_convincingness")
+
+
 
 def get_topic_data(topic, discipline):
     """
@@ -34,7 +46,7 @@ def get_topic_data(topic, discipline):
     return mydalite answer observations, and associated pairs that are
     constructed using `mauke_pairs.py`
     """
-
+    discipline = "Physics"
     data_dir_discipline = get_data_dir(discipline)
 
     fp = os.path.join(data_dir_discipline, "{}.csv".format(topic))
@@ -51,8 +63,10 @@ def get_topic_data(topic, discipline):
 
     return pairs_df, df_topic
 
+
 def get_data_dir(discipline):
     return os.path.join(RESULTS_DIR, discipline, "data")
+
 
 def my_summary(x):
     d = {}
@@ -64,6 +78,9 @@ def my_summary(x):
 
 
 def my_summary_table(x):
+    """
+    function to aggregate model-fit accuracy data by transition
+    """
     d = {}
     d["N"] = x["N"].sum().astype(int)
     d["N_pairs"] = x["N_pairs"].sum().astype(int)
@@ -79,13 +96,29 @@ def my_summary_table(x):
     return pd.Series(d, index=["N", "N_pairs", "wc_median"])
 
 
+def summary_batches_by_transition(x):
+    d={}
+    d["N"]=x["N"].sum().astype(int)
+    d["acc"]=np.average(x["acc"],weights=x["N"]).round(2)
+    d["std"]=np.std(x["acc"])
+    return (pd.Series(d,index=["N","acc","std"]))
+
+def summary_batches_by_transition_corr(x):
+    d={}
+    d["N"]=x["N"].sum().astype(int)
+    d["N_common"]=x["N_common"].sum().astype(int)
+    d["r"]=np.average(x["r"],weights=x["N_common"]).round(2)
+    d["std"]=np.std(x["r"]).round(2)
+    return (pd.Series(d,index=["N","N_common","r","std"]))
+
+
+
 def summary_table():
     """
     function to give descriptive statistics of dataset, and output table to
     latex file in article sub-folder
     """
-    discipline="Physics"
-    transitions = ["rr","wr","rw","ww"]
+    discipline = "Physics"
     d_summary = []
     topics = os.listdir(os.path.join(RESULTS_DIR, discipline, "data"))
     for i, topic in enumerate(topics):
@@ -119,7 +152,7 @@ def summary_table():
         medians_wc = df_wc.groupby("transition")["wc"].median().to_dict()
         iqr_wc = df_wc.groupby("transition")["wc"].apply(lambda x: iqr(x)).to_dict()
 
-        for transition in transitions:
+        for transition in TRANSITIONS:
             d = {}
             d["topic"] = topic
             d["transition"] = transition
@@ -136,90 +169,90 @@ def summary_table():
         df_summary.dropna().groupby("transition").apply(lambda x: my_summary_table(x))
     )
 
-    fp = os.path.join(BASE_DIR, "articles", "lak2021", "data", "df_summary.tex")
-    df_summary_table.to_latex(fp)
-    print(fp)
-    return
+    return df_summary_table
 
 
-def main():
+def load_data_for_plots():
+    """
+    load data for corr_plot and accuracy plot by transition.
 
-    summary_table()
-
-    ### Load data
-    print("loading data")
+    Returns:
+    ========
+        df: data frame with model_fit accuracies for all data
+        acc_trans: dict with model_fit accuracies for each transition
+        rank_scores: dict with rank scores of all types for each arg
+    """
     discipline = "Physics"
     df = pd.DataFrame()
     rank_scores, acc_trans = {}, {}
-    rank_score_types = ["wc", "winrate", "elo", "crowd_BT", "BT"]
-    for i,rank_score_type in enumerate(rank_score_types,1):
+
+    for i, rank_score_type in enumerate(RANK_SCORE_TYPES, 1):
         print(rank_score_type)
         results_dir_discipline = os.path.join(
-            RESULTS_DIR,
-            discipline,
-            "model_fit",
-            rank_score_type,
+            RESULTS_DIR, discipline, "model_fit", rank_score_type,
         )
-        topics = os.listdir(
-            os.path.join(
-                results_dir_discipline,
-                "accuracies"
-            )
-        )
-        df_acc=pd.DataFrame()
-        acc_trans[rank_score_type]={}
-        rank_scores[rank_score_type]={}
-        for j,topic in enumerate(topics,1):
+        topics = os.listdir(os.path.join(results_dir_discipline, "accuracies"))
+        df_acc = pd.DataFrame()
+        acc_trans[rank_score_type] = {}
+        rank_scores[rank_score_type] = {}
+        for j, topic in enumerate(topics, 1):
 
-            fp=os.path.join(
-                results_dir_discipline,
-                "accuracies",
-                "{}".format(topic)
-            )
-            with open(fp,"r") as f:
-                d=json.load(f)
-            d2={k:v for k,v in d.items() if k!="acc_by_transition"}
-            d2.update({"transition":"all","topic":topic})
-            df_acc_t=pd.DataFrame(d2,index=[i*j])
+            fp = os.path.join(results_dir_discipline, "accuracies", "{}".format(topic))
+            with open(fp, "r") as f:
+                d = json.load(f)
+            d2 = {k: v for k, v in d.items() if k != "acc_by_transition"}
+            d2.update({"transition": "all", "topic": topic})
+            df_acc_t = pd.DataFrame(d2, index=[i * j])
 
-            df_acc=pd.concat([df_acc,df_acc_t])
+            df_acc = pd.concat([df_acc, df_acc_t])
 
-            acc_trans[rank_score_type][topic]={k:v for k,v in d.items() if k=="acc_by_transition"}
+            acc_trans[rank_score_type][topic] = {
+                k: v for k, v in d.items() if k == "acc_by_transition"
+            }
 
-            fp=os.path.join(
-                results_dir_discipline,
-                "rank_scores",
-                "{}".format(topic)
-            )
-            with open(fp,"r") as f:
-                rank_scores[rank_score_type][topic.replace(".json","")]=json.load(f)
+            fp = os.path.join(results_dir_discipline, "rank_scores", "{}".format(topic))
+            with open(fp, "r") as f:
+                rank_scores[rank_score_type][topic.replace(".json", "")] = json.load(f)
 
-        df_acc=df_acc.dropna()
-        df_acc["rank_score_type"]=rank_score_type
-        df=pd.concat([df,df_acc])
+        df_acc = df_acc.dropna()
+        df_acc["rank_score_type"] = rank_score_type
+        df = pd.concat([df, df_acc])
+
+    return df, acc_trans, rank_scores
 
 
-    df.loc[df["rank_score_type"]=="baseline","rank_score_type"]="WinRate"
-    df.loc[df["rank_score_type"]=="wc","rank_score_type"]="WordCount"
+def draw_corr_plot(rank_scores, transition=None):
+    """
+    draw correlation plot between different rank_score_types for each arg
+    disaggregated byt transition type
+
+    Arguments:
+    ==========
+        rank_scores: dict of rank scores for each transition
+    Returns
+    =======
+        fig: matplotlib figure object
+    """
+    discipline="Physics"
+    # df.loc[df["rank_score_type"] == "baseline", "rank_score_type"] = "WinRate"
+    # df.loc[df["rank_score_type"] == "wc", "rank_score_type"] = "WordCount"
 
     # collect rank_scores
-    df_all=pd.DataFrame()
-    for rank_score_type in rank_score_types:
-        df_all_topics=pd.DataFrame()
-        for topic,scores in rank_scores[rank_score_type].items():
-            df_scores=pd.DataFrame.from_dict(
-                rank_scores[rank_score_type][topic],
-                orient="index"
-            ).reset_index().rename(
-                columns={
-                    0:"value",
-                    "index":"arg_id"
-                }
+    df_all = pd.DataFrame()
+    for rank_score_type in RANK_SCORE_TYPES:
+        df_all_topics = pd.DataFrame()
+        for topic, scores in rank_scores[rank_score_type].items():
+            df_scores = (
+                pd.DataFrame.from_dict(
+                    rank_scores[rank_score_type][topic], orient="index"
+                )
+                .reset_index()
+                .rename(columns={0: "value", "index": "arg_id"})
             )
-            df_scores["topic"]=topic
-            df_all_topics=pd.concat([df_all_topics,df_scores])
-        df_all_topics["rank_score_type"]=rank_score_type
-        df_all=pd.concat([df_all,df_all_topics])
+            df_scores["topic"] = topic
+            df_all_topics = pd.concat([df_all_topics, df_scores])
+        df_all_topics["rank_score_type"] = rank_score_type
+        df_all = pd.concat([df_all, df_all_topics])
 
     # collect different scores for each arg
     print("collecting different scores for each arg")
@@ -244,18 +277,20 @@ def main():
         df_topics = pd.concat([df_topics, df_topic])
 
     df_pivot["transition"] = df_pivot.index.map(df_topics["transition"].to_dict())
-
+    ratios = (df_pivot["transition"].value_counts(normalize=True)*100).astype(int)
     # correlation plot for each transition type
-    transitions = ["rr", "rw", "wr", "ww"]
     transition_labels = {
-        "rr": "Right -> Right",
-        "rw": "Right -> Wrong",
-        "wr": "Wrong -> Right",
-        "ww": "Wrong -> Wrong",
+        "rr": "Right -> Right\n{}% of data".format(ratios["rr"]),
+        "rw": "Right -> Wrong\n{}% of data".format(ratios["rw"]),
+        "wr": "Wrong -> Right\n{}% of data".format(ratios["wr"]),
+        "ww": "Wrong -> Wrong\n{}% of data".format(ratios["ww"]),
     }
-    fig, axs = plt.subplots(2, 2, figsize=(11, 9))
+    df_pivot=df_pivot.rename(
+        columns=RANK_SCORE_TYPES_RENAMED
+    )
     cmap = sns.diverging_palette(230, 20, as_cmap=True)
-    for ax, transition in zip(axs.flatten(), transitions):
+    if transition:
+        fig,ax=plt.subplots()
         corr = df_pivot.groupby("transition").corr().loc[transition]
         mask = np.triu(np.ones_like(corr, dtype=bool))
         sns.heatmap(
@@ -269,59 +304,244 @@ def main():
             cbar_kws={"shrink": 0.5},
         )
         ax.text(2.25, 0.75, transition_labels[transition], size=14)
-    for ax in axs.flatten():
-        ax.set_xlabel("")
-        ax.set_ylabel("")
-    fig.tight_layout()
+        ax.set_xlabel("Rank Score Type")
+        ax.set_ylabel("Rank Score Type")
+
+    else:
+        figsize=(11,9)
+        fig, axs = plt.subplots(2, 2, figsize=figsize)
+
+        for ax, transition in zip(axs.flatten(), TRANSITIONS):
+            corr = df_pivot.groupby("transition").corr().loc[transition]
+            mask = np.triu(np.ones_like(corr, dtype=bool))
+            sns.heatmap(
+                corr.iloc[1:, :-1],
+                mask=mask[1:, :-1],
+                cmap=cmap,
+                vmax=1.0,
+                vmin=0.0,
+                ax=ax,
+                linewidths=0.5,
+                cbar_kws={"shrink": 0.5},
+            )
+            ax.text(2.25, 0.75, transition_labels[transition], size=14)
+        for ax in axs.flatten():
+            ax.set_xlabel("")
+            ax.set_ylabel("")
+        fig.tight_layout()
+    return fig
+
+
+def draw_acc_by_transition():
+    """
+    for each transition type, give accuracy for batch1 rank
+    scores over batch2
+    """
+    discipline="Physics"
+    results=[]
+    for rank_score_type in RANK_SCORE_TYPES:
+        results_dir_discipline=os.path.join(
+            RESULTS_DIR,
+            discipline,
+            "model_fit",
+            rank_score_type,
+            "accuracies_by_batch"
+        )
+        topics=os.listdir(results_dir_discipline)
+        for topic in topics:
+            fp=os.path.join(results_dir_discipline,topic)
+            with open(fp,"r") as f:
+                acc=json.load(f)
+
+            for transition in acc:
+                d={}
+                if acc[transition]:
+                    df_acc=pd.DataFrame(acc[transition])
+
+                    d["acc"]=df_acc.loc["acc"].mean()
+                    d["N"]=df_acc.loc["n"].min()
+                    d["rank_score_type"]=RANK_SCORE_TYPES_RENAMED[rank_score_type]
+                    d["topic"]=topic
+                    d["transition"]=transition
+                    results.append(d)
+    df=pd.DataFrame(results)
+
+    df_table=df.groupby(["rank_score_type","transition"]).apply(
+        lambda x:  summary_batches_by_transition(x)
+    ).reset_index()
+    # FIX ME!!!
+    d=[
+        {"rank_score_type":"Length","transition":"rw","N":0,"acc":0,"std":0},
+        {"rank_score_type":"Length","transition":"wr","N":0,"acc":0,"std":0}
+    ]
+    df_table=pd.concat([df_table,pd.DataFrame(d)])
+    # FIX ME!!!
+
+
+    cat="rank_score_type"
+    subcat="transition"
+    val="acc"
+    err="std"
+    ylabel="Pairwise Classification Accuracy"
+    xlabel="Rank Score Type"
+
+    plt.style.use("ggplot")
+    u = df_table[cat].unique()
+    x = np.arange(len(u))
+    subx = df_table[subcat].unique()
+
+    tightness=4.
+    offsets = (np.arange(len(subx))-np.arange(len(subx)).mean())/(len(subx)+tightness)
+    width= np.diff(offsets).mean()
+
+    fig,ax = plt.subplots(figsize=(11,9))
+    for i,gr in enumerate(subx):
+        dfg = df_table[df_table[subcat] == gr]
+        ax.bar(
+            x+offsets[i],
+            dfg[val].values,
+            width=width,
+            label=TRANSITION_LABELS[gr],
+            yerr=dfg[err].values/2,
+            color=TRANSITION_COLORS[gr],
+            error_kw=dict(ecolor='lightgray',capsize=3),
+            )
+    #
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.set_ylim((0.5,1))
+    ax.set_xticks(x)
+    ax.set_xticklabels(u)
+    ax.legend()
+    return fig
+
+
+def draw_corr_by_batch():
+    """
+    correlations between rank scores derived by two independant batches of students
+    """
+    discipline="Physics"
+    results=[]
+
+    for rank_score_type in RANK_SCORE_TYPES:
+        results_dir_discipline=os.path.join(
+            RESULTS_DIR,
+            discipline,
+            "model_fit",
+            rank_score_type,
+            "rank_scores_by_batch"
+        )
+        topics=os.listdir(results_dir_discipline)
+        for topic in topics:
+
+            fp=os.path.join(results_dir_discipline,topic)
+            with open(fp,"r") as f:
+                rank_scores=json.load(f)
+
+            for transition in rank_scores:
+                d={}
+                df_rank_scores=pd.DataFrame(rank_scores[transition])
+
+                d["r"]=df_rank_scores.dropna().corr()["batch1"]["batch2"]
+                d["N"]=df_rank_scores.shape[0]
+                d["N_common"]=df_rank_scores.dropna().shape[0]
+                d["rank_score_type"]=RANK_SCORE_TYPES_RENAMED[rank_score_type]
+                d["topic"]=topic
+                d["transition"]=transition
+                results.append(d)
+    df=pd.DataFrame(results)
+
+    df_table=df.dropna().groupby(["rank_score_type","transition"]).apply(
+        lambda x:  summary_batches_by_transition_corr(x)
+    ).reset_index()
+
+    cat="rank_score_type"
+    subcat="transition"
+    val="r"
+    err="std"
+    ymin=0
+    u = df_table[cat].unique()
+    x = np.arange(len(u))
+    subx = df_table[subcat].unique()
+    offsets = (np.arange(len(subx))-np.arange(len(subx)).mean())/(len(subx)+4.)
+    width= np.diff(offsets).mean()
+
+    plt.style.use("ggplot")
+    fig,ax=plt.subplots(figsize=(11,9))
+
+    for i,gr in enumerate(subx):
+        dfg = df_table[df_table[subcat] == gr]
+        ax.scatter(
+            x+offsets[i],
+            dfg[val].values,
+            marker="o",
+            label=TRANSITION_LABELS[gr],
+            color=TRANSITION_COLORS[gr],
+            )
+        ax.errorbar(
+            x=x+offsets[i],
+            y=dfg[val].values,
+            yerr=dfg[err].values/2,
+            color=TRANSITION_COLORS[gr],
+            alpha=0.3,
+        )
+    ax.set_xlabel("Rank Score Type")
+    ax.set_ylabel("Pearson Correlation")
+    ax.set_ylim((ymin,1))
+    ax.set_xticks(x)
+    ax.set_xticklabels(u)
+    ax.legend()
+    return fig
+
+
+def main():
+    """
+    generate plots and tables for LAK 2021 article
+    """
+    import matplotlib
+
+    matplotlib.use("pgf")
+    matplotlib.rcParams.update(
+        {
+            "pgf.texsystem": "pdflatex",
+            "font.family": "serif",
+            "text.usetex": True,
+            "pgf.rcfonts": False,
+        }
+    )
+
+    print("summary of data by transition")
+    df_summary_table = summary_table()
+    fp = os.path.join(BASE_DIR, "articles", "lak2021", "data", "df_summary.tex")
+    df_summary_table.to_latex(fp)
+    print(fp)
+
+
+    ### Load data
+    print("loading data for corr_plot")
+    df, acc_trans, rank_scores = load_data_for_plots()
+
+    ### draw corr_plot
+    print("corr plot for rr")
+    fig = draw_corr_plot(rank_scores, transition="rr")
     fp = os.path.join(BASE_DIR, "articles", "lak2021", "img", "corr_plot.pgf")
     print(fp)
     fig.savefig(fp)
-    ### very very slow. load saved version into p as shortcut
-    p = pd.DataFrame()
-    for rank_score_type in rank_score_types:
-        print(rank_score_type)
-        for i, (topic, d_array) in enumerate(acc_trans[rank_score_type].items()):
-            q=pd.DataFrame(d_array["acc_by_transition"])
-            q["rank_score_type"]=rank_score_type
-            q["topic"]=topic
-            p=pd.concat([p,q])
 
-    df2 = pd.concat([df, p.rename(columns={"n_shape": "n"})])
-
-    #### accuracies for each rank score type by transition
-    df_plot = (
-        df2.dropna(subset=["acc"])
-        .groupby(["rank_score_type", "transition"])
-        .apply(lambda x: my_summary(x))
-        .reset_index()
+    ### draw accuracies by transition for each rank_score_type
+    fig = draw_acc_by_transition()
+    fp = os.path.join(
+        BASE_DIR, "articles", "lak2021", "img", "acc_by_transition.pgf"
     )
-    df_plot.loc[df_plot["rank_score_type"] == "WordCount", "rank_score_type"] = "wc"
+    print(fp)
+    fig.savefig(fp)
 
-    col_ordering = ["crowd_BT", "BT", "elo", "winrate", "wc"]
-    transition_colors = {
-        "all": "gray",
-        "rr": "green",
-        "rw": "yellow",
-        "wr": "blue",
-        "ww": "red",
-    }
-    fig, ax = plt.subplots()
-    sns.set()
-    for transition, df_transition in df_plot.groupby("transition"):
-        df_t = df_transition.set_index("rank_score_type").reindex(col_ordering)
-        plt.plot(
-            df_t.index,
-            df_t["acc"],
-            marker="o",
-            label=transition,
-            alpha=0.5,
-            color=transition_colors[transition],
-        )
-        plt.errorbar(
-            x=df_t.index, y=df_t["acc"], yerr=df_t["std"], alpha=0.5,
-        )
-    plt.legend()
-    fp = os.path.join(BASE_DIR, "articles", "lak2021", "img", "acc_by_transition.pgf")
+    ### Correlation between rank scores of independant batches of students
+    #  by transition for each rank_score_type
+    fig = draw_corr_by_batch()
+    fp = os.path.join(
+        BASE_DIR, "articles", "lak2021", "img", "corr_by_batch.pgf"
+    )
     print(fp)
     fig.savefig(fp)
 
