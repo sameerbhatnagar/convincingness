@@ -356,11 +356,22 @@ def get_ranking_model_fit(pairs_train, df_train, rank_score_type):
                     )
                 ].shape[0],
             }
-            for transition in ["rr", "rw", "wr", "ww"]
             if pairs_train_no_ties[
                 pairs_train_no_ties["transition"] == transition
             ].shape[0]
             > 0
+            else {
+                "transition":transition,
+                "n": 0,
+                "acc":None,
+                "n_ties": pairs_train[
+                    (
+                        (pairs_train["a1_rank"] == pairs_train["a2_rank"])
+                        & (pairs_train["transition"] == transition)
+                    )
+                ].shape[0],
+            }
+            for transition in ["rr", "rw", "wr", "ww"]
         ],
         "n_ties": pairs_train[pairs_train["a1_rank"] == pairs_train["a2_rank"]].shape[
             0
@@ -595,7 +606,7 @@ def main(
 
                         rb = get_ranking_model_fit(
                             pairs_train=pairs_train_batch,
-                            df_train=df_train_batch,
+                            df_train=df_topic,
                             rank_score_type=rank_score_type,
                         )
                         # just keep the rank scores for each batch

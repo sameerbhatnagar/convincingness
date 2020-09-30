@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{18}
+\begin{thebibliography}{21}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -36,6 +36,19 @@
 \providecommand\bibinfo[2]{#2}
 \providecommand\natexlab[1]{#1}
 \providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{Aldous}{Aldous}{2017}]%
+        {aldous_elo_2017}
+\bibfield{author}{\bibinfo{person}{David Aldous}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Elo ratings and the sports model: {A} neglected
+  topic in applied probability?}
+\newblock \bibinfo{journal}{\emph{Statistical science}} \bibinfo{volume}{32},
+  \bibinfo{number}{4} (\bibinfo{year}{2017}), \bibinfo{pages}{616--629}.
+\newblock
+\newblock
+\shownote{Publisher: Institute of Mathematical Statistics.}
+
 
 \bibitem[\protect\citeauthoryear{Bhatnagar, Zouaq, Desmarais, and
   Charles}{Bhatnagar et~al\mbox{.}}{2020}]%
@@ -169,6 +182,16 @@
 \shownote{event-place: Sydney, Australia.}
 
 
+\bibitem[\protect\citeauthoryear{Elo}{Elo}{1978}]%
+        {elo_rating_1978}
+\bibfield{author}{\bibinfo{person}{Arpad~E Elo}.}
+  \bibinfo{year}{1978}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{The rating of chessplayers, past and
+  present}}.
+\newblock \bibinfo{publisher}{Arco Pub.}
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Gleize, Shnarch, Choshen, Dankin, Moshkowich,
   Aharonov, and Slonim}{Gleize et~al\mbox{.}}{2019}]%
         {gleize_are_2019}
@@ -228,6 +251,19 @@
   \bibinfo{booktitle}{\emph{Proceedings of the third international conference
   on cognitive science}}, Vol.~\bibinfo{volume}{644648}.
 \newblock
+
+
+\bibitem[\protect\citeauthoryear{Pelánek}{Pelánek}{2016}]%
+        {pelanek_applications_2016}
+\bibfield{author}{\bibinfo{person}{Radek Pelánek}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Applications of the {Elo} rating system in adaptive
+  educational systems}.
+\newblock \bibinfo{journal}{\emph{Computers \& Education}}
+  \bibinfo{volume}{98} (\bibinfo{year}{2016}), \bibinfo{pages}{169--179}.
+\newblock
+\newblock
+\shownote{Publisher: Elsevier.}
 
 
 \bibitem[\protect\citeauthoryear{Potash, Ferguson, and Hazen}{Potash

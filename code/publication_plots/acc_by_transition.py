@@ -494,7 +494,15 @@ def draw_corr_by_batch():
     return fig
 
 
-def main():
+def main(
+    figures: (
+        "Which figures to remake",
+        "positional",
+        None,
+        str,
+        ["all","corr_plot","acc_by_batch","corr_by_batch"]
+    )
+):
     """
     generate plots and tables for LAK 2021 article
     """
@@ -509,41 +517,43 @@ def main():
             "pgf.rcfonts": False,
         }
     )
+    if figures=="all":
+        print("summary of data by transition")
+        df_summary_table = summary_table()
+        fp = os.path.join(BASE_DIR, "articles", "lak2021", "data", "df_summary.tex")
+        df_summary_table.to_latex(fp)
+        print(fp)
 
-    print("summary of data by transition")
-    df_summary_table = summary_table()
-    fp = os.path.join(BASE_DIR, "articles", "lak2021", "data", "df_summary.tex")
-    df_summary_table.to_latex(fp)
-    print(fp)
+    if figures=="all" or figures=="corr_plot":
+        ### Load data
+        print("loading data for corr_plot")
+        df, acc_trans, rank_scores = load_data_for_plots()
 
+        ### draw corr_plot
+        print("corr plot for rr")
+        fig = draw_corr_plot(rank_scores, transition="rr")
+        fp = os.path.join(BASE_DIR, "articles", "lak2021", "img", "corr_plot.pgf")
+        print(fp)
+        fig.savefig(fp)
 
-    ### Load data
-    print("loading data for corr_plot")
-    df, acc_trans, rank_scores = load_data_for_plots()
+    if figures=="all" or figures=="acc_by_batch":
+        ### draw accuracies by transition for each rank_score_type
+        fig = draw_acc_by_transition()
+        fp = os.path.join(
+            BASE_DIR, "articles", "lak2021", "img", "acc_by_transition.pgf"
+        )
+        print(fp)
+        fig.savefig(fp)
 
-    ### draw corr_plot
-    print("corr plot for rr")
-    fig = draw_corr_plot(rank_scores, transition="rr")
-    fp = os.path.join(BASE_DIR, "articles", "lak2021", "img", "corr_plot.pgf")
-    print(fp)
-    fig.savefig(fp)
-
-    ### draw accuracies by transition for each rank_score_type
-    fig = draw_acc_by_transition()
-    fp = os.path.join(
-        BASE_DIR, "articles", "lak2021", "img", "acc_by_transition.pgf"
-    )
-    print(fp)
-    fig.savefig(fp)
-
-    ### Correlation between rank scores of independant batches of students
-    #  by transition for each rank_score_type
-    fig = draw_corr_by_batch()
-    fp = os.path.join(
-        BASE_DIR, "articles", "lak2021", "img", "corr_by_batch.pgf"
-    )
-    print(fp)
-    fig.savefig(fp)
+    if figures=="all" or figures=="corr_by_batch":
+        ### Correlation between rank scores of independant batches of students
+        #  by transition for each rank_score_type
+        fig = draw_corr_by_batch()
+        fp = os.path.join(
+            BASE_DIR, "articles", "lak2021", "img", "corr_by_batch.pgf"
+        )
+        print(fp)
+        fig.savefig(fp)
 
 
 if __name__ == "__main__":

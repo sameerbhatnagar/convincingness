@@ -261,8 +261,9 @@ Siamese architecture, and appending a softmax layer to the output,
 overall ranks publicly available datasets.
 
 We will explore two of these options as part of our methodology in our rank 
-aggregation step: the probabilistic Bradley-Terry model, and the simple 
-heuristic scoring model. 
+aggregation step, via several related methods: 
+the probabilistic Bradley-Terry model, as well as two of its variants (CrowdBT 
+and the Elo rating system), and the simple heuristic scoring model. 
 (We leave the neural approach for future work, as the additional work required 
 to address make the models interpretable enough for the educational context is 
 out of the scope of this study)
@@ -297,8 +298,6 @@ chose as most convincing (\verb|None| if they choose to ``stick to their own'').
 	chosen to the number of times it was shown (we add a correction for 
 	rationales that were never shown); 
 
-	\item \textbf{Elo}
-
 	\item \textbf{BT} score, which is the argument ``quality'' parameter 
 	estimated for each explanation, according to the \textit{Bradley-Terry} 
 	model, where the probability of argument A being chosen over argument B is 
@@ -321,6 +320,15 @@ chose as most convincing (\verb|None| if they choose to ``stick to their own'').
 	[w_{ij}ln\beta_i-w_{ij}ln(\beta_i+\beta_j)]
 	$$
 	subject to $\sum_{i}\beta_i=0$.
+
+
+	\item The \textbf{Elo} rating system\cite{elo_rating_1978}, which was 
+	originally proposed for ranking chess players, has been successfully used 
+	in adaptive learning environments (see \cite{pelanek_applications_2016} for 
+	a review). 
+	This system is a re-parametrization of the BT model, where 
+	\cite{aldous_elo_2017} 
+
 	
 	\item \textbf{CrowdBT}\cite{chen_pairwise_2013}
 
