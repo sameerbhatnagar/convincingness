@@ -369,14 +369,6 @@ def draw_acc_by_transition():
     df_table=df.groupby(["rank_score_type","transition"]).apply(
         lambda x:  summary_batches_by_transition(x)
     ).reset_index()
-    # FIX ME!!!
-    d=[
-        {"rank_score_type":"Length","transition":"rw","N":0,"acc":0,"std":0},
-        {"rank_score_type":"Length","transition":"wr","N":0,"acc":0,"std":0}
-    ]
-    df_table=pd.concat([df_table,pd.DataFrame(d)])
-    # FIX ME!!!
-
 
     cat="rank_score_type"
     subcat="transition"
@@ -423,7 +415,8 @@ def draw_corr_by_batch():
     discipline="Physics"
     results=[]
 
-    for rank_score_type in RANK_SCORE_TYPES:
+    rank_score_types = [r for r in RANK_SCORE_TYPES if r != "wc"]
+    for rank_score_type in rank_score_types:
         results_dir_discipline=os.path.join(
             RESULTS_DIR,
             discipline,
