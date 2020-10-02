@@ -155,7 +155,7 @@ def summary_table():
         for transition in TRANSITIONS:
             d = {}
             d["topic"] = topic
-            d["transition"] = transition
+            d["transition"] = TRANSITION_LABELS[transition]
             d["N"] = counts.get(transition, 0)
             d["N_pairs"] = counts_pairs.get(transition, 0)
             d["mean_wc"] = means_wc.get(transition)
@@ -224,11 +224,12 @@ def load_data_for_plots():
 def draw_corr_plot(rank_scores, transition=None):
     """
     draw correlation plot between different rank_score_types for each arg
-    disaggregated byt transition type
+    disaggregated by transition type
 
     Arguments:
     ==========
         rank_scores: dict of rank scores for each transition
+        transition: optional, string, to get only one of four corr plots
     Returns
     =======
         fig: matplotlib figure object
@@ -255,7 +256,7 @@ def draw_corr_plot(rank_scores, transition=None):
         df_all = pd.concat([df_all, df_all_topics])
 
     # collect different scores for each arg
-    print("collecting different scores for each arg")
+    # print("collecting different scores for each arg")
     df_pivot = pd.pivot(df_all, index="arg_id", columns="rank_score_type")["value"]
     topics = pd.pivot(df_all, index="arg_id", columns="rank_score_type")["topic"]
     df_pivot = pd.merge(
@@ -266,7 +267,7 @@ def draw_corr_plot(rank_scores, transition=None):
     )
 
     # append transition type for each arg
-    print("loading transition data for each arg")
+    # print("loading transition data for each arg")
     data_dir = os.path.join(RESULTS_DIR, discipline, "data")
     df_topics = pd.DataFrame()
     for topic, df_pivot_topic in df_pivot.groupby("topic"):
@@ -304,8 +305,9 @@ def draw_corr_plot(rank_scores, transition=None):
             cbar_kws={"shrink": 0.5},
         )
         ax.text(2.25, 0.75, transition_labels[transition], size=14)
-        ax.set_xlabel("Rank Score Type")
-        ax.set_ylabel("Rank Score Type")
+        ax.set_yticklabels(corr.index[1:],va="center")
+        ax.set_xlabel("")
+        ax.set_ylabel("")
 
     else:
         figsize=(11,9)
@@ -365,10 +367,17 @@ def draw_acc_by_transition():
                     d["transition"]=transition
                     results.append(d)
     df=pd.DataFrame(results)
+    df=df[df["N"]!=0]
 
     df_table=df.groupby(["rank_score_type","transition"]).apply(
         lambda x:  summary_batches_by_transition(x)
     ).reset_index()
+
+    df_table["rank_score_type"]=pd.Categorical(
+        df_table["rank_score_type"],
+        [RANK_SCORE_TYPES_RENAMED[r] for r in RANK_SCORE_TYPES]
+    )
+    df_table = df_table.sort_values("rank_score_type")
 
     cat="rank_score_type"
     subcat="transition"
@@ -447,6 +456,13 @@ def draw_corr_by_batch():
     df_table=df.dropna().groupby(["rank_score_type","transition"]).apply(
         lambda x:  summary_batches_by_transition_corr(x)
     ).reset_index()
+
+    df_table["rank_score_type"]=pd.Categorical(
+        df_table["rank_score_type"],
+        [RANK_SCORE_TYPES_RENAMED[r] for r in RANK_SCORE_TYPES if r!="wc"]
+    )
+    df_table = df_table.sort_values("rank_score_type")
+
 
     cat="rank_score_type"
     subcat="transition"

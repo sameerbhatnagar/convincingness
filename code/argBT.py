@@ -33,6 +33,8 @@ PRIORS = {
 
 DROPPED_POS = ["PUNCT", "SPACE"]
 
+MIN_VOTES, MIN_SHOWN = 1, 8
+
 
 def prior_factory(key):
     return lambda: PRIORS[key]
@@ -206,7 +208,31 @@ def get_rankings_elo(pairs_df):
     return sorted_arg_ids, ranks_dict
 
 
-def get_rankings_winrate(df_train):
+def get_rankings_winrate(pairs_df):
+    """
+    given pairs, simply count times won/times shown for each arg
+    "Laplace" transform, where assume objects never shown would have
+    a MIN_VOTES/MIN_SHOWN rank score
+    """
+    times_shown = pd.concat([pairs_df["a1_id"], pairs_df["a2_id"]]).value_counts()
+    times_chosen = (
+        pairs_df.apply(
+            lambda x: x["a1_id"] if x["label"] == "a1" else x["a2_id"], axis=1
+        )
+    ).value_counts()
+    ranks_dict = ((times_chosen + MIN_VOTES) / (times_shown + MIN_SHOWN)).to_dict()
+
+    # need to add entries for rationales never shown
+    never_chosen = [r for r in times_shown.index.to_list() if r not in times_chosen.index.to_list()]
+    ranks_dict.update({r: MIN_VOTES / MIN_SHOWN for r in never_chosen})
+
+    sorted_arg_ids = [
+        k for k, v in sorted(ranks_dict.items(), key=lambda x: x[1], reverse=True)
+    ]
+    return sorted_arg_ids, ranks_dict
+
+
+def get_rankings_winrate_archive(df_train):
     """
     Arguments:
     ----------
@@ -217,8 +243,6 @@ def get_rankings_winrate(df_train):
         - sorted_arg_ids
         - ranks_dict
     """
-
-    MIN_VOTES, MIN_SHOWN = 1, 8
 
     times_shown_counter = Counter()
     s = (
@@ -301,7 +325,7 @@ def get_ranking_model_fit(pairs_train, df_train, rank_score_type):
 
     if rank_score_type == "winrate":
         # ranking = times_chosen/times_shown
-        sorted_arg_ids, ranks_dict = get_rankings_winrate(df_train=df_train)
+        sorted_arg_ids, ranks_dict = get_rankings_winrate(pairs_df=pairs_train)
 
     elif rank_score_type == "wc":
         # ranking = num tokens
@@ -361,9 +385,9 @@ def get_ranking_model_fit(pairs_train, df_train, rank_score_type):
             ].shape[0]
             > 0
             else {
-                "transition":transition,
+                "transition": transition,
                 "n": 0,
-                "acc":None,
+                "acc": None,
                 "n_ties": pairs_train[
                     (
                         (pairs_train["a1_rank"] == pairs_train["a2_rank"])
@@ -577,21 +601,25 @@ def main(
 
             pairs_df, df_topic = get_topic_data(topic=topic, discipline=discipline)
 
-            print("\t {} pairs, {} students".format(pairs_df.shape[0], df_topic.shape[0]))
+            print(
+                "\t {} pairs, {} students".format(pairs_df.shape[0], df_topic.shape[0])
+            )
 
             results = get_ranking_model_fit(
                 pairs_train=pairs_df, df_train=df_topic, rank_score_type=rank_score_type
             )
 
-            batch_rank_scores, batch_accuracies = {},{}
-            for transition in ["rr","wr","rw","ww"]:
-                df_transition=df_topic[df_topic["transition"]==transition].copy()
-                students = df_transition.sort_values("id")["user_token"].dropna().to_list()
-                if len(students)>=10:
+            batch_rank_scores, batch_accuracies = {}, {}
+            for transition in ["rr", "wr", "rw", "ww"]:
+                df_transition = df_topic[df_topic["transition"] == transition].copy()
+                students = (
+                    df_transition.sort_values("id")["user_token"].dropna().to_list()
+                )
+                if len(students) >= 10:
                     # make two batches of students, interleaved in time
                     student_batch1 = students[::2]
                     student_batch2 = [s for s in students if s not in student_batch1]
-                    batch_rank_scores[transition],batch_accuracies[transition]={},{}
+                    batch_rank_scores[transition], batch_accuracies[transition] = {}, {}
                     print("\t{}".format(transition))
                     # get rankings for each batch and save
                     for sb, student_batch in zip(
@@ -614,19 +642,27 @@ def main(
 
                         # test ability of rankings to predict winning argument in
                         # other batch
-                        if sb=="batch1":
-                            other_batch=student_batch2
+                        if sb == "batch1":
+                            other_batch = student_batch2
                         else:
-                            other_batch=student_batch1
-                        pairs_test=pairs_df[pairs_df["annotator"].isin(other_batch)].copy()
-                        pairs_test["a1_rank"] = pairs_test["a1_id"].map(rb["rank_scores"])
-                        pairs_test["a2_rank"] = pairs_test["a2_id"].map(rb["rank_scores"])
+                            other_batch = student_batch1
+                        pairs_test = pairs_df[
+                            pairs_df["annotator"].isin(other_batch)
+                        ].copy()
+                        pairs_test["a1_rank"] = pairs_test["a1_id"].map(
+                            rb["rank_scores"]
+                        )
+                        pairs_test["a2_rank"] = pairs_test["a2_id"].map(
+                            rb["rank_scores"]
+                        )
 
                         # pairs with current student's argument must be dropped
                         # as it is as yet unseen
-                        pairs_test_ = pairs_test[["a1_rank", "a2_rank", "label"]].dropna().copy()
+                        pairs_test_ = (
+                            pairs_test[["a1_rank", "a2_rank", "label"]].dropna().copy()
+                        )
 
-                        if pairs_test_.shape[0]>0:
+                        if pairs_test_.shape[0] > 0:
                             print(
                                 "\t\t {}:{} pairs, {} students".format(
                                     sb, pairs_test_.shape[0], len(student_batch)
@@ -639,17 +675,17 @@ def main(
                             )
                             pairs_test_ = pairs_test_.dropna().copy()
 
-                            batch_accuracies[transition][sb]={
-                                    "n": pairs_test_.shape[0],
-                                    "acc": accuracy_score(
-                                        y_true=pairs_test_["label"],
-                                        y_pred=pairs_test_["label_pred"],
-                                    ),
-                                    "transition": transition,
-                                    "n_ties": pairs_test_[
-                                        pairs_test_["a1_rank"] == pairs_test_["a2_rank"]
-                                    ].shape[0],
-                                }
+                            batch_accuracies[transition][sb] = {
+                                "n": pairs_test_.shape[0],
+                                "acc": accuracy_score(
+                                    y_true=pairs_test_["label"],
+                                    y_pred=pairs_test_["label_pred"],
+                                ),
+                                "transition": transition,
+                                "n_ties": pairs_test_[
+                                    pairs_test_["a1_rank"] == pairs_test_["a2_rank"]
+                                ].shape[0],
+                            }
 
         # pairwise classification results
         fp = os.path.join(results_dir_discipline, "accuracies", "{}.json".format(topic))
@@ -676,7 +712,6 @@ def main(
         )
         with open(fp, "w+") as f:
             json.dump(batch_accuracies, f, indent=2)
-
 
         # crowd_BT give annotator params as well
         if rank_score_type == "crowd_BT":
