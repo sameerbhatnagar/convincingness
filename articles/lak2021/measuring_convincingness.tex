@@ -248,7 +248,7 @@ are derived from this directed acyclic graph, and the PageRank
 scores of each argument are used as the gold-standard to rank for 
 convincingness \cite{habernal_which_2016}.
 
-More recently, a relatively simpler heuristic Win-Rate score has been shown to 
+More recently, a relatively simpler heuristic WinRate score has been shown to 
 be competitive alternative, wherein the rank score of an argument is simply the 
 (normalized) number of times that argument has been chosen as more convincing 
 in a pair, divided by the number of pairs it appears in
@@ -294,9 +294,8 @@ chose as most convincing (\verb|None| if they choose to ``stick to their own'').
 
 \begin{enumerate}
 
-	\item \textbf{win-rate}, defined as the ratio of times an explanation is 
-	chosen to the number of times it was shown (we add a correction for 
-	rationales that were never shown); 
+	\item \textbf{WinRate}, defined as the ratio of times an explanation is 
+	chosen to the number of times it was shown.
 
 	\item \textbf{BT} score, which is the argument ``quality'' parameter 
 	estimated for each explanation, according to the \textit{Bradley-Terry} 
@@ -305,19 +304,20 @@ chose as most convincing (\verb|None| if they choose to ``stick to their own'').
 
 	$$
 	P(a>b) = 
-	\frac{e^{\beta_a}}{e^{\beta_a}+e^{\beta_b}}
+	\frac{1}{1+e^{\beta_b-\beta_a}}
 	$$
 	where $\beta_i$ is the latent strength parameter of argument $i$. 
 	
 	We decompose each student-item observation into argument pairs, where the 
 	chosen explanation is paired with each of the other shown ones, and the 
 	pair is labelled with $y=-/+1$, depending on whether the chosen explanation 
-	is first/second in the pair.   
-	The latent argument strength parameters are estimated by maximizing the 
-	log-likelihood of the $m$ explanation-pairs:
+	is first/second in the pair.
+	Assuming there are $N$ explanations, labelled by $K$ students, and $S_K$ 
+	labelled pairs,the latent strength parameters are estimated by maximizing 
+	the log-likelihood given by:
 	$$
-	\ell(\boldsymbol{\beta})=\sum_{i=1}^{m}\sum_{j=1}^{m} 
-	[w_{ij}ln\beta_i-w_{ij}ln(\beta_i+\beta_j)]
+	\ell(\boldsymbol{\beta})=\sum_{K}\sum_{(i,j)\epsilon S_K}^{} 
+	log\frac{1}{1+e^{\beta_i - \beta_j}}
 	$$
 	subject to $\sum_{i}\beta_i=0$.
 
@@ -326,12 +326,56 @@ chose as most convincing (\verb|None| if they choose to ``stick to their own'').
 	originally proposed for ranking chess players, has been successfully used 
 	in adaptive learning environments (see \cite{pelanek_applications_2016} for 
 	a review). 
-	This system is a re-parametrization of the BT model, where 
-	\cite{aldous_elo_2017} 
+	This rating method can be seen as a heuristic re-parametrization of the 
+	\textbf{BT} method above, where the probability of argument A being chosen 
+	over argument B is given by
+	$$
+	P(a>b) = P_{ab} = \frac{1}{1+10^{(\beta_b-\beta_a)/400}}
+	$$
 
+	All arguments are initialized with an initial value of 1500 points, an the 
+	rating of any argument is only updated after it appears in a pairwise 
+	comparison with another.
+	The rating update rule transfers points from the winner, to the loser, in 
+	proportion to the difference in strength:
 	
-	\item \textbf{CrowdBT}\cite{chen_pairwise_2013}
+	$$
+	\beta_a:=\beta_a+K(P_{ab} - \beta_a)
+	$$
+	
+	While the \textbf{BT} model can be thought of a \textit{consensus} 
+	approach, \textbf{Elo} ratings are dynamic and implicitly give more weight 
+	to recent data\cite{aldous_elo_2017}.
+	
+	\item \textbf{Crowd-BT} \cite{chen_pairwise_2013} is an extension of the 
+	\textbf{BT} model tailored to settings where different annotators may have 
+	assigned opposite labels to the same pairs, and the reliability of each 
+	annotator may vary significantly. 
+	A reliability parameter is estimated for each student, 
+	
+	$$
+	\eta_k \equiv P(a >_k b | a >b )
+	$$
 
+	where $\eta_k \approx 1$ if the $k^{th}$ student agrees with most other 
+	students, and $\eta_k \approx 0$ if the student is in opposition to their 
+	peers.
+	This changes the model of argument $a$ being chosen over $b$ by student $k$ 
+	to 
+	$$
+	P(a >_k b) = 
+	\eta_k \frac{1}{1+e^{\beta_b-\beta_a}} + (1-\eta_k) 
+	\frac{1}{1+e^{\beta_b-\beta_a}}
+	$$
+	and the log-likelilood maximized for estimation to 
+	
+	$$
+	\ell(\boldsymbol{\eta},\boldsymbol{\beta})=\sum_{K}\sum_{(i,j)\epsilon 
+	S_K}^{} 
+	log(\eta_k\frac{1}{1+e^{\beta_i - \beta_j}} + 
+	(1-\eta_k)\frac{1}{1+e^{\beta_i - \beta_j}})
+	$$
+	
 	\item \textbf{Length}, a method used purely as a baseline, where for each 
 	pair, we simply predict that the explanation with more words is the more 
 	convincing.
