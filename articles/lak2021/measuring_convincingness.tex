@@ -168,38 +168,41 @@ However, one of the challenges that arises in these contexts is how to
 construct the subset of peer-items in the database which will be presented to 
 the current student.
 
-This opens the door to our two central research questions for this study:
-
+This opens the door to our central research questions for this study: 
 \begin{itemize}
-	\item[RQ1] Since each student's ``vote'' in this context represents an 
+	\item since each student's ``vote'' in this context represents an 
 	incomplete evaluative judgement (the student will not have seen 
 	\textit{all} other peer submissions), which \textit{rank aggregation} 
 	methods are best suited for TMPI?
-
-	\item[RQ2] How can these aggregate \textit{convincingness} scores be used 
-	to select the subset of explanations that are shown to each student in 
-	TMPI, so as to promote deeper reflection during the review step? 
+	\item given that it obtaining the \textit{true} ranking is intractable in 
+	TMPI settings (as new data comes in, it is prohibitive to have all 
+	explanations evaluated again by all students), what methodological approach 
+	ensures the greatest reliability for this \textit{unsupervised} rank 
+	aggregation task ?
 \end{itemize}
+
 	
-To our knowledge, we are among the first to examine rank aggregation methods as 
-applied to these student ``votes'' in TMPI, in order to reliable measurements 
-of \textit{convincingness}. 
+To our knowledge, we are among the first to examine unsupervised rank 
+aggregation methods as applied to these student ``votes'' in TMPI, in order to 
+reliable measurements of \textit{convincingness}. 
 
 The focus of this study is how we \textit{measure} the quality of artifacts 
 created and curated in learnersourceing environments, as it is a necessary 
-pre-cursor to \textit{modelling} their quality (e.g. predicting the aggregated 
-\textit{convincingness score} based on linguistic features of the explanation).
+pre-cursor to \textit{modelling} their quality (e.g. once we have established a 
+reliable aggregated \textit{convincingness score}, we can set out to predict 
+that score based on linguistic features of the explanation).
 
 We suggest that the results of our work can inform the design of TMPI platforms.
 However, in a broader context, we aim to contribute the growing body of 
 research surrounding technology-mediated peer-review, specifically where 
 learners do not provide holistic scores, but generate their evaluative 
 judgments in a comparative setting.
-Our research questions generalize to these broader settings: whenever a learner 
-engages in comparative peer assessment, the supporting technology must design 
-some principled approach to constructing the subsets of peer-submissions that 
-will be shown (e.g. random sampling, based on a learner model, showing the 
-\textit{popular} items more often, etc).
+%Our research questions generalize to these broader settings: whenever a 
+%learner 
+%engages in comparative peer assessment, the supporting technology must design 
+%some principled approach to constructing the subsets of peer-submissions that 
+%will be shown (e.g. random sampling, based on a learner model, showing the 
+%\textit{popular} items more often, etc).
 
 
 \section{Related Work}
@@ -291,6 +294,38 @@ The fields include the item prompt, the student's \textit{first} answer choice,
 their accompanying explanation, the peer explanations shown on the review step, 
 the student's \textit{second} answer choice, and the peer explanation they 
 chose as most convincing (\verb|None| if they choose to ``stick to their own'').
+
+It should be noted that there is no credit associated with which explanation is 
+chosen in this TMPI platform (all points are attributed based on the 
+correctness of the answer choice on the first and second steps).
+After carefully looking at timestamp data, we observe that a large fraction of 
+students who choose to ``stick to their own'', spend as little as 5 seconds on 
+the review step.
+For this reason, we exclude these students' data, and build all rank scores 
+only based on students who explicitly choose a peer's explanation over their 
+own.
+
+After this first filtering step, we take the TMPI observations for each 
+question, and construct explanation pairs, as in figure 
+\ref{fig:make_pairs_a}.
+
+
+\begin{figure*}
+	\scalebox{0.5}{\includegraphics{img/make_pairs_a.png}}
+	\caption{
+	Example of student-item observations from a TMPI environment. 
+	Here, the student $s_{30}$ chose the correct \textbf{B} as the answer on 
+	their first attempt, and provided the explanation $e_{30}$ in the dataset 
+	for this question. 
+	Without providing feedback on whether this is the correct answer, the 
+	student is shown a subset of explanations from previous students for 
+	\textbf{B}, as well as for \textbf{A} (the most popular incorrect answer). 
+	The student decides to keep the same answer choice \textbf{B}, and 
+	inidcates that the explanation $e_7$ is the most convincing.
+	This is referred to as a \textit{Right}$->$\textit{Right} transition. 
+	}
+	\label{fig:make_pairs_a}
+\end{figure*}
 
 \begin{enumerate}
 
@@ -390,37 +425,10 @@ chose as most convincing (\verb|None| if they choose to ``stick to their own'').
 \end{enumerate}
 
 In order to evaluate these rank aggregation different scores, and address 
-\textbf{RQ1}, we employ a time-series based cross-validation scheme:
+our research question, we employ a time-series based cross-validation scheme:
 at each timestep, we calculate the aggregated argument \textit{convincingness} 
 scores from past students, and set out to predict: which arguments will be 
 chosen as more convincing from the pairs constructed for the current student?  
-
-\subsection{Choosing what to show}
-To address \textbf{RQ2} we propose a seperate binary classification task: will 
-the current student choose a peer's explanation as more convincing than their 
-own, or not?
-
-For the latter binary classification task, we also include \textit{surface 
-level} features as a baseline, including the word count of explanation that the 
-current student wrote; word counts of explanations that were shown on the 
-review step; the number of explanations shown that were much shorter, or much 
-longer than than the student's own explanation; and finally whether the 
-student's first answer is correct.
-
-Once these \textit{surface level} and \textit{convincingness} features are 
-calculated for each student explanation, related statistics are assembled as 
-well with respect to the \textit{shown} explanations at each time step (e.g. 
-maximum, minimum and mean \textbf{win rate} and \textbf{BT} scores of shown 
-explanations, etc).
-
-We build interpretable predictive models for this task, and inspect the 
-relative feature importances in order to address our research questions from 
-above.
-
-We experiment with classification models that are interpretable, but limit our 
-selection to the most linear (linear regression), to the most acceptably 
-non-linear (Random Forests).
-
 
 
 
@@ -689,3 +697,31 @@ share their learning traces with the research community.
 %the 
 %quality of their explanations, so as to emphasize the formative importance of 
 %the writing activity and promote engagement.
+
+
+%\subsection{Choosing what to show}
+%To address \textbf{RQ2} we propose a seperate binary classification task: will 
+%the current student choose a peer's explanation as more convincing than their 
+%own, or not?
+%
+%For the latter binary classification task, we also include \textit{surface 
+%	level} features as a baseline, including the word count of explanation that 
+%the 
+%current student wrote; word counts of explanations that were shown on the 
+%review step; the number of explanations shown that were much shorter, or much 
+%longer than than the student's own explanation; and finally whether the 
+%student's first answer is correct.
+%
+%Once these \textit{surface level} and \textit{convincingness} features are 
+%calculated for each student explanation, related statistics are assembled as 
+%well with respect to the \textit{shown} explanations at each time step (e.g. 
+%maximum, minimum and mean \textbf{win rate} and \textbf{BT} scores of shown 
+%explanations, etc).
+%
+%We build interpretable predictive models for this task, and inspect the 
+%relative feature importances in order to address our research questions from 
+%above.
+%
+%We experiment with classification models that are interpretable, but limit our 
+%selection to the most linear (linear regression), to the most acceptably 
+%non-linear (Random Forests).
