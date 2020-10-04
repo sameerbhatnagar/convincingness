@@ -407,8 +407,8 @@ def get_ranking_model_fit(pairs_train, df_train, rank_score_type):
         "rank_scores": ranks_dict,
     }
 
-    if rank_score_type == "crowd_BT":
-        results.update({"annotator_params": annotator_params})
+    # if rank_score_type == "crowd_BT":
+    #     results.update({"annotator_params": annotator_params})
     return results
 
 
@@ -506,6 +506,98 @@ def build_rankings_by_topic_over_time(topic, discipline, rank_score_type):
     return results
 
 
+def get_model_fit_by_batch(df_topic, pairs_df,rank_score_type):
+    """
+    find rank scores and accuracies using two-fold Validation
+    with interleaved batches of students, by transition type
+
+    Returns
+    =======
+    Tuple of dicts, where keys are transition type
+        batch_accuracies: dict
+        batch_rank_scores: dict
+    """
+    batch_rank_scores, batch_accuracies = {}, {}
+    for transition in ["rr", "wr", "rw", "ww"]:
+        df_transition = df_topic[df_topic["transition"] == transition].copy()
+        students = (
+            df_transition.sort_values("id")["user_token"].dropna().to_list()
+        )
+        if len(students) >= 10:
+            # make two batches of students, interleaved in time
+            student_batch1 = students[::2]
+            student_batch2 = [s for s in students if s not in student_batch1]
+            batch_rank_scores[transition], batch_accuracies[transition] = {}, {}
+            # print("\t{}".format(transition))
+            # get rankings for each batch and save
+            for sb, student_batch in zip(
+                ["batch1", "batch2"], [student_batch1, student_batch2]
+            ):
+                df_train_batch = df_transition[
+                    df_transition["user_token"].isin(student_batch)
+                ].copy()
+                pairs_train_batch = pairs_df[
+                    pairs_df["annotator"].isin(student_batch)
+                ].copy()
+                if pairs_train_batch.shape[0]>0:
+                    rb = get_ranking_model_fit(
+                        pairs_train=pairs_train_batch,
+                        df_train=df_topic,
+                        rank_score_type=rank_score_type,
+                    )
+                    # just keep the rank scores for each batch
+                    batch_rank_scores[transition][sb] = rb["rank_scores"]
+
+                    # test ability of rankings to predict winning argument in
+                    # other batch
+                    if sb == "batch1":
+                        other_batch = student_batch2
+                    else:
+                        other_batch = student_batch1
+                    pairs_test = pairs_df[
+                        pairs_df["annotator"].isin(other_batch)
+                    ].copy()
+                    pairs_test["a1_rank"] = pairs_test["a1_id"].map(
+                        rb["rank_scores"]
+                    )
+                    pairs_test["a2_rank"] = pairs_test["a2_id"].map(
+                        rb["rank_scores"]
+                    )
+
+                    # pairs with current student's argument must be dropped
+                    # as it is as yet unseen
+                    pairs_test_ = (
+                        pairs_test[["a1_rank", "a2_rank", "label"]].dropna().copy()
+                    )
+
+                    if pairs_test_.shape[0] > 0:
+                        # print(
+                        #     "\t\t {}:{} pairs, {} students".format(
+                        #         sb, pairs_test_.shape[0], len(student_batch)
+                        #     )
+                        # )
+                        # for each pair in held out pairs,
+                        # predict winner based on higher param
+                        pairs_test_["label_pred"] = pairs_test_.apply(
+                            lambda x: pairwise_predict(x), axis=1,
+                        )
+                        pairs_test_ = pairs_test_.dropna().copy()
+
+                        batch_accuracies[transition][sb] = {
+                            "n": pairs_test_.shape[0],
+                            "acc": accuracy_score(
+                                y_true=pairs_test_["label"],
+                                y_pred=pairs_test_["label_pred"],
+                            ),
+                            "transition": transition,
+                            "n_ties": pairs_test_[
+                                pairs_test_["a1_rank"] == pairs_test_["a2_rank"]
+                            ].shape[0],
+                        }
+    return batch_accuracies, batch_rank_scores
+
+
+
 def main(
     discipline: (
         "Discipline",
@@ -563,6 +655,12 @@ def main(
     Path(os.path.join(results_dir_discipline, "accuracies_by_batch")).mkdir(
         parents=True, exist_ok=True
     )
+    Path(os.path.join(results_dir_discipline, "accuracies_by_time")).mkdir(
+        parents=True, exist_ok=True
+    )
+    Path(os.path.join(results_dir_discipline, "rankings_by_time")).mkdir(
+        parents=True, exist_ok=True
+    )
     Path(os.path.join(results_dir_discipline, "annotator_params")).mkdir(
         parents=True, exist_ok=True
     )
@@ -578,148 +676,96 @@ def main(
     topics = [os.path.basename(fp)[:-4] for fp in all_files]
 
     topics_already_done = [
-        t[:-5] for t in os.listdir(os.path.join(results_dir_discipline, "rank_scores",))
+        t[:-5] for t in os.listdir(os.path.join(results_dir_discipline, "rankings_by_time",))
     ]
 
     topics = [t for t in topics if t not in topics_already_done]
 
     for i, topic in enumerate(topics):
         print("\t{}/{} {}".format(i, len(topics), topic))
+        # results only for all data on this topic/question
+
+        pairs_df, df_topic = get_topic_data(topic=topic, discipline=discipline)
+
+        print(
+            "\t {} pairs, {} students".format(pairs_df.shape[0], df_topic.shape[0])
+        )
 
         if time_series_validation_flag:
-            # results will come be calculated for each time step
-            results = build_rankings_by_topic_over_time(
-                topic=topic, discipline=discipline, rank_score_type=rank_score_type
-            )
+
+            accuracies_all,rank_scores_all=[],[]
+
+            steps = pairs_df["annotation_rank_by_time"].value_counts().shape[0]
+            for counter, (r, df_r) in enumerate(pairs_df.groupby("annotation_rank_by_time")):
+                if r % 20 == 0:
+                    print("\t\ttime step {}/{}".format(counter, steps,))
+
+                if r>=40:
+
+                    df_timestep=df_topic[df_topic["a_rank_by_time"]<=r]
+                    pairs_df_timestep = pairs_df[pairs_df["annotation_rank_by_time"] < r].copy()
+
+
+                    results = get_ranking_model_fit(
+                    df_train=df_timestep, pairs_train=pairs_df_timestep,rank_score_type=rank_score_type)
+
+                    rank_scores_all.append(results["rank_scores"])
+                    accuracies_all.append(results["accuracies"])
+
             fp = os.path.join(
-                results_dir_discipline, "accuracies_train", "{}.json".format(topic)
+                results_dir_discipline, "accuracies_by_time", "{}.json".format(topic)
             )
             with open(fp, "w+") as f:
-                json.dump(results["accuracies_train"], f, indent=2)
-        else:
-            # results only for all data on this topic/question
+                json.dump(accuracies_all, f, indent=2)
 
-            pairs_df, df_topic = get_topic_data(topic=topic, discipline=discipline)
-
-            print(
-                "\t {} pairs, {} students".format(pairs_df.shape[0], df_topic.shape[0])
+            fp = os.path.join(
+                results_dir_discipline, "rankings_by_time", "{}.json".format(topic)
             )
+            with open(fp, "w+") as f:
+                json.dump(rank_scores_all, f, indent=2)
 
+
+        else:
             results = get_ranking_model_fit(
                 pairs_train=pairs_df, df_train=df_topic, rank_score_type=rank_score_type
             )
 
-            batch_rank_scores, batch_accuracies = {}, {}
-            for transition in ["rr", "wr", "rw", "ww"]:
-                df_transition = df_topic[df_topic["transition"] == transition].copy()
-                students = (
-                    df_transition.sort_values("id")["user_token"].dropna().to_list()
-                )
-                if len(students) >= 10:
-                    # make two batches of students, interleaved in time
-                    student_batch1 = students[::2]
-                    student_batch2 = [s for s in students if s not in student_batch1]
-                    batch_rank_scores[transition], batch_accuracies[transition] = {}, {}
-                    print("\t{}".format(transition))
-                    # get rankings for each batch and save
-                    for sb, student_batch in zip(
-                        ["batch1", "batch2"], [student_batch1, student_batch2]
-                    ):
-                        df_train_batch = df_transition[
-                            df_transition["user_token"].isin(student_batch)
-                        ].copy()
-                        pairs_train_batch = pairs_df[
-                            pairs_df["annotator"].isin(student_batch)
-                        ].copy()
+            batch_accuracies, batch_rank_scores = get_model_fit_by_batch(
+            df_topic=df_topic, pairs_df=pairs_df,rank_score_type=rank_score_type)
 
-                        rb = get_ranking_model_fit(
-                            pairs_train=pairs_train_batch,
-                            df_train=df_topic,
-                            rank_score_type=rank_score_type,
-                        )
-                        # just keep the rank scores for each batch
-                        batch_rank_scores[transition][sb] = rb["rank_scores"]
+            # pairwise classification results
+            fp = os.path.join(results_dir_discipline, "accuracies", "{}.json".format(topic))
+            with open(fp, "w+") as f:
+                json.dump(results["accuracies"], f, indent=2)
 
-                        # test ability of rankings to predict winning argument in
-                        # other batch
-                        if sb == "batch1":
-                            other_batch = student_batch2
-                        else:
-                            other_batch = student_batch1
-                        pairs_test = pairs_df[
-                            pairs_df["annotator"].isin(other_batch)
-                        ].copy()
-                        pairs_test["a1_rank"] = pairs_test["a1_id"].map(
-                            rb["rank_scores"]
-                        )
-                        pairs_test["a2_rank"] = pairs_test["a2_id"].map(
-                            rb["rank_scores"]
-                        )
-
-                        # pairs with current student's argument must be dropped
-                        # as it is as yet unseen
-                        pairs_test_ = (
-                            pairs_test[["a1_rank", "a2_rank", "label"]].dropna().copy()
-                        )
-
-                        if pairs_test_.shape[0] > 0:
-                            print(
-                                "\t\t {}:{} pairs, {} students".format(
-                                    sb, pairs_test_.shape[0], len(student_batch)
-                                )
-                            )
-                            # for each pair in held out pairs,
-                            # predict winner based on higher param
-                            pairs_test_["label_pred"] = pairs_test_.apply(
-                                lambda x: pairwise_predict(x), axis=1,
-                            )
-                            pairs_test_ = pairs_test_.dropna().copy()
-
-                            batch_accuracies[transition][sb] = {
-                                "n": pairs_test_.shape[0],
-                                "acc": accuracy_score(
-                                    y_true=pairs_test_["label"],
-                                    y_pred=pairs_test_["label_pred"],
-                                ),
-                                "transition": transition,
-                                "n_ties": pairs_test_[
-                                    pairs_test_["a1_rank"] == pairs_test_["a2_rank"]
-                                ].shape[0],
-                            }
-
-        # pairwise classification results
-        fp = os.path.join(results_dir_discipline, "accuracies", "{}.json".format(topic))
-        with open(fp, "w+") as f:
-            json.dump(results["accuracies"], f, indent=2)
-
-        # rank scores
-        fp = os.path.join(
-            results_dir_discipline, "rank_scores", "{}.json".format(topic),
-        )
-        with open(fp, "w+") as f:
-            json.dump(results["rank_scores"], f, indent=2)
-
-        # rank_scores_by_batch
-        fp = os.path.join(
-            results_dir_discipline, "rank_scores_by_batch", "{}.json".format(topic),
-        )
-        with open(fp, "w+") as f:
-            json.dump(batch_rank_scores, f, indent=2)
-
-        # accuracies by batch
-        fp = os.path.join(
-            results_dir_discipline, "accuracies_by_batch", "{}.json".format(topic),
-        )
-        with open(fp, "w+") as f:
-            json.dump(batch_accuracies, f, indent=2)
-
-        # crowd_BT give annotator params as well
-        if rank_score_type == "crowd_BT":
+            # rank scores
             fp = os.path.join(
-                results_dir_discipline, "annotator_params", "{}.json".format(topic),
+                results_dir_discipline, "rank_scores", "{}.json".format(topic),
             )
             with open(fp, "w+") as f:
-                json.dump(results["annotator_params"], f, indent=2)
+                json.dump(results["rank_scores"], f, indent=2)
+
+            # rank_scores_by_batch
+            fp = os.path.join(
+                results_dir_discipline, "rank_scores_by_batch", "{}.json".format(topic),
+            )
+            with open(fp, "w+") as f:
+                json.dump(batch_rank_scores, f, indent=2)
+
+            # accuracies by batch
+            fp = os.path.join(
+                results_dir_discipline, "accuracies_by_batch", "{}.json".format(topic),
+            )
+            with open(fp, "w+") as f:
+                json.dump(batch_accuracies, f, indent=2)
+
+            # crowd_BT give annotator params as well
+            if rank_score_type == "crowd_BT":
+                fp = os.path.join(
+                    results_dir_discipline, "annotator_params", "{}.json".format(topic),
+                )
+                with open(fp, "w+") as f:
+                    json.dump(results["annotator_params"], f, indent=2)
 
     return
 
