@@ -311,18 +311,26 @@ question, and construct explanation pairs, as in figure
 
 
 \begin{figure*}
-	\scalebox{0.5}{\includegraphics{img/make_pairs_a.png}}
+	\scalebox{0.34}{\includegraphics{img/make_pairs_a.png}}
 	\caption{
 	Example of student-item observations from a TMPI environment. 
-	Here, the student $s_{30}$ chose the correct \textbf{B} as the answer on 
+	(a) Student $s_{30}$ chose the correct \textbf{B} as the answer on 
 	their first attempt, and provided the explanation $e_{30}$ in the dataset 
 	for this question. 
 	Without providing feedback on whether this is the correct answer, the 
 	student is shown a subset of explanations from previous students for 
 	\textbf{B}, as well as for \textbf{A} (the most popular incorrect answer). 
 	The student decides to keep the same answer choice \textbf{B}, and 
-	inidcates that the explanation $e_7$ is the most convincing.
-	This is referred to as a \textit{Right}$->$\textit{Right} transition. 
+	indcates that the explanation $e_25$ is the most convincing.
+	This is referred to as a \textit{Right}$->$\textit{Right} transition.
+	(b) This observation is transformed into 7 explanation pairs. The first 
+	pair is for the choice of $e_{25}$ over what the student themself, 
+	and the other six are for the choice of $e_{25}$ over the other shown 
+	explanations. 
+	The pairs are labelled as either having the left or right exlanation being 
+	more \textit{convincing}.
+	(c) This pairwise preference data is aggregated global ranked list, where 
+	each explanation is assigned a Rank Score. 
 	}
 	\label{fig:make_pairs_a}
 \end{figure*}
