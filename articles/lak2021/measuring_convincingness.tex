@@ -438,7 +438,11 @@ at each timestep, we calculate the aggregated argument \textit{convincingness}
 scores from past students, and set out to predict: which arguments will be 
 chosen as more convincing from the pairs constructed for the current student?  
 
-
+\begin{figure}
+	\scalebox{0.4}{\includegraphics{img/evaluate_rankings.png}}
+	\caption{Methodology for evaluation of rank scores}
+	\label{fig:evaluate_rankings}
+\end{figure}
 
 
 \section{Data}
@@ -509,7 +513,7 @@ spans different teachers at different colleges and universities in Canada.
 \end{figure}
 
 \begin{figure}
-	\scalebox{0.3}{\input{img/corr_by_batch.pgf}}
+	\scalebox{0.6}{\input{img/corr_by_batch.pgf}}
 	\caption{
 		Pearson correlation coefficient between different rank score types, 
 		derived from two independent groups of students, averaged over all 
@@ -546,10 +550,23 @@ spans different teachers at different colleges and universities in Canada.
 
 
 \section{Discussion}
+
+\begin{figure}
+	\scalebox{0.6}{\input{img/kendalltau_by_time.pgf}}
+	\caption{
+		Kendall Tau correlation ($\tau$) between explanation rankings at each 
+		normalized time step $\sigma_t$, and the final ranking after all 
+		students have answered $\sigma_{final}$, for different rank score types
+	}
+	\label{fig:kendalltau_by_time}
+\end{figure}
+
+
 \textbf{TO DO}
 
 
 \section{Limitations and Future Work}
+
 
 In many teaching contexts, however, teachers do not have the time to provide 
 feedback to every student explanation for every question item. 

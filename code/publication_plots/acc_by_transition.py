@@ -1,9 +1,9 @@
-import os, json
+import os, json, math
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-from scipy.stats import iqr
+from scipy.stats import iqr, kendalltau
 
 import spacy
 
@@ -25,7 +25,12 @@ RANK_SCORE_TYPES_RENAMED={
     "winrate":"WinRate",
     "BT":"BT"
 }
-
+RANK_SCORE_TYPE_COLORS={
+    "BT":"darkblue",
+    "crowd_BT":"steelblue",
+    "elo":"orange",
+    "winrate":"purple"
+}
 TRANSITION_COLORS = {
     "rr": "forestgreen",
     "rw": "gold",
@@ -476,7 +481,7 @@ def draw_corr_by_batch():
     width= np.diff(offsets).mean()
 
     plt.style.use("ggplot")
-    fig,ax=plt.subplots(figsize=(11,9))
+    fig,ax=plt.subplots(figsize=(6,4))
 
     for i,gr in enumerate(subx):
         dfg = df_table[df_table[subcat] == gr]
@@ -502,6 +507,107 @@ def draw_corr_by_batch():
     ax.legend()
     return fig
 
+def draw_kendalltau_by_time():
+    """
+    plot kendall tau between rankings at each normalized time step \sigma_t and
+    \sigma_final
+    """
+    thresh=0.05
+    discipline="Physics"
+    MAX_TIMESTEPS=100
+    rank_score_types=["BT","winrate","elo","crowd_BT"]
+
+    plt.style.use("ggplot")
+    fig,axs=plt.subplots(figsize=(6,4))
+    topic_files=os.listdir(
+        os.path.join(
+            RESULTS_DIR,
+            discipline,
+            "data"
+        )
+    )
+    topics = [t.replace(".csv","") for t in topic_files]
+
+    for r,rank_score_type in enumerate(rank_score_types):
+        print("{}".format(rank_score_type))
+
+        results_dir_discipline=os.path.join(
+            RESULTS_DIR,
+            discipline,
+            rank_score_type,
+            "rankings_by_time"
+        )
+        X=np.empty((len(topic_files),MAX_TIMESTEPS))
+        X[:]=np.nan
+
+        for i,topic in enumerate(topics):
+            # get rank scores
+            fp=os.path.join(
+                results_dir_discipline,
+                "{}.json".format(topic)
+            )
+            with open(fp,"r") as f:
+                ranks_dict_all=json.load(f)
+
+            # convert final rank scores to ranked list
+            final_ranking = [
+                k for k, v in sorted(
+                    ranks_dict_all[-1].items(),
+                    key=lambda x: x[1], reverse=True
+                )
+            ]
+            # scale to get ~100 time steps
+            t_index = [
+                math.floor(
+                    np.percentile(
+                        range(len(ranks_dict_all)),i
+                    )
+                ) for i in range(MAX_TIMESTEPS)
+            ]
+
+            # compile ktau's
+            for tp,t in enumerate(t_index):
+                ranks_dict=ranks_dict_all[t]
+                ranking = [
+                    k for k, v in sorted(
+                        ranks_dict.items(),
+                        key=lambda x: x[1], reverse=True
+                    )
+                ]
+
+                ranking_at_t=[a for a in ranking if a in final_ranking]
+                final_ranking=[a for a in final_ranking if a in ranking_at_t]
+                ktau,p=kendalltau(final_ranking,ranking_at_t)
+                if p<thresh:
+                    X[i,tp]=ktau
+
+        means,stds=[],[]
+        for t in range(MAX_TIMESTEPS):
+            m,s=X[:,t][~np.isnan(X[:,t])].mean(),X[:,t][~np.isnan(X[:,t])].std()
+            means.append(m)
+            stds.append(s)
+
+        axs.plot(
+            range(MAX_TIMESTEPS),
+            means,
+            label=RANK_SCORE_TYPES_RENAMED[rank_score_type],
+            color=RANK_SCORE_TYPE_COLORS[rank_score_type],
+        )
+        axs.fill_between(
+            x=range(MAX_TIMESTEPS),
+            y1=np.array(means)-np.array(stds),
+            y2=np.array(means)+np.array(stds),
+            color="lightgray",
+            alpha=0.4,
+        )
+    axs.legend()
+    axs.set(
+        xlabel='Percentile Rank of Time',
+        ylabel=r'Kendall $\tau$ $\sigma_t$ with $\sigma_{final}$'
+    )
+    return fig
+
+
 
 def main(
     figures: (
@@ -509,7 +615,7 @@ def main(
         "positional",
         None,
         str,
-        ["all","corr_plot","acc_by_batch","corr_by_batch"]
+        ["all","corr_plot","acc_by_batch","corr_by_batch","kendalltau_by_time"]
     )
 ):
     """
@@ -563,6 +669,17 @@ def main(
         )
         print(fp)
         fig.savefig(fp)
+
+    if figures=="all" or figures=="kendalltau_by_time":
+        ### Correlation between rank scores of independant batches of students
+        #  by transition for each rank_score_type
+        fig = draw_kendalltau_by_time()
+        fp = os.path.join(
+            BASE_DIR, "articles", "lak2021", "img", "kendalltau_by_time.pgf"
+        )
+        print(fp)
+        fig.savefig(fp)
+
 
 
 if __name__ == "__main__":
