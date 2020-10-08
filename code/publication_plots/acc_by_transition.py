@@ -400,7 +400,7 @@ def draw_acc_by_transition():
     offsets = (np.arange(len(subx))-np.arange(len(subx)).mean())/(len(subx)+tightness)
     width= np.diff(offsets).mean()
 
-    fig,ax = plt.subplots(figsize=(11,9))
+    fig,ax = plt.subplots(figsize=(6,4))
     for i,gr in enumerate(subx):
         dfg = df_table[df_table[subcat] == gr]
         ax.bar(
