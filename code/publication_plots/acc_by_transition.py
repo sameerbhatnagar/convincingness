@@ -17,19 +17,21 @@ TRANSITION_LABELS = {
     "ww": "Wrong -> Wrong",
 }
 
-RANK_SCORE_TYPES = ["crowd_BT", "BT","elo", "winrate","wc"]
+RANK_SCORE_TYPES = ["crowd_BT", "BT","elo", "winrate", "winrate_no_pairs","wc"]
 RANK_SCORE_TYPES_RENAMED={
     "crowd_BT":"CrowdBT",
     "wc":"Length",
     "elo":"Elo",
-    "winrate":"WinRate",
+    "winrate":"WinRate_pairs",
+    "winrate_no_pairs":"WinRate",
     "BT":"BT"
 }
 RANK_SCORE_TYPE_COLORS={
     "BT":"darkblue",
     "crowd_BT":"steelblue",
     "elo":"orange",
-    "winrate":"purple"
+    "winrate":"purple",
+    "winrate_no_pairs":"orchid"
 }
 TRANSITION_COLORS = {
     "rr": "forestgreen",
@@ -41,7 +43,7 @@ TRANSITION_COLORS = {
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # careful if dir names change
-RESULTS_DIR = os.path.join(BASE_DIR, "tmp", "measure_convincingness")
+RESULTS_DIR = os.path.join(BASE_DIR, "tmp", "measure_convincingness_max_pairs")
 
 
 
@@ -354,6 +356,7 @@ def draw_acc_by_transition():
             rank_score_type,
             "accuracies_by_batch"
         )
+        print(results_dir_discipline)
         topics=os.listdir(results_dir_discipline)
         for topic in topics:
             fp=os.path.join(results_dir_discipline,topic)
@@ -515,7 +518,7 @@ def draw_kendalltau_by_time():
     thresh=0.05
     discipline="Physics"
     MAX_TIMESTEPS=100
-    rank_score_types=["BT","winrate","elo","crowd_BT"]
+    rank_score_types=["BT","winrate","winrate_no_pairs","elo","crowd_BT"]
 
     plt.style.use("ggplot")
     fig,axs=plt.subplots(figsize=(6,4))

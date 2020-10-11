@@ -35,14 +35,13 @@ DROPPED_POS = ["PUNCT", "SPACE"]
 
 MIN_VOTES, MIN_SHOWN = 1, 8
 
-
 def prior_factory(key):
     return lambda: PRIORS[key]
 
 
 only_one_arg_pair = {}
 model = "argBT"
-RESULTS_DIR = os.path.join(data_loaders.BASE_DIR, "tmp", "measure_convincingness")
+RESULTS_DIR = os.path.join(data_loaders.BASE_DIR, "tmp", "measure_convincingness_max_pairs")
 MAX_ITERATIONS = 1500
 MIN_WORD_COUNT_DIFF = 5
 
@@ -232,7 +231,7 @@ def get_rankings_winrate(pairs_df):
     return sorted_arg_ids, ranks_dict
 
 
-def get_rankings_winrate_archive(df_train):
+def get_rankings_winrate_no_pairs(df_train):
     """
     Arguments:
     ----------
@@ -327,6 +326,10 @@ def get_ranking_model_fit(pairs_train, df_train, rank_score_type):
         # ranking = times_chosen/times_shown
         sorted_arg_ids, ranks_dict = get_rankings_winrate(pairs_df=pairs_train)
 
+    if rank_score_type == "winrate_no_pairs":
+        # ranking = times_chosen/times_shown
+        sorted_arg_ids, ranks_dict = get_rankings_winrate_no_pairs(df_train=df_train)
+
     elif rank_score_type == "wc":
         # ranking = num tokens
         sorted_arg_ids, ranks_dict = get_rankings_wc(df_train=df_train)
@@ -407,8 +410,8 @@ def get_ranking_model_fit(pairs_train, df_train, rank_score_type):
         "rank_scores": ranks_dict,
     }
 
-    # if rank_score_type == "crowd_BT":
-    #     results.update({"annotator_params": annotator_params})
+    if rank_score_type == "crowd_BT":
+        results.update({"annotator_params": annotator_params})
     return results
 
 
@@ -542,7 +545,7 @@ def get_model_fit_by_batch(df_topic, pairs_df,rank_score_type):
                 if pairs_train_batch.shape[0]>0:
                     rb = get_ranking_model_fit(
                         pairs_train=pairs_train_batch,
-                        df_train=df_topic,
+                        df_train=df_train_batch,
                         rank_score_type=rank_score_type,
                     )
                     # just keep the rank scores for each batch
@@ -611,7 +614,7 @@ def main(
         "positional",
         None,
         str,
-        ["BT", "elo", "crowd_BT", "winrate", "wc"],
+        ["BT", "elo", "crowd_BT", "winrate", "winrate_no_pairs", "wc"],
     ),
     largest_first: ("Largest Files First", "flag", "l", bool,),
     time_series_validation_flag: ("Time Series Validation", "flag", "t", bool,),
@@ -686,6 +689,8 @@ def main(
         # results only for all data on this topic/question
 
         pairs_df, df_topic = get_topic_data(topic=topic, discipline=discipline)
+
+        # pairs_df=pairs_df.sort_values("annotation_rank_by_time").groupby("#id").head(MAX_PAIR_OCCURENCES).copy()
 
         print(
             "\t {} pairs, {} students".format(pairs_df.shape[0], df_topic.shape[0])
@@ -765,7 +770,7 @@ def main(
                     results_dir_discipline, "annotator_params", "{}.json".format(topic),
                 )
                 with open(fp, "w+") as f:
-                    json.dump(results["annotator_params"], f, indent=2)
+                    json.dump(results.get("annotator_params"), f, indent=2)
 
     return
 
