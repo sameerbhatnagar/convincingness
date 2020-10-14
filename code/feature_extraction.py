@@ -7,9 +7,27 @@ import plac
 import datetime
 import data_loaders
 import pathlib
+import numpy as np
 
 from spacy.matcher import PhraseMatcher
 from spacy_readability import Readability
+
+from spacy.symbols import (
+    ADJ,
+    ADP,
+    ADV,
+    AUX,
+    CONJ,
+    CCONJ,
+    NOUN,
+    NUM,
+    PRON,
+    SCONJ,
+    SYM,
+    VERB,
+    X,
+)
+
 import pandas as pd
 from utils_scrape_openstax import OPENSTAX_TEXTBOOK_DISCIPLINES
 
@@ -19,6 +37,8 @@ from argBT import RESULTS_DIR, get_rankings_winrate, get_rankings_elo, get_topic
 
 nlp = spacy.load("en_core_web_sm")
 
+from spellchecker import SpellChecker
+
 DROPPED_POS = ["PUNCT", "SPACE"]
 
 # make sure this matches the calculations below
@@ -26,40 +46,92 @@ PRE_CALCULATED_FEATURES = {
     "surface": ["rationale_word_count",],
     "syntax": [],
     "readability": ["flesch_kincaid_grade_level", "flesch_kincaid_reading_ease",],
-    "lexical": ["num_equations", "num_keywords"],
+    "lexical": ["n_equations", "n_spelling_errors", "n_keywords"],
     "convincingness": ["convincingness_BT", "convincingness_baseline",],
     "semantic": [],
 }
 
+EQUATION_TAG = "EQUATION"
+EXPRESSION_TAG = "EXPRESSION"
+
+fp = os.path.join(
+    RESULTS_DIR, os.pardir, os.pardir, os.pardir, "all_questions_physics.csv"
+)
+df_q = pd.read_csv(fp)
+
+
+def get_topic_data_cleaned(topic, discipline):
+    """
+    get answers for question (topic), but clean up rationales by
+    replacing all expressions and equations with common tags
+    """
+
+    eqn_re = re.compile(r"([\w\/^\*\.\(\)+-]+\s?[=]\s?[\w\/^\*\.\(\)+-]+)")
+    expr_re = re.compile(r"([\w\/^\*\.\(\)+-]+\s?[+\*\-/]\s?[\w\/^\*\.\(\)+-]+)")
+
+    _, df = get_topic_data(topic=topic, discipline=discipline)
+    df["rationale"] = (
+        df["rationale"]
+        .fillna(" ")
+        .str.replace(eqn_re, EQUATION_TAG)
+        .str.replace(expr_re, EXPRESSION_TAG)
+    )
+    rationales = df[["rationale", "id"]].values
+    return rationales
+
 
 def extract_surface_features(topic, discipline):
 
-    _, df = get_topic_data(topic=topic, discipline=discipline)
-    df["rationale"] = df["rationale"].fillna(" ")
+    rationales = get_topic_data_cleaned(topic, discipline)
 
     surface_features = {}
 
-    rationales = df[["rationale", "id"]].values
-
-    surface_features["word_count"] = [
-        {arg_id: len([token for token in doc if token.pos not in DROPPED_POS])}
+    surface_features["n_words"] = {
+        arg_id: len([token for token in doc if token.pos_ not in DROPPED_POS])
         for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-    ]
+    }
 
-    surface_features["type_token_ratio"] = [
-        {
-            arg_id: len(
-                set([token.text for token in doc if token.pos not in DROPPED_POS])
+    surface_features["n_content_words"] = {
+        arg_id: len(
+            [
+                token
+                for token in doc
+                if token.pos_ not in DROPPED_POS and not token.is_stop
+            ]
+        )
+        for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+    }
+
+    surface_features["TTR"] = {
+        arg_id: len(set([token.text for token in doc if token.pos_ not in DROPPED_POS]))
+        / (len([token.text for token in doc if token.pos_ not in DROPPED_POS])+1)
+        for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+    }
+
+    surface_features["TTR_content"] = {
+        arg_id: len(
+            set(
+                [
+                    token.text
+                    for token in doc
+                    if token.pos_ not in DROPPED_POS and not token.is_stop
+                ]
             )
-            / len([token.text for token in doc if token.pos not in DROPPED_POS])
-        }
+        )
+        / (len(
+            [
+                token.text
+                for token in doc
+                if token.pos_ not in DROPPED_POS and not token.is_stop
+            ]
+        )+1)
         for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-    ]
+    }
 
-    surface_features["num_sents"] = [
-        {arg_id: len([sent for sent in doc.sents])}
+    surface_features["n_sents"] = {
+        arg_id: len([sent for sent in doc.sents])
         for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-    ]
+    }
 
     return surface_features
 
@@ -74,28 +146,46 @@ def on_match(matcher, doc, id, matches):
         print(doc[m[1] - 2 : m[2] + 2])
 
 
-def get_matcher(subject, nlp, on_match=None):
+def get_matcher(subject, nlp, topic=None, on_match=None):
     """
     given a subject and nlp object,
     return a phrase mather object that has patterns from
     OpenStax textbook of that discipline
     """
-    # print(subject)
-    books = OPENSTAX_TEXTBOOK_DISCIPLINES[subject]
-    keywords = {}
-    for book in books:
-        # print(book)
-        book_dir = os.path.join(
-            data_loaders.BASE_DIR, os.pardir, "textbooks", subject, book
-        )
-        files = os.listdir(book_dir)
-        keyword_files = [f for f in files if "key-terms" in f]
-        for fn in keyword_files:
-            # print(fn)
-            with open(os.path.join(book_dir, fn), "r") as f:
-                keywords.update(json.load(f))
 
-    keywords_sorted = list(keywords.keys())
+    if topic:
+        texts = df_q.loc[df_q["title"].str.startswith(topic), ["text", "expert_rationale"]].values
+        terms = []
+        for text in texts[0]:
+            if type(text)!=float:
+                doc = nlp(text)
+                terms.extend(
+                    [chunk.text for chunk in doc.noun_chunks]
+                    + [
+                        token.text
+                        for token in doc
+                        if not token.is_stop and token.pos_ not in DROPPED_POS
+                    ]
+                )
+        keywords_sorted = list(set(terms))
+
+    else:
+        books = OPENSTAX_TEXTBOOK_DISCIPLINES[subject]
+        keywords = {}
+        for book in books:
+            # print(book)
+            book_dir = os.path.join(
+                data_loaders.BASE_DIR, os.pardir, "textbooks", subject, book
+            )
+            files = os.listdir(book_dir)
+            keyword_files = [f for f in files if "key-terms" in f]
+            for fn in keyword_files:
+                # print(fn)
+                with open(os.path.join(book_dir, fn), "r") as f:
+                    keywords.update(json.load(f))
+
+        keywords_sorted = list(keywords.keys())
+
     keywords_sorted.sort()
 
     matcher = PhraseMatcher(nlp.vocab, attr="lower")
@@ -113,35 +203,50 @@ def extract_lexical_features(topic, discipline):
         - number of keywords
         - number of equations
     """
+
+    rationales = get_topic_data_cleaned(topic, discipline)
+
     lexical_features = {}
     matcher = get_matcher(subject=discipline, nlp=nlp)
     try:
-        lexical_features["num_keywords"] = list(
-            zip(
-                rationales["id"],
-                [
-                    len(
-                        set(
-                            [
-                                str(doc[start:end])
-                                for match_id, start, end in matcher(doc)
-                            ]
-                        )
-                    )
-                    for doc in nlp.pipe(rationales["rationale"], batch_size=50)
-                ],
+        lexical_features["n_keyterms"] = {
+            arg_id: len(
+                set([str(doc[start:end]) for match_id, start, end in matcher(doc)])
             )
-        )
+            for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+        }
+
     except TypeError:
         pass
 
-    eqn_re = re.compile(r"([\w\/^\*\.+-]+\s?=\s?[\w\/^\*\.+-]+)")
-    lexical_features["num_equations"] = list(
-        zip(
-            rationales["id"],
-            pd.Series(rationales["rationale"]).str.count(eqn_re).to_list(),
+    matcher_prompt = get_matcher(subject=discipline, topic=topic, nlp=nlp)
+    lexical_features["n_prompt_terms"] = {
+        arg_id: len(
+            set([str(doc[start:end]) for match_id, start, end in matcher_prompt(doc)])
         )
-    )
+        for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+    }
+
+    lexical_features["n_equations"] = {
+        arg_id: len(
+            [
+                token.text
+                for token in doc
+                if token.text == EQUATION_TAG or token.text == EXPRESSION_TAG
+            ]
+        )
+        for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+    }
+
+    spell = SpellChecker()
+    lexical_features["n_spelling_errors"] = {
+        arg_id: len(
+            spell.unknown(
+                [token.text for token in doc if token.pos_ not in DROPPED_POS]
+            )
+        )
+        for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+    }
 
     return lexical_features
 
@@ -154,36 +259,33 @@ def extract_syntactic_features(topic, discipline):
         - num_verbs
         - num_conj
     """
-    _, df = get_topic_data(topic=topic, discipline=discipline)
-    df["rationale"] = df["rationale"].fillna(" ")
-    rationales = df[["rationale", "id"]].values
-    
+    rationales = get_topic_data_cleaned(topic, discipline)
+
     syntactic_features = {}
 
-    pos_tags = [
-        "ADJ",
-        "ADP",
-        "ADV",
-        "AUX",
-        "CONJ",
-        "CCONJ",
-        "NOUN",
-        "NUM",
-        "PRON",
-        "PUNCT",
-        "SCONJ",
-        "SYM",
-        "VERB",
-        "X",
-        "SPACE",
-    ]
-    for pos_tag in pos_tags:
-        feature_name="num_{}".format(pos_tag)
+    POS_TAGS = [ADJ, ADP, ADV, AUX, CONJ, CCONJ, NOUN, NUM, PRON, SCONJ, SYM, VERB, X]
+    for pos_tag in POS_TAGS:
+        feature_name = "n_{}".format(pos_tag)
 
-        syntactic_features[feature_name] = [
-            {arg_id: len([token for token in doc if token.pos_ == pos_tag])}
+        syntactic_features[feature_name] = {
+            arg_id: len([token for token in doc if token.pos == pos_tag])
             for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-        ]
+        }
+
+    syntactic_features["n_negations"] = {
+        arg_id: len([token for token in doc if token.dep_ == "neg"])
+        for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+    }
+
+    syntactic_features["n_VERB_mod"] = {
+        arg_id: len([token for token in doc if token.tag_ == "MD"])
+        for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+    }
+
+    syntactic_features["n_PRON_pers"] = {
+        arg_id: len([token for token in doc if token.tag_ == "PRP"])
+        for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+    }
 
     return syntactic_features
 
@@ -199,9 +301,7 @@ def extract_readability_features(topic, discipline):
         - coleman_liau_index
     """
 
-    _, df = get_topic_data(topic=topic, discipline=discipline)
-    df["rationale"] = df["rationale"].fillna(" ")
-    rationales = df[["rationale", "id"]].values
+    rationales = get_topic_data_cleaned(topic, discipline)
 
     read = Readability()
     # nlp.add_pipe(read, last=True)
@@ -209,18 +309,18 @@ def extract_readability_features(topic, discipline):
     readability_features_list = [
         ("flesch_kincaid_grade_level"),
         ("flesch_kincaid_reading_ease"),
-        # ("dale_chall"),
-        # ("automated_readability_index"),
-        # ("coleman_liau_index"),
+        ("dale_chall"),
+        ("automated_readability_index"),
+        ("coleman_liau_index"),
     ]
 
     readability_features = {}
 
     for f in readability_features_list:
-        readability_features[f] = [
-            {arg_id: round(getattr(doc._, f), 3)}
+        readability_features[f] = {
+            arg_id: round(getattr(doc._, f), 3)
             for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-        ]
+        }
 
     return readability_features
 
@@ -303,9 +403,7 @@ def extract_features_and_save(discipline, topic, feature_type):
     elif feature_type == "readability":
         features = extract_readability_features(topic=topic, discipline=discipline)
     elif feature_type == "lexical":
-        features = extract_lexical_features(
-            df_answers[["id", "rationale"]], nlp=nlp, subject=subject,
-        )
+        features = extract_lexical_features(topic=topic, discipline=discipline)
     elif feature_type == "convincingness":
         features = extract_convincingness_features(topic=topic, discipline=subject)
     elif feature_type == "surface":
@@ -323,11 +421,7 @@ def get_features(topic, discipline, feature_type):
 
     # TO DO: "lexical"
     if feature_type == "all":
-        feature_types = [
-            "surface",
-            "convincingness",
-            "syntax",
-        ]  # "readability"]
+        feature_types = ["surface", "lexical", "syntax", "readability"]
     else:
         feature_types = [feature_type]
 
@@ -348,7 +442,7 @@ def get_features(topic, discipline, feature_type):
     return df_answers
 
 
-def append_features(df, feature_types_included, timestep=None):
+def append_features(topic, discipline, feature_types_included, timestep=None):
     """
     Arguments:
     =========
@@ -362,14 +456,12 @@ def append_features(df, feature_types_included, timestep=None):
     """
     from argBT import get_data_dir
 
-    discipline = df["discipline"].value_counts().head(1).index.values[0]
     data_dir_discipline = get_data_dir(discipline)
-    topic = df["topic"].value_counts().head(1).index.values[0]
+
+    _, df = get_topic_data(topic, discipline)
 
     # append columns with pre-calculated features
-    features_dir = os.path.join(
-        data_dir_discipline + "_with_features", topic + "_features"
-    )
+    features_dir = os.path.join(RESULTS_DIR, discipline, "data_with_features")
     if timestep:
         # get the other features normally
         feature_types_included = [
@@ -388,7 +480,7 @@ def append_features(df, feature_types_included, timestep=None):
 
     for feature_type in feature_types_included:
         feature_type_fpath = os.path.join(
-            features_dir, topic + "_" + feature_type + ".json"
+            features_dir, feature_type, "{}.json".format(topic)
         )
         with open(feature_type_fpath, "r") as f:
             features_json = json.load(f)
@@ -417,7 +509,7 @@ def main(
         "positional",
         None,
         str,
-        ["all", "surface", "readability", "syntax"],
+        ["all", "surface", "readability", "lexical", "syntax"],
     ),
     largest_first: ("Largest Files First", "flag", "l", bool,),
 ):
@@ -453,9 +545,6 @@ def main(
     for t, topic in enumerate(topics_to_do):
 
         print("{}/{}: {}".format(t, len(topics_to_do), topic))
-        df_topic = pd.read_csv(
-            os.path.join(data_dir_discipline, "{}.csv".format(topic))
-        )
 
         df_topic = get_features(
             topic=topic, discipline=discipline, feature_type=feature_type,

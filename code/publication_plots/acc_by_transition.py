@@ -17,9 +17,10 @@ TRANSITION_LABELS = {
     "ww": "Wrong -> Wrong",
 }
 
-RANK_SCORE_TYPES = ["crowd_BT", "BT","elo", "winrate", "winrate_no_pairs","wc"]
+RANK_SCORE_TYPES = ["crowd_BT","crowdBT_filtered", "BT","elo", "winrate", "winrate_no_pairs","wc"]
 RANK_SCORE_TYPES_RENAMED={
     "crowd_BT":"CrowdBT",
+    "crowdBT_filtered":"CrowdBT_f",
     "wc":"Length",
     "elo":"Elo",
     "winrate":"WinRate_pairs",
@@ -31,7 +32,8 @@ RANK_SCORE_TYPE_COLORS={
     "crowd_BT":"steelblue",
     "elo":"orange",
     "winrate":"purple",
-    "winrate_no_pairs":"orchid"
+    "winrate_no_pairs":"orchid",
+    "crowdBT_filtered":"cornflowerblue"
 }
 TRANSITION_COLORS = {
     "rr": "forestgreen",

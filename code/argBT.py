@@ -69,7 +69,7 @@ def get_rankings_wc(df_train):
     rationales = df_train[["rationale", "id"]].values
     ranks_dict = {
         "arg{}".format(arg_id): len(
-            [token for token in doc if token.pos not in DROPPED_POS]
+            [token for token in doc if token.pos_ not in DROPPED_POS]
         )
         for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
     }
@@ -140,6 +140,25 @@ def get_rankings_crowdBT(pairs_train):
 
     return sorted_arg_ids, ranks_dict, annotator_params
 
+
+def get_rankings_crowdBT_filtered(pairs_train):
+    """
+    recalculate argument strengths after filtering out least reliable annotators (>50th percentile)
+    """
+    sorted_arg_ids, ranks_dict, annotator_params = get_rankings_crowdBT(pairs_train)
+    thresh=np.percentile(list(annotator_params.values()),50)
+
+    trustworthy=[
+        a for a,v in annotator_params.items()
+        if v > thresh
+    ]
+    pairs_train_trustworthy = pairs_train[
+        (pairs_train["annotator"].isin(trustworthy))
+    ].copy()
+
+    sorted_arg_ids, ranks_dict, annotator_params = get_rankings_crowdBT(pairs_train_trustworthy)
+
+    return sorted_arg_ids, ranks_dict, annotator_params
 
 def get_rankings_BT(pairs_train):
     """
@@ -337,6 +356,11 @@ def get_ranking_model_fit(pairs_train, df_train, rank_score_type):
     elif rank_score_type == "crowd_BT":
         # ranking + annotator params based on crowd_BT
         sorted_arg_ids, ranks_dict, annotator_params = get_rankings_crowdBT(
+            pairs_train=pairs_train
+        )
+    elif rank_score_type == "crowdBT_filtered":
+        # rankings after filtering out bottom 10 percentile annotators
+        sorted_arg_ids, ranks_dict, annotator_params = get_rankings_crowdBT_filtered(
             pairs_train=pairs_train
         )
 
@@ -614,7 +638,7 @@ def main(
         "positional",
         None,
         str,
-        ["BT", "elo", "crowd_BT", "winrate", "winrate_no_pairs", "wc"],
+        ["BT", "elo", "crowd_BT", "crowdBT_filtered","winrate", "winrate_no_pairs", "wc"],
     ),
     largest_first: ("Largest Files First", "flag", "l", bool,),
     time_series_validation_flag: ("Time Series Validation", "flag", "t", bool,),
@@ -679,7 +703,7 @@ def main(
     topics = [os.path.basename(fp)[:-4] for fp in all_files]
 
     topics_already_done = [
-        t[:-5] for t in os.listdir(os.path.join(results_dir_discipline, "rankings_by_time",))
+        t[:-5] for t in os.listdir(os.path.join(results_dir_discipline, "rank_scores",))
     ]
 
     topics = [t for t in topics if t not in topics_already_done]
