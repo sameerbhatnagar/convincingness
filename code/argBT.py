@@ -35,16 +35,22 @@ DROPPED_POS = ["PUNCT", "SPACE"]
 
 MIN_VOTES, MIN_SHOWN = 1, 8
 
+
 def prior_factory(key):
     return lambda: PRIORS[key]
 
 
 only_one_arg_pair = {}
 model = "argBT"
-RESULTS_DIR = os.path.join(data_loaders.BASE_DIR, "tmp", "measure_convincingness_max_pairs")
+RESULTS_DIR = os.path.join(
+    data_loaders.BASE_DIR, "tmp", "measure_convincingness_max_pairs"
+)
 MAX_ITERATIONS = 1500
 MIN_WORD_COUNT_DIFF = 5
-
+TRANSITIONS = {
+    "Ethics": ["same_ans", "switch_ans"],
+    "Physics": ["rr", "wr", "rw", "ww"],
+}
 
 # http://vene.ro/blog/kemeny-young-optimal-rank-aggregation-in-python.html
 def kendalltau_dist(rank_a, rank_b):
@@ -146,19 +152,19 @@ def get_rankings_crowdBT_filtered(pairs_train):
     recalculate argument strengths after filtering out least reliable annotators (>50th percentile)
     """
     sorted_arg_ids, ranks_dict, annotator_params = get_rankings_crowdBT(pairs_train)
-    thresh=np.percentile(list(annotator_params.values()),50)
+    thresh = np.percentile(list(annotator_params.values()), 50)
 
-    trustworthy=[
-        a for a,v in annotator_params.items()
-        if v > thresh
-    ]
+    trustworthy = [a for a, v in annotator_params.items() if v > thresh]
     pairs_train_trustworthy = pairs_train[
         (pairs_train["annotator"].isin(trustworthy))
     ].copy()
 
-    sorted_arg_ids, ranks_dict, annotator_params = get_rankings_crowdBT(pairs_train_trustworthy)
+    sorted_arg_ids, ranks_dict, annotator_params = get_rankings_crowdBT(
+        pairs_train_trustworthy
+    )
 
     return sorted_arg_ids, ranks_dict, annotator_params
+
 
 def get_rankings_BT(pairs_train):
     """
@@ -241,7 +247,9 @@ def get_rankings_winrate(pairs_df):
     ranks_dict = ((times_chosen + MIN_VOTES) / (times_shown + MIN_SHOWN)).to_dict()
 
     # need to add entries for rationales never shown
-    never_chosen = [r for r in times_shown.index.to_list() if r not in times_chosen.index.to_list()]
+    never_chosen = [
+        r for r in times_shown.index.to_list() if r not in times_chosen.index.to_list()
+    ]
     ranks_dict.update({r: MIN_VOTES / MIN_SHOWN for r in never_chosen})
 
     sorted_arg_ids = [
@@ -335,7 +343,7 @@ def get_topic_data(topic, discipline):
     return pairs_df, df_topic
 
 
-def get_ranking_model_fit(pairs_train, df_train, rank_score_type):
+def get_ranking_model_fit(pairs_train, df_train, rank_score_type, discipline):
     """
     calculate rankings based on specified type, and run pairwise prediction
     on training pairs
@@ -422,7 +430,7 @@ def get_ranking_model_fit(pairs_train, df_train, rank_score_type):
                     )
                 ].shape[0],
             }
-            for transition in ["rr", "rw", "wr", "ww"]
+            for transition in TRANSITIONS[discipline]
         ],
         "n_ties": pairs_train[pairs_train["a1_rank"] == pairs_train["a2_rank"]].shape[
             0
@@ -472,7 +480,9 @@ def build_rankings_by_topic_over_time(topic, discipline, rank_score_type):
 
         if pairs_train.shape[0] > 0 and len(students) > 10:
 
-            results = get_ranking_model_fit(pairs_train, df_train, rank_score_type)
+            results = get_ranking_model_fit(
+                pairs_train, df_train, rank_score_type, discipline
+            )
 
             results["accuracies"].update(
                 {"transition": transition, "annotator": annotator, "r": r,}
@@ -533,7 +543,7 @@ def build_rankings_by_topic_over_time(topic, discipline, rank_score_type):
     return results
 
 
-def get_model_fit_by_batch(df_topic, pairs_df,rank_score_type):
+def get_model_fit_by_batch(df_topic, pairs_df, rank_score_type,discipline):
     """
     find rank scores and accuracies using two-fold Validation
     with interleaved batches of students, by transition type
@@ -545,11 +555,10 @@ def get_model_fit_by_batch(df_topic, pairs_df,rank_score_type):
         batch_rank_scores: dict
     """
     batch_rank_scores, batch_accuracies = {}, {}
-    for transition in ["rr", "wr", "rw", "ww"]:
+
+    for transition in TRANSITIONS[discipline]:
         df_transition = df_topic[df_topic["transition"] == transition].copy()
-        students = (
-            df_transition.sort_values("id")["user_token"].dropna().to_list()
-        )
+        students = df_transition.sort_values("id")["user_token"].dropna().to_list()
         if len(students) >= 10:
             # make two batches of students, interleaved in time
             student_batch1 = students[::2]
@@ -566,11 +575,12 @@ def get_model_fit_by_batch(df_topic, pairs_df,rank_score_type):
                 pairs_train_batch = pairs_df[
                     pairs_df["annotator"].isin(student_batch)
                 ].copy()
-                if pairs_train_batch.shape[0]>0:
+                if pairs_train_batch.shape[0] > 0:
                     rb = get_ranking_model_fit(
                         pairs_train=pairs_train_batch,
                         df_train=df_train_batch,
                         rank_score_type=rank_score_type,
+                        discipline=discipline,
                     )
                     # just keep the rank scores for each batch
                     batch_rank_scores[transition][sb] = rb["rank_scores"]
@@ -584,12 +594,8 @@ def get_model_fit_by_batch(df_topic, pairs_df,rank_score_type):
                     pairs_test = pairs_df[
                         pairs_df["annotator"].isin(other_batch)
                     ].copy()
-                    pairs_test["a1_rank"] = pairs_test["a1_id"].map(
-                        rb["rank_scores"]
-                    )
-                    pairs_test["a2_rank"] = pairs_test["a2_id"].map(
-                        rb["rank_scores"]
-                    )
+                    pairs_test["a1_rank"] = pairs_test["a1_id"].map(rb["rank_scores"])
+                    pairs_test["a2_rank"] = pairs_test["a2_id"].map(rb["rank_scores"])
 
                     # pairs with current student's argument must be dropped
                     # as it is as yet unseen
@@ -624,21 +630,28 @@ def get_model_fit_by_batch(df_topic, pairs_df,rank_score_type):
     return batch_accuracies, batch_rank_scores
 
 
-
 def main(
     discipline: (
         "Discipline",
         "positional",
         None,
         str,
-        ["Physics", "Biology", "Chemistry"],
+        ["Physics", "Biology", "Chemistry", "Ethics"],
     ),
     rank_score_type: (
         "Rank Score Type",
         "positional",
         None,
         str,
-        ["BT", "elo", "crowd_BT", "crowdBT_filtered","winrate", "winrate_no_pairs", "wc"],
+        [
+            "BT",
+            "elo",
+            "crowd_BT",
+            "crowdBT_filtered",
+            "winrate",
+            "winrate_no_pairs",
+            "wc",
+        ],
     ),
     largest_first: ("Largest Files First", "flag", "l", bool,),
     time_series_validation_flag: ("Time Series Validation", "flag", "t", bool,),
@@ -716,27 +729,32 @@ def main(
 
         # pairs_df=pairs_df.sort_values("annotation_rank_by_time").groupby("#id").head(MAX_PAIR_OCCURENCES).copy()
 
-        print(
-            "\t {} pairs, {} students".format(pairs_df.shape[0], df_topic.shape[0])
-        )
+        print("\t {} pairs, {} students".format(pairs_df.shape[0], df_topic.shape[0]))
 
         if time_series_validation_flag:
 
-            accuracies_all,rank_scores_all=[],[]
+            accuracies_all, rank_scores_all = [], []
 
             steps = pairs_df["annotation_rank_by_time"].value_counts().shape[0]
-            for counter, (r, df_r) in enumerate(pairs_df.groupby("annotation_rank_by_time")):
+            for counter, (r, df_r) in enumerate(
+                pairs_df.groupby("annotation_rank_by_time")
+            ):
                 if r % 20 == 0:
                     print("\t\ttime step {}/{}".format(counter, steps,))
 
-                if r>=40:
+                if r >= 40:
 
-                    df_timestep=df_topic[df_topic["a_rank_by_time"]<=r]
-                    pairs_df_timestep = pairs_df[pairs_df["annotation_rank_by_time"] < r].copy()
-
+                    df_timestep = df_topic[df_topic["a_rank_by_time"] <= r]
+                    pairs_df_timestep = pairs_df[
+                        pairs_df["annotation_rank_by_time"] < r
+                    ].copy()
 
                     results = get_ranking_model_fit(
-                    df_train=df_timestep, pairs_train=pairs_df_timestep,rank_score_type=rank_score_type)
+                        df_train=df_timestep,
+                        pairs_train=pairs_df_timestep,
+                        rank_score_type=rank_score_type,
+                        discipline=discipline,
+                    )
 
                     rank_scores_all.append(results["rank_scores"])
                     accuracies_all.append(results["accuracies"])
@@ -753,17 +771,25 @@ def main(
             with open(fp, "w+") as f:
                 json.dump(rank_scores_all, f, indent=2)
 
-
         else:
             results = get_ranking_model_fit(
-                pairs_train=pairs_df, df_train=df_topic, rank_score_type=rank_score_type
+                pairs_train=pairs_df,
+                df_train=df_topic,
+                rank_score_type=rank_score_type,
+                discipline=discipline,
             )
 
             batch_accuracies, batch_rank_scores = get_model_fit_by_batch(
-            df_topic=df_topic, pairs_df=pairs_df,rank_score_type=rank_score_type)
+                df_topic=df_topic,
+                pairs_df=pairs_df,
+                rank_score_type=rank_score_type,
+                discipline=discipline,
+            )
 
             # pairwise classification results
-            fp = os.path.join(results_dir_discipline, "accuracies", "{}.json".format(topic))
+            fp = os.path.join(
+                results_dir_discipline, "accuracies", "{}.json".format(topic)
+            )
             with open(fp, "w+") as f:
                 json.dump(results["accuracies"], f, indent=2)
 

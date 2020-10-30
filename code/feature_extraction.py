@@ -71,12 +71,101 @@ def clean_text(text):
     return text
 
 
-def get_questions_df():
-    fp = os.path.join(
-        RESULTS_DIR, os.pardir, os.pardir, os.pardir, "all_questions_physics.csv"
-    )
-    df_q = pd.read_csv(fp)
+def get_questions_df(discipline):
+
+    if discipline == "Physics":
+        fp = os.path.join(
+            RESULTS_DIR, os.pardir, os.pardir, os.pardir, "all_questions_physics.csv"
+        )
+        df_q = pd.read_csv(fp)
+
+    elif discipline == "Ethics":
+
+        data_dir = os.path.join(
+            RESULTS_DIR, os.pardir, os.pardir, os.pardir, "data_harvardx"
+        )
+
+        fp=os.path.join(data_dir,"dalite_20161101.csv")
+        df=pd.read_csv(fp)
+        df_q1=df[
+            ["assignment_id","question_id","question_text"]
+        ].drop_duplicates(["assignment_id","question_id"])
+
+        files = [
+            f
+            for f in os.listdir(os.path.join(data_dir, "video-text"))
+            if not f.startswith(".") and "post" not in f
+        ]
+        results = []
+        for fn in files:
+            d = {}
+            d["assignment_id"] = fn.replace(".txt", "").split("_")[0]
+            fp = os.path.join(data_dir, "video-text", fn)
+            keyname = "text"
+            with open(fp, "r") as f:
+                d[keyname] = f.read()
+            results.append(d)
+
+        df_q = pd.DataFrame(results)
+
+        files = [
+            f
+            for f in os.listdir(os.path.join(data_dir, "video-text"))
+            if not f.startswith(".") and "post" in f
+        ]
+        results = []
+        for fn in files:
+            d = {}
+            d["assignment_id"] = fn.replace(".txt", "").split("_")[0]
+            fp = os.path.join(data_dir, "video-text", fn)
+            keyname = "expert_rationale"
+            with open(fp, "r") as f:
+                d[keyname] = f.read()
+            results.append(d)
+
+        df_q = df_q.merge(pd.DataFrame(results), on="assignment_id").sort_values(
+            "assignment_id"
+        )
+        df_q["text"] = (
+            df_q["text"]
+            .str.replace("\[MUSIC\]", "")
+            .str.replace("\[...\]", "")
+            .str.replace("SPEAKER: ", "")
+            .str.replace("SPEAKER 1: ", "")
+            .str.replace("PROFESSOR: ", "")
+            .str.replace("\[Music\]", "")
+        )
+
+        df_q["expert_rationale"] = (
+            df_q["expert_rationale"]
+            .str.replace("MICHAEL SANDEL: ", "")
+            .str.replace("MICHEAL SANDEL: ", "")
+            .str.replace("MICHAEL J. SANDEL: ", "")
+            .str.replace("PROF. Michael Sandel: ", "")
+            .str.replace("Professor Sandel: ", "")
+            .str.replace("PROFESSOR: ", "")
+            .str.replace("SPEAKER 1: ", "")
+            .str.replace("SPEAKER: ", "")
+        )
+
+        df_q = df_q.merge(df_q1, on="assignment_id", how="outer")
+        df_q["text"] = (
+            df_q["text"].astype(str) + " " + df_q["question_text"].astype(str)
+        )
+
+        df_q.loc[df_q["question_text"].isna(),"question_text"]=\
+        df_q.loc[df_q["question_text"].isna(),"text"]
+        df_q["question_id"]=df_q["question_id"].fillna(0).astype(int)
+
+        df_q["topic"] = (
+            df_q["question_text"].str.strip("[?.,]").apply(lambda x: max(x.split(), key=len))
+        )
+        df_q["title"] = df_q["question_id"].astype(str) + "_" + df_q["topic"]
+
+        df_q=df_q.fillna(" ")
+
     df_q["text"] = df_q["text"].apply(clean_text)
+    df_q["expert_rationale"] = df_q["expert_rationale"].apply(clean_text)
     return df_q
 
 
@@ -178,7 +267,7 @@ def get_matcher(subject, nlp, topic=None, on_match=None):
     OpenStax textbook of that discipline
     """
 
-    df_q = get_questions_df()
+    df_q = get_questions_df(discipline=subject)
 
     if topic:
         texts = df_q.loc[
@@ -388,7 +477,7 @@ def extract_semantic_features(topic, discipline):
     feature_type = "semantic"
     semantic_features = {}
 
-    df_q = get_questions_df()
+    df_q = get_questions_df(discipline=discipline)
     texts = df_q.loc[
         df_q["title"].str.startswith(topic), ["text", "expert_rationale"]
     ].values
@@ -536,7 +625,7 @@ def main(
         "positional",
         None,
         str,
-        ["Physics", "Biology", "Chemistry"],
+        ["Physics", "Biology", "Chemistry", "Ethics"],
     ),
     feature_type: (
         "Feature Type",

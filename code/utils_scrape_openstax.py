@@ -1,6 +1,7 @@
 import os
 import codecs
 import json
+import plac
 from requests import get
 from requests.exceptions import RequestException
 from contextlib import closing
@@ -17,6 +18,7 @@ OPENSTAX_TEXTBOOK_DISCIPLINES = {
         "university-physics-volume-1",
     ],
     "Statistics": ["introductory-statistics"],
+    "Ethics":["business-ethics"],
 }
 
 
@@ -118,33 +120,45 @@ def write_text_to_file(l, textbook_dir, base_url):
     return
 
 
-def scrape_textbooks():
+def scrape_textbooks(discipline: (
+    "Discipline",
+    "positional",
+    None,
+    str,
+    ["Physics", "Biology", "Chemistry", "Ethics"],
+),):
+    print(discipline)
+    textbook_names=OPENSTAX_TEXTBOOK_DISCIPLINES[discipline]
 
-    for discipline, textbook_names in OPENSTAX_TEXTBOOK_DISCIPLINES.items():
-        print(discipline)
-        for textbook_name in textbook_names:
-            textbook_dir = os.path.join(
-                data_loaders.BASE_DIR,
-                os.pardir,
-                "textbooks",
-                discipline,
-                textbook_name,
-            )
-            if not os.path.exists(textbook_dir):
-                os.makedirs(textbook_dir)
-            print(textbook_name)
+    for textbook_name in textbook_names:
+        textbook_dir = os.path.join(
+            data_loaders.BASE_DIR,
+            os.pardir,
+            "textbooks",
+            discipline,
+            textbook_name,
+        )
+        if not os.path.exists(textbook_dir):
+            os.makedirs(textbook_dir)
+        print(textbook_name)
 
-            intro_url = (
-                "https://openstax.org/books/"
-                + textbook_name
-                + "/pages/1-introduction"
-            )
-            base_url = intro_url[:-14]
-            raw_html = simple_get(url=intro_url)
-            html = BeautifulSoup(raw_html, "html.parser")
-            links = [l.get("href") for l in html.select("a")][7:]
-            for l in links:
-                if not os.path.exists(os.path.join(textbook_dir, l + ".txt")):
-                    write_text_to_file(l, textbook_dir, base_url)
+        intro_url = (
+            "https://openstax.org/books/"
+            + textbook_name
+            + "/pages/1-introduction"
+        )
+        base_url = intro_url[:-14]
+        raw_html = simple_get(url=intro_url)
+        html = BeautifulSoup(raw_html, "html.parser")
+        links = [l.get("href") for l in html.select("a")][7:]
+        for l in links:
+            if not os.path.exists(os.path.join(textbook_dir, l + ".txt")):
+                write_text_to_file(l, textbook_dir, base_url)
+
 
     return
+
+
+if __name__ == "__main__":
+
+    plac.call(scrape_textbooks)
