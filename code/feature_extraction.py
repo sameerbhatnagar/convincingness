@@ -35,7 +35,7 @@ from utils_scrape_openstax import OPENSTAX_TEXTBOOK_DISCIPLINES
 
 from make_pairs import make_pairs_by_topic, filter_out_stick_to_own
 
-from argBT import RESULTS_DIR, get_rankings_winrate, get_rankings_elo, get_topic_data
+from argBT import get_rankings_winrate, get_rankings_elo, get_topic_data
 
 nlp = spacy.load("en_core_web_md", disable=["ner"])
 
@@ -582,9 +582,6 @@ def append_features(topic, discipline, feature_types_included, timestep=None):
     ========
         df: dataframe with feature columns appended
     """
-    from argBT import get_data_dir
-
-    data_dir_discipline = get_data_dir(discipline)
 
     _, df = get_topic_data(topic, discipline)
 

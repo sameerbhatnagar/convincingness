@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from scipy.stats import iqr, kendalltau
+import data_loaders
 
 import spacy
 
@@ -11,10 +12,17 @@ nlp = spacy.load("en_core_web_sm")
 DROPPED_POS = ["PUNCT", "SPACE"]
 TRANSITIONS = {
     "Physics": ["rr", "rw", "wr", "ww"],
+    "Chemistry": ["rr", "rw", "wr", "ww"],
     "Ethics": ["switch_ans", "same_ans"],
 }
 TRANSITION_LABELS = {
     "Physics": {
+        "rr": "Right -> Right",
+        "rw": "Right -> Wrong",
+        "wr": "Wrong -> Right",
+        "ww": "Wrong -> Wrong",
+    },
+    "Chemistry": {
         "rr": "Right -> Right",
         "rw": "Right -> Wrong",
         "wr": "Wrong -> Right",
@@ -25,7 +33,7 @@ TRANSITION_LABELS = {
 RANK_SCORE_TYPES = [
     "crowd_BT",
     # "crowdBT_filtered",
-    # "BT",
+    "BT",
     "elo",
     "winrate",
     "winrate_no_pairs",
@@ -33,7 +41,7 @@ RANK_SCORE_TYPES = [
 ]
 RANK_SCORE_TYPES_RENAMED = {
     "crowd_BT": "CrowdBT",
-    "crowdBT_filtered": "CrowdBT_f",
+    # "crowdBT_filtered": "CrowdBT_f",
     "wc": "Length",
     "elo": "Elo",
     "winrate": "WinRate_pairs",
@@ -46,10 +54,16 @@ RANK_SCORE_TYPE_COLORS = {
     "elo": "orange",
     "winrate": "purple",
     "winrate_no_pairs": "orchid",
-    "crowdBT_filtered": "cornflowerblue",
+    # "crowdBT_filtered": "cornflowerblue",
 }
 TRANSITION_COLORS = {
     "Physics": {
+        "rr": "forestgreen",
+        "rw": "gold",
+        "wr": "cornflowerblue",
+        "ww": "firebrick",
+    },
+    "Chemistry": {
         "rr": "forestgreen",
         "rw": "gold",
         "wr": "cornflowerblue",
@@ -59,17 +73,16 @@ TRANSITION_COLORS = {
 }
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# careful if dir names change
-RESULTS_DIR = os.path.join(BASE_DIR, "tmp", "measure_convincingness_max_pairs")
+THESIS_DIR=os.path.join(BASE_DIR, os.pardir,"thesis_project", "thesis")
 
 
-def get_topic_data(topic, discipline):
+def get_topic_data(topic, discipline,output_dir):
     """
     given topic/question and associated discipline (needed for subdirectories),
     return mydalite answer observations, and associated pairs that are
     constructed using `mauke_pairs.py`
     """
-    data_dir_discipline = get_data_dir(discipline)
+    data_dir_discipline = os.path.join(output_dir,"data")
 
     fp = os.path.join(data_dir_discipline, "{}.csv".format(topic))
     df_topic = pd.read_csv(fp)
@@ -84,10 +97,6 @@ def get_topic_data(topic, discipline):
     pairs_df = pairs_df[pairs_df["a1_id"] != pairs_df["a2_id"]]
 
     return pairs_df, df_topic
-
-
-def get_data_dir(discipline):
-    return os.path.join(RESULTS_DIR, discipline, "data")
 
 
 def my_summary(x):
@@ -135,19 +144,20 @@ def summary_batches_by_transition_corr(x):
     return pd.Series(d, index=["N", "N_common", "r", "std"])
 
 
-def summary_table(discipline):
+def summary_table(discipline,output_dir):
     """
     function to give descriptive statistics of dataset, and output table to
     latex file in article sub-folder
     """
 
     d_summary = []
-    topics = os.listdir(os.path.join(RESULTS_DIR, discipline, "data"))
+    topics = os.listdir(os.path.join(output_dir, "data"))
     for i, topic in enumerate(topics):
         if i % 25 == 0:
             print("{}/{} topics done".format(i, len(topics)))
         pairs_df, df_topic = get_topic_data(
-            topic=topic.replace(".csv", ""), discipline=discipline
+            topic=topic.replace(".csv", ""), discipline=discipline,
+            output_dir=output_dir
         )
         counts = df_topic["transition"].value_counts().to_dict()
         counts_pairs = pairs_df["transition"].value_counts().to_dict()
@@ -194,7 +204,7 @@ def summary_table(discipline):
     return df_summary_table
 
 
-def load_data_for_plots(discipline):
+def load_data_for_plots(discipline,output_dir):
     """
     load data for corr_plot and accuracy plot by transition.
 
@@ -211,7 +221,7 @@ def load_data_for_plots(discipline):
     for i, rank_score_type in enumerate(RANK_SCORE_TYPES, 1):
         print(rank_score_type)
         results_dir_discipline = os.path.join(
-            RESULTS_DIR, discipline, "model_fit", rank_score_type,
+            output_dir, "model_fit", rank_score_type,
         )
         topics = os.listdir(os.path.join(results_dir_discipline, "accuracies"))
         df_acc = pd.DataFrame()
@@ -243,7 +253,7 @@ def load_data_for_plots(discipline):
     return df, acc_trans, rank_scores
 
 
-def draw_corr_plot(rank_scores, discipline, transition=None):
+def draw_corr_plot(rank_scores, discipline, output_dir,transition=None):
     """
     draw correlation plot between different rank_score_types for each arg
     disaggregated by transition type
@@ -290,7 +300,7 @@ def draw_corr_plot(rank_scores, discipline, transition=None):
 
     # append transition type for each arg
     # print("loading transition data for each arg")
-    data_dir = os.path.join(RESULTS_DIR, discipline, "data")
+    data_dir = os.path.join(output_dir, "data")
     df_topics = pd.DataFrame()
     for topic, df_pivot_topic in df_pivot.groupby("topic"):
         fp = os.path.join(data_dir, "{}.csv".format(topic))
@@ -312,7 +322,7 @@ def draw_corr_plot(rank_scores, discipline, transition=None):
     else:
         transition_labels = {
             "switch_ans":"Switch Answer Choice\n{}% of data".format(ratios["switch_ans"]),
-            "switch_ans":"Same Answer Choice\n{}% of data".format(ratios["same_ans"]),
+            "same_ans":"Same Answer Choice\n{}% of data".format(ratios["same_ans"]),
         }
     df_pivot = df_pivot.rename(columns=RANK_SCORE_TYPES_RENAMED)
     cmap = sns.diverging_palette(230, 20, as_cmap=True)
@@ -362,7 +372,7 @@ def draw_corr_plot(rank_scores, discipline, transition=None):
     return fig
 
 
-def draw_acc_by_transition(discipline):
+def draw_acc_by_transition(discipline,output_dir):
     """
     for each transition type, give accuracy for batch1 rank
     scores over batch2
@@ -371,7 +381,7 @@ def draw_acc_by_transition(discipline):
     results = []
     for rank_score_type in RANK_SCORE_TYPES:
         results_dir_discipline = os.path.join(
-            RESULTS_DIR, discipline, "model_fit", rank_score_type, "accuracies_by_batch"
+            output_dir, "model_fit", rank_score_type, "accuracies_by_batch"
         )
         # print(results_dir_discipline)
         topics = os.listdir(results_dir_discipline)
@@ -380,17 +390,22 @@ def draw_acc_by_transition(discipline):
             with open(fp, "r") as f:
                 acc = json.load(f)
 
-            for transition in acc:
+            for transition in TRANSITIONS[discipline]:
                 d = {}
-                if acc[transition]:
+                if acc.get(transition):
                     df_acc = pd.DataFrame(acc[transition])
 
                     d["acc"] = df_acc.loc["acc"].mean()
-                    d["N"] = df_acc.loc["n"].min()
-                    d["rank_score_type"] = RANK_SCORE_TYPES_RENAMED[rank_score_type]
-                    d["topic"] = topic
-                    d["transition"] = transition
-                    results.append(d)
+                    d["N"] = df_acc.loc["n"].mean()
+                else:
+                    #FIX ME
+                    d["acc"]=0.5
+                    d["N"]=1
+                d["rank_score_type"] = RANK_SCORE_TYPES_RENAMED[rank_score_type]
+                d["topic"] = topic
+                d["transition"] = transition
+                results.append(d)
+
     df = pd.DataFrame(results)
     df = df[df["N"] != 0]
 
@@ -446,7 +461,7 @@ def draw_acc_by_transition(discipline):
     return fig
 
 
-def draw_corr_by_batch(discipline):
+def draw_corr_by_batch(discipline,output_dir):
     """
     correlations between rank scores derived by two independant batches of students
     """
@@ -456,15 +471,13 @@ def draw_corr_by_batch(discipline):
     rank_score_types = [r for r in RANK_SCORE_TYPES if r != "wc"]
     for rank_score_type in rank_score_types:
         results_dir_discipline = os.path.join(
-            RESULTS_DIR,
-            discipline,
+            output_dir,
             "model_fit",
             rank_score_type,
             "rank_scores_by_batch",
         )
         topics = os.listdir(results_dir_discipline)
         for topic in topics:
-
             fp = os.path.join(results_dir_discipline, topic)
             with open(fp, "r") as f:
                 rank_scores = json.load(f)
@@ -472,14 +485,19 @@ def draw_corr_by_batch(discipline):
             for transition in rank_scores:
                 d = {}
                 df_rank_scores = pd.DataFrame(rank_scores[transition])
-
-                d["r"] = df_rank_scores.dropna().corr()["batch1"]["batch2"]
-                d["N"] = df_rank_scores.shape[0]
-                d["N_common"] = df_rank_scores.dropna().shape[0]
-                d["rank_score_type"] = RANK_SCORE_TYPES_RENAMED[rank_score_type]
-                d["topic"] = topic
-                d["transition"] = transition
-                results.append(d)
+                try:
+                    d["r"] = df_rank_scores.dropna().corr()["batch1"]["batch2"]
+                    d["N"] = df_rank_scores.shape[0]
+                    d["N_common"] = df_rank_scores.dropna().shape[0]
+                    d["rank_score_type"] = RANK_SCORE_TYPES_RENAMED[rank_score_type]
+                    d["topic"] = topic
+                    d["transition"] = transition
+                    results.append(d)
+                except KeyError:
+                    pass
+                    # print(topic)
+                    # print(transition)
+                    # print(df_rank_scores)
     df = pd.DataFrame(results)
 
     df_table = (
@@ -534,7 +552,7 @@ def draw_corr_by_batch(discipline):
     return fig
 
 
-def draw_kendalltau_by_time(discipline):
+def draw_kendalltau_by_time(discipline,output_dir):
     """
     plot kendall tau between rankings at each normalized time step \sigma_t and
     \sigma_final
@@ -546,14 +564,14 @@ def draw_kendalltau_by_time(discipline):
 
     plt.style.use("ggplot")
     fig, axs = plt.subplots(figsize=(6, 4))
-    topic_files = os.listdir(os.path.join(RESULTS_DIR, discipline, "data"))
+    topic_files = os.listdir(os.path.join(output_dir, "data"))
     topics = [t.replace(".csv", "") for t in topic_files]
 
     for r, rank_score_type in enumerate(rank_score_types):
         print("{}".format(rank_score_type))
 
         results_dir_discipline = os.path.join(
-            RESULTS_DIR, discipline, rank_score_type, "rankings_by_time"
+            output_dir, rank_score_type, "rankings_by_time"
         )
         X = np.empty((len(topic_files), MAX_TIMESTEPS))
         X[:] = np.nan
@@ -633,7 +651,19 @@ def main(
         "positional",
         None,
         str,
-        ["Ethics", "Physics"],
+        ["Ethics", "Physics","Chemistry"],
+    ),
+    output_dir_name: (
+        "Directory name for results",
+        "positional",
+        None,
+        str,
+    ),
+    filter_switchers: (
+        "keep only students who switch their answer",
+        "flag",
+        "switch",
+        bool,
     ),
 ):
     """
@@ -650,17 +680,26 @@ def main(
             "pgf.rcfonts": False,
         }
     )
+
+
+    if filter_switchers:
+        population="switchers"
+        output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", output_dir_name, discipline,population)
+    else:
+        population="switchers_and_stickers"
+        output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", output_dir_name, discipline,population)
+
     if figures == "all":
         print("summary of data by transition")
-        df_summary_table = summary_table(discipline=discipline)
-        fp = os.path.join(BASE_DIR, "articles", "lak2021", "data", "df_summary.tex")
+        df_summary_table = summary_table(discipline=discipline,output_dir=output_dir)
+        fp = os.path.join(THESIS_DIR,"data","theme3", "df_summary_{}_{}.tex".format(discipline,population))
         df_summary_table.to_latex(fp)
         print(fp)
 
     if figures == "all" or figures == "corr_plot":
         ### Load data
         print("loading data for corr_plot")
-        df, acc_trans, rank_scores = load_data_for_plots(discipline=discipline)
+        df, acc_trans, rank_scores = load_data_for_plots(discipline=discipline,output_dir=output_dir)
 
         ### draw corr_plot
         print("corr plot")
@@ -669,16 +708,16 @@ def main(
         else:
             transition = "rr"
 
-        fig = draw_corr_plot(rank_scores, discipline, transition=transition)
-        fp = os.path.join(BASE_DIR, "articles", "lak2021", "img", "corr_plot.pgf")
+        fig = draw_corr_plot(rank_scores, discipline, transition=transition,output_dir=output_dir)
+        fp = os.path.join(THESIS_DIR, "img","theme3", "corr_plot_{}_{}.pgf".format(discipline,population))
         print(fp)
         fig.savefig(fp)
 
     if figures == "all" or figures == "acc_by_batch":
         ### draw accuracies by transition for each rank_score_type
-        fig = draw_acc_by_transition(discipline=discipline)
+        fig = draw_acc_by_transition(discipline=discipline,output_dir=output_dir)
         fp = os.path.join(
-            BASE_DIR, "articles", "lak2021", "img", "acc_by_transition.pgf"
+            THESIS_DIR, "img","theme3", "acc_by_transition_{}_{}.pgf".format(discipline,population)
         )
         print(fp)
         fig.savefig(fp)
@@ -686,20 +725,20 @@ def main(
     if figures == "all" or figures == "corr_by_batch":
         ### Correlation between rank scores of independant batches of students
         #  by transition for each rank_score_type
-        fig = draw_corr_by_batch(discipline=discipline)
-        fp = os.path.join(BASE_DIR, "articles", "lak2021", "img", "corr_by_batch.pgf")
+        fig = draw_corr_by_batch(discipline=discipline,output_dir=output_dir)
+        fp = os.path.join(THESIS_DIR, "img","theme3", "corr_by_batch_{}_{}.pgf".format(discipline,population))
         print(fp)
         fig.savefig(fp)
 
-    if figures == "all" or figures == "kendalltau_by_time":
-        ### Correlation between rank scores of independant batches of students
-        #  by transition for each rank_score_type
-        fig = draw_kendalltau_by_time(discipline=discipline)
-        fp = os.path.join(
-            BASE_DIR, "articles", "lak2021", "img", "kendalltau_by_time.pgf"
-        )
-        print(fp)
-        fig.savefig(fp)
+    # if figures == "all" or figures == "kendalltau_by_time":
+    #     ### Correlation between rank scores of independant batches of students
+    #     #  by transition for each rank_score_type
+    #     fig = draw_kendalltau_by_time(discipline=discipline,output_dir=output_dir)
+    #     fp = os.path.join(
+    #         THESIS_DIR, "img","theme3", "kendalltau_by_time_{}_{}.pgf".format(discipline,population)
+    #     )
+    #     print(fp)
+    #     fig.savefig(fp)
 
 
 if __name__ == "__main__":

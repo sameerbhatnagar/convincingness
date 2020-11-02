@@ -242,7 +242,7 @@ def filter_df_answers(df):
     return df_filtered
 
 
-def make_pairs_by_topic(topic, df_unfiltered):
+def make_pairs_by_topic(topic, df_unfiltered,filter_switchers=True):
     """
     Arguments:
     =========
@@ -260,8 +260,12 @@ def make_pairs_by_topic(topic, df_unfiltered):
     # the BradleyTerry scores derived are more valid
     # TO DO: show this clearly! Predict winning
     # argument in each pair with derived BT score
-    df_question = filter_out_stick_to_own(df_unfiltered)
-    print("\t{} answers where students switched explanations".format(df_question.shape[0]))
+    if filter_switchers:
+        df_question = filter_out_stick_to_own(df_unfiltered)
+        print("\t{} answers where students switched explanations".format(df_question.shape[0]))
+    else:
+        df_question = df_unfiltered
+
     ranked_pairs = []
 
     # balanced classes
@@ -416,39 +420,75 @@ def label_switch_exp(df):
     return df
 
 
-def make_all_pairs(data_file_dict, output_dir):
+def make_all_pairs(data_file_dict, output_dir,filter_switchers):
     """
     Function that takes answer level observations and converts to pairs
     Arguments:
         - df_answers_all: all answers
         - output_dir: where to save pairs
+        - filter_switchers: bool
     Returns:
         - pandas Dataframe of pairs
     """
 
+    all_topics = [os.path.basename(fp) for fp in data_file_dict.values()]
+
+    topics_already_done = [
+        "_".join(os.path.basename(t).split("_")[1:])
+        for t in os.listdir(os.path.join(output_dir, "data_pairs"))
+    ]
+
+    files_to_do = [
+        os.path.join(output_dir,"data",t) for t in all_topics 
+        if t not in topics_already_done
+    ]
+
     df_pairs_all = pd.DataFrame()
-    for topic, fp in data_file_dict.items():
+    for fp in files_to_do:
         df_topic = pd.read_csv(fp)
-        df_pairs = make_pairs_by_topic(topic=topic, df_unfiltered=df_topic)
+        topic=os.path.basename(fp).replace(".csv","")
+        df_pairs = make_pairs_by_topic(topic=topic, df_unfiltered=df_topic,filter_switchers=filter_switchers)
 
         # save
         data_dir = os.path.join(output_dir, "data_pairs")
-        pathlib.Path(data_dir).mkdir(parents=True,exist_ok=True)
+
         fp = os.path.join(data_dir, "pairs_{}.csv".format(topic.replace("/", "_")))
         df_pairs.to_csv(fp)
 
         df_pairs_all = pd.concat([df_pairs_all,df_pairs])
 
+    print("all pairs made")
+
     return df_pairs_all
 
 
-def main(discipline,output_dir_name):
+def main(
+    discipline:(
+        "Discipline",
+        "positional",
+        None,
+        str,
+        ["Physics","Ethics","Chemistry"],
 
-    output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", output_dir_name, discipline)
-
+    ),
+    output_dir: (
+        "Directory name for results",
+        "positional",
+        None,
+        str,
+    ),
+    filter_switchers: (
+        "keep only students who switch their answer",
+        "flag",
+        "switch",
+        bool,
+    )
+):
 
     data_dir = os.path.join(output_dir,"data")
     pathlib.Path(data_dir).mkdir(parents=True,exist_ok=True)
+    pathlib.Path(os.path.join(output_dir,"data_pairs")).mkdir(parents=True,exist_ok=True)
+
     data_file_dict = {}
     if discipline == "Ethics":
         df_answers_all_unfiltered = get_ethics_answers()
@@ -482,7 +522,7 @@ def main(discipline,output_dir_name):
     # free up memory
     del df_answers_all
 
-    df_pairs_all = make_all_pairs(data_file_dict=data_file_dict, output_dir=output_dir)
+    df_pairs_all = make_all_pairs(data_file_dict=data_file_dict, output_dir=output_dir,filter_switchers=filter_switchers)
     print("{} pairs : {}".format(discipline,df_pairs_all.shape[0]))
 
 
