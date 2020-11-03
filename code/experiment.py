@@ -34,7 +34,7 @@ def main(
     if filter_switchers:
         output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", output_dir_name, discipline,"switchers")
     else:
-        output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", output_dir_name, discipline,"switchers_and_stickers")
+        output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", output_dir_name, discipline,"all")
 
     Path(output_dir).mkdir(parents=True, exist_ok=True)
 
