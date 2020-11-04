@@ -49,6 +49,7 @@ TRANSITIONS = {
     "Ethics": ["same_ans", "switch_ans"],
     "Physics": ["rr", "wr", "rw", "ww"],
     "Chemistry": ["rr", "wr", "rw", "ww"],
+    "same_teacher_two_groups":["rr", "wr", "rw", "ww"],
 }
 
 # http://vene.ro/blog/kemeny-young-optimal-rank-aggregation-in-python.html
@@ -632,7 +633,7 @@ def main(
         "positional",
         None,
         str,
-        ["Physics", "Biology", "Chemistry", "Ethics"],
+        ["Physics", "Chemistry", "Ethics", "same_teacher_two_groups"],
     ),
     rank_score_type: (
         "Rank Score Type",

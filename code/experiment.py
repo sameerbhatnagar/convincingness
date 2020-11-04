@@ -13,7 +13,7 @@ def main(
         "positional",
         None,
         str,
-        ["Physics","Ethics","Chemistry"],
+        ["Physics","Ethics","Chemistry","same_teacher_two_groups"],
 
     ),
     output_dir_name: (

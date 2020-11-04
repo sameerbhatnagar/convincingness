@@ -12,9 +12,13 @@ nlp = spacy.load("en_core_web_sm")
 DROPPED_POS = ["PUNCT", "SPACE"]
 TRANSITIONS = {
     "Physics": ["rr", "rw", "wr", "ww"],
-    "Chemistry": ["rr", "rw", "wr", "ww"],
     "Ethics": ["switch_ans", "same_ans"],
 }
+TRANSITIONS.update({
+    "Chemistry":TRANSITIONS["Physics"],
+    "same_teacher_two_groups":TRANSITIONS["Physics"]
+})
+
 TRANSITION_LABELS = {
     "Physics": {
         "rr": "Right -> Right",
@@ -22,14 +26,13 @@ TRANSITION_LABELS = {
         "wr": "Wrong -> Right",
         "ww": "Wrong -> Wrong",
     },
-    "Chemistry": {
-        "rr": "Right -> Right",
-        "rw": "Right -> Wrong",
-        "wr": "Wrong -> Right",
-        "ww": "Wrong -> Wrong",
-    },
     "Ethics": {"switch_ans": "Switch", "same_ans": "Same"},
 }
+TRANSITION_LABELS.update({
+    "Chemistry":TRANSITION_LABELS["Physics"],
+    "same_teacher_two_groups":TRANSITION_LABELS["Physics"]
+})
+
 RANK_SCORE_TYPES = [
     "crowd_BT",
     # "crowdBT_filtered",
@@ -56,6 +59,7 @@ RANK_SCORE_TYPE_COLORS = {
     "winrate_no_pairs": "orchid",
     # "crowdBT_filtered": "cornflowerblue",
 }
+
 TRANSITION_COLORS = {
     "Physics": {
         "rr": "forestgreen",
@@ -63,14 +67,13 @@ TRANSITION_COLORS = {
         "wr": "cornflowerblue",
         "ww": "firebrick",
     },
-    "Chemistry": {
-        "rr": "forestgreen",
-        "rw": "gold",
-        "wr": "cornflowerblue",
-        "ww": "firebrick",
-    },
     "Ethics": {"switch_ans": "gold", "same_ans": "cornflowerblue",},
 }
+TRANSITION_COLORS.update({
+    "Chemistry":TRANSITION_COLORS["Physics"],
+    "same_teacher_two_groups":TRANSITION_COLORS["Physics"]
+})
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 THESIS_DIR=os.path.join(BASE_DIR, os.pardir,"thesis_project", "thesis")

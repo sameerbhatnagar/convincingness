@@ -1,4 +1,5 @@
 import os
+import json
 import collections
 import pandas as pd
 import plac
@@ -439,7 +440,7 @@ def make_all_pairs(data_file_dict, output_dir,filter_switchers):
     ]
 
     files_to_do = [
-        os.path.join(output_dir,"data",t) for t in all_topics 
+        os.path.join(output_dir,"data",t) for t in all_topics
         if t not in topics_already_done
     ]
 
@@ -468,7 +469,7 @@ def main(
         "positional",
         None,
         str,
-        ["Physics","Ethics","Chemistry"],
+        ["Physics","Ethics","Chemistry","same_teacher_two_groups"],
 
     ),
     output_dir: (
@@ -493,6 +494,34 @@ def main(
     if discipline == "Ethics":
         df_answers_all_unfiltered = get_ethics_answers()
         df_answers_all_unfiltered["discipline"] = "Ethics"
+
+    elif discipline == "same_teacher_two_groups":
+        df=get_mydalite_answers()
+        df["date"]=pd.to_datetime(df["timestamp_rationale"])
+        fp="/home/sbhatnagar/PhD/convincingness_project/group_student_lists_phys102.json"
+        with open(fp,"r") as f:
+            groups=json.load(f)
+
+        # answers for studnets in these groups
+        df_groups=pd.DataFrame()
+        for g in groups:
+            df_g=df[
+                (df["user_token"].isin(g["students"]))&(df["date"].dt.month<5)
+            ].copy()
+            df_g["group"]=g["name"]
+            df_groups=pd.concat([df_groups,df_g])
+
+        all_students_groups=list(set(groups[0]["students"]+groups[1]["students"]))
+        q_list=df_groups["question_id"].value_counts()[df_groups["question_id"].value_counts()>500].index.tolist()
+        df_answers_other_students=df[
+            (~df["user_token"].isin(all_students_groups))&(df["question_id"].isin(q_list))
+        ]
+        df_answers_other_students["group"]="other"
+        df_answers_all_unfiltered=pd.concat([df_groups,df_answers_other_students])
+
+        # filter question list again
+        q_list=df_answers_all_unfiltered["question_id"].value_counts()[df_answers_all_unfiltered["question_id"].value_counts()>500].index.tolist()
+        df_answers_all_unfiltered = df_answers_all_unfiltered[df_answers_all_unfiltered["question_id"].isin(q_list)].copy()
 
     else:
         df_answers_all_unfiltered_all_disciplines = get_mydalite_answers()
