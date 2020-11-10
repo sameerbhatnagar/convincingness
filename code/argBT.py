@@ -99,6 +99,7 @@ def get_rankings_crowdBT(pairs_train):
     --------
         - sorted_arg_ids - > list
         - ranks_dict
+        - annotator_params
     """
 
     a1_winners = pairs_train.loc[pairs_train["label"] == "a1", :].rename(

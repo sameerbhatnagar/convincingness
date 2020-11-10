@@ -381,7 +381,7 @@ def draw_acc_by_transition(output_dir_name):
     pairwise prediction task
     """
 
-    disciplines=["Physics","Chemistry","Ethics"]
+    disciplines=["Physics","Chemistry","Ethics","same_teacher_two_groups"]
     populations=["all","switchers"]
 
     fig,axs = plt.subplots(len(disciplines),len(populations),figsize=(12,9))
@@ -473,7 +473,7 @@ def draw_corr_by_batch(output_dir_name):
     """
     correlations between rank scores derived by two independant batches of students
     """
-    disciplines=["Physics","Chemistry","Ethics"]
+    disciplines=["Physics","Chemistry","Ethics","same_teacher_two_groups"]
     populations=["all","switchers"]
 
     fig,axs = plt.subplots(len(disciplines),len(populations),figsize=(12,9))

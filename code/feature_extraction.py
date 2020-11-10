@@ -37,11 +37,13 @@ from make_pairs import make_pairs_by_topic, filter_out_stick_to_own
 
 from argBT import get_rankings_winrate, get_rankings_elo, get_topic_data
 
+from plots import BASE_DIR
+
 nlp = spacy.load("en_core_web_md", disable=["ner"])
 
 from spellchecker import SpellChecker
 
-DROPPED_POS = [PUNCT, SPACE]
+DROPPED_POS = [PUNCT, SPACE, X]
 
 EQUATION_TAG = "EQUATION"
 EXPRESSION_TAG = "EXPRESSION"
@@ -66,23 +68,23 @@ def tree_height(root):
 # https://www.kaggle.com/ceshine/remove-html-tags-using-beautifulsoup
 def clean_text(text):
     text = BeautifulSoup(ihtml.unescape(text)).text
-    text = re.sub(r"http[s]?://\S+", "", text)
-    text = re.sub(r"\s+", " ", text)
+    # text = re.sub(r"http[s]?://\S+", "", text)
+    # text = re.sub(r"\s+", " ", text)
     return text
 
 
 def get_questions_df(discipline):
 
-    if discipline == "Physics":
+    if discipline in ["Physics","same_teacher_two_groups"]:
         fp = os.path.join(
-            RESULTS_DIR, os.pardir, os.pardir, os.pardir, "all_questions_physics.csv"
+            BASE_DIR, "all_questions_physics.csv"
         )
         df_q = pd.read_csv(fp)
 
     elif discipline == "Ethics":
 
         data_dir = os.path.join(
-            RESULTS_DIR, os.pardir, os.pardir, os.pardir, "data_harvardx"
+            BASE_DIR, "data_harvardx"
         )
 
         fp=os.path.join(data_dir,"dalite_20161101.csv")
@@ -162,14 +164,15 @@ def get_questions_df(discipline):
         )
         df_q["title"] = df_q["question_id"].astype(str) + "_" + df_q["topic"]
 
-        df_q=df_q.fillna(" ")
+    df_q=df_q.fillna(" ")
 
     df_q["text"] = df_q["text"].apply(clean_text)
+
     df_q["expert_rationale"] = df_q["expert_rationale"].apply(clean_text)
     return df_q
 
 
-def get_topic_data_cleaned(topic, discipline):
+def get_topic_data_cleaned(topic, discipline,output_dir):
     """
     get answers for question (topic), but clean up rationales by
     replacing all expressions and equations with common tags
@@ -178,7 +181,7 @@ def get_topic_data_cleaned(topic, discipline):
     eqn_re = re.compile(r"([\w\/^\*\.\(\)+-]+\s?[=]\s?[\w\/^\*\.\(\)+-]+)")
     expr_re = re.compile(r"([\w\/^\*\.\(\)+-]+\s?[+\*\-/]\s?[\w\/^\*\.\(\)+-]+)")
 
-    _, df = get_topic_data(topic=topic, discipline=discipline)
+    _, df = get_topic_data(topic=topic, discipline=discipline, output_dir=output_dir)
     df["rationale"] = (
         df["rationale"]
         .fillna(" ")
@@ -189,11 +192,11 @@ def get_topic_data_cleaned(topic, discipline):
     return rationales
 
 
-def extract_surface_features(topic, discipline):
+def extract_surface_features(topic, discipline,output_dir):
     """
     """
     feature_type = "surface"
-    rationales = get_topic_data_cleaned(topic, discipline)
+    rationales = get_topic_data_cleaned(topic, discipline,output_dir)
 
     surface_features = {}
 
@@ -288,6 +291,8 @@ def get_matcher(subject, nlp, topic=None, on_match=None):
         keywords_sorted = list(set(terms))
 
     else:
+        if subject == "same_teacher_two_groups":
+            subject="Physics"
         books = OPENSTAX_TEXTBOOK_DISCIPLINES[subject]
         keywords_dict = {}
         for book in books:
@@ -325,7 +330,7 @@ def get_matcher(subject, nlp, topic=None, on_match=None):
     return matcher
 
 
-def extract_lexical_features(topic, discipline):
+def extract_lexical_features(topic, discipline,output_dir):
     """
     given array of rationales,
     return dict of arrays holding lexical features for each, including:
@@ -333,7 +338,7 @@ def extract_lexical_features(topic, discipline):
         - number of equations
     """
     feature_type = "lexical"
-    rationales = get_topic_data_cleaned(topic, discipline)
+    rationales = get_topic_data_cleaned(topic, discipline,output_dir)
 
     lexical_features = {}
     matcher = get_matcher(subject=discipline, nlp=nlp)
@@ -378,7 +383,7 @@ def extract_lexical_features(topic, discipline):
     return lexical_features
 
 
-def extract_syntactic_features(topic, discipline):
+def extract_syntactic_features(topic, discipline,output_dir):
     """
     given array of rationales,
     return dict of arrays holding synctatic features for each, including:
@@ -387,7 +392,7 @@ def extract_syntactic_features(topic, discipline):
         - num_conj
     """
     feature_type = "syntax"
-    rationales = get_topic_data_cleaned(topic, discipline)
+    rationales = get_topic_data_cleaned(topic, discipline,output_dir)
 
     syntactic_features = {}
 
@@ -437,7 +442,7 @@ def extract_syntactic_features(topic, discipline):
     return syntactic_features
 
 
-def extract_readability_features(topic, discipline):
+def extract_readability_features(topic, discipline,output_dir):
     """
     given array of rationales,
     return dict of arrays holding synctatic features for each, including:
@@ -448,7 +453,7 @@ def extract_readability_features(topic, discipline):
         - coleman_liau_index
     """
     feature_type = "readability"
-    rationales = get_topic_data_cleaned(topic, discipline)
+    rationales = get_topic_data_cleaned(topic, discipline,output_dir)
 
     read = Readability()
     # nlp.add_pipe(read, last=True)
@@ -472,7 +477,7 @@ def extract_readability_features(topic, discipline):
     return readability_features
 
 
-def extract_semantic_features(topic, discipline):
+def extract_semantic_features(topic, discipline,output_dir):
 
     feature_type = "semantic"
     semantic_features = {}
@@ -482,7 +487,7 @@ def extract_semantic_features(topic, discipline):
         df_q["title"].str.startswith(topic), ["text", "expert_rationale"]
     ].values
     q = nlp(texts[0][0])
-    rationales = get_topic_data_cleaned(topic, discipline)
+    rationales = get_topic_data_cleaned(topic, discipline,output_dir)
 
     semantic_features["{}_sim_question".format(feature_type)] = {
         arg_id: doc.similarity(q)
@@ -496,28 +501,29 @@ def extract_semantic_features(topic, discipline):
             for doc, arg_id in nlp.pipe(rationales, batch_size=20, as_tuples=True)
         }
 
+    rationales_only_text=[r[0] for r in rationales]
+
     semantic_features["{}_sim_others".format(feature_type)] = {
         arg_id: np.array(
             [
                 doc.similarity(d)
-                for d, _ in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+                for d in nlp.pipe(rationales_only_text, batch_size=100)
             ]
         ).mean()
-        for doc, arg_id in nlp.pipe(rationales, batch_size=20, as_tuples=True)
+        for doc, arg_id in nlp.pipe(rationales, batch_size=100, as_tuples=True)
     }
 
     return semantic_features
 
 
-def extract_features_and_save(discipline, topic, feature_type):
+def extract_features_and_save(discipline, topic, feature_type,output_dir):
     """
     dispatch to correct function based on feature type, save result, and return
     feature_dict
     """
 
     feature_type_fpath = os.path.join(
-        RESULTS_DIR,
-        discipline,
+        output_dir,
         "data_with_features",
         feature_type,
         "{}.json".format(topic),
@@ -525,24 +531,24 @@ def extract_features_and_save(discipline, topic, feature_type):
 
     print("\t\t\tcalculating features " + feature_type)
     if feature_type == "syntax":
-        features = extract_syntactic_features(topic=topic, discipline=discipline)
+        features = extract_syntactic_features(topic=topic, discipline=discipline,output_dir=output_dir)
     elif feature_type == "readability":
-        features = extract_readability_features(topic=topic, discipline=discipline)
+        features = extract_readability_features(topic=topic, discipline=discipline,output_dir=output_dir)
     elif feature_type == "lexical":
-        features = extract_lexical_features(topic=topic, discipline=discipline)
+        features = extract_lexical_features(topic=topic, discipline=discipline,output_dir=output_dir)
     elif feature_type == "convincingness":
-        features = extract_convincingness_features(topic=topic, discipline=subject)
+        features = extract_convincingness_features(topic=topic, discipline=subject,output_dir=output_dir)
     elif feature_type == "surface":
-        features = extract_surface_features(topic=topic, discipline=discipline)
+        features = extract_surface_features(topic=topic, discipline=discipline,output_dir=output_dir)
     elif feature_type == "semantic":
-        features = extract_semantic_features(topic=topic, discipline=discipline)
+        features = extract_semantic_features(topic=topic, discipline=discipline,output_dir=output_dir)
     with open(feature_type_fpath, "w") as f:
         json.dump(features, f, indent=2)
 
     return features
 
 
-def get_features(topic, discipline, feature_type):
+def get_features(topic, discipline, feature_type,output_dir):
     """
     append features onto df_answers
     """
@@ -553,11 +559,11 @@ def get_features(topic, discipline, feature_type):
     else:
         feature_types = [feature_type]
 
-    _, df_answers = get_topic_data(topic=topic, discipline=discipline)
+    _, df_answers = get_topic_data(topic=topic, discipline=discipline,output_dir=output_dir)
 
     for feature_type in feature_types:
         features = extract_features_and_save(
-            topic=topic, discipline=discipline, feature_type=feature_type,
+            topic=topic, discipline=discipline, feature_type=feature_type,output_dir=output_dir
         )
         for f in features:
             df_answers = pd.merge(
@@ -570,7 +576,7 @@ def get_features(topic, discipline, feature_type):
     return df_answers
 
 
-def append_features(topic, discipline, feature_types_included, timestep=None):
+def append_features(topic, discipline, feature_types_included, output_dir, timestep=None):
     """
     Arguments:
     =========
@@ -583,10 +589,10 @@ def append_features(topic, discipline, feature_types_included, timestep=None):
         df: dataframe with feature columns appended
     """
 
-    _, df = get_topic_data(topic, discipline)
+    _, df = get_topic_data(topic, discipline,output_dir)
 
     # append columns with pre-calculated features
-    features_dir = os.path.join(RESULTS_DIR, discipline, "data_with_features")
+    features_dir = os.path.join(output_dir, "data_with_features")
     if timestep:
         # get the other features normally
         feature_types_included = [
@@ -622,7 +628,7 @@ def main(
         "positional",
         None,
         str,
-        ["Physics", "Biology", "Chemistry", "Ethics"],
+        ["Physics", "Chemistry", "Ethics","same_teacher_two_groups"],
     ),
     feature_type: (
         "Feature Type",
@@ -631,19 +637,27 @@ def main(
         str,
         ["all", "surface", "readability", "lexical", "syntax", "semantic"],
     ),
+    output_dir_name: (
+        "Directory name for results",
+        "positional",
+        None,
+        str,
+    ),
     largest_first: ("Largest Files First", "flag", "l", bool,),
 ):
     print("{} - {}".format(discipline, feature_type))
     print("Start: {}".format(datetime.datetime.now()))
 
+    output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", output_dir_name, discipline,"all")
+
     results_sub_dir = os.path.join(
-        RESULTS_DIR, discipline, "data_with_features", feature_type
+        output_dir, "data_with_features", feature_type
     )
 
     # make directory if doesn't exist
     pathlib.Path(results_sub_dir).mkdir(parents=True, exist_ok=True)
 
-    data_dir_discipline = os.path.join(RESULTS_DIR, discipline, "data")
+    data_dir_discipline = os.path.join(output_dir, "data")
 
     # sort files by size to get biggest ones done first
     # https://stackoverflow.com/a/20253803
@@ -667,7 +681,7 @@ def main(
         print("{}/{}: {}".format(t, len(topics_to_do), topic))
 
         df_topic = get_features(
-            topic=topic, discipline=discipline, feature_type=feature_type,
+            topic=topic, discipline=discipline, feature_type=feature_type,output_dir=output_dir
         )
 
         df_all = pd.concat([df_all, df_topic])
@@ -680,5 +694,4 @@ def main(
 if __name__ == "__main__":
     import plac
 
-    plac.call(main)
     plac.call(main)
