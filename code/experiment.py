@@ -44,7 +44,7 @@ def main(
         output_dir=output_dir,
         filter_switchers=filter_switchers
     )
-    for rank_score_type in ["wc","winrate_no_pairs","winrate","elo","crowd_BT","BT"]:
+    for rank_score_type in ["winrate_no_pairs","winrate","elo","crowd_BT","BT"]:
         argBT.main(
             discipline=discipline,
             rank_score_type=rank_score_type,

@@ -5,6 +5,13 @@ import pandas as pd
 import plac
 import data_loaders
 import pathlib
+import spacy
+import re
+
+nlp = spacy.load("en_core_web_md", disable=["ner"])
+EQUATION_TAG = "EQUATION"
+EXPRESSION_TAG = "EXPRESSION"
+OOV_TAG = "OOV_TAG"
 
 # from peerinst.models import Question,Answer
 
@@ -241,6 +248,28 @@ def filter_df_answers(df):
     print(df_filtered.shape)
 
     return df_filtered
+
+
+def clean_rationales(df):
+    """
+    swap out all equations, expressions, and Out-Of-Vocabulary tokens with
+    special placeholder tokens
+    """
+    eqn_re = re.compile(r"([\w\/^\*\.\(\)+-]+\s?[=]\s?[\w\/^\*\.\(\)+-]+)")
+    expr_re = re.compile(r"([\w\/^\*\.\(\)+-]+\s?[+\*\-/]\s?[\w\/^\*\.\(\)+-]+)")
+
+    df["rationale"] = (
+        df["rationale"]
+        .fillna(" ")
+        .str.replace(eqn_re, EQUATION_TAG)
+        .str.replace(expr_re, EXPRESSION_TAG)
+    )
+
+    df["rationale"] = [
+        " ".join([OOV_TAG if token.is_oov == True else token.text for token in doc])
+        for doc in nlp.pipe(df["rationale"], batch_size=50)
+    ]
+    return df
 
 
 def make_pairs_by_topic(topic, df_unfiltered,filter_switchers=True):
@@ -544,6 +573,7 @@ def main(
             data_dir,
             "{}.csv".format(topic.replace("/", "_"))
         )
+        df_topic = clean_rationales(df_topic.copy())
 
         df_topic.to_csv(fp)
         data_file_dict[topic]=fp

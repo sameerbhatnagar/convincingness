@@ -651,7 +651,7 @@ def main(
             "wc",
         ],
     ),
-    output_dir: (
+    output_dir_name: (
         "Directory name for results",
         "positional",
         None,
@@ -675,6 +675,11 @@ def main(
         as well as classification accuracy
     """
     print("Discipline : {} - Rank Score Type: {}".format(discipline, rank_score_type))
+    # if filter_switchers:
+    #     output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", output_dir_name, discipline,"switchers")
+    # else:
+    output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", output_dir_name, discipline,"all")
+
     data_dir_discipline = os.path.join(output_dir,"data")
     if time_series_validation_flag:
         results_dir_discipline = os.path.join(output_dir,"time_series", rank_score_type)
@@ -720,9 +725,14 @@ def main(
 
     topics = [os.path.basename(fp)[:-4] for fp in all_files]
 
-    topics_already_done = [
-        t[:-5] for t in os.listdir(os.path.join(results_dir_discipline, "rank_scores",))
-    ]
+    if time_series_validation_flag:
+        topics_already_done = [
+            t[:-5] for t in os.listdir(os.path.join(results_dir_discipline, "rankings_by_time",))
+        ]
+    else:
+        topics_already_done = [
+            t[:-5] for t in os.listdir(os.path.join(results_dir_discipline, "rank_scores",))
+        ]
 
     topics = [t for t in topics if t not in topics_already_done]
 
