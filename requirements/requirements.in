@@ -1,14 +1,13 @@
 pandas
 jupyter
-spacy==2.1.3
+spacy
 scikit-learn
 seaborn
 nltk
 black
 plac
 choix
-neuralcoref
 statsmodels
 spacy-readability
 beautifulsoup4
-
+gensim==4.0.0b0
