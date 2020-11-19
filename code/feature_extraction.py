@@ -11,6 +11,7 @@ import numpy as np
 
 from spacy.matcher import PhraseMatcher
 from spacy_readability import Readability
+from scipy.spatial.distance import cosine
 
 from spacy.symbols import (
     ADJ,
@@ -39,7 +40,7 @@ from argBT import get_rankings_winrate, get_rankings_elo, get_topic_data
 
 from plots import BASE_DIR
 
-from make_pairs import EQUATION_TAG,EXPRESSION_TAG,OOV_TAG
+from make_pairs import EQUATION_TAG, EXPRESSION_TAG, OOV_TAG
 
 nlp = spacy.load("en_core_web_md", disable=["ner"])
 
@@ -171,12 +172,11 @@ def get_questions_df(discipline):
     return df_q
 
 
-
 def extract_surface_features(topic, discipline, output_dir):
     """
     """
     feature_type = "surface"
-    _,  df = get_topic_data(topic, discipline, output_dir)
+    _, df = get_topic_data(topic, discipline, output_dir)
     rationales = df[["rationale", "id"]].values
 
     surface_features = {}
@@ -191,7 +191,9 @@ def extract_surface_features(topic, discipline, output_dir):
             [
                 token
                 for token in doc
-                if token.pos not in DROPPED_POS and not token.is_stop and token.text!=OOV_TAG
+                if token.pos not in DROPPED_POS
+                and not token.is_stop
+                and token.text != OOV_TAG
             ]
         )
         for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
@@ -209,7 +211,9 @@ def extract_surface_features(topic, discipline, output_dir):
                 [
                     token.text
                     for token in doc
-                    if token.pos not in DROPPED_POS and not token.is_stop and token.text!=OOV_TAG
+                    if token.pos not in DROPPED_POS
+                    and not token.is_stop
+                    and token.text != OOV_TAG
                 ]
             )
         )
@@ -218,7 +222,9 @@ def extract_surface_features(topic, discipline, output_dir):
                 [
                     token.text
                     for token in doc
-                    if token.pos not in DROPPED_POS and not token.is_stop and token.text!=OOV_TAG
+                    if token.pos not in DROPPED_POS
+                    and not token.is_stop
+                    and token.text != OOV_TAG
                 ]
             )
             + 1
@@ -319,7 +325,7 @@ def extract_lexical_features(topic, discipline, output_dir):
         - number of equations
     """
     feature_type = "lexical"
-    _,  df = get_topic_data(topic, discipline, output_dir)
+    _, df = get_topic_data(topic, discipline, output_dir)
     rationales = df[["rationale", "id"]].values
 
     lexical_features = {}
@@ -355,13 +361,7 @@ def extract_lexical_features(topic, discipline, output_dir):
     }
 
     lexical_features["{}_n_OOV".format(feature_type)] = {
-        arg_id: len(
-            [
-                token.text
-                for token in doc
-                if token.text == OOV_TAG
-            ]
-        )
+        arg_id: len([token.text for token in doc if token.text == OOV_TAG])
         for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
     }
 
@@ -385,7 +385,7 @@ def extract_syntactic_features(topic, discipline, output_dir):
         - num_conj
     """
     feature_type = "syntax"
-    _,  df = get_topic_data(topic, discipline, output_dir)
+    _, df = get_topic_data(topic, discipline, output_dir)
     rationales = df[["rationale", "id"]].values
 
     syntactic_features = {}
@@ -447,7 +447,7 @@ def extract_readability_features(topic, discipline, output_dir):
         - coleman_liau_index
     """
     feature_type = "readability"
-    _,  df = get_topic_data(topic, discipline, output_dir)
+    _, df = get_topic_data(topic, discipline, output_dir)
     rationales = df[["rationale", "id"]].values
 
     read = Readability()
@@ -483,7 +483,7 @@ def extract_semantic_features(topic, discipline, output_dir):
     ].values
     q = nlp(texts[0][0])
 
-    _,  df = get_topic_data(topic, discipline, output_dir)
+    _, df = get_topic_data(topic, discipline, output_dir)
     rationales = df[["rationale", "id"]].values
 
     semantic_features["{}_sim_question".format(feature_type)] = {
@@ -499,12 +499,23 @@ def extract_semantic_features(topic, discipline, output_dir):
         }
 
     rationales_only_text = [r[0] for r in rationales]
-
+    rationales_only_ids = [r[1] for r in rationales]
+    x = np.array(
+        [
+            doc.vector
+            for doc, arg_id in nlp.pipe(rationales, batch_size=100, as_tuples=True)
+        ]
+    )
+    #https://stackoverflow.com/a/41906332
+    m, n = x.shape
+    distances = np.zeros((m, m))
+    for i in range(m):
+        for j in range(m):
+            distances[i, j] = 1 - cosine(x[i, :], x[j, :])
+    distances = np.nan_to_num(distances)
     semantic_features["{}_sim_others".format(feature_type)] = {
-        arg_id: np.array(
-            [doc.similarity(d) for d in nlp.pipe(rationales_only_text, batch_size=100)]
-        ).mean()
-        for doc, arg_id in nlp.pipe(rationales, batch_size=100, as_tuples=True)
+        arg_id: d
+        for arg_id, d in zip(rationales_only_ids, distances.mean(axis=1).round(3))
     }
 
     return semantic_features
@@ -557,7 +568,7 @@ def get_features(topic, discipline, feature_type, output_dir):
     """
 
     if feature_type == "all":
-        feature_types = ["surface", "lexical", "syntax", "readability","semantic"]
+        feature_types = ["surface", "lexical", "syntax", "readability", "semantic"]
     else:
         feature_types = [feature_type]
 
@@ -657,7 +668,7 @@ def main(
     )
 
     if feature_type == "all":
-        feature_types = ["surface", "lexical", "syntax", "readability","semantic"]
+        feature_types = ["surface", "lexical", "syntax", "readability", "semantic"]
     else:
         feature_types = [feature_type]
 
@@ -699,9 +710,11 @@ def main(
 
             df_all = pd.concat([df_all, df_topic])
 
-        fp = os.path.join(results_sub_dir, f"all_topics_with_features_{feature_type}.csv")
+        fp = os.path.join(
+            results_sub_dir, f"all_topics_with_features_{feature_type}.csv"
+        )
         df_all.to_csv(fp)
-        print("Finished {}: {} ".format(feature_type,datetime.datetime.now()))
+        print("Finished {}: {} ".format(feature_type, datetime.datetime.now()))
 
 
 if __name__ == "__main__":
