@@ -8,7 +8,7 @@ import pandas as pd
 
 import spacy
 
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_sm",disable=["ner"])
 
 from sklearn.metrics import accuracy_score, f1_score
 from scipy.stats import kendalltau, rankdata

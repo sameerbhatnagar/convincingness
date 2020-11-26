@@ -8,7 +8,7 @@ import data_loaders
 
 import spacy
 
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_sm",disable=["ner"])
 DROPPED_POS = ["PUNCT", "SPACE"]
 TRANSITIONS = {
     "Physics": ["rr", "rw", "wr", "ww"],
