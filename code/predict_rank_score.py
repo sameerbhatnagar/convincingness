@@ -1,4 +1,5 @@
 import os, json, plac
+from collections import Counter
 import pandas as pd
 import numpy as np
 from argBT import (
@@ -16,6 +17,7 @@ from sklearn.pipeline import Pipeline
 import statsmodels.api as sm
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import KFold
+from sklearn.linear_model import LinearRegression
 
 # https://stackoverflow.com/a/48949667
 # https://stackoverflow.com/a/60234758
@@ -25,6 +27,8 @@ from sklearn.utils.estimator_checks import check_estimator
 
 import matplotlib.pyplot as plt
 
+MIN_WORD_COUNT = 10
+MIN_TIMES_SHOWN = 3
 
 class SMWrapper(BaseEstimator, RegressorMixin):
     def __init__(self, model_class, fit_intercept=True):
@@ -191,21 +195,24 @@ def normalize_and_rename_columns(df,feature_types_included):
     return df2, cols_sets
 
 
+def get_bin_edges(df_topic):
+    min_wc=df_topic["surface_n_words"].min()
+    q1=df_topic["surface_n_words"].describe()["25%"]
+    q2=df_topic["surface_n_words"].describe()["50%"]
+    q3=df_topic["surface_n_words"].describe()["75%"]
+    max_wc=df_topic["surface_n_words"].max()
+    bin_edges=[min_wc,q1,q2,q3,max_wc]
+    if len(set(bin_edges))==len(bin_edges):
+        return bin_edges
+    else:
+        return None
+
 def get_results(cols_sets, targets, df):
     """
     cross validated results over all topics/targets/feature-sets
     """
     print("3) get results")
-    pipe = Pipeline(
-        steps=[
-            #             ("impute",SimpleImputer()),
-            #             ("var_thresh",VarianceThreshold()),
-            #             ("var_select",SelectKBest(k=5)),
-            #             ("scale",StandardScaler()),
-            #             ("regress",LinearRegression())
-            ("regress", SMWrapper(sm.OLS))
-        ]
-    )
+
     topics = df["topic"].value_counts().index.to_list()
 
     results=[]
@@ -213,66 +220,110 @@ def get_results(cols_sets, targets, df):
         print(col_type)
         for target in targets:
             print(f"\t{target}")
+            skipped=[]
             for t,topic in enumerate(topics):
-
                 if t%40==0:
-                    print(f"\t\t{t}/{len(topics)}")
+                    print(f"\t\t{t}/{len(topics)}; {len(set(skipped))} topics")
 
-                df_topic=df[df["topic"]==topic]
+                df_topic_=df[df["topic"]==topic].copy()
 
-                kfcv = KFold(n_splits=5)
-                for fold,(train_index, test_index) in enumerate(kfcv.split(df_topic)):
-                    X_train = df_topic.iloc[train_index]
-    #                 y_train=StandardScaler().fit_transform(
-    #                     X=X_train[target].rank().values.reshape(-1,1)
-    #                 ).reshape(1,-1)[0]
-                    y_train = df_topic.iloc[train_index][target]
+                # count how many times each rationale was shown
+                times_shown_counter = Counter()
+                s = (
+                    df_topic_["rationales"]
+                    .dropna()
+                    .apply(
+                        lambda x: [
+                            int(k) for k in x.strip("[]").replace(" ", "").split(",") if k != ""
+                        ]
+                    )
+                )
+                _ = s.apply(lambda x: times_shown_counter.update(x))
+                df_topic_["times_shown"]=df_topic_["id"].map(times_shown_counter)
 
-                    pipe.fit(X=X_train[cols],y=y_train)
+                # filter out those not shown often enough
+                df_topic = df_topic_[df_topic_["times_shown"]>=MIN_TIMES_SHOWN].copy()
 
-                    X_test = df_topic.iloc[test_index]
-    #                 y_true=StandardScaler().fit_transform(
-    #                     X=X_test[target].rank().values.reshape(-1,1)
-    #                 ).reshape(1,-1)[0]
-                    y_test = df_topic.iloc[test_index][target]
-                    try:
-                        y_pred=pipe.predict(X_test[cols])
-                        skip=False
-                    except ValueError:
-                        print(f"\t\t\t{t}--{fold}-{topic} problem")
-                        skip=True
+                min_wc=df_topic["surface_n_words"].min()
+                q1=df_topic["surface_n_words"].describe()["25%"]
+                q2=df_topic["surface_n_words"].describe()["50%"]
+                q3=df_topic["surface_n_words"].describe()["75%"]
+                max_wc=df_topic["surface_n_words"].max()
 
-                    if not skip:
-                        # precision at K for this fold
-                        for K in [5,10,20]:
+                bin_edges=get_bin_edges(df_topic)
+                if bin_edges:
+                    df_topic["wc_bin"]=pd.cut(
+                        df_topic["surface_n_words"],
+                        bins=bin_edges,
+                        labels=["Q1","Q2","Q3","Q4"],
+                        include_lowest=True,
+                    )
 
-                            for top in [True,False]:
-                                d={}
-                                if top:
-                                    d["rank_type"]="top"
-                                    true=X_test["id"].iloc[np.argsort(y_test)].tail(K)
-                                    pred=X_test["id"].iloc[np.argsort(y_pred)].tail(K)
+                    # only continue if each subset of data has min 20 records,
+                    # since we will be doing 5 fold CV
+                    if all(df_topic["wc_bin"].value_counts()>20):
+                        for quartile, df_topic_wc_quartile in df_topic.groupby("wc_bin"):
+                            kfcv = KFold(n_splits=5)
+                            for fold,(train_index, test_index) in enumerate(kfcv.split(df_topic_wc_quartile)):
+                                X_train = df_topic_wc_quartile.iloc[train_index]
+                                #                 y_train=StandardScaler().fit_transform(
+                                #                     X=X_train[target].rank().values.reshape(-1,1)
+                                #                 ).reshape(1,-1)[0]
+                                y_train = df_topic_wc_quartile.iloc[train_index][target]
+                                pipe = Pipeline(
+                                    steps=[
+                                        ("regress",LinearRegression())
+                                    ]
+                                )
+
+                                X_test = df_topic_wc_quartile.iloc[test_index]
+                                #                 y_true=StandardScaler().fit_transform(
+                                #                     X=X_test[target].rank().values.reshape(-1,1)
+                                #                 ).reshape(1,-1)[0]
+
+                                if X_test.shape[0]>10:
+
+                                    pipe.fit(X=X_train[cols],y=y_train)
+
+                                    y_test = df_topic_wc_quartile.iloc[test_index][target]
+                                    y_pred=pipe.predict(X_test[cols])
+
+                                    # precision at Kr for this fold: Kr is ratio (10%,25%,50%)
+                                    for Kr in [10,25,50]:
+
+                                        K = int(Kr/100*X_test.shape[0])
+                                        # repeat for top Kr and bottom Kr
+                                        for top in [True,False]:
+                                            d={}
+                                            if top:
+                                                d["rank_type"]="top"
+                                                true=X_test["id"].iloc[np.argsort(y_test)].tail(K)
+                                                pred=X_test["id"].iloc[np.argsort(y_pred)].tail(K)
+                                                not_true=X_test.loc[~X_test["id"].isin(true),"id"]
+                                                not_pred=X_test.loc[~X_test["id"].isin(pred),"id"]
+
+                                            else:
+                                                d["rank_type"]="bottom"
+                                                true=X_test["id"].iloc[np.argsort(y_test)].head(K)
+                                                pred=X_test["id"].iloc[np.argsort(y_pred)].head(K)
+                                                not_true=X_test.loc[~X_test["id"].isin(true),"id"]
+                                                not_pred=X_test.loc[~X_test["id"].isin(pred),"id"]
+
+                                            tp=len(set(true)&set(pred))
+                                            fp=len(set(not_true)&set(pred))
+                                            precision = tp/(tp+fp)
+
+                                            d["K"]=Kr
+                                            d["N"]=X_test.shape[0]
+                                            d["prec"]=precision
+                                            d["Q"]=quartile
+                                            d["fold"]=fold
+                                            d["topic"]=topic
+                                            d["target"]=target
+                                            d["model"]=col_type
+                                            results.append(d)
                                 else:
-                                    d["rank_type"]="bottom"
-                                    true=X_test["id"].iloc[np.argsort(y_test)].head(K)
-                                    pred=X_test["id"].iloc[np.argsort(y_pred)].head(K)
-
-                                not_true=X_test.loc[~X_test["id"].isin(true),"id"]
-                                not_pred=X_test.loc[~X_test["id"].isin(pred),"id"]
-
-                                tp=len(set(true)&set(pred))
-                                fp=len(set(not_true)&set(pred))
-
-                                precision = tp/(tp+fp)
-
-                                d["K"]=K
-                                d["N"]=df_topic.shape[0]
-                                d["prec"]=precision
-                                d["fold"]=fold
-                                d["topic"]=topic
-                                d["target"]=target
-                                d["model"]=col_type
-                                results.append(d)
+                                    skipped.append(topic)
     return results
 
 
@@ -285,6 +336,7 @@ def main(
         ["Physics", "Chemistry", "Ethics"],
     ),
     output_dir_name: ("Directory name for results", "positional", None, str,),
+    reload_data: ("Reload data", "flag", "reload", bool)
 ):
     """
     Evaluate performance on the regression task of predicting aggregated
@@ -302,27 +354,35 @@ def main(
 
     feature_types_included = ["surface", "lexical", "readability", "syntax", "semantic"]
 
-    # 1) load data and append features
-    df = load_data(discipline, output_dir_name,feature_types_included)
-
-    # 2) POS and content words for rationales as new columns
-    df["rationale_pos"]=pd.Series([
-        " ".join([
-            token.pos_ for token in doc
-            if token.pos not in DROPPED_POS
-        ]) for doc in nlp.pipe(df["rationale"],batch_size=50)]
-    )
-    df["rationale_content_words"]=pd.Series(
-        [
-            " ".join([
-                token.lemma_ for token in doc
-                if not token.is_stop
-            ])
-            for doc in nlp.pipe(df["rationale"],batch_size=50)]
-    )
     fp=os.path.join(output_dir_discpline,f"df_with_POS_{discipline}.csv")
-    df.to_csv(fp)
-    # df_ngram=pd.read_csv(fp)
+    if reload_data:
+        # 1) load data and append features
+        df_ = load_data(discipline, output_dir_name,feature_types_included)
+
+        # 2) POS and content words for rationales as new columns
+        df_["rationale_pos"]=pd.Series([
+            " ".join([
+                token.pos_ for token in doc
+                if token.pos not in DROPPED_POS
+            ]) for doc in nlp.pipe(df_["rationale"],batch_size=50)]
+        )
+        df_["rationale_content_words"]=pd.Series(
+            [
+                " ".join([
+                    token.lemma_ for token in doc
+                    if not token.is_stop
+                ])
+                for doc in nlp.pipe(df_["rationale"],batch_size=50)]
+        )
+        df_.to_csv(fp)
+        # df_ngram=pd.read_csv(fp)
+
+    else:
+        df_=pd.read_csv(fp)
+
+    # 1a) filter out all rationales < MIN_WORD_COUNT
+    df=df_[df_["surface_n_words"]>=MIN_WORD_COUNT].copy()
+
 
     # 2) normalize features by word count, change column names
     df2, cols_sets = normalize_and_rename_columns(df,feature_types_included)
@@ -330,7 +390,7 @@ def main(
     # 3) copy relevant data and make pipeline
     targets = ["y_BT", "y_winrate_nopairs", "y_elo", "y_winrate", "y_crowdBT"]
 
-    df3 = df2[["topic"] + cols_sets["all"] + targets].dropna()
+    df3 = df2[["topic","rationales"] + cols_sets["all"] + targets].dropna()
 
     # 4) cross validated results over all topics/targets/feature-sets
     results = get_results(cols_sets, targets, df3)
