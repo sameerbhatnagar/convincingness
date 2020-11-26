@@ -11,3 +11,4 @@ statsmodels
 spacy-readability
 beautifulsoup4
 gensim==4.0.0b0
+pyspellchecker

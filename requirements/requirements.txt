@@ -60,6 +60,7 @@ prompt-toolkit==3.0.5     # via ipython, jupyter-console
 ptyprocess==0.6.0         # via pexpect, terminado
 pygments==2.6.1           # via ipython, jupyter-console, nbconvert, qtconsole
 pyparsing==2.4.7          # via matplotlib
+pyspellchecker==0.5.5     # via -r requirements/requirements.in
 python-dateutil==2.8.1    # via jupyter-client, matplotlib, pandas
 pytz==2019.3              # via pandas
 pyzmq==19.0.0             # via jupyter-client, notebook, qtconsole
