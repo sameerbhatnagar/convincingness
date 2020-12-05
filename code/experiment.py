@@ -7,13 +7,15 @@ import make_pairs
 import data_loaders
 import plots
 
+DALITE_DISCIPLINES = ["Physics","Chemistry","Ethics"]
+
 def main(
     discipline:(
         "Discipline",
         "positional",
         None,
         str,
-        ["Physics","Ethics","Chemistry","same_teacher_two_groups"],
+        ["Physics","Ethics","Chemistry","same_teacher_two_groups","UKP","IBM_ArgQ"],
 
     ),
     output_dir_name: (
@@ -38,17 +40,21 @@ def main(
 
     Path(output_dir).mkdir(parents=True, exist_ok=True)
 
+    if discipline in DALITE_DISCIPLINES:
+        make_pairs.main(
+            discipline=discipline,
+            output_dir=output_dir,
+            filter_switchers=filter_switchers
+        )
+        rank_score_types = ["winrate_no_pairs","winrate","elo","crowd_BT","BT"]
+    else:
+        rank_score_types = ["winrate","elo","BT"]
 
-    make_pairs.main(
-        discipline=discipline,
-        output_dir=output_dir,
-        filter_switchers=filter_switchers
-    )
-    for rank_score_type in ["winrate_no_pairs","winrate","elo","crowd_BT","BT"]:
+    for rank_score_type in rank_score_types:
         argBT.main(
             discipline=discipline,
             rank_score_type=rank_score_type,
-            output_dir=output_dir,
+            output_dir_name=output_dir_name,
             largest_first=largest_first,
             time_series_validation_flag=time_series_validation_flag
         )

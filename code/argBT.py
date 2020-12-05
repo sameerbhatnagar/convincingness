@@ -52,6 +52,8 @@ TRANSITIONS = {
     "same_teacher_two_groups":["rr", "wr", "rw", "ww"],
 }
 
+DALITE_DISCIPLINES = ["Physics","Chemistry","Ethics"]
+
 # http://vene.ro/blog/kemeny-young-optimal-rank-aggregation-in-python.html
 def kendalltau_dist(rank_a, rank_b):
     tau = 0
@@ -325,18 +327,31 @@ def get_topic_data(topic, discipline,output_dir):
     """
 
     data_dir_discipline=os.path.join(output_dir,"data")
-
-    fp = os.path.join(data_dir_discipline, "{}.csv".format(topic))
-    df_topic = pd.read_csv(fp)
-    df_topic = df_topic[~df_topic["user_token"].isna()].sort_values("a_rank_by_time")
-    df_topic["rationale"] = df_topic["rationale"].fillna(" ")
-    # load pairs
-    pairs_df = pd.read_csv(
-        os.path.join(
-            "{}_pairs".format(data_dir_discipline), "pairs_{}.csv".format(topic)
+    if discipline in DALITE_DISCIPLINES:
+        fp = os.path.join(data_dir_discipline, "{}.csv".format(topic))
+        df_topic = pd.read_csv(fp)
+        df_topic = df_topic[~df_topic["user_token"].isna()].sort_values("a_rank_by_time")
+        df_topic["rationale"] = df_topic["rationale"].fillna(" ")
+        # load pairs
+        pairs_df = pd.read_csv(
+            os.path.join(
+                "{}_pairs".format(data_dir_discipline), "pairs_{}.csv".format(topic)
+            )
         )
-    )
-    pairs_df = pairs_df[pairs_df["a1_id"] != pairs_df["a2_id"]]
+        pairs_df = pairs_df[pairs_df["a1_id"] != pairs_df["a2_id"]]
+    else:
+        df_topic = pd.DataFrame()
+        # load pairs
+        pairs_df = pd.read_csv(
+            os.path.join(
+                "{}_pairs".format(data_dir_discipline), "{}.csv".format(topic)
+            ),
+            sep="\t"
+        )
+        pairs_df["a1_id"] = pairs_df["#id"].str.split("_").apply(lambda x: x[0])
+        pairs_df["a2_id"] = pairs_df["#id"].str.split("_").apply(lambda x: x[1])
+        pairs_df = pairs_df[pairs_df["a1_id"] != pairs_df["a2_id"]]
+
 
     return pairs_df, df_topic
 
@@ -392,6 +407,10 @@ def get_ranking_model_fit(pairs_train, df_train, rank_score_type, discipline):
             y_true=pairs_train_no_ties["label"],
             y_pred=pairs_train_no_ties["label_pred"],
         ),
+        "n_ties": pairs_train[pairs_train["a1_rank"] == pairs_train["a2_rank"]].shape[0]
+        }
+    if discipline in DALITE_DISCIPLINES:
+        results_accuracy.update({
         "acc_by_transition": [
             {
                 "transition": transition,
@@ -430,10 +449,7 @@ def get_ranking_model_fit(pairs_train, df_train, rank_score_type, discipline):
             }
             for transition in TRANSITIONS[discipline]
         ],
-        "n_ties": pairs_train[pairs_train["a1_rank"] == pairs_train["a2_rank"]].shape[
-            0
-        ],
-    }
+    })
 
     results = {
         "accuracies": results_accuracy,
@@ -634,7 +650,7 @@ def main(
         "positional",
         None,
         str,
-        ["Physics", "Chemistry", "Ethics", "same_teacher_two_groups"],
+        ["Physics", "Chemistry", "Ethics", "same_teacher_two_groups", "UKP", "IBM_ArgQ"],
     ),
     rank_score_type: (
         "Rank Score Type",
@@ -793,13 +809,26 @@ def main(
                 rank_score_type=rank_score_type,
                 discipline=discipline,
             )
+            if discipline in DALITE_DISCIPLINES:
+                batch_accuracies, batch_rank_scores = get_model_fit_by_batch(
+                    df_topic=df_topic,
+                    pairs_df=pairs_df,
+                    rank_score_type=rank_score_type,
+                    discipline=discipline,
+                )
+                # rank_scores_by_batch
+                fp = os.path.join(
+                    results_dir_discipline, "rank_scores_by_batch", "{}.json".format(topic),
+                )
+                with open(fp, "w+") as f:
+                    json.dump(batch_rank_scores, f, indent=2)
 
-            batch_accuracies, batch_rank_scores = get_model_fit_by_batch(
-                df_topic=df_topic,
-                pairs_df=pairs_df,
-                rank_score_type=rank_score_type,
-                discipline=discipline,
-            )
+                # accuracies by batch
+                fp = os.path.join(
+                    results_dir_discipline, "accuracies_by_batch", "{}.json".format(topic),
+                )
+                with open(fp, "w+") as f:
+                    json.dump(batch_accuracies, f, indent=2)
 
             # pairwise classification results
             fp = os.path.join(
@@ -814,20 +843,6 @@ def main(
             )
             with open(fp, "w+") as f:
                 json.dump(results["rank_scores"], f, indent=2)
-
-            # rank_scores_by_batch
-            fp = os.path.join(
-                results_dir_discipline, "rank_scores_by_batch", "{}.json".format(topic),
-            )
-            with open(fp, "w+") as f:
-                json.dump(batch_rank_scores, f, indent=2)
-
-            # accuracies by batch
-            fp = os.path.join(
-                results_dir_discipline, "accuracies_by_batch", "{}.json".format(topic),
-            )
-            with open(fp, "w+") as f:
-                json.dump(batch_accuracies, f, indent=2)
 
             # crowd_BT give annotator params as well
             if rank_score_type == "crowd_BT":
