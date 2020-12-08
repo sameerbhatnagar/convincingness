@@ -358,19 +358,19 @@ def load_arg_pairs_IBM_Evi(N_folds=5, cross_topic_validation=False,bert_double_d
 
 def load_dalite_data(discipline, N_folds=5, cross_topic_validation=False, bert_double_data=False,train_test_split=True):
 
-    data_dir = os.path.join(BASE_DATA_DIR, "mydalite_arg_pairs_others")
+    data_dir = os.path.join(BASE_DIR, "tmp", "exp2", discipline, "all", "data_pairs")
 
     topics = os.listdir(data_dir)
     df_all = pd.DataFrame()
     for topic in topics:
         fpath = os.path.join(data_dir, topic)
         df_stance = pd.read_csv(fpath)
-        df_stance["discipline"] = topic.split("_")[0]
-        df_stance["question"] = topic.split("_")[1]
+        # df_stance["discipline"] = topic.split("_")[0]
+        df_stance["topic"] = topic
         df_all = pd.concat([df_all, df_stance])
 
-    if discipline:
-        df_all = df_all[df_all["discipline"] == discipline]
+    # if discipline:
+    #     df_all = df_all[df_all["discipline"] == discipline]
 
     if not train_test_split:
         return df_all

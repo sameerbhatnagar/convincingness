@@ -17,6 +17,19 @@ OOV_TAG = "OOV_TAG"
 
 MIN_RECORDS_PER_QUESTION = 100
 
+def make_pairs_IBM_Evi(output_dir_name):
+    """
+    function to make per topic files for the IBM_EviConv dataset
+    """
+    df_ibm_evi=data_loaders.load_arg_pairs_IBM_Evi(train_test_split=False)
+    discipline="IBM_Evi"
+    population = "all"
+    output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", output_dir_name, discipline,population)
+    data_dir_discipline=os.path.join(output_dir,"data_pairs")
+    for topic,df_topic in df_ibm_evi.groupby("topic"):
+        fp=os.path.join(data_dir_discipline,f"{topic}.csv")
+        df_topic.to_csv(fp,sep="\t")
+    return
 
 def get_shown_rationales(row):
     """

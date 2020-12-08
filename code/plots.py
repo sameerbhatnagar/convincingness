@@ -6,6 +6,8 @@ import numpy as np
 from scipy.stats import iqr, kendalltau
 import data_loaders
 
+from argBT import get_topic_data
+
 import spacy
 
 nlp = spacy.load("en_core_web_sm",disable=["ner"])
@@ -13,10 +15,14 @@ DROPPED_POS = ["PUNCT", "SPACE"]
 TRANSITIONS = {
     "Physics": ["rr", "rw", "wr", "ww"],
     "Ethics": ["switch_ans", "same_ans"],
+    "UKP": ["-"]
 }
 TRANSITIONS.update({
     "Chemistry":TRANSITIONS["Physics"],
-    "same_teacher_two_groups":TRANSITIONS["Physics"]
+    "same_teacher_two_groups":TRANSITIONS["Physics"],
+    "IBM_ArgQ":TRANSITIONS["UKP"],
+    "IBM_Evi":TRANSITIONS["UKP"]
+
 })
 
 TRANSITION_LABELS = {
@@ -27,10 +33,14 @@ TRANSITION_LABELS = {
         "ww": "Wrong -> Wrong",
     },
     "Ethics": {"switch_ans": "Switch", "same_ans": "Same"},
+    "UKP" :{"-":"-"}
 }
 TRANSITION_LABELS.update({
     "Chemistry":TRANSITION_LABELS["Physics"],
-    "same_teacher_two_groups":TRANSITION_LABELS["Physics"]
+    "same_teacher_two_groups":TRANSITION_LABELS["Physics"],
+    "IBM_ArgQ":TRANSITION_LABELS["UKP"],
+    "IBM_Evi":TRANSITION_LABELS["UKP"]
+
 })
 
 RANK_SCORE_TYPES = [
@@ -68,38 +78,19 @@ TRANSITION_COLORS = {
         "ww": "firebrick",
     },
     "Ethics": {"switch_ans": "gold", "same_ans": "cornflowerblue",},
+    "UKP": {"-":"gold"}
 }
 TRANSITION_COLORS.update({
     "Chemistry":TRANSITION_COLORS["Physics"],
-    "same_teacher_two_groups":TRANSITION_COLORS["Physics"]
+    "same_teacher_two_groups":TRANSITION_COLORS["Physics"],
+    "IBM_ArgQ":TRANSITION_COLORS["UKP"],
+    "IBM_Evi":TRANSITION_COLORS["UKP"]
+
 })
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 THESIS_DIR=os.path.join(BASE_DIR, os.pardir,"thesis_project", "thesis")
-
-
-def get_topic_data(topic, discipline,output_dir):
-    """
-    given topic/question and associated discipline (needed for subdirectories),
-    return mydalite answer observations, and associated pairs that are
-    constructed using `mauke_pairs.py`
-    """
-    data_dir_discipline = os.path.join(output_dir,"data")
-
-    fp = os.path.join(data_dir_discipline, "{}.csv".format(topic))
-    df_topic = pd.read_csv(fp)
-    df_topic = df_topic[~df_topic["user_token"].isna()].sort_values("a_rank_by_time")
-    df_topic["rationale"] = df_topic["rationale"].fillna(" ")
-    # load pairs
-    pairs_df = pd.read_csv(
-        os.path.join(
-            "{}_pairs".format(data_dir_discipline), "pairs_{}.csv".format(topic)
-        )
-    )
-    pairs_df = pairs_df[pairs_df["a1_id"] != pairs_df["a2_id"]]
-
-    return pairs_df, df_topic
 
 
 def my_summary(x):
@@ -203,6 +194,7 @@ def summary_table(discipline,output_dir):
     df_summary_table = (
         df_summary.dropna().groupby("transition").apply(lambda x: my_summary_table(x))
     )
+    df_summary_table["discipline"] = discipline
 
     return df_summary_table
 

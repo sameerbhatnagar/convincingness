@@ -340,7 +340,6 @@ def get_topic_data(topic, discipline,output_dir):
         )
         pairs_df = pairs_df[pairs_df["a1_id"] != pairs_df["a2_id"]]
     else:
-        df_topic = pd.DataFrame()
         # load pairs
         pairs_df = pd.read_csv(
             os.path.join(
@@ -352,6 +351,13 @@ def get_topic_data(topic, discipline,output_dir):
         pairs_df["a2_id"] = pairs_df["#id"].str.split("_").apply(lambda x: x[1])
         pairs_df = pairs_df[pairs_df["a1_id"] != pairs_df["a2_id"]]
 
+        # make df of just the individual arguments with their id's from the pairs
+        df_topic=pd.concat([
+            pairs_df[["a1_id","a1"]].rename(columns={"a1_id":"id","a1":"rationale"}).drop_duplicates("id"),
+            pairs_df[["a2_id","a2"]].rename(columns={"a2_id":"id","a2":"rationale"}).drop_duplicates("id")
+        ])
+        df_topic["transition"]="-"
+        pairs_df["transition"]="-"
 
     return pairs_df, df_topic
 
