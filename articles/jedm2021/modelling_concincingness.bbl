@@ -1,11 +1,72 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\citeauthoryear{Cambre, Klemmer, and Kulkarni}{Cambre
+  et~al\mbox{.}}{2018}]{cambre_juxtapeer:_2018}
+{\sc Cambre, J.}, {\sc Klemmer, S.}, {\sc and} {\sc Kulkarni, C.} 2018.
+\newblock Juxtapeer: {Comparative} {Peer} {Review} {Yields} {Higher} {Quality}
+  {Feedback} and {Promotes} {Deeper} {Reflection}.
+\newblock In {\em Proceedings of the 2018 {CHI} {Conference} on {Human}
+  {Factors} in {Computing} {Systems} - {CHI} '18}. ACM Press, Montreal QC,
+  Canada, 1--13.
+
+\bibitem[\protect\citeauthoryear{Charles, Lasry, Bhatnagar, Adams, Lenton,
+  Brouillette, Dugdale, Whittaker, and Jackson}{Charles
+  et~al\mbox{.}}{2019}]{charles_harnessing_2019}
+{\sc Charles, E.~S.}, {\sc Lasry, N.}, {\sc Bhatnagar, S.}, {\sc Adams, R.},
+  {\sc Lenton, K.}, {\sc Brouillette, Y.}, {\sc Dugdale, M.}, {\sc Whittaker,
+  C.}, {\sc and} {\sc Jackson, P.} 2019.
+\newblock Harnessing peer instruction in- and out- of class with {myDALITE}.
+\newblock In {\em Fifteenth {Conference} on {Education} and {Training} in
+  {Optics} and {Photonics}: {ETOP} 2019}. Optical Society of America,
+  11143\_89.
+
+\bibitem[\protect\citeauthoryear{Charles, Lasry, Whittaker, Dugdale, Lenton,
+  Bhatnagar, and Guillemette}{Charles
+  et~al\mbox{.}}{2015}]{charles_beyond_2015}
+{\sc Charles, E.~S.}, {\sc Lasry, N.}, {\sc Whittaker, C.}, {\sc Dugdale, M.},
+  {\sc Lenton, K.}, {\sc Bhatnagar, S.}, {\sc and} {\sc Guillemette, J.} 2015.
+\newblock Beyond and {Within} {Classroom} {Walls}: {Designing} {Principled}
+  {Pedagogical} {Tools} for {Student} and {Faculty} {Uptake}.
+\newblock International Society of the Learning Sciences, Inc.[ISLS].
+
+\bibitem[\protect\citeauthoryear{Chen, Bennett, Collins-Thompson, and
+  Horvitz}{Chen et~al\mbox{.}}{2013}]{chen_pairwise_2013}
+{\sc Chen, X.}, {\sc Bennett, P.~N.}, {\sc Collins-Thompson, K.}, {\sc and}
+  {\sc Horvitz, E.} 2013.
+\newblock Pairwise ranking aggregation in a crowdsourced setting.
+\newblock In {\em Proceedings of the sixth {ACM} international conference on
+  {Web} search and data mining}. 193--202.
+
+\bibitem[\protect\citeauthoryear{Chi, Leeuw, Chiu, and LaVancher}{Chi
+  et~al\mbox{.}}{1994}]{chi_eliciting_1994}
+{\sc Chi, M.~T.}, {\sc Leeuw, N.}, {\sc Chiu, M.-H.}, {\sc and} {\sc LaVancher,
+  C.} 1994.
+\newblock Eliciting self‐explanations improves understanding.
+\newblock {\em Cognitive science\/}~{\em 18,\/}~3, 439--477.
+
+\bibitem[\protect\citeauthoryear{Crouch and Mazur}{Crouch and
+  Mazur}{2001}]{crouch_peer_2001}
+{\sc Crouch, C.~H.} {\sc and} {\sc Mazur, E.} 2001.
+\newblock Peer instruction: {Ten} years of experience and results.
+\newblock {\em American Journal of Physics\/}~{\em 69,\/}~9, 970--977.
+
 \bibitem[\protect\citeauthoryear{Deerwester, Dumais, Landauer, Furnas, and
   Harshman}{Deerwester et~al\mbox{.}}{1990}]{deerwester_indexing_1990}
 {\sc Deerwester, S.~C.}, {\sc Dumais, S.~T.}, {\sc Landauer, T.~K.}, {\sc
   Furnas, G.~W.}, {\sc and} {\sc Harshman, R.~A.} 1990.
 \newblock Indexing by latent semantic analysis.
 \newblock {\em JASIS\/}~{\em 41,\/}~6, 391--407.
+
+\bibitem[\protect\citeauthoryear{Denny, Hamer, Luxton-Reilly, and
+  Purchase}{Denny et~al\mbox{.}}{2008}]{denny_peerwise:_2008}
+{\sc Denny, P.}, {\sc Hamer, J.}, {\sc Luxton-Reilly, A.}, {\sc and} {\sc
+  Purchase, H.} 2008.
+\newblock {PeerWise}: {Students} {Sharing} {Their} {Multiple} {Choice}
+  {Questions}.
+\newblock In {\em Proceedings of the {Fourth} {International} {Workshop} on
+  {Computing} {Education} {Research}}. {ICER} '08. ACM, New York, NY, USA,
+  51--58.
+\newblock event-place: Sydney, Australia.
 
 \bibitem[\protect\citeauthoryear{Devlin, Chang, Lee, and Toutanova}{Devlin
   et~al\mbox{.}}{2018}]{devlin_bert_2018}
@@ -14,6 +75,14 @@
 \newblock Bert: {Pre}-training of deep bidirectional transformers for language
   understanding.
 \newblock {\em arXiv preprint arXiv:1810.04805\/}.
+
+\bibitem[\protect\citeauthoryear{Gleize, Shnarch, Choshen, Dankin, Moshkowich,
+  Aharonov, and Slonim}{Gleize et~al\mbox{.}}{2019}]{gleize_are_2019}
+{\sc Gleize, M.}, {\sc Shnarch, E.}, {\sc Choshen, L.}, {\sc Dankin, L.}, {\sc
+  Moshkowich, G.}, {\sc Aharonov, R.}, {\sc and} {\sc Slonim, N.} 2019.
+\newblock Are you convinced? choosing the more convincing evidence with a
+  {Siamese} network.
+\newblock {\em arXiv preprint arXiv:1907.08971\/}.
 
 \bibitem[\protect\citeauthoryear{Habernal and Gurevych}{Habernal and
   Gurevych}{2016}]{habernal_which_2016}
@@ -32,6 +101,13 @@
 \newblock {\em Foundations of science\/}~{\em 7,\/}~3, 293--340.
 \newblock Publisher: Springer.
 
+\bibitem[\protect\citeauthoryear{Khosravi, Kitto, and Williams}{Khosravi
+  et~al\mbox{.}}{2019}]{khosravi_ripple_2019}
+{\sc Khosravi, H.}, {\sc Kitto, K.}, {\sc and} {\sc Williams, J.~J.} 2019.
+\newblock Ripple: {A} crowdsourced adaptive platform for recommendation of
+  learning activities.
+\newblock {\em arXiv preprint arXiv:1910.05522\/}.
+
 \bibitem[\protect\citeauthoryear{Mohler and Mihalcea}{Mohler and
   Mihalcea}{2009}]{mohler_text--text_2009}
 {\sc Mohler, M.} {\sc and} {\sc Mihalcea, R.} 2009.
@@ -42,6 +118,15 @@
   '09. Association for Computational Linguistics, Stroudsburg, PA, USA,
   567--575.
 \newblock event-place: Athens, Greece.
+
+\bibitem[\protect\citeauthoryear{Nathan, Koedinger, Alibali, and
+  {others}}{Nathan et~al\mbox{.}}{2001}]{nathan_expert_2001}
+{\sc Nathan, M.~J.}, {\sc Koedinger, K.~R.}, {\sc Alibali, M.~W.}, {\sc and}
+  {\sc {others}}. 2001.
+\newblock Expert blind spot: {When} content knowledge eclipses pedagogical
+  content knowledge.
+\newblock In {\em Proceedings of the third international conference on
+  cognitive science}. Vol. 644648.
 
 \bibitem[\protect\citeauthoryear{Pennington, Socher, and Manning}{Pennington
   et~al\mbox{.}}{2014}]{pennington_glove:_2014}
@@ -54,5 +139,57 @@
 {\sc Persing, I.} {\sc and} {\sc Ng, V.} 2016.
 \newblock End-to-{End} {Argumentation} {Mining} in {Student} {Essays}.
 \newblock In {\em {HLT}-{NAACL}}. 1384--1394.
+
+\bibitem[\protect\citeauthoryear{Potash, Ferguson, and Hazen}{Potash
+  et~al\mbox{.}}{2019}]{potash_ranking_2019}
+{\sc Potash, P.}, {\sc Ferguson, A.}, {\sc and} {\sc Hazen, T.~J.} 2019.
+\newblock Ranking passages for argument convincingness.
+\newblock In {\em Proceedings of the 6th {Workshop} on {Argument} {Mining}}.
+  146--155.
+
+\bibitem[\protect\citeauthoryear{Potter, Englund, Charbonneau, MacLean, Newell,
+  Roll, and {others}}{Potter et~al\mbox{.}}{2017}]{potter_compair:_2017}
+{\sc Potter, T.}, {\sc Englund, L.}, {\sc Charbonneau, J.}, {\sc MacLean,
+  M.~T.}, {\sc Newell, J.}, {\sc Roll, I.}, {\sc and} {\sc {others}}. 2017.
+\newblock {ComPAIR}: {A} new online tool using adaptive comparative judgement
+  to support learning with peer feedback.
+\newblock {\em Teaching \& Learning Inquiry\/}~{\em 5,\/}~2, 89--113.
+
+\bibitem[\protect\citeauthoryear{Toledo, Gretz, Cohen-Karlik, Friedman,
+  Venezian, Lahav, Jacovi, Aharonov, and Slonim}{Toledo
+  et~al\mbox{.}}{2019}]{toledo_automatic_2019}
+{\sc Toledo, A.}, {\sc Gretz, S.}, {\sc Cohen-Karlik, E.}, {\sc Friedman, R.},
+  {\sc Venezian, E.}, {\sc Lahav, D.}, {\sc Jacovi, M.}, {\sc Aharonov, R.},
+  {\sc and} {\sc Slonim, N.} 2019.
+\newblock Automatic {Argument} {Quality} {Assessment}-{New} {Datasets} and
+  {Methods}.
+\newblock In {\em Proceedings of the 2019 {Conference} on {Empirical} {Methods}
+  in {Natural} {Language} {Processing} and the 9th {International} {Joint}
+  {Conference} on {Natural} {Language} {Processing} ({EMNLP}-{IJCNLP})}.
+  5629--5639.
+
+\bibitem[\protect\citeauthoryear{Univeristy~of British~Columbia}{Univeristy~of
+  British~Columbia}{2019}]{univeristy_of_british_columbia_ubc/ubcpi_2019}
+{\sc Univeristy~of British~Columbia, T. . L.~T.} 2019.
+\newblock ubc/ubcpi.
+\newblock original-date: 2015-02-17T21:37:02Z.
+
+\bibitem[\protect\citeauthoryear{Weir, Kim, Gajos, and Miller}{Weir
+  et~al\mbox{.}}{2015}]{weir_learnersourcing_2015}
+{\sc Weir, S.}, {\sc Kim, J.}, {\sc Gajos, K.~Z.}, {\sc and} {\sc Miller,
+  R.~C.} 2015.
+\newblock Learnersourcing subgoal labels for how-to videos.
+\newblock In {\em Proceedings of the 18th {ACM} {Conference} on {Computer}
+  {Supported} {Cooperative} {Work} \& {Social} {Computing}}. ACM, 405--416.
+
+\bibitem[\protect\citeauthoryear{Williams, Kim, Rafferty, Maldonado, Gajos,
+  Lasecki, and Heffernan}{Williams et~al\mbox{.}}{2016}]{williams_axis:_2016}
+{\sc Williams, J.~J.}, {\sc Kim, J.}, {\sc Rafferty, A.}, {\sc Maldonado, S.},
+  {\sc Gajos, K.~Z.}, {\sc Lasecki, W.~S.}, {\sc and} {\sc Heffernan, N.} 2016.
+\newblock {AXIS}: {Generating} {Explanations} at {Scale} with {Learnersourcing}
+  and {Machine} {Learning}.
+\newblock In {\em Proceedings of the {Third} (2016) {ACM} {Conference} on
+  {Learning} @ {Scale} - {L}@{S} '16}. ACM Press, Edinburgh, Scotland, UK,
+  379--388.
 
 \end{thebibliography}

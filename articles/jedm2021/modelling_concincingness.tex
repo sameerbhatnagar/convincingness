@@ -4,6 +4,18 @@
 \usepackage[table]{xcolor}
 \usepackage{url}
 \usepackage{hyperref}
+\usepackage{pgf}
+\usepackage{newtxmath}
+\usepackage{booktabs}
+
+\usepackage{ifthen}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{calc}
+\usepackage{multirow}
+\usepackage[finalnew]{trackchanges}
+
+
 \hypersetup{
 	colorlinks   = true, %Colours links instead of ugly boxes
 	urlcolor     = blue, %Colour for external hyperlinks
@@ -24,11 +36,6 @@
 	\author{
 		{\large Sameer Bhatnagar}
 		\\Polytechnique Montreal
-
-	 	\and 
-	 	{\large Antoine Lefebvre-Brossard}
-	 	\\Polytechnique Montreal
-
 	 	\and 
 	 	{\large Michel C. Desmarais}
 	 	\\Polytechnique Montreal
@@ -50,8 +57,479 @@
 	\end{abstract}
 
 \section{Introduction}
+Technology-mediated peer instruction \textit{(TMPI)} platforms 
+\cite{charles_harnessing_2019}\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}
+expand multiple choice items into a two step process.
+On the first step, students must not only choose an answer choice, but also 
+provide an explanation that justifies their reasoning. 
+On the second step, students are prompted to revise their answer choice, by 
+taking into consideration a subset of explanations written by their peers.
 
-\section{Modelling Argument Quality Scores}
+The student now has three options:
+\begin{enumerate}
+	\item Change their answer choice, by indicating which of their peer's 
+	explanations for a \textit{different} answer choice was most convincing;
+	\item keep the \textit{same} answer choice, but indicate which the peer's 
+	explanations the student found more convincing than their own;
+	\item choose ``I stick to my own'', which indicates that they are keeping 
+	to the same answer choice, and that their own explanation is best from 
+	among those that are shown.
+\end{enumerate}
+
+Whenever the student goes with either of the first two scenarios above, we 
+frame this as ``casting a vote'' for the chosen peer explanation.
+
+The design and growing popularity of TMPI is inspired by three schools of 
+thought: firstly, prompting students to explain their reasoning is beneficial 
+to their learning \cite{chi_eliciting_1994}. 
+Second, classroom based \textit{Peer Instruction} \cite{crouch_peer_2001}, 
+often 
+mediated by automated response systems (e.g. clickers), has become a prevalent, 
+and often effective component in the teaching practice of instructors looking 
+to drive student engagement as part of an active learning experience 
+\cite{charles_beyond_2015}. 
+In discussing with peers \textit{after} they have formulated their own 
+reasoning, students are engaged in a higher order thinking task from Bloom's 
+taxonomy, as they evaluate what is the strongest argument, before answering 
+again.
+Thirdly, by capturing data on which explanations students find most convincing, 
+TMPI affords teachers the opportunity to mitigate the ``expert blind spot'' 
+\cite{nathan_expert_2001}, addressing student misconceptions they might not 
+otherwise have thought of.
+
+We suggest that the ``vote'' data collected on each explanation, is a proxy for 
+argument quality, along the dimension of \textit{convincingness}, as judged by 
+peer learners. 
+These votes can be aggregated into a \textit{convincingness} score, as a 
+measure of how effective that explanation is in persuading peers to change 
+their own answer.
+Student explanations can then be ranked along such a score, allowing for 
+instructors to gain insights on the thinking of their students with respect to 
+specific content, and potentially even help for students improve how they 
+communicate ideas with their discipline.
+
+The problem of aggregating the results of evaluative peer-judgments extends  
+beyond TMPI.
+For example, in response to the difficulty students can have providing a 
+holistic score to their peers' work, there is a growing number of peer-review 
+platforms built on \textit{comparative} judgments.
+Notable examples include ComPAIR\cite{potter_compair:_2017} and 
+JuxtaPeer\cite{cambre_juxtapeer:_2018}, both of which present students with a 
+just a pair of their peers' submissions, and prompt the learner to evaluate 
+them with respect to one another.
+As in TMPI, students apply a comparative judgment to only the subset of peer 
+content that they are shown during the review step.
+There is a need for a principled approach to aggregating this learnersourced 
+data in a pedagogically relevant manner.
+
+This sets the stage for our central research questions: 
+\begin{itemize}
+	\item since each student's ``vote'' in this context represents an 
+	incomplete evaluative judgement, which rank aggregation 
+	methods are best suited for the \textit{measuring} the quality of student 
+	explanations in TMPI?
+	\item once we establish an appropriate measure of explanation quality, 
+	along the dimension of \textit{convinciness}, can we \textit{model} this 
+	property, and identify the linguistic features of the 
+	most effective student explanations, as judged by their peers?
+\end{itemize}
+
+To our knowledge, we are among the first to examine unsupervised rank 
+aggregation methods as applied to these student ``votes'' in TMPI, in order to 
+reliable measurements of \textit{convincingness}. 
+
+We suggest that the results of our work can inform the design of TMPI platforms.
+However, in a broader context, we aim to contribute to the growing body of 
+research surrounding technology-mediated peer-review, specifically where 
+learners do not provide holistic scores, but generate their evaluative 
+judgments in a comparative setting.
+Our research questions generalize to these broader settings: whenever a 
+learner engages in comparative peer assessment, the supporting technology must 
+design some principled approach to constructing the subsets of peer-submissions 
+that will be shown (e.g. random sampling, based on a learner model, showing the 
+\textit{popular} items more often, etc).
+Instructors need support in parsing through the overwhelming mounts of data 
+that can be generated when students not only create, but also curate content as 
+part of their learning activity. 
+
+This paper begins with an overview of research related to learnersourcing  
+(section \ref{sec:related_work}).
+We then describe our TMPI dataset, as well as publicly available reference 
+datasets of argument quality, which we use to evaluate our methodology (section 
+\ref{sec:datasets}).
+Our most important contribution is in proposing a methodology for evaluating 
+the quality of student explanations, along the dimension of 
+\textit{convincingness}, in TMPI environments; we demonstrate this methodology 
+in section \ref{sec:methodology}.
+We then present our results on choosing the appropriate \textit{measure} of 
+explanation convincingness (section \ref{sec:measure}), and finally, we 
+describe how we \textit{model} these convincingness ``scores'' so as to 
+identify the linguistic features of explanations most often associated with 
+high-quality explanations (section \ref{sec:model}).
+
+\section{Related Work}\label{sec:related_work}
+
+\subsection{Learnersourcing student explanations}
+This modality is a specific case of  
+\textit{learnersourcing}\cite{weir_learnersourcing_2015}, wherein students first
+generate content as part of their own learning process, that is ultimately used 
+to help their peers learn as well.
+Notable examples include PeerWise \cite{denny_peerwise:_2008} and RiPPLE 
+\cite{khosravi_ripple_2019}, both of which have student generate learning 
+resources, which are subsequently used and evaluated by peers as part of 
+formative assessment activities.
+
+One of the earliest efforts to leverage peer judgments of peer-written 
+explanations specifically is from the AXIS system\cite{williams_axis:_2016}, 
+wherein students solved a problem, provided an explanation for their answer, 
+and evaluated explanations written by their peers.
+Using a reinforcement-learning approach known as ``multi-armed bandits'', the 
+system was able to select peer-written explanations that were rated as helpful 
+as those written by an expert.
+Our research follows from these studies in scaling to multiple domains, and 
+focusing on how the vote data can be used more directly to model argument 
+quality as judged by peers.
+
+\subsection{Ranking Arguments for Quality}
+Rank aggregation is the task of combining the preferences of multiple agents 
+into a single representative ranked list.
+It has long been understood that obtaining pairwise preference data may be 
+less prone to error on the part of the annotator, as it is a simpler task than 
+rating on scales with more gradations. 
+(This is relevant in TMPI, since each student is choosing one explanation as 
+the most convincing in relation to the subset of others that are shown.)
+
+A classical approach for rank aggregation from pairwise preference data is 
+using the Bradley-Terry model, which has been extended to incorporate the 
+quality of contributions of different annotators in a crowdsourced setting when 
+evaluating relative reading level in a pair passages \cite{chen_pairwise_2013}. 
+
+When evaluating argument convincingness, one of the first approaches proposed 
+is based on constructing an ``argument graph'', where a weighted edge is drawn 
+from node A to node B for every pair where argument A is labelled as more 
+convincing than argument B. 
+After filtering example pairs that lead to cycles in the graph, PageRank scores 
+are derived from this directed acyclic graph, and the PageRank 
+scores of each argument are used as the gold-standard to rank for 
+convincingness \cite{habernal_which_2016}.
+
+More recently, a relatively simpler heuristic WinRate score has been shown to 
+be competitive alternative, wherein the rank score of an argument is simply the 
+(normalized) number of times that argument has been chosen as more convincing 
+in a pair, divided by the number of pairs it appears in
+\cite{potash_ranking_2019}.
+
+Finally, a neural approach based on RankNet has recently yielded state of the 
+art results. By joining two Bidirectional Long-Short-Term Memory Networks in a 
+Siamese architecture, and appending a softmax layer to the output, 
+\cite{gleize_are_2019} show that we can jointly model pairwise preferences and 
+overall ranks publicly available datasets.
+
+We will explore two of these options as part of our methodology in our rank 
+aggregation step, via several related methods: 
+the probabilistic Bradley-Terry model, as well as two of its variants (CrowdBT 
+and the Elo rating system), and the simple heuristic scoring model. 
+(We leave the neural approach for future work, as the additional work required 
+to address make the models interpretable enough for the educational context is 
+out of the scope of this study)
+
+
+\section{Data}\label{sec:datasets}
+
+The data for this study come from myDALITE.org, which is a hosted instance of 
+an open-source project, 
+\verb|dalite|\footnote{\url{https://github.com/SALTISES4/dalite-ng}}, 
+maintained by a Canadian researcher-practitioner partnership focused on 
+supporting teachers develpping active learning pedagogy 
+\href{saltise.ca}{SALTISE}.
+
+Table \ref{tab:data_summary} gives an overview of the dataset included in this 
+study.
+The data is from introductory level university science courses, and generally 
+spans different teachers at different colleges and universities in Canada. 
+
+\begin{table}
+	\input{data/df_summary_final}
+	\caption{
+		Summary statistics of data, aggregated by transition type. 
+		$N$ is the number of student answers, $N_{pairs}$ is the number of 
+		pairs generated from those answers, and $wc_{med} (IQR)$ is the median 
+		word 
+		count 
+		for student explanations, with the inter-quartile range as a measure of 
+		dispersion. 
+	}
+	\label{tab:data_summary}
+\end{table}
+
+
+\section{Methodology}\label{sec:methodology}
+
+We borrow our methodological approach from research in argument mining (AM), 
+specifically related to modelling argument quality along the dimension of 
+\textit{convincingness}.
+A common approach is to curate pairs of arguments made in defence of the same 
+stance on the same topic.
+These pairs are then presented to crowd-workers, whose task it is to label 
+which of the two is more convincing. 
+These pairwise comparisons can then be aggregated using rank-aggregation 
+methods so as to produce a overall ranked list of arguments.
+We extend this work to the domain of TMPI, and define prediction tasks that not 
+only aim to validate this methodology, but help answer our specific research 
+questions.
+
+\subsection{Rank Aggregation}
+The raw data emerging from a TMPI platform is tabular, in the form of 
+student-item observations.
+The fields include the item prompt, the student's \textit{first} answer choice, 
+their accompanying explanation, the peer explanations shown on the review step, 
+the student's \textit{second} answer choice, and the peer explanation they 
+chose as most convincing (\verb|None| if they choose to ``stick to their own'').
+
+It should be noted that there is no credit associated with which explanation is 
+chosen in this TMPI platform (all points are attributed based on the 
+correctness of the answer choice on the first and second steps).
+After carefully looking at timestamp data, we observe that a large fraction of 
+students who choose to ``stick to their own'', spend as little as 5 seconds on 
+the review step.
+For this reason, we exclude these students' data, and build all rank scores 
+only based on students who explicitly choose a peer's explanation over their 
+own.
+
+After this first filtering step, we take the TMPI observations for each 
+question, and construct explanation pairs, as in figure 
+\ref{fig:make_pairs_a}.
+
+
+\begin{figure}
+	\scalebox{0.25}{\includegraphics{img/make_pairs_a.png}}
+	\caption{
+		Example of student-item observations from a TMPI environment. 
+		(a) Student $s_{30}$ chose the correct \textbf{B} as the answer on 
+		their first attempt, and provided the explanation $e_{30}$ in the 
+		dataset 
+		for this question. 
+		Without providing feedback on whether this is the correct answer, the 
+		student is shown a subset of explanations from previous students for 
+		\textbf{B}, as well as for \textbf{A} (the most popular incorrect 
+		answer). 
+		The student decides to keep the same answer choice \textbf{B}, and 
+		indcates that the explanation $e_25$ is the most convincing.
+		This is referred to as a \textit{Right}$->$\textit{Right} transition.
+		(b) This observation is transformed into 7 explanation pairs. The first 
+		pair is for the choice of $e_{25}$ over what the student themself, 
+		and the other six are for the choice of $e_{25}$ over the other shown 
+		explanations. 
+		The pairs are labelled as either having the left or right exlanation 
+		being 
+		more \textit{convincing}.
+		(c) This pairwise preference data is aggregated global ranked list, 
+		where 
+		each explanation is assigned a Rank Score. 
+	}
+	\label{fig:make_pairs_a}
+\end{figure}
+
+\begin{enumerate}
+	
+	\item \textbf{WinRate}, defined as the ratio of times an explanation is 
+	chosen to the number of times it was shown.
+	
+	\item \textbf{BT} score, which is the argument ``quality'' parameter 
+	estimated for each explanation, according to the \textit{Bradley-Terry} 
+	model, where the probability of argument A being chosen over argument B is 
+	given by 
+	
+	$$
+	P(a>b) = 
+	\frac{1}{1+e^{\beta_b-\beta_a}}
+	$$
+	where $\beta_i$ is the latent strength parameter of argument $i$. 
+	
+	We decompose each student-item observation into argument pairs, where the 
+	chosen explanation is paired with each of the other shown ones, and the 
+	pair is labelled with $y=-/+1$, depending on whether the chosen explanation 
+	is first/second in the pair.
+	Assuming there are $N$ explanations, labelled by $K$ students, and $S_K$ 
+	labelled pairs,the latent strength parameters are estimated by maximizing 
+	the log-likelihood given by:
+	$$
+	\ell(\boldsymbol{\beta})=\sum_{K}\sum_{(i,j)\epsilon S_K}^{} 
+	log\frac{1}{1+e^{\beta_i - \beta_j}}
+	$$
+	subject to $\sum_{i}\beta_i=0$.
+	
+	
+	\item The \textbf{Elo} rating system\cite{elo_rating_1978}, which was 
+	originally proposed for ranking chess players, has been successfully used 
+	in adaptive learning environments (see \cite{pelanek_applications_2016} for 
+	a review). 
+	This rating method can be seen as a heuristic re-parametrization of the 
+	\textbf{BT} method above, where the probability of argument A being chosen 
+	over argument B is given by
+	$$
+	P(a>b) = P_{ab} = \frac{1}{1+10^{(\beta_b-\beta_a)/400}}
+	$$
+	
+	All arguments are initialized with an initial value of 1500 points, an the 
+	rating of any argument is only updated after it appears in a pairwise 
+	comparison with another.
+	The rating update rule transfers points from the winner, to the loser, in 
+	proportion to the difference in strength:
+	
+	$$
+	\beta_a:=\beta_a+K(P_{ab} - \beta_a)
+	$$
+	
+	While the \textbf{BT} model can be thought of a \textit{consensus} 
+	approach, \textbf{Elo} ratings are dynamic and implicitly give more weight 
+	to recent data\cite{aldous_elo_2017}.
+	
+	\item \textbf{Crowd-BT} \cite{chen_pairwise_2013} is an extension of the 
+	\textbf{BT} model tailored to settings where different annotators may have 
+	assigned opposite labels to the same pairs, and the reliability of each 
+	annotator may vary significantly. 
+	A reliability parameter is estimated for each student, 
+	
+	$$
+	\eta_k \equiv P(a >_k b | a >b )
+	$$
+	
+	where $\eta_k \approx 1$ if the $k^{th}$ student agrees with most other 
+	students, and $\eta_k \approx 0$ if the student is in opposition to their 
+	peers.
+	This changes the model of argument $a$ being chosen over $b$ by student $k$ 
+	to 
+	$$
+	P(a >_k b) = 
+	\eta_k \frac{1}{1+e^{\beta_b-\beta_a}} + (1-\eta_k) 
+	\frac{1}{1+e^{\beta_b-\beta_a}}
+	$$
+	and the log-likelilood maximized for estimation to 
+	
+	$$
+	\ell(\boldsymbol{\eta},\boldsymbol{\beta})=\sum_{K}\sum_{(i,j)\epsilon 
+		S_K}^{} 
+	log(\eta_k\frac{1}{1+e^{\beta_i - \beta_j}} + 
+	(1-\eta_k)\frac{1}{1+e^{\beta_i - \beta_j}})
+	$$
+	
+	\item \textbf{Length}, a method used purely as a baseline, where for each 
+	pair, we simply predict that the explanation with more words is the more 
+	convincing.
+	This is a commonly used baseline  for the pairwise classification task of 
+	predicting argument quality \cite{toledo_automatic_2019} has been shown to 
+	be competitive for data from learning environments 
+	\cite{bhatnagar_learnersourcing_2020}.
+	(Since we only use a basic white-space tokenizer, we round the token-counts 
+	of each explanation down to the nearest multiple of five, as it is unlikely 
+	that a student could discern which is longer if the difference in lengths 
+	is less than this.)
+\end{enumerate}
+
+In order to evaluate these rank aggregation different scores, and address 
+our research question, we employ a time-series based cross-validation scheme:
+at each timestep, we calculate the aggregated argument \textit{convincingness} 
+scores from past students, and set out to predict: which arguments will be 
+chosen as more convincing from the pairs constructed for the current student?  
+
+
+
+\begin{figure}
+	\centering
+	\def\svgscale{0.5}
+	\input{img/make_pairs_time_series.pdf_tex}
+	\caption{
+		All of the pairs constructed for answers by students $i<=30$ are used 
+		to learn rank scores $\sigma$, which are evaluated in their ability to 
+		predict the label in the held out test set: argument pairs constructed 
+		from the answer of student $i=31$.
+		We must exclude those pairs which include the 31st student, as this 
+		explanation is unseen in the training set, and does not have a rank 
+		score 
+	}
+	\label{fig:make_pairs_time_series}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\def\svgscale{0.5}
+	\input{img/rankingreliability.pdf_tex}
+	\caption{
+		Validation scheme for evaluating reliability of rankings.
+		At each time step $\tau$ we take all students $i<=\tau$, and split 
+		student into two batches (chosen at alternating time steps)
+		We learn rankings for each of these batches, and evaluate the Kendall 
+		Tau rank correlation as estimate of reliability of the rankings.
+	}
+	\label{fig:rank_reliability}
+\end{figure}
+
+\begin{figure}
+	\scalebox{0.4}{\includegraphics{img/evaluate_rankings.png}}
+	\caption{Methodology for evaluation of rank scores}
+	\label{fig:evaluate_rankings}
+\end{figure}
+
+\section{Measuring Argument Quality}\label{sec:measure}
+\begin{figure}
+	\scalebox{0.6}{\input{img/corr_plot.pgf}}
+	\caption{
+		Correlation between different Ranking Scores for each explanation, 
+		disaggregated by transition type  
+	}
+	\label{fig:acc_by_rank_score_type}
+\end{figure}
+
+\textbf{TO DO}
+
+
+%\begin{figure}
+%	\scalebox{0.6}{\input{img/acc_by_rank_score_type.pgf}}
+%	\caption{
+%		Comparing the classification accuracy of different rank aggregation 
+%		scores in predicting which argument is more convincing from a pair, 
+%		under a time-series cross-validation scheme. Data is averaged across 
+%		all questions and times steps, for different disciplinary subsets of 
+%		TMPI data. 
+%	}
+%	\label{fig:acc_by_rank_score_type}
+%\end{figure}
+
+\begin{figure}
+	\scalebox{0.6}{\input{img/acc_by_transition.pgf}}
+	\caption{
+		Comparing the classification accuracy of different rank aggregation 
+		scores in predicting which argument is more convincing from a pair. 
+		Rank scores are calculated with the vote data of half the students, and 
+		tested on the pairs generated by the other half. 
+		Data is averaged across all questions, dis-aggregated by different TMPI 
+		transition types. 
+	}
+	\label{fig:acc_by_rank_score_type}
+\end{figure}
+
+\begin{figure}
+	\scalebox{0.6}{\input{img/corr_by_batch.pgf}}
+	\caption{
+		Pearson correlation coefficient between different rank score types, 
+		derived from two independent groups of students, averaged over all 
+		questions, dis-aggregated by different TMPI transition types.
+	}
+	\label{fig:acc_by_rank_score_type}
+\end{figure}
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{img/acc_vs_time_Physics_ada.png}
+	\caption{to do}
+	\label{fig:acc_vs_time}
+\end{figure}
+
+
+
+
+\section{Modelling Argument Quality Scores}\label{sec:model}
 The goal \textbf{RQ1} is establish which rank aggregation methods are best 
 suited for the context of TMPI, such that one can take the comparative 
 preference data from many students who each see different subsets of peer 
