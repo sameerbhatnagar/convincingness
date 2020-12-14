@@ -355,9 +355,10 @@ def get_topic_data(topic, discipline,output_dir):
         df_topic=pd.concat([
             pairs_df[["a1_id","a1"]].rename(columns={"a1_id":"id","a1":"rationale"}).drop_duplicates("id"),
             pairs_df[["a2_id","a2"]].rename(columns={"a2_id":"id","a2":"rationale"}).drop_duplicates("id")
-        ])
+        ]).drop_duplicates("id")
         df_topic["transition"]="-"
         pairs_df["transition"]="-"
+        df_topic["topic"]=topic
 
     return pairs_df, df_topic
 

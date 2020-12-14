@@ -30,6 +30,8 @@ import matplotlib.pyplot as plt
 MIN_WORD_COUNT = 10
 MIN_TIMES_SHOWN = 3
 
+DALITE_DISCIPLINES = ["Physics","Chemistry","Ethics"]
+
 class SMWrapper(BaseEstimator, RegressorMixin):
     def __init__(self, model_class, fit_intercept=True):
         self.model_class = model_class
@@ -69,6 +71,39 @@ class DenseTransformer(TransformerMixin):
         return X.todense()
 
 
+def get_bin_edges(df_topic):
+    min_wc=df_topic["surface_n_words"].min()
+    q1=df_topic["surface_n_words"].describe()["25%"]
+    q2=df_topic["surface_n_words"].describe()["50%"]
+    q3=df_topic["surface_n_words"].describe()["75%"]
+    max_wc=df_topic["surface_n_words"].max()
+    bin_edges=[min_wc-1,q1,q2,q3,max_wc+1]
+    if len(set(bin_edges))==len(bin_edges):
+        return bin_edges
+    else:
+        return None
+
+
+def append_wc_quartile_column(df_topic):
+    """
+    calculate quartiles for word count for given topic
+    """
+    min_wc=df_topic["surface_n_words"].min()
+    q1=df_topic["surface_n_words"].describe()["25%"]
+    q2=df_topic["surface_n_words"].describe()["50%"]
+    q3=df_topic["surface_n_words"].describe()["75%"]
+    max_wc=df_topic["surface_n_words"].max()
+
+    bin_edges=get_bin_edges(df_topic)
+    if bin_edges:
+        df_topic["wc_bin"]=pd.cut(
+            df_topic["surface_n_words"],
+            bins=bin_edges,
+            labels=["Q1","Q2","Q3","Q4"],
+            # include_lowest=True,
+        )
+    return df_topic
+
 def load_data(discipline, output_dir_name, feature_types_included):
     """
     load data and append features
@@ -89,23 +124,27 @@ def load_data(discipline, output_dir_name, feature_types_included):
         df_topic_with_features = append_features(
             topic.replace(".csv", ""), discipline, feature_types_included, output_dir
         )
+        df_topic_with_features["topic"]=topic.replace(".csv", "")
 
+        df_topic_with_features=append_wc_quartile_column(df_topic_with_features)
+
+        # load pairs
         pairs_df, _ = get_topic_data(
             topic=topic.replace(".csv", ""),
             discipline=discipline,
             output_dir=output_dir,
         )
-        df_topic_with_features["arg_id"] = "arg" + df_topic_with_features["id"].astype(
-            str
-        )
+        if discipline in DALITE_DISCIPLINES:
+            df_topic_with_features["arg_id"] = "arg" + df_topic_with_features["id"].astype(
+                str
+            )
+        else:
+            df_topic_with_features["arg_id"] =  df_topic_with_features["id"]
+            df_topic_with_features["id"] = df_topic_with_features["id"].str.replace("arg","").map(int)
 
+        # load targets
         _, args_dict = get_rankings_winrate(pairs_df)
         df_topic_with_features["y_winrate"] = df_topic_with_features["arg_id"].map(
-            args_dict
-        )
-
-        _, args_dict, _ = get_rankings_crowdBT(pairs_df)
-        df_topic_with_features["y_crowdBT"] = df_topic_with_features["arg_id"].map(
             args_dict
         )
 
@@ -117,17 +156,24 @@ def load_data(discipline, output_dir_name, feature_types_included):
         _, args_dict = get_rankings_BT(pairs_df)
         df_topic_with_features["y_BT"] = df_topic_with_features["arg_id"].map(args_dict)
 
-        _, args_dict = get_rankings_winrate_no_pairs(df_topic_with_features)
-        df_topic_with_features["y_winrate_nopairs"] = df_topic_with_features[
-            "arg_id"
-        ].map(args_dict)
+        if discipline in DALITE_DISCIPLINES:
+            _, args_dict = get_rankings_winrate_no_pairs(df_topic_with_features)
+            df_topic_with_features["y_winrate_nopairs"] = df_topic_with_features[
+                "arg_id"
+            ].map(args_dict)
 
+            _, args_dict, _ = get_rankings_crowdBT(pairs_df)
+            df_topic_with_features["y_crowdBT"] = df_topic_with_features["arg_id"].map(
+                args_dict
+            )
+
+        # combine targets and features
         df = pd.concat([df, df_topic_with_features])
 
     return df
 
 
-def normalize_and_rename_columns(df,feature_types_included):
+def normalize_and_rename_columns(df,discipline,feature_types_included):
     """
     normalize features by word count, change column names
     """
@@ -143,13 +189,16 @@ def normalize_and_rename_columns(df,feature_types_included):
         "syntax_n_VERB_mod",
         "syntax_n_PRON_pers",
     ]
+    #not all features are calculated for all disciplines/datasets
+    feature_cols_to_normalize = [f for f in feature_cols_to_normalize if f in df2.columns]
     normalized_feature_names = []
     for c in feature_cols_to_normalize:
         normalized_feature_name = c.replace("_n_", "_")
         df2[normalized_feature_name] = df2[c] / df2["surface_n_words"]
         df2 = df2.drop(c, axis=1)
         normalized_feature_names.append(normalized_feature_name)
-    df2["surface_timerank"] = df2["a_rank_by_time"]
+    if discipline in DALITE_DISCIPLINES:
+        df2["surface_timerank"] = df2["a_rank_by_time"]
     all_cols = normalized_feature_names + [
         "surface_timerank",
         "surface_TTR",
@@ -164,6 +213,9 @@ def normalize_and_rename_columns(df,feature_types_included):
         "semantic_sim_question",
         "semantic_sim_others",
     ]
+    #not all features are calculated for all disciplines/datasets
+    all_cols = [f for f in all_cols if f in df2.columns]
+
     all_cols.sort()
 
     # append one-hot-encoded columns for transition type
@@ -195,19 +247,7 @@ def normalize_and_rename_columns(df,feature_types_included):
     return df2, cols_sets
 
 
-def get_bin_edges(df_topic):
-    min_wc=df_topic["surface_n_words"].min()
-    q1=df_topic["surface_n_words"].describe()["25%"]
-    q2=df_topic["surface_n_words"].describe()["50%"]
-    q3=df_topic["surface_n_words"].describe()["75%"]
-    max_wc=df_topic["surface_n_words"].max()
-    bin_edges=[min_wc,q1,q2,q3,max_wc]
-    if len(set(bin_edges))==len(bin_edges):
-        return bin_edges
-    else:
-        return None
-
-def get_results(cols_sets, targets, df):
+def get_results(cols_sets, targets, discipline, df):
     """
     cross validated results over all topics/targets/feature-sets
     """
@@ -222,28 +262,30 @@ def get_results(cols_sets, targets, df):
             print(f"\t{target}")
             skipped=[]
             for t,topic in enumerate(topics):
-                if t%40==0:
+                if t%5==0:
                     print(f"\t\t{t}/{len(topics)}; {len(set(skipped))} topics")
 
                 df_topic_=df[df["topic"]==topic].copy()
 
-                # count how many times each rationale was shown
-                times_shown_counter = Counter()
-                s = (
-                    df_topic_["rationales"]
-                    .dropna()
-                    .apply(
-                        lambda x: [
-                            int(k) for k in x.strip("[]").replace(" ", "").split(",") if k != ""
-                        ]
+                if discipline in DALITE_DISCIPLINES:
+                    # count how many times each rationale was shown
+                    times_shown_counter = Counter()
+                    s = (
+                        df_topic_["rationales"]
+                        .dropna()
+                        .apply(
+                            lambda x: [
+                                int(k) for k in x.strip("[]").replace(" ", "").split(",") if k != ""
+                            ]
+                        )
                     )
-                )
-                _ = s.apply(lambda x: times_shown_counter.update(x))
-                df_topic_["times_shown"]=df_topic_["id"].map(times_shown_counter)
+                    _ = s.apply(lambda x: times_shown_counter.update(x))
+                    df_topic_["times_shown"]=df_topic_["id"].map(times_shown_counter)
 
-                # filter out those not shown often enough
-                df_topic = df_topic_[df_topic_["times_shown"]>=MIN_TIMES_SHOWN].copy()
-
+                    # filter out those not shown often enough
+                    df_topic = df_topic_[df_topic_["times_shown"]>=MIN_TIMES_SHOWN].copy()
+                else:
+                    df_topic = df_topic_
                 min_wc=df_topic["surface_n_words"].min()
                 q1=df_topic["surface_n_words"].describe()["25%"]
                 q2=df_topic["surface_n_words"].describe()["50%"]
@@ -261,9 +303,9 @@ def get_results(cols_sets, targets, df):
 
                     # only continue if each subset of data has min 20 records,
                     # since we will be doing 5 fold CV
-                    if all(df_topic["wc_bin"].value_counts()>20):
+                    if all(df_topic["wc_bin"].value_counts()>10):
                         for quartile, df_topic_wc_quartile in df_topic.groupby("wc_bin"):
-                            kfcv = KFold(n_splits=5)
+                            kfcv = KFold(n_splits=2)
                             for fold,(train_index, test_index) in enumerate(kfcv.split(df_topic_wc_quartile)):
                                 X_train = df_topic_wc_quartile.iloc[train_index]
                                 #                 y_train=StandardScaler().fit_transform(
@@ -281,49 +323,49 @@ def get_results(cols_sets, targets, df):
                                 #                     X=X_test[target].rank().values.reshape(-1,1)
                                 #                 ).reshape(1,-1)[0]
 
-                                if X_test.shape[0]>10:
+                                # if X_test.shape[0]>10:
+                                pipe.fit(X=X_train[cols],y=y_train)
 
-                                    pipe.fit(X=X_train[cols],y=y_train)
+                                y_test = df_topic_wc_quartile.iloc[test_index][target]
+                                y_pred=pipe.predict(X_test[cols])
 
-                                    y_test = df_topic_wc_quartile.iloc[test_index][target]
-                                    y_pred=pipe.predict(X_test[cols])
+                                # precision at K for this fold
+                                for K in [3,5,10]:
 
-                                    # precision at Kr for this fold: Kr is ratio (10%,25%,50%)
-                                    for Kr in [10,25,50]:
+                                    # K = int(Kr/100*X_test.shape[0])
+                                    # repeat for top Kr and bottom Kr
+                                    for top in [True,False]:
+                                        d={}
+                                        if top:
+                                            d["rank_type"]="top"
+                                            true=X_test["id"].iloc[np.argsort(y_test)].tail(K)
+                                            pred=X_test["id"].iloc[np.argsort(y_pred)].tail(K)
+                                            not_true=X_test.loc[~X_test["id"].isin(true),"id"]
+                                            not_pred=X_test.loc[~X_test["id"].isin(pred),"id"]
 
-                                        K = int(Kr/100*X_test.shape[0])
-                                        # repeat for top Kr and bottom Kr
-                                        for top in [True,False]:
-                                            d={}
-                                            if top:
-                                                d["rank_type"]="top"
-                                                true=X_test["id"].iloc[np.argsort(y_test)].tail(K)
-                                                pred=X_test["id"].iloc[np.argsort(y_pred)].tail(K)
-                                                not_true=X_test.loc[~X_test["id"].isin(true),"id"]
-                                                not_pred=X_test.loc[~X_test["id"].isin(pred),"id"]
+                                        else:
+                                            d["rank_type"]="bottom"
+                                            true=X_test["id"].iloc[np.argsort(y_test)].head(K)
+                                            pred=X_test["id"].iloc[np.argsort(y_pred)].head(K)
+                                            not_true=X_test.loc[~X_test["id"].isin(true),"id"]
+                                            not_pred=X_test.loc[~X_test["id"].isin(pred),"id"]
 
-                                            else:
-                                                d["rank_type"]="bottom"
-                                                true=X_test["id"].iloc[np.argsort(y_test)].head(K)
-                                                pred=X_test["id"].iloc[np.argsort(y_pred)].head(K)
-                                                not_true=X_test.loc[~X_test["id"].isin(true),"id"]
-                                                not_pred=X_test.loc[~X_test["id"].isin(pred),"id"]
+                                        tp=len(set(true)&set(pred))
+                                        fp=len(set(not_true)&set(pred))
+                                        precision = tp/(tp+fp)
 
-                                            tp=len(set(true)&set(pred))
-                                            fp=len(set(not_true)&set(pred))
-                                            precision = tp/(tp+fp)
-
-                                            d["K"]=Kr
-                                            d["N"]=X_test.shape[0]
-                                            d["prec"]=precision
-                                            d["Q"]=quartile
-                                            d["fold"]=fold
-                                            d["topic"]=topic
-                                            d["target"]=target
-                                            d["model"]=col_type
-                                            results.append(d)
+                                        d["K"]=K
+                                        d["N"]=X_test.shape[0]
+                                        d["prec"]=precision
+                                        d["Q"]=quartile
+                                        d["fold"]=fold
+                                        d["topic"]=topic
+                                        d["target"]=target
+                                        d["model"]=col_type
+                                        results.append(d)
                                 else:
                                     skipped.append(topic)
+    # print(skipped)
     return results
 
 
@@ -333,7 +375,7 @@ def main(
         "positional",
         None,
         str,
-        ["Physics", "Chemistry", "Ethics"],
+        ["Physics", "Chemistry", "Ethics","UKP"],
     ),
     output_dir_name: ("Directory name for results", "positional", None, str,),
     reload_data: ("Reload data", "flag", "reload", bool)
@@ -383,17 +425,20 @@ def main(
     # 1a) filter out all rationales < MIN_WORD_COUNT
     df=df_[df_["surface_n_words"]>=MIN_WORD_COUNT].copy()
 
-
     # 2) normalize features by word count, change column names
-    df2, cols_sets = normalize_and_rename_columns(df,feature_types_included)
+    df2, cols_sets = normalize_and_rename_columns(df,discipline,feature_types_included)
 
     # 3) copy relevant data and make pipeline
-    targets = ["y_BT", "y_winrate_nopairs", "y_elo", "y_winrate", "y_crowdBT"]
+    if discipline in DALITE_DISCIPLINES:
+        targets = ["y_BT", "y_winrate_nopairs", "y_elo", "y_winrate", "y_crowdBT"]
+        df3 = df2[["topic","rationales"] + cols_sets["all"] + targets].dropna()
+    else:
+        targets = ["y_BT", "y_elo", "y_winrate"]
+        df3 = df2[["topic"] + cols_sets["all"] + targets].dropna()
 
-    df3 = df2[["topic","rationales"] + cols_sets["all"] + targets].dropna()
 
     # 4) cross validated results over all topics/targets/feature-sets
-    results = get_results(cols_sets, targets, df3)
+    results = get_results(cols_sets, targets, discipline, df3)
     fp=os.path.join(output_dir_discpline,f"results_topN_{discipline}.json")
     print(fp)
     with open(fp,"w") as f:

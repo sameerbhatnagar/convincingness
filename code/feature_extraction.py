@@ -48,6 +48,8 @@ from spellchecker import SpellChecker
 
 DROPPED_POS = [PUNCT, SPACE, X]
 
+DALITE_DISCIPLINES = ["Physics","Chemistry","Ethics"]
+
 
 import html as ihtml
 from bs4 import BeautifulSoup
@@ -329,41 +331,43 @@ def extract_lexical_features(topic, discipline, output_dir):
     rationales = df[["rationale", "id"]].values
 
     lexical_features = {}
-    matcher = get_matcher(subject=discipline, nlp=nlp)
-    try:
-        lexical_features["{}_n_keyterms".format(feature_type)] = {
+
+    if discipline in DALITE_DISCIPLINES:
+        matcher = get_matcher(subject=discipline, nlp=nlp)
+        try:
+            lexical_features["{}_n_keyterms".format(feature_type)] = {
+                arg_id: len(
+                    set([str(doc[start:end]) for match_id, start, end in matcher(doc)])
+                )
+                for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+            }
+
+        except TypeError:
+            pass
+
+        matcher_prompt = get_matcher(subject=discipline, topic=topic, nlp=nlp)
+        lexical_features["{}_n_prompt_terms".format(feature_type)] = {
             arg_id: len(
-                set([str(doc[start:end]) for match_id, start, end in matcher(doc)])
+                set([str(doc[start:end]) for match_id, start, end in matcher_prompt(doc)])
             )
             for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
         }
 
-    except TypeError:
-        pass
+        lexical_features["{}_n_equations".format(feature_type)] = {
+            arg_id: len(
+                [
+                    token.text
+                    for token in doc
+                    if token.text == EQUATION_TAG or token.text == EXPRESSION_TAG
+                ]
+            )
+            for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+        }
 
-    matcher_prompt = get_matcher(subject=discipline, topic=topic, nlp=nlp)
-    lexical_features["{}_n_prompt_terms".format(feature_type)] = {
-        arg_id: len(
-            set([str(doc[start:end]) for match_id, start, end in matcher_prompt(doc)])
-        )
-        for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-    }
-
-    lexical_features["{}_n_equations".format(feature_type)] = {
-        arg_id: len(
-            [
-                token.text
-                for token in doc
-                if token.text == EQUATION_TAG or token.text == EXPRESSION_TAG
-            ]
-        )
-        for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-    }
-
-    lexical_features["{}_n_OOV".format(feature_type)] = {
-        arg_id: len([token.text for token in doc if token.text == OOV_TAG])
-        for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-    }
+        lexical_features["{}_n_OOV".format(feature_type)] = {
+            arg_id: len([token.text for token in doc if token.text == OOV_TAG])
+            for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+        }
 
     spell = SpellChecker()
     lexical_features["{}_n_spelling_errors".format(feature_type)] = {
@@ -477,26 +481,27 @@ def extract_semantic_features(topic, discipline, output_dir):
     feature_type = "semantic"
     semantic_features = {}
 
-    df_q = get_questions_df(discipline=discipline)
-    texts = df_q.loc[
-        df_q["title"].str.startswith(topic), ["text", "expert_rationale"]
-    ].values
-    q = nlp(texts[0][0])
-
     _, df = get_topic_data(topic, discipline, output_dir)
     rationales = df[["rationale", "id"]].values
 
-    semantic_features["{}_sim_question".format(feature_type)] = {
-        arg_id: doc.similarity(q)
-        for doc, arg_id in nlp.pipe(rationales, batch_size=20, as_tuples=True)
-    }
+    if discipline in DALITE_DISCIPLINES:
+        df_q = get_questions_df(discipline=discipline)
+        texts = df_q.loc[
+            df_q["title"].str.startswith(topic), ["text", "expert_rationale"]
+        ].values
+        q = nlp(texts[0][0])
 
-    if type(texts[0][1]) != float:
-        expert_rationale = nlp(texts[0][1])
-        semantic_features["{}_sim_expert".format(feature_type)] = {
-            arg_id: doc.similarity(expert_rationale)
+        semantic_features["{}_sim_question".format(feature_type)] = {
+            arg_id: doc.similarity(q)
             for doc, arg_id in nlp.pipe(rationales, batch_size=20, as_tuples=True)
         }
+
+        if type(texts[0][1]) != float:
+            expert_rationale = nlp(texts[0][1])
+            semantic_features["{}_sim_expert".format(feature_type)] = {
+                arg_id: doc.similarity(expert_rationale)
+                for doc, arg_id in nlp.pipe(rationales, batch_size=20, as_tuples=True)
+            }
 
     rationales_only_text = [r[0] for r in rationales]
     rationales_only_ids = [r[1] for r in rationales]
@@ -648,7 +653,7 @@ def main(
         "positional",
         None,
         str,
-        ["Physics", "Chemistry", "Ethics", "same_teacher_two_groups"],
+        ["Physics", "Chemistry", "Ethics", "same_teacher_two_groups","UKP","IBM_ArgQ","IBM_Evi"],
     ),
     feature_type: (
         "Feature Type",
