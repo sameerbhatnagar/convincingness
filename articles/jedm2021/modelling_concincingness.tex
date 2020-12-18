@@ -569,11 +569,26 @@ chosen as more convincing from the pairs constructed for the current student?
 \section{Modelling Argument Quality Scores}\label{sec:model}
 
 \begin{figure}
-	\scalebox{0.6}{\input{img/prec_at_K.pgf}}
+	\scalebox{0.5}{\input{img/prec_at_K.pgf}}
 	\caption{
-		ddd.
+		Evaluating of regression models tasked with predicting 
+		\textit{convincingness} score of arguments/TMPI-explanations based on 
+		linguistic features.
+		Evaluation metric is \textbf{precision @ K}, where we verify how many 
+		of the predicted top-K ranked explanations are in the measured top-K 
+		list (using ``winrate'' as a \textit{measure} of convincingness). 
+		Precision is plotted against the size of the test-set on the horizontal 
+		axis, under a cross-topic validation scheme.
+		The dashed line is a (harsh) approximation of the probability of 
+		choosing the top-K explantions purely by chance (K/N, which is much 
+		greater than ``N choose K'').
+		Each dot represents the performance on one held-out 
+		topic/TMPI-question-prompt, color-coded based on which 
+		dataset/discipline it originates from.
+		We compare Linear Regression with a Decision Tree Regressor in the two 
+		columns.
 	}
-	\label{fig:acc_by_rank_score_type}
+	\label{fig:prec_at_K}
 \end{figure}
 
 The goal \textbf{RQ1} is establish which rank aggregation methods are best 
