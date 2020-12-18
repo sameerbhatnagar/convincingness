@@ -48,7 +48,7 @@ def main(
         )
         rank_score_types = ["winrate_no_pairs","winrate","elo","crowd_BT","BT"]
     else:
-        rank_score_types = ["winrate","elo","BT"]
+        rank_score_types = ["winrate","elo","BT","reference"]
 
     for rank_score_type in rank_score_types:
         argBT.main(

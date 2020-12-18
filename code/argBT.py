@@ -8,7 +8,7 @@ import pandas as pd
 
 import spacy
 
-nlp = spacy.load("en_core_web_sm",disable=["ner"])
+nlp = spacy.load("en_core_web_md")
 
 from sklearn.metrics import accuracy_score, f1_score
 from scipy.stats import kendalltau, rankdata
@@ -87,6 +87,53 @@ def get_rankings_wc(df_train):
 
     return sorted_arg_ids, ranks_dict
 
+
+def get_rankings_reference(topic,discipline,output_dir_name):
+    """
+    Used to get pre-computed rankings for reference datasets
+    (UKP, IBM_ArgQ, IBM_Evi)
+    Returns:
+    -------
+        - args_dict
+    """
+    population="all"
+
+    output_dir = os.path.join(
+        data_loaders.BASE_DIR, "tmp", output_dir_name, discipline, population
+    )
+    if discipline in ["UKP","IBM_ArgQ"]:
+        if discipline =="UKP":
+            fp=os.path.join(data_loaders.DATASETS[discipline]["rank_data_dir"],f"{topic}.csv")
+        elif discipline=="IBM_ArgQ":
+            fp=os.path.join(data_loaders.DATASETS[discipline]["rank_data_dir"],f"{topic}.tsv")
+        df_topic_ranks=pd.read_csv(fp,sep="\t")
+
+        _,df_topic=data_loaders.get_topic_data(topic=topic,discipline=discipline,output_dir=output_dir)
+
+        # ids from reference datasets do not always match between rank-score files and arg-pairs files,
+        # so join on argument text itself (first 40 caharcters)
+        max_len=40
+        df_topic_ranks["rationale_short"]=df_topic_ranks["argument"].str.lower().str.replace(" ","").str[:max_len]
+        df_topic["rationale_short"]=df_topic["rationale"].str.lower().str.replace(" ","").str[:max_len]
+        args_dict={
+            k:v
+            for k,v in pd.merge(
+                    df_topic_ranks[["rank","rationale_short"]],
+                    df_topic[["id","rationale_short"]],
+                    on="rationale_short"
+            )[["id","rank"]].values
+        }
+    elif discipline=="IBM_Evi":
+        pairs_df,_=data_loaders.get_topic_data(topic=topic,discipline=discipline,output_dir=output_dir)
+        args_dict={
+                k:v for
+                k,v in
+                pd.concat([
+                    pairs_df[["a1_id","a1_rank"]].rename(columns={"a1_id":"id","a1_rank":"rank"}),
+                    pairs_df[["a2_id","a2_rank"]].rename(columns={"a2_id":"id","a2_rank":"rank"})
+                ]).drop_duplicates(["id"]).values
+        }
+    return args_dict
 
 def get_rankings_crowdBT(pairs_train):
     """
@@ -312,57 +359,6 @@ def pairwise_predict(x):
     return pred
 
 
-
-def get_topic_data(topic, discipline,output_dir):
-    """
-    given topic/question and associated discipline (needed for subdirectories),
-    return mydalite answer observations, and associated pairs that are
-    constructed using `make_pairs.py`
-
-    Returns:
-    ========
-    Tuple of dataframes:
-        - pairs_df
-        - df_topic
-    """
-
-    data_dir_discipline=os.path.join(output_dir,"data")
-    if discipline in DALITE_DISCIPLINES:
-        fp = os.path.join(data_dir_discipline, "{}.csv".format(topic))
-        df_topic = pd.read_csv(fp)
-        df_topic = df_topic[~df_topic["user_token"].isna()].sort_values("a_rank_by_time")
-        df_topic["rationale"] = df_topic["rationale"].fillna(" ")
-        # load pairs
-        pairs_df = pd.read_csv(
-            os.path.join(
-                "{}_pairs".format(data_dir_discipline), "pairs_{}.csv".format(topic)
-            )
-        )
-        pairs_df = pairs_df[pairs_df["a1_id"] != pairs_df["a2_id"]]
-    else:
-        # load pairs
-        pairs_df = pd.read_csv(
-            os.path.join(
-                "{}_pairs".format(data_dir_discipline), "{}.csv".format(topic)
-            ),
-            sep="\t"
-        )
-        pairs_df["a1_id"] = pairs_df["#id"].str.split("_").apply(lambda x: x[0])
-        pairs_df["a2_id"] = pairs_df["#id"].str.split("_").apply(lambda x: x[1])
-        pairs_df = pairs_df[pairs_df["a1_id"] != pairs_df["a2_id"]]
-
-        # make df of just the individual arguments with their id's from the pairs
-        df_topic=pd.concat([
-            pairs_df[["a1_id","a1"]].rename(columns={"a1_id":"id","a1":"rationale"}).drop_duplicates("id"),
-            pairs_df[["a2_id","a2"]].rename(columns={"a2_id":"id","a2":"rationale"}).drop_duplicates("id")
-        ]).drop_duplicates("id")
-        df_topic["transition"]="-"
-        pairs_df["transition"]="-"
-        df_topic["topic"]=topic
-
-    return pairs_df, df_topic
-
-
 def get_ranking_model_fit(pairs_train, df_train, rank_score_type, discipline):
     """
     calculate rankings based on specified type, and run pairwise prediction
@@ -399,6 +395,12 @@ def get_ranking_model_fit(pairs_train, df_train, rank_score_type, discipline):
     elif rank_score_type == "BT":
         # rankings from conventional Bradley Terry
         sorted_arg_ids, ranks_dict = get_rankings_BT(pairs_train=pairs_train)
+
+    elif rank_score_type == "reference":
+        # FIX ME
+        output_dir_name="exp2"
+        topic = pairs_train["topic"].value_counts().index.to_list()[0]
+        ranks_dict = get_rankings_reference(topic,discipline,output_dir_name)
 
     # get model fit on training data at current timestep
     pairs_train["a1_rank"] = pairs_train["a1_id"].map(ranks_dict)
@@ -475,7 +477,7 @@ def build_rankings_by_topic_over_time(topic, discipline, rank_score_type):
     calculated at each time step, and tested for the pairs of subsequent student
     """
 
-    pairs_df, df_topic = get_topic_data(topic=topic, discipline=discipline,output_dir=output_dir)
+    pairs_df, df_topic = data_loaders.get_topic_data(topic=topic, discipline=discipline,output_dir=output_dir)
 
     accuracies, accuracies_train = [], []
     sorted_args = []
@@ -763,7 +765,7 @@ def main(
         print("\t{}/{} {}".format(i, len(topics), topic))
         # results only for all data on this topic/question
 
-        pairs_df, df_topic = get_topic_data(topic=topic, discipline=discipline,output_dir=output_dir)
+        pairs_df, df_topic = data_loaders.get_topic_data(topic=topic, discipline=discipline,output_dir=output_dir)
 
         # pairs_df=pairs_df.sort_values("annotation_rank_by_time").groupby("#id").head(MAX_PAIR_OCCURENCES).copy()
 

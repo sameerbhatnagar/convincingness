@@ -3,15 +3,22 @@ from collections import Counter
 import pandas as pd
 import numpy as np
 from argBT import (
-    get_topic_data,
     get_rankings_wc,
     get_rankings_winrate_no_pairs,
     get_rankings_winrate,
     get_rankings_BT,
     get_rankings_elo,
     get_rankings_crowdBT,
+    get_rankings_reference,
 )
-import data_loaders
+from data_loaders import (
+    get_topic_data,
+    DALITE_DISCIPLINES,
+    ARG_MINING_DATASETS,
+    MIN_ANSWERS,
+    BASE_DIR
+)
+
 from feature_extraction import append_features, nlp,DROPPED_POS
 from sklearn.pipeline import Pipeline
 import statsmodels.api as sm
@@ -28,9 +35,6 @@ from sklearn.utils.estimator_checks import check_estimator
 import matplotlib.pyplot as plt
 
 MIN_WORD_COUNT = 10
-MIN_TIMES_SHOWN = 3
-
-DALITE_DISCIPLINES = ["Physics","Chemistry","Ethics"]
 
 class SMWrapper(BaseEstimator, RegressorMixin):
     def __init__(self, model_class, fit_intercept=True):
@@ -104,72 +108,86 @@ def append_wc_quartile_column(df_topic):
         )
     return df_topic
 
-def load_data(discipline, output_dir_name, feature_types_included):
+def load_data(discipline, population, output_dir_name, feature_types_included):
     """
     load data and append features
     """
     # load data and append features
-    population = "all"
-
     data_dir_discpline = os.path.join(
-        data_loaders.BASE_DIR, "tmp", output_dir_name, discipline, population, "data"
+        BASE_DIR, "tmp", output_dir_name, discipline, population, "data"
     )
     output_dir = os.path.join(data_dir_discpline, os.pardir)
     topics = os.listdir(data_dir_discpline)
     df = pd.DataFrame()
-    print("1) loading data")
+    print("\t a) loading data for each topic and appending features")
     for t, topic in enumerate(topics):
-        if t % 10 == 0:
-            print(f"{t}/{len(topics)}")
+
+        topic = topic.replace(".csv", "")
+
+        if t % (len(topics)//10) == 0:
+            print(f"\t\t{t}/{len(topics)}")
+
+        # `append_features` calls on `get_topic_data`, which will filter on
+        # MIN_TIMES_SHOWN and MIN_WORD_COUNT
         df_topic_with_features = append_features(
-            topic.replace(".csv", ""), discipline, feature_types_included, output_dir
+            topic, discipline, feature_types_included, output_dir
         )
-        df_topic_with_features["topic"]=topic.replace(".csv", "")
+        df_topic_with_features["topic"]=topic
 
-        df_topic_with_features=append_wc_quartile_column(df_topic_with_features)
+        # only work with topics with at least MIN_ANSWERS
+        if (df_topic_with_features.shape[0]>MIN_ANSWERS) or (discipline in ARG_MINING_DATASETS):
+            df_topic_with_features=append_wc_quartile_column(df_topic_with_features)
 
-        # load pairs
-        pairs_df, _ = get_topic_data(
-            topic=topic.replace(".csv", ""),
-            discipline=discipline,
-            output_dir=output_dir,
-        )
-        if discipline in DALITE_DISCIPLINES:
-            df_topic_with_features["arg_id"] = "arg" + df_topic_with_features["id"].astype(
-                str
+            # load pairs, which are needed for calculating
+            # convincingenss scores
+            pairs_df, _ = get_topic_data(
+                topic=topic.replace(".csv", ""),
+                discipline=discipline,
+                output_dir=output_dir,
             )
-        else:
-            df_topic_with_features["arg_id"] =  df_topic_with_features["id"]
-            df_topic_with_features["id"] = df_topic_with_features["id"].str.replace("arg","").map(int)
+            if discipline in DALITE_DISCIPLINES:
+                df_topic_with_features["arg_id"] = "arg" + df_topic_with_features["id"].astype(
+                    str
+                )
+            else:
+                df_topic_with_features["arg_id"] =  df_topic_with_features["id"]
+                df_topic_with_features["id"] = df_topic_with_features["id"].str.replace("arg","").map(int)
 
-        # load targets
-        _, args_dict = get_rankings_winrate(pairs_df)
-        df_topic_with_features["y_winrate"] = df_topic_with_features["arg_id"].map(
-            args_dict
-        )
-
-        _, args_dict = get_rankings_elo(pairs_df)
-        df_topic_with_features["y_elo"] = df_topic_with_features["arg_id"].map(
-            args_dict
-        )
-
-        _, args_dict = get_rankings_BT(pairs_df)
-        df_topic_with_features["y_BT"] = df_topic_with_features["arg_id"].map(args_dict)
-
-        if discipline in DALITE_DISCIPLINES:
-            _, args_dict = get_rankings_winrate_no_pairs(df_topic_with_features)
-            df_topic_with_features["y_winrate_nopairs"] = df_topic_with_features[
-                "arg_id"
-            ].map(args_dict)
-
-            _, args_dict, _ = get_rankings_crowdBT(pairs_df)
-            df_topic_with_features["y_crowdBT"] = df_topic_with_features["arg_id"].map(
+            # load targets
+            _, args_dict = get_rankings_winrate(pairs_df)
+            df_topic_with_features["y_winrate"] = df_topic_with_features["arg_id"].map(
                 args_dict
             )
 
-        # combine targets and features
-        df = pd.concat([df, df_topic_with_features])
+            _, args_dict = get_rankings_elo(pairs_df)
+            df_topic_with_features["y_elo"] = df_topic_with_features["arg_id"].map(
+                args_dict
+            )
 
+            _, args_dict = get_rankings_BT(pairs_df)
+            df_topic_with_features["y_BT"] = df_topic_with_features["arg_id"].map(args_dict)
+
+            if discipline in DALITE_DISCIPLINES:
+                _, args_dict = get_rankings_winrate_no_pairs(df_topic_with_features)
+                df_topic_with_features["y_winrate_nopairs"] = df_topic_with_features[
+                    "arg_id"
+                ].map(args_dict)
+
+                _, args_dict, _ = get_rankings_crowdBT(pairs_df)
+                df_topic_with_features["y_crowdBT"] = df_topic_with_features["arg_id"].map(
+                    args_dict
+                )
+            else:
+                args_dict = get_rankings_reference(topic,discipline,output_dir_name)
+                df_topic_with_features["y_reference"] = df_topic_with_features["arg_id"].map(
+                    args_dict
+                )
+
+            # combine targets and features
+            df = pd.concat([df, df_topic_with_features])
+
+        else:
+            print(f"\t\t\tskip {t}:{topic} - {df_topic_with_features.shape[0]} answers")
     return df
 
 
@@ -218,20 +236,24 @@ def normalize_and_rename_columns(df,discipline,feature_types_included):
 
     all_cols.sort()
 
-    # append one-hot-encoded columns for transition type
-    drop_tr_col = df["transition"].value_counts().index.tolist()[-1]
+    if discipline in DALITE_DISCIPLINES:
+        # append one-hot-encoded columns for transition type
+        drop_tr_col = df["transition"].value_counts().index.tolist()[-1]
 
-    transition_cols = [
-        t for t in df["transition"].value_counts().index.tolist() if t != drop_tr_col
-    ]
+        transition_cols = [
+            t for t in df["transition"].value_counts().index.tolist() if t != drop_tr_col
+        ]
 
-    df2 = pd.concat(
-        [
-            df2.drop("transition", axis=1),
-            pd.get_dummies(df2["transition"]).drop(drop_tr_col, axis=1),
-        ],
-        axis=1,
-    )
+        df2 = pd.concat(
+            [
+                df2.drop("transition", axis=1),
+                pd.get_dummies(df2["transition"]).drop(drop_tr_col, axis=1),
+            ],
+            axis=1,
+        )
+    else:
+        transition_cols=[]
+
     # define which feature sets go with with which columns
     baseline_cols = ["id", "surface_n_words"] + transition_cols
     cols_sets = {
@@ -265,27 +287,8 @@ def get_results(cols_sets, targets, discipline, df):
                 if t%5==0:
                     print(f"\t\t{t}/{len(topics)}; {len(set(skipped))} topics")
 
-                df_topic_=df[df["topic"]==topic].copy()
+                df_topic=df[df["topic"]==topic].copy()
 
-                if discipline in DALITE_DISCIPLINES:
-                    # count how many times each rationale was shown
-                    times_shown_counter = Counter()
-                    s = (
-                        df_topic_["rationales"]
-                        .dropna()
-                        .apply(
-                            lambda x: [
-                                int(k) for k in x.strip("[]").replace(" ", "").split(",") if k != ""
-                            ]
-                        )
-                    )
-                    _ = s.apply(lambda x: times_shown_counter.update(x))
-                    df_topic_["times_shown"]=df_topic_["id"].map(times_shown_counter)
-
-                    # filter out those not shown often enough
-                    df_topic = df_topic_[df_topic_["times_shown"]>=MIN_TIMES_SHOWN].copy()
-                else:
-                    df_topic = df_topic_
                 min_wc=df_topic["surface_n_words"].min()
                 q1=df_topic["surface_n_words"].describe()["25%"]
                 q2=df_topic["surface_n_words"].describe()["50%"]
@@ -375,9 +378,16 @@ def main(
         "positional",
         None,
         str,
-        ["Physics", "Chemistry", "Ethics","UKP"],
+        DALITE_DISCIPLINES+ARG_MINING_DATASETS,
     ),
     output_dir_name: ("Directory name for results", "positional", None, str,),
+    population: (
+        "Which Students?",
+        "positional",
+        None,
+        str,
+        ["all","switchers"]
+    ),
     reload_data: ("Reload data", "flag", "reload", bool)
 ):
     """
@@ -388,10 +398,9 @@ def main(
     where we ask if the predicted scores yield a ranking that captures
     the top N or bottom N ranked explanations
     """
-    population = "all"
 
     output_dir_discpline = os.path.join(
-        data_loaders.BASE_DIR, "tmp", output_dir_name, discipline, population
+        BASE_DIR, "tmp", output_dir_name, discipline, population
     )
 
     feature_types_included = ["surface", "lexical", "readability", "syntax", "semantic"]
@@ -399,7 +408,7 @@ def main(
     fp=os.path.join(output_dir_discpline,f"df_with_POS_{discipline}.csv")
     if reload_data:
         # 1) load data and append features
-        df_ = load_data(discipline, output_dir_name,feature_types_included)
+        df_ = load_data(discipline, population, output_dir_name,feature_types_included)
 
         # 2) POS and content words for rationales as new columns
         df_["rationale_pos"]=pd.Series([
@@ -422,7 +431,7 @@ def main(
     else:
         df_=pd.read_csv(fp)
 
-    # 1a) filter out all rationales < MIN_WORD_COUNT
+    # 1a) filter out all rationales > MIN_WORD_COUNT
     df=df_[df_["surface_n_words"]>=MIN_WORD_COUNT].copy()
 
     # 2) normalize features by word count, change column names

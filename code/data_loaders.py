@@ -1,11 +1,21 @@
 import pandas as pd
 import os
+from collections import Counter
 import itertools
 from sklearn.model_selection import StratifiedKFold
 from sklearn.feature_extraction.text import CountVectorizer
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DATA_DIR = os.path.join(BASE_DIR, "data")
+
+DALITE_DISCIPLINES=["Ethics","Physics","Chemistry"]
+ARG_MINING_DATASETS=["UKP","IBM_ArgQ","IBM_Evi"]
+
+MIN_TIMES_SHOWN = 5
+MIN_ANSWERS=100
+MIN_PAIRS = 200
+MIN_WORD_COUNT = 10
+
 DATASETS = {}
 
 DATASETS["IBM_ArgQ"] = {}
@@ -415,6 +425,147 @@ def load_arg_pairs(**kwargs):
         else:
             del kwargs["data_source"]
             return load_dalite_data(**kwargs)
+
+
+def filter_on_times_shown(_pairs_df,_df_topic):
+    times_shown_counter = Counter()
+    s = (
+        _df_topic["rationales"]
+        .dropna()
+        .apply(
+            lambda x: [
+                int(k) for k in x.strip("[]").replace(" ", "").split(",") if k != ""
+            ]
+        )
+    )
+    _ = s.apply(lambda x: times_shown_counter.update(x))
+    _df_topic["times_shown"]=_df_topic["id"].map(times_shown_counter)
+
+    # filter out those not shown often enough
+    df_topic = _df_topic[_df_topic["times_shown"]>=MIN_TIMES_SHOWN]
+
+    ids=[f"arg{i}" for i in df_topic["id"].tolist()]
+
+    pairs_df = _pairs_df[(
+        (_pairs_df["a1_id"].isin(ids))
+        |(_pairs_df["a2_id"].isin(ids))
+    )].drop_duplicates(subset=["#id","label"])
+
+    return pairs_df,df_topic
+
+def get_topic_data(topic, discipline,output_dir):
+    """
+    given topic/question and associated discipline (needed for subdirectories),
+    return mydalite answer observations, and associated pairs that are
+    constructed using `make_pairs.py`
+
+    filter on MIN_TIMES_SHOWN and MIN_WORD_COUNT
+
+    Returns:
+    ========
+    Tuple of dataframes:
+        - pairs_df
+        - df_topic
+    """
+
+    data_dir_discipline=os.path.join(output_dir,"data")
+    if discipline in DALITE_DISCIPLINES:
+        fp = os.path.join(data_dir_discipline, "{}.csv".format(topic))
+        df_topic = pd.read_csv(fp)
+        df_topic = df_topic[~df_topic["user_token"].isna()].sort_values("a_rank_by_time")
+        df_topic["rationale"] = df_topic["rationale"].fillna(" ")
+        # load pairs
+        pairs_df = pd.read_csv(
+            os.path.join(
+                "{}_pairs".format(data_dir_discipline), "pairs_{}.csv".format(topic)
+            )
+        )
+        pairs_df = pairs_df[pairs_df["a1_id"] != pairs_df["a2_id"]]
+
+        # filter on times shown
+        pairs_df_,df_topic_ = filter_on_times_shown(pairs_df,df_topic)
+
+        # filter on min word count
+        df_topic_ = df_topic_[df_topic_["rationale"].str.count("\w+")>=MIN_WORD_COUNT]
+        ids=[f"arg{i}" for i in df_topic_["id"].tolist()]
+        pairs_df_ = pairs_df_[(
+            (pairs_df_["a1_id"].isin(ids))
+            |(pairs_df_["a2_id"].isin(ids))
+        )].drop_duplicates(subset=["#id","label"])
+
+    else:
+        # load pairs
+        pairs_df_ = pd.read_csv(
+            os.path.join(
+                "{}_pairs".format(data_dir_discipline), "{}.csv".format(topic)
+            ),
+            sep="\t"
+        )
+        pairs_df_["a1_id"] = pairs_df_["#id"].str.split("_").apply(lambda x: x[0])
+        pairs_df_["a2_id"] = pairs_df_["#id"].str.split("_").apply(lambda x: x[1])
+        pairs_df_ = pairs_df_[pairs_df_["a1_id"] != pairs_df_["a2_id"]]
+
+        # make df of just the individual arguments with their id's from the pairs
+        df_topic_=pd.concat([
+            pairs_df_[["a1_id","a1"]].rename(columns={"a1_id":"id","a1":"rationale"}).drop_duplicates("id"),
+            pairs_df_[["a2_id","a2"]].rename(columns={"a2_id":"id","a2":"rationale"}).drop_duplicates("id")
+        ]).drop_duplicates("id")
+        df_topic_["transition"]="-"
+        pairs_df_["transition"]="-"
+        df_topic_["topic"]=topic
+
+    return pairs_df_, df_topic_
+
+
+def get_discipline_data(discipline,output_dir_name,population):
+    """
+    Load all data, pairs and answers,
+    after filtering on MIN_TIMES_SHOWN, and MIN_WORD_COUNT,
+    only keep topics which have MIN_ANSWERS & MIN_PAIRS
+
+    Returns:
+    ========
+        pairs_df_all,df_topics_all
+
+    """
+    pairs_df_all=pd.DataFrame()
+    df_topics_all = pd.DataFrame()
+    data_dir_discpline = os.path.join(
+            BASE_DIR, "tmp", output_dir_name, discipline, population, "data"
+        )
+    output_dir = os.path.join(data_dir_discpline, os.pardir)
+    topics = os.listdir(data_dir_discpline)
+
+    for t, topic in enumerate(topics):
+        if t%(len(topics)//10)==0:
+            print(f"\t{t}/{len(topics)}")
+        topic=topic.replace(".csv","")
+        pairs_df,df_topic = get_topic_data(topic,discipline,output_dir)
+
+        if (
+            (
+                df_topic.shape[0]>MIN_ANSWERS
+            ) or (
+                discipline not in DALITE_DISCIPLINES
+            )
+        ):
+            df_topic["surface_n_words"] = df_topic["rationale"].str.count("\w+")
+
+            # what is difference in WC for each pair?
+            pairs_df["topic"]=topic
+            pairs_df["wc_diff"]=(
+                pairs_df["a1"].str.count("\w+")
+                -pairs_df["a2"].str.count("\w+")
+            ).abs()
+
+            df_topics_all=pd.concat([df_topics_all,df_topic])
+            pairs_df_all=pd.concat([pairs_df_all,pairs_df])
+
+        else:
+            if discipline in DALITE_DISCIPLINES:
+                print(f"\t\t skip {t}: {df_topic.shape[0]} answers; {pairs_df.shape[0]} pairs; {topic}")
+
+    return pairs_df_all,df_topics_all
 
 
 # ARCHIVE

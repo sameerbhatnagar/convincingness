@@ -6,11 +6,12 @@ import numpy as np
 from scipy.stats import iqr, kendalltau
 import data_loaders
 
-from argBT import get_topic_data
+from data_loaders import get_discipline_data,DALITE_DISCIPLINES,ARG_MINING_DATASETS, BASE_DIR
+from summary_functions import make_summary_by_topic, get_mean_times_shown, means_by_topic
 
 import spacy
 
-nlp = spacy.load("en_core_web_sm",disable=["ner"])
+nlp = spacy.load("en_core_web_md")
 DROPPED_POS = ["PUNCT", "SPACE"]
 TRANSITIONS = {
     "Physics": ["rr", "rw", "wr", "ww"],
@@ -88,10 +89,8 @@ TRANSITION_COLORS.update({
 
 })
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-THESIS_DIR=os.path.join(BASE_DIR, os.pardir,"thesis_project", "thesis")
-
+THESIS_DIR=os.path.join(BASE_DIR, os.pardir, os.pardir,"thesis_project", "thesis")
+ARTICLE_DIR=os.path.join(BASE_DIR,"articles","jedm2021")
 
 def my_summary(x):
     d = {}
@@ -137,6 +136,64 @@ def summary_batches_by_transition_corr(x):
     d["std"] = np.std(x["r"]).round(2)
     return pd.Series(d, index=["N", "N_common", "r", "std"])
 
+
+def get_summary_all_datasets():
+    """
+    All datasets, summarized
+    """
+    output_dir_name="exp2"
+    population="switchers"
+
+    # assemble all data, as answers and as pairs
+    pairs_df_all=pd.DataFrame()
+    df_topics_all=pd.DataFrame()
+    for discipline in DALITE_DISCIPLINES:
+        print(discipline)
+        pairs_df_all_disc,df_topics_all_disc=get_discipline_data(
+            discipline=discipline,
+            population=population,
+            output_dir_name=output_dir_name
+        )
+        pairs_df_all_disc["discipline"]=discipline
+        df_topics_all_disc["discipline"]=discipline
+        df_topics_all=pd.concat([df_topics_all,df_topics_all_disc])
+        pairs_df_all=pd.concat([pairs_df_all,pairs_df_all_disc])
+
+    # assemble all data, as answers and as pairs for refernce datasets
+    population="all"
+    for discipline in ARG_MINING_DATASETS:
+        print(discipline)
+        pairs_df_all_disc,df_topics_all_disc=get_discipline_data(
+            discipline=discipline,
+            population=population,
+            output_dir_name=output_dir_name
+        )
+        pairs_df_all_disc["discipline"]=discipline
+        df_topics_all_disc["discipline"]=discipline
+        df_topics_all=pd.concat([df_topics_all,df_topics_all_disc])
+        pairs_df_all=pd.concat([pairs_df_all,pairs_df_all_disc])
+
+    # groupby topic, get summaries
+    df_summary_by_topic = make_summary_by_topic(df_topics_all,pairs_df_all)
+    df_summary_by_topic=pd.merge(
+        df_summary_by_topic,
+        pairs_df_all.groupby("topic").apply(get_mean_times_shown).astype(int).to_frame().rename(
+            columns={0:"pairs/arg"}
+        ).reset_index(),
+        on="topic"
+    )
+
+    # average over all topics for each discipline/dataset
+    df_summary = df_summary_by_topic.groupby("discipline").apply(
+        means_by_topic
+    )
+    df_summary.reindex(ARG_MINING_DATASETS+DALITE_DISCIPLINES)
+    df_summary.index.name="dataset"
+    df_summary=df_summary.reset_index()
+    df_summary.loc[df_summary["dataset"].isin(ARG_MINING_DATASETS),"source"]="Arg Mining"
+    df_summary.loc[df_summary["dataset"].isin(DALITE_DISCIPLINES),"source"]="DALITE"
+    df_summary=df_summary.sort_values(["source","dataset"]).set_index(["source","dataset"])
+    return df_summary
 
 def summary_table(discipline,output_dir):
     """
@@ -373,7 +430,7 @@ def draw_acc_by_transition(output_dir_name):
     pairwise prediction task
     """
 
-    disciplines=["Physics","Chemistry","Ethics","same_teacher_two_groups"]
+    disciplines=["Physics","Chemistry","Ethics"]
     populations=["all","switchers"]
 
     fig,axs = plt.subplots(len(disciplines),len(populations),figsize=(12,9))
@@ -651,6 +708,73 @@ def draw_kendalltau_by_time(discipline,output_dir):
     )
     return fig
 
+def draw_prec_at_K(output_dir_name):
+    """
+    Precision at K for different classifiers
+    Requires that `predict_rank_score` functions have been run and file
+    `predict_rank_scores_prec_K_results_all_datasets.json` exists
+    """
+    import seaborn as sns
+    plt.style.use("ggplot")
+
+    fp=os.path.join(BASE_DIR,"tmp",output_dir_name,"predict_rank_scores_prec_K_results_all_datasets.json")
+    with open(fp,"r") as f:
+        results=json.load(f)
+
+    df_res=pd.DataFrame(results)
+    target="y_winrate"
+    model="all_features"
+    pipes=[("lin_reg","Linear Regression"),("dtree","Decision Tree Regression")]
+
+    KS=[1,3,5]
+    df_res_=df_res[df_res["K"].isin(KS)]
+
+    Q=["Q4"]
+    rank_type="top"
+
+    fig,axs = plt.subplots(
+        nrows=df_res_["K"].value_counts().shape[0],
+        ncols=len(pipes),
+        sharex=True,
+        figsize=(12,9)
+    )
+    for i,(K,df_K) in enumerate(df_res_.groupby("K")):
+        for j,(pipe,pipe_name) in enumerate(pipes):
+            df_plot=df_K[(
+                (df_K["rank_type"]==rank_type)
+                &(df_K["Q"].isin(Q))
+                &(df_K["target"]==target)
+                &(df_K["model"]==model)
+                &(df_K["pipe"]==pipe)
+            )]
+            ax=axs[i,j]
+            sns.scatterplot(
+                x="N",
+                y="prec",
+                hue="discipline",
+                data=df_plot,
+                alpha=0.5,
+                ax=ax
+            )
+            ax.set_xlim(0,55)
+            ax.set_ylim(-0.05,1.1)
+            ax.set_ylabel(f"prec@{K}")
+            if i==0:
+                ax.set_title(f"{pipe_name}")
+
+            x=np.arange(1,55)
+            ax.plot(
+                K/x,
+                '--',
+                color="gray",
+            )
+            ax.get_legend().remove()
+
+    handles, labels = ax.get_legend_handles_labels()
+    fig.legend(handles, labels, loc='upper right')
+    fig.tight_layout()
+    return fig
+
 
 def main(
     figures: (
@@ -658,7 +782,7 @@ def main(
         "positional",
         None,
         str,
-        ["all", "corr_plot", "acc_by_transition", "corr_by_batch", "kendalltau_by_time"],
+        ["all", "summary_all_data","corr_plot", "acc_by_transition", "corr_by_batch", "kendalltau_by_time","prec_at_K"],
     ),
     discipline: (
         "Which discipline to consider",
@@ -703,7 +827,18 @@ def main(
         population="all"
         output_dir = os.path.join(data_loaders.BASE_DIR, "tmp", output_dir_name, discipline,population)
 
-    if figures == "all":
+    if figures == "all" or figures=="summary_all_data":
+        print("summary all datasets")
+        df_summary = get_summary_all_datasets()
+        df_summary.style.set_properties(**{'text-align': 'right'})
+        fp = os.path.join(ARTICLE_DIR,"data" "df_summary_all_datasets.tex".format(discipline,population))
+        df_summary.to_latex(
+            fp,
+            column_format='llrrrrrrr'
+        )
+        print(fp)
+
+    if figures == "all" or figures=="summary_by_transition":
         print("summary of data by transition")
         df_summary_table = summary_table(discipline=discipline,output_dir=output_dir)
         fp = os.path.join(THESIS_DIR,"data","theme3", "df_summary_{}_{}.tex".format(discipline,population))
@@ -744,6 +879,11 @@ def main(
         print(fp)
         fig.savefig(fp)
 
+    if figures =="all" or figures == "prec_at_K":
+        fig = draw_prec_at_K(output_dir_name)
+        fp=os.path.join(ARTICLE_DIR,"img","prec_at_K.pgf")
+        print(fp)
+        fig.savefig(fp)
     # if figures == "all" or figures == "kendalltau_by_time":
     #     ### Correlation between rank scores of independant batches of students
     #     #  by transition for each rank_score_type

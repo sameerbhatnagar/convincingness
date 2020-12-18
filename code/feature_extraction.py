@@ -36,20 +36,16 @@ from utils_scrape_openstax import OPENSTAX_TEXTBOOK_DISCIPLINES
 
 from make_pairs import make_pairs_by_topic, filter_out_stick_to_own
 
-from argBT import get_rankings_winrate, get_rankings_elo, get_topic_data
-
 from plots import BASE_DIR
+from data_loaders import DALITE_DISCIPLINES,get_topic_data
 
 from make_pairs import EQUATION_TAG, EXPRESSION_TAG, OOV_TAG
 
-nlp = spacy.load("en_core_web_md", disable=["ner"])
+nlp = spacy.load("en_core_web_md")
 
 from spellchecker import SpellChecker
 
 DROPPED_POS = [PUNCT, SPACE, X]
-
-DALITE_DISCIPLINES = ["Physics","Chemistry","Ethics"]
-
 
 import html as ihtml
 from bs4 import BeautifulSoup
@@ -252,7 +248,7 @@ def on_match(matcher, doc, id, matches):
         print(doc[m[1] - 2 : m[2] + 2])
 
 
-def get_matcher(subject, nlp, topic=None, on_match=None):
+def get_matcher(subject, topic=None, on_match=None):
     """
     given a subject and nlp object,
     return a phrase mather object that has patterns from
@@ -333,25 +329,25 @@ def extract_lexical_features(topic, discipline, output_dir):
     lexical_features = {}
 
     if discipline in DALITE_DISCIPLINES:
-        matcher = get_matcher(subject=discipline, nlp=nlp)
-        try:
-            lexical_features["{}_n_keyterms".format(feature_type)] = {
-                arg_id: len(
-                    set([str(doc[start:end]) for match_id, start, end in matcher(doc)])
-                )
-                for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-            }
-
-        except TypeError:
-            pass
-
-        matcher_prompt = get_matcher(subject=discipline, topic=topic, nlp=nlp)
-        lexical_features["{}_n_prompt_terms".format(feature_type)] = {
-            arg_id: len(
-                set([str(doc[start:end]) for match_id, start, end in matcher_prompt(doc)])
-            )
-            for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-        }
+    #     matcher = get_matcher(subject=discipline)
+    #     try:
+    #         lexical_features["{}_n_keyterms".format(feature_type)] = {
+    #             arg_id: len(
+    #                 set([str(doc[start:end]) for match_id, start, end in matcher(doc)])
+    #             )
+    #             for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+    #         }
+    #
+    #     except TypeError:
+    #         pass
+    #
+    #     matcher_prompt = get_matcher(subject=discipline, topic=topic)
+    #     lexical_features["{}_n_prompt_terms".format(feature_type)] = {
+    #         arg_id: len(
+    #             set([str(doc[start:end]) for match_id, start, end in matcher_prompt(doc)])
+    #         )
+    #         for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+    #     }
 
         lexical_features["{}_n_equations".format(feature_type)] = {
             arg_id: len(
@@ -662,6 +658,13 @@ def main(
         str,
         ["all", "surface", "readability", "lexical", "syntax", "semantic"],
     ),
+    population: (
+        "Which students?",
+        "positional",
+        None,
+        str,
+        ["all","switchers"],
+    ),
     output_dir_name: ("Directory name for results", "positional", None, str,),
     largest_first: ("Largest Files First", "flag", "l", bool,),
 ):
@@ -669,7 +672,7 @@ def main(
     print("Start: {}".format(datetime.datetime.now()))
 
     output_dir = os.path.join(
-        data_loaders.BASE_DIR, "tmp", output_dir_name, discipline, "all"
+        data_loaders.BASE_DIR, "tmp", output_dir_name, discipline, population
     )
 
     if feature_type == "all":
