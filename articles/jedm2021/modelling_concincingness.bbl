@@ -1,5 +1,23 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\citeauthoryear{Aldous}{Aldous}{2017}]{aldous_elo_2017}
+{\sc Aldous, D.} 2017.
+\newblock Elo ratings and the sports model: {A} neglected topic in applied
+  probability?
+\newblock {\em Statistical science\/}~{\em 32,\/}~4, 616--629.
+\newblock Publisher: Institute of Mathematical Statistics.
+
+\bibitem[\protect\citeauthoryear{Bhatnagar, Zouaq, Desmarais, and
+  Charles}{Bhatnagar et~al\mbox{.}}{2020}]{bhatnagar_learnersourcing_2020}
+{\sc Bhatnagar, S.}, {\sc Zouaq, A.}, {\sc Desmarais, M.~C.}, {\sc and} {\sc
+  Charles, E.} 2020.
+\newblock Learnersourcing {Quality} {Assessment} of {Explanations} for {Peer}
+  {Instruction}.
+\newblock In {\em Addressing {Global} {Challenges} and {Quality} {Education}},
+  {C.~Alario-Hoyos}, {M.~J. Rodríguez-Triana}, {M.~Scheffel},
+  {I.~Arnedillo-Sánchez}, {and} {S.~M. Dennerlein}, Eds. Springer
+  International Publishing, Cham, 144--157.
+
 \bibitem[\protect\citeauthoryear{Cambre, Klemmer, and Kulkarni}{Cambre
   et~al\mbox{.}}{2018}]{cambre_juxtapeer:_2018}
 {\sc Cambre, J.}, {\sc Klemmer, S.}, {\sc and} {\sc Kulkarni, C.} 2018.
@@ -50,13 +68,6 @@
 \newblock Peer instruction: {Ten} years of experience and results.
 \newblock {\em American Journal of Physics\/}~{\em 69,\/}~9, 970--977.
 
-\bibitem[\protect\citeauthoryear{Deerwester, Dumais, Landauer, Furnas, and
-  Harshman}{Deerwester et~al\mbox{.}}{1990}]{deerwester_indexing_1990}
-{\sc Deerwester, S.~C.}, {\sc Dumais, S.~T.}, {\sc Landauer, T.~K.}, {\sc
-  Furnas, G.~W.}, {\sc and} {\sc Harshman, R.~A.} 1990.
-\newblock Indexing by latent semantic analysis.
-\newblock {\em JASIS\/}~{\em 41,\/}~6, 391--407.
-
 \bibitem[\protect\citeauthoryear{Denny, Hamer, Luxton-Reilly, and
   Purchase}{Denny et~al\mbox{.}}{2008}]{denny_peerwise:_2008}
 {\sc Denny, P.}, {\sc Hamer, J.}, {\sc Luxton-Reilly, A.}, {\sc and} {\sc
@@ -68,13 +79,26 @@
   51--58.
 \newblock event-place: Sydney, Australia.
 
-\bibitem[\protect\citeauthoryear{Devlin, Chang, Lee, and Toutanova}{Devlin
-  et~al\mbox{.}}{2018}]{devlin_bert_2018}
-{\sc Devlin, J.}, {\sc Chang, M.-W.}, {\sc Lee, K.}, {\sc and} {\sc Toutanova,
-  K.} 2018.
-\newblock Bert: {Pre}-training of deep bidirectional transformers for language
-  understanding.
-\newblock {\em arXiv preprint arXiv:1810.04805\/}.
+\bibitem[\protect\citeauthoryear{Elo}{Elo}{1978}]{elo_rating_1978}
+{\sc Elo, A.~E.} 1978.
+\newblock {\em The rating of chessplayers, past and present}.
+\newblock Arco Pub.
+
+\bibitem[\protect\citeauthoryear{Gagnon, Labrie, Desmarais, and
+  Bhatnagar}{Gagnon et~al\mbox{.}}{2019}]{gagnon_filtering_2019}
+{\sc Gagnon, V.}, {\sc Labrie, A.}, {\sc Desmarais, M.}, {\sc and} {\sc
+  Bhatnagar, S.} 2019.
+\newblock Filtering non-relevant short answers in peer learning applications.
+\newblock In {\em Proc. {Conference} on {Educational} {Data} {Mining} ({EDM})}.
+
+\bibitem[\protect\citeauthoryear{Garcia-Mila, Gilabert, Erduran, and
+  Felton}{Garcia-Mila et~al\mbox{.}}{2013}]{garcia-mila_effect_2013}
+{\sc Garcia-Mila, M.}, {\sc Gilabert, S.}, {\sc Erduran, S.}, {\sc and} {\sc
+  Felton, M.} 2013.
+\newblock The effect of argumentative task goal on the quality of argumentative
+  discourse.
+\newblock {\em Science Education\/}~{\em 97,\/}~4, 497--523.
+\newblock Publisher: Wiley Online Library.
 
 \bibitem[\protect\citeauthoryear{Gleize, Shnarch, Choshen, Dankin, Moshkowich,
   Aharonov, and Slonim}{Gleize et~al\mbox{.}}{2019}]{gleize_are_2019}
@@ -108,6 +132,11 @@
   learning activities.
 \newblock {\em arXiv preprint arXiv:1910.05522\/}.
 
+\bibitem[\protect\citeauthoryear{Mercier and Sperber}{Mercier and
+  Sperber}{2011}]{mercier_why_2011}
+{\sc Mercier, H.} {\sc and} {\sc Sperber, D.} 2011.
+\newblock Why do humans reason? {Arguments} for an argumentative theory.
+
 \bibitem[\protect\citeauthoryear{Mohler and Mihalcea}{Mohler and
   Mihalcea}{2009}]{mohler_text--text_2009}
 {\sc Mohler, M.} {\sc and} {\sc Mihalcea, R.} 2009.
@@ -128,11 +157,28 @@
 \newblock In {\em Proceedings of the third international conference on
   cognitive science}. Vol. 644648.
 
-\bibitem[\protect\citeauthoryear{Pennington, Socher, and Manning}{Pennington
-  et~al\mbox{.}}{2014}]{pennington_glove:_2014}
-{\sc Pennington, J.}, {\sc Socher, R.}, {\sc and} {\sc Manning, C.~D.} 2014.
-\newblock Glove: {Global} {Vectors} for {Word} {Representation}.
-\newblock In {\em {EMNLP}}. Vol.~14. 1532--1543.
+\bibitem[\protect\citeauthoryear{Nguyen and Litman}{Nguyen and
+  Litman}{2018}]{nguyen_argument_2018}
+{\sc Nguyen, H.~V.} {\sc and} {\sc Litman, D.~J.} 2018.
+\newblock Argument {Mining} for {Improving} the {Automated} {Scoring} of
+  {Persuasive} {Essays}.
+\newblock In {\em {AAAI}}. Vol.~18. 5892--5899.
+
+\bibitem[\protect\citeauthoryear{Pelánek}{Pelánek}{2016}]{pelanek_applications_2016}
+{\sc Pelánek, R.} 2016.
+\newblock Applications of the {Elo} rating system in adaptive educational
+  systems.
+\newblock {\em Computers \& Education\/}~{\em 98}, 169--179.
+\newblock Publisher: Elsevier.
+
+\bibitem[\protect\citeauthoryear{Persing and Ng}{Persing and
+  Ng}{2015}]{persing_modeling_2015}
+{\sc Persing, I.} {\sc and} {\sc Ng, V.} 2015.
+\newblock Modeling argument strength in student essays.
+\newblock In {\em Proceedings of the 53rd {Annual} {Meeting} of the
+  {Association} for {Computational} {Linguistics} and the 7th {International}
+  {Joint} {Conference} on {Natural} {Language} {Processing} ({Volume} 1: {Long}
+  {Papers})}. 543--552.
 
 \bibitem[\protect\citeauthoryear{Persing and Ng}{Persing and
   Ng}{2016}]{persing_end--end_2016}
@@ -155,6 +201,14 @@
   to support learning with peer feedback.
 \newblock {\em Teaching \& Learning Inquiry\/}~{\em 5,\/}~2, 89--113.
 
+\bibitem[\protect\citeauthoryear{Stegmann, Wecker, Weinberger, and
+  Fischer}{Stegmann et~al\mbox{.}}{2012}]{stegmann_collaborative_2012}
+{\sc Stegmann, K.}, {\sc Wecker, C.}, {\sc Weinberger, A.}, {\sc and} {\sc
+  Fischer, F.} 2012.
+\newblock Collaborative argumentation and cognitive elaboration in a
+  computer-supported collaborative learning environment.
+\newblock {\em Instructional Science\/}~{\em 40,\/}~2 (Mar.), 297--323.
+
 \bibitem[\protect\citeauthoryear{Toledo, Gretz, Cohen-Karlik, Friedman,
   Venezian, Lahav, Jacovi, Aharonov, and Slonim}{Toledo
   et~al\mbox{.}}{2019}]{toledo_automatic_2019}
@@ -173,6 +227,16 @@
 {\sc Univeristy~of British~Columbia, T. . L.~T.} 2019.
 \newblock ubc/ubcpi.
 \newblock original-date: 2015-02-17T21:37:02Z.
+
+\bibitem[\protect\citeauthoryear{Venville and Dawson}{Venville and
+  Dawson}{2010}]{venville_impact_2010}
+{\sc Venville, G.~J.} {\sc and} {\sc Dawson, V.~M.} 2010.
+\newblock The impact of a classroom intervention on grade 10 students'
+  argumentation skills, informal reasoning, and conceptual understanding of
+  science.
+\newblock {\em Journal of Research in Science Teaching\/}~{\em 47,\/}~8,
+  952--977.
+\newblock Publisher: Wiley Online Library.
 
 \bibitem[\protect\citeauthoryear{Weir, Kim, Gajos, and Miller}{Weir
   et~al\mbox{.}}{2015}]{weir_learnersourcing_2015}

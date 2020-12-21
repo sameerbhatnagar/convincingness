@@ -82,12 +82,17 @@ frame this as ``casting a vote'' for the chosen peer explanation.
 The design and growing popularity of TMPI is inspired by three schools of 
 thought: firstly, prompting students to explain their reasoning is beneficial 
 to their learning \cite{chi_eliciting_1994}. 
+Deliberate practice of argumentation in defence of one's ideas has been shown 
+to improve informal reasoning for science students\cite{venville_impact_2010}.
+There exists empirical evidence on the positive relationship between 
+constructing formally sound arguments and deep cognitive elaboration, as well 
+as individual acquisition of knowledge\cite{stegmann_collaborative_2012}.
+ 
 Second, classroom based \textit{Peer Instruction} \cite{crouch_peer_2001}, 
-often 
-mediated by automated response systems (e.g. clickers), has become a prevalent, 
-and often effective component in the teaching practice of instructors looking 
-to drive student engagement as part of an active learning experience 
-\cite{charles_beyond_2015}. 
+often mediated by automated response systems (e.g. clickers), has become a 
+prevalent, and often effective component in the teaching practice of 
+instructors looking to drive student engagement as part of an active learning 
+experience \cite{charles_beyond_2015}. 
 In discussing with peers \textit{after} they have formulated their own 
 reasoning, students are engaged in a higher order thinking task from Bloom's 
 taxonomy, as they evaluate what is the strongest argument, before answering 
@@ -97,9 +102,33 @@ TMPI affords teachers the opportunity to mitigate the ``expert blind spot''
 \cite{nathan_expert_2001}, addressing student misconceptions they might not 
 otherwise have thought of.
 
-We suggest that the ``vote'' data collected on each explanation, is a proxy for 
-argument quality, along the dimension of \textit{convincingness}, as judged by 
-peer learners. 
+We situate student explanations from TMPI, in the context of computational 
+argumentation, a sub-field of NLP focused on identifying argumentative 
+components, and in their links to one another.
+Modelling argument ``quality'' is an area of active research, with direct 
+applications in education, such as in automated scoring of 
+persuasive essays written by students \cite{persing_modeling_2015} 
+\cite{nguyen_argument_2018}.
+The goal of the argument task, whether it be to find 
+consensus, or to persuade peers, has been shown to be correlated to the quality 
+of arguments students produce, as measured by the presence of formal 
+argumentative structures \cite{garcia-mila_effect_2013}.
+
+However experiments have also shown the perceived quality of an argument 
+depends on the audience, and so we follow a more 
+pragmatic measure of argument quality, centred on the premise that the goal of
+argumentation is persuasion\cite{mercier_why_2011}.
+Therefor we suggest that the ``vote'' data collected for each student's 
+explanation, is a proxy for argument quality, along the dimension of 
+\textit{convincingness}, as judged by peer learners. 
+This is a direct application of the argument mining task originally proposed by 
+\cite{habernal_which_2016}: if crowd-workers are presented with a pair of 
+arguments for the same stance of a debatable topic, can we predict which of the 
+two they will choose as more convincing?
+This task has been extended to TMPI, wherein the objective is to predict which 
+explanations students will choose as more convincing than their 
+own\cite{bhatnagar_learnersourcing_2020}.
+
 These votes can be aggregated into a \textit{convincingness} score, as a 
 measure of how effective that explanation is in persuading peers to change 
 their own answer.
@@ -113,14 +142,15 @@ beyond TMPI.
 For example, in response to the difficulty students can have providing a 
 holistic score to their peers' work, there is a growing number of peer-review 
 platforms built on \textit{comparative} judgments.
-Notable examples include ComPAIR\cite{potter_compair:_2017} and 
-JuxtaPeer\cite{cambre_juxtapeer:_2018}, both of which present students with a 
+Notable examples include ComPAIR \cite{potter_compair:_2017} and 
+JuxtaPeer \cite{cambre_juxtapeer:_2018}, both of which present students with a 
 just a pair of their peers' submissions, and prompt the learner to evaluate 
 them with respect to one another.
 As in TMPI, students apply a comparative judgment to only the subset of peer 
 content that they are shown during the review step.
 There is a need for a principled approach to aggregating this learnersourced 
-data in a pedagogically relevant manner.
+data in a pedagogically relevant manner, despite the inevitable absence of some 
+``true'' ranking.
 
 This sets the stage for our central research questions: 
 \begin{itemize}
@@ -134,26 +164,41 @@ This sets the stage for our central research questions:
 	most effective student explanations, as judged by their peers?
 \end{itemize}
 
-To our knowledge, we are among the first to examine unsupervised rank 
+To our knowledge, we are among the first to measure and model unsupervised rank 
 aggregation methods as applied to these student ``votes'' in TMPI, in order to 
-reliable measurements of \textit{convincingness}. 
+evaluate student explanations for their \textit{convincingness}. 
 
 We suggest that the results of our work can inform the design of TMPI platforms.
 However, in a broader context, we aim to contribute to the growing body of 
 research surrounding technology-mediated peer-review, specifically where 
 learners do not provide holistic scores, but generate their evaluative 
-judgments in a comparative setting.
-Our research questions generalize to these broader settings: whenever a 
-learner engages in comparative peer assessment, the supporting technology must 
-design some principled approach to constructing the subsets of peer-submissions 
-that will be shown (e.g. random sampling, based on a learner model, showing the 
-\textit{popular} items more often, etc).
-Instructors need support in parsing through the overwhelming mounts of data 
-that can be generated when students not only create, but also curate content as 
-part of their learning activity. 
+judgments in a comparative setting. 
+Such platforms will invariable have to deal with at least three issues, which 
+our work helps to address.
 
-This paper begins with an overview of research related to learnersourcing  
-(section \ref{sec:related_work}).
+The first issue is about students: by providing feedback to learners on the 
+characteristics common to the most convincing argumentation in their 
+discipline, as mentioned above, promotes learning and the development of 
+critical reasoning skills.
+The second issue is in providing support to teachers: in such platforms, the 
+amount of data generated scales very quickly.
+The data associated with each student-item pair includes many relevant 
+variables: correctness first attempt, student explanation, subset of 
+explanations shown, time spent writing and reading explanations, correctness of 
+second attempt, and the peer-explanation chosen as most convincing.   
+This amount of information can be overwhelming for instructors who use such 
+tools regularly as part of formative assessment. 
+Automatically identifying the highest, and lowest, quality student 
+explanations, as judged by other students, can support instructors in providing 
+timely feedback. 
+A third related issue is in maintaining the integrity of such platforms: 
+automatic filtering irrelevant/malicious student explanations is paramount, 
+since they may be shown to future students \cite{gagnon_filtering_2019}, a 
+non-trivial task for natural language content, without expensive expert 
+moderation.
+
+This paper begins with an overview of research related to learnersourcing,  and 
+argument mining (section \ref{sec:related_work}).
 We then describe our TMPI dataset, as well as publicly available reference 
 datasets of argument quality, which we use to evaluate our methodology (section 
 \ref{sec:datasets}).
@@ -170,10 +215,10 @@ high-quality explanations (section \ref{sec:model}).
 \section{Related Work}\label{sec:related_work}
 
 \subsection{Learnersourcing student explanations}
-This modality is a specific case of  
+TMPI is a specific case of  
 \textit{learnersourcing}\cite{weir_learnersourcing_2015}, wherein students first
-generate content as part of their own learning process, that is ultimately used 
-to help their peers learn as well.
+generate content, and then help curate the content base, all as part of their 
+own learning process.
 Notable examples include PeerWise \cite{denny_peerwise:_2008} and RiPPLE 
 \cite{khosravi_ripple_2019}, both of which have student generate learning 
 resources, which are subsequently used and evaluated by peers as part of 
@@ -221,17 +266,14 @@ in a pair, divided by the number of pairs it appears in
 
 Finally, a neural approach based on RankNet has recently yielded state of the 
 art results. By joining two Bidirectional Long-Short-Term Memory Networks in a 
-Siamese architecture, and appending a softmax layer to the output, 
-\cite{gleize_are_2019} show that we can jointly model pairwise preferences and 
-overall ranks publicly available datasets.
+Siamese architecture, and appending a softmax layer to the output, pairwise 
+preferences and overall ranks were jointly modelled in publicly available 
+datasets \cite{gleize_are_2019}.
 
 We will explore two of these options as part of our methodology in our rank 
 aggregation step, via several related methods: 
 the probabilistic Bradley-Terry model, as well as two of its variants (CrowdBT 
-and the Elo rating system), and the simple heuristic scoring model. 
-(We leave the neural approach for future work, as the additional work required 
-to address make the models interpretable enough for the educational context is 
-out of the scope of this study)
+and the Elo rating system), and the simple heuristic scoring model.
 
 
 \section{Data}\label{sec:datasets}
@@ -266,11 +308,10 @@ rank scores.
 
 \subsection{DALITE}
 The central data for this study come from myDALITE.org, which is a hosted 
-instance of 
-an open-source project, 
+instance of an open-source project, 
 \verb|dalite|\footnote{\url{https://github.com/SALTISES4/dalite-ng}}, 
 maintained by a Canadian researcher-practitioner partnership focused on 
-supporting teachers develpping active learning pedagogy 
+supporting teachers in the development of active learning pedagogy 
 \href{saltise.ca}{SALTISE}.
 The data comes from introductory level university science courses, and 
 generally spans different teachers at different colleges and universities in 
@@ -278,7 +319,7 @@ Canada.
 The \textit{Ethics} dataset comes from a popular MOOC, wherein the TMPI prompts 
 are slightly different from the \textit{Physics} and \textit{Chemistry} 
 prompts, in that there is no ``correct'' answer choice, and that the goal is to 
-have student choose a side of an argument, and justify their choice.
+have students choose a side of an argument, and justify their choice.
 Table \ref{tab:data_summary} gives an overview of the datasets included in this 
 study.
 
@@ -346,14 +387,16 @@ questions.
 \subsection{Rank Aggregation}
 The raw data emerging from a TMPI platform is tabular, in the form of 
 student-item observations.
-The fields include the item prompt, the student's \textit{first} answer choice, 
-their accompanying explanation, the peer explanations shown on the review step, 
-the student's \textit{second} answer choice, and the peer explanation they 
-chose as most convincing (\verb|None| if they choose to ``stick to their own'').
+As shown in figure \ref{fig:make_pairs_a}(a), the fields include the item 
+prompt, the student's \textit{first} answer choice, their accompanying 
+explanation, the peer explanations shown on the review step, the student's 
+\textit{second} answer choice, and the peer explanation they chose as most 
+convincing (\verb|None| if they choose to ``stick to their own''), as well as 
+timestamps for the first and second attempt.
 
 It should be noted that there is no credit associated with which explanation is 
-chosen in this TMPI platform (all points are attributed based on the 
-correctness of the answer choice on the first and second steps).
+chosen in DALITE (all points are attributed based on the  correctness of the 
+answer choice on the first and second steps).
 After carefully looking at timestamp data, we observe that a large fraction of 
 students who choose to ``stick to their own'', spend as little as 5 seconds on 
 the review step.
@@ -363,7 +406,7 @@ own.
 
 After this first filtering step, we take the TMPI observations for each 
 question, and construct explanation pairs, as in figure 
-\ref{fig:make_pairs_a}.
+\ref{fig:make_pairs_a}(b).
 
 
 \begin{figure}
