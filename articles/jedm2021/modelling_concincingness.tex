@@ -13,6 +13,7 @@
 \usepackage{float}
 \usepackage{calc}
 \usepackage{multirow}
+\usepackage{graphicx,caption,subcaption}
 \usepackage[finalnew]{trackchanges}
 
 
@@ -61,9 +62,46 @@ Technology-mediated peer instruction \textit{(TMPI)} platforms
 \cite{charles_harnessing_2019}\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}
 expand multiple choice items into a two step process.
 On the first step, students must not only choose an answer choice, but also 
-provide an explanation that justifies their reasoning. 
-On the second step, students are prompted to revise their answer choice, by 
-taking into consideration a subset of explanations written by their peers.
+provide an explanation that justifies their reasoning, as shown in figure 
+\ref{fig:question_start}.
+
+
+
+\begin{figure}[h]
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{img/question_start}
+		\caption{
+		The first step in TMPI, where a student is presented with a 
+		multiple choice item. The student must enter a ``rationale'', or 
+		``explanation'' justifying their answer choice.
+		\newline
+		The panel on the right, figure \protect\ref{fig:question_review} shows 
+		the second, review step of TMPI.
+		Before any feedback is given on the correctness of their first attempt, 
+		the student is prompted to reconsider their answer choice, by reading a 
+		subset of explanations written by previous students.
+		A set of peer-explanations is shown for the student's own answer 
+		choice, and another set is shown for a different answer choice. 
+		}
+		\label{fig:question_start}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{img/question_review}
+		\caption{}
+		\label{fig:question_review}
+	\end{subfigure}
+	\caption{The two steps in technology-mediated peer 
+	instruction (TMPI)}
+	\label{fig:tmpi}
+\end{figure}
+
+
+
+On the second step (figure \ref{fig:question_review}), students are prompted to 
+revise 
+their answer choice, by taking into consideration a subset of explanations 
+written by their peers.
 
 The student now has three options:
 \begin{enumerate}
@@ -408,35 +446,37 @@ After this first filtering step, we take the TMPI observations for each
 question, and construct explanation pairs, as in figure 
 \ref{fig:make_pairs_a}(b).
 
-
 \begin{figure}
-	\scalebox{0.30}{\includegraphics{img/make_pairs_a.png}}
+	\centering
+	\def\svgscale{0.40}
+	\input{img/make_pairs_a.pdf_tex}
 	\caption{
-		Example of student-item observations from a TMPI environment. 
-		(a) Student $s_{30}$ chose the correct \textbf{B} as the answer on 
-		their first attempt, and provided the explanation $e_{30}$ in the 
-		dataset 
-		for this question. 
-		Without providing feedback on whether this is the correct answer, the 
-		student is shown a subset of explanations from previous students for 
-		\textbf{B}, as well as for \textbf{A} (the most popular incorrect 
-		answer). 
-		The student decides to keep the same answer choice \textbf{B}, and 
-		indcates that the explanation $e_25$ is the most convincing.
-		This is referred to as a \textit{Right}$->$\textit{Right} transition.
-		(b) This observation is transformed into 7 explanation pairs. The first 
-		pair is for the choice of $e_{25}$ over what the student themself, 
-		and the other six are for the choice of $e_{25}$ over the other shown 
-		explanations. 
-		The pairs are labelled as either having the left or right exlanation 
-		being 
-		more \textit{convincing}.
-		(c) This pairwise preference data is aggregated global ranked list, 
-		where 
-		each explanation is assigned a Rank Score. 
-	}
-	\label{fig:make_pairs_a}
+	Example of student-item observations from a TMPI environment. 
+	(a) Student $s_{30}$ chose the correct \textbf{B} as the answer on 
+	their first attempt, and provided the explanation $e_{30}$ in the 
+	dataset 
+	for this question. 
+	Without providing feedback on whether this is the correct answer, the 
+	student is shown a subset of explanations from previous students for 
+	\textbf{B}, as well as for \textbf{A} (the most popular incorrect 
+	answer). 
+	The student decides to keep the same answer choice \textbf{B}, and 
+	indcates that the explanation $e_{25}$ is the most convincing.
+	This is referred to as a \textit{Right}$->$\textit{Right} transition.
+	(b) This observation is transformed into 7 explanation pairs. The first 
+	pair is for the choice of $e_{25}$ over what the student themself, 
+	and the other six are for the choice of $e_{25}$ over the other shown 
+	explanations. 
+	The pairs are labelled as either having the left or right exlanation 
+	being 
+	more \textit{convincing}.
+	(c) This pairwise preference data is aggregated global ranked list, 
+	where 
+	each explanation is assigned a Rank Score. 
+}
+\label{fig:make_pairs_a}
 \end{figure}
+
 
 \begin{enumerate}
 	
@@ -463,7 +503,7 @@ question, and construct explanation pairs, as in figure
 	the log-likelihood given by:
 	$$
 	\ell(\boldsymbol{\beta})=\sum_{K}\sum_{(i,j)\epsilon S_K}^{} 
-	log\frac{1}{1+e^{\beta_i - \beta_j}}
+	\log\frac{1}{1+e^{\beta_i - \beta_j}}
 	$$
 	subject to $\sum_{i}\beta_i=0$.
 	
@@ -518,7 +558,7 @@ question, and construct explanation pairs, as in figure
 	$$
 	\ell(\boldsymbol{\eta},\boldsymbol{\beta})=\sum_{K}\sum_{(i,j)\epsilon 
 		S_K}^{} 
-	log(\eta_k\frac{1}{1+e^{\beta_i - \beta_j}} + 
+	\log(\eta_k\frac{1}{1+e^{\beta_i - \beta_j}} + 
 	(1-\eta_k)\frac{1}{1+e^{\beta_i - \beta_j}})
 	$$
 	
