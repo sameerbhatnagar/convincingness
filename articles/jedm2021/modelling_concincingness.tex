@@ -564,17 +564,6 @@ question, and construct explanation pairs, as in figure
 	\frac{e^{\beta_b}}{e^{\beta_a}+e^{\beta_b}} \right]
 	$$
 	
-	\item \textbf{Length}, a method used purely as a baseline, where for each 
-	pair, we simply predict that the explanation with more words is the more 
-	convincing.
-	This is a commonly used baseline  for the pairwise classification task of 
-	predicting argument quality \cite{toledo_automatic_2019} has been shown to 
-	be competitive for data from learning environments 
-	\cite{bhatnagar_learnersourcing_2020}.
-	(Since we only use a basic white-space tokenizer, we round the token-counts 
-	of each explanation down to the nearest multiple of five, as it is unlikely 
-	that a student could discern which is longer if the difference in lengths 
-	is less than this.)
 \end{enumerate}
 
 In order to evaluate these rank aggregation different scores, and address 
