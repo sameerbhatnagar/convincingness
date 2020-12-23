@@ -318,11 +318,13 @@ and the Elo rating system), and the simple heuristic scoring model.
 
 \subsection{Argument Mining Datasets}
 Much of our methodology is inspired by work on modelling argument quality along 
-the dimension of \textit{convincingness}. 
-In order to contextualize our results, we apply the same many of the same 
-specific methods to publicly available datasets from the argument mining 
-research community. 
-These datasets are described as well in table \ref{tab:data_summary}. 
+the dimension of \textit{convincingness}, as described in section 
+\ref{sec:related_work}. 
+In order to contextualize the performance of these methods in our educationale 
+setting, we apply the same methods to publicly available datasets from the 
+argument mining research community as well, and present the results. 
+These datasets are described in table \ref{tab:data_summary}, alongside the 
+TMPI data at the heart of our study. 
 The \textbf{UKP} dataset\cite{habernal_which_2016} is the first set of labelled 
 argument pairs to be released publicly.
 Crowd-workers were presented with pairs of arguments on the same stance of a 
@@ -526,7 +528,7 @@ question, and construct explanation pairs, as in figure
 	proportion to the difference in strength:
 	
 	$$
-	\beta_a:=\beta_a+K(P_{ab} - \beta_a)
+	\beta_a':=\beta_a+K(P_{ab} - \beta_a)
 	$$
 	
 	While the \textbf{BT} model can be thought of a \textit{consensus} 
@@ -534,7 +536,7 @@ question, and construct explanation pairs, as in figure
 	to recent data\cite{aldous_elo_2017}.
 	
 	\item \textbf{Crowd-BT} \cite{chen_pairwise_2013} is an extension of the 
-	\textbf{BT} model tailored to settings where different annotators may have 
+	\textbf{BT} model, tailored to settings where different annotators may have 
 	assigned opposite labels to the same pairs, and the reliability of each 
 	annotator may vary significantly. 
 	A reliability parameter is estimated for each student, 
@@ -543,23 +545,23 @@ question, and construct explanation pairs, as in figure
 	\eta_k \equiv P(a >_k b | a >b )
 	$$
 	
-	where $\eta_k \approx 1$ if the $k^{th}$ student agrees with most other 
+	where $\eta_k \approx 1$ if the student  $k$ agrees with most other 
 	students, and $\eta_k \approx 0$ if the student is in opposition to their 
 	peers.
 	This changes the model of argument $a$ being chosen over $b$ by student $k$ 
 	to 
 	$$
 	P(a >_k b) = 
-	\eta_k \frac{1}{1+e^{\beta_b-\beta_a}} + (1-\eta_k) 
-	\frac{1}{1+e^{\beta_b-\beta_a}}
+	\eta_k \frac{e^{\beta_a}}{e^{\beta_a}+e^{\beta_b}} + (1-\eta_k) 
+	\frac{e^{\beta_b}}{e^{\beta_a}+e^{\beta_b}}
 	$$
 	and the log-likelilood maximized for estimation to 
 	
 	$$
 	\ell(\boldsymbol{\eta},\boldsymbol{\beta})=\sum_{K}\sum_{(i,j)\epsilon 
 		S_K}^{} 
-	\log(\eta_k\frac{1}{1+e^{\beta_i - \beta_j}} + 
-	(1-\eta_k)\frac{1}{1+e^{\beta_i - \beta_j}})
+	\log \left[ \eta_k \frac{e^{\beta_a}}{e^{\beta_a}+e^{\beta_b}} + (1-\eta_k) 
+	\frac{e^{\beta_b}}{e^{\beta_a}+e^{\beta_b}} \right]
 	$$
 	
 	\item \textbf{Length}, a method used purely as a baseline, where for each 
