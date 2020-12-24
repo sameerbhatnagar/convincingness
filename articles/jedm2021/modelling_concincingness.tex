@@ -65,39 +65,6 @@ On the first step, students must not only choose an answer choice, but also
 provide an explanation that justifies their reasoning, as shown in figure 
 \ref{fig:question_start}.
 
-
-
-\begin{figure}[h]
-	\begin{subfigure}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{img/question_start}
-		\caption{
-		The first step in TMPI, where a student is presented with a 
-		multiple choice item. The student must enter a ``rationale'', or 
-		``explanation'' justifying their answer choice.
-		\newline
-		The panel on the right, figure \protect\ref{fig:question_review} shows 
-		the second, review step of TMPI.
-		Before any feedback is given on the correctness of their first attempt, 
-		the student is prompted to reconsider their answer choice, by reading a 
-		subset of explanations written by previous students.
-		A set of peer-explanations is shown for the student's own answer 
-		choice, and another set is shown for a different answer choice. 
-		}
-		\label{fig:question_start}
-	\end{subfigure}
-	\qquad
-	\begin{subfigure}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{img/question_review}
-		\caption{}
-		\label{fig:question_review}
-	\end{subfigure}
-	\caption{The two steps in technology-mediated peer 
-	instruction (TMPI)}
-	\label{fig:tmpi}
-\end{figure}
-
-
-
 On the second step (figure \ref{fig:question_review}), students are prompted to 
 revise 
 their answer choice, by taking into consideration a subset of explanations 
@@ -113,6 +80,40 @@ The student now has three options:
 	to the same answer choice, and that their own explanation is best from 
 	among those that are shown.
 \end{enumerate}
+
+
+\begin{figure}[H]
+	\begin{subfigure}[b]{0.4\textwidth}
+		\def\svgscale{0.50}
+		\input{img/tmpi_question_start.pdf_tex}
+		\caption{
+			The first step in TMPI, where a student is presented with a 
+			multiple choice item. The student must enter a ``rationale'', or 
+			``explanation'' justifying their answer choice.
+			\newline
+			\newline
+			The panel on the right, figure \protect\ref{fig:question_review}, 
+			shows the second, review step of TMPI.
+			Before any feedback is given on the correctness of their first 
+			attempt, the student is prompted to reconsider their answer choice, 
+			by reading a subset of explanations written by previous students.
+			A set of peer-explanations is shown for the student's own answer 
+			choice, and another set is shown for a different answer choice. 
+		}
+		\label{fig:question_start}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[b]{0.6\textwidth}
+		\def\svgscale{0.50}
+		\input{img/tmpi_question_review.pdf_tex}
+		\caption{}
+		\label{fig:question_review}
+	\end{subfigure}
+	\caption{The two steps in technology-mediated peer 
+		instruction (TMPI)}
+	\label{fig:tmpi}
+\end{figure}
+
 
 Whenever the student goes with either of the first two scenarios above, we 
 frame this as ``casting a vote'' for the chosen peer explanation.
@@ -152,11 +153,11 @@ consensus, or to persuade peers, has been shown to be correlated to the quality
 of arguments students produce, as measured by the presence of formal 
 argumentative structures \cite{garcia-mila_effect_2013}.
 
-However experiments have also shown the perceived quality of an argument 
-depends on the audience, and so we follow a more 
-pragmatic measure of argument quality, centred on the premise that the goal of
-argumentation is persuasion\cite{mercier_why_2011}.
-Therefor we suggest that the ``vote'' data collected for each student's 
+However experiments have also shown that the perceived quality of an argument 
+depends on the audience, and so we follow a more pragmatic measure of argument 
+quality, centred on the premise that the goal of argumentation is 
+persuasion\cite{mercier_why_2011}.
+Therefore we suggest that the ``vote'' data collected for each student's 
 explanation, is a proxy for argument quality, along the dimension of 
 \textit{convincingness}, as judged by peer learners. 
 This is a direct application of the argument mining task originally proposed by 
@@ -164,16 +165,16 @@ This is a direct application of the argument mining task originally proposed by
 arguments for the same stance of a debatable topic, can we predict which of the 
 two they will choose as more convincing?
 This task has been extended to TMPI, wherein the objective is to predict which 
-explanations students will choose as more convincing than their 
-own\cite{bhatnagar_learnersourcing_2020}.
+explanations students will choose as more convincing than their own 
+\cite{bhatnagar_learnersourcing_2020}.
 
 These votes can be aggregated into a \textit{convincingness} score, as a 
 measure of how effective that explanation is in persuading peers to change 
 their own answer.
 Student explanations can then be ranked along such a score, allowing for 
 instructors to gain insights on the thinking of their students with respect to 
-specific content, and potentially even help for students improve how they 
-communicate ideas with their discipline.
+specific content, and potentially even help students to improve how they 
+communicate ideas within their discipline.
 
 The problem of aggregating the results of evaluative peer-judgments extends  
 beyond TMPI.
@@ -187,50 +188,55 @@ them with respect to one another.
 As in TMPI, students apply a comparative judgment to only the subset of peer 
 content that they are shown during the review step.
 There is a need for a principled approach to aggregating this learnersourced 
-data in a pedagogically relevant manner, despite the inevitable absence of some 
-``true'' ranking.
+data, in a pedagogically relevant manner, despite the inevitable absence of 
+some ``true'' ranking.
 
 This sets the stage for our central research questions: 
 \begin{itemize}
 	\item[RQ1] since each student's ``vote'' in this context represents an 
 	incomplete evaluative judgement, which rank aggregation 
-	methods are best suited for the \textit{measuring} the quality of student 
+	methods are best suited for ranking the quality of student 
 	explanations in TMPI?
-	\item[RQ2] once we establish an appropriate measure of explanation quality, 
-	along the dimension of \textit{convinciness}, can we \textit{model} this 
-	property, and identify the linguistic features of the 
-	most effective student explanations, as judged by their peers?
+	\item[RQ2] once we establish a ranked list of explanations along the 
+	dimension of \textit{convinciness}, can we model this construct, and 
+	identify the linguistic features of the most effective student 
+	explanations, as judged by their peers?
 \end{itemize}
 
-To our knowledge, we are among the first to measure and model unsupervised rank 
-aggregation methods as applied to these student ``votes'' in TMPI, in order to 
-evaluate student explanations for their \textit{convincingness}. 
+Work on modelling \textit{convincingness} has, in large part, been centred on 
+web discourse data.
+In the educational setting, previous work in automated scoring of persuasive 
+essays has focused on modelling holistic scores given by \textit{experts} on 
+longer form essays.
+To our knowledge, we are among the first to aggregate and model student 
+``votes'', in order to evaluate student explanations for their 
+\textit{convincingness} as judged by \textit{peers}.
 
 We suggest that the results of our work can inform the design of TMPI platforms.
 However, in a broader context, we aim to contribute to the growing body of 
 research surrounding technology-mediated peer-review, specifically where 
 learners do not provide holistic scores, but generate their evaluative 
 judgments in a comparative setting. 
-Such platforms will invariable have to deal with at least three issues, which 
+Such platforms will invariably have to deal with at least three issues, which 
 our work helps to address.
 
-The first issue is about students: by providing feedback to learners on the 
-characteristics common to the most convincing argumentation in their 
-discipline, as mentioned above, promotes learning and the development of 
-critical reasoning skills.
+The first issue is about students: providing feedback to learners on the 
+characteristics common to the most convincing arguments in their discipline, 
+promotes learning and the development of critical reasoning skills.
 The second issue is in providing support to teachers: in such platforms, the 
 amount of data generated scales very quickly.
 The data associated with each student-item pair includes many relevant 
-variables: correctness first attempt, student explanation, subset of 
-explanations shown, time spent writing and reading explanations, correctness of 
-second attempt, and the peer-explanation chosen as most convincing.   
+variables: correct answer choice on first attempt, student explanation, subset 
+of explanations shown, time spent writing and reading explanations, correct 
+answer on second attempt, and the peer-explanation chosen as most convincing 
+(see figure \ref{fig:make_pairs_a}).   
 This amount of information can be overwhelming for instructors who use such 
 tools regularly as part of formative assessment. 
 Automatically identifying the highest, and lowest, quality student 
 explanations, as judged by other students, can support instructors in providing 
 timely feedback. 
 A third related issue is in maintaining the integrity of such platforms: 
-automatic filtering irrelevant/malicious student explanations is paramount, 
+automatic filtering of irrelevant/malicious student explanations is paramount, 
 since they may be shown to future students \cite{gagnon_filtering_2019}, a 
 non-trivial task for natural language content, without expensive expert 
 moderation.
@@ -251,6 +257,14 @@ identify the linguistic features of explanations most often associated with
 high-quality explanations (section \ref{sec:model}).
 
 \section{Related Work}\label{sec:related_work}
+
+
+\subsection{Automated Essay Scoring and Short Answer Grading}
+TO DO
+
+\cite{persing_modeling_2015}
+\cite{nguyen_argument_2018}
+
 
 \subsection{Learnersourcing student explanations}
 TMPI is a specific case of  
