@@ -18,6 +18,14 @@
   {I.~Arnedillo-Sánchez}, {and} {S.~M. Dennerlein}, Eds. Springer
   International Publishing, Cham, 144--157.
 
+\bibitem[\protect\citeauthoryear{Bradley and Terry}{Bradley and
+  Terry}{1952}]{bradley_rank_1952}
+{\sc Bradley, R.~A.} {\sc and} {\sc Terry, M.~E.} 1952.
+\newblock Rank analysis of incomplete block designs: {I}. {The} method of
+  paired comparisons.
+\newblock {\em Biometrika\/}~{\em 39,\/}~3/4, 324--345.
+\newblock Publisher: JSTOR.
+
 \bibitem[\protect\citeauthoryear{Cambre, Klemmer, and Kulkarni}{Cambre
   et~al\mbox{.}}{2018}]{cambre_juxtapeer:_2018}
 {\sc Cambre, J.}, {\sc Klemmer, S.}, {\sc and} {\sc Kulkarni, C.} 2018.
@@ -237,6 +245,17 @@
 \newblock {\em Journal of Research in Science Teaching\/}~{\em 47,\/}~8,
   952--977.
 \newblock Publisher: Wiley Online Library.
+
+\bibitem[\protect\citeauthoryear{Wachsmuth, Naderi, Hou, Bilu, Prabhakaran,
+  Thijm, Hirst, and Stein}{Wachsmuth
+  et~al\mbox{.}}{2017}]{wachsmuth_computational_2017}
+{\sc Wachsmuth, H.}, {\sc Naderi, N.}, {\sc Hou, Y.}, {\sc Bilu, Y.}, {\sc
+  Prabhakaran, V.}, {\sc Thijm, T.~A.}, {\sc Hirst, G.}, {\sc and} {\sc Stein,
+  B.} 2017.
+\newblock Computational argumentation quality assessment in natural language.
+\newblock In {\em Proceedings of the 15th {Conference} of the {European}
+  {Chapter} of the {Association} for {Computational} {Linguistics}: {Volume} 1,
+  {Long} {Papers}}. 176--187.
 
 \bibitem[\protect\citeauthoryear{Weir, Kim, Gajos, and Miller}{Weir
   et~al\mbox{.}}{2015}]{weir_learnersourcing_2015}

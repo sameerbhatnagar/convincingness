@@ -149,15 +149,15 @@ Modelling argument ``quality'' is an area of active research, with direct
 applications in education, such as in automated scoring of 
 persuasive essays written by students \cite{persing_modeling_2015} 
 \cite{nguyen_argument_2018}.
-The goal of the argument task, whether it be to find 
-consensus, or to persuade peers, has been shown to be correlated to the quality 
-of arguments students produce, as measured by the presence of formal 
-argumentative structures \cite{garcia-mila_effect_2013}.
+When students are coached asked to debate in dyads, and prompted to either find 
+consensus, or to persuade peers, there is correlation to the quality of 
+arguments students produce, as measured by the presence of formal argumentative 
+structures (e.g. claims, premise, etc.) \cite{garcia-mila_effect_2013}.
 
 However experiments have also shown that the perceived quality of an argument 
 depends on the audience, and so we follow a more pragmatic measure of argument 
 quality, centred on the premise that the goal of argumentation is 
-persuasion\cite{mercier_why_2011}.
+persuasion \cite{mercier_why_2011}.
 Therefore we suggest that the ``vote'' data collected for each student's 
 explanation, is a proxy for argument quality, along the dimension of 
 \textit{convincingness}, as judged by peer learners. 
@@ -260,10 +260,12 @@ high-quality explanations (section \ref{sec:model}).
 \section{Related Work}\label{sec:related_work}
 
 
-\subsection{Automated Essay Scoring and Short Answer Grading}
+\subsection{Automated Essay Scoring}
 TO DO
+taxonomy of argument quality \cite{wachsmuth_computational_2017}
 
 \cite{persing_modeling_2015}
+
 \cite{nguyen_argument_2018}
 
 
@@ -295,12 +297,13 @@ It has long been understood that obtaining pairwise preference data may be
 less prone to error on the part of the annotator, as it is a simpler task than 
 rating on scales with more gradations. 
 (This is relevant in TMPI, since each student is choosing one explanation as 
-the most convincing in relation to the subset of others that are shown.)
+the most convincing only in relation to the subset of others that are shown.)
 
-A classical approach for rank aggregation from pairwise preference data is 
-using the Bradley-Terry model, which has been extended to incorporate the 
-quality of contributions of different annotators in a crowdsourced setting when 
-evaluating relative reading level in a pair passages \cite{chen_pairwise_2013}. 
+A classical approach for aggregating pairwise preference data into a ranked 
+list is using the Bradley-Terry model \cite{bradley_rank_1952}. 
+This has been extended to incorporate the quality of contributions of different 
+annotators in a crowdsourced setting when evaluating relative reading level in 
+a pair passages \cite{chen_pairwise_2013}. 
 
 When evaluating argument convincingness, one of the first approaches proposed 
 is based on constructing an ``argument graph'', where a weighted edge is drawn 
@@ -312,13 +315,13 @@ scores of each argument are used as the gold-standard to rank for
 convincingness \cite{habernal_which_2016}.
 
 More recently, a relatively simpler heuristic WinRate score has been shown to 
-be competitive alternative, wherein the rank score of an argument is simply the 
-(normalized) number of times that argument has been chosen as more convincing 
-in a pair, divided by the number of pairs it appears in
+be a competitive alternative, wherein the rank score of an argument is simply 
+the (normalized) number of times that argument has been chosen as more 
+convincing in a pair, divided by the number of pairs it appears in 
 \cite{potash_ranking_2019}.
 
 Finally, a neural approach based on RankNet has recently yielded state of the 
-art results. By joining two Bidirectional Long-Short-Term Memory Networks in a 
+art results by joining two Bidirectional Long-Short-Term Memory Networks in a 
 Siamese architecture, and appending a softmax layer to the output, pairwise 
 preferences and overall ranks were jointly modelled in publicly available 
 datasets \cite{gleize_are_2019}.
@@ -327,6 +330,8 @@ We will explore two of these options as part of our methodology in our rank
 aggregation step, via several related methods: 
 the probabilistic Bradley-Terry model, as well as two of its variants (CrowdBT 
 and the Elo rating system), and the simple heuristic scoring model.
+(We omit a neural approach, as model interpretability is key in the educational 
+context,)
 
 
 \section{Data}\label{sec:datasets}
@@ -685,6 +690,10 @@ chosen as more convincing from the pairs constructed for the current student?
 
 
 \section{Modelling Argument Quality Scores}\label{sec:model}
+
+TO DO
+
+Cross-topic validation scheme; control for word-count
 
 \begin{figure}
 	\scalebox{0.5}{\input{img/prec_at_K.pgf}}
