@@ -36,8 +36,7 @@ from utils_scrape_openstax import OPENSTAX_TEXTBOOK_DISCIPLINES
 
 from make_pairs import make_pairs_by_topic, filter_out_stick_to_own
 
-from plots import BASE_DIR
-from data_loaders import DALITE_DISCIPLINES,get_topic_data
+from data_loaders import DALITE_DISCIPLINES,get_topic_data,BASE_DIR
 
 from make_pairs import EQUATION_TAG, EXPRESSION_TAG, OOV_TAG
 
@@ -314,6 +313,39 @@ def get_matcher(subject, topic=None, on_match=None):
 
     return matcher
 
+
+def get_bin_edges(df_topic):
+    min_wc=df_topic["surface_n_words"].min()
+    q1=df_topic["surface_n_words"].describe()["25%"]
+    q2=df_topic["surface_n_words"].describe()["50%"]
+    q3=df_topic["surface_n_words"].describe()["75%"]
+    max_wc=df_topic["surface_n_words"].max()
+    bin_edges=[min_wc-1,q1,q2,q3,max_wc+1]
+    if len(set(bin_edges))==len(bin_edges):
+        return bin_edges
+    else:
+        return None
+
+
+def append_wc_quartile_column(df_topic):
+    """
+    calculate quartiles for word count for given topic
+    """
+    min_wc=df_topic["surface_n_words"].min()
+    q1=df_topic["surface_n_words"].describe()["25%"]
+    q2=df_topic["surface_n_words"].describe()["50%"]
+    q3=df_topic["surface_n_words"].describe()["75%"]
+    max_wc=df_topic["surface_n_words"].max()
+
+    bin_edges=get_bin_edges(df_topic)
+    if bin_edges:
+        df_topic["wc_bin"]=pd.cut(
+            df_topic["surface_n_words"],
+            bins=bin_edges,
+            labels=["Q1","Q2","Q3","Q4"],
+            # include_lowest=True,
+        )
+    return df_topic
 
 def extract_lexical_features(topic, discipline, output_dir):
     """

@@ -9,6 +9,8 @@ import data_loaders
 from data_loaders import get_discipline_data,DALITE_DISCIPLINES,ARG_MINING_DATASETS, BASE_DIR
 from summary_functions import make_summary_by_topic, get_mean_times_shown, means_by_topic
 
+from plots_data_loaders import load_all_args_features_scores
+
 import spacy
 
 nlp = spacy.load("en_core_web_md")
@@ -194,6 +196,49 @@ def get_summary_all_datasets():
     df_summary.loc[df_summary["dataset"].isin(DALITE_DISCIPLINES),"source"]="DALITE"
     df_summary=df_summary.sort_values(["source","dataset"]).set_index(["source","dataset"])
     return df_summary
+
+
+def draw_corr_to_reference_score(output_dir_name):
+    """
+    draw boxplots demonstrating how our basic
+    target scores are correlated to reference score
+    on arg mining datasets
+    """
+
+    df_all_answers = load_all_args_features_scores(output_dir_name="exp2")
+
+    targets=["y_reference","y_winrate","y_BT","y_elo"]
+    c=df_all_answers.loc[
+        df_all_answers["discipline"].isin(ARG_MINING_DATASETS),
+        ["discipline","topic"]+targets
+    ].groupby(["discipline","topic"])[targets].corr().abs().round(2)
+
+    c=c.loc[[i for i in c.index if i[2]!="y_reference"]].reset_index().rename(
+        columns={
+            "discipline":"Dataset",
+            "level_2":"Rank Score Method",
+            "y_reference":"Correlation to Reference Score"
+        }
+    )[["Dataset","Rank Score Method","Correlation to Reference Score"]]
+    c["Rank Score Method"]=c["Rank Score Method"].map(
+        {
+            "y_winrate":"WinRate",
+            "y_BT":"Bradley Terry",
+            "y_elo":"Elo"
+        }
+    )
+    plt.style.use("ggplot")
+    fig,ax=plt.subplots(1,1,figsize=(9,6))
+    sns.boxplot(
+        hue="Rank Score Method",
+        y="Correlation to Reference Score",
+        x="Dataset",
+        data=c,
+        ax=ax
+    )
+    return fig
+
+
 
 def summary_table(discipline,output_dir):
     """
@@ -782,7 +827,7 @@ def main(
         "positional",
         None,
         str,
-        ["all", "summary_all_data","corr_plot", "acc_by_transition", "corr_by_batch", "kendalltau_by_time","prec_at_K"],
+        ["all", "summary_all_data","corr_plot", "acc_by_transition", "corr_by_batch", "kendalltau_by_time","prec_at_K","corr_to_reference_score"],
     ),
     discipline: (
         "Which discipline to consider",
@@ -836,6 +881,13 @@ def main(
             fp,
             column_format='llrrrrrrr'
         )
+        print(fp)
+
+    if figures=="all" or figures=="corr_to_reference_score":
+        print("corr_to_reference_score")
+        fig=draw_corr_to_reference_score(output_dir_name)
+        fp = os.path.join(ARTICLE_DIR,"img", "corr_to_reference_score.pgf")
+        fig.savefig(fp)
         print(fp)
 
     if figures == "all" or figures=="summary_by_transition":

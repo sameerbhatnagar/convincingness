@@ -444,7 +444,7 @@ We extend this work to the domain of TMPI, and define prediction tasks that not
 only aim to validate this methodology, but help answer our specific research 
 questions.
 
-\subsection{Rank Aggregation}
+\subsection{Rank Aggregation}\label{sec:rank_agg}
 The raw data emerging from a TMPI platform is tabular, in the form of 
 student-item observations.
 As shown in figure \ref{fig:make_pairs_a}(a), the fields include the item 
@@ -468,7 +468,7 @@ After this first filtering step, we take the TMPI observations for each
 question, and construct explanation pairs, as in figure 
 \ref{fig:make_pairs_a}(b).
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\def\svgscale{0.40}
 	\input{img/make_pairs_a.pdf_tex}
@@ -478,24 +478,23 @@ question, and construct explanation pairs, as in figure
 	(a) Student $s_{30}$ chose the correct \textbf{D} as the answer on 
 	their first attempt, and provided the explanation $e_{30}$ in the 
 	dataset for this question. 
-	Without providing feedback on whether this is the correct answer, the 
-	student is shown a subset of explanations from previous students for 
+	The student is shown a subset of explanations from previous students for 
 	\textbf{D}, as well as for \textbf{A} (the most popular incorrect 
 	answer). 
 	The student decides to keep the same answer choice \textbf{D}, and 
 	indicates that the explanation $e_{25}$ is the most convincing.
 	This is referred to as a \textit{Right}$\rightarrow$\textit{Right} 
 	transition.
-	(b) This observation is transformed into 7 explanation pairs. The first 
-	pair is for the choice of $e_{25}$ over what the student themself, 
-	and the other six are for the choice of $e_{25}$ over the other shown 
+	(b) This observation is transformed into 8 explanation pairs. The first 
+	pair is for the choice of $e_{25}$ over what the student wrote themselves, 
+	and the other seven are for the choice of $e_{25}$ over the other shown 
 	explanations. 
-	The pairs are labelled as either having the left or right exlanation 
-	being 
-	more \textit{convincing}.
-	(c) This pairwise preference data is aggregated global ranked list, 
-	where 
-	each explanation is assigned a Rank Score. 
+	The pairs are labelled as such that $e_{25}$ is the more convincing of the 
+	pair. 
+	(c) This pairwise preference data is aggregated global ranked list of 
+	student explanations for this question, where each explanation is assigned 
+	a real-valued rank score (using the methods described in section 
+	\protect\ref{sec:rank_agg}).
 }
 \label{fig:make_pairs_a}
 \end{figure}
@@ -556,36 +555,46 @@ question, and construct explanation pairs, as in figure
 	approach, \textbf{Elo} ratings are dynamic and implicitly give more weight 
 	to recent data\cite{aldous_elo_2017}.
 	
-	\item \textbf{Crowd-BT} \cite{chen_pairwise_2013} is an extension of the 
-	\textbf{BT} model, tailored to settings where different annotators may have 
-	assigned opposite labels to the same pairs, and the reliability of each 
-	annotator may vary significantly. 
-	A reliability parameter is estimated for each student, 
-	
-	$$
-	\eta_k \equiv P(a >_k b | a >b )
-	$$
-	
-	where $\eta_k \approx 1$ if the student  $k$ agrees with most other 
-	students, and $\eta_k \approx 0$ if the student is in opposition to their 
-	peers.
-	This changes the model of argument $a$ being chosen over $b$ by student $k$ 
-	to 
-	$$
-	P(a >_k b) = 
-	\eta_k \frac{e^{\beta_a}}{e^{\beta_a}+e^{\beta_b}} + (1-\eta_k) 
-	\frac{e^{\beta_b}}{e^{\beta_a}+e^{\beta_b}}
-	$$
-	and the log-likelilood maximized for estimation to 
-	
-	$$
-	\ell(\boldsymbol{\eta},\boldsymbol{\beta})=\sum_{K}\sum_{(i,j)\epsilon 
-		S_K}^{} 
-	\log \left[ \eta_k \frac{e^{\beta_a}}{e^{\beta_a}+e^{\beta_b}} + (1-\eta_k) 
-	\frac{e^{\beta_b}}{e^{\beta_a}+e^{\beta_b}} \right]
-	$$
-	
+%	\item \textbf{Crowd-BT} \cite{chen_pairwise_2013} is an extension of the 
+%	\textbf{BT} model, tailored to settings where different annotators may have 
+%	assigned opposite labels to the same pairs, and the reliability of each 
+%	annotator may vary significantly. 
+%	A reliability parameter is estimated for each student, 
+%	
+%	$$
+%	\eta_k \equiv P(a >_k b | a >b )
+%	$$
+%	
+%	where $\eta_k \approx 1$ if the student  $k$ agrees with most other 
+%	students, and $\eta_k \approx 0$ if the student is in opposition to their 
+%	peers.
+%	This changes the model of argument $a$ being chosen over $b$ by student $k$ 
+%	to 
+%	$$
+%	P(a >_k b) = 
+%	\eta_k \frac{e^{\beta_a}}{e^{\beta_a}+e^{\beta_b}} + (1-\eta_k) 
+%	\frac{e^{\beta_b}}{e^{\beta_a}+e^{\beta_b}}
+%	$$
+%	and the log-likelilood maximized for estimation to 
+%	
+%	$$
+%	\ell(\boldsymbol{\eta},\boldsymbol{\beta})=\sum_{K}\sum_{(i,j)\epsilon 
+%		S_K}^{} 
+%	\log \left[ \eta_k \frac{e^{\beta_a}}{e^{\beta_a}+e^{\beta_b}} + (1-\eta_k) 
+%	\frac{e^{\beta_b}}{e^{\beta_a}+e^{\beta_b}} \right]
+%	$$
+%	
 \end{enumerate}
+
+
+\begin{figure}[H]
+	\scalebox{0.7}{\input{img/corr_to_reference_score.pgf}}
+	\caption{Distribution of Spearman correlation  coefficients measured 
+	between ``reference'' rank scores, and the rank aggregation methods 
+	(WinRate, BT, Elo) used in our proposed methodology, across the different 
+	topics of the reference argument mining datasets.}
+	\label{fig:corr_to_reference_score}
+\end{figure}
 
 In order to evaluate these rank aggregation different scores, and address 
 our research question, we employ a time-series based cross-validation scheme:
@@ -632,6 +641,9 @@ chosen as more convincing from the pairs constructed for the current student?
 \end{figure}
 
 \section{Measuring Argument Quality}\label{sec:measure}
+
+
+
 \begin{figure}
 	\scalebox{0.6}{\input{img/corr_plot.pgf}}
 	\caption{
