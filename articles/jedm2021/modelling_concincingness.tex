@@ -242,8 +242,9 @@ since they may be shown to future students \cite{gagnon_filtering_2019}, a
 non-trivial task for natural language content, without expensive expert 
 moderation.
 
-This paper begins with an overview of research related to learnersourcing,  and 
-argument mining (section \ref{sec:related_work}).
+This paper begins with an overview of related research in automatic 
+short-answer grading, learnersourcing, and argument quality ranking (section 
+\ref{sec:related_work}).
 We then describe our TMPI dataset, as well as publicly available reference 
 datasets of argument quality, which we use to evaluate our methodology (section 
 \ref{sec:datasets}).
@@ -260,22 +261,55 @@ high-quality explanations (section \ref{sec:model}).
 \section{Related Work}\label{sec:related_work}
 
 
-\subsection{Automated Essay Scoring}
-TO DO
-taxonomy of argument quality \cite{wachsmuth_computational_2017}
+\subsection{Automated Writing Evaluation}
 
-\cite{persing_modeling_2015}
+A central objective of our work is to evaluate the quality of student 
+explanations in TMPI.
+Under the hierarchy of automated grading methods proposed by  
+\cite{burrows_eras_2015}, this task falls under the umbrella of automatic 
+short-answer grading (ASAG); students must recall knowledge and express it 
+in their own way, using natural language, usually using between 10-100 words. 
+Their in-depth historical review of ASAG systems describe a shifting focus in 
+methods, from matching patterns derived from answers written by experts, to 
+machine-learning approaches, where n-grams and hand-crafted features are 
+combined as input to supervised learning algorithms, such as decision trees and 
+support vector machines.
 
-\cite{nguyen_argument_2018}
+For example, \cite{mohler_learning_2011} measures alignment between dependency 
+parse tree structures of student answers, with those of an expert answer.
+These alignment features are paired with lexical semantic similarity features 
+that are both knowledge-based (e.g. using WordNet) and corpus-based (e.g. 
+Latent Semantic Analysis), and used as input to support vector machines which 
+learn to automatically grade short answers.
+
+Another similar system proposed by \cite{sultan_fast_2016} starts with features 
+measuring lexical and contextual alignment between similar word pairs from 
+student answers and a reference answer, as well as semantic vector similarity 
+using ``off-the-shelf'' word embeddings.  
+They then augment their input with  ``domain-specific'' term-frequency and 
+inverse document-frequency weights to achieve their best results on several 
+ASAG datasets using various validation schemes.
+ 
+More recently, \cite{zhang_deep_2016} show that in addition to similarity 
+features based on answer text, question-level (e.g. difficulty, expert-labelled 
+knowledge components) and student-level features (e.g. pre-test scores, 
+Bayesian Knowledge Tracing probability estimates) can improve performance on 
+the ASAG task when input to a deep learning classifier.
+
+While modelling the quality of TMPI explanations has much in common with the 
+ASAG task, and can benefit from the features and methods from the systems 
+mentioned above, a fundamental difference lies in how similarity to an expert 
+explanation may not be the only appropriate reference.
+The ``quality'' we are measuring is that which is observed by a group of peers, 
+which may be quite different from how a teacher might explain a concept.
 
 
 \subsection{Learnersourcing student explanations}
-TMPI is a specific case of  
-\textit{learnersourcing}\cite{weir_learnersourcing_2015}, wherein students first
-generate content, and then help curate the content base, all as part of their 
-own learning process.
+TMPI is a specific case of  \textit{learnersourcing} 
+\cite{weir_learnersourcing_2015}, wherein students first generate content, and 
+then help curate the content base, all as part of their own learning process.
 Notable examples include PeerWise \cite{denny_peerwise:_2008} and RiPPLE 
-\cite{khosravi_ripple_2019}, both of which have student generate learning 
+\cite{khosravi_ripple_2019}, both of which have students generate learning 
 resources, which are subsequently used and evaluated by peers as part of 
 formative assessment activities.
 
@@ -286,11 +320,23 @@ and evaluated explanations written by their peers.
 Using a reinforcement-learning approach known as ``multi-armed bandits'', the 
 system was able to select peer-written explanations that were rated as helpful 
 as those written by an expert.
+The scheme proposed by \cite{kolhe_peer_2016} applies the potential of 
+learnersourcing to the task of short answer grading: the short answers 
+submitted by students are evaluated by ``future'' peers who are presented with 
+multiple choice questions, where the answer options are the short answers 
+submitted by their ``past'' counterparts.
 Our research follows from these studies in scaling to multiple domains, and 
 focusing on how the vote data can be used more directly to model argument 
 quality as judged by peers.
 
 \subsection{Ranking Arguments for Quality}
+
+taxonomy of argument quality \cite{wachsmuth_computational_2017}
+\cite{persing_modeling_2015}
+
+\cite{nguyen_argument_2018}
+
+
 Rank aggregation is the task of combining the preferences of multiple agents 
 into a single representative ranked list.
 It has long been understood that obtaining pairwise preference data may be 
@@ -322,16 +368,27 @@ convincing in a pair, divided by the number of pairs it appears in
 
 Finally, a neural approach based on RankNet has recently yielded state of the 
 art results by joining two Bidirectional Long-Short-Term Memory Networks in a 
-Siamese architecture, and appending a softmax layer to the output, pairwise 
+Siamese architecture. By appending a softmax layer to the output, pairwise 
 preferences and overall ranks were jointly modelled in publicly available 
 datasets \cite{gleize_are_2019}.
 
 We will explore two of these options as part of our methodology in our rank 
-aggregation step, via several related methods: 
-the probabilistic Bradley-Terry model, as well as two of its variants (CrowdBT 
-and the Elo rating system), and the simple heuristic scoring model.
-(We omit a neural approach, as model interpretability is key in the educational 
-context,)
+aggregation step, via several related methods: the probabilistic Bradley-Terry 
+model, as well as one of its variants (the Elo rating system), and the simple 
+heuristic scoring model.
+(We omit a neural approach in this study, as we consider the work on 
+interpreting the model results from a neural model for pedagogical purposes, 
+out of the scope of this paper.)
+
+The key difference between to keep in mind between this work in modelling the 
+quality rankings of arguments, and that of TMPI explanations, is that the 
+students are not indifferent crowd-labellers: each student will have just 
+submitted their own explanation justifying their answer choice, and we analyze 
+the aggregate of their choices as they indicate when a peer may have explained 
+something better than themselves. 
+\cite{piech_tuned_2013}
+\cite{raman_methods_2014}
+\cite{jones_peer_2015}
 
 
 \section{Data}\label{sec:datasets}
@@ -586,6 +643,8 @@ question, and construct explanation pairs, as in figure
 %	
 \end{enumerate}
 
+The reference argument mining datasets that we use for this study, each include 
+some other
 
 \begin{figure}[H]
 	\scalebox{0.7}{\input{img/corr_to_reference_score.pgf}}

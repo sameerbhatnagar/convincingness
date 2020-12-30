@@ -26,6 +26,14 @@
 \newblock {\em Biometrika\/}~{\em 39,\/}~3/4, 324--345.
 \newblock Publisher: JSTOR.
 
+\bibitem[\protect\citeauthoryear{Burrows, Gurevych, and Stein}{Burrows
+  et~al\mbox{.}}{2015}]{burrows_eras_2015}
+{\sc Burrows, S.}, {\sc Gurevych, I.}, {\sc and} {\sc Stein, B.} 2015.
+\newblock The eras and trends of automatic short answer grading.
+\newblock {\em International Journal of Artificial Intelligence in
+  Education\/}~{\em 25,\/}~1, 60--117.
+\newblock Publisher: Springer.
+
 \bibitem[\protect\citeauthoryear{Cambre, Klemmer, and Kulkarni}{Cambre
   et~al\mbox{.}}{2018}]{cambre_juxtapeer:_2018}
 {\sc Cambre, J.}, {\sc Klemmer, S.}, {\sc and} {\sc Kulkarni, C.} 2018.
@@ -133,6 +141,13 @@
 \newblock {\em Foundations of science\/}~{\em 7,\/}~3, 293--340.
 \newblock Publisher: Springer.
 
+\bibitem[\protect\citeauthoryear{Jones and Wheadon}{Jones and
+  Wheadon}{2015}]{jones_peer_2015}
+{\sc Jones, I.} {\sc and} {\sc Wheadon, C.} 2015.
+\newblock Peer assessment using comparative and absolute judgement.
+\newblock {\em Studies in Educational Evaluation\/}~{\em 47}, 93--101.
+\newblock Publisher: Elsevier.
+
 \bibitem[\protect\citeauthoryear{Khosravi, Kitto, and Williams}{Khosravi
   et~al\mbox{.}}{2019}]{khosravi_ripple_2019}
 {\sc Khosravi, H.}, {\sc Kitto, K.}, {\sc and} {\sc Williams, J.~J.} 2019.
@@ -140,10 +155,25 @@
   learning activities.
 \newblock {\em arXiv preprint arXiv:1910.05522\/}.
 
+\bibitem[\protect\citeauthoryear{Kolhe, Littman, and Isbell}{Kolhe
+  et~al\mbox{.}}{2016}]{kolhe_peer_2016}
+{\sc Kolhe, P.}, {\sc Littman, M.~L.}, {\sc and} {\sc Isbell, C.~L.} 2016.
+\newblock Peer {Reviewing} {Short} {Answers} using {Comparative} {Judgement}.
+\newblock In {\em Proceedings of the {Third} (2016) {ACM} {Conference} on
+  {Learning}@ {Scale}}. ACM, 241--244.
+
 \bibitem[\protect\citeauthoryear{Mercier and Sperber}{Mercier and
   Sperber}{2011}]{mercier_why_2011}
 {\sc Mercier, H.} {\sc and} {\sc Sperber, D.} 2011.
 \newblock Why do humans reason? {Arguments} for an argumentative theory.
+
+\bibitem[\protect\citeauthoryear{Mohler, Bunescu, and Mihalcea}{Mohler
+  et~al\mbox{.}}{2011}]{mohler_learning_2011}
+{\sc Mohler, M.}, {\sc Bunescu, R.}, {\sc and} {\sc Mihalcea, R.} 2011.
+\newblock Learning to grade short answer questions using semantic similarity
+  measures and dependency graph alignments.
+\newblock In {\em Proceedings of the 49th annual meeting of the association for
+  computational linguistics: {Human} language technologies}. 752--762.
 
 \bibitem[\protect\citeauthoryear{Mohler and Mihalcea}{Mohler and
   Mihalcea}{2009}]{mohler_text--text_2009}
@@ -194,6 +224,13 @@
 \newblock End-to-{End} {Argumentation} {Mining} in {Student} {Essays}.
 \newblock In {\em {HLT}-{NAACL}}. 1384--1394.
 
+\bibitem[\protect\citeauthoryear{Piech, Huang, Chen, Do, Ng, and Koller}{Piech
+  et~al\mbox{.}}{2013}]{piech_tuned_2013}
+{\sc Piech, C.}, {\sc Huang, J.}, {\sc Chen, Z.}, {\sc Do, C.}, {\sc Ng, A.},
+  {\sc and} {\sc Koller, D.} 2013.
+\newblock Tuned models of peer assessment in {MOOCs}.
+\newblock {\em arXiv preprint arXiv:1307.2579\/}.
+
 \bibitem[\protect\citeauthoryear{Potash, Ferguson, and Hazen}{Potash
   et~al\mbox{.}}{2019}]{potash_ranking_2019}
 {\sc Potash, P.}, {\sc Ferguson, A.}, {\sc and} {\sc Hazen, T.~J.} 2019.
@@ -209,6 +246,13 @@
   to support learning with peer feedback.
 \newblock {\em Teaching \& Learning Inquiry\/}~{\em 5,\/}~2, 89--113.
 
+\bibitem[\protect\citeauthoryear{Raman and Joachims}{Raman and
+  Joachims}{2014}]{raman_methods_2014}
+{\sc Raman, K.} {\sc and} {\sc Joachims, T.} 2014.
+\newblock Methods for ordinal peer grading.
+\newblock In {\em Proceedings of the 20th {ACM} {SIGKDD} international
+  conference on {Knowledge} discovery and data mining}. ACM, 1037--1046.
+
 \bibitem[\protect\citeauthoryear{Stegmann, Wecker, Weinberger, and
   Fischer}{Stegmann et~al\mbox{.}}{2012}]{stegmann_collaborative_2012}
 {\sc Stegmann, K.}, {\sc Wecker, C.}, {\sc Weinberger, A.}, {\sc and} {\sc
@@ -216,6 +260,14 @@
 \newblock Collaborative argumentation and cognitive elaboration in a
   computer-supported collaborative learning environment.
 \newblock {\em Instructional Science\/}~{\em 40,\/}~2 (Mar.), 297--323.
+
+\bibitem[\protect\citeauthoryear{Sultan, Salazar, and Sumner}{Sultan
+  et~al\mbox{.}}{2016}]{sultan_fast_2016}
+{\sc Sultan, M.~A.}, {\sc Salazar, C.}, {\sc and} {\sc Sumner, T.} 2016.
+\newblock Fast and easy short answer grading with high accuracy.
+\newblock In {\em Proceedings of the 2016 {Conference} of the {North}
+  {American} {Chapter} of the {Association} for {Computational} {Linguistics}:
+  {Human} {Language} {Technologies}}. 1070--1075.
 
 \bibitem[\protect\citeauthoryear{Toledo, Gretz, Cohen-Karlik, Friedman,
   Venezian, Lahav, Jacovi, Aharonov, and Slonim}{Toledo
@@ -274,5 +326,13 @@
 \newblock In {\em Proceedings of the {Third} (2016) {ACM} {Conference} on
   {Learning} @ {Scale} - {L}@{S} '16}. ACM Press, Edinburgh, Scotland, UK,
   379--388.
+
+\bibitem[\protect\citeauthoryear{Zhang, Shah, and Chi}{Zhang
+  et~al\mbox{.}}{2016}]{zhang_deep_2016}
+{\sc Zhang, Y.}, {\sc Shah, R.}, {\sc and} {\sc Chi, M.} 2016.
+\newblock Deep {Learning}+ {Student} {Modeling}+ {Clustering}: {A} {Recipe} for
+  {Effective} {Automatic} {Short} {Answer} {Grading}.
+\newblock {\em International Educational Data Mining Society\/}.
+\newblock Publisher: ERIC.
 
 \end{thebibliography}
