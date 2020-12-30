@@ -137,6 +137,7 @@ In discussing with peers \textit{after} they have formulated their own
 reasoning, students are engaged in a higher order thinking task from Bloom's 
 taxonomy, as they evaluate what is the strongest argument, before answering 
 again.
+
 Thirdly, by capturing data on which explanations students find most convincing, 
 TMPI affords teachers the opportunity to mitigate the ``expert blind spot'' 
 \cite{nathan_expert_2001}, addressing student misconceptions they might not 
@@ -149,33 +150,49 @@ Modelling argument ``quality'' is an area of active research, with direct
 applications in education, such as in automated scoring of 
 persuasive essays written by students \cite{persing_modeling_2015} 
 \cite{nguyen_argument_2018}.
-When students are coached asked to debate in dyads, and prompted to either find 
-consensus, or to persuade peers, there is correlation to the quality of 
-arguments students produce, as measured by the presence of formal argumentative 
-structures (e.g. claims, premise, etc.) \cite{garcia-mila_effect_2013}.
+When students are asked to debate in dyads, and prompted to either find 
+consensus, or instead persuade their peers, there is a relationship between  
+knowledge acquisition, and the quality of arguments the students produce, as 
+measured by the presence of formal argumentative structures (e.g. claims, 
+premise, etc.) \cite{garcia-mila_effect_2013}.
 
 However experiments have also shown that the perceived quality of an argument 
-depends on the audience, and so we follow a more pragmatic measure of argument 
-quality, centred on the premise that the goal of argumentation is 
-persuasion \cite{mercier_why_2011}.
-Therefore we suggest that the ``vote'' data collected for each student's 
-explanation, is a proxy for argument quality, along the dimension of 
+can depend on the audience \cite{mercier_why_2011}, and so we adopt a more 
+pragmatic measure of argument quality, centred on the premise that the goal of 
+argumentation is persuasion.
+
+In a comprehensive survey of research on the assessment of argument quality, 
+\cite{wachsmuth_computational_2017} outline a taxonomy of major quality 
+dimensions for natural language, with three principal aspects: logic, rhetoric, 
+and dialect. 
+As students vote on their peer's explanations in TMPI, they may be evaluating 
+the logical cogency (e.g. is this argument sound?), or its rhetorical quality 
+(e.g. is this argument phrased well?). 
+We focus our work on students who choose a peer's explanation \textit{as more 
+convincing than their own}, as there exists a significant bias for the option 
+``I stick to my own''.
+
+Therefore, we suggest that the ``vote'' data collected for each student's 
+explanation in TMPI, is a proxy for argument quality, along the dimension of 
 \textit{convincingness}, as judged by peer learners. 
 This is a direct application of the argument mining task originally proposed by 
 \cite{habernal_which_2016}: if crowd-workers are presented with a pair of 
 arguments for the same stance of a debatable topic, can we predict which of the 
 two they will choose as more convincing?
-This task has been extended to TMPI, wherein the objective is to predict which 
-explanations students will choose as more convincing than their own 
-\cite{bhatnagar_learnersourcing_2020}.
+This task has already been extended to TMPI in previous work, wherein the 
+objective is to predict which explanations students will choose as more 
+convincing than their own \cite{bhatnagar_learnersourcing_2020}.
 
-These votes can be aggregated into a \textit{convincingness} score, as a 
-measure of how effective that explanation is in persuading peers to change 
+Student votes in TMPI can be aggregated into a \textit{convincingness} score, 
+as a measure of how effective that explanation is in persuading peers to change 
 their own answer.
 Student explanations can then be ranked along such a score, allowing for 
 instructors to gain insights on the thinking of their students with respect to 
 specific content, and potentially even help students to improve how they 
 communicate ideas within their discipline.
+However aggregating these votes should be done with care: when a student 
+chooses an explanation as convincing, they are doing so only with respect to 
+the subset that were shown, as well as the one they wrote themselves.
 
 The problem of aggregating the results of evaluative peer-judgments extends  
 beyond TMPI.
@@ -224,6 +241,7 @@ our work helps to address.
 The first issue is about students: providing feedback to learners on the 
 characteristics common to the most convincing arguments in their discipline, 
 promotes learning and the development of critical reasoning skills.
+
 The second issue is in providing support to teachers: in such platforms, the 
 amount of data generated scales very quickly.
 The data associated with each student-item pair includes many relevant 
@@ -236,15 +254,16 @@ tools regularly as part of formative assessment.
 Automatically identifying the highest, and lowest, quality student 
 explanations, as judged by other students, can support instructors in providing 
 timely feedback. 
+
 A third related issue is in maintaining the integrity of such platforms: 
 automatic filtering of irrelevant/malicious student explanations is paramount, 
 since they may be shown to future students \cite{gagnon_filtering_2019}, a 
 non-trivial task for natural language content, without expensive expert 
 moderation.
 
-This paper begins with an overview of related research in automatic 
-short-answer grading, learnersourcing, and argument quality ranking (section 
-\ref{sec:related_work}).
+This paper begins with an overview of related research in learnersourcing of 
+student explanations, automatic short-answer grading, and argument quality 
+ranking (section \ref{sec:related_work}).
 We then describe our TMPI dataset, as well as publicly available reference 
 datasets of argument quality, which we use to evaluate our methodology (section 
 \ref{sec:datasets}).
@@ -259,6 +278,32 @@ identify the linguistic features of explanations most often associated with
 high-quality explanations (section \ref{sec:model}).
 
 \section{Related Work}\label{sec:related_work}
+
+\subsection{Learnersourcing student explanations}
+TMPI is a specific case of  \textit{learnersourcing} 
+\cite{weir_learnersourcing_2015}, wherein students first generate content, and 
+then help curate the content base, all as part of their own learning process.
+Notable examples include PeerWise \cite{denny_peerwise:_2008} and RiPPLE 
+\cite{khosravi_ripple_2019}, both of which have students generate learning 
+resources, which are subsequently used and evaluated by peers as part of 
+formative assessment activities.
+
+One of the earliest efforts to leverage peer judgments of peer-written 
+explanations specifically is from the AXIS system\cite{williams_axis:_2016}, 
+wherein students solved a problem, provided an explanation for their answer, 
+and evaluated explanations written by their peers.
+Using a reinforcement-learning approach known as ``multi-armed bandits'', the 
+system was able to select peer-written explanations that were rated as helpful 
+as those written by an expert.
+The scheme proposed by \cite{kolhe_peer_2016} applies the potential of 
+learnersourcing to the task of short answer grading: the short answers 
+submitted by students are evaluated by ``future'' peers who are presented with 
+multiple choice questions, where the answer options are the short answers 
+submitted by their ``past'' counterparts.
+Our research follows from these studies in scaling to multiple domains, and 
+focusing on how the vote data can be used more directly to model argument 
+quality as judged by peers.
+
 
 
 \subsection{Automated Writing Evaluation}
@@ -287,14 +332,14 @@ measuring lexical and contextual alignment between similar word pairs from
 student answers and a reference answer, as well as semantic vector similarity 
 using ``off-the-shelf'' word embeddings.  
 They then augment their input with  ``domain-specific'' term-frequency and 
-inverse document-frequency weights to achieve their best results on several 
+inverse document-frequency weights, to achieve their best results on several 
 ASAG datasets using various validation schemes.
  
-More recently, \cite{zhang_deep_2016} show that in addition to similarity 
-features based on answer text, question-level (e.g. difficulty, expert-labelled 
-knowledge components) and student-level features (e.g. pre-test scores, 
-Bayesian Knowledge Tracing probability estimates) can improve performance on 
-the ASAG task when input to a deep learning classifier.
+In addition to similarity features based on answer text, \cite{zhang_deep_2016} 
+show that question-level (e.g. difficulty, expert-labelled knowledge 
+components) and student-level features (e.g. pre-test scores, Bayesian 
+Knowledge Tracing probability estimates) can improve performance on the ASAG 
+task when input to a deep learning classifier.
 
 While modelling the quality of TMPI explanations has much in common with the 
 ASAG task, and can benefit from the features and methods from the systems 
@@ -303,39 +348,14 @@ explanation may not be the only appropriate reference.
 The ``quality'' we are measuring is that which is observed by a group of peers, 
 which may be quite different from how a teacher might explain a concept.
 
-
-\subsection{Learnersourcing student explanations}
-TMPI is a specific case of  \textit{learnersourcing} 
-\cite{weir_learnersourcing_2015}, wherein students first generate content, and 
-then help curate the content base, all as part of their own learning process.
-Notable examples include PeerWise \cite{denny_peerwise:_2008} and RiPPLE 
-\cite{khosravi_ripple_2019}, both of which have students generate learning 
-resources, which are subsequently used and evaluated by peers as part of 
-formative assessment activities.
-
-One of the earliest efforts to leverage peer judgments of peer-written 
-explanations specifically is from the AXIS system\cite{williams_axis:_2016}, 
-wherein students solved a problem, provided an explanation for their answer, 
-and evaluated explanations written by their peers.
-Using a reinforcement-learning approach known as ``multi-armed bandits'', the 
-system was able to select peer-written explanations that were rated as helpful 
-as those written by an expert.
-The scheme proposed by \cite{kolhe_peer_2016} applies the potential of 
-learnersourcing to the task of short answer grading: the short answers 
-submitted by students are evaluated by ``future'' peers who are presented with 
-multiple choice questions, where the answer options are the short answers 
-submitted by their ``past'' counterparts.
-Our research follows from these studies in scaling to multiple domains, and 
-focusing on how the vote data can be used more directly to model argument 
-quality as judged by peers.
-
 \subsection{Ranking Arguments for Quality}
 
-taxonomy of argument quality \cite{wachsmuth_computational_2017}
-\cite{persing_modeling_2015}
-
-\cite{nguyen_argument_2018}
-
+Previous work on automated evaluation of long-form persuasive essays 
+\cite{ghosh_coarse-grained_2016}, \cite{klebanov_argumentation_2016} 
+\cite{nguyen_argument_2018} has focused on modelling the holistic scores given 
+by experts.
+Our work here does not set out to ``grade'' student explanations, but provide a 
+ranked list for \textit{convincingness} as judged by a set of peers.
 
 Rank aggregation is the task of combining the preferences of multiple agents 
 into a single representative ranked list.

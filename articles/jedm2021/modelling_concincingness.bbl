@@ -116,6 +116,15 @@
 \newblock {\em Science Education\/}~{\em 97,\/}~4, 497--523.
 \newblock Publisher: Wiley Online Library.
 
+\bibitem[\protect\citeauthoryear{Ghosh, Khanam, Han, and Muresan}{Ghosh
+  et~al\mbox{.}}{2016}]{ghosh_coarse-grained_2016}
+{\sc Ghosh, D.}, {\sc Khanam, A.}, {\sc Han, Y.}, {\sc and} {\sc Muresan, S.}
+  2016.
+\newblock Coarse-grained argumentation features for scoring persuasive essays.
+\newblock In {\em Proceedings of the 54th {Annual} {Meeting} of the
+  {Association} for {Computational} {Linguistics} ({Volume} 2: {Short}
+  {Papers})}. 549--554.
+
 \bibitem[\protect\citeauthoryear{Gleize, Shnarch, Choshen, Dankin, Moshkowich,
   Aharonov, and Slonim}{Gleize et~al\mbox{.}}{2019}]{gleize_are_2019}
 {\sc Gleize, M.}, {\sc Shnarch, E.}, {\sc Choshen, L.}, {\sc Dankin, L.}, {\sc
@@ -154,6 +163,15 @@
 \newblock Ripple: {A} crowdsourced adaptive platform for recommendation of
   learning activities.
 \newblock {\em arXiv preprint arXiv:1910.05522\/}.
+
+\bibitem[\protect\citeauthoryear{Klebanov, Stab, Burstein, Song, Gyawali, and
+  Gurevych}{Klebanov et~al\mbox{.}}{2016}]{klebanov_argumentation_2016}
+{\sc Klebanov, B.~B.}, {\sc Stab, C.}, {\sc Burstein, J.}, {\sc Song, Y.}, {\sc
+  Gyawali, B.}, {\sc and} {\sc Gurevych, I.} 2016.
+\newblock Argumentation: {Content}, structure, and relationship with essay
+  quality.
+\newblock In {\em Proceedings of the {Third} {Workshop} on {Argument} {Mining}
+  ({ArgMining2016})}. 70--75.
 
 \bibitem[\protect\citeauthoryear{Kolhe, Littman, and Isbell}{Kolhe
   et~al\mbox{.}}{2016}]{kolhe_peer_2016}
