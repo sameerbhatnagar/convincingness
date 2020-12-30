@@ -21,10 +21,16 @@ from data_loaders import (
 from feature_extraction import append_features, append_wc_quartile_column
 
 
-def load_data(discipline, population, output_dir_name, feature_types_included):
+def load_data(discipline, output_dir_name,     feature_types_included = ["surface", "lexical", "readability", "syntax", "semantic"],
+):
     """
     load data and append features
     """
+    if discipline in DALITE_DISCIPLINES:
+        population="switchers" #"all"
+    else:
+        population="all"
+
     # load data and append features
     data_dir_discpline = os.path.join(
         BASE_DIR, "tmp", output_dir_name, discipline, population, "data"

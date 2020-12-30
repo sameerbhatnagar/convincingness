@@ -16,6 +16,8 @@ from plots_data_loaders import load_data
 from feature_extraction import nlp,DROPPED_POS, get_bin_edges,append_wc_quartile_column
 from sklearn.pipeline import Pipeline
 import statsmodels.api as sm
+from scipy.stats import kendalltau
+
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import KFold
 from sklearn.linear_model import LinearRegression
@@ -74,7 +76,7 @@ def normalize_and_rename_columns(df,discipline,feature_types_included):
     """
     normalize features by word count, change column names
     """
-    print("2) normalize and get col sets")
+    # print("2) normalize and get col sets")
     df2 = df.copy()
     feature_cols_to_normalize = [
         "surface_n_content_words",
@@ -147,6 +149,99 @@ def normalize_and_rename_columns(df,discipline,feature_types_included):
         ]
     return df2, cols_sets
 
+
+def get_topic_level_performance(
+    topic,
+    discipline,
+    target,
+    quartile,
+    pipe_tuple,
+    col_type="all_features",
+    feature_types_included = ["surface", "lexical", "readability", "syntax", "semantic"],
+    output_dir_name="exp2",
+    df_=pd.DataFrame()
+):
+    pipe_name,pipe = pipe_tuple
+
+    if df_.empty:
+        if discipline in DALITE_DISCIPLINES:
+            population="switchers" #"all"
+        else:
+            population="all"
+
+        df_ = load_data(
+            discipline,
+            population,
+            output_dir_name,
+            feature_types_included
+        )
+    df, cols_sets = normalize_and_rename_columns(
+        df_,discipline,feature_types_included
+    )
+    cols=cols_sets[col_type]
+
+    # 3) copy relevant data and make pipeline
+    if discipline in DALITE_DISCIPLINES:
+#         targets = ["y_BT", "y_winrate_nopairs", "y_elo", "y_winrate", "y_crowdBT"]
+        targets = ["y_BT", "y_elo", "y_winrate"]
+        df = df[["topic","wc_bin","rationales"] + cols_sets["all"] + targets].dropna()
+    else:
+        targets = ["y_reference","y_BT", "y_elo", "y_winrate"]
+        df = df[["topic","wc_bin"] + cols_sets["all"] + targets].dropna()
+
+
+    df_train = df[df["topic"]!=topic]
+    df_test=df[df["topic"]==topic]
+
+    X_train = df_train[df_train["wc_bin"].isin(quartile)].copy()
+    X_test = df_test[df_test["wc_bin"].isin(quartile)].copy()
+    y_train = df_train[df_train["wc_bin"].isin(quartile)][target]
+    y_test = df_test[df_test["wc_bin"].isin(quartile)][target]
+
+    pipe.fit(X=X_train[cols],y=y_train)
+    y_pred=pipe.predict(X_test[cols])
+
+    true_all=X_test["id"].iloc[np.argsort(y_test)]
+    pred_all=X_test["id"].iloc[np.argsort(y_pred)]
+    ktau,p =kendalltau(true_all,pred_all)
+    d={}
+    d["N"]=X_test.shape[0]
+    d["ktau"]=ktau
+    d["p"]=p
+    d["Q"]=quartile
+    d["topic"]=topic
+    d["target"]=target
+    d["model"]=col_type
+    d["pipe"]=pipe_name
+    d["feature_weights"]=list(zip(cols,pipe[1].coef_))
+    d["discipline"]=discipline
+    # results_ktau.append(d)
+    # precision at K for this fold
+    K=5
+    rank_type="top"
+
+    true=true_all.tail(K)
+    pred=pred_all.tail(K)
+    not_true=X_test.loc[~X_test["id"].isin(true),"id"]
+    not_pred=X_test.loc[~X_test["id"].isin(pred),"id"]
+
+    tp=len(set(true)&set(pred))
+    fp=len(set(not_true)&set(pred))
+    precision = tp/(tp+fp)
+
+    d["K"]=K
+    d["N"]=X_test.shape[0]
+    d["prec"]=precision
+    d["Q"]=quartile
+    d["topic"]=topic
+    d["target"]=target
+    d["model"]=col_type
+    d["pipe"]=pipe_name
+    d["model_pipe"]=pipe
+    d["discipline"]=discipline
+    d["cols"]=cols
+    assert len(cols)==d["model_pipe"][1].coef_.shape[0]
+    return d
 
 def get_results(cols_sets, targets, discipline, df):
     """
