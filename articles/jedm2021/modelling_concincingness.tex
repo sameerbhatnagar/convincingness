@@ -270,12 +270,11 @@ datasets of argument quality, which we use to evaluate our methodology (section
 Our most important contribution is in proposing a methodology for evaluating 
 the quality of student explanations, along the dimension of 
 \textit{convincingness}, in TMPI environments; we demonstrate this methodology 
-in section \ref{sec:methodology}.
-We then present our results on choosing the appropriate \textit{measure} of 
-explanation convincingness (section \ref{sec:measure}), and finally, we 
-describe how we \textit{model} these convincingness ``scores'' so as to 
-identify the linguistic features of explanations most often associated with 
-high-quality explanations (section \ref{sec:model}).
+in section \ref{sec:methodology} and propose evaluation metrics based on 
+practical issues in TMPI environments.
+Finally, we describe how we \textit{model} these convincingness ``scores'' so 
+as to identify the linguistic features of explanations most often associated 
+with high-quality explanations (section \ref{sec:model_results}).
 
 \section{Related Work}\label{sec:related_work}
 
@@ -348,7 +347,7 @@ explanation may not be the only appropriate reference.
 The ``quality'' we are measuring is that which is observed by a group of peers, 
 which may be quite different from how a teacher might explain a concept.
 
-\subsection{Ranking Arguments for Quality}
+\subsection{Ranking Arguments for Quality}\label{sec:related_work:arg_quality}
 
 Previous work on automated evaluation of long-form persuasive essays 
 \cite{ghosh_coarse-grained_2016}, \cite{klebanov_argumentation_2016} 
@@ -366,7 +365,9 @@ rating on scales with more gradations.
 the most convincing only in relation to the subset of others that are shown.)
 
 A classical approach for aggregating pairwise preference data into a ranked 
-list is using the Bradley-Terry model \cite{bradley_rank_1952}. 
+list is using the Bradley-Terry model \cite{bradley_rank_1952}, which has also 
+been specifically proposed for ordinal peer grading 
+data\cite{raman_methods_2014}.
 This has been extended to incorporate the quality of contributions of different 
 annotators in a crowdsourced setting when evaluating relative reading level in 
 a pair passages \cite{chen_pairwise_2013}. 
@@ -392,6 +393,13 @@ Siamese architecture. By appending a softmax layer to the output, pairwise
 preferences and overall ranks were jointly modelled in publicly available 
 datasets \cite{gleize_are_2019}.
 
+The key difference between to keep in mind between this work in modelling the 
+quality rankings of arguments, and that of TMPI explanations, is that the 
+students are not indifferent crowd-labellers: each student will have just 
+submitted their own explanation justifying their answer choice, and we analyze 
+the aggregate of their choices as they indicate when a peer may have explained 
+something better than themselves.
+
 We will explore two of these options as part of our methodology in our rank 
 aggregation step, via several related methods: the probabilistic Bradley-Terry 
 model, as well as one of its variants (the Elo rating system), and the simple 
@@ -400,15 +408,6 @@ heuristic scoring model.
 interpreting the model results from a neural model for pedagogical purposes, 
 out of the scope of this paper.)
 
-The key difference between to keep in mind between this work in modelling the 
-quality rankings of arguments, and that of TMPI explanations, is that the 
-students are not indifferent crowd-labellers: each student will have just 
-submitted their own explanation justifying their answer choice, and we analyze 
-the aggregate of their choices as they indicate when a peer may have explained 
-something better than themselves. 
-\cite{piech_tuned_2013}
-\cite{raman_methods_2014}
-\cite{jones_peer_2015}
 
 
 \section{Data}\label{sec:datasets}
@@ -416,8 +415,8 @@ something better than themselves.
 \subsection{Argument Mining Datasets}
 Much of our methodology is inspired by work on modelling argument quality along 
 the dimension of \textit{convincingness}, as described in section 
-\ref{sec:related_work}. 
-In order to contextualize the performance of these methods in our educationale 
+\ref{sec:related_work:arg_quality}. 
+In order to contextualize the performance of these methods in our educational 
 setting, we apply the same methods to publicly available datasets from the 
 argument mining research community as well, and present the results. 
 These datasets are described in table \ref{tab:data_summary}, alongside the 
@@ -489,21 +488,27 @@ The transformation of TMPI student explanations (``args'') into ``pairs'' is
 described in section \ref{sec:methodology}. 
 The filtering of DALITE data is based on the following three steps:
 \begin{enumerate}
+	\item  There is no simple and reliable way to determine whether students 
+	choose this option ``genuinely'' (because the shown alternatives were not 
+	sufficiently convincing), or because they did not want to read their peers' 
+	explanations.
+	For this reason, we only include observations where students explicitly 
+	change explanations (whether for their own answer choice, or for a 
+	different answer choice, regardless of correctness.) 
+	There is a strong bias for students to simply choose `\textit{I stick to my 
+	own rationale}, and so this reduces our data by approximately 50\%.
 	\item Many question items have been completed by several hundreds of 
 	students. 
-	As such, almost half of student explanations have only been shown by 
-	another peer. 
-	As such, we retain only those student answers that have been shown to at 
-	least 5 other students.
+	As such, almost half of all student explanations have only been shown to 
+	another peer; thus we retain only those student answers that have been 
+	presented to at least 5 other students.
 	\item As a platform for formative assessment, not all instructors provide 
-	credit for the explanations students write.
-	As such, there are some students who do not put much effort into writing 
-	good explanations.
+	credit for the explanations students write, and there are invariably some 
+	students who do not put much effort into writing good explanations.
 	We filter out only those student answers that have at least 10 words.
-	\item after the previous two steps, we include data only from those 
+	\item after the previous two steps, we only include data from those 
 	questions that have at least 100 remaining student answers.
 \end{enumerate}
-
 
 
 \section{Methodology}\label{sec:methodology}
@@ -531,18 +536,8 @@ explanation, the peer explanations shown on the review step, the student's
 convincing (\verb|None| if they choose to ``stick to their own''), as well as 
 timestamps for the first and second attempt.
 
-It should be noted that there is no credit associated with which explanation is 
-chosen in DALITE (all points are attributed based on the  correctness of the 
-answer choice on the first and second steps).
-After carefully looking at timestamp data, we observe that a large fraction of 
-students who choose to ``stick to their own'', spend as little as 5 seconds on 
-the review step.
-For this reason, we exclude these students' data, and build all rank scores 
-only based on students who explicitly choose a peer's explanation over their 
-own.
-
-After this first filtering step, we take the TMPI observations for each 
-question, and construct explanation pairs, as in figure 
+After the filtering steps described above, we take the TMPI observations for 
+each question, and construct explanation pairs, as in figure 
 \ref{fig:make_pairs_a}(b).
 
 \begin{figure}[H]
@@ -576,6 +571,9 @@ question, and construct explanation pairs, as in figure
 \label{fig:make_pairs_a}
 \end{figure}
 
+Using these explanation pairs, we apply the following rank aggregation 
+techniques in order to derive a real valued \textit{convincingness} rank score, 
+as in figure \ref{fig:make_pairs_a}(c).
 
 \begin{enumerate}
 	
@@ -607,7 +605,7 @@ question, and construct explanation pairs, as in figure
 	subject to $\sum_{i}\beta_i=0$.
 	
 	
-	\item The \textbf{Elo} rating system\cite{elo_rating_1978}, which was 
+	\item The \textbf{Elo} rating system \cite{elo_rating_1978}, which was 
 	originally proposed for ranking chess players, has been successfully used 
 	in adaptive learning environments (see \cite{pelanek_applications_2016} for 
 	a review). 
@@ -615,21 +613,22 @@ question, and construct explanation pairs, as in figure
 	\textbf{BT} method above, where the probability of argument A being chosen 
 	over argument B is given by
 	$$
-	P(a>b) = P_{ab} = \frac{1}{1+10^{(\beta_b-\beta_a)/400}}
+	P(a>b) = P_{ab} = \frac{1}{1+10^{(\beta_b-\beta_a)/\delta}}
 	$$
-	
-	All arguments are initialized with an initial value of 1500 points, an the 
-	rating of any argument is only updated after it appears in a pairwise 
+	where $\delta$ is a constant. 
+	All arguments are initialized with an initial strength of $\beta_0$, and 
+	the rating of any argument is only updated after it appears in a pairwise 
 	comparison with another.
-	The rating update rule transfers points from the winner, to the loser, in 
-	proportion to the difference in strength:
+	The rating update rule transfers ``strength'' from the winner, to the 
+	loser, in proportion to the difference in strength:
 	
 	$$
 	\beta_a':=\beta_a+K(P_{ab} - \beta_a)
 	$$
 	
 	While the \textbf{BT} model can be thought of a \textit{consensus} 
-	approach, \textbf{Elo} ratings are dynamic and implicitly give more weight 
+	approach (all rank scores are re-calculated after each pair is seen), 
+	\textbf{Elo} ratings are dynamic and implicitly give more weight 
 	to recent data\cite{aldous_elo_2017}.
 	
 %	\item \textbf{Crowd-BT} \cite{chen_pairwise_2013} is an extension of the 
@@ -663,165 +662,24 @@ question, and construct explanation pairs, as in figure
 %	
 \end{enumerate}
 
-The reference argument mining datasets that we use for this study, each include 
-some other
+How we evaluate the fit of these ran aggregation methods to our data is 
+described in section \ref{sec:methodology_eval}
 
-\begin{figure}[H]
-	\scalebox{0.7}{\input{img/corr_to_reference_score.pgf}}
-	\caption{Distribution of Spearman correlation  coefficients measured 
-	between ``reference'' rank scores, and the rank aggregation methods 
-	(WinRate, BT, Elo) used in our proposed methodology, across the different 
-	topics of the reference argument mining datasets.}
-	\label{fig:corr_to_reference_score}
-\end{figure}
-
-In order to evaluate these rank aggregation different scores, and address 
-our research question, we employ a time-series based cross-validation scheme:
-at each timestep, we calculate the aggregated argument \textit{convincingness} 
-scores from past students, and set out to predict: which arguments will be 
-chosen as more convincing from the pairs constructed for the current student?  
-
-
-
-\begin{figure}
-	\centering
-	\def\svgscale{0.5}
-	\input{img/make_pairs_time_series.pdf_tex}
-	\caption{
-		All of the pairs constructed for answers by students $i<=30$ are used 
-		to learn rank scores $\sigma$, which are evaluated in their ability to 
-		predict the label in the held out test set: argument pairs constructed 
-		from the answer of student $i=31$.
-		We must exclude those pairs which include the 31st student, as this 
-		explanation is unseen in the training set, and does not have a rank 
-		score 
-	}
-	\label{fig:make_pairs_time_series}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\def\svgscale{0.5}
-	\input{img/rankingreliability.pdf_tex}
-	\caption{
-		Validation scheme for evaluating reliability of rankings.
-		At each time step $\tau$ we take all students $i<=\tau$, and split 
-		student into two batches (chosen at alternating time steps)
-		We learn rankings for each of these batches, and evaluate the Kendall 
-		Tau rank correlation as estimate of reliability of the rankings.
-	}
-	\label{fig:rank_reliability}
-\end{figure}
-
-\begin{figure}
-	\scalebox{0.4}{\includegraphics{img/evaluate_rankings.png}}
-	\caption{Methodology for evaluation of rank scores}
-	\label{fig:evaluate_rankings}
-\end{figure}
-
-\section{Measuring Argument Quality}\label{sec:measure}
-
-
-
-\begin{figure}
-	\scalebox{0.6}{\input{img/corr_plot.pgf}}
-	\caption{
-		Correlation between different Ranking Scores for each explanation, 
-		disaggregated by transition type  
-	}
-	\label{fig:acc_by_rank_score_type}
-\end{figure}
-
-\textbf{TO DO}
-
-
-%\begin{figure}
-%	\scalebox{0.6}{\input{img/acc_by_rank_score_type.pgf}}
-%	\caption{
-%		Comparing the classification accuracy of different rank aggregation 
-%		scores in predicting which argument is more convincing from a pair, 
-%		under a time-series cross-validation scheme. Data is averaged across 
-%		all questions and times steps, for different disciplinary subsets of 
-%		TMPI data. 
-%	}
-%	\label{fig:acc_by_rank_score_type}
-%\end{figure}
-
-\begin{figure}
-	\scalebox{0.6}{\input{img/acc_by_transition.pgf}}
-	\caption{
-		Comparing the classification accuracy of different rank aggregation 
-		scores in predicting which argument is more convincing from a pair. 
-		Rank scores are calculated with the vote data of half the students, and 
-		tested on the pairs generated by the other half. 
-		Data is averaged across all questions, dis-aggregated by different TMPI 
-		transition types. 
-	}
-	\label{fig:acc_by_rank_score_type}
-\end{figure}
-
-\begin{figure}
-	\scalebox{0.6}{\input{img/corr_by_batch.pgf}}
-	\caption{
-		Pearson correlation coefficient between different rank score types, 
-		derived from two independent groups of students, averaged over all 
-		questions, dis-aggregated by different TMPI transition types.
-	}
-	\label{fig:acc_by_rank_score_type}
-\end{figure}
-
-
-%\begin{figure}
-%	\includegraphics[width=\linewidth]{img/acc_vs_time_Physics_ada.png}
-%	\caption{to do}
-%	\label{fig:acc_vs_time}
-%\end{figure}
-
-
-
-
-\section{Modelling Argument Quality Scores}\label{sec:model}
-
-TO DO
-
-Cross-topic validation scheme; control for word-count
-
-\begin{figure}
-	\scalebox{0.5}{\input{img/prec_at_K.pgf}}
-	\caption{
-		Evaluating of regression models tasked with predicting 
-		\textit{convincingness} score of arguments/TMPI-explanations based on 
-		linguistic features.
-		Evaluation metric is \textbf{precision @ K}, where we verify how many 
-		of the predicted top-K ranked explanations are in the measured top-K 
-		list (using ``winrate'' as a \textit{measure} of convincingness). 
-		Precision is plotted against the size of the test-set on the horizontal 
-		axis, under a cross-topic validation scheme.
-		The dashed line is a (harsh) approximation of the probability of 
-		choosing the top-K explantions purely by chance (K/N, which is much 
-		greater than ``N choose K'').
-		Each dot represents the performance on one held-out 
-		topic/TMPI-question-prompt, color-coded based on which 
-		dataset/discipline it originates from.
-		We compare Linear Regression with a Decision Tree Regressor in the two 
-		columns.
-	}
-	\label{fig:prec_at_K}
-\end{figure}
-
-The goal \textbf{RQ1} is establish which rank aggregation methods are best 
-suited for the context of TMPI, such that one can take the comparative 
-preference data from many students who each see different subsets of peer 
-explanations.
+\subsection{Modelling rank scores}
 We build on the results from the previous section to now predict these 
-aggregate scores for each explanation, using 
-linguistic properties of those explanations
-
-
+aggregate scores for each explanation, using linguistic properties of those 
+explanations.
 
 We address \textbf{RQ2} with a regression task of predicting the argument 
 \textit{convincingness} scores via a feature-rich document vector.
 
+Recent experimental results posted state-of-the-art results for this same 
+regression task on a large argument mining dataset, using a neural embeddings 
+in a bidirectional encoder representations from transformers (BERT) 
+\cite{gretz_large-scale_2019}.
+However we favour a feature-rich approach and simpler learning algorithms, 
+keeping in mind downstream priorities such as interpretability for teachers in 
+their reporting tools.
 %We experiment with vector space models with different document representations:
 %\begin{enumerate}
 %	\item LSA vectors (10,50,100 components) \cite{deerwester_indexing_1990}
@@ -830,8 +688,10 @@ We address \textbf{RQ2} with a regression task of predicting the argument
 %	fine-tuned for the current classification task
 %\end{enumerate}
 
-The advantage of a feature-rich approach lies in the interpretability for 
-teachers in their reporting tools, as well as generalizability to new items 
+In order to evaluate the generalizability of our models to new question items, 
+we employ a ``cross-topic'' cross-validation scheme, wherein we hold out all of 
+the answers on one question item train models on all of the answers for all 
+question items except one
 before vote data can be collected.
 The list of features included here are derived from related work in argument 
 mining \cite{habernal_which_2016}\cite{persing_end--end_2016}on student essays, 
@@ -876,9 +736,119 @@ automatic short answer scoring \cite{mohler_text--text_2009}
 	spelling errors
 \end{itemize}
 
+Features typical to NLP analyses in the context writing analytics that are not 
+included here are cohesion, sentiment, and psycholinguistic features, as they 
+do not seem pertinent for shorter responses that deal with STEM disciplines.
+ 
+\subsection{Evaluation of methodology}\label{sec:methodology_eval}
 
-Features typical to NLP analyses in Learning Analytics that are not included 
-here are cohesion, sentiment, and psycholinguistic features.
+In order to evaluate our choice of rank aggregation scores, and address 
+our research question RQ1, we perform several validation tests.
+
+Firstly, the reference argument mining datasets that we use for this study, 
+each include some their own derived aggregated rank score (described in 
+\ref{sec:related_work:arg_quality}) for each argument.
+We evaluate the soundness of our choice of simpler rank aggregation methods by 
+measuring the correlation between our ranking scores and the reference scores.
+For each topic in the different AM datasets, we calculate the Pearson 
+correlation between the ``reference'' score each argument and our simpler 
+scores.
+The distribution of Pearson correlation coefficients across the different 
+topics are shown in the boxplots in figure \ref{fig:corr_to_reference_score}, 
+
+\begin{figure}[H]
+	\centering
+	\scalebox{0.5}{\input{img/corr_to_reference_score.pgf}}
+	\caption{Distribution of Pearson correlation coefficients measured between 
+	``reference'' rank scores, and the rank aggregation methods (WinRate, BT, 
+	Elo) used in our proposed methodology, across the different topics of the 
+	reference argument mining datasets.}
+	\label{fig:corr_to_reference_score}
+\end{figure}
+
+In order to evaluate the reliability of these rankings we employ a validation 
+scheme similiar to one proposed by \cite{jones_peer_2015}.
+Students are randomly split into two batches, and their answers ...
+
+\begin{figure}[H]
+	\centering
+	\scalebox{0.5}{\input{img/evaluate_rankings.pdf_tex}}
+	\caption{
+		Evaluating of reliability of rank scores: for each question, student 
+		answers are divided into two batches, yielding two batches of 
+		corresponding pairs, and two aggregated rankings.
+		Two measures of reliability of the derived rankings are shown with the 
+		yellow arrows: 
+		i) the rank scores of each batch can be used to predict the pairwise 
+		preferences of the other batch of students, and 
+		ii) the Kendall tau correlation coefficient can be calculated between 
+		the two independantly derived ranked lists for each batch of students. 
+	}
+	\label{fig:evaluate_rankings}
+\end{figure}
+
+
+
+
+\begin{figure}[H]
+	\centering
+	\scalebox{0.6}{\input{img/acc_by_transition.pgf}}
+	\caption{
+		Comparing the classification accuracy of different rank aggregation 
+		scores in predicting which argument is more convincing from a pair. 
+		Rank scores are calculated with the vote data of half the students, and 
+		tested on the pairs generated by the other half. 
+		Data is averaged across all questions, dis-aggregated by different TMPI 
+		transition types. 
+	}
+	\label{fig:acc_by_rank_score_type}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\scalebox{0.6}{\input{img/corr_by_batch.pgf}}
+	\caption{
+		Pearson correlation coefficient between different rank score types, 
+		derived from two independent groups of students, averaged over all 
+		questions, dis-aggregated by different TMPI transition types.
+	}
+	\label{fig:acc_by_rank_score_type}
+\end{figure}
+
+
+\section{Results}\label{sec:model_results}
+
+TO DO
+
+
+
+\begin{figure}[H]
+	\scalebox{0.5}{\input{img/prec_at_K.pgf}}
+	\caption{
+		Evaluating of regression models tasked with predicting 
+		\textit{convincingness} score of arguments/TMPI-explanations based on 
+		linguistic features.
+		Evaluation metric is \textbf{precision @ K}, where we verify how many 
+		of the predicted top-K ranked explanations are in the measured top-K 
+		list (using ``winrate'' as a \textit{measure} of convincingness). 
+		Precision is plotted against the size of the test-set on the horizontal 
+		axis, under a cross-topic validation scheme.
+		The dashed line is a (harsh) approximation of the probability of 
+		choosing the top-K explantions purely by chance (K/N, which is much 
+		greater than ``N choose K'').
+		Each dot represents the performance on one held-out 
+		topic/TMPI-question-prompt, color-coded based on which 
+		dataset/discipline it originates from.
+		We compare Linear Regression with a Decision Tree Regressor in the two 
+		columns.
+	}
+	\label{fig:prec_at_K}
+\end{figure}
+
+The goal \textbf{RQ1} is establish which rank aggregation methods are best 
+suited for the context of TMPI, such that one can take the comparative 
+preference data from many students who each see different subsets of peer 
+explanations.
 
 
 % REMOVE NOCITE OR IT WILL LIST EVERYTHING IN YOUR DATABASE AS A REFERENCE
@@ -888,3 +858,69 @@ here are cohesion, sentiment, and psycholinguistic features.
 \bibliography{MyLibrary}
 
 \end{document}
+
+%%%%%%%%%%%%%%%%%%%
+% Archive
+
+%\begin{figure}
+%	\scalebox{0.6}{\input{img/corr_plot.pgf}}
+%	\caption{
+%		Correlation between different Ranking Scores for each explanation,  
+%		disaggregated by transition type  
+%	}
+%	\label{fig:acc_by_rank_score_type}
+%\end{figure}
+
+%employ a time-series based cross-validation scheme:
+%at each timestep, we calculate the aggregated argument \textit{convincingness} 
+%scores from past students, and set out to predict: which arguments will be 
+%chosen as more convincing from the pairs constructed for the current student?  
+%\begin{figure}
+%	\centering
+%	\def\svgscale{0.5}
+%	\input{img/make_pairs_time_series.pdf_tex}
+%	\caption{
+%		All of the pairs constructed for answers by students $i<=30$ are used 
+%		to learn rank scores $\sigma$, which are evaluated in their ability to 
+%		predict the label in the held out test set: argument pairs constructed 
+%		from the answer of student $i=31$.
+%		We must exclude those pairs which include the 31st student, as this 
+%		explanation is unseen in the training set, and does not have a rank 
+%		score 
+%	}
+%	\label{fig:make_pairs_time_series}
+%\end{figure}
+
+
+%\begin{figure}[H]
+%	\centering
+%	\def\svgscale{0.5}
+%	\input{img/rankingreliability.pdf_tex}
+%	\caption{
+%		Validation scheme for evaluating reliability of rankings.
+%		At each time step $\tau$ we take all students $i<=\tau$, and split 
+%		student into two batches (chosen at alternating time steps)
+%		We learn rankings for each of these batches, and evaluate the Kendall 
+%		Tau rank correlation as estimate of reliability of the rankings.
+%	}
+%	\label{fig:rank_reliability}
+%\end{figure}
+
+%\begin{figure}
+%	\scalebox{0.6}{\input{img/acc_by_rank_score_type.pgf}}
+%	\caption{
+%		Comparing the classification accuracy of different rank aggregation 
+%		scores in predicting which argument is more convincing from a pair, 
+%		under a time-series cross-validation scheme. Data is averaged across 
+%		all questions and times steps, for different disciplinary subsets of 
+%		TMPI data. 
+%	}
+%	\label{fig:acc_by_rank_score_type}
+%\end{figure}
+
+
+%\begin{figure}
+%	\includegraphics[width=\linewidth]{img/acc_vs_time_Physics_ada.png}
+%	\caption{to do}
+%	\label{fig:acc_vs_time}
+%\end{figure}

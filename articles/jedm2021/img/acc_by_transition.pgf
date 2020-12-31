@@ -1514,7 +1514,8 @@
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=2.765586in,y=1.173024in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont Right -> Right}%
+\pgftext[x=2.765586in,y=1.173024in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont
+ Right $\rightarrow$ Right}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
@@ -1537,7 +1538,8 @@
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=2.765586in,y=0.979352in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont Right -> Wrong}%
+\pgftext[x=2.765586in,y=0.979352in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont
+ Right $\rightarrow$ Wrong}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
@@ -1560,7 +1562,8 @@
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=2.765586in,y=0.785679in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont Wrong -> Right}%
+\pgftext[x=2.765586in,y=0.785679in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont
+ Wrong $\rightarrow$ Right}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
@@ -1583,7 +1586,8 @@
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=2.765586in,y=0.592006in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont Wrong -> Wrong}%
+\pgftext[x=2.765586in,y=0.592006in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont
+ Wrong $\rightarrow$ Wrong}%
 \end{pgfscope}%
 \end{pgfpicture}%
 \makeatother%

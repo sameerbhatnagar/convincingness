@@ -133,6 +133,14 @@
   {Siamese} network.
 \newblock {\em arXiv preprint arXiv:1907.08971\/}.
 
+\bibitem[\protect\citeauthoryear{Gretz, Friedman, Cohen-Karlik, Toledo, Lahav,
+  Aharonov, and Slonim}{Gretz et~al\mbox{.}}{2019}]{gretz_large-scale_2019}
+{\sc Gretz, S.}, {\sc Friedman, R.}, {\sc Cohen-Karlik, E.}, {\sc Toledo, A.},
+  {\sc Lahav, D.}, {\sc Aharonov, R.}, {\sc and} {\sc Slonim, N.} 2019.
+\newblock A {Large}-scale {Dataset} for {Argument} {Quality} {Ranking}:
+  {Construction} and {Analysis}.
+\newblock {\em arXiv preprint arXiv:1911.11408\/}.
+
 \bibitem[\protect\citeauthoryear{Habernal and Gurevych}{Habernal and
   Gurevych}{2016}]{habernal_which_2016}
 {\sc Habernal, I.} {\sc and} {\sc Gurevych, I.} 2016.
@@ -241,13 +249,6 @@
 {\sc Persing, I.} {\sc and} {\sc Ng, V.} 2016.
 \newblock End-to-{End} {Argumentation} {Mining} in {Student} {Essays}.
 \newblock In {\em {HLT}-{NAACL}}. 1384--1394.
-
-\bibitem[\protect\citeauthoryear{Piech, Huang, Chen, Do, Ng, and Koller}{Piech
-  et~al\mbox{.}}{2013}]{piech_tuned_2013}
-{\sc Piech, C.}, {\sc Huang, J.}, {\sc Chen, Z.}, {\sc Do, C.}, {\sc Ng, A.},
-  {\sc and} {\sc Koller, D.} 2013.
-\newblock Tuned models of peer assessment in {MOOCs}.
-\newblock {\em arXiv preprint arXiv:1307.2579\/}.
 
 \bibitem[\protect\citeauthoryear{Potash, Ferguson, and Hazen}{Potash
   et~al\mbox{.}}{2019}]{potash_ranking_2019}
