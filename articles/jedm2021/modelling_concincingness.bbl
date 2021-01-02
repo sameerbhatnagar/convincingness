@@ -235,6 +235,12 @@
 \newblock {\em Computers \& Education\/}~{\em 98}, 169--179.
 \newblock Publisher: Elsevier.
 
+\bibitem[\protect\citeauthoryear{Pennington, Socher, and Manning}{Pennington
+  et~al\mbox{.}}{2014}]{pennington_glove:_2014}
+{\sc Pennington, J.}, {\sc Socher, R.}, {\sc and} {\sc Manning, C.~D.} 2014.
+\newblock Glove: {Global} {Vectors} for {Word} {Representation}.
+\newblock In {\em {EMNLP}}. Vol.~14. 1532--1543.
+
 \bibitem[\protect\citeauthoryear{Persing and Ng}{Persing and
   Ng}{2015}]{persing_modeling_2015}
 {\sc Persing, I.} {\sc and} {\sc Ng, V.} 2015.
