@@ -492,7 +492,7 @@ We will be comparing our proposed \textit{measures} of convincingness to these
 rank scores in section \ref{sec:methodology_eval}.
 
 
-\subsection{DALITE}
+\subsection{DALITE}\label{sec:dataset_dalite}
 The central data for this study come from myDALITE.org, which is a hosted 
 instance of an open-source project, 
 \verb|dalite|\footnote{\url{https://github.com/SALTISES4/dalite-ng}}, 
@@ -904,9 +904,10 @@ All of the methods outperform a baseline ``Length'' method, which is where the
 pairwise preference is chosen by simply choosing the explanation with the most 
 words.
 
-However there seems to be a slight advantage in evaluating the reliability of 
-the rankings across independent batches of students if we consider the 
-alignment between the rankings themselves (figure \ref{fig:corr_by_batch}).
+However there seems to be a slight advantage with the \textit{Elo} method in 
+evaluating the reliability of the rankings across independent batches of 
+students if we consider the alignment between the rankings themselves (figure 
+\ref{fig:corr_by_batch}).
 
 
 \begin{figure}[H]
@@ -935,12 +936,56 @@ should capture discipline specific patterns while addressing a the
 ``cold-start'' problem for new items before vote data can be collected.
 
 As has been described in related work, argument \textit{length} is a difficult 
-baseline to beat when modelling argument \textit{quality}, as
-\section{Results}\label{sec:model_results}
+baseline to beat when modelling argument \textit{quality} in pariwise 
+preference data.
+More words typically means more sound argumentation, and pairs where the same 
+logical argument is presented, but one more concisely than the other, are not 
+enough to counter this.
+Therefore, when training our feature-rich models to learn to predict the 
+real-valued rank scores, we dis-aggregate by word-count as well. 
+Namely, for each question/topic, we bin the student explanations by quartile 
+for word-count, and then in our cross-topic validation scheme, we train and 
+test models on corresponding quartiles.
 
-TO DO
+Finally the last piece of our methodology is based on practical considerations:
+more important than the real-valued \textit{convincingness} scores of all 
+student explanations, is the ability for teachers to be able to quickly 
+retrieve the top-K, or bottom-K ranked explanations for a particular question.
+Thus we borrow from information retrieval research, and calculate a variant of 
+\textit{precision@K}; e.g. how many of the top-5 Elo-ranked explanations (in 
+the top quartile of longest explanations) does our feature-rich regressor 
+capture in its own predicted top-5?
 
 
+\section{Results \& Discussion}\label{sec:model_results}
+
+One of the contributions of this study is to propose a methodology for the 
+analysis and leveraging of learnersourced explanation quality labels inside 
+TMPI learning environments, or more broadly speaking, any setting where there 
+is an ordinal/comparative peer grading task for natural language student 
+submissions.
+
+One part of this methodological contribution is to frame the analysis as an 
+information retrieval task: given a set of TMPI observations for students who 
+each select a peer's explanation as more convincing than their own, taking into 
+account the subset of explanations they are presented with, can we 
+predict, based on linguistic properties of the explanations alone, which ones 
+will be in the top-K most \textit{convincing}?
+
+Figure \ref{fig:prec_at_K} gives an overview of our modelling results on the 
+TMPI data collected from myDALITE.org using the methodology we describe above.
+Each dot represents a question/topic from one of the reference AM datasets, or 
+from a discipline from our TMPI data.
+We plot the \textit{precision @ K} (where $K={1,3,5}$) of our feature-rich 
+regression model, as a function of the explanations/arguments in the held-out 
+test set.
+(
+The TMPI data all have a minimum of $N=20$ answers, due to the filtering 
+criteria we describe in section \ref{sec:dataset_dalite}, and the 
+disaagregation by word-count quartile.
+We do not apply same filters on the AM datasets, which explains why they are 
+all at the left of our plots.
+)
 
 \begin{figure}[H]
 	\scalebox{0.5}{\input{img/prec_at_K.pgf}}
@@ -953,9 +998,8 @@ TO DO
 		list (using ``winrate'' as a \textit{measure} of convincingness). 
 		Precision is plotted against the size of the test-set on the horizontal 
 		axis, under a cross-topic validation scheme.
-		The dashed line is a (harsh) approximation of the probability of 
-		choosing the top-K explantions purely by chance (K/N, which is much 
-		greater than ``N choose K'').
+		The dashed line is an approximation of the probability of 
+		choosing the top-K explanations, purely by chance ($K/N$).
 		Each dot represents the performance on one held-out 
 		topic/TMPI-question-prompt, color-coded based on which 
 		dataset/discipline it originates from.
@@ -965,7 +1009,28 @@ TO DO
 	\label{fig:prec_at_K}
 \end{figure}
 
+An estimate of the baseline probability that a model would correctly choose the 
+top-$K$ explanations correctly out of $N$ items in the test set, at random, is 
+given by $n\choose r$=$\frac{n!}{r!(n-r)!}$. 
+(We plot a conservative estimate of this baseline in figure \ref{fig:prec_at_K},
+$K/N$).
 
+What we see is that \textit{precision @ K} for $K={1,3}$ remains a difficult 
+task, given the feature set we have started with, as the precision remains 
+below a random baseline for a larger relative proportion of question/topics.
+
+
+\section{Acknowledgements}
+Funding for the development of myDALITE.org is made possible by 
+\textit{Entente-Canada-Quebec}, and the \textit{Ministère de l'Éducation et 
+Enseignment Supérieure du Québec}. Funding for this research was made possible 
+by the support of the Canadian Social Sciences and Humanities Research Council 
+\textit{Insight} Grant. This project would not have been possible without the 
+SALTISE/S4 network of researcher practitioners, and the students using 
+myDALITE.org who consented to share their learning traces with the research 
+community.
+
+ 
 
 % REMOVE NOCITE OR IT WILL LIST EVERYTHING IN YOUR DATABASE AS A REFERENCE
 %\nocite{*}
