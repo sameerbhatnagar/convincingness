@@ -40,14 +40,14 @@ from data_loaders import DALITE_DISCIPLINES,get_topic_data,BASE_DIR
 
 from make_pairs import EQUATION_TAG, EXPRESSION_TAG, OOV_TAG
 
+from feature_extraction_reference_texts import clean_text, get_questions_df
+
 nlp = spacy.load("en_core_web_md")
 
 from spellchecker import SpellChecker
 
 DROPPED_POS = [PUNCT, SPACE, X]
 
-import html as ihtml
-from bs4 import BeautifulSoup
 
 # https://gist.github.com/drussellmrichie/47deb429350e2e99ffb3272ab6ab216a
 def tree_height(root):
@@ -61,112 +61,6 @@ def tree_height(root):
         return 1
     else:
         return 1 + max(tree_height(x) for x in root.children)
-
-
-# https://www.kaggle.com/ceshine/remove-html-tags-using-beautifulsoup
-def clean_text(text):
-    text = BeautifulSoup(ihtml.unescape(text)).text
-    # text = re.sub(r"http[s]?://\S+", "", text)
-    # text = re.sub(r"\s+", " ", text)
-    return text
-
-
-def get_questions_df(discipline):
-
-    if discipline in ["Physics", "Chemistry"]:
-        fp = os.path.join(BASE_DIR, "all_questions.csv")
-        df_q = pd.read_csv(fp)
-
-    elif discipline == "Ethics":
-
-        data_dir = os.path.join(BASE_DIR, "data_harvardx")
-
-        fp = os.path.join(data_dir, "dalite_20161101.csv")
-        df = pd.read_csv(fp)
-        df_q1 = df[["assignment_id", "question_id", "question_text"]].drop_duplicates(
-            ["assignment_id", "question_id"]
-        )
-
-        files = [
-            f
-            for f in os.listdir(os.path.join(data_dir, "video-text"))
-            if not f.startswith(".") and "post" not in f
-        ]
-        results = []
-        for fn in files:
-            d = {}
-            d["assignment_id"] = fn.replace(".txt", "").split("_")[0]
-            fp = os.path.join(data_dir, "video-text", fn)
-            keyname = "text"
-            with open(fp, "r") as f:
-                d[keyname] = f.read()
-            results.append(d)
-
-        df_q = pd.DataFrame(results)
-
-        files = [
-            f
-            for f in os.listdir(os.path.join(data_dir, "video-text"))
-            if not f.startswith(".") and "post" in f
-        ]
-        results = []
-        for fn in files:
-            d = {}
-            d["assignment_id"] = fn.replace(".txt", "").split("_")[0]
-            fp = os.path.join(data_dir, "video-text", fn)
-            keyname = "expert_rationale"
-            with open(fp, "r") as f:
-                d[keyname] = f.read()
-            results.append(d)
-
-        df_q = df_q.merge(pd.DataFrame(results), on="assignment_id").sort_values(
-            "assignment_id"
-        )
-        df_q["text"] = (
-            df_q["text"]
-            .str.replace("\[MUSIC\]", "")
-            .str.replace("\[...\]", "")
-            .str.replace("SPEAKER: ", "")
-            .str.replace("SPEAKER 1: ", "")
-            .str.replace("PROFESSOR: ", "")
-            .str.replace("\[Music\]", "")
-        )
-
-        df_q["expert_rationale"] = (
-            df_q["expert_rationale"]
-            .str.replace("MICHAEL SANDEL: ", "")
-            .str.replace("MICHEAL SANDEL: ", "")
-            .str.replace("MICHAEL J. SANDEL: ", "")
-            .str.replace("PROF. Michael Sandel: ", "")
-            .str.replace("Professor Sandel: ", "")
-            .str.replace("PROFESSOR: ", "")
-            .str.replace("SPEAKER 1: ", "")
-            .str.replace("SPEAKER: ", "")
-        )
-
-        df_q = df_q.merge(df_q1, on="assignment_id", how="outer")
-        df_q["text"] = (
-            df_q["text"].astype(str) + " " + df_q["question_text"].astype(str)
-        )
-
-        df_q.loc[df_q["question_text"].isna(), "question_text"] = df_q.loc[
-            df_q["question_text"].isna(), "text"
-        ]
-        df_q["question_id"] = df_q["question_id"].fillna(0).astype(int)
-
-        df_q["topic"] = (
-            df_q["question_text"]
-            .str.strip("[?.,]")
-            .apply(lambda x: max(x.split(), key=len))
-        )
-        df_q["title"] = df_q["question_id"].astype(str) + "_" + df_q["topic"]
-
-    df_q = df_q.fillna(" ")
-
-    df_q["text"] = df_q["text"].apply(clean_text)
-
-    df_q["expert_rationale"] = df_q["expert_rationale"].apply(clean_text)
-    return df_q
 
 
 def extract_surface_features(topic, discipline, output_dir):
