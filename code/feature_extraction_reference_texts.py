@@ -1,4 +1,5 @@
 import os
+import pickle
 import pandas as pd
 import html as ihtml
 from bs4 import BeautifulSoup
@@ -6,7 +7,8 @@ import gensim
 import spacy
 
 nlp = spacy.load("en_core_web_md")
-MIN_SIM_SCORE = 0.5
+# MIN_SIM_SCORE = 0.5
+N_DOCS = 10
 
 from data_loaders import BASE_DIR
 from utils_scrape_openstax import OPENSTAX_TEXTBOOK_DISCIPLINES
@@ -153,7 +155,9 @@ def book_corpus_reader(discipline, model_name="doc2vec"):
                         yield gensim.models.doc2vec.TaggedDocument(tokens, [f_id])
 
 
-def build_similarity_models(discipline):
+def build_similarity_models(
+    discipline, save=True, population="switchers", output_dir_name="exp2"
+):
     """
     Arguments:
     ----------
@@ -204,7 +208,7 @@ def build_similarity_models(discipline):
     )
     model_lsi = gensim.models.LsiModel(corpus, id2word=dictionary, num_topics=100)
 
-    return_dict = {
+    models_dict = {
         "Doc2Vec": {"model": model_d2v, "tagged_documents": tagged_documents},
         "Lsi": {
             "model": model_lsi,
@@ -214,7 +218,12 @@ def build_similarity_models(discipline):
         },
     }
 
-    return return_dict
+    fp = os.path.join(
+        BASE_DIR, "tmp", output_dir_name, discipline, population, "models_dict.pkl"
+    )
+    with open(fp, "wb") as f:
+        pickle.dump(models_dict, f)
+    return models_dict
 
 
 def get_reference_texts(topic, discipline, models_dict):
@@ -247,18 +256,20 @@ def get_reference_texts(topic, discipline, models_dict):
     vec_bow = models_dict[model_key]["dictionary"].doc2bow(q_tokens)
     vec_lsi = models_dict[model_key]["model"][vec_bow]
     corpus = models_dict[model_key]["corpus"]
-    index = gensim.similarities.MatrixSimilarity(models_dict[model_key]["model"][corpus])
+    index = gensim.similarities.MatrixSimilarity(
+        models_dict[model_key]["model"][corpus]
+    )
     sims = index[vec_lsi]
 
     sims = index[vec_lsi]
     sims = sorted(enumerate(sims), key=lambda item: -item[1])
 
     similar_reference_texts[model_key] = []
-    for doc_position, doc_score in sims:
-        if doc_score >= MIN_SIM_SCORE:
-            similar_reference_texts[model_key].append(
+    for doc_position, doc_score in sims[0:N_DOCS]:
+        # if doc_score >= MIN_SIM_SCORE:
+        similar_reference_texts[model_key].append(
             models_dict[model_key]["documents"][doc_position]
-            )
+        )
 
     # most similar docs : Doc2Vec
     model_key = "Doc2Vec"
@@ -267,11 +278,16 @@ def get_reference_texts(topic, discipline, models_dict):
     model_d2v_tagged_docs = models_dict[model_key]["tagged_documents"]
     inferred_vector = model_d2v.infer_vector(q_tokens)
     sims = model_d2v.dv.most_similar([inferred_vector], topn=len(model_d2v.dv))
-    sims = [s for s in sims if s[1] >= MIN_SIM_SCORE]
+    # sims = [s for s in sims if s[1] >= MIN_SIM_SCORE]
 
     similar_reference_texts[model_key] = [
-        " ".join([x[0] for x in model_d2v_tagged_docs if x[1][0] == s[0]][0])
-        for s in sims
+        {
+            "name": s[0],
+            "text": " ".join(
+                [x[0] for x in model_d2v_tagged_docs if x[1][0] == s[0]][0]
+            ),
+        }
+        for s in sims[0:N_DOCS]
     ]
 
     return similar_reference_texts

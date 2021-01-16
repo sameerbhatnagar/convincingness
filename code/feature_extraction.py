@@ -4,10 +4,12 @@ import json
 import re
 import spacy
 import plac
+import pickle
 import datetime
 import data_loaders
 import pathlib
 import numpy as np
+import gensim
 
 from spacy.matcher import PhraseMatcher
 from spacy_readability import Readability
@@ -36,11 +38,16 @@ from utils_scrape_openstax import OPENSTAX_TEXTBOOK_DISCIPLINES
 
 from make_pairs import make_pairs_by_topic, filter_out_stick_to_own
 
-from data_loaders import DALITE_DISCIPLINES,get_topic_data,BASE_DIR
+from data_loaders import DALITE_DISCIPLINES, get_topic_data, BASE_DIR
 
 from make_pairs import EQUATION_TAG, EXPRESSION_TAG, OOV_TAG
 
-from feature_extraction_reference_texts import clean_text, get_questions_df
+from feature_extraction_reference_texts import (
+    clean_text,
+    get_questions_df,
+    build_similarity_models,
+    get_reference_texts,
+)
 
 nlp = spacy.load("en_core_web_md")
 
@@ -209,13 +216,13 @@ def get_matcher(subject, topic=None, on_match=None):
 
 
 def get_bin_edges(df_topic):
-    min_wc=df_topic["surface_n_words"].min()
-    q1=df_topic["surface_n_words"].describe()["25%"]
-    q2=df_topic["surface_n_words"].describe()["50%"]
-    q3=df_topic["surface_n_words"].describe()["75%"]
-    max_wc=df_topic["surface_n_words"].max()
-    bin_edges=[min_wc-1,q1,q2,q3,max_wc+1]
-    if len(set(bin_edges))==len(bin_edges):
+    min_wc = df_topic["surface_n_words"].min()
+    q1 = df_topic["surface_n_words"].describe()["25%"]
+    q2 = df_topic["surface_n_words"].describe()["50%"]
+    q3 = df_topic["surface_n_words"].describe()["75%"]
+    max_wc = df_topic["surface_n_words"].max()
+    bin_edges = [min_wc - 1, q1, q2, q3, max_wc + 1]
+    if len(set(bin_edges)) == len(bin_edges):
         return bin_edges
     else:
         return None
@@ -225,21 +232,22 @@ def append_wc_quartile_column(df_topic):
     """
     calculate quartiles for word count for given topic
     """
-    min_wc=df_topic["surface_n_words"].min()
-    q1=df_topic["surface_n_words"].describe()["25%"]
-    q2=df_topic["surface_n_words"].describe()["50%"]
-    q3=df_topic["surface_n_words"].describe()["75%"]
-    max_wc=df_topic["surface_n_words"].max()
+    min_wc = df_topic["surface_n_words"].min()
+    q1 = df_topic["surface_n_words"].describe()["25%"]
+    q2 = df_topic["surface_n_words"].describe()["50%"]
+    q3 = df_topic["surface_n_words"].describe()["75%"]
+    max_wc = df_topic["surface_n_words"].max()
 
-    bin_edges=get_bin_edges(df_topic)
+    bin_edges = get_bin_edges(df_topic)
     if bin_edges:
-        df_topic["wc_bin"]=pd.cut(
+        df_topic["wc_bin"] = pd.cut(
             df_topic["surface_n_words"],
             bins=bin_edges,
-            labels=["Q1","Q2","Q3","Q4"],
+            labels=["Q1", "Q2", "Q3", "Q4"],
             # include_lowest=True,
         )
     return df_topic
+
 
 def extract_lexical_features(topic, discipline, output_dir):
     """
@@ -255,25 +263,25 @@ def extract_lexical_features(topic, discipline, output_dir):
     lexical_features = {}
 
     if discipline in DALITE_DISCIPLINES:
-    #     matcher = get_matcher(subject=discipline)
-    #     try:
-    #         lexical_features["{}_n_keyterms".format(feature_type)] = {
-    #             arg_id: len(
-    #                 set([str(doc[start:end]) for match_id, start, end in matcher(doc)])
-    #             )
-    #             for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-    #         }
-    #
-    #     except TypeError:
-    #         pass
-    #
-    #     matcher_prompt = get_matcher(subject=discipline, topic=topic)
-    #     lexical_features["{}_n_prompt_terms".format(feature_type)] = {
-    #         arg_id: len(
-    #             set([str(doc[start:end]) for match_id, start, end in matcher_prompt(doc)])
-    #         )
-    #         for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-    #     }
+        #     matcher = get_matcher(subject=discipline)
+        #     try:
+        #         lexical_features["{}_n_keyterms".format(feature_type)] = {
+        #             arg_id: len(
+        #                 set([str(doc[start:end]) for match_id, start, end in matcher(doc)])
+        #             )
+        #             for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+        #         }
+        #
+        #     except TypeError:
+        #         pass
+        #
+        #     matcher_prompt = get_matcher(subject=discipline, topic=topic)
+        #     lexical_features["{}_n_prompt_terms".format(feature_type)] = {
+        #         arg_id: len(
+        #             set([str(doc[start:end]) for match_id, start, end in matcher_prompt(doc)])
+        #         )
+        #         for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+        #     }
 
         lexical_features["{}_n_equations".format(feature_type)] = {
             arg_id: len(
@@ -398,7 +406,7 @@ def extract_readability_features(topic, discipline, output_dir):
     return readability_features
 
 
-def extract_semantic_features(topic, discipline, output_dir):
+def extract_semantic_features(topic, discipline, output_dir, models_dict_reload=False):
 
     feature_type = "semantic"
     semantic_features = {}
@@ -406,12 +414,27 @@ def extract_semantic_features(topic, discipline, output_dir):
     _, df = get_topic_data(topic, discipline, output_dir)
     rationales = df[["rationale", "id"]].values
 
+    # build LSI and Doc2Vec models
+    if models_dict_reload:
+        models_dict = build_similarity_models(discipline)
+    else:
+        fp = os.path.join(output_dir, "models_dict.pkl")
+        with open(fp, "rb") as f:
+            models_dict = pickle.load(f)
+
+    reference_texts = get_reference_texts(topic, discipline, models_dict)
+
     if discipline in DALITE_DISCIPLINES:
         df_q = get_questions_df(discipline=discipline)
         texts = df_q.loc[
             df_q["title"].str.startswith(topic), ["text", "expert_rationale"]
         ].values
-        q = nlp(texts[0][0])
+
+        df_q["text_all"] = df_q[["text", "expert_rationale", "image_alt_text"]].apply(
+            lambda x: f"{x['text']}. {x['expert_rationale']}. {x['image_alt_text']}",
+            axis=1,
+        )
+        q = nlp(df_q[df_q["title"] == topic]["text_all"].iat[0])
 
         semantic_features["{}_sim_question".format(feature_type)] = {
             arg_id: doc.similarity(q)
@@ -433,7 +456,7 @@ def extract_semantic_features(topic, discipline, output_dir):
             for doc, arg_id in nlp.pipe(rationales, batch_size=100, as_tuples=True)
         ]
     )
-    #https://stackoverflow.com/a/41906332
+    # https://stackoverflow.com/a/41906332
     m, n = x.shape
     distances = np.zeros((m, m))
     for i in range(m):
@@ -444,6 +467,51 @@ def extract_semantic_features(topic, discipline, output_dir):
         arg_id: d
         for arg_id, d in zip(rationales_only_ids, distances.mean(axis=1).round(3))
     }
+
+    model_key = "Lsi"
+    model = models_dict[model_key]["model"]
+    dictionary = models_dict[model_key]["dictionary"]
+    ref_texts = [
+        [token.text for token in doc if not token.is_stop]
+        for doc in nlp.pipe(reference_texts[model_key])
+    ]
+    corpus_reference = [dictionary.doc2bow(text) for text in ref_texts]
+    index = gensim.similarities.MatrixSimilarity(model[corpus_reference])
+
+    semantic_features[f"{feature_type}_dist_ref_{model_key}_mean"] = {}
+    semantic_features[f"{feature_type}_dist_ref_{model_key}_max"] = {}
+    semantic_features[f"{feature_type}_dist_ref_{model_key}_min"] = {}
+    for a, a_id in rationales:
+        tokens = [token.text for token in nlp(a) if not token.is_stop]
+        vec_bow = dictionary.doc2bow(tokens)
+        vec_lsi = model[vec_bow]
+        sims = index[vec_lsi].astype("float64")
+        semantic_features[f"{feature_type}_dist_ref_{model_key}_mean"][
+            a_id
+        ] = sims.mean()
+        semantic_features[f"{feature_type}_dist_ref_{model_key}_max"][a_id] = sims.max()
+        semantic_features[f"{feature_type}_dist_ref_{model_key}_min"][a_id] = sims.min()
+
+    model_key = "Doc2Vec"
+    model = models_dict[model_key]["model"]
+    semantic_features[f"{feature_type}_dist_ref_{model_key}_mean"] = {}
+    semantic_features[f"{feature_type}_dist_ref_{model_key}_max"] = {}
+    semantic_features[f"{feature_type}_dist_ref_{model_key}_min"] = {}
+    for a, a_id in rationales:
+        tokens = [token.text for token in nlp(a) if not token.is_stop]
+        inferred_vector = model.infer_vector(tokens)
+        sims = model.dv.most_similar([inferred_vector], topn=len(model.dv))
+        ref_text_ids = [d["name"] for d in reference_texts[model_key]]
+        sim_values = [s[1] for s in sims if s[0] in ref_text_ids]
+        semantic_features[f"{feature_type}_dist_ref_{model_key}_mean"][a_id] = np.mean(
+            sim_values
+        )
+        semantic_features[f"{feature_type}_dist_ref_{model_key}_max"][a_id] = np.max(
+            sim_values
+        )
+        semantic_features[f"{feature_type}_dist_ref_{model_key}_min"][a_id] = np.min(
+            sim_values
+        )
 
     return semantic_features
 
@@ -575,7 +643,15 @@ def main(
         "positional",
         None,
         str,
-        ["Physics", "Chemistry", "Ethics", "same_teacher_two_groups","UKP","IBM_ArgQ","IBM_Evi"],
+        [
+            "Physics",
+            "Chemistry",
+            "Ethics",
+            "same_teacher_two_groups",
+            "UKP",
+            "IBM_ArgQ",
+            "IBM_Evi",
+        ],
     ),
     feature_type: (
         "Feature Type",
@@ -584,15 +660,15 @@ def main(
         str,
         ["all", "surface", "readability", "lexical", "syntax", "semantic"],
     ),
-    population: (
-        "Which students?",
-        "positional",
-        None,
-        str,
-        ["all","switchers"],
-    ),
+    population: ("Which students?", "positional", None, str, ["all", "switchers"],),
     output_dir_name: ("Directory name for results", "positional", None, str,),
     largest_first: ("Largest Files First", "flag", "l", bool,),
+    topics_filtered: (
+        "Only work on topics which pass filter criteria in JEDM paper",
+        "flag",
+        "tf",
+        bool,
+    ),
 ):
     print("{} - {}".format(discipline, feature_type))
     print("Start: {}".format(datetime.datetime.now()))
@@ -623,7 +699,14 @@ def main(
         )
         all_files = sorted(all_files, key=os.path.getsize, reverse=largest_first)
 
-        topics = [os.path.basename(fp)[:-4] for fp in all_files]
+        if topics_filtered:
+            fp = os.path.join(
+                BASE_DIR, "tmp", output_dir_name, discipline, population, "topics.json"
+            )
+            with open(fp, "r") as f:
+                topics = json.load(f)
+        else:
+            topics = [os.path.basename(fp)[:-4] for fp in all_files]
 
         topics_already_done = [fp[:-5] for fp in os.listdir(results_sub_dir)]
 
