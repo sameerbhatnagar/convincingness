@@ -1,4 +1,5 @@
 import os
+import json
 import pandas as pd
 
 from argBT import (
@@ -21,7 +22,8 @@ from data_loaders import (
 from feature_extraction import append_features, append_wc_quartile_column
 
 
-def load_data(discipline, output_dir_name,     feature_types_included = ["surface", "lexical", "readability", "syntax", "semantic"],
+def load_data(discipline, output_dir_name,feature_types_included = ["surface", "lexical", "readability", "syntax", "semantic"],
+topics_filtered=True,
 ):
     """
     load data and append features
@@ -36,7 +38,15 @@ def load_data(discipline, output_dir_name,     feature_types_included = ["surfac
         BASE_DIR, "tmp", output_dir_name, discipline, population, "data"
     )
     output_dir = os.path.join(data_dir_discpline, os.pardir)
-    topics = os.listdir(data_dir_discpline)
+    if topics_filtered:
+        fp = os.path.join(
+            BASE_DIR, "tmp", output_dir_name, discipline, population, "topics.json"
+        )
+        with open(fp, "r") as f:
+            topics = json.load(f)
+    else:
+        topics = os.listdir(data_dir_discpline)
+
     df = pd.DataFrame()
     print("\t a) loading data for each topic and appending features")
     for t, topic in enumerate(topics):
