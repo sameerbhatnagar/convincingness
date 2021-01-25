@@ -28,17 +28,14 @@ topics_filtered=True,
     """
     load data and append features
     """
-    if discipline in DALITE_DISCIPLINES:
-        population="switchers" #"all"
-    else:
-        population="all"
+    population = "switchers"
 
     # load data and append features
     data_dir_discpline = os.path.join(
         BASE_DIR, "tmp", output_dir_name, discipline, population, "data"
     )
     output_dir = os.path.join(data_dir_discpline, os.pardir)
-    if topics_filtered:
+    if topics_filtered and discipline in DALITE_DISCIPLINES:
         fp = os.path.join(
             BASE_DIR, "tmp", output_dir_name, discipline, population, "topics.json"
         )

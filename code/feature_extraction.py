@@ -49,7 +49,7 @@ from feature_extraction_reference_texts import (
     get_reference_texts,
 )
 
-nlp = spacy.load("en_core_web_md")
+nlp = spacy.load("en_core_web_md", disable=["ner"])
 
 from spellchecker import SpellChecker
 
@@ -158,9 +158,16 @@ def get_matcher(subject, topic=None, on_match=None):
     df_q = get_questions_df(discipline=subject)
 
     if topic:
-        texts = df_q.loc[
-            df_q["title"].str.startswith(topic), ["text", "expert_rationale"]
-        ].values
+        if subject in ["Physics","Chemistry","Biology"]:
+            texts = df_q.loc[
+                df_q["title"].str.startswith(topic),
+                ["text", "image_alt_text", "expert_rationale"],
+            ].values
+        else:
+            texts = df_q.loc[
+                df_q["title"].str.startswith(topic),
+                ["text", "expert_rationale"],
+            ].values
         terms = []
         for text in texts[0]:
             if type(text) != float:
@@ -170,7 +177,7 @@ def get_matcher(subject, topic=None, on_match=None):
                     + [
                         token.text
                         for token in doc
-                        if not token.is_stop and token.pos not in DROPPED_POS
+                        if not token.is_stop and token.is_alpha
                     ]
                 )
         keywords_sorted = list(set(terms))
@@ -207,10 +214,10 @@ def get_matcher(subject, topic=None, on_match=None):
 
     keywords_sorted.sort()
 
-    matcher = PhraseMatcher(nlp.vocab, attr="lower")
+    matcher = PhraseMatcher(nlp.vocab, attr="LOWER")
     patterns = [nlp.make_doc(text) for text in keywords_sorted]
 
-    matcher.add("KEY_TERMS", patterns, on_match=on_match)
+    matcher.add("KEY_TERMS", patterns)
 
     return matcher
 
@@ -263,25 +270,30 @@ def extract_lexical_features(topic, discipline, output_dir):
     lexical_features = {}
 
     if discipline in DALITE_DISCIPLINES:
-        #     matcher = get_matcher(subject=discipline)
-        #     try:
-        #         lexical_features["{}_n_keyterms".format(feature_type)] = {
-        #             arg_id: len(
-        #                 set([str(doc[start:end]) for match_id, start, end in matcher(doc)])
-        #             )
-        #             for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-        #         }
-        #
-        #     except TypeError:
-        #         pass
-        #
-        #     matcher_prompt = get_matcher(subject=discipline, topic=topic)
-        #     lexical_features["{}_n_prompt_terms".format(feature_type)] = {
-        #         arg_id: len(
-        #             set([str(doc[start:end]) for match_id, start, end in matcher_prompt(doc)])
-        #         )
-        #         for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-        #     }
+        matcher = get_matcher(subject=discipline)
+        try:
+            lexical_features["{}_n_keyterms".format(feature_type)] = {
+                arg_id: len(
+                    set([str(doc[start:end]) for match_id, start, end in matcher(doc)])
+                )
+                for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+            }
+
+        except TypeError:
+            pass
+
+        matcher_prompt = get_matcher(subject=discipline, topic=topic)
+        lexical_features["{}_n_prompt_terms".format(feature_type)] = {
+            arg_id: len(
+                set(
+                    [
+                        str(doc[start:end])
+                        for match_id, start, end in matcher_prompt(doc)
+                    ]
+                )
+            )
+            for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+        }
 
         lexical_features["{}_n_equations".format(feature_type)] = {
             arg_id: len(
@@ -294,10 +306,10 @@ def extract_lexical_features(topic, discipline, output_dir):
             for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
         }
 
-        lexical_features["{}_n_OOV".format(feature_type)] = {
-            arg_id: len([token.text for token in doc if token.text == OOV_TAG])
-            for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
-        }
+    lexical_features["{}_n_OOV".format(feature_type)] = {
+        arg_id: len([token.text for token in doc if token.is_oov])
+        for doc, arg_id in nlp.pipe(rationales, batch_size=50, as_tuples=True)
+    }
 
     spell = SpellChecker()
     lexical_features["{}_n_spelling_errors".format(feature_type)] = {
@@ -406,12 +418,17 @@ def extract_readability_features(topic, discipline, output_dir):
     return readability_features
 
 
+def filter_for_glove_oov(r):
+    return " ".join([token.text for token in nlp(r) if token.has_vector])
+
+
 def extract_semantic_features(topic, discipline, output_dir, models_dict_reload=False):
 
     feature_type = "semantic"
     semantic_features = {}
 
     _, df = get_topic_data(topic, discipline, output_dir)
+    df["rationale"] = df["rationale"].apply(filter_for_glove_oov)
     rationales = df[["rationale", "id"]].values
 
     # build LSI and Doc2Vec models
@@ -426,28 +443,79 @@ def extract_semantic_features(topic, discipline, output_dir, models_dict_reload=
 
     if discipline in DALITE_DISCIPLINES:
         df_q = get_questions_df(discipline=discipline)
-        texts = df_q.loc[
-            df_q["title"].str.startswith(topic), ["text", "expert_rationale"]
-        ].values
-
-        df_q["text_all"] = df_q[["text", "expert_rationale", "image_alt_text"]].apply(
-            lambda x: f"{x['text']}. {x['expert_rationale']}. {x['image_alt_text']}",
-            axis=1,
+        if discipline in ["Physics","Chemistry","Biology"]:
+            df_q["text_all"] = df_q[["text", "expert_rationale", "image_alt_text"]].apply(
+                lambda x: f"{x['text']}. {x['expert_rationale']}. {x['image_alt_text']}",
+                axis=1,
+            )
+        else:
+            df_q["text_all"] = df_q[["text", "expert_rationale"]].apply(
+                lambda x: f"{x['text']}. {x['expert_rationale']}.",
+                axis=1,
+            )
+        q_text = df_q[df_q["title"] == topic]["text_all"].iat[0]
+        q_text_filtered = " ".join(
+            [
+                token.text
+                for token in nlp(q_text)
+                if token.has_vector and not token.is_stop and token.is_alpha
+            ]
         )
-        q = nlp(df_q[df_q["title"] == topic]["text_all"].iat[0])
+        q = nlp(q_text_filtered)
 
-        semantic_features["{}_sim_question".format(feature_type)] = {
+        semantic_features["{}_sim_question_glove".format(feature_type)] = {
             arg_id: doc.similarity(q)
             for doc, arg_id in nlp.pipe(rationales, batch_size=20, as_tuples=True)
         }
 
-        if type(texts[0][1]) != float:
-            expert_rationale = nlp(texts[0][1])
-            semantic_features["{}_sim_expert".format(feature_type)] = {
-                arg_id: doc.similarity(expert_rationale)
-                for doc, arg_id in nlp.pipe(rationales, batch_size=20, as_tuples=True)
-            }
+        # Sim to reference_texts LSI
+        model_key = "Lsi"
+        model = models_dict[model_key]["model"]
+        dictionary = models_dict[model_key]["dictionary"]
+        ref_texts = [
+            [token.text for token in doc if not token.is_stop]
+            for doc in nlp.pipe(reference_texts[model_key])
+        ]
+        corpus_reference = [dictionary.doc2bow(text) for text in ref_texts]
+        index = gensim.similarities.MatrixSimilarity(model[corpus_reference])
 
+        semantic_features[f"{feature_type}_dist_ref_{model_key}_mean"] = {}
+        semantic_features[f"{feature_type}_dist_ref_{model_key}_max"] = {}
+        semantic_features[f"{feature_type}_dist_ref_{model_key}_min"] = {}
+        for a, a_id in rationales:
+            tokens = [token.text for token in nlp(a) if not token.is_stop]
+            vec_bow = dictionary.doc2bow(tokens)
+            vec_lsi = model[vec_bow]
+            sims = index[vec_lsi].astype("float64")
+            semantic_features[f"{feature_type}_dist_ref_{model_key}_mean"][
+                a_id
+            ] = sims.mean()
+            semantic_features[f"{feature_type}_dist_ref_{model_key}_max"][a_id] = sims.max()
+            semantic_features[f"{feature_type}_dist_ref_{model_key}_min"][a_id] = sims.min()
+
+        # sim to ref_texts Doc2Vec
+        model_key = "Doc2Vec"
+        model = models_dict[model_key]["model"]
+        semantic_features[f"{feature_type}_dist_ref_{model_key}_mean"] = {}
+        semantic_features[f"{feature_type}_dist_ref_{model_key}_max"] = {}
+        semantic_features[f"{feature_type}_dist_ref_{model_key}_min"] = {}
+        for a, a_id in rationales:
+            tokens = [token.text for token in nlp(a) if not token.is_stop]
+            inferred_vector = model.infer_vector(tokens)
+            sims = model.dv.most_similar([inferred_vector], topn=len(model.dv))
+            ref_text_ids = [d["name"] for d in reference_texts[model_key]]
+            sim_values = [s[1] for s in sims if s[0] in ref_text_ids]
+            semantic_features[f"{feature_type}_dist_ref_{model_key}_mean"][a_id] = np.mean(
+                sim_values
+            )
+            semantic_features[f"{feature_type}_dist_ref_{model_key}_max"][a_id] = np.max(
+                sim_values
+            )
+            semantic_features[f"{feature_type}_dist_ref_{model_key}_min"][a_id] = np.min(
+                sim_values
+            )
+
+    # sim to others GloVe
     rationales_only_text = [r[0] for r in rationales]
     rationales_only_ids = [r[1] for r in rationales]
     x = np.array(
@@ -463,55 +531,10 @@ def extract_semantic_features(topic, discipline, output_dir, models_dict_reload=
         for j in range(m):
             distances[i, j] = 1 - cosine(x[i, :], x[j, :])
     distances = np.nan_to_num(distances)
-    semantic_features["{}_sim_others".format(feature_type)] = {
+    semantic_features["{}_sim_others_glove".format(feature_type)] = {
         arg_id: d
         for arg_id, d in zip(rationales_only_ids, distances.mean(axis=1).round(3))
     }
-
-    model_key = "Lsi"
-    model = models_dict[model_key]["model"]
-    dictionary = models_dict[model_key]["dictionary"]
-    ref_texts = [
-        [token.text for token in doc if not token.is_stop]
-        for doc in nlp.pipe(reference_texts[model_key])
-    ]
-    corpus_reference = [dictionary.doc2bow(text) for text in ref_texts]
-    index = gensim.similarities.MatrixSimilarity(model[corpus_reference])
-
-    semantic_features[f"{feature_type}_dist_ref_{model_key}_mean"] = {}
-    semantic_features[f"{feature_type}_dist_ref_{model_key}_max"] = {}
-    semantic_features[f"{feature_type}_dist_ref_{model_key}_min"] = {}
-    for a, a_id in rationales:
-        tokens = [token.text for token in nlp(a) if not token.is_stop]
-        vec_bow = dictionary.doc2bow(tokens)
-        vec_lsi = model[vec_bow]
-        sims = index[vec_lsi].astype("float64")
-        semantic_features[f"{feature_type}_dist_ref_{model_key}_mean"][
-            a_id
-        ] = sims.mean()
-        semantic_features[f"{feature_type}_dist_ref_{model_key}_max"][a_id] = sims.max()
-        semantic_features[f"{feature_type}_dist_ref_{model_key}_min"][a_id] = sims.min()
-
-    model_key = "Doc2Vec"
-    model = models_dict[model_key]["model"]
-    semantic_features[f"{feature_type}_dist_ref_{model_key}_mean"] = {}
-    semantic_features[f"{feature_type}_dist_ref_{model_key}_max"] = {}
-    semantic_features[f"{feature_type}_dist_ref_{model_key}_min"] = {}
-    for a, a_id in rationales:
-        tokens = [token.text for token in nlp(a) if not token.is_stop]
-        inferred_vector = model.infer_vector(tokens)
-        sims = model.dv.most_similar([inferred_vector], topn=len(model.dv))
-        ref_text_ids = [d["name"] for d in reference_texts[model_key]]
-        sim_values = [s[1] for s in sims if s[0] in ref_text_ids]
-        semantic_features[f"{feature_type}_dist_ref_{model_key}_mean"][a_id] = np.mean(
-            sim_values
-        )
-        semantic_features[f"{feature_type}_dist_ref_{model_key}_max"][a_id] = np.max(
-            sim_values
-        )
-        semantic_features[f"{feature_type}_dist_ref_{model_key}_min"][a_id] = np.min(
-            sim_values
-        )
 
     return semantic_features
 
@@ -663,10 +686,10 @@ def main(
     population: ("Which students?", "positional", None, str, ["all", "switchers"],),
     output_dir_name: ("Directory name for results", "positional", None, str,),
     largest_first: ("Largest Files First", "flag", "l", bool,),
-    topics_filtered: (
+    filter_topics: (
         "Only work on topics which pass filter criteria in JEDM paper",
         "flag",
-        "tf",
+        "ft",
         bool,
     ),
 ):
@@ -699,14 +722,15 @@ def main(
         )
         all_files = sorted(all_files, key=os.path.getsize, reverse=largest_first)
 
-        if topics_filtered:
+        topics = [os.path.basename(fp)[:-4] for fp in all_files]
+
+        if filter_topics:
             fp = os.path.join(
                 BASE_DIR, "tmp", output_dir_name, discipline, population, "topics.json"
             )
             with open(fp, "r") as f:
-                topics = json.load(f)
-        else:
-            topics = [os.path.basename(fp)[:-4] for fp in all_files]
+                topics_filtered = json.load(f)
+            topics = [t for t in topics if t in topics_filtered]
 
         topics_already_done = [fp[:-5] for fp in os.listdir(results_sub_dir)]
 

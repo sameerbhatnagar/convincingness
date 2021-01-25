@@ -10,7 +10,7 @@ nlp = spacy.load("en_core_web_md")
 # MIN_SIM_SCORE = 0.5
 N_DOCS = 10
 
-from data_loaders import BASE_DIR
+from data_loaders import BASE_DIR, DALITE_DISCIPLINES
 from utils_scrape_openstax import OPENSTAX_TEXTBOOK_DISCIPLINES
 
 # https://www.kaggle.com/ceshine/remove-html-tags-using-beautifulsoup
@@ -130,7 +130,8 @@ def book_corpus_reader(discipline, model_name="doc2vec"):
     --------
         generator of either:
             - gensim.doc2vec.TaggedDocument
-            - if model=="lsi" : lists of tokens for each document
+            - if model=="lsi" : lists of tokens for each document, lemmatized,
+            with stopwords and numeric tokens removed
     """
     books = OPENSTAX_TEXTBOOK_DISCIPLINES[discipline]
     fnidx = -1
@@ -144,9 +145,9 @@ def book_corpus_reader(discipline, model_name="doc2vec"):
                 for i, line in enumerate(f):
                     fnidx += 1
                     tokens = [
-                        token.text.lower()
+                        token.lemma_.lower()
                         for token in nlp(line)
-                        if not token.is_punct and token.is_alpha
+                        if not token.is_punct and token.is_alpha and not token.is_stop
                     ]
                     if model_name == "lsi":
                         yield " ".join(tokens)
@@ -202,18 +203,20 @@ def build_similarity_models(
     ]
     dictionary = gensim.corpora.Dictionary(texts)
     corpus = [dictionary.doc2bow(text) for text in texts]
+    tfidf = gensim.models.TfidfModel(corpus)
+    corpus_tfidf=tfidf[corpus]
 
     print(
         "5 - train lsi model with {len(documents)} documents and {len(w2c)} unique content words"
     )
-    model_lsi = gensim.models.LsiModel(corpus, id2word=dictionary, num_topics=100)
+    model_lsi = gensim.models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=200)
 
     models_dict = {
         "Doc2Vec": {"model": model_d2v, "tagged_documents": tagged_documents},
         "Lsi": {
             "model": model_lsi,
             "dictionary": dictionary,
-            "corpus": corpus,
+            "corpus": corpus_tfidf,
             "documents": documents,
         },
     }
@@ -242,9 +245,14 @@ def get_reference_texts(topic, discipline, models_dict):
         topic prompt+expert_rationale+image_alt_text, using Lsi and Doc2Vec models
     """
     df_q = get_questions_df(discipline=discipline)
-    df_q["text_all"] = df_q[["text", "expert_rationale", "image_alt_text"]].apply(
-        lambda x: f"{x['text']}. {x['expert_rationale']}. {x['image_alt_text']}", axis=1
-    )
+    if discipline in ["Physics", "Chemistry"]:
+        df_q["text_all"] = df_q[["text", "expert_rationale", "image_alt_text"]].apply(
+            lambda x: f"{x['text']}. {x['expert_rationale']}. {x['image_alt_text']}", axis=1
+        )
+    else:
+        df_q["text_all"] = df_q[["text", "expert_rationale"]].apply(
+            lambda x: f"{x['text']}. {x['expert_rationale']}.", axis=1
+        )
     q = df_q[df_q["title"] == topic]["text_all"].iat[0]
 
     q_tokens = [token.text for token in nlp(q) if token.is_alpha and not token.is_punct]

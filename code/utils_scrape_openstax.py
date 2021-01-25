@@ -18,7 +18,7 @@ OPENSTAX_TEXTBOOK_DISCIPLINES = {
         "university-physics-volume-1",
     ],
     "Statistics": ["introductory-statistics"],
-    "Ethics":["business-ethics"],
+    "Ethics":["business-ethics","video-text-clean"],
 }
 
 
