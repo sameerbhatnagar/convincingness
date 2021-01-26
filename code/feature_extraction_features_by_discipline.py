@@ -10,8 +10,8 @@ NUMERIC_COLUMNS["Physics"]=[
     'syntax_dep_tree_depth',
     'semantic_sim_question_glove', 'semantic_sim_others_glove',
     "semantic_dist_ref_Lsi_mean","semantic_dist_ref_Lsi_max","semantic_dist_ref_Lsi_mean",
-    "semantic_dist_ref_Doc2Vec_mean","semantic_dist_ref_Doc2Vec_max","semantic_dist_ref_Doc2Vec_min"
-    "id"
+    "semantic_dist_ref_Doc2Vec_mean","semantic_dist_ref_Doc2Vec_max","semantic_dist_ref_Doc2Vec_min",
+    # "id"
     ]
 NUMERIC_COLUMNS["Chemistry"]=NUMERIC_COLUMNS["Physics"]
 NUMERIC_COLUMNS["Ethics"] = NUMERIC_COLUMNS["Physics"]
