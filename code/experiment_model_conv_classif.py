@@ -192,7 +192,7 @@ def main(
         clfs = [
             ("length",None),
             ("lin_reg",LinearRegression()),
-            ("svr",SVR()),
+            # ("svr",SVR()),
             ("dtree",DecisionTreeRegressor(max_depth=5)),
             ("rf",RandomForestRegressor(max_depth=5))
         ]
