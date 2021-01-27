@@ -753,30 +753,48 @@ essays, automatic short answer scoring \cite{mohler_text--text_2009}.
 \begin{itemize}
 	
 	\item Surface Features: 
-	word count,
 	sentence count, 
 	max/mean word length, 
 	max/mean sentence length;
 	
 	\item Lexical: 
-	uni-grams \& bigrams, 
+	uni-grams, 
 	type-token ratio, 
 	number of keywords (defined by open-source discipline specific 
 	text-book), 
-	number of equations;
+	number of equations (captured by a regular expression);
 	
 	\item Syntactic: 
 	POS n-grams (e.g. \textit{nouns, prepositions, 
 		verbs,conjunctions,negation, adjectives, adverbs, punctuation}), 
 	modal verbs (e.g. \textit{must, should, can, might}),
-	contextuality/formality measure \cite{heylighen_variation_2002},
+%	contextuality/formality measure \cite{heylighen_variation_2002},
 	dependency tree depth;
 	
 	\item Semantic:
-	we calculate similarity metrics to i) all other explanations, ii) the 
-	question item text, and, when available, iii) a teacher provided ``expert'' 
-	explanation, using pre-trained GloVe \cite{pennington_glove:_2014} vectors.
-	
+	\begin{itemize}
+		\item Using pre-trained GloVe \cite{pennington_glove:_2014} vectors, we 
+		calculate similarity metrics to i) all other explanations, ii) the 
+		question item text, and, when available, iii) a teacher provided 
+		``expert'' explanation.
+		\item we derive our own discipline specific embedding vectors, trained 
+		on corresponding open-source textbooks \footnote{https://openstax.org}. 
+		We experiment with a word-based vector space model, Latent Semantic 
+		Indexing (\verb|LSI|) \cite{deerwester_indexing_1990}, due to its 
+		prevalence in text analytics in educational data mining literature, as 
+		well as \verb|Doc2Vec| \cite{le_distributed_2014}, which directly 
+		models the compositionality of all the words in a sentence 
+		\footnote{model implementations from 
+		https://radimrehurek.com/gensim/index.html}.
+		We take the text of the question prompt, as well as an ``expert 
+		explanation'' provided by teachers for each question, and determine the 
+		10 most relevant sub-sections of the textbook.
+		For each student explanation, we then calculate the mininum, maximum, 
+		and mean cosine similarity to these 10 discipline specific ``reference 
+		texts''.
+		 
+	\end{itemize}
+		
 %	\item Co-reference \cite{persing_end--end_2016}: 
 %	fraction of entities from the prompt mentioned in each sentence, 
 %	averaged over all sentences (using neural Co-reference resolution)
@@ -931,18 +949,21 @@ section \ref{sec:features}.
 In order to estimate the generalizability of these models to new question 
 items, we employ a ``cross-topic'' cross-validation scheme, wherein we hold out 
 all of the answers on one question item as the test set, training models on all 
-of the answers for all other question items in the same discipline, which 
-should capture discipline specific patterns while addressing a the 
-``cold-start'' problem for new items before vote data can be collected.
+of the answers for all other question items in the same discipline.
+This approach is meant to capture discipline specific linguistic patterns, 
+while addressing a the ``cold-start'' problem for new items before vote data 
+can be collected.
 
 As has been described in related work, argument \textit{length} is a difficult 
 baseline to beat when modelling argument \textit{quality} in pariwise 
 preference data.
-More words typically means more sound argumentation, and pairs where the same 
-logical argument is presented, but one more concisely than the other, are not 
-enough to counter this.
-Therefore, when training our feature-rich models to learn to predict the 
-real-valued rank scores, we dis-aggregate by word-count as well. 
+The greater the amount of words, the greater the opportunity to construct a 
+convincing argument.
+The only way to counter this would be to have explanation pairs in the dataset 
+where the same logic is present, but more concisely in one argument than in the 
+other.
+Since we cannot guarantee the presence of such data, we control for explanation 
+length when training our feature-rich models. 
 Namely, for each question/topic, we bin the student explanations by quartile 
 for word-count, and then in our cross-topic validation scheme, we train and 
 test models on corresponding quartiles.
@@ -952,7 +973,7 @@ more important than the real-valued \textit{convincingness} scores of all
 student explanations, is the ability for teachers to be able to quickly 
 retrieve the top-K, or bottom-K ranked explanations for a particular question.
 Thus we borrow from information retrieval research, and calculate a variant of 
-\textit{precision@K}; e.g. how many of the top-5 Elo-ranked explanations (in 
+\textit{precision@K}; e.g. how many of the top-5 ranked explanations (in 
 the top quartile of longest explanations) does our feature-rich regressor 
 capture in its own predicted top-5?
 

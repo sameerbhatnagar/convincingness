@@ -84,6 +84,13 @@
 \newblock Peer instruction: {Ten} years of experience and results.
 \newblock {\em American Journal of Physics\/}~{\em 69,\/}~9, 970--977.
 
+\bibitem[\protect\citeauthoryear{Deerwester, Dumais, Landauer, Furnas, and
+  Harshman}{Deerwester et~al\mbox{.}}{1990}]{deerwester_indexing_1990}
+{\sc Deerwester, S.~C.}, {\sc Dumais, S.~T.}, {\sc Landauer, T.~K.}, {\sc
+  Furnas, G.~W.}, {\sc and} {\sc Harshman, R.~A.} 1990.
+\newblock Indexing by latent semantic analysis.
+\newblock {\em JASIS\/}~{\em 41,\/}~6, 391--407.
+
 \bibitem[\protect\citeauthoryear{Denny, Hamer, Luxton-Reilly, and
   Purchase}{Denny et~al\mbox{.}}{2008}]{denny_peerwise:_2008}
 {\sc Denny, P.}, {\sc Hamer, J.}, {\sc Luxton-Reilly, A.}, {\sc and} {\sc
@@ -151,13 +158,6 @@
   {Papers})}. Association for Computational Linguistics, Berlin, Germany,
   1589--1599.
 
-\bibitem[\protect\citeauthoryear{Heylighen and Dewaele}{Heylighen and
-  Dewaele}{2002}]{heylighen_variation_2002}
-{\sc Heylighen, F.} {\sc and} {\sc Dewaele, J.-M.} 2002.
-\newblock Variation in the contextuality of language: {An} empirical measure.
-\newblock {\em Foundations of science\/}~{\em 7,\/}~3, 293--340.
-\newblock Publisher: Springer.
-
 \bibitem[\protect\citeauthoryear{Jones and Wheadon}{Jones and
   Wheadon}{2015}]{jones_peer_2015}
 {\sc Jones, I.} {\sc and} {\sc Wheadon, C.} 2015.
@@ -187,6 +187,12 @@
 \newblock Peer {Reviewing} {Short} {Answers} using {Comparative} {Judgement}.
 \newblock In {\em Proceedings of the {Third} (2016) {ACM} {Conference} on
   {Learning}@ {Scale}}. ACM, 241--244.
+
+\bibitem[\protect\citeauthoryear{Le and Mikolov}{Le and
+  Mikolov}{2014}]{le_distributed_2014}
+{\sc Le, Q.} {\sc and} {\sc Mikolov, T.} 2014.
+\newblock Distributed representations of sentences and documents.
+\newblock In {\em International conference on machine learning}. 1188--1196.
 
 \bibitem[\protect\citeauthoryear{Mercier and Sperber}{Mercier and
   Sperber}{2011}]{mercier_why_2011}
