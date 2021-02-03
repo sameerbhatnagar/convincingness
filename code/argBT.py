@@ -294,13 +294,13 @@ def get_rankings_winrate(pairs_df):
             lambda x: x["a1_id"] if x["label"] == "a1" else x["a2_id"], axis=1
         )
     ).value_counts()
-    ranks_dict = ((times_chosen + MIN_VOTES) / (times_shown + MIN_SHOWN)).to_dict()
+    ranks_dict = ((times_chosen) / (times_shown)).to_dict()
 
-    # need to add entries for rationales never shown
+    # need to add entries for rationales never chosen
     never_chosen = [
         r for r in times_shown.index.to_list() if r not in times_chosen.index.to_list()
     ]
-    ranks_dict.update({r: MIN_VOTES / MIN_SHOWN for r in never_chosen})
+    ranks_dict.update({r: 0 for r in never_chosen})
 
     sorted_arg_ids = [
         k for k, v in sorted(ranks_dict.items(), key=lambda x: x[1], reverse=True)
@@ -334,12 +334,12 @@ def get_rankings_winrate_no_pairs(df_train):
 
     votes_count = df_train["chosen_rationale_id"].value_counts().to_dict()
     ranks_dict = {
-        "arg{}".format(k): (v + MIN_VOTES) / (times_shown_counter[k] + MIN_SHOWN)
+        "arg{}".format(k): (v) / (times_shown_counter[k]+1)
         for k, v in votes_count.items()
     }
-    # need to add entries for rationales never shown
+    # need to add entries for rationales never chosen
     never_chosen = [r for r in df_train["id"].to_list() if r not in votes_count]
-    ranks_dict.update({"arg{}".format(r): MIN_VOTES / MIN_SHOWN for r in never_chosen})
+    ranks_dict.update({"arg{}".format(r): 0 for r in never_chosen})
     sorted_arg_ids = [
         "arg{}".format(p[0])
         for p in sorted(ranks_dict.items(), key=lambda x: x[1])[::-1]
