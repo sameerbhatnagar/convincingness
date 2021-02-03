@@ -1041,36 +1041,66 @@ task, given the feature set we have started with, as the precision remains
 below a random baseline for a larger relative proportion of question/topics.
 
 
+
+
 \begin{table}
-	\input{data/ranking_y_reference_pearson}
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/ranking_y_reference_pearson}
+		\subcaption{Pearson correlation}
+	}
+	\hfill
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/ranking_y_reference_spearman}
+		\subcaption{Spearman correlation}
+	}
+\caption{Correlation between convincingness score predicted by 
+	different models, and the different ``ground truth'' reference score 
+	accompanying different argument mining datasets}
 \end{table}
 
 
 \begin{table}
-	\input{data/ranking_y_reference_spearman}
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/ranking_y_winrate_pearson}
+		\subcaption{Pearson correlation}
+	}
+	\hfill
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/ranking_y_winrate_spearman}
+		\subcaption{Spearman correlation}
+	}
+	\caption{Correlation between convincingness score predicted by 
+		different models, and the convincingness score as given by the 
+		\textit{winrate} across pairwise preference data, for different 
+		argument mining datasets
+	}
 \end{table}
 
 
 
 \begin{table}
-	\input{data/ranking_y_winrate_pearson}
-\end{table}
-
-
-
-\begin{table}
-	\input{data/ranking_y_winrate_spearman}
-\end{table}
-
-
-\begin{table}
+	\parbox{.45\linewidth}{
+		\centering
+	\input{data/ranking_dalite_y_winrate_pearson}
+		\subcaption{Pearson correlation}
+	}
+	\hfill
+	\parbox{.45\linewidth}{
+		\centering
 	\input{data/ranking_dalite_y_winrate_spearman}
+		\subcaption{Spearman correlation}
+	}
+	\caption{Correlation between convincingness score predicted by 
+		different models, and the convincingness score as given by the 
+		\textit{winrate} across pairwise preference data, for different 
+		disciplinary datasets from TMPI environment
+	}
 \end{table}
 
-
-\begin{table}
-	\input{data/ranking_dalite_y_winrate_spearman}
-\end{table}
 
 
 
