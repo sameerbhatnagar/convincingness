@@ -26,6 +26,12 @@
 \newblock {\em Biometrika\/}~{\em 39,\/}~3/4, 324--345.
 \newblock Publisher: JSTOR.
 
+\bibitem[\protect\citeauthoryear{Breiman}{Breiman}{2001}]{breiman_random_2001}
+{\sc Breiman, L.} 2001.
+\newblock Random forests.
+\newblock {\em Machine learning\/}~{\em 45,\/}~1, 5--32.
+\newblock Publisher: Springer.
+
 \bibitem[\protect\citeauthoryear{Burrows, Gurevych, and Stein}{Burrows
   et~al\mbox{.}}{2015}]{burrows_eras_2015}
 {\sc Burrows, S.}, {\sc Gurevych, I.}, {\sc and} {\sc Stein, B.} 2015.
@@ -106,6 +112,14 @@
 {\sc Elo, A.~E.} 1978.
 \newblock {\em The rating of chessplayers, past and present}.
 \newblock Arco Pub.
+
+\bibitem[\protect\citeauthoryear{Fisher, Rudin, and Dominici}{Fisher
+  et~al\mbox{.}}{2019}]{fisher_all_2019}
+{\sc Fisher, A.}, {\sc Rudin, C.}, {\sc and} {\sc Dominici, F.} 2019.
+\newblock All {Models} are {Wrong}, but {Many} are {Useful}: {Learning} a
+  {Variable}'s {Importance} by {Studying} an {Entire} {Class} of {Prediction}
+  {Models} {Simultaneously}.
+\newblock {\em Journal of Machine Learning Research\/}~{\em 20,\/}~177, 1--81.
 
 \bibitem[\protect\citeauthoryear{Gagnon, Labrie, Desmarais, and
   Bhatnagar}{Gagnon et~al\mbox{.}}{2019}]{gagnon_filtering_2019}

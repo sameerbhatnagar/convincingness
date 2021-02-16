@@ -60,10 +60,14 @@
 		TMPI: aggregation of pairwise preference data to produce rankings 
 		ordered on quality (as judged by peers), followed by a regression task 
 		using a rich set of linguistic features as input to supervised learning 
-		algorithms that favour interpretability. 
+		algorithms.
 		We evaluate this methodology on publicly available datasets from 
 		argument mining research, and apply it to data from a TMPI learning 
-		environment spanning data from multiple disciplines.		
+		environment spanning data from multiple disciplines.
+		We compare feature-rich regression models that favour interpretability, 
+		with the current state-of-the-art neural approach, and provide 
+		insight as to the features and question types where modelling 
+		\textit{convincingess} for pedagogical support is most easily achieved.
 		\\ %Keep \\ for spacing to keywords		
 		{\parindent0pt
 			\textbf{Keywords:} 
@@ -460,6 +464,39 @@ possible in our methodological choices.)
 
 \section{Data}\label{sec:datasets}
 
+\begin{table}
+	\caption{Examples of argument pairs from each dataset. These examples were 
+		selected because they were incorrectly classified by all of our models, 
+		and 
+		demonstrate the challenging nature of the task. In each case, the 
+		argument 
+		labeled as more convincing is in \textit{italics}.}
+	\label{tab:sample_obs}
+	\begin{subtable}[t]{\textwidth}
+		\input{data/sample_obs_UKP}
+	\end{subtable}
+	\begin{subtable}[t]{\textwidth}
+		\input{data/sample_obs_IBM_ArgQ}
+	\end{subtable}
+\end{table}
+
+\begin{table}
+	\caption{Examples of argument pairs from each dataset. These examples were 
+		selected because they were incorrectly classified by all of our models, 
+		and 
+		demonstrate the challenging nature of the task. In each case, the 
+		argument 
+		labeled as more convincing is in \textit{italics}.}
+	\label{tab:sample_obs_dalite}
+	\begin{subtable}[t]{\textwidth}
+		\input{data/sample_obs_dalite}
+	\end{subtable}
+	\begin{subtable}[t]{\textwidth}
+	\input{data/sample_obs_ethics}
+	\end{subtable}
+\end{table}
+
+
 \subsection{Argument Mining Datasets}
 Much of our methodology is inspired by work on modelling argument quality along 
 the dimension of \textit{convincingness}, as described in section 
@@ -642,8 +679,23 @@ as in figure \ref{fig:make_pairs_a}(c).
 
 \begin{enumerate}
 	
-	\item \textbf{WinRate}, defined as the ratio of times an explanation is 
+	\item \textbf{WinRate\_raw}, defined as the ratio of times an explanation 
+	is 
 	chosen to the number of times it was shown.
+	This method does not take into account \textit{which} peer explanations 
+	were shown to each student, neglecting the potential impact of comparative 
+	judgment.
+	
+	\item \textbf{WinRate}: as described in \cite{potash_ranking_2019}, this 
+	measure argument quality is defined as the number of times it is chosen as 
+	more convincing in a pairwise comparison, normalized for the number pairs 
+	in which it appears. 
+	In the context of TMPI, when we calculate the \textit{WinRate} of a student 
+	eplanation after the data transformation depicted in figure 
+	\ref{fig:make_pairs_a}a and figure \ref{fig:make_pairs_a}b, we take a step 
+	towards including the effect of the comparative judgement, as pairs are 
+	specifically constructed for each observation from the explanation that was 
+	chosen, and the ones that were shown.
 	
 	\item \textbf{BT} score, which is the argument ``quality'' parameter 
 	estimated for each explanation, according to the \textit{Bradley-Terry} 
@@ -778,13 +830,13 @@ essays, automatic short answer scoring \cite{mohler_text--text_2009}.
 		question item text, and, when available, iii) a teacher provided 
 		``expert'' explanation.
 		\item we derive our own discipline specific embedding vectors, trained 
-		on corresponding open-source textbooks \footnote{https://openstax.org}. 
+		on corresponding open-source textbooks\footnote{https://openstax.org}. 
 		We experiment with a word-based vector space model, Latent Semantic 
 		Indexing (\verb|LSI|) \cite{deerwester_indexing_1990}, due to its 
 		prevalence in text analytics in educational data mining literature, as 
 		well as \verb|Doc2Vec| \cite{le_distributed_2014}, which directly 
-		models the compositionality of all the words in a sentence 
-		\footnote{model implementations from 
+		models the compositionality of all the words in a 
+		sentence\footnote{model implementations from 
 		https://radimrehurek.com/gensim/index.html}.
 		We take the text of the question prompt, as well as an ``expert 
 		explanation'' provided by teachers for each question, and determine the 
@@ -812,6 +864,35 @@ essays, automatic short answer scoring \cite{mohler_text--text_2009}.
 Features typical to NLP analyses in the context writing analytics that are not 
 included here are cohesion, sentiment, and psycho-linguistic features, as they 
 do not seem pertinent for shorter responses that deal with STEM disciplines.
+
+\subsection{Regression Models}
+
+The machine learning models we explore for the regression task are also 
+inspired from writing analytics literature, as well as the design objective, of 
+maximizing interpretability: the ability to explain predictions of which 
+students explanations are most \textit{convincing} is paramount in providing 
+pedagogical support to students an teachers.
+
+As has been described in related work, argument \textit{length} is a difficult 
+baseline to beat when modelling \textit{convincingness} in pariwise 
+preference data.
+The greater the amount of words, the greater the opportunity to construct a 
+convincing argument, and as such, we set explanation \verb|Length| (the number 
+of whitespace seperated tokens) as our regression baseline as well. 
+The models we include in this study are \verb|Linear| regression, 
+\verb|Decision Tree| regression, and \verb|Random Forest| regressors.
+So as to provide context with the current state of the art in point-wise 
+prediction of argument \textit{convincingness}, we also fine-tune a pre-trained 
+bi-directional neural transformer model, with argument mining reference 
+datasets, as well as the TMPI data from our three disciplines. 
+In line with the best performing model in \cite{gretz_large-scale_2019}, the 
+question prompt is combined with the student explanation, separated the 
+model-specific \verb|[SEP]| token, and input as a pair of text sequences during 
+fine-tuning and inference. 
+In what will henceforth be referred to as \verb|BERT_Q|, the contextual 
+embedding of the model-specific \verb|[CLS]| token in the last layer of the 
+fine-tuned transformer is fed as input into a fully dense regression layer, so 
+as to output a predicted \textit{convincingness} score.
 
  
 \subsection{Evaluation of methodology}\label{sec:methodology_eval}
@@ -944,8 +1025,11 @@ the second step of our proposed methodology is to address our second research
 question, \textbf{RQ2}, and build feature-rich supervised regression models to 
 predict the individual argument scores.
 We choose our feature sets based on relevant related research, as described in 
-section \ref{sec:features}. 
-
+section \ref{sec:features}, and use Pearson and Spearman correlation 
+coefficients to performance, as is standard practice in the litterature on 
+pointwise prediction of argument quality along the dimension of 
+\textit{convincingess}. 
+ 
 In order to estimate the generalizability of these models to new question 
 items, we employ a ``cross-topic'' cross-validation scheme, wherein we hold out 
 all of the answers on one question item as the test set, training models on all 
@@ -954,28 +1038,14 @@ This approach is meant to capture discipline specific linguistic patterns,
 while addressing a the ``cold-start'' problem for new items before vote data 
 can be collected.
 
-As has been described in related work, argument \textit{length} is a difficult 
-baseline to beat when modelling argument \textit{quality} in pariwise 
-preference data.
-The greater the amount of words, the greater the opportunity to construct a 
-convincing argument.
-The only way to counter this would be to have explanation pairs in the dataset 
-where the same logic is present, but more concisely in one argument than in the 
-other.
-Since we cannot guarantee the presence of such data, we control for explanation 
-length when training our feature-rich models. 
-Namely, for each question/topic, we bin the student explanations by quartile 
-for word-count, and then in our cross-topic validation scheme, we train and 
-test models on corresponding quartiles.
+Once feature-rich models are trained and tested under this validation scheme, 
+we inspect these using \textit{permutation importance}, based on 
+\textit{feature importance} introduced by \cite{breiman_random_2001} for random 
+forests, and generalized to be model agnostic by \cite{fisher_all_2019}: each 
+feature is randomly permuted for a set number of repetitions, and the 
+importance of that feature is measured by the average decrease in performance 
+of the model on the un-perturbed dataset.
 
-Finally the last piece of our methodology is based on practical considerations:
-more important than the real-valued \textit{convincingness} scores of all 
-student explanations, is the ability for teachers to be able to quickly 
-retrieve the top-K, or bottom-K ranked explanations for a particular question.
-Thus we borrow from information retrieval research, and calculate a variant of 
-\textit{precision@K}; e.g. how many of the top-5 ranked explanations (in 
-the top quartile of longest explanations) does our feature-rich regressor 
-capture in its own predicted top-5?
 
 
 \section{Results \& Discussion}\label{sec:model_results}
@@ -986,62 +1056,13 @@ TMPI learning environments, or more broadly speaking, any setting where there
 is an ordinal/comparative peer grading task for natural language student 
 submissions.
 
-One part of this methodological contribution is to frame the analysis as an 
-information retrieval task: given a set of TMPI observations for students who 
-each select a peer's explanation as more convincing than their own, taking into 
-account the subset of explanations they are presented with, can we 
-predict, based on linguistic properties of the explanations alone, which ones 
-will be in the top-K most \textit{convincing}?
-
-Figure \ref{fig:prec_at_K} gives an overview of our modelling results on the 
-TMPI data collected from myDALITE.org using the methodology we describe above.
-Each dot represents a question/topic from one of the reference AM datasets, or 
-from a discipline from our TMPI data.
-We plot the \textit{precision @ K} (where $K={1,3,5}$) of our feature-rich 
-regression model, as a function of the explanations/arguments in the held-out 
-test set.
-(
-The TMPI data all have a minimum of $N=20$ answers, due to the filtering 
-criteria we describe in section \ref{sec:dataset_dalite}, and the 
-disaagregation by word-count quartile.
-We do not apply same filters on the AM datasets, which explains why they are 
-all at the left of our plots.
-)
-
-\begin{figure}[H]
-	\scalebox{0.5}{\input{img/prec_at_K.pgf}}
-	\caption{
-		Evaluating of regression models tasked with predicting 
-		\textit{convincingness} score of arguments/TMPI-explanations based on 
-		linguistic features.
-		Evaluation metric is \textbf{precision @ K}, where we verify how many 
-		of the predicted top-K ranked explanations are in the measured top-K 
-		list (using ``winrate'' as a \textit{measure} of convincingness). 
-		Precision is plotted against the size of the test-set on the horizontal 
-		axis, under a cross-topic validation scheme.
-		The dashed line is an approximation of the probability of 
-		choosing the top-K explanations, purely by chance ($K/N$).
-		Each dot represents the performance on one held-out 
-		topic/TMPI-question-prompt, color-coded based on which 
-		dataset/discipline it originates from.
-		We compare Linear Regression with a Decision Tree Regressor in the two 
-		columns.
-	}
-	\label{fig:prec_at_K}
-\end{figure}
-
-An estimate of the baseline probability that a model would correctly choose the 
-top-$K$ explanations correctly out of $N$ items in the test set, at random, is 
-given by $n\choose r$=$\frac{n!}{r!(n-r)!}$. 
-(We plot a conservative estimate of this baseline in figure \ref{fig:prec_at_K},
-$K/N$).
-
-What we see is that \textit{precision @ K} for $K={1,3}$ remains a difficult 
-task, given the feature set we have started with, as the precision remains 
-below a random baseline for a larger relative proportion of question/topics.
-
-
-
+We begin by applying this methodology on publicly available argument-mining 
+datasets in table \ref{tab:arg_mining_y_ref}, wherein we use the linguistic 
+features described in section \ref{sec:features} (excluding those linked to any 
+specific disciplinary textbook).
+We train our different models to predict the real-valued 
+\textit{convincingness} score provided by these datasets, and report the 
+state-of-the-art (\textit{SotA}) Pearson and Spearman correlation coefficients.
 
 \begin{table}
 	\parbox{.45\linewidth}{
@@ -1058,8 +1079,40 @@ below a random baseline for a larger relative proportion of question/topics.
 \caption{Correlation between convincingness score predicted by 
 	different models, and the different ``ground truth'' reference score 
 	accompanying different argument mining datasets}
+\label{tab:arg_mining_y_ref}
 \end{table}
 
+It should be noted that the real-valued \textit{reference} scores that are 
+provided with the argument mining datasets, and are the target variables for 
+the model training in table \ref{tab:arg_mining_y_ref}, are each 
+calculated in different ways. 
+For example, in the \textbf{UKP} dataset, the ground truth 
+\textit{convincingess} score of each argument is derived by 
+constructing an argument graph, and calculating a variant of the PageRank 
+score, after removing cycles induced by the pairwise data (e.g. cases where 
+\textit{A} is more convincing \textit{B}, \textit{B} is more convincing than 
+\textit{C}, but \textit{C} is more convincing that \textit{A}).
+For \textbf{IBM\_ArgQ}, the real-valued score is the average of multiple binary 
+``relevance judgments'' explicitly collected from a set of crowd-labellers.
+Finally, the real-valued score accompanying arguments in \textbf{IBM\_Evi} are 
+the output of a regression layer that is appended to a two-armed siamese 
+Bi-LSTM model, wherein only one arm is provided with the a GloVe embedding of 
+the input argument.
+
+So as to be able to more consistently compare the impact of our methodological 
+choices across datasets, in tables \ref{tab:arg_mining_y_winrate} and 
+\ref{tab:arg_mining_y_BT}, we 
+train our models to predict a target variable that can be calculated from any 
+pairwise preference dataset, namely \textbf{WinRate} and \textbf{BT}.
+To the best of our knowledge, we are the first to propose and evaluate common 
+rank aggregation methods for the calculation of pointwise argument quality 
+scores from pairwise preference data.
+
+While our best performing feature-rich model (\verb|Random Forests|) beat the 
+\verb|Length| baseline, the fine-tuned neural transformer model \verb|BERT_Q| 
+dramatically outperforms across the three reference datasets, when all trained 
+for the same task, under the same cross-topic validation scheme, confirming 
+results from the literature.
 
 \begin{table}
 	\parbox{.45\linewidth}{
@@ -1078,8 +1131,43 @@ below a random baseline for a larger relative proportion of question/topics.
 		\textit{winrate} across pairwise preference data, for different 
 		argument mining datasets
 	}
+	\label{tab:arg_mining_y_winrate}
 \end{table}
 
+
+\begin{table}
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/ranking_y_BT_pearson}
+		\subcaption{Pearson correlation}
+	}
+	\hfill
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/ranking_y_BT_spearman}
+		\subcaption{Spearman correlation}
+	}
+	\caption{Correlation between convincingness score predicted by 
+		different models, and the convincingness score as given by the 
+		\textit{Bradley-Terry} score across pairwise preference data, for 
+		different 
+		argument mining datasets
+	}
+	\label{tab:arg_mining_y_BT}
+\end{table}
+
+When we move to extend this methodology to data from our three TMPI 
+discipline-specific datasets in tables \ref{tab:dalite_winrate} and 
+\ref{tab:dalite_BT}, we observe that while \verb|BERT_Q| is also clearly the 
+best performing model for the \textbf{Ethics} dataset, in \textbf{Physics} and 
+\textbf{Chemistry}, the \verb|Length| baseline is most correlated with 
+\textit{convincingness} scores, whether calculated via \textit{WinRate} or 
+\textit{Bradley-Terry}.
+This may be best explained by the inherent similarities between the 
+\textbf{Ethics} TMPI data, and the argument mining datasets: the topic prompts 
+are subjective and personal, and the available answer options students are to 
+choose from are also limited to two opposing stances of an argument, as can be 
+seen in the sample data in table \ref{tab:sample_data}
 
 
 \begin{table}
@@ -1099,8 +1187,70 @@ below a random baseline for a larger relative proportion of question/topics.
 		\textit{winrate} across pairwise preference data, for different 
 		disciplinary datasets from TMPI environment
 	}
+	\label{tab:dalite_winrate}
 \end{table}
 
+
+\begin{table}
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/ranking_dalite_y_BT_pearson}
+		\subcaption{Pearson correlation}
+	}
+	\hfill
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/ranking_dalite_y_BT_spearman}
+		\subcaption{Spearman correlation}
+	}
+	\caption{Correlation between convincingness score predicted by 
+		different models, and the convincingness score as given by the 
+		\textit{Bradley-Terry} score across pairwise preference data, for 
+		different disciplinary datasets from TMPI environment
+	}
+	\label{tab:dalite_BT}
+\end{table}
+
+
+\begin{table}
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/ranking_dalite_y_crowdBT_pearson}
+		\subcaption{Pearson correlation}
+	}
+	\hfill
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/ranking_dalite_y_crowdBT_spearman}
+		\subcaption{Spearman correlation}
+	}
+	\caption{Correlation between convincingness score predicted by 
+		different models, and the convincingness score as given by the 
+		\textit{Crowd-BT} scores across pairwise preference data, for different 
+		disciplinary datasets from TMPI environment
+	}
+	\label{tab:dalite_crowdBT}
+\end{table}
+
+\begin{table}
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/ranking_dalite_y_winrate_nopairs_pearson}
+		\subcaption{Pearson correlation}
+	}
+	\hfill
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/ranking_dalite_y_winrate_nopairs_spearman}
+		\subcaption{Spearman correlation}
+	}
+	\caption{Correlation between convincingness score predicted by 
+		different models, and the convincingness score as given by the 
+		\textit{winrate RAW} across pairwise preference data, for different 
+		disciplinary datasets from TMPI environment
+	}
+	\label{tab:dalite_winrate_nopairs}
+\end{table}
 
 
 
@@ -1202,3 +1352,84 @@ community.
 %	\caption{to do}
 %	\label{fig:acc_vs_time}
 %\end{figure}
+
+%One part of this methodological contribution is to frame the analysis as an 
+%information retrieval task: given a set of TMPI observations for students who 
+%each select a peer's explanation as more convincing than their own, taking 
+%into 
+%account the subset of explanations they are presented with, can we 
+%predict, based on linguistic properties of the explanations alone, which ones 
+%will be in the top-K most \textit{convincing}?
+%
+%Figure \ref{fig:prec_at_K} gives an overview of our modelling results on the 
+%TMPI data collected from myDALITE.org using the methodology we describe above.
+%Each dot represents a question/topic from one of the reference AM datasets, or 
+%from a discipline from our TMPI data.
+%We plot the \textit{precision @ K} (where $K={1,3,5}$) of our feature-rich 
+%regression model, as a function of the explanations/arguments in the held-out 
+%test set.
+%(
+%The TMPI data all have a minimum of $N=20$ answers, due to the filtering 
+%criteria we describe in section \ref{sec:dataset_dalite}, and the 
+%disaagregation by word-count quartile.
+%We do not apply same filters on the AM datasets, which explains why they are 
+%all at the left of our plots.
+%)
+%
+%\begin{figure}[H]
+%	\scalebox{0.5}{\input{img/prec_at_K.pgf}}
+%	\caption{
+%		Evaluating of regression models tasked with predicting 
+%		\textit{convincingness} score of arguments/TMPI-explanations based on 
+%		linguistic features.
+%		Evaluation metric is \textbf{precision @ K}, where we verify how many 
+%		of the predicted top-K ranked explanations are in the measured top-K 
+%		list (using ``winrate'' as a \textit{measure} of convincingness). 
+%		Precision is plotted against the size of the test-set on the horizontal 
+%		axis, under a cross-topic validation scheme.
+%		The dashed line is an approximation of the probability of 
+%		choosing the top-K explanations, purely by chance ($K/N$).
+%		Each dot represents the performance on one held-out 
+%		topic/TMPI-question-prompt, color-coded based on which 
+%		dataset/discipline it originates from.
+%		We compare Linear Regression with a Decision Tree Regressor in the two 
+%		columns.
+%	}
+%	\label{fig:prec_at_K}
+%\end{figure}
+%
+%An estimate of the baseline probability that a model would correctly choose 
+%the 
+%top-$K$ explanations correctly out of $N$ items in the test set, at random, is 
+%given by $n\choose r$=$\frac{n!}{r!(n-r)!}$. 
+%(We plot a conservative estimate of this baseline in figure 
+%\ref{fig:prec_at_K},
+%$K/N$).
+%
+%What we see is that \textit{precision @ K} for $K={1,3}$ remains a difficult 
+%task, given the feature set we have started with, as the precision remains 
+%below a random baseline for a larger relative proportion of question/topics.
+%
+
+%The only way to counter this would be to have explanation pairs in the dataset 
+%where the same logic is present, but more concisely in one argument than in 
+%the 
+%other.
+%Since we cannot guarantee the presence of such data, we control for 
+%explanation 
+%length when training our feature-rich models. 
+%Namely, for each question/topic, we bin the student explanations by quartile 
+%for word-count, and then in our cross-topic validation scheme, we train and 
+%test models on corresponding quartiles.
+
+%Finally the last piece of our methodology is based on practical considerations:
+%more important than the real-valued \textit{convincingness} scores of all 
+%student explanations, is the ability for teachers to be able to quickly 
+%retrieve the top-K, or bottom-K ranked explanations for a particular question.
+%Thus we borrow from information retrieval research, and calculate a variant of 
+%\textit{precision@K}; e.g. how many of the top-5 ranked explanations (in 
+%the top quartile of longest explanations) does our feature-rich regressor 
+%capture in its own predicted top-5?
+
+
+
