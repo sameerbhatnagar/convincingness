@@ -465,12 +465,15 @@ possible in our methodological choices.)
 \section{Data}\label{sec:datasets}
 
 \begin{table}
-	\caption{Examples of argument pairs from each dataset. These examples were 
-		selected because they were incorrectly classified by all of our models, 
-		and 
-		demonstrate the challenging nature of the task. In each case, the 
-		argument 
-		labeled as more convincing is in \textit{italics}.}
+	\caption{
+		Examples of argument pairs from each reference argument mining 
+		datasets. 
+		These examples were selected because they were incorrectly classified 
+		by all of our models, and demonstrate the challenging nature of the 
+		task. 
+		In each case, the argument labelled as more convincing is in 
+		\textit{italics}.
+	}
 	\label{tab:sample_obs}
 	\begin{subtable}[t]{\textwidth}
 		\input{data/sample_obs_UKP}
@@ -481,12 +484,14 @@ possible in our methodological choices.)
 \end{table}
 
 \begin{table}
-	\caption{Examples of argument pairs from each dataset. These examples were 
-		selected because they were incorrectly classified by all of our models, 
-		and 
-		demonstrate the challenging nature of the task. In each case, the 
-		argument 
-		labeled as more convincing is in \textit{italics}.}
+	\caption{
+		Examples of argument pairs from Physics and Ethics disciplines, taken 
+		from our TMPI environment. 
+		These examples were selected because they were incorrectly classified 
+		by all of our models, and demonstrate the challenging nature of the 
+		task. 
+		In each case, the argument labelled as more convincing is in 
+		\textit{italics}.}
 	\label{tab:sample_obs_dalite}
 	\begin{subtable}[t]{\textwidth}
 		\input{data/sample_obs_dalite}
@@ -1108,12 +1113,6 @@ To the best of our knowledge, we are the first to propose and evaluate common
 rank aggregation methods for the calculation of pointwise argument quality 
 scores from pairwise preference data.
 
-While our best performing feature-rich model (\verb|Random Forests|) beat the 
-\verb|Length| baseline, the fine-tuned neural transformer model \verb|BERT_Q| 
-dramatically outperforms across the three reference datasets, when all trained 
-for the same task, under the same cross-topic validation scheme, confirming 
-results from the literature.
-
 \begin{table}
 	\parbox{.45\linewidth}{
 		\centering
@@ -1156,6 +1155,12 @@ results from the literature.
 	\label{tab:arg_mining_y_BT}
 \end{table}
 
+While our best performing feature-rich model (\verb|Random Forests|) beat the 
+\verb|Length| baseline, the fine-tuned neural transformer model \verb|BERT_Q| 
+dramatically outperforms across the three reference datasets, when all trained 
+for the same task, under the same cross-topic validation scheme, confirming 
+results from the literature.
+
 When we move to extend this methodology to data from our three TMPI 
 discipline-specific datasets in tables \ref{tab:dalite_winrate} and 
 \ref{tab:dalite_BT}, we observe that while \verb|BERT_Q| is also clearly the 
@@ -1163,12 +1168,23 @@ best performing model for the \textbf{Ethics} dataset, in \textbf{Physics} and
 \textbf{Chemistry}, the \verb|Length| baseline is most correlated with 
 \textit{convincingness} scores, whether calculated via \textit{WinRate} or 
 \textit{Bradley-Terry}.
+
+
 This may be best explained by the inherent similarities between the 
 \textbf{Ethics} TMPI data, and the argument mining datasets: the topic prompts 
 are subjective and personal, and the available answer options students are to 
 choose from are also limited to two opposing stances of an argument, as can be 
-seen in the sample data in table \ref{tab:sample_data}
-
+seen in the sample data in tables \ref{tab:sample_obs} and 
+\ref{tab:sample_obs_dalite}. 
+As for the the \textbf{Physics} and \textbf{Chemistry} disciplines, no models 
+significantly outperform the \verb|Length| baseline, which seems to indicate 
+that, in general, students are simply more generally convinced by longer 
+explanations.
+This is true also when our rank aggregated score jointly estimates the 
+student's agreement with their peer's, as in the \textbf{CrowdBT} score 
+(results in table \ref{tab:dalite_crowdBT}).
+When we control for the number of words in the explanation training and testing 
+out models on only the longest explanations, we see ...\textbf{TO DO}...
 
 \begin{table}
 	\parbox{.45\linewidth}{
@@ -1211,6 +1227,27 @@ seen in the sample data in table \ref{tab:sample_data}
 	\label{tab:dalite_BT}
 \end{table}
 
+It should be noted that under our cross-topic validation scheme, different 
+question-level folds witness significantly better agreement between model 
+predictions and rank aggregated \textit{convincingness} scores.
+
+In both \textbf{Physics} and \textbf{Chemistry}, 3 of the 5 folds where our 
+models performed \textit{worst} were where the question prompt took the form:
+
+
+\textit{\begin{quote}
+	Which of the following statements is true/false?
+	\begin{enumerate}
+		\item ...
+		\item ...
+		\item ...
+	\end{enumerate}
+\end{quote}}
+
+We posit that the wide variety of language students use to formulate their 
+explanations in such a multiple choice question item, many describing their 
+internal process of elimination to find the correct answer choice, represents 
+patterns our models are not able to learn in the training data.
 
 \begin{table}
 	\parbox{.45\linewidth}{
@@ -1240,7 +1277,7 @@ seen in the sample data in table \ref{tab:sample_data}
 	}
 	\hfill
 	\parbox{.45\linewidth}{
-		\centering
+	\centering
 		\input{data/ranking_dalite_y_winrate_nopairs_spearman}
 		\subcaption{Spearman correlation}
 	}
@@ -1252,7 +1289,47 @@ seen in the sample data in table \ref{tab:sample_data}
 	\label{tab:dalite_winrate_nopairs}
 \end{table}
 
+Our contributions are centred on our research questions stated at the beginning 
+of this study. 
+In terms of \textbf{RQ1}, we present a methodology grounded in argument mining 
+research and empirically demonstrate its validity in the context of TMPI.
 
+In an effort to provide insight into our \textbf{RQ2}, we look at out best 
+performing folds of our regression task, and note the features with the highest 
+permutation importance:
+
+\begin{itemize}
+	\item Type Token Ratio
+	\item Readbility Dale-Chall
+	\item Number Equations
+	\item Vector Similarity to others (GloVe)
+	\item Vector Similiarity to related portion of textbook using LSI
+	\item Number of spelling errors
+	\item Fleich Kincaid reading ease
+	\item Mathematical expressions used as a VERB e.g. $F=ma$ \textit{tells us 
+	that ...}
+\end{itemize}
+
+Another approach we explore to determine which linguistic features are most 
+associated with explanations that are deemed \textit{convincing} by students is 
+by taking out best performing neural transformer model, \verb|BERT_Q|, and 
+finding the features most correlated with its predicted rankings. 
+
+%surface_TTR                               -0.479792
+%readability_flesch_kincaid_reading_ease   -0.474920
+%surface_n_content_words                    0.597407
+%lexical_n_equations                        0.636202
+
+It is these types of features that can provide pedagogical insight to 
+instructors when parsing through data generated inside TMPI based activities.
+These features are predictive of what the students find most convincing in 
+their peer's explanations, and hence offer a much needed lens into how students 
+operate when at the upper levels of Bloom's taxonomy, evalautiong one anothers 
+words in a comparative setting.
+
+\section{Limitations \& Future Work}
+
+\textbf{TO DO}
 
 \section{Acknowledgements}
 Funding for the development of myDALITE.org is made possible by 
