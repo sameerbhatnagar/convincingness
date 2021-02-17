@@ -1183,8 +1183,10 @@ explanations.
 This is true also when our rank aggregated score jointly estimates the 
 student's agreement with their peer's, as in the \textbf{CrowdBT} score 
 (results in table \ref{tab:dalite_crowdBT}).
-When we control for the number of words in the explanation training and testing 
-out models on only the longest explanations, we see ...\textbf{TO DO}...
+
+%When we control for the number of words in the explanation training and 
+%testing 
+%out models on only the longest explanations, we see ...\textbf{TO DO}...
 
 \begin{table}
 	\parbox{.45\linewidth}{
@@ -1231,23 +1233,15 @@ It should be noted that under our cross-topic validation scheme, different
 question-level folds witness significantly better agreement between model 
 predictions and rank aggregated \textit{convincingness} scores.
 
-In both \textbf{Physics} and \textbf{Chemistry}, 3 of the 5 folds where our 
-models performed \textit{worst} were where the question prompt took the form:
-
-
-\textit{\begin{quote}
-	Which of the following statements is true/false?
-	\begin{enumerate}
-		\item ...
-		\item ...
-		\item ...
-	\end{enumerate}
-\end{quote}}
-
-We posit that the wide variety of language students use to formulate their 
-explanations in such a multiple choice question item, many describing their 
-internal process of elimination to find the correct answer choice, represents 
-patterns our models are not able to learn in the training data.
+In both \textbf{Physics} and \textbf{Chemistry}, the question-level folds where 
+our models performed \textit{worst} were with question prompts which ask 
+students to choose one true statement from among a selection (e.g. 
+\textit{Which of the following statements about the force of gravity is 
+false? a) ..., b) ...,}).
+We posit that the language students use to formulate their explanations in such 
+a multiple choice question item, many describing their internal process of 
+elimination to find the correct answer choice, include patterns our models are 
+not able to learn in the training data.
 
 \begin{table}
 	\parbox{.45\linewidth}{
@@ -1283,7 +1277,7 @@ patterns our models are not able to learn in the training data.
 	}
 	\caption{Correlation between convincingness score predicted by 
 		different models, and the convincingness score as given by the 
-		\textit{winrate RAW} across pairwise preference data, for different 
+		\textit{raw winrate} across pairwise preference data, for different 
 		disciplinary datasets from TMPI environment
 	}
 	\label{tab:dalite_winrate_nopairs}
@@ -1293,6 +1287,23 @@ Our contributions are centred on our research questions stated at the beginning
 of this study. 
 In terms of \textbf{RQ1}, we present a methodology grounded in argument mining 
 research and empirically demonstrate its validity in the context of TMPI.
+We present the result of different approaches to rank aggregation from pairwise 
+preference data so as to calculate a \textit{convincingness} score for each 
+student explanation.
+The pairwise transformation of TMPI data, into a format similar to research 
+from argument research (as described in figure \ref{fig:make_pairs_a}) allows 
+for a comparison to related work. 
+The modelling results when we train out models to predict the \textit{raw 
+winrate} are significantly worse (table \ref{tab:dalite_winrate_nopairs}) than 
+any of the other rank aggregation methods.
+This confirms the findings of \cite{potash_ranking_2019}, who first proposed 
+that the heuristic, pairwise \textit{winrate} as a more reliable regression 
+target.
+With such simple methods as \textit{winrate} and the \textit{Bradley-Terry} 
+scores to measure and rank student explanations in a TMPI environment, 
+instructors reports can focus attention of the points where students may have 
+gaps in their knowledge, based on their reading/evaluating of their peers' 
+explanations.
 
 In an effort to provide insight into our \textbf{RQ2}, we look at out best 
 performing folds of our regression task, and note the features with the highest 
@@ -1300,20 +1311,22 @@ permutation importance:
 
 \begin{itemize}
 	\item Type Token Ratio
-	\item Readbility Dale-Chall
+	\item Dale-Chall Readability score
 	\item Number Equations
 	\item Vector Similarity to others (GloVe)
 	\item Vector Similiarity to related portion of textbook using LSI
 	\item Number of spelling errors
-	\item Fleich Kincaid reading ease
+	\item Fleich Kincaid reading ease score
 	\item Mathematical expressions used as a VERB e.g. $F=ma$ \textit{tells us 
 	that ...}
 \end{itemize}
 
 Another approach we explore to determine which linguistic features are most 
-associated with explanations that are deemed \textit{convincing} by students is 
-by taking out best performing neural transformer model, \verb|BERT_Q|, and 
+associated with explanations that are deemed \textit{convincing} by students, 
+is taking our best performing neural transformer model, \verb|BERT_Q|, and 
 finding the features most correlated with its predicted rankings. 
+We find that the same features which are list above, are also those most highly 
+correlated with the predicted \textit{convincingness} score
 
 %surface_TTR                               -0.479792
 %readability_flesch_kincaid_reading_ease   -0.474920
@@ -1329,7 +1342,30 @@ words in a comparative setting.
 
 \section{Limitations \& Future Work}
 
-\textbf{TO DO}
+Two of the most important differences between TMPI data, and datasets from 
+argument mining research in \textit{convincingness}, are centred on the 
+``student as labeller''. 
+
+First, in a traditional crowdsourcing setting, the people who choose the most 
+convincing explanations are not the ones who wrote them.
+In TMPI, the student will be comparing their peers' explanations with each 
+other, but against the explanation they just submitted as well.
+The effect of this can be seen in the 1 in 2 chance that students decide to 
+``stick to their own'' explanation in this TMPI platform. 
+
+Second, typical crowdsourcing tasks include filtering questions which are meant 
+to ensure that the workers are qualified and taking the task seriously.
+While the \textit{crowdBT} rank aggregation method jointly estimates the 
+student's ``seriousness'' at the labelling task, the almost null improvement of 
+regression results in table \ref{tab:dalite_crowdBT} seem to indicate that this 
+may not be the best approach: the measure of how much a student ``agrees'' with 
+the rest of the crowd may not be a useful piece of information in estimating 
+the overall convincingness.
+The next steps in our research will be to include student-level and 
+question-level features into our analysis (e.g. student strength, question 
+difficulty).
+
+
 
 \section{Acknowledgements}
 Funding for the development of myDALITE.org is made possible by 
