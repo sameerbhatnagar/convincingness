@@ -281,13 +281,18 @@ def main(
 
     results = []
     if long_only:
-        quartiles = QUARTILES[-1:]
+        q_min = 0.70
+        q_max = 0.95
     else:
-        quartiles = QUARTILES
+        q_min = 0.
+        q_max = 1.
+
+    MIN_WORDS=df["surface_n_words"].quantile(q=q_min)
+    MAX_WORDS=df["surface_n_words"].quantile(q=q_max)
 
     for target in targets:
         print(target)
-        drop_cols = ["topic", "wc_bin", target]
+        drop_cols = ["topic", "wc_bin","surface_n_words", target]
         all_columns = (
             numeric_columns
             + binary_columns
@@ -302,15 +307,19 @@ def main(
         df2 = df[all_columns + ["id"]]  # .dropna()
 
         for t, topic in enumerate(topics):
-            df_train = df2[
-                (df2["topic"] != topic) & (df2["wc_bin"].isin(quartiles))
-            ].dropna(subset=[target])
+            df_train = df2[(
+                (df2["topic"] != topic)
+                &(df2["surface_n_words"]>=MIN_WORDS)
+                &(df2["surface_n_words"]<MAX_WORDS)
+            )].dropna(subset=[target])
             y_train = df_train[target]
             X_train_df = df_train.drop(drop_cols + ["id"], axis=1)
 
-            df_test = df2[
-                (df2["topic"] == topic) & (df2["wc_bin"].isin(quartiles))
-            ].dropna(subset=[target])
+            df_test = df_train = df2[(
+                (df2["topic"] == topic)
+                &(df2["surface_n_words"]>=MIN_WORDS)
+                &(df2["surface_n_words"]<MAX_WORDS)
+            )].dropna(subset=[target])
             y_test = df_test[target].fillna(df_test[target].mean())
             X_test_df = df_test.drop(drop_cols + ["id"], axis=1)
             X_test_df_lookup = df_test.drop(drop_cols, axis=1)
@@ -323,7 +332,8 @@ def main(
                 if clf_name == "length":
                     if task == "classif":
                         df_train = (
-                            df[(df["topic"] != topic) & (df["wc_bin"].isin(quartiles))]
+                            df[(df["topic"] != topic) & (df["surface_n_words"]>=MIN_WORDS)
+                            &(df["surface_n_words"]<MAX_WORDS)]
                             .dropna(subset=[target])["rationale"]
                             .str.count("\w+")
                             .values.reshape(-1, 1)

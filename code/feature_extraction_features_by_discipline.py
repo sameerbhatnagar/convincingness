@@ -37,9 +37,9 @@ BINARY_COLUMNS["IBM_ArgQ"]=BINARY_COLUMNS["UKP"]
 BINARY_COLUMNS["IBM_Evi"]=BINARY_COLUMNS["UKP"]
 
 TARGETS = {}
-TARGETS["Physics"]=['y_winrate', 'y_elo', 'y_BT', 'y_winrate_nopairs','y_crowdBT']
+TARGETS["Physics"]=['y_winrate', 'y_BT','y_crowdBT'] # y_elo,'y_winrate_nopairs'
 TARGETS["Chemistry"]=TARGETS["Physics"]
 TARGETS["Ethics"]=TARGETS["Physics"]
-TARGETS["UKP"] = ['y_reference','y_winrate', 'y_elo', 'y_BT']
+TARGETS["UKP"] = ['y_reference','y_winrate', 'y_BT'] # 'y_elo'
 TARGETS["IBM_ArgQ"] = TARGETS["UKP"]
 TARGETS["IBM_Evi"] = TARGETS["UKP"]
