@@ -193,7 +193,11 @@ def main(
         None,
         str,
         ["all","y_winrate_nopairs","y_winrate","y_BT","y_elo","y_crowdBT"],
-    )
+    ),
+    long_only: (
+        "focus only on long explanations",
+        "flag", "l", bool,
+    ),
 ):
 
     df = load_data(discipline, output_dir_name)
@@ -276,7 +280,10 @@ def main(
         )
 
     results = []
-    quartiles = QUARTILES
+    if long_only:
+        quartiles = QUARTILES[-1:]
+    else:
+        quartiles = QUARTILES
 
     for target in targets:
         print(target)
@@ -370,14 +377,24 @@ def main(
                 results.append(d)
 
             population = "switchers"
-            fp = os.path.join(
-                BASE_DIR,
-                "tmp",
-                output_dir_name,
-                discipline,
-                population,
-                f"pred_rank_score_{task}_{target}_{discipline}_{population}.json",
-            )
+            if long_only:
+                fp = os.path.join(
+                    BASE_DIR,
+                    "tmp",
+                    output_dir_name,
+                    discipline,
+                    population,
+                    f"pred_rank_score_{task}_{target}_{discipline}_{population}_longest.json",
+                )
+            else:
+                fp = os.path.join(
+                    BASE_DIR,
+                    "tmp",
+                    output_dir_name,
+                    discipline,
+                    population,
+                    f"pred_rank_score_{task}_{target}_{discipline}_{population}.json",
+                )
             with open(fp, "w") as f:
                 json.dump(results, f,indent=2)
 
