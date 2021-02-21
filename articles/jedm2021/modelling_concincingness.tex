@@ -1081,9 +1081,10 @@ state-of-the-art (\textit{SotA}) Pearson and Spearman correlation coefficients.
 		\input{data/ranking_y_reference_spearman}
 		\subcaption{Spearman correlation}
 	}
-\caption{Correlation between convincingness score predicted by 
-	different models, and the different ``ground truth'' reference score 
-	accompanying different argument mining datasets}
+\caption{Average correlation (under cross-topic validation scheme) between
+	convincingness score predicted by different models, and the different 
+	``ground truth'' reference score accompanying different argument mining 
+	datasets}
 \label{tab:arg_mining_y_ref}
 \end{table}
 
@@ -1125,10 +1126,11 @@ scores from pairwise preference data.
 		\input{data/ranking_y_winrate_spearman}
 		\subcaption{Spearman correlation}
 	}
-	\caption{Correlation between convincingness score predicted by 
-		different models, and the convincingness score as given by the 
-		\textit{winrate} across pairwise preference data, for different 
-		argument mining datasets
+	\caption{
+		Average correlation (under cross-topic validation scheme) between 
+		convincingness score predicted by different models, and the 
+		convincingness score as given by the \textit{winrate} across pairwise 
+		preference data, for different argument mining datasets
 	}
 	\label{tab:arg_mining_y_winrate}
 \end{table}
@@ -1146,11 +1148,11 @@ scores from pairwise preference data.
 		\input{data/ranking_y_BT_spearman}
 		\subcaption{Spearman correlation}
 	}
-	\caption{Correlation between convincingness score predicted by 
-		different models, and the convincingness score as given by the 
-		\textit{Bradley-Terry} score across pairwise preference data, for 
-		different 
-		argument mining datasets
+	\caption{
+		Average correlation (under cross-topic validation scheme) between 
+		convincingness score predicted by different models, and the 
+		convincingness score as given by the \textit{Bradley-Terry} score 
+		across pairwise preference data, for different argument mining datasets
 	}
 	\label{tab:arg_mining_y_BT}
 \end{table}
@@ -1200,10 +1202,12 @@ student's agreement with their peer's, as in the \textbf{CrowdBT} score
 	\input{data/ranking_dalite_y_winrate_spearman}
 		\subcaption{Spearman correlation}
 	}
-	\caption{Correlation between convincingness score predicted by 
-		different models, and the convincingness score as given by the 
-		\textit{winrate} across pairwise preference data, for different 
-		disciplinary datasets from TMPI environment
+	\caption{
+		Average correlation (under cross-topic validation scheme)between 
+		convincingness score predicted by different models, and the 
+		convincingness score as given by the \textit{winrate} across pairwise 
+		preference data, for different disciplinary datasets from TMPI 
+		environment
 	}
 	\label{tab:dalite_winrate}
 \end{table}
@@ -1221,10 +1225,12 @@ student's agreement with their peer's, as in the \textbf{CrowdBT} score
 		\input{data/ranking_dalite_y_BT_spearman}
 		\subcaption{Spearman correlation}
 	}
-	\caption{Correlation between convincingness score predicted by 
-		different models, and the convincingness score as given by the 
-		\textit{Bradley-Terry} score across pairwise preference data, for 
-		different disciplinary datasets from TMPI environment
+	\caption{
+		Average correlation (under cross-topic validation scheme) between 
+		convincingness score predicted by different models, and the 
+		convincingness score as given by the \textit{Bradley-Terry} score 
+		across pairwise preference data, for different disciplinary datasets 
+		from TMPI environment
 	}
 	\label{tab:dalite_BT}
 \end{table}
@@ -1255,10 +1261,12 @@ not able to learn in the training data.
 		\input{data/ranking_dalite_y_crowdBT_spearman}
 		\subcaption{Spearman correlation}
 	}
-	\caption{Correlation between convincingness score predicted by 
-		different models, and the convincingness score as given by the 
-		\textit{Crowd-BT} scores across pairwise preference data, for different 
-		disciplinary datasets from TMPI environment
+	\caption{
+		Average correlation (under cross-topic validation scheme) between 
+		convincingness score predicted by different models, and the 
+		convincingness score as given by the \textit{Crowd-BT} scores across 
+		pairwise preference data, for different disciplinary datasets from TMPI 
+		environment
 	}
 	\label{tab:dalite_crowdBT}
 \end{table}
@@ -1275,12 +1283,112 @@ not able to learn in the training data.
 		\input{data/ranking_dalite_y_winrate_nopairs_spearman}
 		\subcaption{Spearman correlation}
 	}
-	\caption{Correlation between convincingness score predicted by 
-		different models, and the convincingness score as given by the 
-		\textit{raw winrate} across pairwise preference data, for different 
-		disciplinary datasets from TMPI environment
+	\caption{
+		Average correlation (under cross-topic validation scheme) between 
+		convincingness score predicted by different models, and the 
+		convincingness score as given by the \textit{raw winrate} across 
+		pairwise preference data, for different disciplinary datasets from TMPI 
+		environment
 	}
 	\label{tab:dalite_winrate_nopairs}
+\end{table}
+
+
+\subsection{Controlling for explanation length}
+\begin{table}
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/longest/ranking_y_winrate_pearson_longest}
+		\subcaption{Pearson correlation}
+	}
+	\hfill
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/longest/ranking_y_winrate_spearman_longest}
+		\subcaption{Spearman correlation}
+	}
+	\caption{
+		Average correlation (under cross-topic validation scheme) between 
+		convincingness score predicted by different models, and the 
+		convincingness score as given by the \textit{WinRate} across pairwise 
+		preference data, for different disciplinary datasets from reference 
+		argument mining datasets, on subset of data which includes only the 
+		explanations within the top quartile of word counts.
+	}
+	\label{tab:winrate_longest}
+\end{table}
+
+
+\begin{table}
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/longest/ranking_y_BT_pearson_longest}
+		\subcaption{Pearson correlation}
+	}
+	\hfill
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/longest/ranking_y_BT_spearman_longest}
+		\subcaption{Spearman correlation}
+	}
+	\caption{
+		Average correlation (under cross-topic validation scheme) between 
+		convincingness score predicted by different models, and the 
+		convincingness score as given by the \textit{BradleyTerry} across 
+		pairwise preference data, for different disciplinary datasets from 
+		reference argument mining datasets, on subset of data which includes 
+		only the explanations within the top quartile of word counts.
+	}
+	\label{tab:BT_longest}
+\end{table}
+
+
+
+\begin{table}
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/longest/ranking_dalite_y_winrate_pearson_longest}
+		\subcaption{Pearson correlation}
+	}
+	\hfill
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/longest/ranking_dalite_y_winrate_spearman_longest}
+		\subcaption{Spearman correlation}
+	}
+	\caption{
+		Average correlation (under cross-topic validation scheme) between 
+		convincingness score predicted by different models, and the 
+		convincingness score as given by the \textit{WinRate} across pairwise 
+		preference data, for different disciplinary datasets from TMPI 
+		environment, on subset of data which includes only the explanations 
+		within the top quartile of word counts
+	}
+	\label{tab:dalite_winrate_longest}
+\end{table}
+
+
+\begin{table}
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/longest/ranking_dalite_y_BT_pearson_longest}
+		\subcaption{Pearson correlation}
+	}
+	\hfill
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/longest/ranking_dalite_y_BT_spearman_longest}
+		\subcaption{Spearman correlation}
+	}
+	\caption{
+		Average correlation (under cross-topic validation scheme) between 
+		convincingness score predicted by different models, and the 
+		convincingness score as given by the \textit{WinRate} across pairwise 
+		preference data, for different disciplinary datasets from TMPI 
+		environment, on subset of data which includes only the explanations 
+		within the top quartile of word counts
+	}
+	\label{tab:dalite_BT_longest}
 \end{table}
 
 Our contributions are centred on our research questions stated at the beginning 
