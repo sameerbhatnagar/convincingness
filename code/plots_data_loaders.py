@@ -3,7 +3,6 @@ import json
 import pandas as pd
 
 from argBT import (
-    get_rankings_wc,
     get_rankings_winrate_no_pairs,
     get_rankings_winrate,
     get_rankings_BT,

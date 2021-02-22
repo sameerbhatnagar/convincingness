@@ -8,8 +8,6 @@ import pandas as pd
 
 import spacy
 
-nlp = spacy.load("en_core_web_md")
-
 from sklearn.metrics import accuracy_score, f1_score
 from scipy.stats import kendalltau, rankdata
 from scipy.stats import beta as beta_dist
@@ -73,7 +71,8 @@ def get_rankings_wc(df_train):
     """
     ranking = Word Count
     """
-
+    nlp = spacy.load("en_core_web_md")
+    
     rationales = df_train[["rationale", "id"]].values
     ranks_dict = {
         "arg{}".format(arg_id): len(

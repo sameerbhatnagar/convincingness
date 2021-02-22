@@ -33,8 +33,6 @@ from feature_extraction_features_by_discipline import (
     TARGETS,
 )
 
-nlp = spacy.load("en_core_web_md")
-
 CONV_THRESH_RATIO = 0.75
 QUARTILES = ["Q1", "Q2", "Q3", "Q4"]
 
@@ -48,6 +46,8 @@ def white_space_analyzer(text):
 def append_pos_rationale_representations(df):
     """
     """
+    nlp = spacy.load("en_core_web_md")
+
     d = list(
         zip(
             df["id"].to_list(),
@@ -200,7 +200,16 @@ def main(
     ),
 ):
 
-    df = load_data(discipline, output_dir_name)
+    population = "switchers"
+
+    fp_data = os.path.join(BASE_DIR,"tmp",output_dir_name,discipline,population,f"df_all_features_{discipline}.csv")
+    try:
+        df=pd.read_csv(fp_data)
+        pos_data_already_loaded_flag = True
+        print("loaded pre-saved data")
+    except FileNotFoundError:
+        pos_data_already_loaded_flag = False
+        df = load_data(discipline, output_dir_name)
 
     topics = df["topic"].value_counts().index.tolist()
     if target == "all":
@@ -243,8 +252,10 @@ def main(
         ]
 
     # calculate POS and other representations of rationale text
-    print(f"calculate POS and other representations of rationale text")
-    df = append_pos_rationale_representations(df)
+    if not pos_data_already_loaded_flag:
+        print(f"calculate POS and other representations of rationale text")
+        df = append_pos_rationale_representations(df)
+        df.to_csv(fp_data)
 
     numeric_columns = NUMERIC_COLUMNS[discipline]
     binary_columns = BINARY_COLUMNS[discipline]
@@ -279,7 +290,6 @@ def main(
             SelectKBest(score_func=f_regression, k=768),
         )
 
-    results = []
     if long_only:
         q_min = 0.70
         q_max = 0.95
@@ -306,7 +316,36 @@ def main(
         )
         df2 = df[all_columns + ["id"]]  # .dropna()
 
-        for t, topic in enumerate(topics):
+        if long_only:
+            fp = os.path.join(
+                BASE_DIR,
+                "tmp",
+                output_dir_name,
+                discipline,
+                population,
+                f"pred_rank_score_{task}_{target}_{discipline}_{population}_longest.json",
+            )
+        else:
+            fp = os.path.join(
+                BASE_DIR,
+                "tmp",
+                output_dir_name,
+                discipline,
+                population,
+                f"pred_rank_score_{task}_{target}_{discipline}_{population}.json",
+            )
+        try:
+            with open(fp, "r") as f:
+                results=json.load(f)
+            topics_already_done = [r["topic"] for r in results]
+
+        except FileNotFoundError:
+            results = []
+            topics_already_done = []
+
+        topics_to_do = [t for t in topics if t not in topics_already_done]
+
+        for t, topic in enumerate(topics_to_do):
             df_train = df2[(
                 (df2["topic"] != topic)
                 &(df2["surface_n_words"]>=MIN_WORDS)
@@ -320,11 +359,20 @@ def main(
                 &(df2["surface_n_words"]>=MIN_WORDS)
                 &(df2["surface_n_words"]<MAX_WORDS)
             )].dropna(subset=[target])
+
+            if df_test.shape[0]==0:
+                print(f"\t\t Not enough explanations in test set, lowering threshold")
+                df_test = df_train = df2[(
+                    (df2["topic"] == topic)
+                    &(df2["surface_n_words"]>=MIN_WORDS/2)
+                    &(df2["surface_n_words"]<MAX_WORDS)
+                )].dropna(subset=[target])
+
             y_test = df_test[target].fillna(df_test[target].mean())
             X_test_df = df_test.drop(drop_cols + ["id"], axis=1)
             X_test_df_lookup = df_test.drop(drop_cols, axis=1)
 
-            print(f"\t{t} : {topic}")
+            print(f"\t{t}/{len(topics_to_do)} : {topic}")
             print(f"\t train: {X_train_df.shape}; test: {X_test_df.shape}")
 
             for clf_name, clf in clfs:
@@ -386,25 +434,6 @@ def main(
                 d["features"] = important_features
                 results.append(d)
 
-            population = "switchers"
-            if long_only:
-                fp = os.path.join(
-                    BASE_DIR,
-                    "tmp",
-                    output_dir_name,
-                    discipline,
-                    population,
-                    f"pred_rank_score_{task}_{target}_{discipline}_{population}_longest.json",
-                )
-            else:
-                fp = os.path.join(
-                    BASE_DIR,
-                    "tmp",
-                    output_dir_name,
-                    discipline,
-                    population,
-                    f"pred_rank_score_{task}_{target}_{discipline}_{population}.json",
-                )
             with open(fp, "w") as f:
                 json.dump(results, f,indent=2)
 
