@@ -53,17 +53,17 @@
 		students submit explanations to justify their reasoning, and are 
 		subsequently prompted to reconsider their own answer by being presented 
 		with explanations written by their peers. 
-		We frame this as an instance of comparative judgment, as applied to 
-		evaluating the quality of natural language arguments, along the 
-		dimension of \textit{convincingness}.
+		When a student chooses a peer's explanation in this setting, we cast 
+		this as a vote in favour of the quality of the argument therein.
 		This study proposes a two-step methodology for modelling data from 
 		TMPI: aggregation of pairwise preference data to produce rankings 
-		ordered on quality (as judged by peers), followed by a regression task 
-		using a rich set of linguistic features as input to supervised learning 
-		algorithms.
-		We evaluate this methodology on publicly available datasets from 
-		argument mining research, and apply it to data from a TMPI learning 
-		environment spanning data from multiple disciplines.
+		ordered on the \textit{convincingness} of student explanations (as 
+		judged by peers), followed by a regression task, using a rich set of 
+		linguistic features as input to supervised learning algorithms.
+		We apply and evaluate this methodology to data from a TMPI learning 
+		environment spanning data from multiple disciplines, and compare 
+		results with those attained on publicly available datasets from 
+		argument mining research. 
 		We compare feature-rich regression models that favour interpretability, 
 		with the current state-of-the-art neural approach, and provide 
 		insight as to the features and question types where modelling 
@@ -101,7 +101,7 @@ The student now has three options:
 Whenever the student goes with either of the first two scenarios above, we 
 frame this as ``casting a vote'' for the chosen peer explanation.
 
-Moreover, when one of the answer choices is labelled at ``correct'', and the 
+Moreover, when one of the answer choices is labelled as ``correct'', and the 
 other are ``incorrect'', as is often the case in question items from the STEM 
 disciplines, the three possibilities above can produce one of four 
 \textit{transitions}: Right $\rightarrow$ Right, Right $\rightarrow$ Wrong, 
@@ -157,8 +157,19 @@ TMPI platform we study, are shown in the Sankey diagram of figure
 \end{figure}
 
 
-The design and growing popularity of TMPI is inspired by three schools of 
-thought: firstly, prompting students to explain their reasoning is beneficial 
+The design and growing popularity of TMPI can be explained by the rise to 
+prevalence of classroom based \textit{Peer Instruction} (PI) 
+\cite{crouch_peer_2001}, often mediated by automated response systems (e.g. 
+clickers).
+Synchronous, classroom based PI is an effective component in the teaching 
+practice of instructors looking to drive student engagement as part of an 
+active learning experience \cite{charles_beyond_2015}. 
+In discussing with peers \textit{after} they have formulated their own 
+reasoning, students are engaged in a higher order thinking task from Bloom's 
+taxonomy, as they evaluate what is the strongest argument, before answering 
+again.
+
+Prompting students to explain their reasoning is beneficial 
 to their learning \cite{chi_eliciting_1994}. 
 Deliberate practice of argumentation in defence of one's ideas has been shown 
 to improve informal reasoning for science students \cite{venville_impact_2010}.
@@ -166,17 +177,12 @@ There exists empirical evidence on the positive relationship between
 constructing formally sound arguments and deep cognitive elaboration, as well 
 as individual acquisition of knowledge \cite{stegmann_collaborative_2012}.
 
-Second, classroom based \textit{Peer Instruction} \cite{crouch_peer_2001}, 
-often mediated by automated response systems (e.g. clickers), has become a 
-prevalent, and often effective component in the teaching practice of 
-instructors looking to drive student engagement as part of an active learning 
-experience \cite{charles_beyond_2015}. 
-In discussing with peers \textit{after} they have formulated their own 
-reasoning, students are engaged in a higher order thinking task from Bloom's 
-taxonomy, as they evaluate what is the strongest argument, before answering 
-again.
-
-Thirdly, by capturing data on which explanations students find most convincing, 
+TMPI platforms augment asynchronous, multiple-choice formative assessment 
+questions, by not only prompting students for their answer choice, but giving 
+them an opportunity to explain their reasoning.
+Moreover, students can receive a form of aggregated peer feedback, in how many 
+times their explanations are chosen as \textit{convincing} by their colleagues.
+Finally, by capturing data on which explanations students find most convincing, 
 TMPI affords teachers the opportunity to mitigate the ``expert blind spot'' 
 \cite{nathan_expert_2001}, addressing student misconceptions they might not 
 otherwise have thought of.
