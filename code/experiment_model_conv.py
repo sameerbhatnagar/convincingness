@@ -360,7 +360,7 @@ def main(
                 &(df2["surface_n_words"]<MAX_WORDS)
             )].dropna(subset=[target])
 
-            if df_test.shape[0]==0:
+            if df_test.shape[0]<2:
                 print(f"\t\t Not enough explanations in test set, lowering threshold")
                 df_test = df_train = df2[(
                     (df2["topic"] == topic)
