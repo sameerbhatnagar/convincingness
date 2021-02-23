@@ -180,41 +180,46 @@ as individual acquisition of knowledge \cite{stegmann_collaborative_2012}.
 TMPI platforms augment asynchronous, multiple-choice formative assessment 
 questions, by not only prompting students for their answer choice, but giving 
 them an opportunity to explain their reasoning.
-Moreover, students can receive a form of aggregated peer feedback, in how many 
-times their explanations are chosen as \textit{convincing} by their colleagues.
+Moreover, students can receive a form of aggregated peer feedback on their 
+explanations, in how many times their submissions are chosen as 
+\textit{convincing} by their colleagues.
 Finally, by capturing data on which explanations students find most convincing, 
 TMPI affords teachers the opportunity to mitigate the ``expert blind spot'' 
 \cite{nathan_expert_2001}, addressing student misconceptions they might not 
 otherwise have thought of.
 
-We situate student explanations from TMPI, in the context of computational 
-argumentation, a sub-field of NLP focused on identifying argumentative 
-components, and in their links to one another.
+We situate our work in the context of computational argumentation, a sub-field 
+of NLP focused on modelling the structure and quality of argumentative 
+components of text.
 Modelling argument ``quality'' is an area of active research, with direct 
 applications in education, such as in automated scoring of 
 persuasive essays written by students \cite{persing_modeling_2015} 
 \cite{nguyen_argument_2018}.
-When students are asked to debate in dyads, and prompted to either find 
-consensus, or instead persuade their peers, there is a relationship between  
+In work more closely tied with peer instruction, it has been found that when 
+students are asked to debate in dyads, there is a relationship between  
 knowledge acquisition, and the quality of arguments the students produce, as 
 measured by the presence of formal argumentative structures (e.g. claims, 
 premise, etc.) \cite{garcia-mila_effect_2013}.
-
-However experiments have also shown that the perceived quality of an argument 
-can depend on the audience \cite{mercier_why_2011}, and so we adopt a more 
-pragmatic measure of argument quality, centred on the premise that the goal of 
-argumentation is persuasion.
 
 In a comprehensive survey of research on the assessment of argument quality, 
 \cite{wachsmuth_computational_2017} outline a taxonomy of major quality 
 dimensions for natural language, with three principal aspects: logic, rhetoric, 
 and dialect. 
+However experiments have also shown that the perceived quality of an argument 
+can depend on the audience \cite{mercier_why_2011}. 
+It is in this light that we adopt a more pragmatic measure of argument quality, 
+centred on the premise that the goal of argumentation, is persuasion.
+
 As students vote on their peer's explanations in TMPI, they may be evaluating 
 the logical cogency (e.g. is this argument sound?), or its rhetorical quality 
 (e.g. is this argument phrased well?). 
-We focus our work on students who choose a peer's explanation \textit{as more 
-convincing than their own}, as there exists a significant bias for the option 
-``I stick to my own''.
+We set out to model the linguistic features common that may explain which 
+student arguments are most \textit{convincing}.
+
+It should be noted that there exists a significant, natural bias for the option 
+``I stick to my own'' (top band in figure \ref{fig:tmpi_sankey}), and that a 
+student who \textit{does} choose a peer's explanation, is choosing it 
+\textit{as more convincing than their own}.
 
 Therefore, we suggest that the ``vote'' data collected for each student's 
 explanation in TMPI, is a proxy for argument quality, along the dimension of 
@@ -1061,6 +1066,7 @@ of the model on the un-perturbed dataset.
 
 \section{Results \& Discussion}\label{sec:model_results}
 
+\subsection{Results - Argument Mining Datasets}
 One of the contributions of this study is to propose a methodology for the 
 analysis and leveraging of learnersourced explanation quality labels inside 
 TMPI learning environments, or more broadly speaking, any setting where there 
@@ -1169,6 +1175,7 @@ dramatically outperforms across the three reference datasets, when all trained
 for the same task, under the same cross-topic validation scheme, confirming 
 results from the literature.
 
+\subsection{Results - TMPI discipline specific datasets}
 When we move to extend this methodology to data from our three TMPI 
 discipline-specific datasets in tables \ref{tab:dalite_winrate} and 
 \ref{tab:dalite_BT}, we observe that while \verb|BERT_Q| is also clearly the 
@@ -1191,10 +1198,6 @@ explanations.
 This is true also when our rank aggregated score jointly estimates the 
 student's agreement with their peer's, as in the \textbf{CrowdBT} score 
 (results in table \ref{tab:dalite_crowdBT}).
-
-%When we control for the number of words in the explanation training and 
-%testing 
-%out models on only the longest explanations, we see ...\textbf{TO DO}...
 
 \begin{table}
 	\parbox{.45\linewidth}{
@@ -1299,8 +1302,80 @@ not able to learn in the training data.
 	\label{tab:dalite_winrate_nopairs}
 \end{table}
 
+Our contributions are centred on our research questions stated at the beginning 
+of this study. 
+In terms of \textbf{RQ1}, we present a methodology grounded in argument mining 
+research and empirically demonstrate its validity in the context of TMPI.
+We present the result of different approaches to rank aggregation from pairwise 
+preference data so as to calculate a \textit{convincingness} score for each 
+student explanation.
+The pairwise transformation of TMPI data, into a format similar to research 
+from argument research (as described in figure \ref{fig:make_pairs_a}) allows 
+for a comparison to related work. 
+The modelling results when we train out models to predict the \textit{raw 
+winrate} are significantly worse (table \ref{tab:dalite_winrate_nopairs}) than 
+any of the other rank aggregation methods.
+This confirms the findings of \cite{potash_ranking_2019}, who first proposed 
+that the heuristic, pairwise \textit{winrate} as a more reliable regression 
+target.
+(While the \textit{Elo} rank aggregation score is much faster than \textit{BT}, 
+our modelling results were by far worse than the alteranatives described in the 
+tables here.)
+With such simple methods as \textit{winrate} and the \textit{Bradley-Terry} 
+scores to measure and rank student explanations in a TMPI environment, 
+instructors reports can focus attention of the points where students may have 
+gaps in their knowledge, based on their reading/evaluating of their peers' 
+explanations.
+
 
 \subsection{Controlling for explanation length}
+
+The competitive performance of the baseline \verb|Length| confirms the 
+intuition that students generally will find more convincing content in longer 
+explanations.
+From a practical perspective, in terms of being able to offer students and 
+teachers actionable feedback, there is value in controlling for length, and 
+inspecting model results, trained and tested on explanations of comparable 
+length.
+
+In tables \ref{tab:reference_longest}, \ref{tab:winrate_longest} and 
+\ref{tab:BT_longest}, we show the performance of our models trained and 
+evaluated on the longest arguments only. 
+For each dataset, we calculate the 75th percentile of argument word count, and 
+keep only those in the top quartile for each topic.
+When comparing with the corresponding result on the full datasets for the same 
+regression targets (tables \ref{tab:arg_mining_y_ref} 
+\ref{tab:arg_mining_y_winrate}, and \ref{tab:arg_mining_y_BT} respectively), we 
+see a dramatic reduction in performance of even the state-of-the-art BERT 
+models.
+We even have our feature-rich random forest model posting the best 
+cross-validated Pearson correlation score for the \textbf{IBM\_Evi} dataset 
+when controlling length and regressing to the \textit{Bradley Terry} score.
+
+\begin{table}
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/longest/ranking_y_reference_pearson_longest}
+		\subcaption{Pearson correlation}
+	}
+	\hfill
+	\parbox{.45\linewidth}{
+		\centering
+		\input{data/longest/ranking_y_reference_spearman_longest}
+		\subcaption{Spearman correlation}
+	}
+	\caption{
+		Average correlation (under cross-topic validation scheme) between 
+		convincingness score predicted by different models, and the 
+		convincingness score as given by the \textit{Reference} scores across 
+		pairwise preference data, for different disciplinary datasets from 
+		reference argument mining datasets, on subset of data which includes 
+		only the explanations within the top quartile of word counts.
+	}
+	\label{tab:reference_longest}
+\end{table}
+
+
 \begin{table}
 	\parbox{.45\linewidth}{
 		\centering
@@ -1397,28 +1472,8 @@ not able to learn in the training data.
 	\label{tab:dalite_BT_longest}
 \end{table}
 
-Our contributions are centred on our research questions stated at the beginning 
-of this study. 
-In terms of \textbf{RQ1}, we present a methodology grounded in argument mining 
-research and empirically demonstrate its validity in the context of TMPI.
-We present the result of different approaches to rank aggregation from pairwise 
-preference data so as to calculate a \textit{convincingness} score for each 
-student explanation.
-The pairwise transformation of TMPI data, into a format similar to research 
-from argument research (as described in figure \ref{fig:make_pairs_a}) allows 
-for a comparison to related work. 
-The modelling results when we train out models to predict the \textit{raw 
-winrate} are significantly worse (table \ref{tab:dalite_winrate_nopairs}) than 
-any of the other rank aggregation methods.
-This confirms the findings of \cite{potash_ranking_2019}, who first proposed 
-that the heuristic, pairwise \textit{winrate} as a more reliable regression 
-target.
-With such simple methods as \textit{winrate} and the \textit{Bradley-Terry} 
-scores to measure and rank student explanations in a TMPI environment, 
-instructors reports can focus attention of the points where students may have 
-gaps in their knowledge, based on their reading/evaluating of their peers' 
-explanations.
 
+\subsection{Model inspection for important linguistic features}
 In an effort to provide insight into our \textbf{RQ2}, we look at out best 
 performing folds of our regression task, and note the features with the highest 
 permutation importance:
@@ -1431,8 +1486,8 @@ permutation importance:
 	\item Vector Similiarity to related portion of textbook using LSI
 	\item Number of spelling errors
 	\item Fleich Kincaid reading ease score
-	\item Mathematical expressions used as a VERB e.g. $F=ma$ \textit{tells us 
-	that ...}
+	\item Mathematical expressions used as a \textit{noun subject} for a verb  
+	e.g. $F=ma$ \textit{tells us that ...}
 \end{itemize}
 
 Another approach we explore to determine which linguistic features are most 
@@ -1440,7 +1495,7 @@ associated with explanations that are deemed \textit{convincing} by students,
 is taking our best performing neural transformer model, \verb|BERT_Q|, and 
 finding the features most correlated with its predicted rankings. 
 We find that the same features which are list above, are also those most highly 
-correlated with the predicted \textit{convincingness} score
+correlated with the predicted \textit{convincingness} score.
 
 %surface_TTR                               -0.479792
 %readability_flesch_kincaid_reading_ease   -0.474920
@@ -1451,7 +1506,7 @@ It is these types of features that can provide pedagogical insight to
 instructors when parsing through data generated inside TMPI based activities.
 These features are predictive of what the students find most convincing in 
 their peer's explanations, and hence offer a much needed lens into how students 
-operate when at the upper levels of Bloom's taxonomy, evalautiong one anothers 
+operate when at the upper levels of Bloom's taxonomy, evaluating each others' 
 words in a comparative setting.
 
 \section{Limitations \& Future Work}
