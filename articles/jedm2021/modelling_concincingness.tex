@@ -1088,10 +1088,10 @@ of the model on the un-perturbed dataset.
 
 \subsection{Results - Argument Mining Datasets}
 One of the contributions of this study is to propose a methodology for the 
-analysis and leveraging of learnersourced explanation quality labels inside 
-TMPI learning environments, or more broadly speaking, any setting where there 
-is an ordinal/comparative peer grading task for natural language student 
-submissions.
+analysis of learnersourced explanation quality labels inside 
+TMPI learning environments. 
+More broadly speaking, our work can inform the design of any 
+technology-mediated comparative peer evaluation platform. 
 
 We begin by applying this methodology on publicly available argument-mining 
 datasets in table \ref{tab:arg_mining_y_ref}, wherein we use the linguistic 
@@ -1125,7 +1125,7 @@ provided with the argument mining datasets, and are the target variables for
 the model training in table \ref{tab:arg_mining_y_ref}, are each 
 calculated in different ways. 
 For example, in the \textbf{UKP} dataset, the ground truth 
-\textit{convincingess} score of provided for each argument by the authors, is 
+\textit{convincingess} score provided for each argument by the authors, is 
 derived by constructing an argument graph, and calculating a variant of the 
 PageRank score, after removing cycles induced by the pairwise data (e.g. cases 
 where \textit{A} is more convincing \textit{B}, \textit{B} is more convincing 
@@ -1142,7 +1142,7 @@ So as to be able to more consistently compare the impact of our methodological
 choices across datasets, in tables \ref{tab:arg_mining_y_winrate} and 
 \ref{tab:arg_mining_y_BT}, we 
 train our models to predict a target variable that can be calculated from any 
-pairwise preference dataset, namely \textbf{WinRate} and \textbf{BT}.
+pairwise preference dataset, namely \textit{WinRate} and \textit{BT}.
 To the best of our knowledge, we are the first to propose, evaluate, and 
 susequently model a common set of rank aggregation methods for the calculation 
 of pointwise argument quality scores from pairwise preference data.
@@ -1190,48 +1190,58 @@ of pointwise argument quality scores from pairwise preference data.
 	\label{tab:arg_mining_y_BT}
 \end{table}
 
-While our best performing feature-rich model (\verb|Random Forests|) beat the 
+While our best performing feature-rich model (\verb|Random Forests|) beats the 
 \verb|Length| baseline, the fine-tuned neural transformer model \verb|BERT_Q| 
-dramatically outperforms across the three reference datasets, when all trained 
-for the same task, under the same cross-topic validation scheme, confirming 
-results from the literature.
-Training our regressors to the \textit{WinRate}  and \textit{Bradley-Terry} 
-yields better correlations than when we model the \textit{reference} scores 
-accompanying the datasets, which may indicate that these better represent the 
-overall quality of each argument.
-Also of note is the negligible improvement when the topic prompt included as 
-part of the model input (\verb|BERT_Q|), as compared to only using the argument 
-text, in line with results from a recent study on a much larger argument mining 
-dataset \cite{gretz_large-scale_2019}.
+dramatically outperforms all methods.
+This pattern holds across the three reference datasets, when all trained for 
+the same task, under the same cross-topic validation scheme, in line with 
+similar results from the literature described in section \ref{sec:related_work}.
 
+Training our regressors to learn the \textit{WinRate}  and 
+\textit{Bradley-Terry} scores yields better correlations than when we model the 
+\textit{reference} scores accompanying the datasets.
+Besides beyond consistent and independent of model architecture, 
+\textit{WinRate} \textit{BT} may well better represent the overall quality of 
+each argument.
 
 \subsection{Results - TMPI discipline specific datasets}
-When we move to extend our methodology to data from our three TMPI 
-discipline-specific datasets in tables \ref{tab:dalite_winrate} and 
-\ref{tab:dalite_BT}, we observe that while \verb|BERT_Q| is also clearly the 
-best performing model for the \textbf{Ethics} dataset, in \textbf{Physics} and 
-\textbf{Chemistry}, the \verb|Length| baseline is most correlated with 
-\textit{convincingness} scores, whether calculated via \textit{WinRate} or 
-\textit{Bradley-Terry}.
+We apply this same methodology to our three TMPI discipline-specific datasets 
+in tables \ref{tab:dalite_winrate} and \ref{tab:dalite_BT}, and observe that 
+\verb|BERT_Q| is also the best performing model.
 
+The success of the neural approach over feaure-rich regressors raises a barrier 
+to our objective of identifying the linguistic properties of what students find 
+convincing in their peers' explantions.
+However it should be noted that \verb|Length| baseline is also very effective 
+for \textbf{Physics} and \textbf{Chemistry}, and that \verb|BERT| may be 
+getting much of its information from the number of empty tokens required when 
+padding the different inputs to equal length.
+The feature-rich \verb|Random Forest| model achieves almost the same 
+performance \textit{without} access to the informative explanation length.
+
+Nonetheless, for the \textbf{Physics} and \textbf{Chemistry} disciplines, no 
+models significantly outperform the \verb|Length| baseline, which seems to 
+indicate that more work is needed in determining the features of those longer 
+explanations that they find most convincing.
+This is true also when our rank aggregated score jointly estimates the 
+student's agreement with their peer's, as in the \textbf{CrowdBT} score 
+(results in table \ref{tab:dalite_crowdBT}).
+
+The gain in performance over the \verb|Length| baseline is most pronounced for 
+\textbf{Ethics}.
 This may be best explained by the inherent similarities between the 
 \textbf{Ethics} TMPI data, and the argument mining datasets: the topic prompts 
 are subjective and personal, and the available answer options students are to 
 choose from are also limited to two opposing stances of an argument, as can be 
 seen in the sample data in tables \ref{tab:sample_obs} and 
 \ref{tab:sample_obs_dalite}. 
-As for the the \textbf{Physics} and \textbf{Chemistry} disciplines, no models 
-significantly outperform the \verb|Length| baseline, which seems to indicate 
-that, in general, students are simply more often convinced by longer 
-explanations.
-This is true also when our rank aggregated score jointly estimates the 
-student's agreement with their peer's, as in the \textbf{CrowdBT} score 
-(results in table \ref{tab:dalite_crowdBT}).
-Finally, in a more obvious echo of the results from the argument mining 
-datasets, incorporating the question prompt as input to the \verb|BERT| model 
-(in \verb|BERT_Q|) yields no improvement.
-This may indicate that unlike the \textit{correctness} of a student 
-explanation, its \textit{convincingness} may be independent of the topic.
+
+Finally, augmenting the input of \verb|BERT| to incorporate the question 
+prompt, in \verb|BERT_Q|, yields virtually no improvement.
+This pattern also holds true for the argument mining datasets.
+This may indicate that unlike the potential \textit{correctness} of a student 
+explanation, its \textit{convincingness} may be independent of the question 
+prompt.
 The slight decrease in performance of \verb|BERT_A| may reflect that 
 explanations written by content experts are fundamentally different from 
 student explanations, and do not help model \textit{convincingness} as judged 
@@ -1371,10 +1381,11 @@ explanations.
 The competitive performance of the baseline \verb|Length| confirms the 
 intuition that students generally will find more convincing content in longer 
 explanations.
-From a practical perspective, in terms of being able to offer students and 
-teachers actionable feedback, there is value in controlling for length, and 
-inspecting model results, trained and tested on explanations of comparable 
-length.
+While working on a subset of the data is less than ideal from a methodological 
+perspective, for practical purposes, in terms of being able to offer students 
+and teachers actionable feedback, there is value in controlling for length, and 
+then inspecting model results, trained and tested on only a subset explanations 
+of comparable length.
 
 In tables \ref{tab:reference_longest}, \ref{tab:winrate_longest} and 
 \ref{tab:BT_longest}, we show the performance of our models trained and 
@@ -1535,11 +1546,6 @@ finding the features most correlated with its predicted rankings.
 We find that the same features which are list above, are also those most highly 
 correlated with the predicted \textit{convincingness} score.
 
-%surface_TTR                               -0.479792
-%readability_flesch_kincaid_reading_ease   -0.474920
-%surface_n_content_words                    0.597407
-%lexical_n_equations                        0.636202
-
 It is these types of features that can provide pedagogical insight to 
 instructors when parsing through data generated inside TMPI based activities.
 These features are predictive of what the students find most convincing in 
@@ -1575,13 +1581,24 @@ However the challenge therein lies in ceding the advantage conferred by our
 methodological choice of relying on the linguistic properties of the text 
 alone: the ``cold-start'' problem becomes prohibitive for inference when we do 
 not have any skill estimates for students new to the system, or difficulty 
-estimates for new questions items. 
+estimates for new questions items.
+
+Other directions for future work include improving the performance of 
+feature-rich models by incorporating ``argument structure'' features, which 
+require the identification of \textit{claims} and \textit{premises} as a 
+feature engineering step.
+The combination of such argument-features with a neural model has been shown to 
+be effective in the grading of persuasive essays \cite{nguyen_argument_2018}.
 
 Another important step to take is to confirm whether showing students 
 \textit{convincing} explanations can improve learning, or drive engagement. 
 A previous study has shown that how instructors integrate TMPI with their 
 in-class instruction has an impact on learning gains across the semester 
 \cite{bhatnagar_analysis_2015}. 
+It remains to be shown that providing feedback to students and their 
+instructors, on the relative \textit{convincingness} of different student 
+explanations has a beneficial impact on learning.
+
 
 
 
@@ -1762,5 +1779,8 @@ community.
 %the top quartile of longest explanations) does our feature-rich regressor 
 %capture in its own predicted top-5?
 
-
+%surface_TTR                               -0.479792
+%readability_flesch_kincaid_reading_ease   -0.474920
+%surface_n_content_words                    0.597407
+%lexical_n_equations                        0.636202
 
