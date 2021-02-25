@@ -76,7 +76,7 @@
 
 \section{Introduction}
 Technology-mediated peer instruction \textit{(TMPI)} platforms 
-\cite{charles_harnessing_2019}\cite{univeristy_of_british_columbia_ubc/ubcpi_2019}
+\cite{charles_harnessing_2019,univeristy_of_british_columbia_ubc/ubcpi_2019}
 expand multiple choice items into a two step process.
 On the first step, students must not only choose an answer choice, but also 
 provide an explanation that justifies their reasoning, as shown in figure 
@@ -142,7 +142,24 @@ TMPI platform we study, are shown in the Sankey diagram of figure
 	\label{fig:tmpi}
 \end{figure}
 
-
+\begin{figure}[H]
+	\centering
+	\def\svgscale{0.70}
+	\input{img/TMPI_research.pdf_tex}
+	\caption{
+		Schematic overview of TMPI system components.
+		Strategies for content moderation in (d) are addressed in prior work 
+		\protect\cite{gagnon_filtering_2019}.
+		The first objective is to determine how best to aggregate the votes of 
+		students in (f), and generate the global ranking of student 
+		explanations in (g). 
+		The second objective in (i), is to determine the linguistic features 
+		and regression models which can predict the highest ranked explanations.
+		The global ranked list (g) can be used to select the explanations from 
+		the database that are shown to students in (b) 
+	}
+	\label{fig:tmpi_research}
+\end{figure}
 
 \begin{figure}[H]
 	\centering
@@ -815,7 +832,7 @@ keeping in mind downstream priorities such as interpretability for teachers in
 their reporting tools.
 
 The list of features included here are derived from related work in argument 
-mining \cite{habernal_which_2016}\cite{persing_end--end_2016} on student 
+mining \cite{habernal_which_2016,persing_end--end_2016} on student 
 essays, automatic short answer scoring \cite{mohler_text--text_2009}.
 
 \begin{itemize}
@@ -1300,7 +1317,7 @@ In both \textbf{Physics} and \textbf{Chemistry}, the question-level folds where
 our models performed \textit{worst} were with question prompts which ask 
 students to choose one true statement from among a selection (e.g. 
 \textit{Which of the following statements about the force of gravity is 
-false? a) ..., b) ...,}).
+false? \mbox{a) ..., b) ...,}}).
 We posit that the language students use to formulate their explanations in such 
 a multiple choice question item, many describing their internal process of 
 elimination to find the correct answer choice, include patterns our models are 
@@ -1361,15 +1378,15 @@ The pairwise transformation of TMPI data, into a format similar to research
 from argument research (as described in figure \ref{fig:make_pairs_a}) allows 
 for a comparison to related work. 
 The modelling results when we train out models to predict the \textit{raw 
-winrate} are significantly worse (table \ref{tab:dalite_winrate_nopairs}) than 
+WinRate} are significantly worse (table \ref{tab:dalite_winrate_nopairs}) than 
 any of the other rank aggregation methods.
 This confirms the findings of \cite{potash_ranking_2019}, who first proposed 
 that the heuristic, pairwise \textit{winrate} as a more reliable regression 
 target.
 (While the \textit{Elo} rank aggregation score is much faster than \textit{BT}, 
-our modelling results were by far worse than the alteranatives described in the 
+our modelling results were by far worse than the alternatives described in the 
 tables here.)
-With such simple methods as \textit{winrate} and the \textit{Bradley-Terry} 
+With such simple methods as \textit{WinRate} and the \textit{Bradley-Terry} 
 scores to measure and rank student explanations in a TMPI environment, 
 instructors reports can focus attention of the points where students may have 
 gaps in their knowledge, based on their reading/evaluating of their peers' 
