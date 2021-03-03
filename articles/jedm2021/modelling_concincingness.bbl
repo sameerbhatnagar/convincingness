@@ -21,9 +21,18 @@
   {M.~Desmarais}, Eds.
 
 \bibitem[\protect\citeauthoryear{Bhatnagar, Zouaq, Desmarais, and
-  Charles}{Bhatnagar et~al\mbox{.}}{2020}]{bhatnagar_learnersourcing_2020}
+  Charles}{Bhatnagar et~al\mbox{.}}{2020a}]{bhatnagar_dataset_2020}
 {\sc Bhatnagar, S.}, {\sc Zouaq, A.}, {\sc Desmarais, M.~C.}, {\sc and} {\sc
-  Charles, E.} 2020.
+  Charles, E.} 2020a.
+\newblock A {Dataset} of {Learnersourced} {Explanations} from an {Online}
+  {Peer} {Instruction} {Environment}.
+\newblock {\em International Educational Data Mining Society\/}.
+\newblock Publisher: ERIC.
+
+\bibitem[\protect\citeauthoryear{Bhatnagar, Zouaq, Desmarais, and
+  Charles}{Bhatnagar et~al\mbox{.}}{2020b}]{bhatnagar_learnersourcing_2020}
+{\sc Bhatnagar, S.}, {\sc Zouaq, A.}, {\sc Desmarais, M.~C.}, {\sc and} {\sc
+  Charles, E.} 2020b.
 \newblock Learnersourcing {Quality} {Assessment} of {Explanations} for {Peer}
   {Instruction}.
 \newblock In {\em Addressing {Global} {Challenges} and {Quality} {Education}},
@@ -340,9 +349,9 @@
   {Conference} on {Natural} {Language} {Processing} ({EMNLP}-{IJCNLP})}.
   5629--5639.
 
-\bibitem[\protect\citeauthoryear{Univeristy~of British~Columbia}{Univeristy~of
-  British~Columbia}{2019}]{univeristy_of_british_columbia_ubc/ubcpi_2019}
-{\sc Univeristy~of British~Columbia, T. . L.~T.} 2019.
+\bibitem[\protect\citeauthoryear{University~of British~Columbia}{University~of
+  British~Columbia}{2019}]{university_of_british_columbia_ubc/ubcpi_2019}
+{\sc University~of British~Columbia, T. . L.~T.} 2019.
 \newblock ubc/ubcpi.
 \newblock original-date: 2015-02-17T21:37:02Z.
 
