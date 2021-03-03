@@ -710,7 +710,7 @@ datasets (just proportionately larger).
 \section{Methodology}\label{sec:methodology}
 
 We borrow our methodological approach from research in argument mining, 
-specifically related to modelling argument quality along the dimension of 
+specifically related to modelling quality along the dimension of 
 \textit{convincingness}.
 A common approach is to curate pairs of arguments made in defence of the same 
 stance on the same topic.
@@ -725,17 +725,18 @@ questions.
 \subsection{Rank Aggregation}\label{sec:rank_agg}
 The raw data emerging from a TMPI platform is tabular, in the form of 
 student-item observations.
-As shown in figure \ref{fig:make_pairs_a}(a), the fields include the item 
-prompt, the student's \textit{first} answer choice, their accompanying 
-explanation, the peer explanations shown on the review step (as in figure 
-\ref{fig:question_review}), the student's 
-\textit{second} answer choice, and the peer explanation they chose as most 
-convincing (\verb|None| if they choose to ``stick to their own''), as well as 
-timestamps for the first and second attempt.
+We refer to this raw format as \textit{Multiple Choice Explanation} (MCE).
+As shown in figure \ref{fig:make_pairs_a}(a), the data fields in our MCE format 
+include: the item prompt, the student's \textit{first} answer choice, their 
+accompanying explanation, the peer explanations shown on the review step (as in 
+figure \ref{fig:question_review}), the student's \textit{second} answer choice, 
+and finally, the peer explanation they chose as most convincing (\verb|None| if 
+they choose to ``stick to their own'').
+Timestamps for these events are associated as well.
 
-After the filtering steps described above, we take the TMPI observations for 
-each question, and construct explanation pairs, as in figure 
-\ref{fig:make_pairs_a}(b).
+As a first step towards addressing our \textbf{RQ1}, we filter the data in MCE 
+format (described in section \ref{sec:dataset_dalite}), and then construct 
+explanation \textit{pairs}, as in figure \ref{fig:make_pairs_a}(b).
 
 \begin{figure}[H]
 	\centering
@@ -760,9 +761,9 @@ each question, and construct explanation pairs, as in figure
 	explanations. 
 	The pairs are labelled as such that $e_{25}$ is the more convincing of the 
 	pair. 
-	(c) This pairwise preference data is aggregated global ranked list of 
-	student explanations for this question, where each explanation is assigned 
-	a real-valued rank score (using the methods described in section 
+	(c) This pairwise preference data is aggregated into a global, ranked list 
+	of student explanations for this question, where each explanation is 
+	assigned a real-valued rank score (using the methods described in section 
 	\protect\ref{sec:rank_agg}).
 }
 \label{fig:make_pairs_a}
@@ -771,20 +772,22 @@ each question, and construct explanation pairs, as in figure
 Using these explanation pairs, we apply the following rank aggregation 
 techniques in order to derive a real valued \textit{convincingness} rank score, 
 as in figure \ref{fig:make_pairs_a}(c).
+Assuming there are $N$ explanations, labelled by $K$ students, and $S_K$ 
+labelled pairs,
 
 \begin{enumerate}
 	
 	\item \textbf{WinRate\_raw}, defined as the ratio of times an explanation 
-	is 
-	chosen to the number of times it was shown.
-	This method does not take into account \textit{which} peer explanations 
-	were shown to each student, neglecting the potential impact of comparative 
-	judgment.
+	is chosen to the number of times it was shown, as calculated from the data 
+	in raw MCE format.
+	Since this method is applied before our proposed pairwise transform, it 
+	does not take into account \textit{which} peer explanations were shown to 
+	each student, neglecting the potential impact of comparative judgment.
 	
 	\item \textbf{WinRate}: as described in \cite{potash_ranking_2019}, this 
-	measure argument quality is defined as the number of times it is chosen as 
-	more convincing in a pairwise comparison, normalized for the number pairs 
-	in which it appears. 
+	measure of argument quality is defined as the number of times it is chosen 
+	as more convincing in a pairwise comparison, normalized for the number 
+	pairs in which it appears. 
 	In the context of TMPI, when we calculate the \textit{WinRate} of a student 
 	eplanation after the data transformation depicted in figure 
 	\ref{fig:make_pairs_a}a and figure \ref{fig:make_pairs_a}b, we take a step 
@@ -794,21 +797,20 @@ as in figure \ref{fig:make_pairs_a}(c).
 	
 	\item \textbf{BT} score, which is the argument ``quality'' parameter 
 	estimated for each explanation, according to the \textit{Bradley-Terry} 
-	model, where the probability of argument A being chosen over argument B is 
-	given by 
+	model, where the probability of argument $a$ being chosen over argument $b$ 
+	is given by 
 	
 	$$
 	P(a>b) = 
 	\frac{1}{1+e^{\beta_b-\beta_a}}
 	$$
-	where $\beta_i$ is the latent strength parameter of argument $i$. 
+	where $\beta_i$ is the latent strength parameter of argument $i$.
 	
 	We decompose each student-item observation into argument pairs, where the 
 	chosen explanation is paired with each of the other shown ones, and the 
 	pair is labelled with $y=-/+1$, depending on whether the chosen explanation 
 	is first/second in the pair.
-	Assuming there are $N$ explanations, labelled by $K$ students, and $S_K$ 
-	labelled pairs,the latent strength parameters are estimated by maximizing 
+	The latent strength parameters are estimated by maximizing 
 	the log-likelihood given by:
 	$$
 	\ell(\boldsymbol{\beta})=\sum_{K}\sum_{(i,j)\epsilon S_K}^{} 
@@ -822,18 +824,17 @@ as in figure \ref{fig:make_pairs_a}(c).
 	in adaptive learning environments (see \cite{pelanek_applications_2016} for 
 	a review). 
 	This rating method can be seen as a heuristic re-parametrization of the 
-	\textbf{BT} method above, where the probability of argument A being chosen 
-	over argument B is given by
+	\textbf{BT} method above, where the probability of argument $a$ being 
+	chosen over argument $b$ is given by
 	$$
 	P(a>b) = P_{ab} = \frac{1}{1+10^{(\beta_b-\beta_a)/\delta}}
 	$$
-	where $\delta$ is a constant. 
+	where $\delta$ is a scaling constant. 
 	All arguments are initialized with an initial strength of $\beta_0$, and 
 	the rating of any argument is only updated after it appears in a pairwise 
 	comparison with another.
 	The rating update rule transfers latent ``strength'' rating points from the 
-	loser, to the 
-	winner, in proportion to the difference in strength:
+	loser, to the winner, in proportion to the difference in strength:
 	
 	$$
 	\beta_a':=\beta_a+K(P_{ab} - \beta_a)
@@ -848,7 +849,9 @@ as in figure \ref{fig:make_pairs_a}(c).
 	\textbf{BT} model, tailored to settings where different annotators may have 
 	assigned opposite labels to the same pairs, and the reliability of each 
 	annotator may vary significantly. 
-	A reliability parameter $\eta_k$ is estimated for each student, 
+	A reliability parameter $\eta_k$ is estimated for each student, where the 
+	probability that student $k$ chooses argument $a$ as more convincing than 
+	$b$ is given by 
 	
 	$$
 	\eta_k \equiv P(a >_k b | a >b )
@@ -878,7 +881,7 @@ as in figure \ref{fig:make_pairs_a}(c).
 How we evaluate the fit of these rank aggregation methods to our data is 
 described in section \ref{sec:methodology_eval}
 
-\subsection{Modelling rank scores}\label{sec:features}
+\subsection{Feature Extraction and Regression models}\label{sec:features}
 We build on the results from the previous section to now predict these 
 aggregate scores for each explanation, using linguistic properties of those 
 explanations.
