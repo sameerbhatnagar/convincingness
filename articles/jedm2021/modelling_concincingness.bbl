@@ -130,6 +130,14 @@
   51--58.
 \newblock event-place: Sydney, Australia.
 
+\bibitem[\protect\citeauthoryear{Devlin, Chang, Lee, and Toutanova}{Devlin
+  et~al\mbox{.}}{2018}]{devlin_bert_2018}
+{\sc Devlin, J.}, {\sc Chang, M.-W.}, {\sc Lee, K.}, {\sc and} {\sc Toutanova,
+  K.} 2018.
+\newblock Bert: {Pre}-training of deep bidirectional transformers for language
+  understanding.
+\newblock {\em arXiv preprint arXiv:1810.04805\/}.
+
 \bibitem[\protect\citeauthoryear{Elo}{Elo}{1978}]{elo_rating_1978}
 {\sc Elo, A.~E.} 1978.
 \newblock {\em The rating of chessplayers, past and present}.
