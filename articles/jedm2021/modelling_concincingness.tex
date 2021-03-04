@@ -399,14 +399,29 @@ ranking (section \ref{sec:related_work}).
 We then describe our TMPI dataset, as well as publicly available reference 
 datasets of argument quality, which we use to evaluate our methodology (section 
 \ref{sec:datasets}).
-Our most important contribution is in proposing a methodology for evaluating 
-the quality of student explanations, along the dimension of 
-\textit{convincingness}, in TMPI environments; we demonstrate this methodology 
-in section \ref{sec:methodology} and propose evaluation metrics based on 
-practical issues in TMPI environments.
-Finally, we describe how we \textit{model} these convincingness ``scores'' so 
-as to identify the linguistic features of explanations most often associated 
-with high-quality explanations (section \ref{sec:model_results}).
+
+The specific contributions made by this work include:
+\begin{itemize}
+	\item proposing a methodology for evaluating the quality of student 
+	explanations, along the dimension of \textit{convincingness}, in TMPI 
+	environments. 
+	We demonstrate this methodology in section \ref{sec:methodology} and 
+	propose evaluation metrics based on practical issues in TMPI environments;
+	
+	\item a comprehensive evaluation of this proposed methodology from a TMPI 
+	environment, with question items from multiple disciplines. 
+	We refine work from argument mining research, and propose the use of 
+	consistent rank aggregation methods independent of model architecture;
+	
+	\item a comparison of feature-rich linguistic regression models, with 
+	neural 
+	transformer-based models, for the prediction of \textit{convincingness} 
+	``scores''. 
+	We identify some of the linguistic features most often associated with 
+	high-quality student explanations in TMPI.
+	We also demonstrate how to leverage transfer learning from large 
+	pre-trained models for this task (section \ref{sec:model_results}).
+\end{itemize}
 
 
 \section{Related Work}\label{sec:related_work}
