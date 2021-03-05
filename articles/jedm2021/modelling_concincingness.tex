@@ -119,17 +119,15 @@ Deliberate practice of argumentation in defence of one's ideas has been shown
 to improve informal reasoning for science students \cite{venville_impact_2010}.
 There exists empirical evidence on the positive relationship between 
 constructing formally sound arguments and deep cognitive elaboration, as well 
-as individual acquisition of knowledge \cite{stegmann_collaborative_2012}.
+as the individual acquisition of knowledge \cite{stegmann_collaborative_2012}.
 
 Technology-mediated peer instruction \textit{(TMPI)} platforms 
 \cite{charles_harnessing_2019,university_of_british_columbia_ubc/ubcpi_2019})
 expand multiple choice items into a two step process.
-TMPI platforms augment asynchronous, multiple-choice formative assessment 
-questions, by not only prompting students for their answer choice, but giving 
-them an opportunity to explain their reasoning.
-Moreover, students can receive a form of aggregated peer feedback on their 
-explanations, in how many times their submissions are chosen as 
-\textit{convincing} by their colleagues.
+TMPI platforms augment asynchronous, multiple-choice questions, by not only 
+prompting students for their answer choice, but also giving them an opportunity 
+to explain their reasoning with a written open response, followed by a chance 
+to compare and contrast with the explanations of their peers.
 
 \begin{figure}
 	\begin{subfigure}[b]{0.4\textwidth}
@@ -163,10 +161,9 @@ explanations, in how many times their submissions are chosen as
 	\label{fig:tmpi}
 \end{figure}
 
-On the first step, students must not only choose an answer choice, but also 
-provide an explanation that justifies their reasoning, as shown in figure 
+On the first step in TMPI, students must not only choose an answer choice, but 
+also provide an explanation that justifies their reasoning, as shown in figure 
 \ref{fig:question_start}.
-
 On the second step (figure \ref{fig:question_review}), students are prompted to 
 revise their answer choice, by taking into consideration a subset of 
 explanations written by their peers.
@@ -177,13 +174,13 @@ The student now has three options:
 	\item Change their answer choice, by indicating which of their peer's 
 	explanations for a \textit{different} answer choice was most convincing;
 	\item keep the \textit{same} answer choice, but indicate which of their 
-	peer's explanations the student found more convincing than their own;
+	peers' explanations they deem more convincing than their own;
 	\item choose ``I stick to my own'', which indicates that they are keeping 
 	to the same answer choice, and that their own explanation is best from 
 	among those that are shown.
 \end{enumerate}
 
-Whenever the student goes with either of the first two scenarios above, we 
+Whenever the student chooses either of the first two scenarios above, we 
 frame this as ``casting a vote'' for the chosen peer explanation.
 
 Moreover, when one of the answer choices is labelled as ``correct'', and the 
@@ -196,12 +193,12 @@ present in the the TMPI platform we study \cite{bhatnagar_dataset_2020}, are
 shown in the Sankey diagram of figure \ref{fig:tmpi_sankey}.
 
 Across all disciplines, we see two important trends: first, if a student 
-chooses the correct answer on their first attempt, and decides to keep to that 
-correct choice on the review step, there is almost a one in two chance that 
+chooses the correct answer on their first attempt, and decides to keep that 
+same correct choice on the review step, there is almost 50\% chance that 
 they chose a peer's explanation as more \textit{convincing}  than their own. 
 Second, if a student chooses an incorrect answer choice on their first attempt, 
 there is a one in three chance that a peer's explanation will convince them of 
-the correct answer.
+changing to the correct answer.
 These trends highlight the process of reflection students undertake in TMPI, 
 and the importance of leveraging student ``vote'' data to identify the best, 
 most-thought provoking content.
@@ -221,18 +218,18 @@ most-thought provoking content.
 In the types of conceptual questions that are best suited for \textit{PI}, 
 there are often several ways to explain the correct answer.
 It may be possible to evaluate the \textit{correctness} of a student 
-explanation using methods from work in automatic short-answer grading, however 
-these models based on \textit{correct} explanations, as defined by an expert, 
-such a textbook author or a teacher.
-By capturing data on which explanations students find most convincing, 
+explanation using methods from automatic short-answer grading, however 
+these models are based on \textit{correct} explanations, as defined by an 
+expert, such a textbook, or a teacher.
+By capturing data on which explanations students find most \textit{convincing}, 
 TMPI affords teachers the opportunity to mitigate the ``expert blind spot'' 
 \cite{nathan_expert_2001}, addressing student misconceptions they might not 
 otherwise have thought of.
 
 Taking into account the opportunities and challenges described above, the 
 ultimate objectives of our research can be summarized in figure 
-\ref{fig:tmpi_research}, which gives a schematic overview of how data in a TMPI 
-platform can be managed and leveraged to foster student learning and engagement.
+\ref{fig:tmpi_research}, which gives a schematic overview of how data from TMPI 
+can be managed and leveraged to foster student learning and engagement.
  
 \begin{figure}[H]
 	\centering
@@ -254,25 +251,27 @@ Automatic methods for content moderation in TMPI are discussed in
 \cite{gagnon_filtering_2019}, and are out of scope for this current research.
 
 Second, the student votes must be aggregated in step 
-\ref{fig:tmpi_research}(c), since each student only chose a peer's explanation 
-as most \textit{convincing} from the subset that was shown to them.
-This will yield a global ranked list of explanations for each 
-question prompt (figure \ref{fig:tmpi_research}(d)), which can then be used to 
-select the subset which will be shown to future students (figure 
+\ref{fig:tmpi_research}(c), since each student's vote is only based on the 
+subset of peer explanations that was shown to them.
+This rank aggregation will yield a globally ordered list of explanations for 
+each question prompt (figure \ref{fig:tmpi_research}(d)), which can then be 
+used to select the subset which will be shown to future students (figure 
 \ref{fig:tmpi_research}(e)).
 
-The third step is to mitigate the impact of ``early voters'': as soon as the 
-first few students submit high-quality explanations, it becomes difficult for 
-the work of``newer'' students to be shown often enough to earn votes and climb 
-the ranks.
-In figure \ref{fig:tmpi_research}(g) feature-rich linguistic models are trained 
-on a regression task, where the target is the aggregate rank score of student 
-explanations seen thus far. 
+The third step is to mitigate the disproportionate impact of ``early voters'': 
+as soon as the first few students submit high-quality explanations, it can 
+become difficult for the work of ``newer'' students to be shown often enough to 
+earn votes, and climb the ranks.
+In figure \ref{fig:tmpi_research}(g), feature-rich linguistic models are 
+trained on a regression task, where the target is the aggregate rank score of 
+student explanations seen thus far. 
 Models able to correctly predict the relative \textit{convincingness} of 
 student explanations, based on the linguistic features, can help navigate the 
 tradeoff between exploiting the content that as already been shown to be of 
 high quality, while exploring the possible effectiveness of newly submitted 
 work.
+Such models can also help eliminate the ``cold-start'' associated when a new 
+question item is introduced, and no vote-data has yet been collected.
 
 Modelling argument ``quality'' is an area of active research, with direct 
 applications in education, such as in automated scoring of 
@@ -284,39 +283,39 @@ knowledge acquisition, and the quality of arguments the students produce, as
 measured by the presence of formal argumentative structures (e.g. claims, 
 premise, etc.) \cite{garcia-mila_effect_2013}.
 
-In a comprehensive survey of research on the assessment of argument quality, 
-\cite{wachsmuth_computational_2017} outline a taxonomy of major quality 
-dimensions for natural language, with three principal aspects: logic, rhetoric, 
-and dialect. 
-However experiments have also shown that the perceived quality of an argument 
-can depend on the audience \cite{mercier_why_2011}. 
-%It is in this light that we adopt a more pragmatic measure of argument 
-%quality, 
-%centred on the premise that the goal of argumentation, is persuasion.
-
+In a comprehensive survey of research on the assessment of argument quality, a 
+taxonomy of major quality dimensions for natural language arguments was 
+proposed, with three principal aspects: logic, rhetoric, and dialect 
+\cite{wachsmuth_computational_2017}. 
 As students vote on their peer's explanations in TMPI, they may be evaluating 
 the logical cogency (e.g. is this argument sound?), or its rhetorical quality 
 (e.g. is this argument phrased well?). 
-These questions are out of the scope of this current study. 
-We focus on modelling the aggregate quality rankings of student explanations 
-based on their individual vote data, and cast this dimension of argument 
-quality as \textit{convincingness}.
 
-Therefore, we suggest that the ``vote'' data collected for each student's 
-explanation in TMPI, is a proxy for argument quality, along the dimension of 
-\textit{convincingness}, as judged by peer learners. 
+However experiments have also shown that the perceived quality of an argument 
+can depend on the audience \cite{mercier_why_2011}. 
+These foundational questions are out of the scope of this current study, and 
+the subject of future work. 
+We focus on modelling the aggregate quality rankings of student explanations 
+based on their individual vote data, and cast this along the dialectic 
+dimension of argument quality, as \textit{convincingness}.
+
+%We suggest that the ``vote'' data collected for each student's 
+%explanation in TMPI, is a proxy for argument quality, along the dimension of 
+%\textit{convincingness}, as judged by peer learners. 
 This is a direct application of the argument mining (AM) task originally 
 proposed by \cite{habernal_which_2016}: if crowd-workers are presented with a 
 pair of arguments for the same stance of a topic, can we predict 
 which of the two they will choose as more convincing? 
 (See table \ref{tab:sample_obs} for example argument pairs.)
-This task has already been extended to TMPI in previous work, wherein the 
-objective is to predict which explanations students will choose as more 
-convincing than their own \cite{bhatnagar_learnersourcing_2020}.
+This task has already been extended to TMPI in previous work, wherein the focus 
+was a pairwise prediction task: when presented as a pair, which explanations 
+students will choose as more convincing than their own 
+\cite{bhatnagar_learnersourcing_2020}?
 
-Student votes in TMPI can be aggregated into a \textit{convincingness} score, 
-as a measure of how effective that explanation is in persuading peers to change 
-their own answer.
+We build on this previous work, and move from the pairwise prediction task, to 
+a point-wise regression. 
+The explanation pairs in TMPI can be aggregated to produce a real-valued 
+\textit{convincingness} score for each student's submission, 
 Student explanations can then be ranked along such a score, allowing for 
 instructors to gain insights on the thinking of their students with respect to 
 specific content, and potentially even help students to improve how they 
@@ -332,7 +331,7 @@ holistic score to their peers' work, there is a growing number of peer-review
 platforms built on \textit{comparative} judgments.
 Notable examples include ComPAIR \cite{potter_compair:_2017} and 
 JuxtaPeer \cite{cambre_juxtapeer:_2018}, both of which present students with a 
-just a pair of their peers' submissions, and prompt the learner to evaluate 
+a pair of their peers' submissions, and prompt the learner to evaluate 
 them with respect to one another.
 As in TMPI, students apply a comparative judgment to only the subset of peer 
 content that they are shown during the review step.
@@ -352,14 +351,14 @@ This sets the stage for our central research questions:
 	explanations, as judged by their peers?
 \end{itemize}
 
-Work on modelling \textit{convincingness} has, in large part, been centred on 
-web discourse data.
-In the educational setting, previous work in automated scoring of persuasive 
-essays has focused on modelling holistic scores given by \textit{experts} on 
-longer form essays.
-To our knowledge, we are among the first to aggregate and model student 
-``votes'', in order to evaluate student explanations for their 
-\textit{convincingness} as judged by \textit{peers}.
+%Work on modelling \textit{convincingness} has, in large part, been centred on 
+%web discourse data.
+%In the educational setting, previous work in automated scoring of persuasive 
+%essays has focused on modelling holistic scores given by \textit{experts} on 
+%longer form essays.
+%To our knowledge, we are among the first to aggregate and model student 
+%``votes'', in order to evaluate student explanations for their 
+%\textit{convincingness} as judged by \textit{peers}.
 
 We suggest that the results of our work can inform the design of TMPI platforms.
 However, in a broader context, we aim to contribute to the growing body of 
@@ -370,9 +369,10 @@ Such platforms will likely have a similar architecture as shown in figure
 \ref{fig:tmpi_research}, and thus have similar design objectives, which 
 our work helps to address.
 
-The first objective is to provide feedback to learners on the 
-characteristics common to the most convincing arguments in their discipline, 
-promote learning, and the development of critical reasoning skills.
+The first objective is to provide feedback to learners: feedback that helps 
+them better understand the characteristics common to the most convincing 
+arguments in their discipline, promote learning, and the development of 
+critical reasoning skills.
 
 The second objective is providing support to teachers: in such platforms, the 
 amount of data generated scales very quickly.
@@ -383,7 +383,7 @@ answer on second attempt, and the peer-explanation chosen as most convincing
 (see figure \ref{fig:make_pairs_a}).   
 This amount of information can be overwhelming for instructors who use such 
 tools regularly as part of formative assessment. 
-Automatically identifying the highest, and lowest, quality student 
+Automatically identifying the highest (and lowest) quality student 
 explanations, as judged by other students, can support instructors in providing 
 timely feedback. 
 
@@ -409,17 +409,19 @@ The specific contributions made by this work include:
 	demonstrate this methodology in section \ref{sec:methodology}, and 
 	propose evaluation metrics based on practical issues in TMPI environments;
 	
-	\item a comprehensive evaluation of this proposed methodology from a TMPI 
-	environment, with question items from multiple disciplines. 
+	\item a comprehensive evaluation of this proposed methodology using data 
+	from a real, live TMPI environment, with question items from multiple 
+	disciplines. 
 	We refine work from argument mining research, and propose the use of 
 	consistent rank aggregation methods independent of model architecture;
 	
 	\item a comparison of feature-rich linguistic regression models, with 
-	neural 
-	transformer-based models, for the prediction of \textit{convincingness} 
-	``scores''. 
+	neural transformer-based models, for the prediction of real-valued
+	\textit{convincingness} scores. 
 	We identify some of the linguistic features most often associated with 
-	high-quality student explanations in TMPI.
+	high-quality student explanations in TMPI, and the question types where 
+	predicting \textit{convincingness} of student explanations is more 
+	challenging.
 	We also demonstrate how to leverage transfer learning from large 
 	pre-trained models for this task (section \ref{sec:model_results}).
 \end{itemize}
@@ -827,7 +829,7 @@ labelled pairs,
 
 \begin{enumerate}
 	
-	\item \textbf{WinRate\_raw}, defined as the ratio of times an explanation 
+	\item \textbf{WinRate\_MCE}, defined as the ratio of times an explanation 
 	is chosen to the number of times it was shown, as calculated from the data 
 	in raw MCE format.
 	Since this method is applied before our proposed pairwise transform, it 
