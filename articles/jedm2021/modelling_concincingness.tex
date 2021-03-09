@@ -70,7 +70,7 @@
 		Methods are needed to aggregate student ``votes'', and create a ranking 
 		of student explanations, so that only high-quality content is shown to 
 		future learners.
-		Secondly, instructors need tools to parse through such data, so that 
+		Moreover, instructors need tools to parse through such data, so that 
 		they can address student misconceptions.
 		Finally, in order to promote learning and engagement, students need to 
 		receive timely feedback on their explanations, which is prohibitive for 
@@ -79,8 +79,10 @@
 		This study proposes a two-step methodology for modelling data from 
 		TMPI: aggregation of pairwise preference data to produce rankings 
 		ordered on the \textit{convincingness} of student explanations (as 
-		judged by peers), followed by a regression task, using a rich set of 
-		linguistic features as input to supervised learning algorithms.
+		judged by peers).
+		This is followed by a regression task whose objective is to predict 
+		these \textit{convincingness} scores, using a rich set of linguistic 
+		features.
 		We apply and evaluate this methodology to data from a TMPI learning 
 		environment spanning data from multiple disciplines, and compare 
 		results with those attained on publicly available data-sets from 
@@ -92,7 +94,7 @@
 		\\ %Keep \\ for spacing to keywords		
 		{\parindent0pt
 			\textbf{Keywords: Learnersourcing, Comparative Peer Evaluation, 
-			Text Mining} 
+			Text Mining, Convincingness} 
 		}
 	\end{abstract}
 
@@ -182,38 +184,6 @@ The student now has three options:
 
 Whenever the student chooses either of the first two scenarios above, we 
 frame this as ``casting a vote'' for the chosen peer explanation.
-
-Moreover, when one of the answer choices is labelled as ``correct'', and the 
-others are ``incorrect'', as is often the case in question items from the STEM 
-disciplines, the three possibilities above can produce one of four 
-\textit{transitions}: Right $\rightarrow$ Right, Right $\rightarrow$ Wrong, 
-Wrong $\rightarrow$ Right, or Wrong $\rightarrow$ Wrong.
-The transition possibilities, and an example of the relative proportions 
-present in the the TMPI platform we study \cite{bhatnagar_dataset_2020}, are 
-shown in the Sankey diagram of figure \ref{fig:tmpi_sankey}.
-
-Across all disciplines, we see two important trends: first, if a student 
-chooses the correct answer on their first attempt, and decides to keep that 
-same correct choice on the review step, there is almost 50\% chance that 
-they chose a peer's explanation as more \textit{convincing}  than their own. 
-Second, if a student chooses an incorrect answer choice on their first attempt, 
-there is a one in three chance that a peer's explanation will convince them of 
-changing to the correct answer.
-These trends highlight the process of reflection students undertake in TMPI, 
-and the importance of leveraging student ``vote'' data to identify the best, 
-most-thought provoking content.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{img/transitions_final.png}
-	\caption{The possible transition types that can occur in TMPI for student 
-	answers between their first attempt (when they write their own 
-	explanation), and the review step (when they are presented with peer 
-	explanations). 
-	The relative proportion of each transition type is shown in this Sankey 
-	diagram for data from myDALITE.org}
-	\label{fig:tmpi_sankey}
-\end{figure}
 
 In the types of conceptual questions that are best suited for \textit{PI}, 
 there are often several ways to explain the correct answer.
@@ -607,6 +577,42 @@ instance of an open-source project,
 maintained by a Canadian researcher-practitioner partnership, 
 \href{saltise.ca}{SALTISE}, focused on supporting teachers in the development 
 of active learning pedagogy.
+The platform is primarily used for formative assessments, in a 
+``flipped-classroom'' settings, where students are assigned pre-instruction 
+readings, to be followed by relatively simple TMPI conceptual questions.
+Moreover, when one of the answer choices is labelled as ``correct'', and the 
+others are ``incorrect'', as is often the case in question items from the STEM 
+disciplines, the three possibilities above can produce one of four 
+\textit{transitions}: Right $\rightarrow$ Right, Right $\rightarrow$ Wrong, 
+Wrong $\rightarrow$ Right, or Wrong $\rightarrow$ Wrong.
+The transition possibilities, and an example of the relative proportions 
+present in the the TMPI platform we study \cite{bhatnagar_dataset_2020}, are 
+shown in the Sankey diagram of figure \ref{fig:tmpi_sankey}.
+
+Across all disciplines, we see two important trends: first, if a student 
+chooses the correct answer on their first attempt, and decides to keep that 
+same correct choice on the review step, there is almost 50\% chance that 
+they chose a peer's explanation as more \textit{convincing}  than their own. 
+Second, if a student chooses an incorrect answer choice on their first attempt, 
+there is a one in three chance that a peer's explanation will convince them of 
+changing to the correct answer.
+These trends highlight the process of reflection students undertake in TMPI, 
+and the importance of leveraging student ``vote'' data to identify the best, 
+most-thought provoking content.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{img/transitions_final.png}
+	\caption{The possible transition types that can occur in TMPI for student 
+		answers between their first attempt (when they write their own 
+		explanation), and the review step (when they are presented with peer 
+		explanations). 
+		The relative proportion of each transition type is shown in this Sankey 
+		diagram for data from myDALITE.org}
+	\label{fig:tmpi_sankey}
+\end{figure}
+
+
 The data comes from introductory level university science courses 
 (\textbf{Physics} and \textbf{Chemistry}), and generally spans different 
 teachers at different colleges and universities in Canada. 
