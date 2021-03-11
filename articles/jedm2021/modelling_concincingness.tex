@@ -49,49 +49,40 @@
 	\maketitle
 	
 	\begin{abstract}
-		Technology Mediated Peer Instruction (TMPI) is the process whereby 
-		students submit explanations to justify their reasoning, and are 
-		subsequently prompted to reconsider their own answer by being presented 
-		with explanations written by their peers. 
-		The goal of the learning activity is to foster reflection for learners, 
-		providing them with an opportunity to compare and contrast not only 
-		different answer choice options, but a variety of explanations for 
-		those answer choices as well.
-		When a student chooses a peer's explanation in this setting, we cast 
-		this as a vote in favour of the quality of the argument therein.
-		Each of these interactions is an instance of \textit{learnersourcing}, 
-		wherein students are not only generating explanations that may serve to 
-		help their peers learn, but in their ``votes'', they can help curate 
-		the vast amount of data generated as well.
-		For conceptual question items, there can be very different ways to 
-		explain an answer choice, and thus there is a need in TMPI to not just 
-		evaluate the \textit{correctness} of a student explanation, but its 
-		\textit{convincingness} as well.
-		Methods are needed to aggregate student ``votes'', and create a ranking 
-		of student explanations, so that only high-quality content is shown to 
-		future learners.
-		Moreover, instructors need tools to parse through such data, so that 
-		they can address student misconceptions.
-		Finally, in order to promote learning and engagement, students need to 
-		receive timely feedback on their explanations, which is prohibitive for 
-		teachers at scale.  
-
-		This study proposes a two-step methodology for modelling data from 
-		TMPI: aggregation of pairwise preference data to produce rankings 
-		ordered on the \textit{convincingness} of student explanations (as 
-		judged by peers).
-		This is followed by a regression task whose objective is to predict 
-		these \textit{convincingness} scores, using a rich set of linguistic 
-		features.
-		We apply and evaluate this methodology to data from a TMPI learning 
-		environment spanning data from multiple disciplines, and compare 
-		results with those attained on publicly available data-sets from 
-		argument mining research. 
-		We compare feature-rich regression models that favour interpretability, 
-		with the current state-of-the-art neural approach, and provide 
-		insight as to the features and question types where modelling 
-		\textit{convincingness} for pedagogical support is most easily achieved.
-		\\ %Keep \\ for spacing to keywords		
+	Learnersourcing is the process by which students submit content that enrich 
+	the learning material.  
+	One example of learnersourcing is \textit{Technology Mediated Peer 
+	Instruction} (TMPI), whereby students are prompted to submit explanations 
+	to justify their choice in a MCQ, and are subsequently presented with 
+	explanations written by their peers, after which they can reconsider their 
+	own answer.  
+	TMPI allows students to contrast their reasoning to a variety of peer 
+	submitted explanations. 
+	It is intended to foster reflection, ultimately leading to better 
+	learning.  
+	However, not all content submitted by students is adequate and it must be 
+	curated, a process that can require a significant effort by the teacher.  
+	For learnersourcing in TMPI to scale up to large classes, such as MOOCs, 
+	the curation process ought to automated.  
+	Even for smaller settings, automation is critical for the timely curation 
+	of student submitted content in a short time period, such as within a 
+	single assignment, or during a semester.
+	
+	We adapt methods from the fields of argument mining and natural language 
+	processing to address the curation challenge, and assess the quality of 
+	student answers submitted in TMPI, as judged by their peers.  
+	The curation task is confined to the prediction of argument 
+	\textit{convincingness}: an explanation submitted by a learner is 
+	considered of good quality, if it is convincing to their peers.  
+	We define a methodology to measure \textit{convincingness} based on 
+	pairwise comparison data, and compare the performance of feature-rich 
+	supervised learning algorithms, with a neural-network approach to predict 
+	\textit{convingcingness}.
+	Experiments are conducted over different domains, from ethics to STEM.  
+	While the neural approach is generally the best performer, results show 
+	that the performance is highly dependent on the type of questions 
+	submitted, which is itself domain dependent.
+	\\ %Keep \\ for spacing to keywords		
 		{\parindent0pt
 			\textbf{Keywords: Learnersourcing, Comparative Peer Evaluation, 
 			Text Mining, Convincingness} 
@@ -939,7 +930,7 @@ labelled pairs,
 How we evaluate the fit of these rank aggregation methods to our data is 
 described in section \ref{sec:methodology_eval}
 
-\subsection{Document Representations}\label{sec:features}
+\subsection{Linguistic Features}\label{sec:features}
 We build on the results from the previous section to now predict these 
 aggregate scores for each explanation, using linguistic properties of those 
 explanations.
@@ -952,40 +943,64 @@ essays, and automatic short answer scoring \cite{mohler_text--text_2009}.
 
 \begin{itemize}
 	
-	\item Lexical features: 
+	\item Lexical \& statistical features: 
 	uni-grams, 
 	type-token ratio, 
 	number of keywords (defined by open-source discipline specific 
-	text-book), 
-	number of equations (captured by a regular expression).
+	text-book).
 	These features may capture lexical diversity, and certain discipline 
 	specific keywords that are predictive of \textit{convincingness};
+	A statistical feature we propose to include is the \textit{number of 
+	equations} (captured by a regular expression) used by a student in their 
+	explanation, as they appear very often in the data from data in this TMPI 
+	platform.
+	In STEM disciplines, many students choose to reference their knowledge 
+	around a body of formulae to justify their reasoning. 
 	
-	\item Syntactic: 
-	POS n-grams (e.g. \textit{nouns, prepositions, 
-		verbs, conjunctions, negation, adjectives, adverbs, punctuation}), 
-	modal verbs (e.g. \textit{must, should, can, might}),
-%	contextuality/formality measure \cite{heylighen_variation_2002},
-	average height of syntactic parse tree for each sentence.
+	\item Syntactic features: 
 	We surmise that such features are question and discipline agnostic, and 
-	that there are patterns that are used by students which are simpler to 
-	understand for their peers;
+	that there are patterns used by students which are simpler to 
+	understand for their peers.
+	These include part-of-speech (POS) tags (e.g. \textit{noun, preposition, 
+	verb, etc.}), but POS bigrams and trigrams as well. 
+	We replace each word in the student explanation with its universal POS tag, 
+	and derive features from the normalized counts of each of these tags for 
+	each student explanation. 
+	\footnote{POS tagging done using pre-trained models provided with the 
+	python package, \href{spacy.io}{spacy}, which uses the tag set defined by 
+	the  \href{https://universaldependencies.org/docs/u/pos/}{Universal 
+	Dependencies project}}.
+	We also include counts of certain more detailed 
+	Modal verbs (e.g. \textit{must, should, can, might}),
+%	contextuality/formality measure \cite{heylighen_variation_2002},
+	average height of syntactic parse tree for each sentence;
 	
-	\item Semantic:
+	\item Semantic features: we build from work in automatic short answer 
+	grading, which often employ vector space models: where student answers are 
+	represented as embeddings, and their quality is evaluated based on vector 
+	similarity/distance with the embeddings of expert, correct text.
+	We make our choice of different embedding spaces based on increasing levels 
+	of specificity:  
 	\begin{itemize}
-		\item Using pre-trained GloVe \cite{pennington_glove:_2014} vectors, we 
-		calculate similarity metrics to i) all other explanations, ii) the 
-		question item text, and, when available, iii) a teacher provided 
-		``expert'' explanation.
+		\item Generally available pre-trained GloVe 
+		vectors\cite{pennington_glove:_2014} have been used for short-answer 
+		grading \cite{magooda_vector_2016,riordan_investigating_2017}. 
+		Using the 300-dimensional vectors, we calculate similarity metrics to 
+		i) all other explanations (following results from 
+		\cite{gagnon_filtering_2019}), 
+		ii) the question item text, and, when available, 
+		iii) a teacher provided ``expert'' explanation (feature is \verb|NA| 
+		otherwise).
 		\item We derive our own discipline specific embedding vectors, trained 
-		on corresponding open-source textbooks\footnote{https://openstax.org}. 
+		on corresponding open-source 
+		textbooks\footnote{\href{https://openstax.org}{OpenStax}}. 
 		We experiment with a word-based vector space model, Latent Semantic 
 		Indexing (\verb|LSI|) \cite{deerwester_indexing_1990}, due to its 
 		prevalence in text analytics in educational data mining literature, as 
 		well as \verb|Doc2Vec| \cite{le_distributed_2014}, which directly 
 		models the compositionality of all the words in a 
 		sentence\footnote{model implementations from 
-		https://radimrehurek.com/gensim/index.html}.
+		\href{https://radimrehurek.com/gensim/index.html}{Gensim}}.
 		We take the text of the question prompt, and when available, an 
 		``expert explanation'' provided by teachers for each question, and 
 		determine the 10 most relevant sub-sections of the textbook.
@@ -1003,13 +1018,20 @@ essays, and automatic short answer scoring \cite{mohler_text--text_2009}.
 %	vector cosine similarity between student explanation and prompt, 
 %	and answer choices; 
 	
-	\item Readability:
+	\item Readability features include empirically derived formula which have 
+	been shown to predict how difficult it is to read a text, which have been 
+	used extensively in automatic essay scoring research 
+	\cite{graesser_coh-metrix:_2004}.
+	The most common indices are the ones we adopt, including  
 	Fleish-Kincaid reading ease and grade level,
 	Coleman-Liau,
-	automated readability index, 
-	spelling errors. 
-	These features have been shown to be predictive of writing quality in 
-	educational data mining.
+	automated readability index, and 
+	normalized number of spelling errors 
+	\footnote{Python package 
+	\href{https://pypi.org/project/pyspellchecker/}{PySpellChecker}, 
+	which uses Levenshtein distance to determine if any given word is too far 
+	from known vocabulary}. 
+
 	
 \end{itemize}
 
@@ -1019,7 +1041,7 @@ we do not seem pertinent for shorter responses that deal with STEM disciplines.
 
 In our effort of addressing our \textbf{RQ2}, these high dimensional 
 feature-rich representations are passed through a uni-variate feature selection 
-step, wherein the top 768 most discriminative features are retained and used as 
+step, wherein the top 768 most discriminating features are retained and used as 
 input for the classical regression models described earlier.  
 We chose this size of vector representation to match the size of the contextual 
 embeddings in the neural \verb|BERT| models, described in section 
@@ -1157,7 +1179,7 @@ on the reference AM datasets, as we do not \textit{who} provided each pairwise
 preference label). 
 We dis-aggregate the results by possible TMPI transition types in figure 
 \ref{fig:acc_by_batch}, in order to inspect if there are any systematic 
-differences bewteen the cases when students are casting 
+differences between the cases when students are casting 
 a vote for an explanation for a different answer choice than their own, or 
 whether their initial guess was correct, or not.
 
@@ -1282,7 +1304,7 @@ For \textbf{IBM\_ArgQ}, the real-valued score is the mean of multiple binary
 ``relevance judgments'' explicitly collected by the authors from a set of 
 crowd-labellers.
 Finally, the real-valued score accompanying arguments in \textbf{IBM\_Evi} are 
-the output of a regression layer that is appended to a two-armed siamese 
+the output of a regression layer that is appended to a two-armed Siamese 
 Bi-LSTM model, wherein only one arm is provided with the a GloVe embedding of 
 the input argument.
 
@@ -1292,8 +1314,8 @@ choices across datasets, in tables \ref{tab:arg_mining_y_winrate} and
 train our models to predict a target variable that can be calculated from any 
 pairwise preference dataset, namely \textit{WinRate} and \textit{BT}.
 To the best of our knowledge, we are the first to propose, evaluate, and 
-susequently model a common set of rank aggregation methods for the calculation 
-of pointwise argument quality scores from pairwise preference data.
+subsequently model a common set of rank aggregation methods for the calculation 
+of point-wise argument quality scores from pairwise preference data.
 
 \begin{table}[H]
 	\parbox{.45\linewidth}{
@@ -1310,7 +1332,7 @@ of pointwise argument quality scores from pairwise preference data.
 	\caption{
 		Average correlation (under cross-topic validation scheme) between 
 		convincingness score predicted by different models, and the 
-		convincingness score as given by the \textit{winrate} across pairwise 
+		convincingness score as given by the \textit{WinRate} across pairwise 
 		preference data, for different argument mining datasets
 	}
 	\label{tab:arg_mining_y_winrate}
@@ -1528,8 +1550,8 @@ not able to learn in the training data.
 	}
 	\caption{
 		Average correlation (under cross-topic validation scheme) between 
-		convincingness score predicted by different models, and the 
-		convincingness score as given by the \textit{raw winrate} across 
+		convincingness score \textit{predicted} by different models, and the 
+		convincingness score as given by the \textit{MCE winrate} across 
 		pairwise preference data, for different disciplinary datasets from TMPI 
 		environment
 	}
@@ -1601,7 +1623,7 @@ when controlling length and regressing to the \textit{Bradley Terry} score.
 	}
 	\caption{
 		Average correlation (under cross-topic validation scheme) between 
-		convincingness score predicted by different models, and the 
+		convincingness score \textit{predicted} by different models, and the 
 		convincingness score as given by the \textit{Reference} scores across 
 		pairwise preference data, for different disciplinary datasets from 
 		reference argument mining datasets, on subset of data which includes 
@@ -1625,7 +1647,7 @@ when controlling length and regressing to the \textit{Bradley Terry} score.
 	}
 	\caption{
 		Average correlation (under cross-topic validation scheme) between 
-		convincingness score predicted by different models, and the 
+		convincingness score \textit{predicted} by different models, and the 
 		convincingness score as given by the \textit{WinRate} across pairwise 
 		preference data, for different disciplinary datasets from reference 
 		argument mining datasets, on subset of data which includes only the 

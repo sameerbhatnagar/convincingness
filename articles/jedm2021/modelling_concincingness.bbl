@@ -184,6 +184,14 @@
   {Siamese} network.
 \newblock {\em arXiv preprint arXiv:1907.08971\/}.
 
+\bibitem[\protect\citeauthoryear{Graesser, McNamara, Louwerse, and
+  Cai}{Graesser et~al\mbox{.}}{2004}]{graesser_coh-metrix:_2004}
+{\sc Graesser, A.~C.}, {\sc McNamara, D.~S.}, {\sc Louwerse, M.~M.}, {\sc and}
+  {\sc Cai, Z.} 2004.
+\newblock Coh-{Metrix}: {Analysis} of text on cohesion and language.
+\newblock {\em Behavior research methods, instruments, \& computers\/}~{\em
+  36,\/}~2, 193--202.
+
 \bibitem[\protect\citeauthoryear{Gretz, Friedman, Cohen-Karlik, Toledo, Lahav,
   Aharonov, and Slonim}{Gretz et~al\mbox{.}}{2019}]{gretz_large-scale_2019}
 {\sc Gretz, S.}, {\sc Friedman, R.}, {\sc Cohen-Karlik, E.}, {\sc Toledo, A.},
@@ -237,6 +245,13 @@
 {\sc Le, Q.} {\sc and} {\sc Mikolov, T.} 2014.
 \newblock Distributed representations of sentences and documents.
 \newblock In {\em International conference on machine learning}. 1188--1196.
+
+\bibitem[\protect\citeauthoryear{Magooda, Zahran, Rashwan, Raafat, and
+  Fayek}{Magooda et~al\mbox{.}}{2016}]{magooda_vector_2016}
+{\sc Magooda, A.~E.}, {\sc Zahran, M.}, {\sc Rashwan, M.}, {\sc Raafat, H.},
+  {\sc and} {\sc Fayek, M.} 2016.
+\newblock Vector based techniques for short answer grading.
+\newblock In {\em The twenty-ninth international flairs conference}.
 
 \bibitem[\protect\citeauthoryear{Mercier and Sperber}{Mercier and
   Sperber}{2011}]{mercier_why_2011}
@@ -327,6 +342,14 @@
 \newblock Methods for ordinal peer grading.
 \newblock In {\em Proceedings of the 20th {ACM} {SIGKDD} international
   conference on {Knowledge} discovery and data mining}. ACM, 1037--1046.
+
+\bibitem[\protect\citeauthoryear{Riordan, Horbach, Cahill, Zesch, and
+  Lee}{Riordan et~al\mbox{.}}{2017}]{riordan_investigating_2017}
+{\sc Riordan, B.}, {\sc Horbach, A.}, {\sc Cahill, A.}, {\sc Zesch, T.}, {\sc
+  and} {\sc Lee, C.} 2017.
+\newblock Investigating neural architectures for short answer scoring.
+\newblock In {\em Proceedings of the 12th {Workshop} on {Innovative} {Use} of
+  {NLP} for {Building} {Educational} {Applications}}. 159--168.
 
 \bibitem[\protect\citeauthoryear{Stegmann, Wecker, Weinberger, and
   Fischer}{Stegmann et~al\mbox{.}}{2012}]{stegmann_collaborative_2012}
