@@ -1297,6 +1297,11 @@ We train our different models to predict the real-valued
 \textit{convincingness} score provided by these datasets.
 
 \begin{table}[H]
+	\caption{Average correlation (under cross-topic validation scheme) between
+		convincingness score predicted by different models, and the different 
+		``ground truth'' reference score accompanying different argument mining 
+		datasets}
+	\label{tab:arg_mining_y_ref}
 	\parbox{.45\linewidth}{
 		\centering
 		\input{data/ranking_y_reference_pearson}
@@ -1308,11 +1313,6 @@ We train our different models to predict the real-valued
 		\input{data/ranking_y_reference_spearman}
 		\subcaption{Spearman correlation}
 	}
-\caption{Average correlation (under cross-topic validation scheme) between
-	convincingness score predicted by different models, and the different 
-	``ground truth'' reference score accompanying different argument mining 
-	datasets}
-\label{tab:arg_mining_y_ref}
 \end{table}
 
 It should be noted that the real-valued \textit{reference} scores that are 
