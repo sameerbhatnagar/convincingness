@@ -50,9 +50,8 @@
 	
 	\begin{abstract}
 	\textit{Learnersourcing} is the process by which students submit content 
-	that enrich 
-	the bank of learning materials available to their peers, all as an 
-	authentic part of their own learning experience.  
+	that enrich the bank of learning materials available to their peers, all as 
+	an 	authentic part of their own learning experience.  
 	One example of learnersourcing is \textit{Technology Mediated Peer 
 	Instruction} (TMPI), whereby students are prompted to submit explanations 
 	to justify their choice in a multiple choice question (MCQ), and are 
@@ -724,44 +723,6 @@ We see in table \ref{tab:data_summary} that the different disciplines in our
 TMPI dataset are comparable to the reference AM datasets (just proportionately 
 larger).
 
-\begin{table}[H]
-	\caption{
-		Examples of argument pairs from \textbf{Physics} and \textbf{Ethics} 
-		disciplines, taken from a TMPI environment. 
-		These examples were selected because they were incorrectly classified 
-		by all of our models, and demonstrate the challenging nature of the 
-		task. 
-		In each case, the argument labelled as more convincing is in 
-		\textit{italics}.}
-	\label{tab:sample_obs_dalite}
-	\begin{subtable}[t]{\textwidth}
-		\input{data/sample_obs_dalite}
-	\end{subtable}
-	\begin{subtable}[t]{\textwidth}
-		\input{data/sample_obs_ethics}
-	\end{subtable}
-\end{table}
-
-
-\begin{table}[H]
-	\caption{
-		Examples of argument pairs from each reference argument mining 
-		datasets. 
-		These examples were selected because they were incorrectly classified 
-		by all of our models, and demonstrate the challenging nature of the 
-		task. 
-		In each case, the argument labelled as more convincing is in 
-		\textit{italics}.
-		Errors in grammar and spelling are intentionally preserved.
-	}
-	\label{tab:sample_obs}
-	\begin{subtable}[t]{\textwidth}
-		\input{data/sample_obs_UKP}
-	\end{subtable}
-	\begin{subtable}[t]{\textwidth}
-		\input{data/sample_obs_IBM_ArgQ}
-	\end{subtable}
-\end{table}
 
 
 \section{Methodology}\label{sec:methodology}
@@ -940,7 +901,7 @@ for each student explanation, as depicted in figure \ref{fig:make_pairs_a}(c).
 	$$
 	
 	This method is currently used in the comparative evaluation platform 
-	JuxtaPeer \cite{cambre_juxtapeer:_2018}.\footnote{Implementation taken from 
+	JuxtaPeer \cite{cambre_juxtapeer:_2018}.\footnote{Implementation from 
 	\href{https://github.com/anishathalye/gavel/blob/master/gavel/crowd_bt.py}{Gavel}
 	 platform.}
 	
@@ -1127,22 +1088,20 @@ as to output a predicted \textit{convincingness} score.
  
 \subsection{Evaluation of methodology}\label{sec:methodology_eval}
 
-In order to evaluate our choice of rank aggregation method, and address our 
-research question RQ1, we perform several validation tests.
+In order to evaluate the choice of rank aggregation method, and address our 
+research question \textbf{RQ1}, we perform several validation tests.
 
-The reference argument mining datasets that we use for this study, along 
-with annotated pairwise preference data, each include their own derived 
-aggregated rank score for each argument (described in 
-\ref{sec:related_work:arg_quality}).
-We begin our evaluation of the soundness of our rank aggregation methods, by 
-measuring the correlation between our ranking scores, and the reference scores, 
-on the AM datasets.
+\subsubsection{Validity}
+We begin by measuring the correlation between the scores output from the rank 
+aggregation methods described in section \ref{sec:rank_agg}, and the 
+``reference'' scores provided with the AM datasets (outlined in section 
+\ref{sec:dataset-AM}).
 For each topic in the different AM datasets, we calculate the Pearson 
-correlation between the ``reference'' score of each argument, and the simpler 
-scores we choose to include in our methodology (\textit{WinRate},\textit{BT}, 
-\textit{Elo}. We cannot include \textit{CrowdBT} here, as the AM datasets do 
-not include information on which crowd workers labelled which argument pairs, 
-which is a requirement for estimating the annotator-specific $\eta_k$).
+correlation between the ``reference'' scores of each argument, and 
+\textit{WinRate}, \textit{BT}, \textit{Elo} scores aggregated from the pairwise 
+preference data. (We cannot include \textit{CrowdBT} here, as the AM datasets 
+do not include information on which crowd workers labelled which argument 
+pairs, which is a requirement for estimating the annotator-specific $\eta_k$).
 The distribution of Pearson correlation coefficients across the different 
 topics for each dataset are shown in the box plots in figure 
 \ref{fig:corr_to_reference_score}.
@@ -1167,21 +1126,25 @@ The relative alignment between our choice of rank aggregation techniques
 (\textit{WinRate}, \textit{Bradley-Terry}, and \textit{Elo}), and the modified 
 PageRank score provided with \textbf{UKP}, indicates that all capture 
 approximately the same information about overall \textit{convincingness}.
-Also of note is the correlation between the \textbf{IBM\_ArgQ} reference rank 
-score, and the methods we include in our methodology. 
-The reference score here was actively collected by the authors of dataset, 
-first by presenting crowd workers with individual arguments, and prompting them 
-to give a binary score of 1/0, based on whether ``they found the passage 
-suitable for use in a debate'', and then averaging the score over all labellers.
+Also of note is the relatively high correlation between the \textbf{IBM\_ArgQ} 
+reference rank score, and the aggregation methods we include in our study. 
+The \textbf{IBM\_ArgQ} reference convincingness score was actively collected by 
+the authors of dataset: first, they presented crowd workers with individual 
+arguments, and prompted them to give a binary score of 1/0, based on whether 
+``they found the passage suitable for use in a debate''. 
+The real-valued score for each argument is simply the average of the score over 
+all labellers.
 The correlation between \textit{WinRate}, \textit{Bradley-Terry}, and 
 \textit{Elo}, and this actively collected reference score, would indicate that 
 these methods capture a ``true'' ranked list.
    
-In order to evaluate a measure of \textit{reliability} of these rankings, we 
-employ a validation scheme similar to one proposed by \citeN{jones_peer_2015}.
+\subsubsection{Reliability}
+In order to evaluate a measure of \textit{reliability} of the aggregated 
+convincingness scores, we employ a validation scheme similar to one proposed by 
+\citeN{jones_peer_2015}.
 Students are randomly split into two batches, and their answers are used to 
-derive two independent sets of rank scores, as shown in figure 
-\ref{fig:evaluate_rankings}. 
+derive two independent sets of \textit{convincingness} scores, as shown in 
+figure \ref{fig:evaluate_rankings}. 
 
 
 \begin{figure}[H]
@@ -1251,11 +1214,11 @@ words.
 %	}
 %	\label{fig:corr_by_batch}
 %\end{figure}
-
-In practice, after choosing the most reliable rank-aggregation scoring method, 
-the second step of our proposed methodology is to address our second research 
-question, \textbf{RQ2}, and build feature-rich supervised regression models to 
-predict the individual argument scores.
+\subsubsection{Generalizability}
+In practice, after choosing the most valid and reliable rank-aggregation 
+scoring method, the second step of our proposed methodology is to address 
+research question \textbf{RQ2}, and build feature-rich supervised regression 
+models to predict the individual argument scores.
 We choose our feature sets based on relevant related research, as described in 
 section \ref{sec:features}, and use Pearson and Spearman correlation 
 coefficients to measure performance, as is standard practice in the literature 
@@ -1271,12 +1234,14 @@ while addressing the ``cold-start'' problem for new items before vote data
 can be collected.
 
 Once feature-rich models are trained and tested under this validation scheme, 
-we inspect these using \textit{permutation importance}, based on 
-\textit{feature importance} introduced by \citeN{breiman_random_2001} for 
-random forests, and generalized to be model agnostic by 
-\citeN{fisher_all_2019}: each feature is randomly permuted for a set number of 
-repetitions, and the importance of that feature is measured by the average 
-decrease in performance of the model on the un-perturbed dataset.
+we inspect these using \textit{permutation importance}\cite{fisher_all_2019}, 
+which is a model agnostic version of \textit{feature importance}, originally 
+introduced by \citeN{breiman_random_2001} random forests. 
+Each feature is randomly permuted for a set number of repetitions (we choose 
+the default $n_{repeats}=30$), and the importance of that feature is measured 
+by the average decrease in performance of the model on the un-perturbed 
+dataset\footnote{implementation from 
+\href{https://scikit-learn.org/stable/modules/permutation_importance.html}{SciKit-Learn}}.
 
 
 
@@ -1289,29 +1254,29 @@ TMPI learning environments.
 More broadly speaking, our work can inform the design of any 
 technology-mediated comparative peer evaluation platform. 
 
-We begin by applying this methodology on publicly available argument-mining 
+We begin by applying this methodology on publicly available AM 
 datasets in table \ref{tab:arg_mining_y_ref}, wherein we use the linguistic 
 features described in section \ref{sec:features} (excluding those linked to any 
 specific disciplinary textbook).
 We train our different models to predict the real-valued 
 \textit{convincingness} score provided by these datasets.
 
-\begin{table}[H]
+\begin{table}
 	\caption{Average correlation (under cross-topic validation scheme) between
-		convincingness score predicted by different models, and the different 
-		``ground truth'' reference score accompanying different argument mining 
+		convincingness score predicted by different models, and the 
+		different ``ground truth'' reference scores accompanying argument mining
 		datasets}
 	\label{tab:arg_mining_y_ref}
 	\parbox{.45\linewidth}{
+		\subcaption{Pearson correlation}
 		\centering
 		\input{data/ranking_y_reference_pearson}
-		\subcaption{Pearson correlation}
 	}
 	\hfill
 	\parbox{.45\linewidth}{
+		\subcaption{Spearman correlation}
 		\centering
 		\input{data/ranking_y_reference_spearman}
-		\subcaption{Spearman correlation}
 	}
 \end{table}
 
@@ -1333,16 +1298,16 @@ the output of a regression layer that is appended to a two-armed Siamese
 Bi-LSTM model, wherein only one arm is provided with the a GloVe embedding of 
 the input argument.
 
-So as to be able to more consistently compare the impact of our methodological 
+So as to be able to more consistently compare the impact of methodological 
 choices across datasets, in tables \ref{tab:arg_mining_y_winrate} and 
-\ref{tab:arg_mining_y_BT}, we 
-train our models to predict a target variable that can be calculated from any 
-pairwise preference dataset, namely \textit{WinRate} and \textit{BT}.
+\ref{tab:arg_mining_y_BT}, we train our models to predict a target variable 
+that can be calculated from any pairwise preference dataset, namely 
+\textit{WinRate} and \textit{BT}.
 To the best of our knowledge, we are the first to propose, evaluate, and 
 subsequently model a common set of rank aggregation methods for the calculation 
 of point-wise argument quality scores from pairwise preference data.
 
-\begin{table}[H]
+\begin{table}
 	\caption{
 	Average correlation (under cross-topic validation scheme) between 
 	convincingness score predicted by different models, and the 
@@ -1351,15 +1316,15 @@ of point-wise argument quality scores from pairwise preference data.
 }
 \label{tab:arg_mining_y_winrate}
 	\parbox{.45\linewidth}{
-		\centering
-		\input{data/ranking_y_winrate_pearson}
+%		\centering
 		\subcaption{Pearson correlation}
+		\input{data/ranking_y_winrate_pearson}
 	}
 	\hfill
 	\parbox{.45\linewidth}{
-		\centering
-		\input{data/ranking_y_winrate_spearman}
 		\subcaption{Spearman correlation}
+%		\centering
+		\input{data/ranking_y_winrate_spearman}
 	}
 \end{table}
 
@@ -1373,31 +1338,34 @@ of point-wise argument quality scores from pairwise preference data.
 	}
 	\label{tab:arg_mining_y_BT}
 	\parbox{.45\linewidth}{
+		\subcaption{Pearson correlation}
 		\centering
 		\input{data/ranking_y_BT_pearson}
-		\subcaption{Pearson correlation}
 	}
 	\hfill
 	\parbox{.45\linewidth}{
+		\subcaption{Spearman correlation}
 		\centering
 		\input{data/ranking_y_BT_spearman}
-		\subcaption{Spearman correlation}
 	}
 \end{table}
 
-While our best performing feature-rich model (\verb|Random Forests|) beats the 
-\verb|Length| baseline, the fine-tuned neural transformer model \verb|BERT_Q| 
-dramatically outperforms all methods.
+While our best performing feature-rich model (\verb|Random Forests|) beat the 
+\verb|Length| baseline, the fine-tuned neural transformer model \verb|BERT| and 
+\verb|BERT_Q| dramatically outperform all other methods.
 This pattern holds across the three reference datasets, when all trained for 
 the same task, under the same cross-topic validation scheme, in line with 
 similar results from the literature described in section \ref{sec:related_work}.
 
 Training our regressors to learn the \textit{WinRate}  and 
-\textit{Bradley-Terry} scores yields better correlations than when we model the 
-\textit{reference} scores accompanying the datasets.
-Besides beyond consistent and independent of model architecture, 
-\textit{WinRate} \textit{BT} may well better represent the overall quality of 
-each argument.
+\textit{Bradley-Terry} scores yields better correlations (tables 
+\ref{tab:arg_mining_y_winrate} and \ref{tab:arg_mining_y_BT}) than when we 
+try to predict the \textit{reference} scores accompanying the datasets (table 
+\ref{tab:arg_mining_y_ref}).
+Beyond the added benefit of being more consistent and independent of model 
+architecture, the higher correlation values for \textit{WinRate} and 
+\textit{BT} may well better represent the overall aggregate quality of each 
+argument as judged by the crowd.
 
 \subsection{Results - TMPI discipline specific datasets}
 We apply this same methodology to our three TMPI discipline-specific datasets 
@@ -1412,7 +1380,8 @@ for \textbf{Physics} and \textbf{Chemistry}, and that \verb|BERT| may be
 getting much of its information from the number of empty tokens required when 
 padding the different inputs to equal length.
 The feature-rich \verb|Random Forest| model achieves almost the same 
-performance \textit{without} access to the informative explanation length.
+performance \textit{without} access to the informative feature of explanation 
+\textit{length}.
 
 Nonetheless, for the \textbf{Physics} and \textbf{Chemistry} disciplines, no 
 models significantly outperform the \verb|Length| baseline, which seems to 
@@ -1426,10 +1395,10 @@ The gain in performance over the \verb|Length| baseline is most pronounced for
 \textbf{Ethics}.
 This may be best explained by the inherent similarities between the 
 \textbf{Ethics} TMPI data, and the argument mining datasets: the topic prompts 
-are subjective and personal, and the available answer options students are to 
-choose from are also limited to two opposing stances of an argument, as can be 
-seen in the sample data in tables \ref{tab:sample_obs} and 
-\ref{tab:sample_obs_dalite}. 
+are subjective and personal, and the available answer options students must 
+choose from are also limited: typically the options are two opposing stances of 
+an argument, as can be seen in the sample data in tables \ref{tab:sample_obs} 
+and \ref{tab:sample_obs_dalite}. 
 
 \begin{table}
 	\caption{
@@ -1482,7 +1451,7 @@ by peers.
 
 \begin{table}
 	\caption{
-	Average correlation (under cross-topic validation scheme)between 
+	Average correlation (under cross-topic validation scheme) between 
 	convincingness score predicted by different models, and the 
 	convincingness score as given by the \textit{winrate} across pairwise 
 	preference data, for different disciplinary datasets from TMPI 
@@ -1490,15 +1459,15 @@ by peers.
 	}
 	\label{tab:dalite_winrate}
 	\parbox{.45\linewidth}{
-		\centering
+	\subcaption{Pearson correlation}
+	\centering
 	\input{data/ranking_dalite_y_winrate_pearson}
-		\subcaption{Pearson correlation}
 	}
 	\hfill
 	\parbox{.45\linewidth}{
-		\centering
+	\subcaption{Spearman correlation}
+	\centering
 	\input{data/ranking_dalite_y_winrate_spearman}
-		\subcaption{Spearman correlation}
 	}
 
 \end{table}
@@ -1514,15 +1483,15 @@ by peers.
 	}
 	\label{tab:dalite_BT}
 	\parbox{.45\linewidth}{
+		\subcaption{Pearson correlation}
 		\centering
 		\input{data/ranking_dalite_y_BT_pearson}
-		\subcaption{Pearson correlation}
 	}
 	\hfill
 	\parbox{.45\linewidth}{
+		\subcaption{Spearman correlation}
 		\centering
 		\input{data/ranking_dalite_y_BT_spearman}
-		\subcaption{Spearman correlation}
 	}
 \end{table}
 
@@ -1550,15 +1519,15 @@ not able to learn in the training data.
 	}
 	\label{tab:dalite_crowdBT}
 	\parbox{.45\linewidth}{
+		\subcaption{Pearson correlation}
 		\centering
 		\input{data/ranking_dalite_y_crowdBT_pearson}
-		\subcaption{Pearson correlation}
 	}
 	\hfill
 	\parbox{.45\linewidth}{
+		\subcaption{Spearman correlation}
 		\centering
 		\input{data/ranking_dalite_y_crowdBT_spearman}
-		\subcaption{Spearman correlation}
 	}
 
 \end{table}
@@ -1566,22 +1535,22 @@ not able to learn in the training data.
 \begin{table}
 	\caption{
 	Average correlation (under cross-topic validation scheme) between 
-	convincingness score \textit{predicted} by different models, and the 
+	convincingness score predicted by different models, and the 
 	convincingness score as given by the \textit{MCE winrate} across 
 	pairwise preference data, for different disciplinary datasets from TMPI 
 	environment
 	}
 	\label{tab:dalite_winrate_nopairs}
 	\parbox{.45\linewidth}{
+		\subcaption{Pearson correlation}
 		\centering
 		\input{data/ranking_dalite_y_winrate_nopairs_pearson}
-		\subcaption{Pearson correlation}
 	}
 	\hfill
 	\parbox{.45\linewidth}{
+		\subcaption{Spearman correlation}
 	\centering
 		\input{data/ranking_dalite_y_winrate_nopairs_spearman}
-		\subcaption{Spearman correlation}
 	}
 \end{table}
 
@@ -1611,156 +1580,156 @@ gaps in their knowledge, based on their reading/evaluating of their peers'
 explanations.
 
 
-\subsection{Controlling for explanation length}
-
-The competitive performance of the baseline \verb|Length| confirms the 
-intuition that students generally will find more convincing content in longer 
-explanations.
-While working on a subset of the data is less than ideal from a methodological 
-perspective, for practical purposes, in terms of being able to offer students 
-and teachers actionable feedback, there is value in controlling for length, and 
-then inspecting model results, trained and tested on only a subset explanations 
-of comparable length.
-
-In tables \ref{tab:reference_longest}, \ref{tab:winrate_longest} and 
-\ref{tab:BT_longest}, we show the performance of our models trained and 
-evaluated on the longest arguments only. 
-For each dataset, we calculate the 75th percentile of argument word count, and 
-keep only those in the top quartile for each topic.
-When comparing with the corresponding result on the full datasets for the same 
-regression targets (tables \ref{tab:arg_mining_y_ref} 
-\ref{tab:arg_mining_y_winrate}, and \ref{tab:arg_mining_y_BT} respectively), we 
-see a dramatic reduction in performance of even the state-of-the-art BERT 
-models.
-We even have our feature-rich random forest model posting the best 
-cross-validated Pearson correlation score for the \textbf{IBM\_Evi} dataset 
-when controlling length and regressing to the \textit{Bradley Terry} score.
-
-\begin{table}
-	\caption{
-		Average correlation (under cross-topic validation scheme) between 
-		convincingness score \textit{predicted} by different models, and the 
-		convincingness score as given by the \textit{Reference} scores across 
-		pairwise preference data, for different disciplinary datasets from 
-		reference argument mining datasets, on subset of data which includes 
-		only the explanations within the top quartile of word counts.
-	}
-	\label{tab:reference_longest}
-	\parbox{.45\linewidth}{
-		\centering
-		\input{data/longest/ranking_y_reference_pearson_longest}
-		\subcaption{Pearson correlation}
-	}
-	\hfill
-	\parbox{.45\linewidth}{
-		\centering
-		\input{data/longest/ranking_y_reference_spearman_longest}
-		\subcaption{Spearman correlation}
-	}
-\end{table}
-
-
-\begin{table}
-	\caption{
-	Average correlation (under cross-topic validation scheme) between 
-	convincingness score \textit{predicted} by different models, and the 
-	convincingness score as given by the \textit{WinRate} across pairwise 
-	preference data, for different disciplinary datasets from reference 
-	argument mining datasets, on subset of data which includes only the 
-	explanations within the top quartile of word counts.
-	}
-	\label{tab:winrate_longest}
-	\parbox{.45\linewidth}{
-		\centering
-		\input{data/longest/ranking_y_winrate_pearson_longest}
-		\subcaption{Pearson correlation}
-	}
-	\hfill
-	\parbox{.45\linewidth}{
-		\centering
-		\input{data/longest/ranking_y_winrate_spearman_longest}
-		\subcaption{Spearman correlation}
-	}
-\end{table}
-
-
-\begin{table}
-	\caption{
-	Average correlation (under cross-topic validation scheme) between 
-	convincingness score predicted by different models, and the 
-	convincingness score as given by the \textit{BradleyTerry} across 
-	pairwise preference data, for different disciplinary datasets from 
-	reference argument mining datasets, on subset of data which includes 
-	only the explanations within the top quartile of word counts.
-	}
-	\label{tab:BT_longest}
-	\parbox{.45\linewidth}{
-		\centering
-		\input{data/longest/ranking_y_BT_pearson_longest}
-		\subcaption{Pearson correlation}
-	}
-	\hfill
-	\parbox{.45\linewidth}{
-		\centering
-		\input{data/longest/ranking_y_BT_spearman_longest}
-		\subcaption{Spearman correlation}
-	}
-\end{table}
-
-
-
-\begin{table}
-	\caption{
-	Average correlation (under cross-topic validation scheme) between 
-	convincingness score predicted by different models, and the 
-	convincingness score as given by the \textit{WinRate} across pairwise 
-	preference data, for different disciplinary datasets from TMPI 
-	environment, on subset of data which includes only the explanations 
-	within the top quartile of word counts
-	}
-	\label{tab:dalite_winrate_longest}
-	\parbox{.45\linewidth}{
-		\centering
-		\input{data/longest/ranking_dalite_y_winrate_pearson_longest}
-		\subcaption{Pearson correlation}
-	}
-	\hfill
-	\parbox{.45\linewidth}{
-		\centering
-		\input{data/longest/ranking_dalite_y_winrate_spearman_longest}
-		\subcaption{Spearman correlation}
-	}
-\end{table}
-
-
-\begin{table}
-	\caption{
-	Average correlation (under cross-topic validation scheme) between 
-	convincingness score predicted by different models, and the 
-	convincingness score as given by the \textit{WinRate} across pairwise 
-	preference data, for different disciplinary datasets from TMPI 
-	environment, on subset of data which includes only the explanations 
-	within the top quartile of word counts
-	}
-	\label{tab:dalite_BT_longest}
-	\parbox{.45\linewidth}{
-		\centering
-		\input{data/longest/ranking_dalite_y_BT_pearson_longest}
-		\subcaption{Pearson correlation}
-	}
-	\hfill
-	\parbox{.45\linewidth}{
-		\centering
-		\input{data/longest/ranking_dalite_y_BT_spearman_longest}
-		\subcaption{Spearman correlation}
-	}
-\end{table}
+%\subsection{Controlling for explanation length}
+%
+%The competitive performance of the baseline \verb|Length| confirms the 
+%intuition that students generally will find more convincing content in longer 
+%explanations.
+%While working on a subset of the data is less than ideal from a methodological 
+%perspective, for practical purposes, in terms of being able to offer students 
+%and teachers actionable feedback, there is value in controlling for length, 
+%and 
+%then inspecting model results, trained and tested on only a subset 
+%explanations 
+%of comparable length.
+%
+%In tables \ref{tab:reference_longest}, \ref{tab:winrate_longest} and 
+%\ref{tab:BT_longest}, we show the performance of our models trained and 
+%evaluated on the longest arguments only. 
+%For each dataset, we calculate the 75th percentile of argument word count, and 
+%keep only those in the top quartile for each topic.
+%When comparing with the corresponding result on the full datasets for the same 
+%regression targets (tables \ref{tab:arg_mining_y_ref} 
+%\ref{tab:arg_mining_y_winrate}, and \ref{tab:arg_mining_y_BT} respectively), 
+%we 
+%see a dramatic reduction in performance of even the state-of-the-art BERT 
+%models.
+%We even have our feature-rich random forest model posting the best 
+%cross-validated Pearson correlation score for the \textbf{IBM\_Evi} dataset 
+%when controlling length and regressing to the \textit{Bradley Terry} score.
+%
+%\begin{table}
+%	\caption{
+%		Average correlation (under cross-topic validation scheme) between 
+%		convincingness score predicted by different models, and the 
+%		convincingness score as given by the \textit{Reference} scores across 
+%		pairwise preference data, for AM datasets, on subset of data which 
+%		includes only the explanations within the top quartile of word counts.
+%	}
+%	\label{tab:reference_longest}
+%	\parbox{.45\linewidth}{
+%		\subcaption{Pearson correlation}
+%		\centering
+%		\input{data/longest/ranking_y_reference_pearson_longest}
+%	}
+%	\hfill
+%	\parbox{.45\linewidth}{
+%		\subcaption{Spearman correlation}
+%		\centering
+%		\input{data/longest/ranking_y_reference_spearman_longest}
+%	}
+%\end{table}
+%
+%
+%\begin{table}
+%	\caption{
+%	Average correlation (under cross-topic validation scheme) between 
+%	convincingness score predicted by different models, and the 
+%	convincingness score as given by the \textit{WinRate} across pairwise 
+%	preference data, for AM datasets, on subset of data which 
+%	includes only the explanations within the top quartile of word counts.
+%	}
+%	\label{tab:winrate_longest}
+%	\parbox{.45\linewidth}{
+%		\subcaption{Pearson correlation}
+%		\centering
+%		\input{data/longest/ranking_y_winrate_pearson_longest}
+%	}
+%	\hfill
+%	\parbox{.45\linewidth}{
+%		\subcaption{Spearman correlation}
+%		\centering
+%		\input{data/longest/ranking_y_winrate_spearman_longest}
+%	}
+%\end{table}
+%
+%
+%\begin{table}
+%	\caption{
+%	Average correlation (under cross-topic validation scheme) between 
+%	convincingness score predicted by different models, and the 
+%	convincingness score as given by the \textit{Bradley-Terry} across 
+%	pairwise preference data, for AM datasets, on subset of data which includes 
+%	only the explanations within the top quartile of word counts.
+%	}
+%	\label{tab:BT_longest}
+%	\parbox{.45\linewidth}{
+%		\subcaption{Pearson correlation}
+%		\centering
+%		\input{data/longest/ranking_y_BT_pearson_longest}
+%	}
+%	\hfill
+%	\parbox{.45\linewidth}{
+%		\subcaption{Spearman correlation}
+%		\centering
+%		\input{data/longest/ranking_y_BT_spearman_longest}
+%	}
+%\end{table}
+%
+%
+%
+%\begin{table}
+%	\caption{
+%	Average correlation (under cross-topic validation scheme) between 
+%	convincingness score predicted by different models, and the 
+%	convincingness score as given by the \textit{WinRate} across pairwise 
+%	preference data, for different disciplinary datasets from TMPI 
+%	environment, on subset of data which includes only the explanations 
+%	within the top quartile of word counts
+%	}
+%	\label{tab:dalite_winrate_longest}
+%	\parbox{.45\linewidth}{
+%		\subcaption{Pearson correlation}
+%		\centering
+%		\input{data/longest/ranking_dalite_y_winrate_pearson_longest}
+%	}
+%	\hfill
+%	\parbox{.45\linewidth}{
+%		\subcaption{Spearman correlation}
+%		\centering
+%		\input{data/longest/ranking_dalite_y_winrate_spearman_longest}
+%	}
+%\end{table}
+%
+%
+%\begin{table}
+%	\caption{
+%	Average correlation (under cross-topic validation scheme) between 
+%	convincingness score predicted by different models, and the 
+%	convincingness score as given by the \textit{Bradley-Terry} across pairwise 
+%	preference data, for different disciplinary datasets from TMPI 
+%	environment, on subset of data which includes only the explanations 
+%	within the top quartile of word counts
+%	}
+%	\label{tab:dalite_BT_longest}
+%	\parbox{.45\linewidth}{
+%		\subcaption{Pearson correlation}
+%		\centering
+%		\input{data/longest/ranking_dalite_y_BT_pearson_longest}
+%	}
+%	\hfill
+%	\parbox{.45\linewidth}{
+%		\subcaption{Spearman correlation}
+%		\centering
+%		\input{data/longest/ranking_dalite_y_BT_spearman_longest}
+%	}
+%\end{table}
 
 
 \subsection{Model inspection for important linguistic features}
 In an effort to provide insight into our \textbf{RQ2}, we look at out best 
 performing folds of our regression task, and note the features with the highest 
-permutation importance:
+permutation importance (from highest to lowest):
 
 \begin{itemize}
 	\item Type Token Ratio
