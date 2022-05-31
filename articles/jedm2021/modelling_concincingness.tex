@@ -78,7 +78,7 @@
 	We define a methodology to measure \textit{convincingness} based on 
 	pairwise comparison data, and compare the performance of feature-rich 
 	supervised learning algorithms, with a neural-network approach to predict 
-	\textit{convingcingness}.
+	\textit{convincingness}.
 	Experiments are conducted over different domains, from ethics to STEM.  
 	While the neural approach is generally the best performing, results show 
 	that success on this task is highly dependent on the type of question, 
@@ -230,11 +230,12 @@ trained on a regression task, where the target is the aggregate rank score of
 student explanations seen thus far. 
 Models able to correctly predict the relative \textit{convincingness} of 
 student explanations, based on the linguistic features, can help navigate the 
-tradeoff between exploiting the content that as already been shown to be of 
+trade-off between exploiting the content that as already been shown to be of 
 high quality, while exploring the possible effectiveness of newly submitted 
 work.
-Such models can also help eliminate the ``cold-start'' associated when a new 
-question item is introduced, and no vote-data has yet been collected.
+Such models can also help eliminate ``cold-start'' associated problems that 
+occur when a new question item is introduced, and no vote-data has yet been 
+collected.
 
 The problem of aggregating the results of evaluative peer-judgments extends  
 beyond TMPI.
@@ -242,7 +243,7 @@ For example, in response to the difficulty students can have providing a
 holistic score to their peers' work, there is a growing number of peer-review 
 platforms built on \textit{comparative} judgments.
 Notable examples include ComPAIR \cite{potter_compair:_2017} and 
-JuxtaPeer \cite{cambre_juxtapeer:_2018}, both of which present students with a 
+JuxtaPeer \cite{cambre_juxtapeer:_2018}, both of which present students with 
 a pair of their peers' submissions, and prompt the learner to evaluate 
 them with respect to one another.
 As in TMPI, students apply a comparative judgment to only the subset of peer 
@@ -461,7 +462,7 @@ students will choose as more convincing than their own
 We build on this previous work, and move from the pairwise prediction task, to 
 a point-wise regression. 
 The explanation pairs in TMPI can be aggregated to produce a real-valued 
-\textit{convincingness} score for each student's submission, 
+\textit{convincingness} score for each student's submission. 
 Student explanations can then be ranked along such a score, allowing for 
 instructors to gain insights on the thinking of their students with respect to 
 specific content, and potentially even help students to improve how they 
@@ -492,7 +493,7 @@ These ``strength'' parameters can be calculated using maximum likelihood
 estimation.
 
 \textit{CrowdBT}, an extension of the \textit{BT} method, which incorporates 
-the quality of contributions of each annotator in a crowdsourced setting, was
+the quality of contributions of each annotator in a crowd-sourced setting, was
 originally proposed for evaluating relative reading level in a pair passages 
 \cite{chen_pairwise_2013}. 
 
@@ -616,7 +617,7 @@ most-thought provoking content.
 
 The data for this study comes from introductory level university science 
 courses (\textbf{Physics} and \textbf{Chemistry}), and generally spans 
-different teachers at different colleges and universities in Canada. 
+different teachers at several colleges and universities in Canada. 
 The \textbf{Ethics} dataset comes from a the 2013 run of a popular MOOC 
 (\textit{Justice}, offered by HarvardX).
 The TMPI prompts are slightly different from the \textbf{Physics} and 
@@ -661,20 +662,25 @@ analyses:
 	The answers of these students are removed from the dataset; 
 	\item we only include observations where students explicitly 
 	change explanations (whether for their own answer choice, or for a 
-	different answer choice, regardless of correctness.) 
-	There is a strong bias for students to simply choose `\textit{I stick to my 
-	own rationale}, and so this reduces our data by approximately 50\%,
+	different answer choice, regardless of correctness). 
+	There is a strong bias for students to simply choose ``\textit{I stick to 
+	my 
+	own rationale}'', and so this reduces our data by approximately 50\%,
 	\item many question items have been completed by several hundreds of 
 	students.
 	As such, almost half of all student explanations have actually been shown 
 	to another peer; thus we retain only those student answers that have been 
-	presented to at least 5 other students.
+	presented to at least 5 other students (a threshold we chose based on a 
+	qualitative look at the distribution of how often each student explanation 
+	has been presented to a peer).
 	\item As a platform for formative assessment, not all instructors provide 
 	credit for the explanations students write, and there are invariably some 
 	students who do not put much effort into writing good explanations.
 	We include only those student answers that have at least 10 words.
 	\item after the previous two steps, we only include data from those 
-	questions that have at least 100 remaining student answers.
+	questions that have at least 100 remaining student answers (a threshold 
+	chosen based on minimum data required for convergence of BT model in python 
+	implementation we use ({\href{http://choix.lum.li/en/latest/}{choix}}).
 	\item we remove any duplicate pairs before the rank aggregation step that 
 	have the same ``winning'' label, as explanations that appear earlier on in 
 	the lifetime of a new question are bound to be shown more often to future 
@@ -791,10 +797,9 @@ explanation \textit{pairs}, as in figure \ref{fig:make_pairs_a}(b).
 \label{fig:make_pairs_a}
 \end{figure}
 
-Assuming there are $N$ explanations, labelled by $K$ students, and $S_K$ 
-labelled pairs, we apply the following rank aggregation 
-techniques in order to derive a real valued \textit{convincingness} rank score 
-for each student explanation, as depicted in figure \ref{fig:make_pairs_a}(c).
+We apply the following rank aggregation techniques in order to derive a real 
+valued \textit{convincingness} rank score for each student explanation, as 
+depicted in figure \ref{fig:make_pairs_a}(c).
 
 \begin{enumerate}
 	
@@ -812,7 +817,7 @@ for each student explanation, as depicted in figure \ref{fig:make_pairs_a}(c).
 	In the context of TMPI, when we calculate the \textit{WinRate} of a student 
 	explanation after the data transformation depicted in figure 
 	\ref{fig:make_pairs_a}a and figure \ref{fig:make_pairs_a}b, we take a step 
-	towards including the effect of comparative judgement, as pairs are 
+	towards including the effect of comparative judgment, as pairs are 
 	specifically constructed for each observation from the explanation that was 
 	chosen, and the ones that were shown.
 	
@@ -831,10 +836,11 @@ for each student explanation, as depicted in figure \ref{fig:make_pairs_a}(c).
 	chosen explanation is paired with each of the other shown ones, and the 
 	pair is labelled with $y=-/+1$, depending on whether the chosen explanation 
 	is first/second in the pair.
-	The latent strength parameters are estimated by maximizing 
+	Assuming there are $K$ students, and $S_k$ pairs labelled by the $k^{th}$ 
+	student, the latent strength parameters are estimated by maximizing 
 	the log-likelihood given by:
 	$$
-	\ell(\boldsymbol{\beta})=\sum_{K}\sum_{(i,j)\epsilon S_K}^{} 
+	\ell(\boldsymbol{\beta})=\sum_{K}\sum_{(i,j)\epsilon S_k}^{} 
 	\log\frac{1}{1+e^{\beta_i - \beta_j}}
 	$$
 	subject to $\sum_{i}\beta_i=0$.\footnote{implementation using python 
@@ -891,7 +897,7 @@ for each student explanation, as depicted in figure \ref{fig:make_pairs_a}(c).
 	\eta_k \frac{e^{\beta_a}}{e^{\beta_a}+e^{\beta_b}} + (1-\eta_k) 
 	\frac{e^{\beta_b}}{e^{\beta_a}+e^{\beta_b}}
 	$$
-	and the log-likelilood maximized for estimation to 
+	and the log-likelihood maximized for estimation to 
 	
 	$$
 	\ell(\boldsymbol{\eta},\boldsymbol{\beta})=\sum_{K}\sum_{(i,j)\epsilon 
@@ -942,10 +948,10 @@ essays, and automatic short answer scoring \cite{mohler_text--text_2009}.
 	that there are patterns used by students which are simpler to 
 	understand for their peers.
 	These include part-of-speech (POS) tags (e.g. \textit{noun, preposition, 
-	verb, etc.}), but POS bigrams and trigrams as well. 
+	verb, etc.}), but POS bi-grams and tri-grams as well. 
 	We replace each word in the student explanation with its universal POS tag, 
 	and derive features from the normalized counts of each of these tags for 
-	each student explanation. 
+	each student explanation 
 	\footnote{POS tagging done using pre-trained models provided with the 
 	python package, \href{spacy.io}{spacy}, which uses the tag set defined by 
 	the  \href{https://universaldependencies.org/docs/u/pos/}{Universal 
@@ -953,7 +959,7 @@ essays, and automatic short answer scoring \cite{mohler_text--text_2009}.
 	We also include counts of certain more detailed 
 	Modal verbs (e.g. \textit{must, should, can, might}),
 %	contextuality/formality measure \cite{heylighen_variation_2002},
-	average height of syntactic parse tree for each sentence;
+	average height of syntactic parse tree for each sentence.
 	
 	\item Semantic features: we build from work in automatic short answer 
 	grading, which often employ vector space models: where student answers are 
@@ -1022,8 +1028,9 @@ that deal with STEM disciplines.
 
 In our effort of addressing our \textbf{RQ2}, these high dimensional 
 feature-rich representations are passed through a uni-variate feature selection 
-step, wherein the top 768 most discriminating features are retained, and used 
-as input for the classical regression models described earlier.  
+step, wherein all features are ordered in decreasing order of variance, and the 
+top 768 features are retained, to be used as input for the classical regression 
+models described earlier.  
 We chose this size of vector representation to match the size of the contextual 
 embeddings in the neural \verb|BERT| models, described in section 
 \ref{sec:regress_models}, and compare their performance in a fair manner.
@@ -1069,7 +1076,7 @@ submitted their second answer choice in the review step).
 We fine tune a variation of \verb|BERT_Q|, and combine \textit{expert}-written 
 text, separated by the \verb|SEP| token, with the student explanation, and 
 serve as input to the transformer (instead of the topic prompt).
-We refer to this approach as \verb|BERT_A|, .
+We refer to this approach as \verb|BERT_A|.
 The theoretical grounding for the use of these models in the study of 
 \textit{convincingness} stems from the different tasks for which the base BERT 
 model was originally pre-trained for in \citeN{devlin_bert_2018}.
@@ -1136,7 +1143,8 @@ The real-valued score for each argument is simply the average of the score over
 all labellers.
 The correlation between \textit{WinRate}, \textit{Bradley-Terry}, and 
 \textit{Elo}, and this actively collected reference score, would indicate that 
-these methods capture a ``true'' ranked list.
+these methods capture a ranking that is more than just an artifact of a 
+computational model.
    
 \subsubsection{Reliability}
 In order to evaluate a measure of \textit{reliability} of the aggregated 
@@ -1249,8 +1257,8 @@ dataset\footnote{implementation from
 
 \subsection{Results - Argument Mining Datasets}
 One of the contributions of this study is to propose a methodology for the 
-analysis of learnersourced explanation quality labels inside 
-TMPI learning environments. 
+analysis of learnersourced explanation quality labels inside TMPI learning 
+environments. 
 More broadly speaking, our work can inform the design of any 
 technology-mediated comparative peer evaluation platform. 
 
@@ -1288,8 +1296,9 @@ For example, in the \textbf{UKP} dataset, the ground truth
 \textit{convincingness} score provided for each argument by the authors, is 
 derived by constructing an argument graph, and calculating a variant of the 
 PageRank score, after removing cycles induced by the pairwise data (e.g. cases 
-where \textit{A} is more convincing \textit{B}, \textit{B} is more convincing 
-than \textit{C}, but \textit{C} is more convincing that \textit{A}).
+where \textit{A} is more convincing than \textit{B}, \textit{B} is more 
+convincing 
+than \textit{C}, but \textit{C} is more convincing than \textit{A}).
 For \textbf{IBM\_ArgQ}, the real-valued score is the mean of multiple binary 
 ``relevance judgments'' explicitly collected by the authors from a set of 
 crowd-labellers.
@@ -1453,7 +1462,7 @@ by peers.
 	\caption{
 	Average correlation (under cross-topic validation scheme) between 
 	convincingness score predicted by different models, and the 
-	convincingness score as given by the \textit{winrate} across pairwise 
+	convincingness score as given by the \textit{WinRate} across pairwise 
 	preference data, for different disciplinary datasets from TMPI 
 	environment
 	}
@@ -1536,7 +1545,7 @@ not able to learn in the training data.
 	\caption{
 	Average correlation (under cross-topic validation scheme) between 
 	convincingness score predicted by different models, and the 
-	convincingness score as given by the \textit{MCE winrate} across 
+	convincingness score as given by the \textit{MCE WinRate} across 
 	pairwise preference data, for different disciplinary datasets from TMPI 
 	environment
 	}
@@ -1760,30 +1769,32 @@ words in a comparative setting.
 \section{Limitations \& Future Work}
 
 Two of the most important differences between TMPI data, and datasets from 
-argument mining research in \textit{convincingness}, are centred on the 
-``student as labeller''. 
+argument mining research in \textit{convincingness}, are centred on what we 
+refer to as the ``student as labeller''. 
 
 First, in a traditional crowdsourcing setting, the people who choose the most 
-convincing explanations are not the ones who wrote them.
-In TMPI, the student will be comparing their peers' explanations with each 
-other, but against the explanation they just submitted as well.
+convincing explanations, are not also the ones who wrote them.
+In TMPI, the student will not only be comparing their peers' explanations with 
+each other, but against the explanation they just submitted as well.
 The effect of this can be seen in the 1 in 2 chance that students decide to 
-``stick to their own'' explanation in this TMPI platform. 
+``stick to their own'' explanation in myDALITE.org.
+Future work needs to address this, and should leverage the ``non-votes'' of 
+these students, as they might provide valuable information. 
 
-Second, typical crowdsourcing tasks include filtering questions which are meant 
-to ensure that the workers are qualified and taking the task seriously.
-While the \textit{crowdBT} rank aggregation method jointly estimates the 
+Second, typical crowdsourcing tasks include ``qualifying'' questions which are 
+meant to ensure that the workers are qualified and taking the task seriously.
+While the \textit{CrowdBT} rank aggregation method jointly estimates the 
 student's ``seriousness'' at the labelling task, the almost null improvement of 
 regression results in table \ref{tab:dalite_crowdBT} seem to indicate that this 
 may not be the best approach: the measure of how much a student ``agrees'' with 
 the rest of the crowd may not be a useful piece of information in estimating 
-the overall convincingness.
+the overall convincingness  of the explanations they vote on.
 Some of the next steps in our research will be to include student-level and 
 question-level features into our analysis (e.g. student strength, question 
 difficulty).
 However the challenge therein lies in ceding the advantage conferred by our 
 methodological choice of relying on the linguistic properties of the text 
-alone: the ``cold-start'' problem becomes prohibitive for inference when we do 
+alone: the ``cold-start'' problem is prohibitive for inference when we do 
 not have any skill estimates for students new to the system, or difficulty 
 estimates for new questions items.
 
@@ -1802,6 +1813,20 @@ in-class instruction has an impact on learning gains across the semester
 It remains to be shown that providing feedback to students and their 
 instructors, on the relative \textit{convincingness} of different student 
 explanations has a beneficial impact on learning.
+
+Finally, our work can inform pedagogical practice, in how teachers design 
+conceptual questions meant to promote the elaboration of rich 
+self-explanations, which in turn can lead to deep reflection among peers in 
+TMPI.
+Recent research on identifying the types of question-items best suited for 
+in-class PI, encourages the use of non-numerical prompts in order to foster 
+rich discussion \cite{cline_identifying_2021}. 
+One metric the authors propose for evaluating the quality of a question, is how 
+broad a distribution of votes there are for the different answer options.
+More work is needed in order to extend this notion to TMPI, where a formal 
+measure of question quality can help instructors pose more thought provoking 
+tasks for their students.
+ 
 
 
 
