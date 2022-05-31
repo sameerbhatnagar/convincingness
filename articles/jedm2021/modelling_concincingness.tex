@@ -420,10 +420,14 @@ ranked list for \textit{convincingness} as judged by a set of peers.
 
 \subsection{Ranking Arguments for Quality}\label{sec:related_work:arg_quality}
 
-Modelling argument ``quality'' is an area of active research, with direct 
-applications in education, such as in automated scoring of 
-persuasive essays written by students 
-\cite{persing_modeling_2015,nguyen_argument_2018}.
+Argument mining is a broad research area concerned with automatically 
+identifying argumentative structures in free-text (e.g. claims and premises), 
+classifying their pro/con stance with respect to the topic, and evaluating 
+argument quality.
+
+Modelling argument ``quality'' is an-active sub-area of research, with direct 
+applications in education, such as in automated scoring of persuasive essays 
+written by students \cite{persing_modeling_2015,nguyen_argument_2018}.
 In work more closely tied with peer instruction, it has been found that when 
 students are asked to debate in dyads, there is a relationship between  
 knowledge acquisition, and the quality of arguments the students produce, as 
@@ -1776,7 +1780,7 @@ First, in a traditional crowdsourcing setting, the people who choose the most
 convincing explanations, are not also the ones who wrote them.
 In TMPI, the student will not only be comparing their peers' explanations with 
 each other, but against the explanation they just submitted as well.
-The effect of this can be seen in the 1 in 2 chance that students decide to 
+The effect of this can be seen in the 50\% chance that students decide to 
 ``stick to their own'' explanation in myDALITE.org.
 Future work needs to address this, and should leverage the ``non-votes'' of 
 these students, as they might provide valuable information. 
@@ -1797,6 +1801,35 @@ methodological choice of relying on the linguistic properties of the text
 alone: the ``cold-start'' problem is prohibitive for inference when we do 
 not have any skill estimates for students new to the system, or difficulty 
 estimates for new questions items.
+
+These two limitations reveal the possibility of a confounding variable in our 
+research: the level of confidence the student has in their own answer. 
+The ``vote'' a student casts for a peer's explanation might not be due to it's 
+relative \textit{convincingness}, but instead a reflection of how confident 
+that student is in their own answer choice, and even their own understanding of 
+the underlying concept. 
+
+
+However, we posit that the impact of this confound on our results is mitigated 
+due to a particular characteristic of data from the TMPI environment we have 
+worked with, myDALITE.org:  how ``easy'' the questions were. 
+More than half of all student answers in our data are the result of a student 
+choosing the correct answer choice on their first attempt, as well as their 
+second attempt.
+Instructors primarily chose easy questions in their myDALITE
+assignments, as part a ``flipped classroom'' instructional strategy, wherein 
+the objective is not to assess student understanding, but simply promote 
+preparation before class.
+This low level of difficulty of the question items means that we can be 
+relative certain that students were mostly confident about their answer choice, 
+and were indeed casting a vote for the most \textit{convincing} peer 
+explanation.
+In future work, should there be higher proportion of students choosing an 
+incorrect answer on their first answer choice, we would need to emulate the 
+approach taken by in the AXIS platform \cite{williams_axis:_2016}, wherein each 
+time students answer a question, they are also prompted to indicate their level 
+of confidence (the obvious downside of this is the additional burden imposed on 
+the student to provide us with this meta-data).
 
 Other directions for future work include improving the performance of 
 feature-rich models by incorporating ``argument structure'' features, which 
