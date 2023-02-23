@@ -1,4 +1,8 @@
-# How to reproduce results (in progress)
+# Convincingness & Technology Mediated Peer Instruction
+
+Code and article for Journal of Education Data Mining
+
+## How to reproduce results
 
 ```
 $ virtualenv -p /usr/bin/python3.7 venv_convincingness
