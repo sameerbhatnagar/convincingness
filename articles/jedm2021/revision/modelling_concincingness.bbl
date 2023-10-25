@@ -1,0 +1,477 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Aldous}{Aldous}{2017}]{aldous_elo_2017}
+{\sc Aldous, D.} 2017.
+\newblock Elo ratings and the sports model: {A} neglected topic in applied
+  probability?
+\newblock {\em Statistical science\/}~{\em 32,\/}~4, 616--629.
+\newblock Publisher: Institute of Mathematical Statistics.
+
+\bibitem[\protect\citeauthoryear{Bhatnagar, Desmarais, Whittaker, Lasry,
+  Dugdale, and Charles}{Bhatnagar
+  et~al\mbox{.}}{2015}]{bhatnagar_analysis_2015}
+{\sc Bhatnagar, S.}, {\sc Desmarais, M.}, {\sc Whittaker, C.}, {\sc Lasry, N.},
+  {\sc Dugdale, M.}, {\sc and} {\sc Charles, E.~S.} 2015.
+\newblock An analysis of peer-submitted and peer-reviewed answer rationales, in
+  an asynchronous {Peer} {Instruction} based learning environment.
+\newblock In {\em Proceedings of the 8th {International} {Conference} on
+  {Educational} {Data} {Mining}}, {O.~C. Santos}, {J.~G. Boticario},
+  {C.~Romero}, {M.~Pechenizkiy}, {A.~Merceron}, {P.~Mitros}, {J.~M. Luna},
+  {C.~Mihaescu}, {P.~Moreno}, {A.~Hershkovitz}, {S.~Ventura}, {and}
+  {M.~Desmarais}, Eds.
+
+\bibitem[\protect\citeauthoryear{Bhatnagar, Zouaq, Desmarais, and
+  Charles}{Bhatnagar et~al\mbox{.}}{2020a}]{bhatnagar_dataset_2020}
+{\sc Bhatnagar, S.}, {\sc Zouaq, A.}, {\sc Desmarais, M.~C.}, {\sc and} {\sc
+  Charles, E.} 2020a.
+\newblock A {Dataset} of {Learnersourced} {Explanations} from an {Online}
+  {Peer} {Instruction} {Environment}.
+\newblock {\em International Educational Data Mining Society\/}.
+\newblock Publisher: ERIC.
+
+\bibitem[\protect\citeauthoryear{Bhatnagar, Zouaq, Desmarais, and
+  Charles}{Bhatnagar et~al\mbox{.}}{2020b}]{bhatnagar_learnersourcing_2020}
+{\sc Bhatnagar, S.}, {\sc Zouaq, A.}, {\sc Desmarais, M.~C.}, {\sc and} {\sc
+  Charles, E.} 2020b.
+\newblock Learnersourcing {Quality} {Assessment} of {Explanations} for {Peer}
+  {Instruction}.
+\newblock In {\em Addressing {Global} {Challenges} and {Quality} {Education}},
+  {C.~Alario-Hoyos}, {M.~J. Rodríguez-Triana}, {M.~Scheffel},
+  {I.~Arnedillo-Sánchez}, {and} {S.~M. Dennerlein}, Eds. Springer
+  International Publishing, Cham, 144--157.
+
+\bibitem[\protect\citeauthoryear{Bradley and Terry}{Bradley and
+  Terry}{1952}]{bradley_rank_1952}
+{\sc Bradley, R.~A.} {\sc and} {\sc Terry, M.~E.} 1952.
+\newblock Rank analysis of incomplete block designs: {I}. {The} method of
+  paired comparisons.
+\newblock {\em Biometrika\/}~{\em 39,\/}~3/4, 324--345.
+\newblock Publisher: JSTOR.
+
+\bibitem[\protect\citeauthoryear{Breiman}{Breiman}{2001}]{breiman_random_2001}
+{\sc Breiman, L.} 2001.
+\newblock Random forests.
+\newblock {\em Machine learning\/}~{\em 45,\/}~1, 5--32.
+\newblock Publisher: Springer.
+
+\bibitem[\protect\citeauthoryear{Burrows, Gurevych, and Stein}{Burrows
+  et~al\mbox{.}}{2015}]{burrows_eras_2015}
+{\sc Burrows, S.}, {\sc Gurevych, I.}, {\sc and} {\sc Stein, B.} 2015.
+\newblock The eras and trends of automatic short answer grading.
+\newblock {\em International Journal of Artificial Intelligence in
+  Education\/}~{\em 25,\/}~1, 60--117.
+\newblock Publisher: Springer.
+
+\bibitem[\protect\citeauthoryear{Cambre, Klemmer, and Kulkarni}{Cambre
+  et~al\mbox{.}}{2018}]{cambre_juxtapeer:_2018}
+{\sc Cambre, J.}, {\sc Klemmer, S.}, {\sc and} {\sc Kulkarni, C.} 2018.
+\newblock Juxtapeer: {Comparative} {Peer} {Review} {Yields} {Higher} {Quality}
+  {Feedback} and {Promotes} {Deeper} {Reflection}.
+\newblock In {\em Proceedings of the 2018 {CHI} {Conference} on {Human}
+  {Factors} in {Computing} {Systems} - {CHI} '18}. ACM Press, Montreal QC,
+  Canada, 1--13.
+
+\bibitem[\protect\citeauthoryear{Charles, Lasry, Bhatnagar, Adams, Lenton,
+  Brouillette, Dugdale, Whittaker, and Jackson}{Charles
+  et~al\mbox{.}}{2019}]{charles_harnessing_2019}
+{\sc Charles, E.~S.}, {\sc Lasry, N.}, {\sc Bhatnagar, S.}, {\sc Adams, R.},
+  {\sc Lenton, K.}, {\sc Brouillette, Y.}, {\sc Dugdale, M.}, {\sc Whittaker,
+  C.}, {\sc and} {\sc Jackson, P.} 2019.
+\newblock Harnessing peer instruction in- and out- of class with {myDALITE}.
+\newblock In {\em Fifteenth {Conference} on {Education} and {Training} in
+  {Optics} and {Photonics}: {ETOP} 2019}. Optical Society of America,
+  11143\_89.
+
+\bibitem[\protect\citeauthoryear{Charles, Lasry, Whittaker, Dugdale, Lenton,
+  Bhatnagar, and Guillemette}{Charles
+  et~al\mbox{.}}{2015}]{charles_beyond_2015}
+{\sc Charles, E.~S.}, {\sc Lasry, N.}, {\sc Whittaker, C.}, {\sc Dugdale, M.},
+  {\sc Lenton, K.}, {\sc Bhatnagar, S.}, {\sc and} {\sc Guillemette, J.} 2015.
+\newblock Beyond and {Within} {Classroom} {Walls}: {Designing} {Principled}
+  {Pedagogical} {Tools} for {Student} and {Faculty} {Uptake}.
+\newblock International Society of the Learning Sciences, Inc.[ISLS].
+
+\bibitem[\protect\citeauthoryear{Chen, Bennett, Collins-Thompson, and
+  Horvitz}{Chen et~al\mbox{.}}{2013}]{chen_pairwise_2013}
+{\sc Chen, X.}, {\sc Bennett, P.~N.}, {\sc Collins-Thompson, K.}, {\sc and}
+  {\sc Horvitz, E.} 2013.
+\newblock Pairwise ranking aggregation in a crowdsourced setting.
+\newblock In {\em Proceedings of the sixth {ACM} international conference on
+  {Web} search and data mining}. 193--202.
+
+\bibitem[\protect\citeauthoryear{Chi, Leeuw, Chiu, and LaVancher}{Chi
+  et~al\mbox{.}}{1994}]{chi_eliciting_1994}
+{\sc Chi, M.~T.}, {\sc Leeuw, N.}, {\sc Chiu, M.-H.}, {\sc and} {\sc LaVancher,
+  C.} 1994.
+\newblock Eliciting self‐explanations improves understanding.
+\newblock {\em Cognitive science\/}~{\em 18,\/}~3, 439--477.
+
+\bibitem[\protect\citeauthoryear{Cline, Huckaby, and Zullo}{Cline
+  et~al\mbox{.}}{2021}]{cline_identifying_2021}
+{\sc Cline, K.}, {\sc Huckaby, D.~A.}, {\sc and} {\sc Zullo, H.} 2021.
+\newblock Identifying {Clicker} {Questions} that {Provoke} {Rich} {Discussions}
+  in {Introductory} {Statistics}.
+\newblock {\em PRIMUS\/}~{\em 0,\/}~ja, 1--32.
+\newblock Publisher: Taylor \& Francis \_eprint:
+  https://doi.org/10.1080/10511970.2021.1900476.
+
+\bibitem[\protect\citeauthoryear{Crouch and Mazur}{Crouch and
+  Mazur}{2001}]{crouch_peer_2001}
+{\sc Crouch, C.~H.} {\sc and} {\sc Mazur, E.} 2001.
+\newblock Peer instruction: {Ten} years of experience and results.
+\newblock {\em American Journal of Physics\/}~{\em 69,\/}~9, 970--977.
+
+\bibitem[\protect\citeauthoryear{Deerwester, Dumais, Landauer, Furnas, and
+  Harshman}{Deerwester et~al\mbox{.}}{1990}]{deerwester_indexing_1990}
+{\sc Deerwester, S.~C.}, {\sc Dumais, S.~T.}, {\sc Landauer, T.~K.}, {\sc
+  Furnas, G.~W.}, {\sc and} {\sc Harshman, R.~A.} 1990.
+\newblock Indexing by latent semantic analysis.
+\newblock {\em JASIS\/}~{\em 41,\/}~6, 391--407.
+
+\bibitem[\protect\citeauthoryear{Denny, Hamer, Luxton-Reilly, and
+  Purchase}{Denny et~al\mbox{.}}{2008}]{denny_peerwise:_2008}
+{\sc Denny, P.}, {\sc Hamer, J.}, {\sc Luxton-Reilly, A.}, {\sc and} {\sc
+  Purchase, H.} 2008.
+\newblock {PeerWise}: {Students} {Sharing} {Their} {Multiple} {Choice}
+  {Questions}.
+\newblock In {\em Proceedings of the {Fourth} {International} {Workshop} on
+  {Computing} {Education} {Research}}. {ICER} '08. ACM, New York, NY, USA,
+  51--58.
+\newblock event-place: Sydney, Australia.
+
+\bibitem[\protect\citeauthoryear{Devlin, Chang, Lee, and Toutanova}{Devlin
+  et~al\mbox{.}}{2018}]{devlin_bert_2018}
+{\sc Devlin, J.}, {\sc Chang, M.-W.}, {\sc Lee, K.}, {\sc and} {\sc Toutanova,
+  K.} 2018.
+\newblock Bert: {Pre}-training of deep bidirectional transformers for language
+  understanding.
+\newblock {\em arXiv preprint arXiv:1810.04805\/}.
+
+\bibitem[\protect\citeauthoryear{Elo}{Elo}{1978}]{elo_rating_1978}
+{\sc Elo, A.~E.} 1978.
+\newblock {\em The rating of chessplayers, past and present}.
+\newblock Arco Pub.
+
+\bibitem[\protect\citeauthoryear{Fisher, Rudin, and Dominici}{Fisher
+  et~al\mbox{.}}{2019}]{fisher_all_2019}
+{\sc Fisher, A.}, {\sc Rudin, C.}, {\sc and} {\sc Dominici, F.} 2019.
+\newblock All {Models} are {Wrong}, but {Many} are {Useful}: {Learning} a
+  {Variable}'s {Importance} by {Studying} an {Entire} {Class} of {Prediction}
+  {Models} {Simultaneously}.
+\newblock {\em Journal of Machine Learning Research\/}~{\em 20,\/}~177, 1--81.
+
+\bibitem[\protect\citeauthoryear{Gagnon, Labrie, Desmarais, and
+  Bhatnagar}{Gagnon et~al\mbox{.}}{2019}]{gagnon_filtering_2019}
+{\sc Gagnon, V.}, {\sc Labrie, A.}, {\sc Desmarais, M.}, {\sc and} {\sc
+  Bhatnagar, S.} 2019.
+\newblock Filtering non-relevant short answers in peer learning applications.
+\newblock In {\em Proc. {Conference} on {Educational} {Data} {Mining} ({EDM})}.
+
+\bibitem[\protect\citeauthoryear{Garcia-Mila, Gilabert, Erduran, and
+  Felton}{Garcia-Mila et~al\mbox{.}}{2013}]{garcia-mila_effect_2013}
+{\sc Garcia-Mila, M.}, {\sc Gilabert, S.}, {\sc Erduran, S.}, {\sc and} {\sc
+  Felton, M.} 2013.
+\newblock The effect of argumentative task goal on the quality of argumentative
+  discourse.
+\newblock {\em Science Education\/}~{\em 97,\/}~4, 497--523.
+\newblock Publisher: Wiley Online Library.
+
+\bibitem[\protect\citeauthoryear{Ghosh, Khanam, Han, and Muresan}{Ghosh
+  et~al\mbox{.}}{2016}]{ghosh_coarse-grained_2016}
+{\sc Ghosh, D.}, {\sc Khanam, A.}, {\sc Han, Y.}, {\sc and} {\sc Muresan, S.}
+  2016.
+\newblock Coarse-grained argumentation features for scoring persuasive essays.
+\newblock In {\em Proceedings of the 54th {Annual} {Meeting} of the
+  {Association} for {Computational} {Linguistics} ({Volume} 2: {Short}
+  {Papers})}. 549--554.
+
+\bibitem[\protect\citeauthoryear{Gleize, Shnarch, Choshen, Dankin, Moshkowich,
+  Aharonov, and Slonim}{Gleize et~al\mbox{.}}{2019}]{gleize_are_2019}
+{\sc Gleize, M.}, {\sc Shnarch, E.}, {\sc Choshen, L.}, {\sc Dankin, L.}, {\sc
+  Moshkowich, G.}, {\sc Aharonov, R.}, {\sc and} {\sc Slonim, N.} 2019.
+\newblock Are you convinced? choosing the more convincing evidence with a
+  {Siamese} network.
+\newblock {\em arXiv preprint arXiv:1907.08971\/}.
+
+\bibitem[\protect\citeauthoryear{Graesser, McNamara, Louwerse, and
+  Cai}{Graesser et~al\mbox{.}}{2004}]{graesser_coh-metrix:_2004}
+{\sc Graesser, A.~C.}, {\sc McNamara, D.~S.}, {\sc Louwerse, M.~M.}, {\sc and}
+  {\sc Cai, Z.} 2004.
+\newblock Coh-{Metrix}: {Analysis} of text on cohesion and language.
+\newblock {\em Behavior research methods, instruments, \& computers\/}~{\em
+  36,\/}~2, 193--202.
+
+\bibitem[\protect\citeauthoryear{Gretz, Friedman, Cohen-Karlik, Toledo, Lahav,
+  Aharonov, and Slonim}{Gretz et~al\mbox{.}}{2019}]{gretz_large-scale_2019}
+{\sc Gretz, S.}, {\sc Friedman, R.}, {\sc Cohen-Karlik, E.}, {\sc Toledo, A.},
+  {\sc Lahav, D.}, {\sc Aharonov, R.}, {\sc and} {\sc Slonim, N.} 2019.
+\newblock A {Large}-scale {Dataset} for {Argument} {Quality} {Ranking}:
+  {Construction} and {Analysis}.
+\newblock {\em arXiv preprint arXiv:1911.11408\/}.
+
+\bibitem[\protect\citeauthoryear{Habernal and Gurevych}{Habernal and
+  Gurevych}{2016}]{habernal_which_2016}
+{\sc Habernal, I.} {\sc and} {\sc Gurevych, I.} 2016.
+\newblock Which argument is more convincing? {Analyzing} and predicting
+  convincingness of {Web} arguments using bidirectional {LSTM}.
+\newblock In {\em Proceedings of the 54th {Annual} {Meeting} of the
+  {Association} for {Computational} {Linguistics} ({Volume} 1: {Long}
+  {Papers})}. Association for Computational Linguistics, Berlin, Germany,
+  1589--1599.
+
+\bibitem[\protect\citeauthoryear{Jones and Wheadon}{Jones and
+  Wheadon}{2015}]{jones_peer_2015}
+{\sc Jones, I.} {\sc and} {\sc Wheadon, C.} 2015.
+\newblock Peer assessment using comparative and absolute judgement.
+\newblock {\em Studies in Educational Evaluation\/}~{\em 47}, 93--101.
+\newblock Publisher: Elsevier.
+
+\bibitem[\protect\citeauthoryear{Khosravi, Kitto, and Williams}{Khosravi
+  et~al\mbox{.}}{2019}]{khosravi_ripple_2019}
+{\sc Khosravi, H.}, {\sc Kitto, K.}, {\sc and} {\sc Williams, J.~J.} 2019.
+\newblock Ripple: {A} crowdsourced adaptive platform for recommendation of
+  learning activities.
+\newblock {\em arXiv preprint arXiv:1910.05522\/}.
+
+\bibitem[\protect\citeauthoryear{Klebanov, Stab, Burstein, Song, Gyawali, and
+  Gurevych}{Klebanov et~al\mbox{.}}{2016}]{klebanov_argumentation_2016}
+{\sc Klebanov, B.~B.}, {\sc Stab, C.}, {\sc Burstein, J.}, {\sc Song, Y.}, {\sc
+  Gyawali, B.}, {\sc and} {\sc Gurevych, I.} 2016.
+\newblock Argumentation: {Content}, structure, and relationship with essay
+  quality.
+\newblock In {\em Proceedings of the {Third} {Workshop} on {Argument} {Mining}
+  ({ArgMining2016})}. 70--75.
+
+\bibitem[\protect\citeauthoryear{Kolhe, Littman, and Isbell}{Kolhe
+  et~al\mbox{.}}{2016}]{kolhe_peer_2016}
+{\sc Kolhe, P.}, {\sc Littman, M.~L.}, {\sc and} {\sc Isbell, C.~L.} 2016.
+\newblock Peer {Reviewing} {Short} {Answers} using {Comparative} {Judgement}.
+\newblock In {\em Proceedings of the {Third} (2016) {ACM} {Conference} on
+  {Learning}@ {Scale}}. ACM, 241--244.
+
+\bibitem[\protect\citeauthoryear{Le and Mikolov}{Le and
+  Mikolov}{2014}]{le_distributed_2014}
+{\sc Le, Q.} {\sc and} {\sc Mikolov, T.} 2014.
+\newblock Distributed representations of sentences and documents.
+\newblock In {\em International conference on machine learning}. 1188--1196.
+
+\bibitem[\protect\citeauthoryear{Magooda, Zahran, Rashwan, Raafat, and
+  Fayek}{Magooda et~al\mbox{.}}{2016}]{magooda_vector_2016}
+{\sc Magooda, A.~E.}, {\sc Zahran, M.}, {\sc Rashwan, M.}, {\sc Raafat, H.},
+  {\sc and} {\sc Fayek, M.} 2016.
+\newblock Vector based techniques for short answer grading.
+\newblock In {\em The twenty-ninth international flairs conference}.
+
+\bibitem[\protect\citeauthoryear{Melnikov, Gupta, Frick, Kaimann, and
+  H{\"u}llermeier}{Melnikov et~al\mbox{.}}{2016}]{melnikov2016pairwise}
+{\sc Melnikov, V.}, {\sc Gupta, P.}, {\sc Frick, B.}, {\sc Kaimann, D.}, {\sc
+  and} {\sc H{\"u}llermeier, E.} 2016.
+\newblock Pairwise versus pointwise ranking: A case study.
+\newblock {\em Schedae Informaticae\/}~{\em 25}, 73--83.
+
+\bibitem[\protect\citeauthoryear{Mercier and Sperber}{Mercier and
+  Sperber}{2011}]{mercier_why_2011}
+{\sc Mercier, H.} {\sc and} {\sc Sperber, D.} 2011.
+\newblock Why do humans reason? {Arguments} for an argumentative theory.
+
+\bibitem[\protect\citeauthoryear{Mohler, Bunescu, and Mihalcea}{Mohler
+  et~al\mbox{.}}{2011}]{mohler_learning_2011}
+{\sc Mohler, M.}, {\sc Bunescu, R.}, {\sc and} {\sc Mihalcea, R.} 2011.
+\newblock Learning to grade short answer questions using semantic similarity
+  measures and dependency graph alignments.
+\newblock In {\em Proceedings of the 49th annual meeting of the association for
+  computational linguistics: {Human} language technologies}. 752--762.
+
+\bibitem[\protect\citeauthoryear{Mohler and Mihalcea}{Mohler and
+  Mihalcea}{2009}]{mohler_text--text_2009}
+{\sc Mohler, M.} {\sc and} {\sc Mihalcea, R.} 2009.
+\newblock Text-to-text {Semantic} {Similarity} for {Automatic} {Short} {Answer}
+  {Grading}.
+\newblock In {\em Proceedings of the 12th {Conference} of the {European}
+  {Chapter} of the {Association} for {Computational} {Linguistics}}. {EACL}
+  '09. Association for Computational Linguistics, Stroudsburg, PA, USA,
+  567--575.
+\newblock event-place: Athens, Greece.
+
+\bibitem[\protect\citeauthoryear{Nathan, Koedinger, Alibali, and
+  {others}}{Nathan et~al\mbox{.}}{2001}]{nathan_expert_2001}
+{\sc Nathan, M.~J.}, {\sc Koedinger, K.~R.}, {\sc Alibali, M.~W.}, {\sc and}
+  {\sc {others}}. 2001.
+\newblock Expert blind spot: {When} content knowledge eclipses pedagogical
+  content knowledge.
+\newblock In {\em Proceedings of the third international conference on
+  cognitive science}. Vol. 644648.
+
+\bibitem[\protect\citeauthoryear{Nguyen and Litman}{Nguyen and
+  Litman}{2018}]{nguyen_argument_2018}
+{\sc Nguyen, H.~V.} {\sc and} {\sc Litman, D.~J.} 2018.
+\newblock Argument {Mining} for {Improving} the {Automated} {Scoring} of
+  {Persuasive} {Essays}.
+\newblock In {\em {AAAI}}. Vol.~18. 5892--5899.
+
+\bibitem[\protect\citeauthoryear{Parmentier and Silvestre}{Parmentier and
+  Silvestre}{2019}]{parmentier2019de}
+{\sc Parmentier, J.-F.} {\sc and} {\sc Silvestre, F.} 2019.
+\newblock La (d{\'e}-) synchronisation des transitions dans un processus
+  d'{\'e}valuation formative ex{\'e}cut{\'e} {\`a} distance: impact sur
+  l'engagement des {\'e}tudiants.
+\newblock In {\em 9{\`e}me Conf{\'e}rence sur les EnvironnementsInformatiques
+  pour l’Apprentissage Humain-EIAH 2019}.
+
+\bibitem[\protect\citeauthoryear{Pelánek}{Pelánek}{2016}]{pelanek_applications_2016}
+{\sc Pelánek, R.} 2016.
+\newblock Applications of the {Elo} rating system in adaptive educational
+  systems.
+\newblock {\em Computers \& Education\/}~{\em 98}, 169--179.
+\newblock Publisher: Elsevier.
+
+\bibitem[\protect\citeauthoryear{Pennington, Socher, and Manning}{Pennington
+  et~al\mbox{.}}{2014}]{pennington_glove:_2014}
+{\sc Pennington, J.}, {\sc Socher, R.}, {\sc and} {\sc Manning, C.~D.} 2014.
+\newblock Glove: {Global} {Vectors} for {Word} {Representation}.
+\newblock In {\em {EMNLP}}. Vol.~14. 1532--1543.
+
+\bibitem[\protect\citeauthoryear{Persing and Ng}{Persing and
+  Ng}{2015}]{persing_modeling_2015}
+{\sc Persing, I.} {\sc and} {\sc Ng, V.} 2015.
+\newblock Modeling argument strength in student essays.
+\newblock In {\em Proceedings of the 53rd {Annual} {Meeting} of the
+  {Association} for {Computational} {Linguistics} and the 7th {International}
+  {Joint} {Conference} on {Natural} {Language} {Processing} ({Volume} 1: {Long}
+  {Papers})}. 543--552.
+
+\bibitem[\protect\citeauthoryear{Persing and Ng}{Persing and
+  Ng}{2016}]{persing_end--end_2016}
+{\sc Persing, I.} {\sc and} {\sc Ng, V.} 2016.
+\newblock End-to-{End} {Argumentation} {Mining} in {Student} {Essays}.
+\newblock In {\em {HLT}-{NAACL}}. 1384--1394.
+
+\bibitem[\protect\citeauthoryear{Potash, Ferguson, and Hazen}{Potash
+  et~al\mbox{.}}{2019}]{potash_ranking_2019}
+{\sc Potash, P.}, {\sc Ferguson, A.}, {\sc and} {\sc Hazen, T.~J.} 2019.
+\newblock Ranking passages for argument convincingness.
+\newblock In {\em Proceedings of the 6th {Workshop} on {Argument} {Mining}}.
+  146--155.
+
+\bibitem[\protect\citeauthoryear{Potter, Englund, Charbonneau, MacLean, Newell,
+  Roll, and {others}}{Potter et~al\mbox{.}}{2017}]{potter_compair:_2017}
+{\sc Potter, T.}, {\sc Englund, L.}, {\sc Charbonneau, J.}, {\sc MacLean,
+  M.~T.}, {\sc Newell, J.}, {\sc Roll, I.}, {\sc and} {\sc {others}}. 2017.
+\newblock {ComPAIR}: {A} new online tool using adaptive comparative judgement
+  to support learning with peer feedback.
+\newblock {\em Teaching \& Learning Inquiry\/}~{\em 5,\/}~2, 89--113.
+
+\bibitem[\protect\citeauthoryear{Raman and Joachims}{Raman and
+  Joachims}{2014}]{raman_methods_2014}
+{\sc Raman, K.} {\sc and} {\sc Joachims, T.} 2014.
+\newblock Methods for ordinal peer grading.
+\newblock In {\em Proceedings of the 20th {ACM} {SIGKDD} international
+  conference on {Knowledge} discovery and data mining}. ACM, 1037--1046.
+
+\bibitem[\protect\citeauthoryear{Riordan, Horbach, Cahill, Zesch, and
+  Lee}{Riordan et~al\mbox{.}}{2017}]{riordan_investigating_2017}
+{\sc Riordan, B.}, {\sc Horbach, A.}, {\sc Cahill, A.}, {\sc Zesch, T.}, {\sc
+  and} {\sc Lee, C.} 2017.
+\newblock Investigating neural architectures for short answer scoring.
+\newblock In {\em Proceedings of the 12th {Workshop} on {Innovative} {Use} of
+  {NLP} for {Building} {Educational} {Applications}}. 159--168.
+
+\bibitem[\protect\citeauthoryear{Silvestre, Vidal, and Broisin}{Silvestre
+  et~al\mbox{.}}{2015}]{silvestre2015reflexive}
+{\sc Silvestre, F.}, {\sc Vidal, P.}, {\sc and} {\sc Broisin, J.} 2015.
+\newblock Reflexive learning, socio-cognitive conflict and peer-assessment to
+  improve the quality of feedbacks in online tests.
+\newblock In {\em European Conference on Technology Enhanced Learning}.
+  Springer, 339--351.
+
+\bibitem[\protect\citeauthoryear{Singh, Brooks, and Doroudi}{Singh
+  et~al\mbox{.}}{2022}]{singh2022learnersourcing}
+{\sc Singh, A.}, {\sc Brooks, C.}, {\sc and} {\sc Doroudi, S.} 2022.
+\newblock Learnersourcing in theory and practice: Synthesizing the literature
+  and charting the future.
+\newblock In {\em Proceedings of the Ninth ACM Conference on Learning@Scale}.
+  234--245.
+
+\bibitem[\protect\citeauthoryear{Stegmann, Wecker, Weinberger, and
+  Fischer}{Stegmann et~al\mbox{.}}{2012}]{stegmann_collaborative_2012}
+{\sc Stegmann, K.}, {\sc Wecker, C.}, {\sc Weinberger, A.}, {\sc and} {\sc
+  Fischer, F.} 2012.
+\newblock Collaborative argumentation and cognitive elaboration in a
+  computer-supported collaborative learning environment.
+\newblock {\em Instructional Science\/}~{\em 40,\/}~2 (Mar.), 297--323.
+
+\bibitem[\protect\citeauthoryear{Sultan, Salazar, and Sumner}{Sultan
+  et~al\mbox{.}}{2016}]{sultan_fast_2016}
+{\sc Sultan, M.~A.}, {\sc Salazar, C.}, {\sc and} {\sc Sumner, T.} 2016.
+\newblock Fast and easy short answer grading with high accuracy.
+\newblock In {\em Proceedings of the 2016 {Conference} of the {North}
+  {American} {Chapter} of the {Association} for {Computational} {Linguistics}:
+  {Human} {Language} {Technologies}}. 1070--1075.
+
+\bibitem[\protect\citeauthoryear{Toledo, Gretz, Cohen-Karlik, Friedman,
+  Venezian, Lahav, Jacovi, Aharonov, and Slonim}{Toledo
+  et~al\mbox{.}}{2019}]{toledo_automatic_2019}
+{\sc Toledo, A.}, {\sc Gretz, S.}, {\sc Cohen-Karlik, E.}, {\sc Friedman, R.},
+  {\sc Venezian, E.}, {\sc Lahav, D.}, {\sc Jacovi, M.}, {\sc Aharonov, R.},
+  {\sc and} {\sc Slonim, N.} 2019.
+\newblock Automatic {Argument} {Quality} {Assessment}-{New} {Datasets} and
+  {Methods}.
+\newblock In {\em Proceedings of the 2019 {Conference} on {Empirical} {Methods}
+  in {Natural} {Language} {Processing} and the 9th {International} {Joint}
+  {Conference} on {Natural} {Language} {Processing} ({EMNLP}-{IJCNLP})}.
+  5629--5639.
+
+\bibitem[\protect\citeauthoryear{University~of British~Columbia}{University~of
+  British~Columbia}{2019}]{university_of_british_columbia_ubc/ubcpi_2019}
+{\sc University~of British~Columbia, T. . L.~T.} 2019.
+\newblock ubc/ubcpi.
+\newblock original-date: 2015-02-17T21:37:02Z.
+
+\bibitem[\protect\citeauthoryear{Venville and Dawson}{Venville and
+  Dawson}{2010}]{venville_impact_2010}
+{\sc Venville, G.~J.} {\sc and} {\sc Dawson, V.~M.} 2010.
+\newblock The impact of a classroom intervention on grade 10 students'
+  argumentation skills, informal reasoning, and conceptual understanding of
+  science.
+\newblock {\em Journal of Research in Science Teaching\/}~{\em 47,\/}~8,
+  952--977.
+\newblock Publisher: Wiley Online Library.
+
+\bibitem[\protect\citeauthoryear{Wachsmuth, Naderi, Hou, Bilu, Prabhakaran,
+  Thijm, Hirst, and Stein}{Wachsmuth
+  et~al\mbox{.}}{2017}]{wachsmuth_computational_2017}
+{\sc Wachsmuth, H.}, {\sc Naderi, N.}, {\sc Hou, Y.}, {\sc Bilu, Y.}, {\sc
+  Prabhakaran, V.}, {\sc Thijm, T.~A.}, {\sc Hirst, G.}, {\sc and} {\sc Stein,
+  B.} 2017.
+\newblock Computational argumentation quality assessment in natural language.
+\newblock In {\em Proceedings of the 15th {Conference} of the {European}
+  {Chapter} of the {Association} for {Computational} {Linguistics}: {Volume} 1,
+  {Long} {Papers}}. 176--187.
+
+\bibitem[\protect\citeauthoryear{Weir, Kim, Gajos, and Miller}{Weir
+  et~al\mbox{.}}{2015}]{weir_learnersourcing_2015}
+{\sc Weir, S.}, {\sc Kim, J.}, {\sc Gajos, K.~Z.}, {\sc and} {\sc Miller,
+  R.~C.} 2015.
+\newblock Learnersourcing subgoal labels for how-to videos.
+\newblock In {\em Proceedings of the 18th {ACM} {Conference} on {Computer}
+  {Supported} {Cooperative} {Work} \& {Social} {Computing}}. ACM, 405--416.
+
+\bibitem[\protect\citeauthoryear{Williams, Kim, Rafferty, Maldonado, Gajos,
+  Lasecki, and Heffernan}{Williams et~al\mbox{.}}{2016}]{williams_axis:_2016}
+{\sc Williams, J.~J.}, {\sc Kim, J.}, {\sc Rafferty, A.}, {\sc Maldonado, S.},
+  {\sc Gajos, K.~Z.}, {\sc Lasecki, W.~S.}, {\sc and} {\sc Heffernan, N.} 2016.
+\newblock {AXIS}: {Generating} {Explanations} at {Scale} with {Learnersourcing}
+  and {Machine} {Learning}.
+\newblock In {\em Proceedings of the {Third} (2016) {ACM} {Conference} on
+  {Learning} @ {Scale} - {L}@{S} '16}. ACM Press, Edinburgh, Scotland, UK,
+  379--388.
+
+\bibitem[\protect\citeauthoryear{Zhang, Shah, and Chi}{Zhang
+  et~al\mbox{.}}{2016}]{zhang_deep_2016}
+{\sc Zhang, Y.}, {\sc Shah, R.}, {\sc and} {\sc Chi, M.} 2016.
+\newblock Deep {Learning}+ {Student} {Modeling}+ {Clustering}: {A} {Recipe} for
+  {Effective} {Automatic} {Short} {Answer} {Grading}.
+\newblock {\em International Educational Data Mining Society\/}.
+\newblock Publisher: ERIC.
+
+\end{thebibliography}
